@@ -357,12 +357,12 @@
     		<scope>provided</scope>
 		</dependency>
 		
-		<!-- 调用富有接口依赖 -->
+		<!-- 调用富有接口依赖 
 		<dependency>
   			<groupId>com.izhuantou</groupId>
   			<artifactId>furious-goldanct-sdk</artifactId>
   			<version>1.0.0</version>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 	
 	<build>

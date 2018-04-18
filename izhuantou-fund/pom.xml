@@ -11,12 +11,12 @@
   	<dependency>
   		<groupId>com.izhuantou</groupId>
   		<artifactId>izhuantou-fund-api</artifactId>
-  		<version>${project.parent.version}</version>
+  		<version>${project.version}</version>
   	</dependency>
   	<dependency>
   		<groupId>com.izhuantou</groupId>
   		<artifactId>izhuantou-dao</artifactId>
-  		<version>${project.parent.version}</version>
+  		<version>${project.version}</version>
   	</dependency>
   </dependencies>
   
