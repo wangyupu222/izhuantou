@@ -14,7 +14,7 @@
   	<module>izhuantou-fund</module>
   	<module>izhuantou-service</module>
   	<module>izhuantou-third</module>
-  	<module>izhuantou-web</module>
+  	<module>izhuantou-portal</module>
   	<module>izhuantou-app-api</module>
   </modules>
 
