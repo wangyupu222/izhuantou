@@ -5,6 +5,9 @@
     <artifactId>izhuantou</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>izhuantou-common</artifactId>
+  <artifactId>izhuantou-fund-api</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  	
+  </dependencies>
 </project>

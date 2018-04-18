@@ -10,10 +10,11 @@
   	<module>izhuantou-common</module>
   	<module>izhuantou-dao</module>
   	<module>izhuantou-data</module>
+  	<module>izhuantou-fund-api</module>
   	<module>izhuantou-fund</module>
   	<module>izhuantou-service</module>
   	<module>izhuantou-third</module>
-  	<module>izhuantou-pc-api</module>
+  	<module>izhuantou-web</module>
   	<module>izhuantou-app-api</module>
   </modules>
 

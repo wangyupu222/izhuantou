@@ -5,7 +5,7 @@
     <artifactId>izhuantou</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>izhuantou-pc-api</artifactId>
+  <artifactId>izhuantou-web</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
   	<dependency>

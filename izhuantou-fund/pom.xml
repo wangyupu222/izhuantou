@@ -10,8 +10,13 @@
   <dependencies>
   	<dependency>
   		<groupId>com.izhuantou</groupId>
+  		<artifactId>izhuantou-fund-api</artifactId>
+  		<version>${project.parent.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.izhuantou</groupId>
   		<artifactId>izhuantou-dao</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
+  		<version>${project.parent.version}</version>
   	</dependency>
   </dependencies>
   
