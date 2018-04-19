@@ -15,7 +15,7 @@ public class ServiceTestImpl implements ServiceTest {
     @Override
     public String getNumber() {
 	System.err.println("service");
-	return " I'm service" + "Dao获取的数据为" + testMapper.queryData();
+	return " I'm service" + "Dao获取的时间为" + testMapper.queryData();
     }
 
 }

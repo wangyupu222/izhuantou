@@ -6,10 +6,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
-	<!-- 配置 读取properties文件 jdbc.properties -->
-	<!-- <context:property-placeholder location="classpath:resource/jdbc.properties" ignore-unresolvable="true" /> -->
-
+        
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
 		destroy-method="close">

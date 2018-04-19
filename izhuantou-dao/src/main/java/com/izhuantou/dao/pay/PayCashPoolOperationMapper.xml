@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	namespace="com.izhuantou.dao.pay.PayCashPoolOperationMapper">
 
 	<select id="findByBusinessOID"
-		resultType="com.izhuantou.manager.pojo.pay.PayCashPoolOperation">
+		resultType="com.izhuantou.damain.pay.PayCashPoolOperation">
 		SELECT * from PAY_CashPoolOperation where businessOID = #{OID}
 	</select>
 	<insert id="saveCashPoolOperation" parameterType="com.izhuantou.damain.pay.PayCashPoolOperation">
