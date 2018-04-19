@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.DisplayDDTMapper">
+	<select id="findByCondition" resultType="com.izhuantou.damain.lend.DisplayDDT">
+		SELECT * from(
+		SELECT
+		nbr.OID OID,
+		nbr.biddingName xmmc,
+		nbr.szds,
+		round(productInfo.yearRate *
+		100, 2) nhll,
+		productInfo.productTerm cjqx,
+		productInfo.repaymentType
+		hkfs,
+		nbr.biddingAmount xmze,
+		nbr.holdingAmount bdtj,
+		nbr.productStatus,
+		nbr.isRecommend,
+		nbr.addDateTime,
+		nbr.biddingAmount - nbr.holdingAmount
+		sykt,
+		round(
+		(
+		nbr.holdingAmount /
+		nbr.biddingAmount
+		) * 100,
+		0
+		) jd,
+		nbr.isRecommend bdtj1
+		FROM
+		WEBP2P_NormalBiddingRuning nbr
+		LEFT JOIN
+		WEBP2P_ProductRateInfo
+		productInfo ON nbr.productRateInfoID =
+		productInfo.OID
+		WHERE
+		nbr.productStatus = '1'
+		OR nbr.productStatus = '2'
+		) dd
+		where dd.szds is null or szds ='0'
+		ORDER BY
+		isRecommend DESC,
+		productStatus
+		${sortp},
+		addDateTime DESC
+		limit
+		#{startPos},#{pageSize}
+
+	</select>
+	<select id="getPageCount" resultType="long">
+		SELECT COUNT(xmmc
+		) from(
+
+		SELECT
+		nbr.OID OID,
+		nbr.biddingName xmmc,
+		nbr.szds,
+		round(productInfo.yearRate * 100, 2) nhll,
+		productInfo.productTerm cjqx,
+		productInfo.repaymentType hkfs,
+		nbr.biddingAmount xmze,
+		nbr.holdingAmount bdtj,
+		nbr.productStatus,
+		nbr.isRecommend,
+		nbr.addDateTime,
+		nbr.biddingAmount - nbr.holdingAmount sykt,
+		round(
+		(
+		nbr.holdingAmount /
+		nbr.biddingAmount
+		) * 100,
+		0
+		) jd,
+		nbr.isRecommend bdtj1
+		FROM
+		WEBP2P_NormalBiddingRuning nbr
+		LEFT JOIN WEBP2P_ProductRateInfo
+		productInfo ON nbr.productRateInfoID =
+		productInfo.OID
+		WHERE
+		nbr.productStatus = '1'
+		OR nbr.productStatus = '2'
+		) dd
+		where dd.szds is null or szds ='0'
+
+	</select>
+
+	<select id="findList" resultType="com.izhuantou.damain.lend.DisplayDDT">
+		SELECT * from(
+		SELECT
+		nbr.OID OID,
+		nbr.biddingName xmmc,
+		nbr.szds,
+		round(productInfo.yearRate *
+		100, 2) nhll,
+		productInfo.productTerm cjqx,
+		productInfo.repaymentType
+		hkfs,
+		nbr.biddingAmount xmze,
+		nbr.holdingAmount bdtj,
+		nbr.productStatus,
+		nbr.isRecommend,
+		nbr.addDateTime,
+		nbr.biddingAmount - nbr.holdingAmount
+		sykt,
+		round(
+		(
+		nbr.holdingAmount /
+		nbr.biddingAmount
+		) * 100,
+		0
+		) jd,
+		nbr.isRecommend bdtj1
+		FROM
+		WEBP2P_NormalBiddingRuning nbr
+		LEFT JOIN
+		WEBP2P_ProductRateInfo
+		productInfo ON nbr.productRateInfoID =
+		productInfo.OID
+		WHERE
+		nbr.productStatus = '1'
+		OR nbr.productStatus = '2'
+		) dd
+		where dd.szds is null or szds ='0'
+		ORDER BY
+		isRecommend DESC,
+		productStatus,
+		addDateTime DESC
+	</select>
+</mapper>

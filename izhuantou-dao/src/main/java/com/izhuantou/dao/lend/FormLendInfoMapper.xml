@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.FormLendInfoMapper">
+	<select id="insertData" >
+		insert into P2P_Ztloan (OID,name,card,phone,money,purpose,city,loanTerm,valid,addDateTime,updDateTime,refresh,version)
+		 values(#{OID},#{name},#{card},#{phone},#{money},#{purpose},#{city},#{loanTerm},#{valid},#{addDateTime},#{updDateTime},#{refresh},#{version})
+	</select>
+
+
+</mapper>

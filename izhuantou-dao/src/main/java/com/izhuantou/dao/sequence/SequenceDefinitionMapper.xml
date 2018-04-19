@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.sequence.SequenceDefinitionMapper">
+	<!-- 查看协议编号序列号定义 -->
+	<select id="findSequenceDefinitionByName" resultType="com.izhuantou.damain.sequence.SequenceDefinition">
+		SELECT * FROM sequence_definition WHERE name=#{name};
+	</select>
+	<update id="updSequenceDefinitionByName" parameterType="com.izhuantou.damain.sequence.SequenceDefinition">
+			UPDATE sequence_definition
+			SET 
+			 name = #{name},
+			 nameCN = #{nameCN},
+			 format = #{format},
+			 value = #{value},
+			 clearTime = #{clearTime},
+			 creatDateTime =#{creatDateTime},
+			 describe0 = #{describe0},
+			 valid = #{valid},
+			 version =version+1,
+			 refresh = #{refresh}
+			WHERE
+				OID = #{OID} and version=#{version}
+				
+	</update>
+	
+
+</mapper>

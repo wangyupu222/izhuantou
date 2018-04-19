@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.p2p.P2pToutiaoNewsMapper">
+	<!-- 查询出所有的 -->
+	<select id="findToutiaoNewsByPage" resultType="com.izhuantou.damain.p2p.P2pToutiaoNews">
+		select OID,name,uploadImgOID,messages,addDateTime from  p2p_toutiaonews ORDER BY addDateTime DESC limit #{ startIndex } , #{ pageSize }
+	</select>
+	
+	<!-- 查询出所有的 -->
+	<select id="getRowCount" resultType="int">
+		select count(*) from p2p_toutiaonews 
+	</select>
+	<!-- 根据OID查询详情-->
+	<select id="findToutiaoNewsByOID" resultType="com.izhuantou.damain.p2p.P2pToutiaoNews">
+		select OID,name,uploadImgOID,messages,addDateTime from  p2p_toutiaonews where OID=#{OID}
+	</select>
+	
+	
+</mapper>

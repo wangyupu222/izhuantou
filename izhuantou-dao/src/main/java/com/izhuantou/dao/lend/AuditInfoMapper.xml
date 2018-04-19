@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.AuditInfoMapper">
+
+
+	<select id="findByMainOID" resultType="com.izhuantou.damain.lend.AuditInfo">
+		SELECT
+		 DISTINCT photoOID,s.nameCN
+		FROM
+		(
+		SELECT
+
+		IF (
+		t.psnrnew = 'sfzb',
+		'sfzfm',
+		t.psnrnew
+		) psnrnewall,
+		t.*
+		FROM
+		(
+		SELECT
+
+		IF (psnr = 'sfza', 'sfzzm', psnr) psnrnew,
+		loan_realphoto.*
+		FROM
+		loan_realphoto
+		WHERE
+		ismosaic = 'yes'
+		AND mainOID = #{mainOID}
+		) AS t
+		) m,
+		(
+		SELECT
+		*
+		FROM
+		`code_content`
+		WHERE
+		definitionName = 'plpic' or definitionName ='typl'
+		) AS s
+		WHERE
+		m.psnrnewall = s.id
+
+	</select>
+
+
+
+
+</mapper>

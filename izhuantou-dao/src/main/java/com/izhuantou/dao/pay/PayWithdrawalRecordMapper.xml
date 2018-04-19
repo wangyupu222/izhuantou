@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.pay.PayWithdrawalRecordMapper">
+	
+	<insert id="saveWithdrawalrecord" parameterType="com.izhuantou.damain.pay.PayWithdrawalRecord">
+		INSERT INTO pay_withdrawalrecord (
+			OID,
+			memberOID,
+			sxf,
+			mfed,
+			mfedbefor,
+			status,
+			money,
+			requestID,
+			valid,
+			addDateTime,
+			updDateTime,
+			refresh,
+			version
+			)
+			VALUES
+			(
+				#{OID},
+				#{memberOID},
+				#{sxf},
+				#{mfed},
+				#{mfedbefor},
+				#{status},
+				#{money},
+				#{requestID},
+				1,
+				NOW(),
+				NOW(),
+				1,
+				0
+			)
+	</insert>
+	<!--根据流水号 requestID查看提现的记录  -->
+	<select id="findWithdeawalByRequestID" resultType="com.izhuantou.damain.pay.PayWithdrawalRecord">
+		select * from pay_withdrawalrecord where requestID=#{requestID}
+		
+	</select>
+	
+	
+	
+</mapper>

@@ -7,4 +7,11 @@
   </parent>
   <artifactId>izhuantou-domain</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.izhuantou</groupId>
+  		<artifactId>izhuantou-common</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>

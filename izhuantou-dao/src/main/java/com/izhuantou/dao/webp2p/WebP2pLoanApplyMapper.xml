@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.webp2p.WebP2pLoanApplyMapper">
+	<select id="insertData">
+		INSERT INTO
+		WEBP2P_LoanApply
+		(OID,memberOID,userName,idCard,mobile,loanAmount,loanTerm,loanYT,city,applyTime,isAgree,rate,addDateTime,version)
+		VALUES
+		(#{OID},#{memberOID},#{userName},#{idCard},#{mobile},#{loanAmount},#{loanTerm},#{loanYT},#{city},#{applyTime},#{isAgree},#{rate},#{addDateTime},0)
+
+	</select>
+
+	<select id="findData" resultType="com.izhuantou.damain.webp2p.WebP2pLoanApply">
+		SELECT * from WEBP2P_LoanApply
+		where memberOID=#{memberOID} limit
+		#{startPos},#{pageSize}
+
+	</select>
+
+	<select id="findByOID" resultType="com.izhuantou.damain.webp2p.WebP2pLoanApply">
+		SELECT * from WEBP2P_LoanApply
+		where OID=#{OID}
+
+	</select>
+
+	<update id="update">
+		update WEBP2P_LoanApply set
+		loanAmount=#{loanAmount},loanTerm=#{loanTerm},loanYT=#{loanYT},city=#{city},updDateTime=#{updDateTime},version
+		= version+1
+		where OID=#{OID} and version = #{version}
+	</update>
+
+
+
+	<select id="findCount" resultType="Integer">
+		SELECT count(*) from
+		WEBP2P_LoanApply where memberOID=#{memberOID}
+	</select>
+
+</mapper>

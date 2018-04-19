@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.izhuantou.dao.pay.PayPrivilegeMemberMappingMapper">
+
+	<select id="findByCondition"
+		resultType="com.izhuantou.damain.pay.PayPrivilegeMemberMapping">
+
+		SELECT * FROM PAY_PrivilegeMemberMapping
+		WHERE privilegeOID =#{tqOID}
+		AND memberOID = #{memberOID} AND isUsed=0
+	</select>
+	<!-- 保存用户的优惠券 -->
+	<insert id="saveUserPrivelege" parameterType="com.izhuantou.damain.pay.PayPrivilegeMemberMapping">
+		INSERT INTO pay_privilegemembermapping(
+						OID,
+						privilegeOID,
+						memberOID,
+						isUsed,
+						startDate,
+						endDate,
+						useTerm,
+						rule,
+						describe0,
+						NO,
+						addUserOID,
+						updUserOID,
+						valid,
+						addDateTime,
+						updDateTime,
+						refresh,
+						version,
+						psOID
+						)
+						VALUES
+						(
+						#{OID},
+						#{privilegeOID},
+						#{memberOID},
+						#{isUsed},
+						#{startDate},
+						#{endDate},
+						#{useTerm},
+						#{rule},
+						#{describe0},
+						#{NO},
+						#{addUserOID},
+						#{updUserOID},
+						1,
+						NOW(),
+						NOW(),
+						1,
+						0,
+						#{psOID}
+						)
+	</insert>
+	<!-- 根据OID查看 -->
+	<select id="findByOID" resultType="com.izhuantou.damain.pay.PayPrivilegeMemberMapping">
+		select * from pay_privilegemembermapping where OID=#{OID}
+	
+	</select>
+	<!-- 更新 -->
+	<update id="updatePrivilegeMemberMapping" parameterType="com.izhuantou.damain.pay.PayPrivilegeMemberMapping">
+		UPDATE pay_privilegemembermapping
+				SET 
+				 privilegeOID=#{privilegeOID},
+				 memberOID=#{memberOID},
+				 isUsed=#{isUsed},
+				 startDate=#{startDate},
+				 endDate=#{endDate},
+				 useTerm=#{useTerm},
+				 rule=#{rule},
+				 describe0=#{describe0},
+				 NO=#{NO},
+				 addUserOID=#{addUserOID},
+				 updUserOID=#{updUserOID},
+				 valid=#{valid},
+				 addDateTime=#{addDateTime},
+				 updDateTime=#{updDateTime},
+				 refresh=#{refresh},
+				 version=version+1,
+				 psOID=#{psOID}
+				WHERE
+					OID=#{OID} and version=#{version}   
+		
+		
+	
+	</update>
+	
+	
+	
+</mapper>

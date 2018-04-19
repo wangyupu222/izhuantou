@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.pay.PayReturnPlanMapper">
+	
+	<select id="gainReturnPlanByMemberOIDAndState" resultType="com.izhuantou.damain.pay.PayReturnPlan">
+		select interestMoney,principalMoney from pay_returnplan where memberOID=#{memberOID} and state=#{state} and type='OPI'
+	</select>
+	
+	<select id="findReturnPlanByMemberOIDAndState" resultType="com.izhuantou.damain.pay.PayReturnPlan">
+		select * from PAY_ReturnPlan where businessOID =#{ businessOID }  and state =#{state}
+	</select>
+	<!--  根据查询 最近返还日期-->
+	<select id="findMINByDebitCreditOIDAndState" resultType="com.izhuantou.damain.pay.PayReturnPlan">
+		SELECT MIN( returnDate ) as returnDate,repayOID FROM PAY_ReturnPlan WHERE debitCreditOID =#{debitCreditOID}  AND state = #{state} 
+	
+		
+	</select>
+	<!-- 查看所有 -->
+	<select id="queryByreturnDate" resultType="com.izhuantou.damain.pay.PayReturnPlan">
+		SELECT * from PAY_ReturnPlan where debitCreditOID = #{debitCreditOID} order by returnDate
+		
+	</select>
+	<!-- 保存一条回款计划 -->
+	<insert id="saveReturnPlan" parameterType="com.izhuantou.damain.pay.PayReturnPlan">
+			INSERT INTO pay_returnplan(
+							OID,
+							businessOID,
+							cashPoolOID,
+							repayOID,
+							debitCreditOID,
+							memberOID,
+							outMemberOID,
+							returnDate,
+							money,
+							state,
+							principalMoney,
+							interestMoney,
+							type,
+							totalPrincipalMoney,
+							totalInterestMoney,
+							rate,
+							num,
+							sum,
+							describe0,
+							NO,
+							addUserOID,
+							updUserOID,
+							valid,
+							addDateTime,
+							updDateTime,
+							refresh,
+							version,
+							yqfx
+						)
+						VALUES
+						(
+							#{OID},
+							#{businessOID},
+							#{cashPoolOID},
+							#{repayOID},
+							#{debitCreditOID},
+							#{memberOID},
+							#{outMemberOID},
+							#{returnDate},
+							#{money},
+							#{state},
+							#{principalMoney},
+							#{interestMoney},
+							#{type},
+							#{totalPrincipalMoney},
+							#{totalInterestMoney},
+							#{rate},
+							#{num},
+							#{sum},
+							#{describe0},
+							#{NO},
+							#{addUserOID},
+							#{updUserOID},
+							1,
+							NOW(),
+							NOW(),
+							1,
+							0,
+							#{yqfx}
+						)
+	
+	</insert>
+	
+	<update id="updateReturnPlan" parameterType="com.izhuantou.damain.pay.PayReturnPlan">
+		UPDATE pay_returnplan
+				SET 
+				 businessOID=#{businessOID},
+				 cashPoolOID=#{cashPoolOID},
+				 repayOID=#{repayOID},
+				 debitCreditOID=#{debitCreditOID},
+				 memberOID=#{memberOID},
+				 outMemberOID=#{outMemberOID},
+				 returnDate=#{returnDate},
+				 money=#{money},
+				 state=#{state},
+				 principalMoney=#{principalMoney},
+				 interestMoney=#{interestMoney},
+				 type=#{type},
+				 totalPrincipalMoney=#{totalPrincipalMoney},
+				 totalInterestMoney=#{totalInterestMoney},
+				 rate=#{rate},
+				 num=#{num},
+				 sum=#{sum},
+				 describe0=#{describe0},
+				 NO=#{NO},
+				 addUserOID=#{addUserOID},
+				 updUserOID=#{updUserOID},
+				 valid=#{valid},
+				 addDateTime=#{addDateTime},
+				 updDateTime=NOW(),
+				 refresh=#{refresh},
+				 version=version+1, 
+				 yqfx=#{yqfx}
+			WHERE
+				OID =#{businessOID} and
+				 version=#{version}
+	
+	</update>
+	
+	<select id="findByDebitCreditOIDAndState" parameterType="com.izhuantou.damain.pay.PayReturnPlan">
+		select * from PAY_ReturnPlan where debitCreditOID =#{debitCreditOID}  AND state =#{state} 
+	
+	</select>
+	
+	
+	
+	
+</mapper>

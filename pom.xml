@@ -357,12 +357,12 @@
     		<scope>provided</scope>
 		</dependency>
 		
-		<!-- 调用富有接口依赖 
+		<!-- 调用富有接口依赖 -->
 		<dependency>
   			<groupId>com.izhuantou</groupId>
   			<artifactId>furious-goldanct-sdk</artifactId>
   			<version>1.0.0</version>
-		</dependency>-->
+		</dependency>
 	</dependencies>
 	
 	<build>
@@ -397,26 +397,5 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		<resources>
-			<!-- 使用Maven部署的时候，xml和properties配置文件也一起部署到Tomcat -->
-			<resource>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.properties</include>
-					<include>**/*.xml</include>
-				</includes>
-				<filtering>false</filtering>
-			</resource>
-			<!-- 默认是以下配置 -->
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*.properties</include>
-					<include>**/*.xml</include>
-				</includes>
-				<filtering>false</filtering>
-			</resource>
-		</resources>
-		
 	</build>	
 </project>

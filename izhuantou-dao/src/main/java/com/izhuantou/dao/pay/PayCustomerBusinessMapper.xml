@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.pay.PayCustomerBusinessMapper">
+
+	<select id="findByBusinessOID"
+		resultType="com.izhuantou.damain.pay.PayCustomerBusiness">
+		SELECT COUNT(*) AS recorde FROM PAY_CustomerBusiness WHERE
+		memberOID = #{memberOID} AND type = '出借'
+	</select>
+
+	<insert id="insertCustomerBussiness" parameterType="com.izhuantou.damain.pay.PayCustomerBusiness">
+			INSERT INTO pay_customerbusiness (
+			OID,
+			customerOID,
+			memberOID,
+			content,
+			money,
+			type,
+			state,
+			describe0,
+			valid,
+			addDateTime,
+			updDateTime,
+			refresh,
+			version
+		)
+		VALUES(
+			#{OID},
+			#{customerOID},
+			#{memberOID},
+			#{content},
+			#{money},
+			#{type},
+			#{state},
+			#{describe0},
+			1,
+			NOW(),
+			NOW(), 
+			1,
+			0
+		)
+			
+	
+	</insert>
+
+
+
+</mapper>

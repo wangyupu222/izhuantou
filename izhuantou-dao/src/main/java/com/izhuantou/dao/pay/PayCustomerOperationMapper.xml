@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.pay.PayCustomerOperationMapper">
+	<!-- 查询充值体现记录 -->
+	<select id="findRechargeRecord" resultType="com.izhuantou.damain.pay.PayCustomerOperation">
+
+	select addDateTime,requestID,money,content
+	from pay_customeroperation
+	WHERE
+	memberOID=#{memberOID} And state=#{state} order by addDateTime DESC limit #{startIndex} , #{pageSize}
+		
+	</select>
+	<!-- App端查询充值体现记录 -->
+	<select id="findAppRechargeRecord" resultType="com.izhuantou.damain.pay.PayCustomerOperation">
+		select addDateTime,requestID,money,content
+		from pay_customeroperation
+		WHERE
+		memberOID=#{memberOID} And state=#{state} 
+	</select>
+	<!-- 查询总条数 -->
+	<select id="getRowCount" resultType="int">
+	select count(*)
+	from pay_customeroperation
+	WHERE memberOID=#{memberOID} And state=#{state}
+		
+	</select>
+
+	<insert id="insertRechargeRecord" parameterType="com.izhuantou.damain.pay.PayCustomerOperation">
+		insert into pay_customeroperation 
+		(OID,
+			customerOID,
+			memberOID,
+			content,
+			money,
+			state,
+			requestID,
+			describe0,
+			valid,
+			addDateTime,
+			updDateTime,
+			refresh,
+			version,
+			laiyuan)
+		VALUE(
+			#{OID},
+			#{customerOID},
+			#{memberOID},
+			#{content},
+			#{money},
+			#{state},
+			#{requestID},
+			#{describe0},
+			1,
+			NOW(),
+			NOW(),
+			1,
+			0,
+			#{laiyuan}
+		)
+	
+	</insert>
+	
+	
+</mapper>

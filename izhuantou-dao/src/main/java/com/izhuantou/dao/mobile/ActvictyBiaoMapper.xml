@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.mobile.ActvictyBiaoMapper">
+
+
+
+	<select id="findBYmemberOID" resultType="com.izhuantou.damain.mobile.ActivityBiao">
+		SELECT
+		C.productRateInfoID AS productRateInfoID,
+		C.packageName AS
+		packageName,( CASE WHEN ISNULL(C.sykt) THEN 0.00 ELSE C.sykt END )
+		AS
+		sykt,C.applyAmount AS applyAmount,C.startBidAmount AS
+		startBidAmount,
+		C.productStatus AS productStatus,C.OID AS OID
+		FROM (SELECT
+		WEBP2P_PackageBiddingMainRuning.productRateInfoID,WEBP2P_PackageBiddingMainRuning.packageName
+		AS packageName,
+		SUM(WEBP2P_PackageBiddingMainContentRuning.biddingAmount -
+		WEBP2P_PackageBiddingMainContentRuning.holdingAmount) sykt,
+		IFNULL(SUM(WEBP2P_PackageBiddingMainContentRuning.biddingAmount),0)
+		applyAmount ,WEBP2P_PackageBiddingMainRuning.startBidAmount
+		startBidAmount,
+		WEBP2P_PackageBiddingMainRuning.productStatus
+		productStatus,WEBP2P_PackageBiddingMainRuning.OID OID
+		FROM
+		WEBP2P_PackageBiddingMainRuning LEFT JOIN
+		WEBP2P_PackageMainContentMapping ON
+		WEBP2P_PackageBiddingMainRuning.OID =
+		WEBP2P_PackageMainContentMapping.mainOID
+		LEFT JOIN
+		WEBP2P_PackageBiddingMainContentRuning ON
+		WEBP2P_PackageMainContentMapping.contentOID =
+		WEBP2P_PackageBiddingMainContentRuning.OID,
+		WEBP2P_ProductRateInfo
+		WHERE WEBP2P_ProductRateInfo.OID =
+		WEBP2P_PackageBiddingMainRuning.productRateInfoID AND
+		WEBP2P_PackageBiddingMainRuning.isRecommend = 2 GROUP BY
+		WEBP2P_PackageBiddingMainRuning.OID) C
+
+	</select>
+
+
+
+
+
+</mapper>

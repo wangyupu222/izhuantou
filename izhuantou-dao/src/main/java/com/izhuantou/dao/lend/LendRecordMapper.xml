@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.LendRecordMapper">
+
+
+	<select id="findByBusinessOID" resultType="com.izhuantou.damain.lend.LendRecord">
+
+		SELECT
+		t.OID,t.money,t.mobile,if(pay_transferreturn.addDateTime is
+		null,t.addDateTime,pay_transferreturn.addDateTime) addDateTime from (
+		SELECT
+		payDebitCredit.OID,
+		payDebitCredit.money,
+		pay_customer.mobile,
+		payDebitCredit.addDateTime
+		FROM
+		PAY_DebitCredit payDebitCredit,
+		PAY_Customer pay_customer
+		WHERE
+		payDebitCredit.businessOID =
+		#{BusinessOID}
+		AND payDebitCredit.outMemberOID = pay_customer.memberOID
+		GROUP BY
+		payDebitCredit.outMemberOID
+		HAVING
+		COUNT(
+		payDebitCredit.outMemberOID
+		) = 1
+		) as t LEFT JOIN pay_transferreturn
+		pay_transferreturn on
+		pay_transferreturn.debitCreditOIDNew = t.oid
+		ORDER BY if(pay_transferreturn.addDateTime is
+		null,t.addDateTime,pay_transferreturn.addDateTime) DESC
+		limit
+		#{startPos},#{pageSize}
+
+	</select>
+
+
+	<select id="findCount" resultType="Integer">
+
+		SELECT count(*) from (
+		SELECT
+		payDebitCredit.OID,
+		payDebitCredit.money,
+		pay_customer.mobile,
+		payDebitCredit.addDateTime
+		FROM
+		PAY_DebitCredit
+		payDebitCredit,
+		PAY_Customer pay_customer
+		WHERE
+		payDebitCredit.businessOID = #{OID}
+		AND
+		payDebitCredit.outMemberOID = pay_customer.memberOID
+		GROUP BY
+		payDebitCredit.outMemberOID
+		HAVING
+		COUNT(
+		payDebitCredit.outMemberOID
+		) =
+		1
+		) as t LEFT JOIN pay_transferreturn pay_transferreturn on
+		pay_transferreturn.debitCreditOIDNew = t.oid
+		ORDER BY
+		if(pay_transferreturn.addDateTime is
+		null,t.addDateTime,pay_transferreturn.addDateTime) DESC
+	</select>
+
+
+	<select id="findByBusinessZCOID" resultType="com.izhuantou.damain.lend.LendRecord">
+
+
+
+		SELECT
+		outMemberOID,pay_transferreturn.money,pay_transferreturn.addDateTime,PAY_Customer.name,PAY_Customer.nameCN,pay_transferreturn.principalMoney
+
+		FROM PAY_TransferReturn pay_transferreturn LEFT JOIN PAY_Customer ON
+		pay_transferreturn.outMemberOID=PAY_Customer.memberOID
+		WHERE
+		businessOID = #{BusinessOID}
+		AND outMemberOID <![CDATA[ <>]]>
+		inMemberOID
+		GROUP BY outMemberOID HAVING COUNT(outMemberOID) = 1
+		ORDER
+		BY pay_transferreturn.addDateTime DESC
+		limit
+		#{startPos},#{pageSize}
+	</select>
+
+	<select id="findCountZC" resultType="Integer">
+		SELECT count(*) from(
+		SELECT
+		outMemberOID,pay_transferreturn.money,pay_transferreturn.addDateTime,PAY_Customer.name,PAY_Customer.nameCN,pay_transferreturn.principalMoney
+
+		FROM PAY_TransferReturn pay_transferreturn LEFT JOIN PAY_Customer ON
+		pay_transferreturn.outMemberOID=PAY_Customer.memberOID
+		WHERE businessOID = #{BusinessOID}
+		AND outMemberOID <![CDATA[ <>]]> inMemberOID
+		GROUP BY outMemberOID HAVING COUNT(outMemberOID) = 1
+		ORDER BY pay_transferreturn.addDateTime DESC
+
+		) t
+	</select>
+
+	<select id="findList" resultType="com.izhuantou.damain.lend.LendRecord">
+
+		SELECT
+		outMemberOID,pay_transferreturn.money,pay_transferreturn.addDateTime,PAY_Customer.name,PAY_Customer.nameCN,pay_transferreturn.principalMoney
+
+		FROM PAY_TransferReturn pay_transferreturn LEFT JOIN PAY_Customer ON
+		pay_transferreturn.outMemberOID=PAY_Customer.memberOID
+		WHERE
+		businessOID = #{businessOID}
+		AND outMemberOID <![CDATA[ <>]]>
+		inMemberOID
+		GROUP BY outMemberOID HAVING COUNT(outMemberOID) = 1
+		ORDER
+		BY pay_transferreturn.addDateTime DESC
+	</select>
+
+
+
+</mapper>

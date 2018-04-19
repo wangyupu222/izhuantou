@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.ZZTouMapper">
+
+
+	<select id="findAll" resultType="com.izhuantou.damain.lend.ZZTou">
+
+		select
+		OID,biddingName,startBidAmount,biddingAmount,productRateInfoID,holdingAmount,szds,dsTime,productStatus
+		from WEBP2P_DebtTransferBiddingPool where isRecommend = '1'
+	</select>
+
+	<select id="findByOID" resultType="com.izhuantou.damain.lend.ZZTou">
+		select
+		productTerm,yearRate,repaymentType from
+		WEBP2P_ProductRateInfo where
+		oid = #{OID}
+	</select>
+
+</mapper>

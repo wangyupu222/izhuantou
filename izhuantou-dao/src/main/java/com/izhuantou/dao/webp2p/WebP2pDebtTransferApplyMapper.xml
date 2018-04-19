@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.webp2p.WebP2pDebtTransferApplyMapper">
+	<!-- 转让中的标 -->
+	<select id="findByMemberAndstatus" resultType="com.izhuantou.damain.vo.MylendZQWCDaoDTO">
+		SELECT xmmc,
+		bdjg
+		AS zrje,
+		cjje,
+		nhll,
+		cjsj,
+		isAgree,
+		addDateTime zrsj,
+		TIMESTAMPDIFF(DAY,NOW(),DATE_ADD(addDateTime,INTERVAL syqs MONTH)) AS
+		syts,
+		sxf,
+		applyTime,
+		approvalRemark FROM WEBP2P_DebtTransferApply WHERE
+		memberOID =#{memberOID} and
+		isAgree in ('2','3')
+	</select>
+	<!-- 查询转让记录总数 -->
+	<select id="getZQJLRowCount" resultType="int">
+		SELECT count(*) FROM
+		WEBP2P_DebtTransferApply WHERE memberOID =#{memberOID} and isAgree in
+		('2','3')
+	</select>
+	<!-- 根据资金池oID查看 -->
+	<select id="findBydebitCreditOID"
+		resultType="com.izhuantou.damain.webp2p.WebP2pDebtTransferApply">
+		SELECT * from WEBP2P_DebtTransferApply where
+		debitCreditOID=#{debitCreditOID}
+
+	</select>
+
+	<insert id="saveDebtTransferApply"
+		parameterType="com.izhuantou.damain.webp2p.WebP2pDebtTransferApply">
+		INSERT INTO WEBP2P_DebtTransferApply (
+		OID,
+		debitCreditOID,
+		businessOID,
+		memberOID,
+		xmmc,
+		cjje,
+		nhll,
+		producttype,
+		cjsj,
+		syqs,
+		zqs,
+		ysbx,
+		ysbj,
+		beizhu,
+		sxf,
+		yslx,
+		applyTime,
+		approvalUserID,
+		approvalUserName,
+		approvalTime,
+		approvalRemark,
+		isAgree,
+		isFinish,
+		describe0,
+		NO,
+		addUserOID,
+		updUserOID,
+		valid,
+		addDateTime,
+		updDateTime,
+		refresh,
+		version,
+		bdjg)
+		VALUES(
+		#{OID},
+		#{debitCreditOID},
+		#{businessOID},
+		#{memberOID},
+		#{xmmc},
+		#{cjje},
+		#{nhll},
+		#{producttype},
+		#{cjsj},
+		#{syqs},
+		#{zqs},
+		#{ysbx},
+		#{ysbj},
+		#{beizhu},
+		#{sxf},
+		#{yslx},
+		#{applyTime},
+		#{approvalUserID},
+		#{approvalUserName},
+		#{approvalTime},
+		#{approvalRemark},
+		#{isAgree},
+		#{isFinish},
+		#{describe0},
+		#{NO},
+		#{addUserOID},
+		#{updUserOID},
+		1,
+		NOW(),
+		NOW(),
+		1,
+		0,
+		#{bdjg}
+		)
+	</insert>
+	<select id="">
+		SELECT
+		OID,
+		debitCreditOID,
+		businessOID,
+		memberOID,
+		xmmc,
+		cjje,
+		nhll,
+		producttype,
+		cjsj,
+		zqs,
+		ysbx,
+		ysbj,
+		syqs,
+		beizhu,
+		cjsj AS
+		startDateTime,
+		sxf,
+		yslx,
+		applyTime,
+		approvalUserID,
+		approvalUserName,
+		approvalTime,
+		approvalRemark,
+		isAgree,
+		isFinish,
+		describe0,
+		NO,
+		addUserOID,
+		updUserOID,
+		valid,
+		addDateTime,
+		updDateTime,
+		refresh,
+		version,
+		bdjg
+		FROM
+		WEBP2P_DebtTransferApply
+		WHERE
+		debitCreditOID = #{debitCreditOID}
+		AND
+		bdjg = #{bdjg}
+		AND nhll = #{nhll}
+
+
+	</select>
+
+
+
+
+</mapper>

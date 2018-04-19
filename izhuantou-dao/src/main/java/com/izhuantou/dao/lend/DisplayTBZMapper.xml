@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.DisplayTBZMapper">
+	<select id="findByCondition" resultType="com.izhuantou.damain.lend.DisplayTBZ">
+		
+	select * from (
+		SELECT
+		D.biddingAmount,
+		D.holdingAmount,
+		D.productType,
+		D.xmmc,
+		D.nhll,
+		D.cjqx,
+		D.hkfs,
+		D.xmze,
+		(
+		CASE
+		WHEN
+		ISNULL(D.sykt) THEN
+		0.00
+		ELSE
+		D.sykt
+		END
+		) AS sykt,
+		100 - ROUND(sykt /
+		D.xmze, 2) * 100 jd,
+		D.productStatus,
+		D.type,
+		D.OID,
+		D.isRecommend,
+		D. NO,
+		D.szds,
+		D.JXother
+	
+		FROM
+		(
+		SELECT
+		WEBP2P_NoviceBiddingRuning.biddingAmount biddingAmount,
+		WEBP2P_NoviceBiddingRuning.holdingAmount holdingAmount,
+		WEBP2P_NoviceBiddingRuning.productType
+		productType,
+		WEBP2P_NoviceBiddingRuning.biddingName xmmc,
+		ROUND(
+		WEBP2P_ProductRateInfo.yearRate * 100,
+		2
+		) nhll,
+		WEBP2P_ProductRateInfo.productTerm cjqx,
+		WEBP2P_ProductRateInfo.repaymentType hkfs,
+		WEBP2P_NoviceBiddingRuning.biddingAmount xmze,
+		(
+		WEBP2P_NoviceBiddingRuning.biddingAmount -
+		WEBP2P_NoviceBiddingRuning.holdingAmount
+		) sykt,
+		WEBP2P_NoviceBiddingRuning.productStatus productStatus,
+		'new' type,
+		WEBP2P_NoviceBiddingRuning.isRecommend,
+		WEBP2P_NoviceBiddingRuning. NO,
+		WEBP2P_NoviceBiddingRuning.szds,
+		WEBP2P_NoviceBiddingRuning.JXother,
+		WEBP2P_NoviceBiddingRuning.OID OID
+		FROM
+		WEBP2P_NoviceBiddingRuning,
+		WEBP2P_ProductRateInfo
+		WHERE
+		WEBP2P_NoviceBiddingRuning.productStatus !=
+		99
+		AND WEBP2P_NoviceBiddingRuning.productRateInfoID =
+		WEBP2P_ProductRateInfo.OID
+		) D) allbidding
+		WHERE
+		szds IS NULL
+		OR szds =
+		'0'
+		ORDER BY
+		allbidding.productStatus+0,allbidding.productType,allbidding.NO
+		DESC
+		${sortp},
+		allbidding.JXother
+		DESC,allbidding.cjqx,SUBSTRING_INDEX(allbidding.xmmc,'-',-1) DESC
+		limit
+		#{startPos},#{pageSize}
+	</select>
+
+
+
+	<select id="getPageCount" resultType="long">
+
+
+		select COUNT(xmmc) from (
+		SELECT
+		D.productType,
+		D.xmmc,
+		D.nhll,
+		D.cjqx,
+		D.hkfs,
+		D.xmze,
+		(
+		CASE
+		WHEN
+		ISNULL(D.sykt) THEN
+		0.00
+		ELSE
+		D.sykt
+		END
+		) AS sykt,
+		100 -
+		ROUND(sykt /
+		D.xmze, 2) * 100 jd,
+		D.productStatus,
+		D.type,
+		D.OID,
+		D.isRecommend,
+		D. NO,
+		D.szds,
+		D.JXother
+		FROM
+		(
+		SELECT
+		WEBP2P_NoviceBiddingRuning.productType
+		productType,
+		WEBP2P_NoviceBiddingRuning.biddingName xmmc,
+		ROUND(
+		WEBP2P_ProductRateInfo.yearRate * 100,
+		2
+		) nhll,
+		WEBP2P_ProductRateInfo.productTerm cjqx,
+		WEBP2P_ProductRateInfo.repaymentType hkfs,
+		WEBP2P_NoviceBiddingRuning.biddingAmount xmze,
+		(
+		WEBP2P_NoviceBiddingRuning.biddingAmount -
+		WEBP2P_NoviceBiddingRuning.holdingAmount
+		) sykt,
+		WEBP2P_NoviceBiddingRuning.productStatus productStatus,
+		'new' type,
+		WEBP2P_NoviceBiddingRuning.isRecommend,
+		WEBP2P_NoviceBiddingRuning. NO,
+		WEBP2P_NoviceBiddingRuning.szds,
+		WEBP2P_NoviceBiddingRuning.JXother,
+		WEBP2P_NoviceBiddingRuning.OID OID
+		FROM
+		WEBP2P_NoviceBiddingRuning,
+		WEBP2P_ProductRateInfo
+		WHERE
+		WEBP2P_NoviceBiddingRuning.productStatus !=
+		99
+		AND WEBP2P_NoviceBiddingRuning.productRateInfoID =
+		WEBP2P_ProductRateInfo.OID
+		) D) allbidding
+		WHERE
+		szds IS NULL
+		OR szds =
+		'0'
+		ORDER BY
+		allbidding.productStatus+0,allbidding.productType,allbidding.NO
+		DESC,
+
+		allbidding.JXother
+		DESC,allbidding.cjqx,SUBSTRING_INDEX(allbidding.xmmc,'-',-1) DESC
+
+	</select>
+	<select id="findList" resultType="com.izhuantou.damain.lend.DisplayTBZ">
+		select * from (
+		SELECT
+		D.biddingAmount,
+		D.holdingAmount,
+		D.productType,
+		D.xmmc,
+		D.nhll,
+		D.cjqx,
+		D.hkfs,
+		D.xmze,
+		(
+		CASE
+		WHEN
+		ISNULL(D.sykt) THEN
+		0.00
+		ELSE
+		D.sykt
+		END
+		) AS sykt,
+		100 - ROUND(sykt /
+		D.xmze, 2) * 100 jd,
+		D.productStatus,
+		D.type,
+		D.OID,
+		D.isRecommend,
+		D. NO,
+		D.szds,
+		D.JXother
+	
+		FROM
+		(
+		SELECT
+		WEBP2P_NoviceBiddingRuning.biddingAmount biddingAmount,
+		WEBP2P_NoviceBiddingRuning.holdingAmount holdingAmount,
+		WEBP2P_NoviceBiddingRuning.productType
+		productType,
+		WEBP2P_NoviceBiddingRuning.biddingName xmmc,
+		ROUND(
+		WEBP2P_ProductRateInfo.yearRate * 100,
+		2
+		) nhll,
+		WEBP2P_ProductRateInfo.productTerm cjqx,
+		WEBP2P_ProductRateInfo.repaymentType hkfs,
+		WEBP2P_NoviceBiddingRuning.biddingAmount xmze,
+		(
+		WEBP2P_NoviceBiddingRuning.biddingAmount -
+		WEBP2P_NoviceBiddingRuning.holdingAmount
+		) sykt,
+		WEBP2P_NoviceBiddingRuning.productStatus productStatus,
+		'new' type,
+		WEBP2P_NoviceBiddingRuning.isRecommend,
+		WEBP2P_NoviceBiddingRuning. NO,
+		WEBP2P_NoviceBiddingRuning.szds,
+		WEBP2P_NoviceBiddingRuning.JXother,
+		WEBP2P_NoviceBiddingRuning.OID OID
+		FROM
+		WEBP2P_NoviceBiddingRuning,
+		WEBP2P_ProductRateInfo
+		WHERE
+		WEBP2P_NoviceBiddingRuning.productStatus !=
+		99
+		AND WEBP2P_NoviceBiddingRuning.productRateInfoID =
+		WEBP2P_ProductRateInfo.OID
+		) D) allbidding
+		WHERE
+		szds IS NULL
+		OR szds =
+		'0'
+		ORDER BY
+		allbidding.productStatus+0,allbidding.productType,allbidding.NO
+		DESC,
+		allbidding.JXother
+		DESC,allbidding.cjqx,SUBSTRING_INDEX(allbidding.xmmc,'-',-1) DESC
+	</select>
+</mapper>

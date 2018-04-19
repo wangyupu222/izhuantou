@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.user.MemberIsSendMapper">
+	<!-- 获取短信发送的次数和其他信息 -->
+	<select id="gainMemberIsSendByName" resultType="com.izhuantou.damain.user.MemberIsSend">
+		select * from member_issend where name = #{name}
+	</select>
+
+	<insert id="saveSendTime">
+		insert into member_issend
+		(OID,name,sendCount)value(#{OID},#{name},#{sendCount})
+	</insert>
+
+	<update id="updateSendTime">
+		update member_issend set sendCount=#{sendCount} where name=#{name}
+	</update>
+
+
+</mapper>

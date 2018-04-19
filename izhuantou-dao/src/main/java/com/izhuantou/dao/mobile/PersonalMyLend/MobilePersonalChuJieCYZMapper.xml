@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.izhuantou.dao.mobile.PersonalMyLend.MobilePersonalChuJieCYZMapper">
+	<select id="findByMemberOID"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileXinShouListDTO">
+		select NoviceBiddingRuning.biddingName AS xmmc,
+		payDebitCredit.money
+		AS cjje,'15.00' AS nhll,
+		NoviceBiddingRuning.productType AS
+		productType,payDebitCredit.addDateTime AS
+		cjsjDate,NoviceBiddingRuning.debitCreditOID,
+		NoviceBiddingRuning.OID
+		from
+		PAY_DebitCredit payDebitCredit,WEBP2P_NoviceBiddingRuning
+		NoviceBiddingRuning
+		WHERE
+		payDebitCredit.outMemberOID=#{memberOID}
+		AND
+		payDebitCredit.businessOID = NoviceBiddingRuning.OID
+		AND
+		NoviceBiddingRuning.productStatus != 3
+		AND
+		NoviceBiddingRuning.productStatus != 10
+	</select>
+
+	<select id="findByOutMemberOID"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileXinShouCyzDTO">
+		select * from (select addDateTime,money,businessOID,OID
+		DIOD from
+		PAY_TransferReturn
+		where state=#{state} AND
+		outMemberOID=#{memberOID} ) as t1 join (
+		SELECT
+		novicerun.loanNumber,novicerun.OID,novicerun.memberOID,novicerun.biddingName,productrateinfo.yearRate*100
+		yearRate,productStatus,novicerun.productType,'xs'
+		type,novicerun.debitCreditOID AS cond
+		FROM WEBP2P_NoviceBiddingRuning
+		novicerun JOIN WEBP2P_ProductRateInfo
+		productrateinfo on
+		productrateinfo.OID=novicerun.productRateInfoID
+		UNION ALL SELECT
+		contentrun.loanNumber,contentrun.OID,contentrun.memberOID,mainrun.packageName
+		biddingName,productrateinfo.yearRate*100
+		yearRate,mainrun.productStatus,contentrun.productType,'hh'
+		type,contentrun.debitCreditOID AS cond
+		FROM
+		WEBP2P_PackageBiddingMainContentRuning contentrun
+		JOIN
+		WEBP2P_PackageMainContentMapping mapping ON mapping.contentOID =
+		contentrun.OID
+		JOIN WEBP2P_PackageBiddingMainRuning mainrun ON
+		mainrun.OID =
+		mapping.mainOID
+		JOIN WEBP2P_ProductRateInfo
+		productrateinfo on
+		productrateinfo.OID=mainrun.productRateInfoID
+		UNION
+		ALL SELECT
+		normalrun.loanNumber,normalrun.OID,normalrun.memberOID,normalrun.biddingName,productrateinfo.yearRate*100
+		yearRate,productStatus,normalrun.productType,'dd'
+		type,normalrun.debitCreditOID AS cond
+		FROM WEBP2P_NormalBiddingRuning
+		normalrun
+		JOIN WEBP2P_ProductRateInfo productrateinfo on
+		productrateinfo.OID=normalrun.productRateInfoID
+		) as t2 on
+		t1.businessOID=t2.OID
+	</select>
+
+	<select id="findByhhtMemberOID"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileHHTCyzDTO">
+		SELECT NOW() AS
+		xtTime,PackageBiddingMainRuning.packageName
+		AS xmmc,
+		payCashPool.principalMoney AS cjje,ProductRateInfo.productTerm
+		AS zqs,
+		round(ProductRateInfo.yearRate * 100,2) AS nhll,
+		payCashPool.startDateTime AS cjsjTime,PackageBiddingMainRuning.OID AS
+		OID,ProductRateInfo.OID AS productInfoOID,
+		payCashPool.businessOID AS
+		businessOID,payCashPool.OID AS CashPoolOID,payCashPool.tqOID
+		FROM
+		PAY_CashPool payCashPool,WEBP2P_PackageBiddingMainRuning
+		PackageBiddingMainRuning,WEBP2P_ProductRateInfo ProductRateInfo
+		WHERE
+		payCashPool.memberOID = #{memberOID}
+		AND payCashPool.businessOID =
+		PackageBiddingMainRuning.OID
+		AND
+		PackageBiddingMainRuning.productRateInfoID = ProductRateInfo.OID
+		AND
+		PackageBiddingMainRuning.productStatus != 2
+		AND payCashPool.state =
+		'investment'
+		ORDER BY payCashPool.startDateTime DESC
+	</select>
+
+	<select id="findAllDDT"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileDDTAllInfo">
+		SELECT
+		*
+		FROM
+		webp2p_NormalBiddingRuning NormalBiddingRuning,
+		webp2p_LoanProductRateInfo ProductRateInfo,
+		webp2p_ProductRateInfo
+		LoanProductRateInfo
+		WHERE
+		NormalBiddingRuning.productRateInfoID =
+		ProductRateInfo.OID
+		AND NormalBiddingRuning.loanProductRateInfoID =
+		LoanProductRateInfo.OID
+	</select>
+
+	<select id="findByddtMembeOID"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileDDTCyzDTO">
+		SELECT
+		payDebitCredit.OID DOID,
+		payDebitCredit.addDateTime
+		cjsjTime,
+		NormalBiddingRuning.productType AS productType,
+		NormalBiddingRuning.OID AS biOID,
+		NormalBiddingRuning.productStatus AS
+		hkzt,
+		payDebitCredit.principalMoney AS cjje,
+		NormalBiddingRuning.biddingName AS xmmc,
+		round(payDebitCredit.creditRate * 100,2) AS nhll,
+		payDebitCredit.outMemberOID,
+		payDebitCredit.returnSurplusNumber AS
+		syqs,
+		payDebitCredit.returnNumber AS zqs
+		FROM
+		PAY_DebitCredit
+		payDebitCredit
+		JOIN WEBP2P_NormalBiddingRuning NormalBiddingRuning ON
+		NormalBiddingRuning.OID = payDebitCredit.businessOID
+		where
+		payDebitCredit.outMemberOID=#{memberOID} AND (
+		payDebitCredit.state
+		!='transferReturn' AND payDebitCredit.state !=
+		'finish' AND
+		payDebitCredit.state != 'earlyFinish') ORDER BY cjsjTime
+		DESC
+	</select>
+
+	<select id="findByzztMembeOID"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileZZTCyzDTO">
+		SELECT
+		NOW() AS xtTime,
+		WEBP2P_DebtTransferBiddingPool.OID AS biOID,
+		PAY_TransferReturn.creditType AS creditType,
+		PAY_TransferReturn.money +
+		PAY_TransferReturn.interest AS ysbx,
+		PAY_TransferReturn.returnSurplusNumber AS syqs,
+		PAY_TransferReturn.OID
+		AS DOID,
+		WEBP2P_DebtTransferBiddingPool.productType AS productType,
+		WEBP2P_DebtTransferBiddingPool.productStatus AS hkzt,
+		PAY_TransferReturn.principalMoney AS cjje,
+		WEBP2P_DebtTransferBiddingPool.biddingName AS xmmc,
+		round(
+		PAY_TransferReturn.creditRate * 100,
+		2
+		) AS nhll,
+		PAY_TransferReturn.addDateTime AS cjsjDate,
+		DATE_ADD(
+		PAY_TransferReturn.addDateTime,
+		INTERVAL
+		PAY_TransferReturn.returnSurplusNumber MONTH
+		) AS dqsj,
+		timeCondition.returnDate AS xghkr
+		FROM
+		PAY_TransferReturn,
+		WEBP2P_DebtTransferBiddingPool,
+		(
+		SELECT
+		MIN(PAY_ReturnPlan.returnDate)
+		AS returnDate
+		FROM
+		PAY_ReturnPlan,
+		(
+		SELECT
+		inMemberOID
+		FROM
+		PAY_DebitCredit
+		WHERE
+		PAY_DebitCredit.outMemberOID = #{memberOID}
+		) temp
+		WHERE
+		PAY_ReturnPlan.state = 'plan'
+		) timeCondition
+		WHERE
+		PAY_TransferReturn.outMemberOID = #{memberOID}
+		AND
+		PAY_TransferReturn.businessOID = WEBP2P_DebtTransferBiddingPool.OID
+	</select>
+
+</mapper>

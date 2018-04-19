@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.loan.LoanDistribeTaskMapper">
+	
+	<!-- 查看工作客服 -->
+	<select id="gainLoanDistribeTaskByRoleName" resultType="com.izhuantou.damain.loan.LoanDistribeTask">
+		SELECT * FROM loan_distribetask WHERE rolename=#{rolename} ORDER BY tasknum ASC LIMIT 1;
+	</select>
+
+	<update id="updateTaskNum" parameterType="com.izhuantou.damain.loan.LoanDistribeTask">
+	
+		update loan_distribetask set tasknum=#{ tasknum },updDateTime=NOW(), version=#{version} WHERE OID=#{OID}
+		
+	</update>
+
+</mapper>

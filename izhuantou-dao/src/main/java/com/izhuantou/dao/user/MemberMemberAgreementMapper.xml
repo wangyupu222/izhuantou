@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.user.MemberMemberAgreementMapper">
+	<!-- 查看协议 借款 -->
+	<select id="gainAgreementJKXYCK"
+		resultType="com.izhuantou.damain.user.MemberMemberAgreement">
+		select * from member_memberagreement where
+		biddingOID=#{biddingOID} and contractType =#{contractType}
+		ORDER BY OID
+		DESC LIMIT 1
+	</select>
+
+	<!-- 查看协议 -->
+	<select id="gainAgreementXYCK2"
+		resultType="com.izhuantou.damain.user.MemberMemberAgreement">
+		select * from from MEMBER_MemberAgreement where ckOID =
+		#{ckOID} and contractType =#{contractType}
+		ORDER BY OID DESC LIMIT 1
+	</select>
+	<!-- 查看协议 -->
+	<select id="gainAgreementJKZX"
+		resultType="com.izhuantou.damain.user.MemberMemberAgreement">
+		select * from from MEMBER_MemberAgreement where and
+		loanNumber = #{loanNumber} and contractType =#{contractType}
+		ORDER BY
+		OID DESC LIMIT 1
+	</select>
+
+	<insert id="saveMemberAgreement"
+		parameterType="com.izhuantou.damain.user.MemberMemberAgreement">
+		INSERT INTO member_memberagreement (
+		OID,
+		memberOID,
+		name,
+		nameCN,
+		content,
+		biddingType,
+		contractType,
+		valid,
+		addDateTime,
+		updDateTime,
+		refresh,
+		version,
+		biddingOID,
+		xybh,
+		state,
+		loanNumber,
+		ckOID,
+		signIDs,
+		pdfPath,
+		pdfPic
+		)
+		VALUES
+		(
+		#{OID},
+		#{memberOID},
+		#{name},
+		#{nameCN},
+		#{content},
+		#{biddingType},
+		#{contractType},
+		1,
+		NOW(),
+		NOW(),
+		1,
+		0,
+		#{biddingOID},
+		#{xybh},
+		'0',
+		#{loanNumber},
+		#{ckOID},
+		#{signIDs},
+		#{pdfPath},
+		#{pdfPic}
+		);
+
+
+
+	</insert>
+
+
+
+</mapper>

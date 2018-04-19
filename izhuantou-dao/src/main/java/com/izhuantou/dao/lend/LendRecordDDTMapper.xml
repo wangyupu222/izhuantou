@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.LendRecordDDTMapper">
+
+
+	<select id="findByBusinessOID" resultType="com.izhuantou.damain.lend.LendRecordDDT">
+
+
+		SELECT
+		PAY_DebitCredit.OID,PAY_DebitCredit.money,MEMBER_Member.name,MEMBER_Member.nameCN,
+		PAY_DebitCredit.addDateTime
+
+		from PAY_DebitCredit,MEMBER_Member where
+		PAY_DebitCredit.outMemberOID
+		=MEMBER_Member.OID AND businessOID =
+		#{BusinessOID}
+
+		order by PAY_DebitCredit.addDateTime DESC
+		limit
+		#{startPos},#{pageSize}
+
+	</select>
+
+
+	<select id="findCount" resultType="Integer">
+
+		SELECT COUNT(*)
+
+		from
+		PAY_DebitCredit,MEMBER_Member where
+		PAY_DebitCredit.outMemberOID=MEMBER_Member.OID AND businessOID =
+		#{BussinessOID}
+
+		order by PAY_DebitCredit.addDateTime DESC
+
+		
+	</select>
+	
+	
+	<select id="findList" resultType="com.izhuantou.damain.lend.LendRecordDDT">
+
+
+		SELECT
+		PAY_DebitCredit.OID,PAY_DebitCredit.money,MEMBER_Member.name,MEMBER_Member.nameCN,
+		PAY_DebitCredit.addDateTime
+
+		from PAY_DebitCredit,MEMBER_Member where
+		PAY_DebitCredit.outMemberOID
+		=MEMBER_Member.OID AND businessOID =
+		#{BusinessOID}
+
+		order by PAY_DebitCredit.addDateTime DESC
+		
+
+	</select>
+
+</mapper>

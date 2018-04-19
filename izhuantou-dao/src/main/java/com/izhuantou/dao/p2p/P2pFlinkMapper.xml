@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.p2p.P2pFlinkMapper">	
+	<select id="findFlinkList" resultType="com.izhuantou.damain.p2p.P2pFlink">
+		select OID,name,linkUrl from p2p_flink 
+	</select>
+</mapper>

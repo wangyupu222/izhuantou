@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.izhuantou.dao.mobile.PersonalMyLend.MobilePersonalMyLendMapper">
+
+	<!-- 查找环环投出借中详情 -->
+	<select id="findHHTDetial"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileMyLendDetialHHT">
+		SELECT
+		NOW() AS xtTime,
+		ProductRateInfo.OID AS
+		productInfoOID,
+		PackageBiddingMainRuning.OID AS OID,
+		payCashPool.tqOID,
+		payCashPool.businessOID AS businessOID,
+		payCashPool.OID AS CashPoolOID,
+		payCashPool.principalMoney + payCashPool.interestMoney *
+		payCashPool.returnSurplusNumber AS
+		ysbx,
+		ProductRateInfo.productTerm AS
+		zqs,
+		PackageBiddingMainRuning.productStatus,
+		PackageBiddingMainRuning.sxAmount,
+		PackageBiddingMainRuning.holdingAmount,
+		payCashPool.returnSurplusNumber AS syqs,
+		payCashPool.money AS money,
+		ProductRateInfo.repaymentType AS creditType,
+		payCashPool.startDateTime
+		AS cjsjTime,
+		DATE_ADD(
+		payCashPool.startDateTime,
+		INTERVAL 1 MONTH
+		) AS
+		xghkr,
+		DATE_ADD(
+		DATE_ADD(
+		payCashPool.startDateTime,
+		INTERVAL
+		ProductRateInfo.productTerm MONTH
+		),
+		INTERVAL 1 DAY
+		) AS dqsj,
+		PackageBiddingMainRuning.packageName AS xmmc,
+		payCashPool.principalMoney AS cjje,
+		round(
+		ProductRateInfo.yearRate *
+		100,
+		2
+		) AS nhll
+		FROM
+		PAY_CashPool payCashPool,
+		WEBP2P_PackageBiddingMainRuning PackageBiddingMainRuning,
+		WEBP2P_ProductRateInfo ProductRateInfo
+		WHERE
+		payCashPool.OID =
+		#{payCashPoolOID}
+		AND payCashPool.memberOID = #{memberOID}
+		AND
+		payCashPool.businessOID = PackageBiddingMainRuning.OID
+		AND
+		PackageBiddingMainRuning.productRateInfoID = ProductRateInfo.OID
+		AND
+		PackageBiddingMainRuning.productStatus != 2
+		AND payCashPool.state =
+		'investment'
+		ORDER BY
+		payCashPool.startDateTime DESC
+	</select>
+
+
+	<!-- 查找环环剩余可投金额 -->
+	<select id="FindSykt" resultType="String">
+		SELECT
+		SUM(
+		PackageBiddingMainContentRuning.biddingAmount -
+		PackageBiddingMainContentRuning.holdingAmount
+		) sykt
+		FROM
+		WEBP2P_PackageMainContentMapping PackageMainContentMapping
+		JOIN
+		WEBP2P_PackageBiddingMainContentRuning
+		PackageBiddingMainContentRuning
+		ON PackageBiddingMainContentRuning.OID =
+		PackageMainContentMapping.contentOID
+		WHERE
+		PackageMainContentMapping.mainOID = #{mainOID}
+
+	</select>
+
+	<!-- -->
+	<select id="findByMainOID"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.RecordeFromDebitCreditDTO">
+		SELECT
+		*
+		FROM
+		PAY_DebitCredit,
+		(
+		SELECT
+		contentOID
+		FROM
+		WEBP2P_PackageMainContentMapping
+		WHERE
+		mainOID = #{mainOID}
+		) maps
+		WHERE
+		PAY_DebitCredit.businessOID = maps.contentOID
+	</select>
+
+	<!-- 查找点点投出借中详情 -->
+	<select id="findDDTDetial"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileMyLendDetialDDT">
+		SELECT
+		NormalBiddingRuning.productType AS productType,
+		NormalBiddingRuning.productStatus AS hkzt,
+		NormalBiddingRuning.OID AS
+		biOID,
+		payDebitCredit.creditType AS creditType,
+		payDebitCredit.returnNumber AS zqs,
+		payDebitCredit.OID AS DOID,
+		payDebitCredit.principalMoney AS cjje,
+		NormalBiddingRuning.biddingName
+		AS xmmc,
+		round(
+		payDebitCredit.creditRate * 100,
+		2
+		) AS nhll,
+		payDebitCredit.addDateTime AS cjsjTime,
+
+		IF (
+		payDebitCredit.ysbx IS
+		NULL,
+		payDebitCredit.interest + payDebitCredit.money,
+		payDebitCredit.ysbx
+		) AS ysbx,
+
+		IF (
+		NormalBiddingRuning.biddingAmount -
+		NormalBiddingRuning.holdingAmount = 0,
+		'true',
+		'false'
+		) AS fullscale,
+		payDebitCredit.returnSurplusNumber AS syqs,
+		payDebitCredit.privilegeOID AS tqOID,
+		payDebitCredit.startDateTime AS
+		jxsj,
+		payDebitCredit.endDateTime AS dqsj,
+		payDebitCredit.xghkr
+		FROM
+		(
+		SELECT
+		d.*, MIN(r.returnDate) xghkr,
+		MIN(r.money) ysbx
+		FROM
+		PAY_DebitCredit d
+		LEFT JOIN PAY_ReturnPlan r ON (
+		r.debitCreditOID =
+		d.OID
+		AND r.state = 'plan'
+		)
+		GROUP BY
+		d.OID
+		) AS payDebitCredit,
+		WEBP2P_NormalBiddingRuning NormalBiddingRuning,
+		WEBP2P_ProductRateInfo
+		ProductRateInfo,
+		(
+		SELECT
+		COUNT(*) ex
+		FROM
+		PAY_ReturnPlan,
+		PAY_DebitCredit,
+		WEBP2P_NormalBiddingRuning
+		WHERE
+		PAY_DebitCredit.outMemberOID =
+		#{memberOID}
+		AND PAY_DebitCredit.inMemberOID =
+		PAY_ReturnPlan.outMemberOID
+		AND PAY_ReturnPlan.state = 'transferReturn'
+		AND PAY_DebitCredit.businessOID = WEBP2P_NormalBiddingRuning.OID
+		)
+		conditions,
+		(
+		SELECT
+		COUNT(*) exT
+		FROM
+		WEBP2P_DebtTransferBiddingPool,
+		PAY_DebitCredit
+		WHERE
+		PAY_DebitCredit.outMemberOID =
+		#{memberOID}
+		AND
+		PAY_DebitCredit.OID =
+		WEBP2P_DebtTransferBiddingPool.debitCreditOID
+		)
+		conditionsTwo
+		WHERE
+		payDebitCredit.outMemberOID = #{memberOID}
+		AND
+		payDebitCredit.OID = #{debitCreditOID}
+		AND
+		payDebitCredit.businessOID =
+		NormalBiddingRuning.OID
+		AND
+		NormalBiddingRuning.productRateInfoID =
+		ProductRateInfo.OID
+		AND
+		NormalBiddingRuning.productStatus != 3
+		AND (
+		payDebitCredit.state !=
+		'transferReturn'
+		AND payDebitCredit.state !=
+		'finish'
+		AND
+		payDebitCredit.state != 'earlyFinish'
+		)
+		AND conditions.ex = 0
+		AND
+		conditionsTwo.exT = 0
+		ORDER BY
+		cjsjTime DESC
+	</select>
+
+
+	<select id="findDDTWCDetial"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileMyLendDetialWCDDT">
+		select '已完成' AS hkzt ,NormalBiddingRuning.OID AS biOID,
+		payDebitCredit.OID AS DOID,payDebitCredit.creditType AS creditType,
+		payDebitCredit.addDateTime AS cjsjTime,payDebitCredit.principalMoney
+		AS cjje,
+		NormalBiddingRuning.productType AS productType,
+		if(NormalBiddingRuning.biddingAmount-
+		NormalBiddingRuning.holdingAmount=0,'true','false') as fullscale,
+		NormalBiddingRuning.biddingName AS
+		xmmc,round(payDebitCredit.creditRate*100,2) AS nhll,
+		payDebitCredit.addDateTime AS cjsjDate,payDebitCredit.returnNumber AS
+		tatalTerm,
+		ROUND(payDebitCredit.money * payDebitCredit.creditRate *
+		if(payDebitCredit.state =
+		'earlyFinish',TIMESTAMPDIFF(MONTH,payDebitCredit.startDateTime,payDebitCredit.endDateTime)+1,payDebitCredit.returnNumber)
+		/ 12,2) AS yslx,
+		payDebitCredit.startDateTime,
+		payDebitCredit.endDateTime,
+		payDebitCredit.returnNumber AS zqs,
+		payDebitCredit.privilegeOID AS tqOID
+		from PAY_DebitCredit
+		payDebitCredit,
+		WEBP2P_NormalBiddingRuning
+		NormalBiddingRuning,WEBP2P_ProductRateInfo ProductRateInfo
+		WHERE
+		payDebitCredit.outMemberOID=#{memberOID} AND
+		payDebitCredit.OID=
+		#{debitCreditOID}
+		AND
+		payDebitCredit.businessOID =
+		NormalBiddingRuning.OID AND
+		NormalBiddingRuning.productRateInfoID =
+		ProductRateInfo.OID and
+		NormalBiddingRuning.productStatus = 5 ORDER BY
+		cjsjTime
+	</select>
+
+	<select id="findHHTWCDetial"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileMyLendDetialWCHHT">
+
+		select ProductRateInfo.productTerm AS zqs, payCashPool.OID
+		as
+		CashPoolOID,ProductRateInfo.OID AS
+		productInfoOID,payCashPool.creditType AS
+		creditType,PackageBiddingMainRuning.OID AS OID,payCashPool.tqOID,
+		payCashPool.businessOID AS businessOID,payCashPool.endDateTime AS
+		dqsj,payCashPool.returnNumber AS tatalTerm,
+		payCashPool.principalMoney
+		+ payCashPool.interestMoney * payCashPool.returnSurplusNumber AS ysbx
+		,
+		payCashPool.state AS hkzt,payCashPool.addDateTime AS
+		cjsjTime,PackageBiddingMainRuning.packageName AS
+		xmmc,PackageBiddingMainRuning.sxAmount,PackageBiddingMainRuning.holdingAmount,
+		payCashPool.principalMoney AS
+		cjje,round(ProductRateInfo.yearRate*100,2) AS nhll,
+		DATE_ADD(payCashPool.endDateTime, INTERVAL 1 DAY) AS Timejssj
+		FROM
+		PAY_CashPool payCashPool,WEBP2P_PackageBiddingMainRuning
+		PackageBiddingMainRuning,WEBP2P_ProductRateInfo ProductRateInfo
+		WHERE
+		payCashPool.memberOID =#{memberOID} AND
+		payCashPool.OID =
+		#{payCashPoolOID}
+		and payCashPool.businessOID =
+		PackageBiddingMainRuning.OID and
+		PackageBiddingMainRuning.productRateInfoID = ProductRateInfo.OID AND
+		payCashPool.state='finishInvestment' ORDER BY payCashPool.addDateTime
+		DESC
+
+
+	</select>
+</mapper>

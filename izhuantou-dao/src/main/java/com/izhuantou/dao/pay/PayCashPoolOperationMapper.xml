@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.izhuantou.dao.pay.PayCashPoolOperationMapper">
+
+	<select id="findByBusinessOID"
+		resultType="com.izhuantou.manager.pojo.pay.PayCashPoolOperation">
+		SELECT * from PAY_CashPoolOperation where businessOID = #{OID}
+	</select>
+	<insert id="saveCashPoolOperation" parameterType="com.izhuantou.damain.pay.PayCashPoolOperation">
+					INSERT INTO pay_cashpooloperation (
+						OID,
+						businessOID,
+						inMemberOID,
+						outMemberOID,
+						content,
+						money,
+						describe0,
+						valid,
+						addDateTime,
+						updDateTime,
+						refresh,
+						version,
+						laiyuan
+					)
+					VALUES
+						(
+							#{OID},
+							#{businessOID},
+							#{inMemberOID},
+							#{outMemberOID},
+							#{content},
+							#{money},
+							#{describe0},
+							1,
+							NOW(),
+							NOW(),
+							1,
+							0,
+							#{laiyuan}
+						);
+				
+	
+	</insert>
+
+
+</mapper>

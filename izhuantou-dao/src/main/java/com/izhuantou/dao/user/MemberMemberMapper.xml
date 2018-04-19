@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.user.MemberMemberMapper">
+	<!-- 获取用户的信息 -->
+	<select id="findUserByName" resultType="com.izhuantou.damain.user.MemberMember">
+		select * from
+		member_member where name=#{name}
+	</select>
+	<!-- 获取用户的信息 -->
+	<select id="findUserByOID" resultType="com.izhuantou.damain.user.MemberMember">
+		select * from
+		member_member where OID=#{OID}
+	</select>
+
+	<!-- 根据用户输入的账号和密码进行注册 -->
+	<insert id="registUser" parameterType="com.izhuantou.damain.user.MemberMember">
+		insert into member_member
+		(OID,name,memberAccount,password,valid,addDateTime,updDateTime,refresh,version,yewuOID)
+		value(#{OID},#{name},#{memberAccount},#{password},1,NOW(),NOW(),1,0,#{yewuOID})
+	</insert>
+	<!-- 根据用户输入的账号进行密码修改 -->
+	<update id="updatePassword" parameterType="com.izhuantou.damain.user.MemberMember">
+		update member_member
+		set password=#{password},updDateTime=NOW(),version = version+1 where
+		name=#{name} and version = #{version}
+	</update>
+
+	<!--根据用户的OID进行密保问题设置 -->
+	<update id="insertTwoQuestion" parameterType="com.izhuantou.damain.user.MemberMember">
+		update
+		member_member set
+		questionOne=#{questionOne},
+		questionTwo=#{questionTwo},
+		answerOne=#{answerOne},
+		answerTwo=#{answerTwo},
+		updDateTime=NOW(),
+		version = #{version}+1
+		where OID=#{OID} and version = #{version}
+
+
+	</update>
+	<!--根据用户的OID进行实名信息更新 -->
+	<update id="updateRealNameByOID" parameterType="com.izhuantou.damain.user.MemberMember">
+		UPDATE
+		member_member SET
+		mobile=#{mobile},
+		city=#{city},
+		nameCN=#{nameCN},
+		realName=#{realName},
+		idCard=#{idCard},
+		updDateTime=NOW(),
+		version = version+1
+		where OID=#{OID} and version = #{version}
+	</update>
+
+	<!-- 判断是不是新手 -->
+	<select id="findXSNum" resultType="int">
+		SELECT (SELECT COUNT(*) FROM
+		PAY_TransferReturn pt JOIN WEBP2P_NoviceBiddingRuning nbr ON
+		nbr.OID=pt.businessOID WHERE pt.outMemberOID=#{memberOID})+
+		(SELECT COUNT(*) FROM PAY_DebitCredit pd JOIN WEBP2P_NoviceBiddingRuning nbr
+		ON nbr.OID=pd.businessOID WHERE pd.outMemberOID=#{memberOID}) AS num
+
+	</select>
+	<update id="updateMemberMember" parameterType="com.izhuantou.damain.user.MemberMember">
+		UPDATE
+		member_member
+		SET
+		name = #{name},
+		clientOID = #{clientOID},
+		memberNumber = #{memberNumber},
+		memberAccount = #{memberAccount},
+		nickName = #{nickName},
+		realName = #{realName},
+		password = #{password},
+		nameCN = #{nameCN},
+		gender =#{gender},
+		age = #{age},
+		birthday = #{birthday},
+		idCard = #{idCard},
+		mobile = #{mobile},
+		email =#{email},
+		marriage = #{marriage},
+		address = #{address},
+		referrals =#{referrals},
+		provider = #{provider},
+		city = #{city},
+		registerTime = #{registerTime},
+		userType = #{userType},
+		loanInvestmentType = #{loanInvestmentType},
+		viewType = #{viewType},
+		realOID = #{realOID},
+		state = #{state},
+		yewuOID = #{yewuOID},
+		xieli = #{xieli},
+		school = #{school},
+		company = #{company},
+		comscale = #{comscale},
+		position = #{position},
+		income = #{income},
+		house = #{house},
+		car = #{car},
+		describe0 = #{describe0},
+		NO = #{NO},
+		addUserOID = #{addUserOID},
+		updUserOID = #{updUserOID},
+		valid = #{valid},
+		addDateTime =#{addDateTime},
+		updDateTime = NOW(updDateTime),
+		refresh = #{refresh},
+		version = version+1,
+		picOID =#{picOID},
+		questionOne = #{questionOne},
+		answerOne = #{answerOne},
+		questionTwo = #{questionTwo},
+		answerTwo = #{answerTwo},
+		blacklist = #{blacklist}
+		WHERE OID = #{OID} and version = #{version}
+	</update>
+
+
+
+</mapper>

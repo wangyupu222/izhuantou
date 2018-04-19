@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.LendRecordZZTMapper">
+
+
+	<select id="findByZZTBusinessOID" resultType="com.izhuantou.damain.lend.LendRecord">
+
+		SELECT
+		PAY_TransferReturn.principalMoney
+		money,MEMBER_Member.name,PAY_TransferReturn.addDateTime
+		FROM
+		PAY_TransferReturn,MEMBER_Member WHERE
+		PAY_TransferReturn.businessOID=#{businessOID}
+		AND
+		PAY_TransferReturn.outMemberOID=MEMBER_Member.OID
+		limit
+		#{startPos},#{pageSize}
+
+	</select>
+
+
+	<select id="findZZTCount" resultType="Integer">
+
+		SELECT count(*)
+		FROM PAY_TransferReturn,MEMBER_Member WHERE
+		PAY_TransferReturn.businessOID=#{businessOID}
+		AND PAY_TransferReturn.outMemberOID=MEMBER_Member.OID
+
+
+	</select>
+	
+	
+	
+	<select id="findList" resultType="com.izhuantou.damain.lend.LendRecord">
+
+		SELECT
+		PAY_TransferReturn.principalMoney
+		money,MEMBER_Member.name,PAY_TransferReturn.addDateTime
+		FROM
+		PAY_TransferReturn,MEMBER_Member WHERE
+		PAY_TransferReturn.businessOID=#{businessOID}
+		AND
+		PAY_TransferReturn.outMemberOID=MEMBER_Member.OID
+		
+
+	</select>
+
+</mapper>

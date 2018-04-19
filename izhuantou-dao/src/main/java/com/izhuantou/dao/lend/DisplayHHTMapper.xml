@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.DisplayHHTMapper">
+	<select id="findByCondition" resultType="com.izhuantou.damain.lend.DisplayHHT">
+		SELECT
+		*
+		FROM
+		(
+		SELECT
+		C.productType,
+		C.xmmc,
+		C.nhll,
+		C.cjqx,
+		C.hkfs,
+		C.xmze,
+		(
+		CASE
+		WHEN
+		ISNULL(C.sykt) THEN
+		0.00
+		ELSE
+		C.sykt
+		END
+		) AS sykt,
+		100 - ROUND(sykt /
+		C.xmze) * 100 jd,
+		C.productStatus,
+		C.type,
+		C.OID,
+		C.isRecommend,
+		C. NO,
+		C.szds,
+		C.JXother
+		FROM
+		(
+		SELECT
+		3 productType,
+		WEBP2P_PackageBiddingMainRuning.packageName xmmc,
+		ROUND(
+		WEBP2P_ProductRateInfo.yearRate * 100,
+		2
+		) nhll,
+		CEILING(
+		WEBP2P_ProductRateInfo.productTerm
+		) cjqx,
+		WEBP2P_ProductRateInfo.repaymentType hkfs,
+		IFNULL(
+		SUM(
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount
+		),
+		0
+		) xmze,
+		SUM(
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount -
+		WEBP2P_PackageBiddingMainContentRuning.holdingAmount
+		) sykt,
+		WEBP2P_PackageBiddingMainRuning.productStatus productStatus,
+		'hh' type,
+		WEBP2P_PackageBiddingMainRuning.OID OID,
+		WEBP2P_PackageBiddingMainRuning.isRecommend,
+		WEBP2P_PackageBiddingMainRuning. NO,
+		WEBP2P_PackageBiddingMainRuning.szds,
+		WEBP2P_PackageBiddingMainRuning.JXother
+		FROM
+		WEBP2P_PackageBiddingMainRuning
+		LEFT JOIN
+		WEBP2P_PackageMainContentMapping ON
+		WEBP2P_PackageBiddingMainRuning.OID =
+		WEBP2P_PackageMainContentMapping.mainOID
+		LEFT JOIN
+		WEBP2P_PackageBiddingMainContentRuning ON
+		WEBP2P_PackageMainContentMapping.contentOID =
+		WEBP2P_PackageBiddingMainContentRuning.OID,
+		WEBP2P_ProductRateInfo
+		WHERE
+		WEBP2P_ProductRateInfo.OID =
+		WEBP2P_PackageBiddingMainRuning.productRateInfoID
+		AND
+		WEBP2P_PackageBiddingMainRuning.productStatus != 99
+		GROUP BY
+		WEBP2P_PackageBiddingMainRuning.OID
+		) C
+		) allbidding
+		where szds is null or szds ='0'
+		ORDER BY
+		
+		allbidding.productStatus + 0,
+		allbidding.productType,
+		allbidding. NO DESC
+		${sortp},
+		allbidding.JXother DESC,
+		allbidding.cjqx,
+		SUBSTRING_INDEX(allbidding.xmmc, '-' ,- 1) DESC
+		limit
+		#{startPos},#{pageSize}
+	</select>
+	<select id="getPageCount" resultType="long">
+		SELECT
+		COUNT(xmmc) count
+		FROM
+		(
+		SELECT
+		C.productType,
+		C.xmmc,
+		C.nhll,
+		C.cjqx,
+		C.hkfs,
+		C.xmze,
+		(
+		CASE
+		WHEN
+		ISNULL(C.sykt) THEN
+		0.00
+		ELSE
+		C.sykt
+		END
+		) AS sykt,
+		100 - ROUND(sykt /
+		C.xmze) * 100 jd,
+		C.productStatus,
+		C.type,
+		C.OID,
+		C.isRecommend,
+		C. NO,
+		C.szds,
+		C.JXother
+		FROM
+		(
+		SELECT
+		3 productType,
+		WEBP2P_PackageBiddingMainRuning.packageName xmmc,
+		ROUND(
+		WEBP2P_ProductRateInfo.yearRate * 100,
+		2
+		) nhll,
+		CEILING(
+		WEBP2P_ProductRateInfo.productTerm
+		) cjqx,
+		WEBP2P_ProductRateInfo.repaymentType hkfs,
+		IFNULL(
+		SUM(
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount
+		),
+		0
+		) xmze,
+		SUM(
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount -
+		WEBP2P_PackageBiddingMainContentRuning.holdingAmount
+		) sykt,
+		WEBP2P_PackageBiddingMainRuning.productStatus productStatus,
+		'hh' type,
+		WEBP2P_PackageBiddingMainRuning.OID OID,
+		WEBP2P_PackageBiddingMainRuning.isRecommend,
+		WEBP2P_PackageBiddingMainRuning. NO,
+		WEBP2P_PackageBiddingMainRuning.szds,
+		WEBP2P_PackageBiddingMainRuning.JXother
+		FROM
+		WEBP2P_PackageBiddingMainRuning
+		LEFT JOIN
+		WEBP2P_PackageMainContentMapping ON
+		WEBP2P_PackageBiddingMainRuning.OID =
+		WEBP2P_PackageMainContentMapping.mainOID
+		LEFT JOIN
+		WEBP2P_PackageBiddingMainContentRuning ON
+		WEBP2P_PackageMainContentMapping.contentOID =
+		WEBP2P_PackageBiddingMainContentRuning.OID,
+		WEBP2P_ProductRateInfo
+		WHERE
+		WEBP2P_ProductRateInfo.OID =
+		WEBP2P_PackageBiddingMainRuning.productRateInfoID
+		AND
+		WEBP2P_PackageBiddingMainRuning.productStatus != 99
+		GROUP BY
+		WEBP2P_PackageBiddingMainRuning.OID
+		) C
+		) allbidding
+		where szds is null or szds ='0'
+	</select>
+
+	<select id="findByOID" resultType="com.izhuantou.damain.lend.DisplayHHT">
+	SELECT * from (
+
+		SELECT
+		*
+		FROM
+		(
+		SELECT
+		C.productType,
+		C.xmmc,
+		C.nhll,
+		C.cjqx,
+		C.hkfs,
+		C.xmze,
+		(
+		CASE
+		WHEN
+		ISNULL(C.sykt) THEN
+		0.00
+		ELSE
+		C.sykt
+		END
+		) AS sykt,
+		100 - ROUND(sykt /
+		C.xmze) * 100 jd,
+		C.productStatus,
+		C.type,
+		C.OID,
+		C.isRecommend,
+		C. NO,
+		C.szds,
+		C.JXother
+		FROM
+		(
+		SELECT
+		3 productType,
+		WEBP2P_PackageBiddingMainRuning.packageName xmmc,
+		ROUND(
+		WEBP2P_ProductRateInfo.yearRate * 100,
+		2
+		) nhll,
+		CEILING(
+		WEBP2P_ProductRateInfo.productTerm
+		) cjqx,
+		WEBP2P_ProductRateInfo.repaymentType hkfs,
+		IFNULL(
+		SUM(
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount
+		),
+		0
+		) xmze,
+		SUM(
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount -
+		WEBP2P_PackageBiddingMainContentRuning.holdingAmount
+		) sykt,
+		WEBP2P_PackageBiddingMainRuning.productStatus productStatus,
+		'hh' type,
+		WEBP2P_PackageBiddingMainRuning.OID OID,
+		WEBP2P_PackageBiddingMainRuning.isRecommend,
+		WEBP2P_PackageBiddingMainRuning. NO,
+		WEBP2P_PackageBiddingMainRuning.szds,
+		WEBP2P_PackageBiddingMainRuning.JXother
+		FROM
+		WEBP2P_PackageBiddingMainRuning
+		LEFT JOIN
+		WEBP2P_PackageMainContentMapping ON
+		WEBP2P_PackageBiddingMainRuning.OID =
+		WEBP2P_PackageMainContentMapping.mainOID
+		LEFT JOIN
+		WEBP2P_PackageBiddingMainContentRuning ON
+		WEBP2P_PackageMainContentMapping.contentOID =
+		WEBP2P_PackageBiddingMainContentRuning.OID,
+		WEBP2P_ProductRateInfo
+		WHERE
+		WEBP2P_ProductRateInfo.OID =
+		WEBP2P_PackageBiddingMainRuning.productRateInfoID
+		AND
+		WEBP2P_PackageBiddingMainRuning.productStatus != 99
+		GROUP BY
+		WEBP2P_PackageBiddingMainRuning.OID
+		) C
+		) allbidding
+		where szds is null or szds ='0'
+		ORDER BY
+		
+		allbidding.productStatus + 0,
+		allbidding.productType,
+		allbidding. NO DESC,
+		allbidding.JXother DESC,
+		allbidding.cjqx,
+		SUBSTRING_INDEX(allbidding.xmmc, '-' ,- 1) DESC) e WHERE e.oid = #{OID}
+	
+	</select>
+
+	<select id="findList" resultType="com.izhuantou.damain.lend.DisplayHHT">
+	SELECT
+		*
+		FROM
+		(
+		SELECT
+		C.productType,
+		C.xmmc,
+		C.nhll,
+		C.cjqx,
+		C.hkfs,
+		C.xmze,
+		(
+		CASE
+		WHEN
+		ISNULL(C.sykt) THEN
+		0.00
+		ELSE
+		C.sykt
+		END
+		) AS sykt,
+		100 - ROUND(sykt /
+		C.xmze) * 100 jd,
+		C.productStatus,
+		C.type,
+		C.OID,
+		C.isRecommend,
+		C. NO,
+		C.szds,
+		C.JXother
+		FROM
+		(
+		SELECT
+		3 productType,
+		WEBP2P_PackageBiddingMainRuning.packageName xmmc,
+		ROUND(
+		WEBP2P_ProductRateInfo.yearRate * 100,
+		2
+		) nhll,
+		CEILING(
+		WEBP2P_ProductRateInfo.productTerm
+		) cjqx,
+		WEBP2P_ProductRateInfo.repaymentType hkfs,
+		IFNULL(
+		SUM(
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount
+		),
+		0
+		) xmze,
+		SUM(
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount -
+		WEBP2P_PackageBiddingMainContentRuning.holdingAmount
+		) sykt,
+		WEBP2P_PackageBiddingMainRuning.productStatus productStatus,
+		'hh' type,
+		WEBP2P_PackageBiddingMainRuning.OID OID,
+		WEBP2P_PackageBiddingMainRuning.isRecommend,
+		WEBP2P_PackageBiddingMainRuning. NO,
+		WEBP2P_PackageBiddingMainRuning.szds,
+		WEBP2P_PackageBiddingMainRuning.JXother
+		FROM
+		WEBP2P_PackageBiddingMainRuning
+		LEFT JOIN
+		WEBP2P_PackageMainContentMapping ON
+		WEBP2P_PackageBiddingMainRuning.OID =
+		WEBP2P_PackageMainContentMapping.mainOID
+		LEFT JOIN
+		WEBP2P_PackageBiddingMainContentRuning ON
+		WEBP2P_PackageMainContentMapping.contentOID =
+		WEBP2P_PackageBiddingMainContentRuning.OID,
+		WEBP2P_ProductRateInfo
+		WHERE
+		WEBP2P_ProductRateInfo.OID =
+		WEBP2P_PackageBiddingMainRuning.productRateInfoID
+		AND
+		WEBP2P_PackageBiddingMainRuning.productStatus != 99
+		GROUP BY
+		WEBP2P_PackageBiddingMainRuning.OID
+		) C
+		) allbidding
+		where szds is null or szds ='0'
+		ORDER BY
+		
+		allbidding.productStatus + 0,
+		allbidding.productType,
+		allbidding. NO DESC,
+		allbidding.JXother DESC,
+		allbidding.cjqx,
+		SUBSTRING_INDEX(allbidding.xmmc, '-' ,- 1) DESC
+	</select>
+</mapper>

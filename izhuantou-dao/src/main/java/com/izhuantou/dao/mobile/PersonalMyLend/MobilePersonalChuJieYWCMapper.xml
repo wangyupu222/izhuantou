@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.izhuantou.dao.mobile.PersonalMyLend.MobilePersonalChuJieYWCMapper">
+	<select id="findByMemberOID"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileXinShouYwcDTO">
+		SELECT NoviceBiddingRuning.biddingName AS xmmc,
+		NoviceBiddingRuning.OID AS biOID,
+		payDebitCredit.OID AS DOID,
+		payDebitCredit.money AS cjje,
+		payDebitCredit.addDateTime AS cjsjDate,
+		'15.00' AS nhll,
+		'已完成' AS hkzt,
+		NoviceBiddingRuning.productType AS
+		productType
+		FROM
+		PAY_DebitCredit payDebitCredit,
+		WEBP2P_NoviceBiddingRuning NoviceBiddingRuning
+		WHERE
+		payDebitCredit.outMemberOID = #{memberOID}
+		AND
+		payDebitCredit.businessOID = NoviceBiddingRuning.OID
+		AND (
+		NoviceBiddingRuning.productStatus = 3 OR
+		NoviceBiddingRuning.productStatus = 10 );
+
+	</select>
+
+	<select id="findByhhtMemberOID"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileHHTYwcDTO">
+		SELECT
+		ProductRateInfo.productTerm AS zqs,
+		PackageBiddingMainRuning.packageName AS xmmc,
+		payCashPool.principalMoney AS cjje,
+		payCashPool.addDateTime AS
+		cjsjTime,
+		PackageBiddingMainRuning.OID AS OID,
+		payCashPool.tqOID,
+		payCashPool.businessOID AS businessOID,
+		round(ProductRateInfo.yearRate
+		* 100,2) AS nhll,
+		payCashPool.OID AS CashPoolOID
+		FROM
+		PAY_CashPool
+		payCashPool,
+		WEBP2P_PackageBiddingMainRuning PackageBiddingMainRuning,
+		WEBP2P_ProductRateInfo ProductRateInfo
+		WHERE
+		payCashPool.memberOID =
+		#{memberOID} AND payCashPool.businessOID =
+		PackageBiddingMainRuning.OID
+		AND
+		PackageBiddingMainRuning.productRateInfoID = ProductRateInfo.OID
+		AND
+		payCashPool.state = 'finishInvestment'
+		ORDER BY payCashPool.addDateTime
+		DESC;
+	</select>
+
+	<select id="findByddtMembeOID"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileDDTYwcDTO">
+		SELECT
+		'已完成' AS hkzt,
+		NormalBiddingRuning.biddingName AS
+		xmmc,
+		payDebitCredit.principalMoney AS cjje,
+		NormalBiddingRuning.OID AS
+		biOID,
+		payDebitCredit.OID AS DOID,
+		payDebitCredit.privilegeOID AS tqOID,
+		payDebitCredit.returnNumber AS zqs,
+		payDebitCredit.addDateTime AS
+		cjsjTime,
+		NormalBiddingRuning.productType AS productType,
+		round(payDebitCredit.creditRate * 100,2) AS nhll
+		FROM
+		PAY_DebitCredit
+		payDebitCredit,
+		WEBP2P_NormalBiddingRuning NormalBiddingRuning
+		WHERE
+		payDebitCredit.outMemberOID = #{memberOID}
+		AND
+		payDebitCredit.businessOID = NormalBiddingRuning.OID
+		AND
+		NormalBiddingRuning.productStatus = 5
+		ORDER BY cjsjTime
+	</select>
+
+
+	<select id="findByzztMembeOID"
+		resultType="com.izhuantou.damain.mobile.personalCenter.myLendDetial.MobileZZTYwcDTO">
+		SELECT PAY_TransferReturn.OID,PAY_TransferReturn.businessOID,
+		WEBP2P_DebtTransferBiddingPool.biddingName,
+		PAY_TransferReturn.money,WEBP2P_ProductRateInfo.yearRate,
+		PAY_TransferReturn.addDateTime,
+		WEBP2P_ProductRateInfo.productTerm
+		from
+		PAY_TransferReturn,WEBP2P_ProductRateInfo,WEBP2P_DebtTransferBiddingPool
+		where outMemberOID=#{memberOID} 
+		and PAY_TransferReturn.businessOID =WEBP2P_DebtTransferBiddingPool.OID
+		AND WEBP2P_DebtTransferBiddingPool.productRateInfoID =
+		WEBP2P_ProductRateInfo.OID
+	</select>
+</mapper>

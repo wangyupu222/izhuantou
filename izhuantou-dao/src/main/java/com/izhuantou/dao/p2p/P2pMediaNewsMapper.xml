@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.p2p.P2pMediaNewsMapper">
+	<!-- 根据parentOID查询出所有的 -->
+	<select id="findMediaNewsByPage" resultType="com.izhuantou.damain.p2p.P2pMediaNews">
+		select OID,name,uploadImgOID,messages,addDateTime from  p2p_medianews  ORDER BY addDateTime DESC limit #{ startIndex } , #{ pageSize }
+	</select>
+	
+	<!-- 根据parentOID查询出所有的 -->
+	<select id="getRowCount" resultType="int">
+		select count(*) from p2p_medianews 
+	</select>
+	
+	<!-- 根据OID查询媒体报道详情 -->
+	<select id="findMediaNewsByOID" resultType="com.izhuantou.damain.p2p.P2pMediaNews">
+		select OID,name,uploadImgOID ,messages,addDateTime from P2P_MediaNews where OID=#{OID}
+	</select>
+	
+	<!-- 查询媒体报道TitleName -->
+	<select id="findMediaNewsTitleName" resultType="com.izhuantou.damain.p2p.P2pMediaNews">
+	
+		SELECT OID,NAME,addDateTime from P2P_MediaNews ORDER BY addDateTime DESC  LIMIT 7
+		
+	</select>
+	
+	
+	
+</mapper>

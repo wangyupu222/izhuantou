@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.mobile.MobileAdvertMapper">
+
+
+
+	<select id="findListByType" resultType="com.izhuantou.damain.mobile.MobileAdvert">
+		SELECT pic,url,title,type,status FROM P2P_Activepic
+		WHERE type='1' AND status='1'
+
+	</select>
+
+	<select id="findByStatus" resultType="com.izhuantou.damain.mobile.MobileAdvert">
+		SELECT pic,url,title,type,status FROM P2P_Activepic
+		WHERE type='0' AND status='1'
+
+	</select>
+
+
+
+</mapper>

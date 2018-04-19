@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.message.MessageContentBusinessMapper">
+	<!-- 保存一条用户操作消息 -->
+	<insert id="saveMessageBusiness">
+		
+			INSERT INTO message_contentbusiness(
+				OID,
+				title,
+				content,
+				sendUser,
+				sendDateTime,
+				receiveUserOID,
+				valid,
+				addDateTime,
+				updDateTime,
+				refresh,
+				version
+			)
+			VALUES
+				(
+					#{OID},
+					#{title},
+					#{content},
+					#{sendUser},
+					NOW(),
+					#{receiveUserOID},	
+					1,
+					NOW(),
+					NOW(),
+					1,
+					0
+				);
+
+	
+	</insert>
+	
+	
+	
+</mapper>

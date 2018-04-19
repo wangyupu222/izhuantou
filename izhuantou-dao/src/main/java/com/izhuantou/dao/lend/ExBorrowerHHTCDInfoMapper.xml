@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.ExBorrowerHHTCDInfoMapper">
+
+
+	<select id="findByOID" resultType="com.izhuantou.damain.lend.ExBorrowerHHTCDInfo">
+		SELECT
+		pc.memberOID,pc.nameCN AS realName, cci.biddingContent AS loanuse, cci.sex AS gender,
+		cci.age, cci.certificatesid AS idCard, cci.phone AS mobile,
+		cci.education AS highesteduback, cci.domicile AS hkszd,
+		cci.annualSalary AS grysr
+		FROM
+		WEBP2P_CarLoanCenterInfo cci,
+		PAY_Customer pc
+		WHERE
+		cci.LoanNumber = #{OID}
+		AND cci.phone = pc.name
+
+	</select>
+
+</mapper>

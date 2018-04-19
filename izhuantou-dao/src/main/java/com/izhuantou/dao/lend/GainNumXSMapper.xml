@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.GainNumXSMapper">
+
+
+	<select id="findByMemberOID" resultType="Integer">
+		SELECT (SELECT COUNT(*) FROM PAY_TransferReturn pt JOIN
+		WEBP2P_NoviceBiddingRuning nbr ON nbr.OID=pt.businessOID
+		WHERE
+		pt.outMemberOID=#{memberOID}) +
+		(SELECT COUNT(*) FROM PAY_DebitCredit
+		pd JOIN WEBP2P_NoviceBiddingRuning nbr
+		ON nbr.OID=pd.businessOID WHERE
+		pd.outMemberOID=#{memberOID}) AS num
+	</select>
+
+
+
+
+</mapper>

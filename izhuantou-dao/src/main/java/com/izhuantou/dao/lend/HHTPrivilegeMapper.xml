@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.HHTPrivilegeMapper">
+
+
+	<select id="findByOID" resultType="com.izhuantou.damain.lend.HHTPrivilege">
+		SELECT * FROM PAY_Privilege WHERE OID IN
+		(SELECT ppm.privilegeOID AS tqOID FROM
+		PAY_PrivilegeProductMapping ppm ,
+		(SELECT productRateInfoID
+		FROM WEBP2P_PackageBiddingMainRuning
+		WHERE OID = #{OID}) temp
+		WHERE ppm.productInfoOID = temp.productRateInfoID )
+		AND isDisable = '0'
+
+	</select>
+
+</mapper>

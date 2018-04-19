@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.mobile.MobileOpinionMapper">
+
+
+
+	<insert id="insertOpinion">
+		insert into
+		Mobile_Opinion
+		(OID,memberOID,contact_way,opinion_content,commit_time,valid,addDateTime,updDateTime,refresh,version)
+		values(#{OID},#{memberOID},#{contact_way},#{opinion_content},#{commit_time},1,#{addDateTime},#{updDateTime},1,0)
+	</insert>
+
+
+
+
+
+</mapper>

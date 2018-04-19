@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.personalCenter.MyLoanMapper">
+
+
+
+	<select id="findBYmemberOID" resultType="com.izhuantou.damain.vo.UpdLendRecord">
+		SELECT WEBP2P_LoanApply.
+		memberOID,WEBP2P_LoanApply. idCard,
+		WEBP2P_LoanApply.
+		mobile,WEBP2P_LoanApply.userName, WEBP2P_LoanApply.addDateTime,
+		WEBP2P_LoanApply.loanYT, WEBP2P_LoanApply.loanAmount,
+		WEBP2P_LoanApply.loanTerm,
+		WEBP2P_LoanApply.isAgree first,
+		WEBP2P_BiddingExamine.isAgree second,
+		WEBP2P_LoanApply.OID FROM
+		WEBP2P_LoanApply LEFT JOIN WEBP2P_BiddingExamine
+		ON
+		WEBP2P_LoanApply.loanNumber = WEBP2P_BiddingExamine.loanNumber
+		where
+		WEBP2P_LoanApply.memberOID=#{memberOID}
+
+	</select>
+
+	<select id="findBYcondition" resultType="com.izhuantou.damain.vo.UpdLendRecord">
+		SELECT * from (
+		SELECT
+		WEBP2P_LoanApply. memberOID,WEBP2P_LoanApply. idCard,
+		WEBP2P_LoanApply. mobile,WEBP2P_LoanApply.userName,
+		WEBP2P_LoanApply.addDateTime,
+		WEBP2P_LoanApply.loanYT,
+		WEBP2P_LoanApply.loanAmount, WEBP2P_LoanApply.loanTerm,
+		WEBP2P_LoanApply.isAgree first, WEBP2P_BiddingExamine.isAgree second,
+		WEBP2P_LoanApply.OID FROM WEBP2P_LoanApply LEFT JOIN
+		WEBP2P_BiddingExamine
+		ON WEBP2P_LoanApply.loanNumber =
+		WEBP2P_BiddingExamine.loanNumber
+		where WEBP2P_LoanApply.memberOID=
+		#{memberOID}) t
+		WHERE t.oid=#{OID}
+
+	</select>
+
+	<select id="findList" resultType="com.izhuantou.damain.vo.MyLendRecord">
+		SELECT alloan.loanNumber,
+		WEBP2P_BiddingExamine.loanProductRateInfoID,
+		WEBP2P_LoanApply.loanAmount,
+		Round(WEBP2P_LoanProductRateInfo.yearRate
+		* 100,2) yearRate,
+		WEBP2P_LoanApply.addDateTime,alloan.OID
+		businessOID,alloan.loanDay,alloan.nextday FROM
+		(SELECT * FROM( SELECT
+		min(PAY_RepayPlan.repayDate) nextday,
+		biddingtable.OID,
+		biddingtable.loanNumber,str_to_date(biddingtable.loanDay,'%Y-%m-%d')
+		loanDay
+		FROM PAY_RepayPlan,WEBP2P_PackageBiddingMainContentRuning
+		biddingtable
+		where biddingtable.OID = PAY_RepayPlan.businessOID and
+		state='plan'
+		and PAY_RepayPlan.memberOID = #{memberOID} UNION
+		ALL SELECT
+		min(PAY_RepayPlan.repayDate)
+		nextday,biddingtable.OID,biddingtable.loanNumber,biddingtable.loanDay
+		FROM PAY_RepayPlan,WEBP2P_NormalBiddingRuning biddingtable
+		where
+		biddingtable.OID = PAY_RepayPlan.businessOID and state='plan'
+		and
+		PAY_RepayPlan.memberOID = #{memberOID} UNION
+		ALL SELECT
+		min(PAY_RepayPlan.repayDate) nextday, biddingtable.OID,
+		biddingtable.loanNumber, biddingtable.loanDay FROM
+		PAY_RepayPlan,WEBP2P_NoviceBiddingRuning biddingtable
+		where
+		biddingtable.OID = PAY_RepayPlan.businessOID and state='plan'
+		and
+		PAY_RepayPlan.memberOID = #{memberOID} )
+		allloan GROUP BY
+		allloan.OID )
+		alloan, WEBP2P_LoanApply, WEBP2P_LoanProductRateInfo,
+		WEBP2P_BiddingExamine WHERE WEBP2P_LoanApply.loanNumber =
+		alloan.loanNumber
+		AND WEBP2P_BiddingExamine.loanNumber =
+		WEBP2P_LoanApply.loanNumber
+		AND
+		WEBP2P_BiddingExamine.loanProductRateInfoID =
+		WEBP2P_LoanProductRateInfo.OID
+	</select>
+
+
+	<select id="findFDList" resultType="com.izhuantou.damain.vo.MyLendRecord">
+
+		SELECT t.* FROM (SELECT
+		IF
+		(pool.OID IS NULL,running.loanNumber,pool.loanNumber) loanNumber,
+		IF
+		(pool.OID IS NULL,running.applyAmount,pool.applyAmount) loanAmount,
+		Round(lrr.yearRate * 100, 2) yearRate, running.loanDay loanDay,
+		IFNULL('',running.OID) businessOID, MIN(rep.repayDate) nextday,
+		loaninfo.addDateTime,
+		loaninfo.dkcplx
+		loanProductRateInfoID,loaninfo.loandeadline jkqx,running.isFK FROM
+		HX_PerLoanCenterInfo loaninfo
+		LEFT JOIN WEBP2P_NormalBiddingPool pool
+		ON pool.hxLoanCenterInfo =
+		loaninfo.OID
+		LEFT JOIN
+		WEBP2P_NormalBiddingRuning running ON running.hxLoanCenterInfo =
+		loaninfo.OID
+		LEFT JOIN (SELECT * FROM PAY_RepayPlan WHERE state =
+		'plan' ) rep ON
+		rep.businessOID = running.OID
+		LEFT JOIN
+		WEBP2P_LoanProductRateInfo lrr ON lrr.OID = loaninfo.dkcplx
+		WHERE
+		loaninfo.phone = #{phone} AND loaninfo.isAgree = '3' UNION ALL SELECT
+		IF (pool.OID IS NULL,running.loanNumber,pool.loanNumber) loanNumber,
+		IF (pool.OID IS NULL,running.applyAmount,pool.applyAmount) loanAmount,
+		Round(lrr.yearRate * 100, 2) yearRate, running.loanDay loanDay,
+		IFNULL('',running.OID) businessOID, MIN(rep.repayDate) nextday,
+		loaninfo.addDateTime,
+		loaninfo.dkcplx
+		loanProductRateInfoID,loaninfo.loandeadline jkqx,running.isFK FROM
+		HX_MecLoanCenterInfo loaninfo
+		LEFT JOIN WEBP2P_NormalBiddingPool pool
+		ON pool.hxLoanCenterInfo =
+		loaninfo.OID
+		LEFT JOIN
+		WEBP2P_NormalBiddingRuning running ON running.hxLoanCenterInfo =
+		loaninfo.OID
+		LEFT JOIN (SELECT * FROM PAY_RepayPlan WHERE state =
+		'plan' ) rep ON
+		rep.businessOID = running.OID
+		LEFT JOIN
+		WEBP2P_LoanProductRateInfo lrr ON lrr.OID = loaninfo.dkcplx
+		WHERE
+		loaninfo.phone = #{phone} AND loaninfo.isAgree = '3') AS t
+		WHERE
+		t.addDateTime IS NOT NULL
+	</select>
+
+
+	<select id="findCDList" resultType="com.izhuantou.damain.vo.MyLendRecord">
+		SELECT IF ( pool.OID IS NULL,
+		running.loanNumber, pool.loanNumber )
+		loanNumber,
+		IF ( pool.OID IS NULL,
+		running.applyAmount, pool.applyAmount )
+		loanAmount,
+		Round(lrr.yearRate *
+		100, 2) yearRate, running.loanDay loanDay, running.OID businessOID,
+		MIN(rep.repayDate) nextday, loaninfo.addDateTime, loaninfo.dkcplx
+		loanProductRateInfoID
+		FROM
+		WEBP2P_CarLoanCenterInfo loaninfo
+		LEFT JOIN
+		WEBP2P_PackageBiddingPool pool ON pool.loanNumber =
+		loaninfo.LoanNumber
+		LEFT JOIN WEBP2P_PackageBiddingMainContentRuning
+		running ON
+		running.loanNumber = loaninfo.LoanNumber
+		AND
+		running.financetransfertype = 'normal'
+		LEFT JOIN (
+		SELECT * FROM
+		PAY_RepayPlan WHERE state = 'plan' ) rep ON rep.businessOID =
+		running.OID
+		LEFT JOIN WEBP2P_LoanProductRateInfo lrr ON lrr.OID =
+		loaninfo.dkcplx
+		WHERE
+		loaninfo.phone = #{phone}
+		AND loaninfo.isAgree =
+		'3'
+	</select>
+
+	<select id="findByMemberOID"
+		resultType="com.izhuantou.damain.vo.ListRepaymentCollection">
+		SELECT
+		*
+		FROM
+		(
+		SELECT
+		PAY_RepayPlan.addDateTime loandatetime,
+		WEBP2P_LoanProductRateInfo.term term,
+		PAY_RepayPlan.interestMoney
+		interestMoney,
+		PAY_RepayPlan.totalInterestMoney totalInterestMoney,
+		PAY_RepayPlan.rate rate,
+		PAY_RepayPlan.surplusPrincipal
+		surplusPrincipal,
+		PAY_RepayPlan.principalMoney principalMoney,
+		+
+		WEBP2P_BiddingExamine.loanNumber businessName,
+		WEBP2P_BiddingExamine.applyAmount money,
+		ROUND(
+		WEBP2P_LoanProductRateInfo.yearRate * 100,
+		2
+		) debitRate,
+		PAY_RepayPlan.money allmoney,
+		PAY_RepayPlan.repayDate repayDate,
+		PAY_RepayPlan.OID planOID,
+		PAY_RepayPlan.businessOID businessOID,
+		PAY_RepayPlan.manageMoney manageMoney,
+		PAY_RepayPlan.serviceMoney
+		serviceMoney
+		FROM
+		WEBP2P_BiddingExamine,
+		WEBP2P_LoanProductRateInfo,
+		WEBP2P_NoviceBiddingRuning,
+		PAY_RepayPlan
+		WHERE
+		WEBP2P_BiddingExamine.memberOID = #{memberOID}
+		AND
+		PAY_RepayPlan.memberOID = #{memberOID}
+		AND
+		PAY_RepayPlan.businessOID =
+		WEBP2P_NoviceBiddingRuning.OID
+		AND
+		WEBP2P_BiddingExamine.loanProductRateInfoID =
+		WEBP2P_LoanProductRateInfo.OID
+		AND
+		WEBP2P_NoviceBiddingRuning.loanNumber =
+		WEBP2P_BiddingExamine.loanNumber
+		AND PAY_RepayPlan.state = 'plan'
+		UNION
+		ALL
+		SELECT
+		PAY_RepayPlan.addDateTime loandatetime,
+		WEBP2P_LoanProductRateInfo.term term,
+		PAY_RepayPlan.interestMoney
+		interestMoney,
+		PAY_RepayPlan.totalInterestMoney totalInterestMoney,
+		PAY_RepayPlan.rate rate,
+		PAY_RepayPlan.surplusPrincipal
+		surplusPrincipal,
+		PAY_RepayPlan.principalMoney principalMoney,
+		WEBP2P_BiddingExamine.loanNumber businessName,
+		WEBP2P_BiddingExamine.applyAmount money,
+		ROUND(
+		WEBP2P_LoanProductRateInfo.yearRate * 100,
+		2
+		) debitRate,
+		PAY_RepayPlan.money allmoney,
+		PAY_RepayPlan.repayDate repayDate,
+		PAY_RepayPlan.OID planOID,
+		PAY_RepayPlan.businessOID businessOID,
+		PAY_RepayPlan.manageMoney manageMoney,
+		PAY_RepayPlan.serviceMoney
+		serviceMoney
+		FROM
+		WEBP2P_BiddingExamine,
+		WEBP2P_LoanProductRateInfo,
+		WEBP2P_NormalBiddingRuning,
+		PAY_RepayPlan
+		WHERE
+		WEBP2P_BiddingExamine.memberOID = #{memberOID}
+		AND
+		PAY_RepayPlan.memberOID = #{memberOID}
+		AND PAY_RepayPlan.businessOID =
+		WEBP2P_NormalBiddingRuning.OID
+		AND
+		WEBP2P_BiddingExamine.loanProductRateInfoID =
+		WEBP2P_LoanProductRateInfo.OID
+		AND
+		WEBP2P_NormalBiddingRuning.loanNumber =
+		WEBP2P_BiddingExamine.loanNumber
+		AND PAY_RepayPlan.state = 'plan'
+		UNION
+		ALL
+		SELECT
+		PAY_RepayPlan.addDateTime loandatetime,
+		WEBP2P_LoanProductRateInfo.term term,
+		PAY_RepayPlan.interestMoney
+		interestMoney,
+		PAY_RepayPlan.totalInterestMoney totalInterestMoney,
+		PAY_RepayPlan.rate rate,
+		PAY_RepayPlan.surplusPrincipal
+		surplusPrincipal,
+		PAY_RepayPlan.principalMoney principalMoney,
+		WEBP2P_BiddingExamine.loanNumber businessName,
+		WEBP2P_BiddingExamine.applyAmount money,
+		ROUND(
+		WEBP2P_LoanProductRateInfo.yearRate * 100,
+		2
+		) debitRate,
+		PAY_RepayPlan.money allmoney,
+		PAY_RepayPlan.repayDate repayDate,
+		PAY_RepayPlan.OID planOID,
+		PAY_RepayPlan.businessOID businessOID,
+		PAY_RepayPlan.manageMoney manageMoney,
+		PAY_RepayPlan.serviceMoney
+		serviceMoney
+		FROM
+		WEBP2P_BiddingExamine,
+		WEBP2P_LoanProductRateInfo,
+		WEBP2P_PackageBiddingMainContentRuning,
+		PAY_RepayPlan
+		WHERE
+		WEBP2P_BiddingExamine.memberOID = #{memberOID}
+		AND
+		PAY_RepayPlan.memberOID = #{memberOID}
+		AND PAY_RepayPlan.businessOID =
+		WEBP2P_PackageBiddingMainContentRuning.OID
+		AND
+		WEBP2P_BiddingExamine.loanProductRateInfoID =
+		WEBP2P_LoanProductRateInfo.OID
+		AND
+		WEBP2P_PackageBiddingMainContentRuning.loanNumber =
+		WEBP2P_BiddingExamine.loanNumber
+		AND PAY_RepayPlan.state = 'plan'
+		UNION
+		ALL
+		SELECT
+		PAY_RepayPlan.addDateTime loandatetime,
+		WEBP2P_LoanProductRateInfo.term term,
+		PAY_RepayPlan.interestMoney
+		interestMoney,
+		PAY_RepayPlan.totalInterestMoney totalInterestMoney,
+		PAY_RepayPlan.rate rate,
+		PAY_RepayPlan.surplusPrincipal
+		surplusPrincipal,
+		PAY_RepayPlan.principalMoney principalMoney,
+		WEBP2P_CarLoanCenterInfo.loanNumber businessName,
+		WEBP2P_CarLoanCenterInfo.applyAmount money,
+		ROUND(
+		WEBP2P_LoanProductRateInfo.yearRate * 100,
+		2
+		) debitRate,
+		PAY_RepayPlan.money allmoney,
+		PAY_RepayPlan.repayDate repayDate,
+		PAY_RepayPlan.OID planOID,
+		PAY_RepayPlan.businessOID businessOID,
+		PAY_RepayPlan.manageMoney manageMoney,
+		PAY_RepayPlan.serviceMoney
+		serviceMoney
+		FROM
+		WEBP2P_CarLoanCenterInfo,
+		WEBP2P_LoanProductRateInfo,
+		WEBP2P_PackageBiddingMainContentRuning,
+		PAY_RepayPlan,
+		PAY_Customer
+		WHERE
+		PAY_Customer.memberOID = #{memberOID}
+		AND
+		WEBP2P_CarLoanCenterInfo.phone = PAY_Customer. NAME
+		AND
+		PAY_RepayPlan.memberOID = #{memberOID}
+		AND PAY_RepayPlan.businessOID =
+		WEBP2P_PackageBiddingMainContentRuning.OID
+		AND
+		WEBP2P_PackageBiddingMainContentRuning.loanProductRateInfoID =
+		WEBP2P_LoanProductRateInfo.OID
+		AND
+		WEBP2P_PackageBiddingMainContentRuning.loanNumber =
+		WEBP2P_CarLoanCenterInfo.loanNumber
+		AND PAY_RepayPlan.state = 'plan'
+		)
+		alltable
+		ORDER BY
+		alltable.repayDate
+	</select>
+
+	<select id="findZCByMemberOID"
+		resultType="com.izhuantou.damain.vo.ListRepaymentCollection">
+		SELECT
+		NormalBiddingRuning.OID businessOID,
+		repayPlan.addDateTime loandatetime,
+		repayPlan.money allmoney,
+		repayPlan.repayDate,
+		repayPlan.principalMoney,
+		repayPlan.interestMoney,
+		repayPlan.surplusPrincipal,
+		repayPlan.totalInterestMoney,
+		round(pri.yearRate*100,2) AS debitRate,
+		repayPlan.manageMoney,
+		repayPlan.serviceMoney,
+		repayPlan.OID AS planOID,
+		repayPlan.rate AS
+		rate,
+		NormalBiddingRuning.loanNumber businessName,
+		repayPlan.yqglf,
+		repayPlan.yqwyj,
+		repayPlan.yqfx,
+		repayPlan.isYQ,
+		NormalBiddingRuning.applyAmount money,
+		pri.term,
+		pri.repaymentType hkfs,
+		NormalBiddingRuning.loanNumber,
+		NormalBiddingRuning.isFK
+		FROM
+		PAY_RepayPlan repayPlan,WEBP2P_NormalBiddingRuning
+		NormalBiddingRuning,WEBP2P_LoanProductRateInfo pri
+		where
+		NormalBiddingRuning.OID=repayPlan.businessOID AND pri.OID =
+		NormalBiddingRuning.loanProductRateInfoID
+		AND repayPlan.state = 'plan'
+		AND repayPlan.memberOID = #{memberOID}
+		ORDER BY repayPlan.repayDate
+	</select>
+
+
+
+
+
+
+
+
+</mapper>

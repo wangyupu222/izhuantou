@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.webp2p.WebP2pBiddingExamineMapper">
+	<select id="findByloanNumber"
+		resultType="com.izhuantou.damain.webp2p.WebP2pBiddingExamine">
+		SELECT * from WEBP2P_BiddingExamine where loanNumber =
+		#{loanNumber}
+	</select>
+
+	<select id="findByLoan"
+		resultType="com.izhuantou.damain.webp2p.WebP2pBiddingExamine">
+		SELECT * from WEBP2P_BiddingExamine where loanNumber =
+		#{loanNumber}
+	</select>
+
+</mapper>

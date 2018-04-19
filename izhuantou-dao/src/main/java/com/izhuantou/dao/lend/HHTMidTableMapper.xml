@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.HHTMidTableMapper">
+
+
+	<select id="findByOID" resultType="com.izhuantou.damain.lend.HHTMidTable">
+		SELECT * from WEBP2P_PackageMainContentMapping
+		mcMapping,WEBP2P_PackageBiddingMainContentRuning mcr
+		where mcMapping.mainOID= #{OID} and mcr.OID = mcMapping.contentOID
+	</select>
+
+
+
+
+</mapper>

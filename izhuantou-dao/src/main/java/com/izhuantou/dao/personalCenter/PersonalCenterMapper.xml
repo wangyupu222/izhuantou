@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.izhuantou.dao.personalCenter.PersonalCenterMapper">
+
+
+	<select id="findAllMessage"
+		resultType="com.izhuantou.damain.message.MessageContentBusiness">
+		SELECT
+		*
+		FROM
+		MESSAGE_ContentBusiness message_Content
+		WHERE
+		message_Content.receiveUserOID = #{receiveUserOID}
+		ORDER BY
+		message_Content.sendDateTime DESC
+		limit
+		#{startPos},#{pageSize}
+	</select>
+
+	<select id="findALLHistoryMessage"
+		resultType="com.izhuantou.damain.message.MessageContentBusiness">
+		SELECT
+		*
+		FROM
+		MESSAGE_ContentHistoryBusiness
+		message_ContentHistory
+		WHERE
+		message_ContentHistory.receiveUserOID =
+		#{receiveUserOID}
+		ORDER BY
+		message_ContentHistory.sendDateTime DESC
+		limit
+		#{startPos},#{pageSize}
+	</select>
+
+	<select id="countMessage" resultType="Integer">
+		SELECT COUNT(*) from
+		message_contentbusiness where receiveUserOID = #{OID}
+	</select>
+
+	<select id="countHistoryMessage" resultType="Integer">
+		SELECT COUNT(*) from
+		message_contenthistorybusiness where receiveUserOID = #{OID}
+	</select>
+
+	<insert id="insertMessage"
+		parameterType="com.izhuantou.damain.message.MessageContentBusiness">
+		INSERT INTO
+		message_contenthistorybusiness
+		(OID,title,content,sendUser,sendDateTime,receiveUserOID,receiveDateTime,businessOID,businessType,
+		describe0,NO,addUserOID,updUserOID,valid,addDateTime,updDateTime,refresh,version)
+		VALUES(#{OID},#{title},#{content},#{sendUser},#{sendDateTime},#{receiveUserOID},now(),#{businessOID},
+		#{businessType},#{describe0},#{NO},#{addUserOID},#{updUserOID},#{valid},#{addDateTime},#{updDateTime},
+		#{refresh},#{version})
+	</insert>
+
+	<select id="selectOneMessage"
+		resultType="com.izhuantou.damain.message.MessageContentBusiness">
+		SELECT * FROM message_contentbusiness where OID= #{OID}
+	</select>
+
+	<delete id="moveMessageContentNoPush">
+		DELETE from message_contentbusiness where OID =
+		#{OID}
+	</delete>
+
+	<select id="findLendMoneyBymemberOID" resultType="com.izhuantou.damain.vo.LendMoneyDTO">
+		SELECT
+		total.totalLoanMoney,
+		alloan.loanNumber,
+		WEBP2P_LoanApply.loanAmount,
+		Round(
+		WEBP2P_LoanProductRateInfo.yearRate * 100,
+		2
+		) debitRate,
+		WEBP2P_LoanApply.addDateTime,
+		alloan.endDateTime,
+		alloan.repayDate,
+		alloan.OID businessOID
+		FROM
+		(
+		SELECT
+		*
+		FROM
+		(
+		(
+		SELECT
+		MAX(PAY_RepayPlan.repayDate) endDateTime,
+		PAY_RepayPlan.repayDate,
+		biddingtable.OID,
+		biddingtable.loanNumber
+		FROM
+		PAY_RepayPlan,
+		WEBP2P_NoviceBiddingRuning biddingtable
+		WHERE
+		PAY_RepayPlan.memberOID =
+		#{memberOID}
+		AND biddingtable.OID = PAY_RepayPlan.businessOID
+		AND
+		PAY_RepayPlan.state = 'plan'
+		)
+		UNION ALL
+		(
+		SELECT
+		MAX(PAY_RepayPlan.repayDate) endDateTime,
+		PAY_RepayPlan.repayDate,
+		biddingtable.OID,
+		biddingtable.loanNumber
+		FROM
+		PAY_RepayPlan,
+		WEBP2P_NormalBiddingRuning biddingtable
+		WHERE
+		PAY_RepayPlan.memberOID =
+		#{memberOID}
+		AND biddingtable.OID = PAY_RepayPlan.businessOID
+		AND
+		PAY_RepayPlan.state = 'plan'
+		)
+		UNION ALL
+		(
+		SELECT
+		MAX(PAY_RepayPlan.repayDate) endDateTime,
+		PAY_RepayPlan.repayDate,
+		biddingtable.OID,
+		biddingtable.loanNumber
+		FROM
+		PAY_RepayPlan,
+		WEBP2P_PackageBiddingMainContentRuning biddingtable
+		WHERE
+		PAY_RepayPlan.memberOID = #{memberOID}
+		AND biddingtable.OID =
+		PAY_RepayPlan.businessOID
+		AND PAY_RepayPlan.state = 'plan'
+		)
+		) allloan
+		GROUP BY
+		allloan.OID
+		) alloan,
+		(
+		SELECT
+		SUM(
+		PAY_RepayPlan.principalMoney
+		)
+		AS totalLoanMoney
+		FROM
+		PAY_RepayPlan
+		WHERE
+		PAY_RepayPlan.memberOID =
+		#{memberOID}
+		AND PAY_RepayPlan.state = 'plan'
+		) total,
+		WEBP2P_LoanApply,
+		WEBP2P_LoanProductRateInfo,
+		WEBP2P_BiddingExamine
+		WHERE
+		WEBP2P_LoanApply.loanNumber = alloan.loanNumber
+		AND
+		WEBP2P_BiddingExamine.loanNumber = WEBP2P_LoanApply.loanNumber
+		AND
+		WEBP2P_BiddingExamine.loanProductRateInfoID =
+		WEBP2P_LoanProductRateInfo.OID
+
+	</select>
+	<select id="gainDDReturnMoneyBymemberOIDANDState" resultType="com.izhuantou.damain.vo.JoinSelectAllDTO">
+		 SELECT  IFNULL(ROUND(SUM(principalMoney),2),0) AS principalMoney, 
+					IFNULL(ROUND(SUM(interestMoney),2),0) AS interestMoney  FROM   (SELECT 
+					 re.principalMoney, re.interestMoney 
+					FROM PAY_ReturnPlan re,WEBP2P_NormalBiddingRuning nbr 
+					 WHERE re.businessOID = nbr.OID AND re.memberOID =#{memberOID}  AND re.state =#{state}
+					 UNION ALL SELECT   d.money AS principalMoney, 
+					ROUND(d.money*pri.productTerm*pri.yearRate/12,2) AS interestMoney 
+					 FROM PAY_DebitCredit d,WEBP2P_NormalBiddingRuning nbr,WEBP2P_ProductRateInfo pri 
+					 WHERE d.businessOID = nbr.OID AND nbr.productRateInfoID = pri.OID AND d.state = 'investment' AND d.outMemberOID = '
+					 memberOID ') AS t 
+	</select>
+
+
+</mapper>

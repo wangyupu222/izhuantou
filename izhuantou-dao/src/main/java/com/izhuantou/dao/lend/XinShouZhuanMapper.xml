@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.XinShouZhuanMapper">
+
+
+	<select id="FindAll" resultType="com.izhuantou.damain.lend.XinShouZhuan">
+
+		select
+		NoviceBiddingRuning.OID,
+		biddingName,
+		biddingAmount,
+		startBidAmount,
+		holdingAmount,
+		yearRate,
+		productStatus,
+		szds,
+		dsTime,
+		repaymentType,
+		debitCreditOID
+		from WEBP2P_NoviceBiddingRuning NoviceBiddingRuning,
+		WEBP2P_ProductRateInfo ProductRateInfo where
+		NoviceBiddingRuning.productRateInfoID =ProductRateInfo.OID and
+		NoviceBiddingRuning.productStatus >0 and
+		NoviceBiddingRuning.isRecommend = 1
+	</select>
+</mapper>

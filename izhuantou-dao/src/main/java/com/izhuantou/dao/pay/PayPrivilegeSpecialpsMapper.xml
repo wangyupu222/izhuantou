@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.pay.PayPrivilegeSpecialpsMapper">
+
+	<select id="findByOID"
+		resultType="com.izhuantou.damain.pay.PayPrivilegeSpecialps">
+		SELECT * from PAY_PrivilegeSpecialPS WHERE OID=#{OID}
+	</select>
+	<update id="updatePrivilegeSpecialPS" parameterType="com.izhuantou.damain.pay.PayPrivilegeSpecialps">
+		UPDATE pay_privilegespecialps
+				SET 
+				 memberOID=#{memberOID},
+				 privilegeOID=#{privilegeOID},
+				 money=#{money},
+				 lowMoney=#{lowMoney},
+				 returnDate=#{returnDate},
+				 sendDate=#{sendDate},
+				 sendType=#{sendType},
+				 isUsed=#{isUsed},
+				 productInfoOID=#{productInfoOID},
+				 JXDay=#{JXDay},
+				 describe0=#{describe0},
+				 NO=#{NO},
+				 addUserOID=#{addUserOID},
+				 updUserOID=#{updUserOID},
+				 valid=#{valid},
+				 addDateTime=#{addDateTime},
+				 updDateTime=NOW(),
+				 refresh=#{refresh},
+				 version=version+1
+				WHERE
+						OID=#{OID} and version=#{version}
+	
+	</update>
+
+
+</mapper>

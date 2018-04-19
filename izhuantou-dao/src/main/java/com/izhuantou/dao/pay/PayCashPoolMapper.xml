@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.pay.PayCashPoolMapper">
+	
+	<select id="gainByMemebrOIDAndTQOne" resultType="map">
+		select * from PAY_CashPool WHERE tqOID IS NOT NULL AND memberOID =#{memberOID}  
+	</select>
+	<select id="gainByMemebrOIDAndTQTwo" resultType="map">
+		select * from  PAY_CashPool WHERE tqOID IS NOT NULL AND memberOID=#{memberOID} AND state =#{state}    
+	</select>
+	
+	<select id="gainByMemberOID" resultType="com.izhuantou.damain.pay.PayCashPool">
+		select * from PAY_CashPool  where memberOID=#{memberOID}
+			
+	</select>
+	
+	<select id="findByOID" resultType="com.izhuantou.damain.pay.PayCashPool">
+		select *  from PAY_CashPool  where OID=#{OID}
+			
+	</select>
+	
+	<select id="findByBusinessOIDAndHaveMoney" resultType="com.izhuantou.damain.pay.PayCashPool">
+		select * from PAY_CashPool where businessOID =#{businessOID} and money > 0 and state = 'investment'  order by addDateTime
+	</select>
+	<!-- 根据businessOID查看 -->
+	<select id="findPayCashPoolByBusiness" resultType="com.izhuantou.damain.pay.PayCashPool">
+		select * from PAY_CashPool where businessOID =#{businessOID}
+	
+	</select>
+	
+	<!-- 保存一条PAY_CashPool -->
+	<update id="updatePayCashPool" parameterType="com.izhuantou.damain.pay.PayCashPool">
+		UPDATE pay_cashpool
+				SET 
+				 businessOID=#{businessOID},
+				 memberOID=#{memberOID},
+				 money=#{money},
+				 interest=#{interest},
+				 principalMoney=#{principalMoney},
+				 interestMoney=#{interestMoney},
+				 rate=#{rate},
+				 privilegePrincipal=#{privilegePrincipal},
+				 privilegeInterest=#{privilegeInterest},
+				 state=#{state},
+				 describe0=#{describe0},
+				 NO=#{NO},
+				 addUserOID=#{addUserOID},
+				 updUserOID=#{updUserOID},
+				 valid=#{valid},
+				 addDateTime=#{addDateTime},
+				 updDateTime=NOW(),
+				 refresh=#{refresh},
+				 version=version+1,
+				 returnNumber=#{returnNumber},
+				 startDateTime=#{startDateTime},
+				 endDateTime=#{endDateTime},
+				 returnSurplusNumber=#{returnSurplusNumber},
+				 creditRate=#{creditRate},
+				 creditType=#{creditType},
+				 returnCycle=#{returnCycle},
+				 totalInterestMoney=#{totalInterestMoney},
+				 tqOID=#{tqOID},
+				 laiyuan=#{laiyuan},
+				 addDateTimeStr=#{addDateTimeStr},
+				 JXother=#{JXother},
+				 JXinterest=#{JXinterest},
+				 privilegeIncome=#{privilegeIncome},
+				 redmoney=#{redmoney}
+				WHERE
+					OID=#{OID} and version=#{version}
+	
+	</update>
+
+	<!-- 保存资金池 -->
+	<insert id="savePayCashPool" parameterType="com.izhuantou.damain.pay.PayCashPool">
+				INSERT INTO pay_cashpool (
+			OID, 
+			businessOID,
+			memberOID,
+			money,
+			interest,
+			principalMoney,
+			interestMoney,
+			rate,
+			privilegePrincipal,
+			privilegeInterest,
+			state,
+			describe0,
+			NO,
+			addUserOID,
+			updUserOID,
+			valid,
+			addDateTime,
+			updDateTime,
+			refresh,
+			version,
+			returnNumber,
+			startDateTime,
+			endDateTime,
+			returnSurplusNumber,
+			creditRate,
+			creditType,
+			returnCycle,
+			totalInterestMoney,
+			tqOID,
+			laiyuan,
+			addDateTimeStr,
+			JXother,
+			JXinterest,
+			privilegeIncome,
+			redmoney
+		)
+		VALUES
+			(
+			#{OID},
+			#{businessOID},
+			#{memberOID},
+			#{money},
+			#{interest},
+			#{principalMoney},
+			#{interestMoney},
+			#{rate},
+			#{privilegePrincipal},
+			#{privilegeInterest},
+			#{state},
+			#{describe0},
+			#{NO},
+			#{addUserOID},
+			#{updUserOID},
+			1,
+			NOW(),
+			NOW(),
+			1,
+			0,
+			#{returnNumber},
+			#{startDateTime},
+			#{endDateTime},
+			#{returnSurplusNumber},
+			#{creditRate},
+			#{creditType},
+			#{returnCycle},
+			#{totalInterestMoney},
+			#{tqOID},
+			#{laiyuan},
+			#{addDateTimeStr},
+			#{JXother},
+			#{JXinterest},
+			#{privilegeIncome},
+			#{redmoney}
+			)
+	</insert>
+	
+	
+	
+	
+	
+</mapper>

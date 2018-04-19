@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.mobile.AppVersionMapper">
+
+
+
+	<select id="findVersion" resultType="com.izhuantou.damain.mobile.App_version">
+		SELECT name,version,date,status,hotUpdStatus from app_version
+	</select>
+
+
+
+
+
+</mapper>

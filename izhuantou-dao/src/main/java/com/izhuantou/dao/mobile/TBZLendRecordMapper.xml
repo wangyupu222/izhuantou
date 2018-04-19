@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.mobile.TBZLendRecordMapper">
+
+
+
+	<select id="findList"
+		resultType="com.izhuantou.damain.lend.LendRecord">
+
+		SELECT
+		name,nameCN,payDebitCredit.money,payDebitCredit.principalMoney,payDebitCredit.addDateTime
+		FROM
+		PAY_DebitCredit payDebitCredit,
+		PAY_Customer pay_customer
+		WHERE
+		payDebitCredit.businessOID = #{businessOID}
+		AND payDebitCredit.outMemberOID = pay_customer.memberOID
+		GROUP BY
+		payDebitCredit.outMemberOID
+		HAVING
+		COUNT(
+		payDebitCredit.outMemberOID
+		) = 1
+		ORDER BY
+		payDebitCredit.addDateTime DESC
+
+	</select>
+
+
+
+
+
+</mapper>

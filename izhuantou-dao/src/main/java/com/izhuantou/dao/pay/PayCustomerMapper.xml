@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.pay.PayCustomerMapper">
+
+	<!--  查询资金账户-->
+	<select id="findByMemberOID" resultType="com.izhuantou.damain.pay.PayCustomer">
+		SELECT * from
+		pay_customer where
+		memberOID=#{memberOID}
+	</select>
+	<!-- 根据用户名查询资金账户 -->
+	<select id="findPAYCustomerByName" resultType="com.izhuantou.damain.pay.PayCustomer">
+		SELECT * from
+		pay_customer where
+		name=#{name}
+	</select>
+	
+	<!-- 根据name和OID查询资金账户 -->
+	<select id="findPAYCustomerByNameAndOID" resultType="com.izhuantou.damain.pay.PayCustomer">
+		SELECT * from
+		pay_customer where name=#{name} and OID != #{ OID }
+		
+	</select>
+	<!-- 注册资金账户 -->
+	 <insert id="insertCustomer"  parameterType="com.izhuantou.damain.pay.PayCustomer">
+	INSERT INTO pay_customer
+		(OID,
+		sellerOID,
+		memberOID,
+		name,
+		nameCN,
+		cardType,
+		cardNO,
+		mobile,
+		bankNumber,
+		withdrawalsPassword,
+		loginPassword,
+		requestID,
+		money,
+		frozenMoney,
+		useMoney,
+		noTransferMoney,
+		addDateTime)
+		 VALUES
+		(#{OID},
+		#{sellerOID},
+		#{memberOID},
+		#{name},
+		#{nameCN},
+		#{cardType},
+		#{cardNO},
+		#{mobile},
+		#{bankNumber},
+		#{withdrawalsPassword},
+		#{loginPassword},
+		#{requestID},
+		#{money},
+		#{frozenMoney},
+		#{useMoney},
+		#{noTransferMoney},
+		NOW())
+	 </insert> 
+	 
+	<!--根据用户的memberOID修改账户金额-->
+	<update id="updataCutomer" parameterType="com.izhuantou.damain.pay.PayCustomer">
+		UPDATE pay_customer
+				SET 
+				 sellerOID = #{sellerOID},
+				 memberOID =#{memberOID},
+				 name = #{name},
+				 nameCN = #{nameCN},
+				 cardType = #{cardType},
+				 cardNO = #{cardNO},
+				 mobile =#{mobile},
+				 email =#{email},
+				 bankCityCode = #{bankCityCode},
+				 bankCode = #{bankCode},
+				 bankNameCN = #{bankNameCN},
+				 bankNumber = #{bankNumber},
+				 withdrawalsPassword = #{withdrawalsPassword},
+				 loginPassword = #{loginPassword},
+				 requestID = #{requestID},
+				 money = #{money},
+				 frozenMoney= #{frozenMoney},
+				 useMoney = #{useMoney},
+				 noTransferMoney = #{noTransferMoney},
+				 entrustRecharge = #{entrustRecharge},
+				 entrustWithdrawals = #{entrustWithdrawals},
+				 describe0 = #{describe0},
+				 NO = #{NO},
+				 addUserOID =#{addUserOID},
+				 updUserOID = #{updUserOID},
+				 valid =  #{valid},
+				 addDateTime = #{addDateTime},
+				 updDateTime =NOW(),
+				 refresh =#{refresh},
+				 version = version + 1,
+				 blacklist = #{blacklist},
+				 handBase = #{handBase},
+				 freeline = #{freeline}
+				 WHERE
+					memberOID =#{memberOID}
+				AND 
+					version = #{version}	
+	</update>
+	
+	
+
+</mapper>

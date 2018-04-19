@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.DisplayZZTMapper">
+	<select id="findByCondition" resultType="com.izhuantou.damain.lend.DisplayZZT">
+		select * from (
+		SELECT
+		B.productType,
+		B.xmmc,
+		B.nhll,
+		B.cjqx,
+		B.hkfs,
+		B.xmze,
+		(
+		CASE
+		WHEN
+		ISNULL(B.sykt) THEN
+		0.00
+		ELSE
+		B.sykt
+		END
+		) AS sykt,
+		100 - ROUND(sykt /
+		B.xmze,2) * 100 jd,
+		B.productStatus,
+		B.type,
+		B.OID,
+		B.isRecommend,
+		B. NO,
+		B.szds,
+		B.JXother
+		FROM
+		(
+		SELECT
+		WEBP2P_DebtTransferBiddingPool.productType
+		productType,
+		WEBP2P_DebtTransferBiddingPool.biddingName xmmc,
+		ROUND(
+		WEBP2P_ProductRateInfo.yearRate * 100,
+		2
+		) nhll,
+		CEILING(
+		WEBP2P_ProductRateInfo.productTerm
+		) cjqx,
+		WEBP2P_ProductRateInfo.repaymentType hkfs,
+		WEBP2P_DebtTransferBiddingPool.biddingAmount xmze,
+		(
+		WEBP2P_DebtTransferBiddingPool.biddingAmount -
+		WEBP2P_DebtTransferBiddingPool.holdingAmount
+		) sykt,
+		WEBP2P_DebtTransferBiddingPool.productStatus productStatus,
+		'zz' type,
+		WEBP2P_DebtTransferBiddingPool.OID OID,
+		WEBP2P_DebtTransferBiddingPool.isRecommend,
+		WEBP2P_DebtTransferBiddingPool. NO,
+		WEBP2P_DebtTransferBiddingPool.szds,
+		WEBP2P_DebtTransferBiddingPool.JXother
+		FROM
+		WEBP2P_DebtTransferBiddingPool,
+		WEBP2P_ProductRateInfo
+		WHERE
+		WEBP2P_DebtTransferBiddingPool.productStatus != 99
+		AND
+		WEBP2P_DebtTransferBiddingPool.productRateInfoID =
+		WEBP2P_ProductRateInfo.OID
+		) B
+		) allbidding
+
+		where szds is null or szds
+		='0'
+
+		ORDER BY
+		allbidding.productStatus+0,allbidding.productType,allbidding.NO
+		DESC
+		${sortp}
+		,allbidding.JXother
+		DESC,allbidding.cjqx,SUBSTRING_INDEX(allbidding.xmmc,'-',-1) DESC
+		limit
+		#{startPos},#{pageSize}
+	</select>
+	<select id="getPageCount" resultType="long">
+		select COUNT(xmmc) from (
+		SELECT
+		B.productType,
+		B.xmmc,
+		B.nhll,
+		B.cjqx,
+		B.hkfs,
+		B.xmze,
+		(
+		CASE
+		WHEN
+		ISNULL(B.sykt) THEN
+		0.00
+		ELSE
+		B.sykt
+		END
+		) AS sykt,
+		100 - ROUND(sykt /
+		B.xmze,2) * 100 jd,
+		B.productStatus,
+		B.type,
+		B.OID,
+		B.isRecommend,
+		B. NO,
+		B.szds,
+		B.JXother
+		FROM
+		(
+		SELECT
+		WEBP2P_DebtTransferBiddingPool.productType
+		productType,
+		WEBP2P_DebtTransferBiddingPool.biddingName xmmc,
+		ROUND(
+		WEBP2P_ProductRateInfo.yearRate * 100,
+		2
+		) nhll,
+		CEILING(
+		WEBP2P_ProductRateInfo.productTerm
+		) cjqx,
+		WEBP2P_ProductRateInfo.repaymentType hkfs,
+		WEBP2P_DebtTransferBiddingPool.biddingAmount xmze,
+		(
+		WEBP2P_DebtTransferBiddingPool.biddingAmount -
+		WEBP2P_DebtTransferBiddingPool.holdingAmount
+		) sykt,
+		WEBP2P_DebtTransferBiddingPool.productStatus productStatus,
+		'zz' type,
+		WEBP2P_DebtTransferBiddingPool.OID OID,
+		WEBP2P_DebtTransferBiddingPool.isRecommend,
+		WEBP2P_DebtTransferBiddingPool. NO,
+		WEBP2P_DebtTransferBiddingPool.szds,
+		WEBP2P_DebtTransferBiddingPool.JXother
+		FROM
+		WEBP2P_DebtTransferBiddingPool,
+		WEBP2P_ProductRateInfo
+		WHERE
+		WEBP2P_DebtTransferBiddingPool.productStatus != 99
+		AND
+		WEBP2P_DebtTransferBiddingPool.productRateInfoID =
+		WEBP2P_ProductRateInfo.OID
+		) B
+		) allbidding
+
+		where szds is null or szds ='0'
+	</select>
+
+	<select id="findList" resultType="com.izhuantou.damain.lend.DisplayZZT">
+		select * from (
+		SELECT
+		B.productType,
+		B.xmmc,
+		B.nhll,
+		B.cjqx,
+		B.hkfs,
+		B.xmze,
+		(
+		CASE
+		WHEN
+		ISNULL(B.sykt) THEN
+		0.00
+		ELSE
+		B.sykt
+		END
+		) AS sykt,
+		100 - ROUND(sykt /
+		B.xmze,2) * 100 jd,
+		B.productStatus,
+		B.type,
+		B.OID,
+		B.isRecommend,
+		B. NO,
+		B.szds,
+		B.JXother
+		FROM
+		(
+		SELECT
+		WEBP2P_DebtTransferBiddingPool.productType
+		productType,
+		WEBP2P_DebtTransferBiddingPool.biddingName xmmc,
+		ROUND(
+		WEBP2P_ProductRateInfo.yearRate * 100,
+		2
+		) nhll,
+		CEILING(
+		WEBP2P_ProductRateInfo.productTerm
+		) cjqx,
+		WEBP2P_ProductRateInfo.repaymentType hkfs,
+		WEBP2P_DebtTransferBiddingPool.biddingAmount xmze,
+		(
+		WEBP2P_DebtTransferBiddingPool.biddingAmount -
+		WEBP2P_DebtTransferBiddingPool.holdingAmount
+		) sykt,
+		WEBP2P_DebtTransferBiddingPool.productStatus productStatus,
+		'zz' type,
+		WEBP2P_DebtTransferBiddingPool.OID OID,
+		WEBP2P_DebtTransferBiddingPool.isRecommend,
+		WEBP2P_DebtTransferBiddingPool. NO,
+		WEBP2P_DebtTransferBiddingPool.szds,
+		WEBP2P_DebtTransferBiddingPool.JXother
+		FROM
+		WEBP2P_DebtTransferBiddingPool,
+		WEBP2P_ProductRateInfo
+		WHERE
+		WEBP2P_DebtTransferBiddingPool.productStatus != 99
+		AND
+		WEBP2P_DebtTransferBiddingPool.productRateInfoID =
+		WEBP2P_ProductRateInfo.OID
+		) B
+		) allbidding
+
+		where szds is null or szds
+		='0'
+
+		ORDER BY
+		allbidding.productStatus+0,allbidding.productType,allbidding.NO
+		DESC
+		,allbidding.JXother
+		DESC,allbidding.cjqx,SUBSTRING_INDEX(allbidding.xmmc,'-',-1) DESC
+	</select>
+</mapper>

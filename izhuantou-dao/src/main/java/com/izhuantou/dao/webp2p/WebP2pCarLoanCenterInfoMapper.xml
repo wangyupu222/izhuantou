@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.webp2p.WebP2pCarLoanCenterInfoMapper">
+	<select id="findByloanNumber"
+		resultType="com.izhuantou.damain.webp2p.WebP2pCarLoanCenterInfo">
+		SELECT * from WEBP2P_CarLoanCenterInfo where LoanNumber =
+		#{loanNumber}
+	</select>
+
+	<select id="findCarLoanMemberInfoBase"
+		resultType="com.izhuantou.damain.vo.flow.CarLoanMemberInfoBaseDTO">
+		SELECT pc.memberOID, pc.cardNO AS idCard,
+		pc.name AS mobile,
+		cci.biddingContent AS loanuse, cci.customername AS realName,
+		cci.sex AS
+		gender,
+		cci.age AS age,
+		cci.education AS highesteduback,
+		cci.domicile AS
+		hkszd,
+		cci.annualSalary AS grysr,
+		cci.chassisNum AS cjh,
+		cci.plateNum AS
+		cph,
+		cci.engineNo AS fdjh
+		FROM PAY_Customer pc, WEBP2P_CarLoanCenterInfo
+		cci WHERE
+		pc.memberOID =#{memberOID} AND cci.phone = pc.name
+
+	</select>
+
+
+</mapper>

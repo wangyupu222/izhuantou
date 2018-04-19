@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.personalCenter.MyPrivilegeMapper">
+	<!-- 根据用户OID查询可用特权 -->
+	<select id="findCanUseTQByMemberOIDAndType" resultType="com.izhuantou.damain.vo.MyPrivilegeDaoDTO">
+		SELECT pri.privilegeName AS privilegeName,pri.OID,
+		pri.privilegeRange AS privilegeRange,
+		pri.lowAmount AS lowAmount,
+		pri.ruleIntroduce AS ruleIntroduce ,
+		queryCondition.useTerm AS useTerm,
+		queryCondition.startDate AS startDate,
+		queryCondition.endDate AS endDate,
+		queryCondition.psOID AS psOID
+		FROM PAY_Privilege pri,
+		(SELECT privilegeOID ,
+		startDate,
+		endDate,
+		useTerm,
+		psOID,
+		addDateTime
+		FROM PAY_PrivilegeMemberMapping
+		WHERE memberOID =#{memberOID}
+		AND isUsed = 0
+		AND NOW() &lt; DATE_ADD(endDate,INTERVAL 1 day)) queryCondition
+		WHERE queryCondition.privilegeOID = pri.OID
+		AND pri.privilegeType = #{privilegeType}
+		ORDER BY queryCondition.addDateTime DESC
+		limit #{ startIndex } , #{ pageSize }
+	</select>
+	<!-- 获取可用总条数 -->
+	<select id="getCanUseTQRowCount" resultType="int">
+		SELECT count(*)
+		FROM PAY_Privilege pri ,
+		(SELECT privilegeOID
+		FROM PAY_PrivilegeMemberMapping
+		WHERE memberOID =#{memberOID}
+		AND isUsed = 0
+		AND NOW() &lt;DATE_ADD(endDate,INTERVAL 1 day)) queryCondition
+		WHERE queryCondition.privilegeOID = pri.OID
+		AND pri.privilegeType =#{privilegeType}
+	</select>
+	<!-- 根据用户不可用特权的 -->
+	<select id="findCannotUseTQByMemberOIDAndType" resultType="com.izhuantou.damain.vo.MyPrivilegeDaoDTO">
+		SELECT pri.privilegeName AS privilegeName,pri.OID,
+		pri.privilegeRange AS privilegeRange,
+		pri.lowAmount AS lowAmount,
+		pri.ruleIntroduce AS ruleIntroduce ,
+		queryCondition.useTerm AS useTerm,
+		queryCondition.startDate AS startDate,
+		queryCondition.endDate AS endDate,
+		queryCondition.psOID AS psOID
+		FROM PAY_Privilege pri,
+		(SELECT privilegeOID ,
+		startDate,
+		endDate,
+		useTerm,
+		psOID,
+		addDateTime
+		FROM PAY_PrivilegeMemberMapping
+		WHERE memberOID = #{memberOID}
+		AND ( isUsed = 1
+		OR NOW() &gt; endDate )) queryCondition
+		WHERE queryCondition.privilegeOID = pri.OID
+		AND pri.privilegeType = #{privilegeType}
+		ORDER BY queryCondition.addDateTime DESC
+		limit #{ startIndex } , #{ pageSize }
+	</select>
+	<!-- 获取不可用总条数 -->
+	<select id="getCannotUseTQRowCount" resultType="int">
+		SELECT count(*)
+		FROM PAY_Privilege pri,
+		(SELECT privilegeOID
+		FROM PAY_PrivilegeMemberMapping
+		WHERE memberOID = #{memberOID}
+		AND ( isUsed = 1
+		OR NOW() &gt; endDate )) queryCondition
+		WHERE queryCondition.privilegeOID = pri.OID
+		AND pri.privilegeType =#{privilegeType}
+	</select>
+	<!-- 查询该用户的已使用特权 -->
+	<select id="findCannotUseTQByMemberOIDIsUse" resultType="com.izhuantou.damain.vo.MyPrivilegeDaoDTO">
+		SELECT pri.privilegeName AS privilegeName,pri.OID,
+		pri.privilegeRange AS privilegeRange,
+		pri.lowAmount AS lowAmount,
+		pri.ruleIntroduce AS ruleIntroduce ,
+		queryCondition.useTerm AS useTerm,
+		queryCondition.startDate AS startDate,
+		queryCondition.endDate AS endDate,
+		queryCondition.psOID AS psOID
+		FROM PAY_Privilege pri,
+		(SELECT privilegeOID ,
+		startDate,
+		endDate,
+		useTerm,
+		psOID,
+		addDateTime
+		FROM PAY_PrivilegeMemberMapping
+		WHERE memberOID = #{memberOID}
+		AND isUsed = 1
+		) queryCondition
+		WHERE queryCondition.privilegeOID = pri.OID
+		AND pri.privilegeType = #{privilegeType}
+		ORDER BY queryCondition.addDateTime DESC
+		limit #{ startIndex } , #{ pageSize }
+	</select>
+	<!-- 已使用失效特权 -->
+	<select id="getCannotUseTQRowCountIsUse" resultType="int">
+		SELECT
+		count(*)
+		FROM PAY_Privilege pri,
+		(SELECT privilegeOID
+		FROM PAY_PrivilegeMemberMapping
+		WHERE memberOID = #{memberOID}
+		AND isUsed = 1
+		) queryCondition
+		WHERE queryCondition.privilegeOID = pri.OID
+		AND pri.privilegeType =#{privilegeType}
+	</select>
+	<!-- 已过期特权 -->
+	<select id="findCannotUseTQByMemberOIDIsGQ" resultType="com.izhuantou.damain.vo.MyPrivilegeDaoDTO">
+		SELECT pri.privilegeName AS privilegeName,pri.OID,
+		pri.privilegeRange AS privilegeRange,
+		pri.lowAmount AS lowAmount,
+		pri.ruleIntroduce AS ruleIntroduce ,
+		queryCondition.useTerm AS useTerm,
+		queryCondition.startDate AS startDate,
+		queryCondition.endDate AS endDate,
+		queryCondition.psOID AS psOID
+		FROM PAY_Privilege pri,
+		(SELECT privilegeOID ,
+		startDate,
+		endDate,
+		useTerm,
+		psOID,
+		addDateTime
+		FROM PAY_PrivilegeMemberMapping
+		WHERE memberOID = #{memberOID}
+		AND (NOW() &gt; DATE_ADD(endDate,INTERVAL 1 day)) AND isUsed =0
+		) queryCondition
+		WHERE queryCondition.privilegeOID = pri.OID
+		AND pri.privilegeType = #{privilegeType}
+		ORDER BY queryCondition.addDateTime DESC
+		limit #{ startIndex } , #{ pageSize }
+	</select>
+	<!-- 已过期特权 -->
+	<select id="getCannotUseTQRowCountIsGQ" resultType="int">
+		SELECT
+		count(*)
+		FROM PAY_Privilege pri,
+		(SELECT privilegeOID
+		FROM PAY_PrivilegeMemberMapping
+		WHERE memberOID = #{memberOID}
+		AND (NOW() &gt; DATE_ADD(endDate,INTERVAL 1 day)) AND isUsed =0
+		) queryCondition
+		WHERE queryCondition.privilegeOID = pri.OID
+		AND pri.privilegeType =#{privilegeType}
+	</select>
+
+	<!-- 邀请记录 -->
+	<select id="findInvitationRecord" resultType="com.izhuantou.damain.vo.MyInvitationDaoDTO">
+		SELECT * FROM
+		(SELECT member_member.name , pay_customer.nameCN ,
+		member_member.addDateTime zcsj, member_member.OID
+		FROM MEMBER_Member member_member
+		LEFT JOIN PAY_Customer pay_customer ON pay_customer.memberOID =
+		member_member.OID WHERE
+		yewuOID = #{memberOID} ) AS t LEFT JOIN (
+		SELECT pdc.money, pdc.outMemberOID memberOID,pdc.addDateTime addDateTime,
+		'xs' TYPE FROM PAY_DebitCredit pdc
+		JOIN WEBP2P_NoviceBiddingRuning nbr ON nbr.OID = pdc.businessOID
+		JOIN MEMBER_Member mm ON pdc.outmemberOID = mm.OID
+		LEFT JOIN PAY_TransferReturn pt ON pt.debitCreditOIDNew = pdc.OID
+		WHERE pdc.cashPoolOID IS NULL AND pdc.outMemberOID != pdc.inMemberOID
+		AND pdc.outMemberOID IN ( SELECT OID FROM MEMBER_Member WHERE yewuOID =
+		#{memberOID}
+		) AND pdc.OID NOT IN (select debitCreditOIDNew from PAY_TransferReturn)
+		UNION ALL
+		SELECT pay_cashpool.principalMoney money,pay_cashpool.memberOID
+		memberOID,pay_cashpool.addDateTime addDateTime, 'hh' TYPE FROM
+		PAY_CashPool pay_cashpool
+		WHERE memberOID IN ( SELECT OID FROM MEMBER_Member WHERE yewuOID =
+		#{memberOID}
+		) UNION ALL
+		SELECT pt.money,outMemberOID memberOID,pt.addDateTime addDateTime,'zz' TYPE
+		FROM
+		PAY_TransferReturn pt WHERE
+		pt.outMemberOID != pt.inMemberOID AND pt.cashPoolOID IS NULL AND outMemberOID IN (
+		SELECT OID FROM MEMBER_Member WHERE yewuOID = #{memberOID})
+		) AS tt ON tt.memberOId=t.oid ORDER BY t.zcsj
+		limit #{ startIndex } , #{ pageSize }
+	</select>
+	<!-- 邀请记录的总条数 -->
+	<select id="getInvitationRowCount" resultType="int">
+		SELECT count(*)
+		FROM (SELECT member_member.OID
+		FROM MEMBER_Member member_member
+		LEFT JOIN PAY_Customer pay_customer ON pay_customer.memberOID =
+		member_member.OID WHERE
+		yewuOID = #{memberOID} ) AS t LEFT JOIN (
+		SELECT pdc.money, pdc.outMemberOID memberOID,pdc.addDateTime addDateTime,
+		'xs' TYPE FROM PAY_DebitCredit pdc
+		JOIN WEBP2P_NoviceBiddingRuning nbr ON nbr.OID = pdc.businessOID
+		JOIN MEMBER_Member mm ON pdc.outmemberOID = mm.OID
+		LEFT JOIN PAY_TransferReturn pt ON pt.debitCreditOIDNew = pdc.OID
+		WHERE pdc.cashPoolOID IS NULL AND pdc.outMemberOID != pdc.inMemberOID
+		AND pdc.outMemberOID IN ( SELECT OID FROM MEMBER_Member WHERE yewuOID =
+		#{memberOID}
+		) AND pdc.OID NOT IN (select debitCreditOIDNew from PAY_TransferReturn)
+		UNION ALL
+		SELECT pay_cashpool.principalMoney money,pay_cashpool.memberOID
+		memberOID,pay_cashpool.addDateTime addDateTime, 'hh' TYPE FROM
+		PAY_CashPool pay_cashpool
+		WHERE memberOID IN ( SELECT OID FROM MEMBER_Member WHERE yewuOID =
+		#{memberOID}
+		) UNION ALL
+		SELECT pt.money,outMemberOID memberOID,pt.addDateTime addDateTime,'zz' TYPE
+		FROM
+		PAY_TransferReturn pt WHERE
+		pt.outMemberOID != pt.inMemberOID AND pt.cashPoolOID IS NULL AND outMemberOID IN (
+		SELECT OID FROM MEMBER_Member WHERE yewuOID = #{memberOID})
+		) AS tt ON tt.memberOId=t.oid
+	</select>
+
+
+
+
+</mapper>

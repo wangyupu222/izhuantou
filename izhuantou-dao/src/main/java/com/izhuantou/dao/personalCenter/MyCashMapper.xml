@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.personalCenter.MyCashMapper">
+	<select id="findCashDetialByCondition" resultType="com.izhuantou.damain.pay.PayCustomerBusiness">
+		SELECT * FROM(
+		SELECT * from PAY_CustomerBusiness WHERE
+		memberOID
+		=#{memberOID} and
+		type!='债权转让' ORDER BY addDateTime DESC
+		) t
+		<![CDATA[ WHERE t.addDateTime >=#{strDate} and
+		date(t.addDateTime)<=#{endDate}]]>limit
+		#{startPos},#{pageSize}
+	</select>
+
+
+	<select id="findCashDetial" resultType="com.izhuantou.damain.pay.PayCustomerBusiness">
+		SELECT * from
+		PAY_CustomerBusiness WHERE
+		memberOID
+		=#{memberOID} and
+		type!='债权转让' ORDER
+		BY addDateTime DESC
+		limit
+		#{startPos},#{pageSize}
+
+	</select>
+
+
+
+	<select id="findcount" resultType="Integer">
+		SELECT count(OID) from
+		PAY_CustomerBusiness WHERE memberOID
+		=#{memberOID} and type!='债权转让'
+	</select>
+
+	<select id="findcountByCondition" resultType="Integer">
+		SELECT count(*) FROM(
+		SELECT * from PAY_CustomerBusiness WHERE
+		memberOID
+		=#{memberOID} and
+		type!='债权转让' ORDER BY addDateTime DESC
+		) t
+		<![CDATA[ WHERE t.addDateTime >=#{strDate} and
+		date(t.addDateTime)<=#{endDate}]]>
+	</select>
+
+
+
+
+</mapper>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.pay.PayRepayPlanMapper">
+
+	<select id="findByBusinessOID" resultType="com.izhuantou.damain.pay.PayRepayPlan">
+		SELECT * from
+		PAY_RepayPlan where businessOID = #{OID}
+		order by repayDate
+	</select>
+	
+	<select id="queryByOID" resultType="com.izhuantou.damain.pay.PayRepayPlan">
+		SELECT 
+			* 
+		FROM
+			PAY_RepayPlan 
+		WHERE 
+			OID = #{OID}		
+	</select>
+	
+	<select id="queryByBusinessOIDAndState" resultType="com.izhuantou.damain.pay.PayRepayPlan">
+		SELECT 
+			* 
+		FROM
+			PAY_RepayPlan 
+		WHERE 
+			businessOID = #{OID}
+		AND
+			state = #{state}
+		ORDER BY
+			repayDate
+	</select>
+	
+	<select id="queryByBusinessOIDAndStateMAX" resultType="com.izhuantou.damain.pay.PayRepayPlan">
+		SELECT 
+			MAX( returnDate ) AS returnDate
+		FROM
+			PAY_ReturnPlan 
+		WHERE
+			businessOID =#{businessOID}  
+		AND 
+			state = #{state} 
+	</select>
+
+	<!-- 保存还款计划 -->
+	 <insert id="saveRepayPlan" parameterType="com.izhuantou.damain.pay.PayRepayPlan">
+		INSERT INTO pay_repayplan (
+				OID,
+				businessOID,
+				memberOID,
+				repayDate,
+				money,
+				state,
+				principalMoney,
+				interestMoney,
+				totalPrincipalMoney,
+				totalInterestMoney,
+				surplusPrincipal,
+				manageMoney,
+				serviceMoney,
+				rate,
+				describe0,
+				NO,
+				addUserOID,
+				updUserOID,
+				valid,
+				addDateTime,
+				updDateTime,
+				refresh,
+				version,
+				yqglf,
+				yqwyj,
+				yqfx,
+				isYQ
+			)
+			VALUES
+				(
+				#{OID},
+				#{businessOID},
+				#{memberOID},
+				#{repayDate},
+				#{money},
+				#{state},
+				#{principalMoney},
+				#{interestMoney},
+				#{totalPrincipalMoney},
+				#{totalInterestMoney},
+				#{surplusPrincipal},
+				#{manageMoney},
+				#{serviceMoney},
+				#{rate},
+				#{describe0},
+				#{NO},
+				#{addUserOID},
+				#{updUserOID},
+				1,
+				NOW(),
+				NOW(),
+				1,
+				0,
+				#{yqglf},
+				#{yqwyj},
+				#{yqfx},
+				#{isYQ}
+			)
+
+		
+
+	</insert> 
+
+
+</mapper>

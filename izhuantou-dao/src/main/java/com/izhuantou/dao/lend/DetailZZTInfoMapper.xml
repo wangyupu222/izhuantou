@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.DetailZZTInfoMapper">
+
+
+	<select id="findByMainOID" resultType="com.izhuantou.damain.lend.DetailZZTInfo">
+		SELECT * FROM WEBP2P_DebtTransferApply ,(SELECT outMemberOID,OID AS dcOID
+		FROM PAY_DebitCredit WHERE inMemberOID = #{OID})
+		temp WHERE temp.outMemberOID = WEBP2P_DebtTransferApply.memberOID AND
+		temp.dcOID = WEBP2P_DebtTransferApply.debitCreditOID
+	</select>
+
+
+
+
+</mapper>

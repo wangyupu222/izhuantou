@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper">
+	<select id="findByOID"
+		resultType="com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning">
+		select * from WEBP2P_PackageBiddingMainRuning WHERE OID =
+		#{OID}
+	</select>
+
+	<update id="updatePackageBiddingMainRuning"
+		parameterType="com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning">
+		UPDATE webp2p_packagebiddingmainruning
+		SET
+		biddingName=#{biddingName},
+		packageName=#{packageName},
+		productRateInfoID=#{productRateInfoID},
+		productStatus=#{productStatus},
+		holdingAmount=#{holdingAmount},
+		occupyAmount=#{occupyAmount},
+		startBidAmount=#{startBidAmount},
+		isRecommend=#{isRecommend},
+		sxAmount=#{sxAmount},
+		debitCreditOID=#{debitCreditOID},
+		describe0=#{describe0},
+		NO=#{NO},
+		addUserOID=#{addUserOID},
+		updUserOID=#{updUserOID},
+		valid=#{valid},
+		addDateTime=#{addDateTime},
+		updDateTime=NOW(),
+		refresh=#{refresh},
+		version=version+1,
+		financetransfertype=#{financetransfertype},
+		appisRecommend=#{appisRecommend},
+		JXother=#{JXother},
+		szds=#{szds},
+		dsTime=#{dsTime},
+		dbxeAmount=#{dbxeAmount},
+		dbxeFlag=#{dbxeFlag}
+		WHERE
+		OID=#{OID} and version=#{version}
+
+
+	</update>
+	<!-- 查看所有再投团标 -->
+	<select id="findAll"
+		resultType="com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning">
+		select * from webp2p_packagebiddingmainruning
+
+	</select>
+
+	<!-- 为新手注册赠送加息券页面查询环环标的的OID和期数 -->
+	<select id="findOIDAndTerm"
+		resultType="com.izhuantou.damain.vo.ActivityNewPrivilegesDTO">
+		SELECT
+		mainrun.OID,productrateinfo.productTerm FROM
+		WEBP2P_PackageBiddingMainRuning mainrun
+		JOIN WEBP2P_ProductRateInfo
+		productrateinfo on
+		productrateinfo.OID=mainrun.productRateInfoID
+		WHERE
+		isRecommend=1 ORDER BY productTerm
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

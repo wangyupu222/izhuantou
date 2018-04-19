@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.pay.PayTransferReturnMapper">
+
+	<select id="findByBusinenssOID" resultType="com.izhuantou.damain.pay.PayTransferReturn">
+
+		select * from
+		PAY_TransferReturn where businessOID =
+		#{OID}
+	</select>
+	<!-- 根据memberOID查询债转标 -->
+	<select id="gainByOutMemberOID" resultType="com.izhuantou.damain.pay.PayTransferReturn">
+
+		select * from PAY_TransferReturn where outMemberOID = #{memberOID} and creditType='OPI'
+		
+	</select>
+		
+	<!-- 根据memberOID查询债转标 -->
+	<select id="gainByMemberOIDANDState" resultType="com.izhuantou.damain.pay.PayTransferReturn">
+		select * from PAY_TransferReturn where outMemberOID = #{memberOID} and creditType='OPI' and state='investment' 
+	</select>	
+			
+	<!-- 根据memberOID查询债转标 -->
+	<select id="gainTransferReturnByDebitCreditNewOIDAndState" resultType="com.izhuantou.damain.pay.PayTransferReturn">
+		select * from PAY_TransferReturn where DebitCreditOIDNew =#{debitCreditOIDNew} and state = #{state} 
+	</select>	
+	
+	<!-- 根据memberOID查询债转标 -->
+	<select id="gainTransferReturnByDebitCreditOIDAndOutMemberOID" resultType="com.izhuantou.damain.pay.PayTransferReturn">
+		select * from PAY_TransferReturn where debitCreditOID =#{debitCreditOID} and outMemberOID =#{memberOID}
+	</select>
+	
+
+
+	<select id="findByCondition" resultType="com.izhuantou.damain.pay.PayTransferReturn">
+		select * from PAY_TransferReturn where outMemberOID =
+		#{OID} and creditType='OPI' and
+		state='investment'
+	</select>
+	
+	
+	<select id="getTransferReturnByDebitCreditOIDAndstate" resultType="com.izhuantou.damain.pay.PayTransferReturn">
+		SELECT
+				*
+		FROM
+			pay_transferreturn
+		WHERE
+			debitCreditOID = #{debitCreditOID}
+		AND 
+			state = #{state}
+	</select>
+	
+	<select id="getTransferReturnByOid" resultType="com.izhuantou.damain.pay.PayTransferReturn">
+		SELECT
+				*
+		FROM
+			pay_transferreturn
+		WHERE
+			OID = #{OID}
+	</select>
+	<!-- 保存债转 -->
+	<insert id="saveTransferReturn" parameterType="com.izhuantou.damain.pay.PayTransferReturn">
+					INSERT INTO pay_transferreturn(
+						OID,
+						businessOID,
+						debitCreditOID,
+						outMemberOID,
+						inMemberOID,
+						creditType,
+						creditRate,
+						money,
+						principalMoney,
+						advanceInterest,
+						state,
+						describe0,
+						NO,
+						addUserOID,
+						updUserOID,
+						valid,
+						addDateTime,
+						updDateTime,
+						refresh,
+						version,
+						privilegePrincipal,
+						privilegeInterest,
+						startDateTime,
+						endDateTime,
+						returnSurplusNumber,
+						interest,
+						cashPoolOID,
+						debtLoanNumber,
+						debitCreditOIDNew,
+						laiyuan,
+						addDateTimeStr
+						)
+						VALUES
+						(
+						#{OID},
+						#{businessOID},
+						#{debitCreditOID},
+						#{outMemberOID},
+						#{inMemberOID},
+						#{creditType},
+						#{creditRate},
+						#{money},
+						#{principalMoney},
+						#{advanceInterest},
+						#{state},
+						#{describe0},
+						#{NO},
+						#{addUserOID},
+						#{updUserOID},
+						1,
+						NOW(),
+						NOW(),
+						1,
+						0,
+						#{privilegePrincipal},
+						#{privilegeInterest},
+						#{startDateTime},
+						#{endDateTime},
+						#{returnSurplusNumber},
+						#{interest},
+						#{cashPoolOID},
+						#{debtLoanNumber},
+						#{debitCreditOIDNew},
+						#{laiyuan},
+						#{addDateTimeStr}
+						)
+	
+	
+	</insert>
+	<!-- 根句业务oid和状态查询 -->
+	<select id="findByBusinessOIDAndState" resultType="com.izhuantou.damain.pay.PayTransferReturn">
+		SELECT * from PAY_TransferReturn where businessOID =#{businessOID} and state = #{state}
+	
+	</select>
+	
+	<update id="updataTransferReturn" parameterType="com.izhuantou.damain.pay.PayTransferReturn">
+			UPDATE pay_transferreturn
+					SET 
+					 businessOID=#{businessOID},
+					 debitCreditOID=#{debitCreditOID},
+					 outMemberOID=#{outMemberOID},
+					 inMemberOID=#{inMemberOID},
+					 creditType=#{creditType},
+					 creditRate=#{creditRate},
+					 money=#{money},
+					 principalMoney=#{principalMoney},
+					 advanceInterest=#{advanceInterest},
+					 state=#{state},
+					 describe0=#{describe0},
+					 NO=#{NO},
+					 addUserOID=#{addUserOID},
+					 updUserOID=#{updUserOID},
+					 valid=#{valid},
+					 addDateTime=#{addDateTime},
+					 updDateTime=NOW(),
+					 refresh=#{refresh},
+					 version=version+1,
+					 privilegePrincipal=#{privilegePrincipal},
+					 privilegeInterest=#{privilegeInterest},
+					 startDateTime=#{startDateTime},
+					 endDateTime=#{endDateTime},
+					 returnSurplusNumber=#{returnSurplusNumber},
+					 interest=#{interest},
+					 cashPoolOID=#{cashPoolOID},
+					 debtLoanNumber=#{debtLoanNumber},
+					 debitCreditOIDNew=#{debitCreditOIDNew},
+					 laiyuan=#{laiyuan},
+					 addDateTimeStr=#{addDateTimeStr}
+				WHERE
+						OID=#{OID} and version=#{version}
+	
+	
+	</update>
+	
+	
+</mapper>

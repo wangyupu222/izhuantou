@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.p2p.P2pHuiYuanUserMapper">
+	<!-- 根据card查询会员 -->
+	<select id="findHuiYuanUserByCard" resultType="com.izhuantou.damain.p2p.P2pHuiYuanUser">
+		select * from  p2p_huiyuanuser where card =#{card}
+	</select>
+	
+	<update id="updateHuiYuanUserByOID" parameterType="com.izhuantou.damain.p2p.P2pHuiYuanUser">
+		update p2p_huiyuanuser SET
+		 NAME=#{name},
+		 kehulaiyuan=#{kehulaiyuan},
+		 phone=#{phone},
+		 kehutype=#{kehutype},
+		 card=#{card},
+		 updDateTime=NOW(),
+		 kefuuserOID=#{kefuuserOID},version = version+1 
+		 WHERE OID=#{OID} and version = #{version}
+	</update>
+	
+	<insert id="saveHuiYuanUserByOID" parameterType="com.izhuantou.damain.p2p.P2pHuiYuanUser">
+		insert into p2p_huiyuanuser (
+			OID,
+			name,
+			kehulaiyuan,
+			phone,
+			card,
+			pingtai,
+			kehutype,
+			valid,
+			addDateTime,
+			updDateTime,
+			version,
+			kefuuserOID)
+		VALUES (
+			#{OID},
+			#{name},
+			#{kehulaiyuan},
+			#{phone},
+			#{card},
+			#{pingtai},
+			#{kehutype},
+			1,
+			NOW(),
+			NOW(),
+			1,
+			#{kefuuserOID}
+		)
+	</insert>
+
+
+
+	
+</mapper>

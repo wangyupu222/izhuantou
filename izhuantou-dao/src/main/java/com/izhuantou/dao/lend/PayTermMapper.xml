@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.PayTermMapper">
+
+
+	<select id="findByBusinessOID" resultType="com.izhuantou.damain.lend.PayTerm">
+		SELECT
+		SUM(IF(state = 'finish', 1, 0)) AS yhnum,
+		COUNT(*) AS allNum,
+		businessOID,
+		memberOID
+		FROM
+		PAY_RepayPlan WHERE businessOID = #{OID}
+		GROUP BY
+		businessOID
+	</select>
+
+
+
+
+</mapper>

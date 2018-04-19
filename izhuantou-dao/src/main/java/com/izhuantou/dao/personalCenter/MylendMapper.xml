@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.personalCenter.MylendMapper">
+	<!-- 环环投持有中列表 -->
+	<select id="findHHhavingBymemberOID" resultType="com.izhuantou.damain.vo.MylendDaoDTO">
+		SELECT
+		ProductRateInfo.OID AS productInfoOID,PackageBiddingMainRuning.OID AS
+		OID,payCashPool.tqOID,
+		payCashPool.businessOID AS
+		businessOID,payCashPool.OID AS CashPoolOID,
+		payCashPool.principalMoney
+		+ payCashPool.interestMoney *
+		payCashPool.returnSurplusNumber AS ysbx,
+		ProductRateInfo.productTerm AS zqs,
+		PackageBiddingMainRuning.productStatus,PackageBiddingMainRuning.sxAmount,PackageBiddingMainRuning.holdingAmount,
+		payCashPool.returnSurplusNumber AS syqs,payCashPool.money AS
+		money,ProductRateInfo.repaymentType AS creditType,
+		payCashPool.startDateTime AS
+		cjsjTime,DATE_ADD(payCashPool.startDateTime,INTERVAL 1 MONTH) AS
+		xghkr,DATE_ADD(DATE_ADD(payCashPool.startDateTime,INTERVAL
+		ProductRateInfo.productTerm MONTH), INTERVAL 1 DAY) AS
+		dqsj,PackageBiddingMainRuning.packageName AS xmmc,
+		payCashPool.principalMoney AS cjje,round(ProductRateInfo.yearRate *
+		100,2) AS nhll
+		FROM PAY_CashPool
+		payCashPool,WEBP2P_PackageBiddingMainRuning
+		PackageBiddingMainRuning,
+		WEBP2P_ProductRateInfo ProductRateInfo WHERE payCashPool.memberOID
+		=#{memberOID}
+		AND payCashPool.businessOID =
+		PackageBiddingMainRuning.OID
+		AND
+		PackageBiddingMainRuning.productRateInfoID = ProductRateInfo.OID
+		AND
+		PackageBiddingMainRuning.productStatus != 2
+		AND payCashPool.state
+		='investment' ORDER BY payCashPool.startDateTime
+		DESC
+		limit #{
+		startIndex } , #{ pageSize }
+
+	</select>
+	<!-- 查询持有列表所有个数 -->
+	<select id="gethavingRowCount" resultType="int">
+		SELECT count(*)
+		FROM
+		PAY_CashPool payCashPool,WEBP2P_PackageBiddingMainRuning
+		PackageBiddingMainRuning,
+		WEBP2P_ProductRateInfo ProductRateInfo WHERE
+		payCashPool.memberOID =#{memberOID}
+		AND payCashPool.businessOID =
+		PackageBiddingMainRuning.OID AND
+		PackageBiddingMainRuning.productRateInfoID = ProductRateInfo.OID
+		AND
+		PackageBiddingMainRuning.productStatus != 2
+		AND payCashPool.state
+		='investment'
+	</select>
+
+
+
+	<!-- 通过产品OID在产品与标的内容映射表上查找，该产品OID对应的内容标的OID。再通过标的OID在借贷关系表中查找对应的真实借贷关系 -->
+	<select id="gainRecordeFromDebitCredit" resultType="map">
+		SELECT * FROM
+		PAY_DebitCredit ,
+		(SELECT contentOID FROM
+		WEBP2P_PackageMainContentMapping WHERE mainOID =#{mainOID} ) maps
+		WHERE PAY_DebitCredit.businessOID = maps.contentOID
+
+	</select>
+	<!-- 环环投持有中列表详情列表 -->
+	<select id="findHHhavingDetails"
+		resultType="com.izhuantou.damain.vo.HHThavingDetailsDTO">
+		SELECT NOW()
+		xtTime,WEBP2P_PackageBiddingMainContentRuning.loanDay loanDay,
+		WEBP2P_PackageBiddingMainContentRuning.financetransfertype
+		financetransfertype,
+		WEBP2P_PackageBiddingMainContentRuning.OID OID,
+		WEBP2P_PackageBiddingMainContentRuning.productStatus productStatus,
+		WEBP2P_PackageBiddingMainContentRuning.loanNumber jkmc,
+		ROUND(WEBP2P_LoanProductRateInfo.yearRate * 100,2 ) jkll,
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount jkje,
+		WEBP2P_PackageBiddingMainContentRuning.OID biddingOID,
+		WEBP2P_LoanProductRateInfo.term term,t2.yhnum AS
+		yhnum1,PAY_DebitCredit.cashPoolOID ,
+		WEBP2P_PackageBiddingMainContentRuning.debitCreditOID,
+		(PAY_DebitCredit.returnNumber - PAY_DebitCredit.returnSurplusNumber)
+		AS yhnum FROM
+		PAY_DebitCredit
+		JOIN
+		WEBP2P_PackageBiddingMainContentRuning ON PAY_DebitCredit.businessOID
+		= WEBP2P_PackageBiddingMainContentRuning.OID
+		JOIN
+		WEBP2P_LoanProductRateInfo ON WEBP2P_LoanProductRateInfo.OID =
+		WEBP2P_PackageBiddingMainContentRuning.loanProductRateInfoID
+		LEFT JOIN
+		(SELECT COUNT(*) AS yhnum,businessOID FROM PAY_RepayPlan WHERE
+		state='finish' GROUP BY businessOID) AS t2
+		ON
+		t2.businessOID=WEBP2P_PackageBiddingMainContentRuning.OID WHERE
+		PAY_DebitCredit.cashPoolOID =#{ cashPoolOID }
+		AND
+		PAY_DebitCredit.outMemberOID != '72730d8d0a5dca7122b26d135e708bbb'
+	</select>
+	<!-- 已完成环环投列表 -->
+	<select id="findHHTWCBymemberOID" resultType="com.izhuantou.damain.vo.MylendDaoDTO">
+		select
+		ProductRateInfo.productTerm AS zqs, payCashPool.OID as
+		CashPoolOID,ProductRateInfo.OID AS
+		productInfoOID,payCashPool.creditType AS
+		creditType,PackageBiddingMainRuning.OID AS OID,payCashPool.tqOID,
+		payCashPool.businessOID AS businessOID,payCashPool.endDateTime AS
+		dqsj,payCashPool.returnNumber AS tatalTerm,
+		payCashPool.principalMoney
+		+ payCashPool.interestMoney * payCashPool.returnSurplusNumber AS ysbx
+		,
+		payCashPool.state AS hkzt,payCashPool.addDateTime AS
+		cjsjTime,PackageBiddingMainRuning.packageName AS
+		xmmc,PackageBiddingMainRuning.sxAmount,PackageBiddingMainRuning.holdingAmount,
+		payCashPool.principalMoney AS
+		cjje,round(ProductRateInfo.yearRate*100,2) AS nhll,
+		DATE_ADD(payCashPool.endDateTime, INTERVAL 1 DAY) AS Timejssj
+		FROM
+		PAY_CashPool payCashPool,WEBP2P_PackageBiddingMainRuning
+		PackageBiddingMainRuning,WEBP2P_ProductRateInfo ProductRateInfo
+		WHERE
+		payCashPool.memberOID =#{ memberOID }
+		and payCashPool.businessOID =
+		PackageBiddingMainRuning.OID
+		and
+		PackageBiddingMainRuning.productRateInfoID = ProductRateInfo.OID
+		AND
+		payCashPool.state='finishInvestment' ORDER BY payCashPool.addDateTime
+		DESC
+		limit #{ startIndex } , #{ pageSize }
+	</select>
+	<!-- 查询持有列表所有个数 -->
+
+	<select id="getWCRowCount" resultType="int">
+		select count(*)
+		FROM
+		PAY_CashPool payCashPool,WEBP2P_PackageBiddingMainRuning
+		PackageBiddingMainRuning,WEBP2P_ProductRateInfo ProductRateInfo
+		WHERE
+		payCashPool.memberOID = #{memberOID}
+		and payCashPool.businessOID =
+		PackageBiddingMainRuning.OID
+		and
+		PackageBiddingMainRuning.productRateInfoID = ProductRateInfo.OID
+		AND
+		payCashPool.state='finishInvestment'
+
+	</select>
+
+	<!-- 头笔赚持有 -->
+	<select id="findTBZhavingBymemberOID" resultType="com.izhuantou.damain.vo.MyLentTBZDaoDTO">
+		select
+		NoviceBiddingRuning.biddingName AS
+		biddingName,NoviceBiddingRuning.productType AS productType,
+		NoviceBiddingRuning.debitCreditOID AS cond,NoviceBiddingRuning.loanDay
+		,
+		IF(NoviceBiddingRuning.biddingAmount-
+		NoviceBiddingRuning.holdingAmount=0,'true','false') AS fullscale,
+		NoviceBiddingRuning.productStatus AS hkzt,
+		payDebitCredit.addDateTime
+		AS cjsjDate,DATE_ADD(NoviceBiddingRuning.loanDay,INTERVAL 15 DAY) AS
+		xghkr,DATE_ADD(NoviceBiddingRuning.loanDay,INTERVAL 15 DAY) AS dqsj,
+		NoviceBiddingRuning.OID AS biOID,payDebitCredit.OID AS
+		DOID,payDebitCredit.money AS cjje,'15.00' AS nhll,
+		round((0.15/365)*payDebitCredit.money*15 + payDebitCredit.money,2) AS
+		ysbx,payDebitCredit.returnSurplusNumber AS syqs
+		from PAY_DebitCredit
+		payDebitCredit,WEBP2P_NoviceBiddingRuning
+		NoviceBiddingRuning,WEBP2P_ProductRateInfo ProductRateInfo
+		WHERE
+		payDebitCredit.outMemberOID=#{memberOID}
+		AND payDebitCredit.businessOID
+		= NoviceBiddingRuning.OID AND
+		NoviceBiddingRuning.productRateInfoID =
+		ProductRateInfo.OID AND
+		NoviceBiddingRuning.productStatus != 3 AND
+		NoviceBiddingRuning.productStatus != 10 ;
+
+	</select>
+
+	<!-- 头笔赚完成 -->
+	<select id="findTBZWCBymemberOID" resultType="com.izhuantou.damain.vo.MyLentTBZDaoDTO">
+		select
+		NoviceBiddingRuning.OID AS biOID,payDebitCredit.OID AS DOID,'ywc' AS
+		hkzt,
+		NoviceBiddingRuning.biddingName AS
+		biddingName,NoviceBiddingRuning.productType AS productType,
+		IF(ISNULL(NoviceBiddingRuning.debitCreditOID) ,'first','second') AS
+		charge,NoviceBiddingRuning.loanDay,
+		round((0.15/365)*payDebitCredit.money*15 + payDebitCredit.money,2) AS
+		ysbx,
+		IF(NoviceBiddingRuning.biddingAmount-
+		NoviceBiddingRuning.holdingAmount=0,'true','false') AS
+		fullscale,payDebitCredit.updDateTime jssj,
+		payDebitCredit.money AS
+		cjje, '15.00' AS nhll,payDebitCredit.addDateTime AS
+		cjsjDate,DATE_ADD(payDebitCredit.addDateTime,INTERVAL 15 DAY) AS
+		dqsj,payDebitCredit.returnNumber AS tatalTerm
+		from PAY_DebitCredit
+		payDebitCredit,WEBP2P_NoviceBiddingRuning
+		NoviceBiddingRuning,WEBP2P_ProductRateInfo ProductRateInfo
+		WHERE
+		payDebitCredit.outMemberOID=#{memberOID}
+		and payDebitCredit.businessOID
+		= NoviceBiddingRuning.OID and
+		NoviceBiddingRuning.productRateInfoID =
+		ProductRateInfo.OID AND
+		(NoviceBiddingRuning.productStatus = 3 OR
+		NoviceBiddingRuning.productStatus = 10)
+
+	</select>
+
+	<!-- 点点投持有列表 -->
+	<select id="findDDThavingBymemberOID" resultType="com.izhuantou.damain.vo.MylendDDTDaoDTO">
+		SELECT
+		NormalBiddingRuning.productType AS productType,
+		NormalBiddingRuning.productStatus AS hkzt,
+		NormalBiddingRuning.OID AS
+		biOID,
+		NormalBiddingRuning.biddingName AS xmmc,
+		payDebitCredit.creditType AS creditType,
+		payDebitCredit.returnNumber AS
+		zqs,
+		payDebitCredit.OID AS DOID,
+		payDebitCredit.principalMoney AS cjje,
+		round(
+		payDebitCredit.creditRate * 100,
+		2
+		) AS nhll,
+		payDebitCredit.addDateTime AS cjsjTime,
+
+		IF (
+		payDebitCredit.ysbx IS
+		NULL,
+		payDebitCredit.interest +
+		payDebitCredit.money,
+		payDebitCredit.ysbx
+		) AS ysbx,
+
+		IF (
+		NormalBiddingRuning.biddingAmount -
+		NormalBiddingRuning.holdingAmount
+		= 0,
+		'true',
+		'false'
+		) AS fullscale,
+		payDebitCredit.returnSurplusNumber AS syqs,
+		payDebitCredit.privilegeOID AS tqOID,
+		payDebitCredit.startDateTime AS
+		jxsj,
+		payDebitCredit.endDateTime AS dqsj,
+		payDebitCredit.xghkr
+		FROM
+		(
+		SELECT
+		d.*, MIN(p.returnDate) xghkr,MIN(p.money) ysbx
+		FROM
+		PAY_DebitCredit d
+		RIGHT JOIN (
+		SELECT
+		r.debitCreditOID,
+		r.returnDate,
+		r.money
+		FROM
+		PAY_ReturnPlan r
+		WHERE
+		r.state = 'plan'
+		) AS p ON
+		(p.debitCreditOID = d.OID)
+		GROUP BY
+		d.OID
+		) AS payDebitCredit,
+		WEBP2P_NormalBiddingRuning NormalBiddingRuning,
+		WEBP2P_ProductRateInfo
+		ProductRateInfo,
+		(
+		SELECT
+		COUNT(*) ex
+		FROM
+		PAY_ReturnPlan,
+		PAY_DebitCredit,
+		WEBP2P_NormalBiddingRuning
+		WHERE
+		PAY_DebitCredit.outMemberOID =
+		#{memberOID}
+		AND PAY_DebitCredit.inMemberOID =
+		PAY_ReturnPlan.outMemberOID
+		AND PAY_ReturnPlan.state = 'transferReturn'
+		AND PAY_DebitCredit.businessOID = WEBP2P_NormalBiddingRuning.OID
+		)
+		conditions,
+		(
+		SELECT
+		COUNT(*) exT
+		FROM
+		WEBP2P_DebtTransferBiddingPool,
+		PAY_DebitCredit
+		WHERE
+		PAY_DebitCredit.outMemberOID = #{memberOID}
+		AND
+		PAY_DebitCredit.OID = WEBP2P_DebtTransferBiddingPool.debitCreditOID
+		)
+		conditionsTwo
+		WHERE
+		payDebitCredit.outMemberOID = #{memberOID}
+		AND
+		payDebitCredit.businessOID = NormalBiddingRuning.OID
+		AND
+		NormalBiddingRuning.productRateInfoID = ProductRateInfo.OID
+		AND
+		NormalBiddingRuning.productStatus != 3
+		AND (
+		payDebitCredit.state !=
+		'transferReturn'
+		AND payDebitCredit.state !=
+		'finish'
+		AND
+		payDebitCredit.state != 'earlyFinish'
+		)
+		AND conditions.ex = 0
+		AND
+		conditionsTwo.exT = 0
+		ORDER BY
+		cjsjTime DESC
+		limit #{ startIndex } , #{
+		pageSize }
+
+	</select>
+
+	<!-- 获取持有点点投的总数 -->
+	<select id="getddtRowCount" resultType="int">
+		SELECT
+		count(*)
+		FROM
+		(
+		SELECT
+		d.*, MIN(p.returnDate) xghkr,MIN(p.money) ysbx
+		FROM
+		PAY_DebitCredit d
+		RIGHT JOIN (
+		SELECT
+		r.debitCreditOID,
+		r.returnDate,
+		r.money
+		FROM
+		PAY_ReturnPlan r
+		WHERE
+		r.state = 'plan'
+		) AS p ON
+		(p.debitCreditOID = d.OID)
+		GROUP BY
+		d.OID
+		) AS payDebitCredit,
+		WEBP2P_NormalBiddingRuning NormalBiddingRuning,
+		WEBP2P_ProductRateInfo
+		ProductRateInfo,
+		(
+		SELECT
+		COUNT(*) ex
+		FROM
+		PAY_ReturnPlan,
+		PAY_DebitCredit,
+		WEBP2P_NormalBiddingRuning
+		WHERE
+		PAY_DebitCredit.outMemberOID =
+		#{memberOID}
+		AND PAY_DebitCredit.inMemberOID =
+		PAY_ReturnPlan.outMemberOID
+		AND PAY_ReturnPlan.state = 'transferReturn'
+		AND PAY_DebitCredit.businessOID = WEBP2P_NormalBiddingRuning.OID
+		)
+		conditions,
+		(
+		SELECT
+		COUNT(*) exT
+		FROM
+		WEBP2P_DebtTransferBiddingPool,
+		PAY_DebitCredit
+		WHERE
+		PAY_DebitCredit.outMemberOID = #{memberOID}
+		AND
+		PAY_DebitCredit.OID = WEBP2P_DebtTransferBiddingPool.debitCreditOID
+		)
+		conditionsTwo
+		WHERE
+		payDebitCredit.outMemberOID = #{memberOID}
+		AND
+		payDebitCredit.businessOID = NormalBiddingRuning.OID
+		AND
+		NormalBiddingRuning.productRateInfoID = ProductRateInfo.OID
+		AND
+		NormalBiddingRuning.productStatus != 3
+		AND (
+		payDebitCredit.state !=
+		'transferReturn'
+		AND payDebitCredit.state !=
+		'finish'
+		AND
+		payDebitCredit.state != 'earlyFinish'
+		)
+		AND conditions.ex = 0
+		AND
+		conditionsTwo.exT = 0
+
+	</select>
+	<!-- 点点投已完成列表列表 -->
+	<select id="findDDTWCBymemberOID" resultType="com.izhuantou.damain.vo.MylendDDTDaoDTO">
+		select 'ywc' AS
+		hkzt ,NormalBiddingRuning.OID AS biOID,
+		payDebitCredit.OID AS
+		DOID,payDebitCredit.creditType AS creditType,
+		payDebitCredit.addDateTime AS cjsjTime,payDebitCredit.principalMoney
+		AS cjje,
+		NormalBiddingRuning.productType AS productType,
+		if(NormalBiddingRuning.biddingAmount-
+		NormalBiddingRuning.holdingAmount=0,'true','false') as fullscale,
+		NormalBiddingRuning.biddingName AS
+		xmmc,round(payDebitCredit.creditRate*100,2) AS nhll,
+		payDebitCredit.addDateTime AS cjsjTime,payDebitCredit.returnNumber AS
+		tatalTerm,
+		ROUND(payDebitCredit.money * payDebitCredit.creditRate *
+		if(payDebitCredit.state =
+		'earlyFinish',TIMESTAMPDIFF(MONTH,payDebitCredit.startDateTime,payDebitCredit.endDateTime)+1,payDebitCredit.returnNumber)
+		/ 12,2) AS yslx,
+		payDebitCredit.startDateTime,
+		payDebitCredit.endDateTime,
+		payDebitCredit.returnNumber AS zqs,
+		payDebitCredit.privilegeOID AS tqOID
+		from PAY_DebitCredit
+		payDebitCredit,
+		WEBP2P_NormalBiddingRuning
+		NormalBiddingRuning,WEBP2P_ProductRateInfo ProductRateInfo
+		WHERE
+		payDebitCredit.outMemberOID=#{memberOID}
+		AND payDebitCredit.businessOID
+		= NormalBiddingRuning.OID AND
+		NormalBiddingRuning.productRateInfoID =
+		ProductRateInfo.OID and
+		NormalBiddingRuning.productStatus = 5 ORDER BY
+		cjsjTime
+		limit #{ startIndex } , #{ pageSize }
+	</select>
+	<!-- 获取完成点点投的总数 -->
+	<select id="getddtWCRowCount" resultType="int">
+		select count(*)
+		from
+		PAY_DebitCredit payDebitCredit,
+		WEBP2P_NormalBiddingRuning
+		NormalBiddingRuning,WEBP2P_ProductRateInfo ProductRateInfo
+		WHERE
+		payDebitCredit.outMemberOID=#{memberOID}
+		AND payDebitCredit.businessOID
+		= NormalBiddingRuning.OID AND
+		NormalBiddingRuning.productRateInfoID =
+		ProductRateInfo.OID and
+		NormalBiddingRuning.productStatus = 5
+	</select>
+
+	<select id="findZQZRByPageAndmemberOID" resultType="com.izhuantou.damain.vo.MylendZQZRDTO">
+		SELECT
+		t1.*,IFNULL(debttransferapply.isAgree,'false') isAgree from (
+		SELECT
+		3
+		biddingType,
+		WEBP2P_PackageBiddingMainRuning.packageName xmmc,
+		PAY_CashPool.principalMoney cjje,
+		WEBP2P_ProductRateInfo.repaymentType
+		repaymentType,
+		round(
+		WEBP2P_ProductRateInfo.yearRate * 100,
+		2
+		) nhll,
+		PAY_CashPool.startDateTime AS cjsjDate,
+		PAY_CashPool.endDateTime dqsj,
+		PAY_CashPool.state AS hkzt,
+		PAY_CashPool.returnNumber AS tatalTerm,
+		PAY_CashPool.money AS ysje,
+		PAY_CashPool.principalMoney +
+		PAY_CashPool.interestMoney-PAY_CashPool.money dsje,
+		DATE_ADD(
+		PAY_CashPool.startDateTime,
+		INTERVAL PAY_CashPool.returnNumber MONTH
+		)
+		AS cjsjTime,
+		PAY_CashPool.returnSurplusNumber syqs,
+		PAY_CashPool.principalMoney + PAY_CashPool.interestMoney ysbx,
+		PAY_CashPool.OID PaydebitOID,
+		PAY_CashPool.businessOID businessOID,
+		TIMESTAMPDIFF(
+		DAY,
+		DATE_ADD(
+		PAY_CashPool.startDateTime,
+		INTERVAL
+		PAY_CashPool.returnNumber MONTH
+		),
+		NOW()
+		) AS syts,
+		WEBP2P_ProductRateInfo.productTerm,
+		PAY_CashPool.addDateTime,
+		if(PERIOD_DIFF(
+		PAY_CashPool.endDateTime,
+		NOW()
+		) > 1 and NOW() >
+		DATE_ADD(
+		PAY_CashPool.addDateTime,
+		INTERVAL 3 MONTH
+		),'true','false' )
+		as kzz
+		FROM
+		WEBP2P_PackageBiddingMainRuning,
+		WEBP2P_ProductRateInfo,
+		PAY_CashPool
+		WHERE
+		PAY_CashPool.memberOID = #{memberOID}
+		AND
+		PAY_CashPool.businessOID = WEBP2P_PackageBiddingMainRuning.OID
+		AND
+		WEBP2P_ProductRateInfo.OID =
+		WEBP2P_PackageBiddingMainRuning.productRateInfoID
+		AND
+		PAY_CashPool.state = 'investment' ) as t1 left JOIN
+		WEBP2P_DebtTransferApply debttransferapply on
+		debttransferapply.debitCreditOID=t1.PaydebitOID
+		left join ( SELECT
+		sum(money) ysje,cashPoolOID from PAY_ReturnPlan where
+		state='finish'
+		and type not in ('OPI','BIAP','EPEI') ) as t2 on
+		t2.cashPoolOID=t1.PaydebitOID
+		where
+		(DATE_SUB(DATE_FORMAT(t1.dqsj,'%Y-%m-%d'),INTERVAL 1
+		MONTH)>DATE_FORMAT(now(),'%Y-%m-%d')
+		and DATE_FORMAT(NOW(),'%Y-%m-%d')
+		>
+		DATE_ADD(DATE_FORMAT(t1.addDateTime,'%Y-%m-%d'),INTERVAL 3 MONTH))
+		and (debttransferapply.isAgree in (0,1) or debttransferapply.isAgree
+		is
+		NULL)
+		and t1.PaydebitOID not in( SELECT cashPoolOID from
+		WEBP2P_TransferNot
+		where status='1' )
+		limit #{ startIndex } , #{
+		pageSize }
+	</select>
+	<!-- 债权转让申请列表总数 -->
+	<select id="getZQZRRowCount" resultType="int">
+		SELECT count(1) from (
+		SELECT
+		PAY_CashPool.endDateTime dqsj,
+		PAY_CashPool.OID PaydebitOID,
+		PAY_CashPool.addDateTime
+		FROM
+		WEBP2P_PackageBiddingMainRuning,
+		WEBP2P_ProductRateInfo,
+		PAY_CashPool
+		WHERE
+		PAY_CashPool.memberOID =
+		#{memberOID}
+		AND PAY_CashPool.businessOID =
+		WEBP2P_PackageBiddingMainRuning.OID
+		AND WEBP2P_ProductRateInfo.OID =
+		WEBP2P_PackageBiddingMainRuning.productRateInfoID
+		AND
+		PAY_CashPool.state = 'investment' ) as t1 left JOIN
+		WEBP2P_DebtTransferApply debttransferapply on
+		debttransferapply.debitCreditOID=t1.PaydebitOID
+		left join ( SELECT
+		sum(money) ysje,cashPoolOID from PAY_ReturnPlan where
+		state='finish'
+		and type not in ('OPI','BIAP','EPEI') ) as t2 on
+		t2.cashPoolOID=t1.PaydebitOID
+		where
+		(DATE_SUB(DATE_FORMAT(t1.dqsj,'%Y-%m-%d'),INTERVAL 1
+		MONTH)>DATE_FORMAT(now(),'%Y-%m-%d')
+		and DATE_FORMAT(NOW(),'%Y-%m-%d')
+		>
+		DATE_ADD(DATE_FORMAT(t1.addDateTime,'%Y-%m-%d'),INTERVAL 3 MONTH))
+		and
+		(debttransferapply.isAgree in (0,1) or debttransferapply.isAgree is
+		NULL)
+		and t1.PaydebitOID not in( SELECT cashPoolOID from
+		WEBP2P_TransferNot
+		where status='1' )
+
+	</select>
+	<select id="findZQZRBymemberOID" resultType="com.izhuantou.damain.vo.MylendZQZRDTO">
+		SELECT
+		t1.*,IFNULL(debttransferapply.isAgree,'false') isAgree from (
+		SELECT
+		3
+		biddingType,
+		WEBP2P_PackageBiddingMainRuning.packageName xmmc,
+		PAY_CashPool.principalMoney cjje,
+		WEBP2P_ProductRateInfo.repaymentType
+		repaymentType,
+		round(
+		WEBP2P_ProductRateInfo.yearRate * 100,
+		2
+		) nhll,
+		PAY_CashPool.startDateTime AS cjsjDate,
+		PAY_CashPool.endDateTime dqsj,
+		PAY_CashPool.state AS hkzt,
+		PAY_CashPool.returnNumber AS tatalTerm,
+		PAY_CashPool.money AS ysje,
+		PAY_CashPool.principalMoney +
+		PAY_CashPool.interestMoney-PAY_CashPool.money dsje,
+		DATE_ADD(
+		PAY_CashPool.startDateTime,
+		INTERVAL PAY_CashPool.returnNumber MONTH
+		)
+		AS cjsjTime,
+		PAY_CashPool.returnSurplusNumber syqs,
+		PAY_CashPool.principalMoney + PAY_CashPool.interestMoney ysbx,
+		PAY_CashPool.OID PaydebitOID,
+		PAY_CashPool.businessOID businessOID,
+		TIMESTAMPDIFF(
+		DAY,
+		DATE_ADD(
+		PAY_CashPool.startDateTime,
+		INTERVAL
+		PAY_CashPool.returnNumber MONTH
+		),
+		NOW()
+		) AS syts,
+		WEBP2P_ProductRateInfo.productTerm,
+		PAY_CashPool.addDateTime,
+		if(PERIOD_DIFF(
+		PAY_CashPool.endDateTime,
+		NOW()
+		) > 1 and NOW() >
+		DATE_ADD(
+		PAY_CashPool.addDateTime,
+		INTERVAL 3 MONTH
+		),'true','false' )
+		as kzz
+		FROM
+		WEBP2P_PackageBiddingMainRuning,
+		WEBP2P_ProductRateInfo,
+		PAY_CashPool
+		WHERE
+		PAY_CashPool.memberOID = #{memberOID}
+		AND
+		PAY_CashPool.businessOID = WEBP2P_PackageBiddingMainRuning.OID
+		AND
+		WEBP2P_ProductRateInfo.OID =
+		WEBP2P_PackageBiddingMainRuning.productRateInfoID
+		AND
+		PAY_CashPool.state = 'investment' ) as t1 left JOIN
+		WEBP2P_DebtTransferApply debttransferapply on
+		debttransferapply.debitCreditOID=t1.PaydebitOID
+		left join ( SELECT
+		sum(money) ysje,cashPoolOID from PAY_ReturnPlan where
+		state='finish'
+		and type not in ('OPI','BIAP','EPEI') ) as t2 on
+		t2.cashPoolOID=t1.PaydebitOID
+		where
+		(DATE_SUB(DATE_FORMAT(t1.dqsj,'%Y-%m-%d'),INTERVAL 1
+		MONTH)>DATE_FORMAT(now(),'%Y-%m-%d')
+		and DATE_FORMAT(NOW(),'%Y-%m-%d')
+		>
+		DATE_ADD(DATE_FORMAT(t1.addDateTime,'%Y-%m-%d'),INTERVAL 3 MONTH))
+		and (debttransferapply.isAgree in (0,1) or debttransferapply.isAgree
+		is
+		NULL)
+		and t1.PaydebitOID not in( SELECT cashPoolOID from
+		WEBP2P_TransferNot
+		where status='1' )
+	</select>
+
+
+
+
+</mapper>

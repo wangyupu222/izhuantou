@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.HHTTagComponentMapper">
+
+
+	<select id="findByOID" resultType="com.izhuantou.damain.lend.HHTTagComponent">
+		SELECT
+		sonbid.OID,
+		sonbid.jkje ,
+		sonbid.productStatus,
+		sonbid.jkll,
+		sonbid.jkmc,
+		sonbid.financetransfertype,
+		sonbid.debitCreditOID,
+		sonbid.term,
+		t2.yhnum
+		syqs ,
+		t2.allNum zqs,
+		sonbid.biddingOID
+		FROM
+		(SELECT
+		WEBP2P_PackageBiddingMainContentRuning.OID AS OID,
+		WEBP2P_PackageBiddingMainContentRuning.loanProductRateInfoID,
+		WEBP2P_PackageBiddingMainContentRuning.financetransfertype AS
+		financetransfertype,
+		WEBP2P_PackageBiddingMainContentRuning.productStatus AS productStatus,
+		PAY_DebitCredit.outMemberOID,
+		WEBP2P_PackageBiddingMainContentRuning.debitCreditOID AS
+		debitCreditOID,
+		IFNULL(WEBP2P_PackageBiddingMainContentRuning.debtLoanNumber,
+		WEBP2P_PackageBiddingMainContentRuning.loanNumber) jkmc,
+		ROUND(WEBP2P_LoanProductRateInfo.yearRate * 100,
+		2) jkll,
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount jkje,
+		WEBP2P_PackageBiddingMainContentRuning.OID biddingOID,
+		WEBP2P_LoanProductRateInfo.term,
+		WEBP2P_PackageBiddingMainContentRuning.loanNumber
+		FROM
+		WEBP2P_LoanProductRateInfo,
+		PAY_DebitCredit,
+		WEBP2P_PackageBiddingMainContentRuning,
+		WEBP2P_PackageMainContentMapping,
+		WEBP2P_PackageBiddingMainRuning
+		WHERE
+		WEBP2P_PackageBiddingMainRuning.OID =
+		WEBP2P_PackageMainContentMapping.mainOID
+		AND
+		WEBP2P_PackageBiddingMainRuning.OID = #{OID}
+		AND
+		WEBP2P_PackageMainContentMapping.contentOID =
+		WEBP2P_PackageBiddingMainContentRuning.OID
+		AND
+		WEBP2P_LoanProductRateInfo.OID =
+		WEBP2P_PackageBiddingMainContentRuning.loanProductRateInfoID
+		GROUP BY
+		WEBP2P_PackageBiddingMainContentRuning.OID) sonbid
+		LEFT JOIN
+		PAY_DebitCredit
+		ON sonbid.OID = PAY_DebitCredit.businessOID
+		JOIN
+		WEBP2P_PackageBiddingMainContentRuning mcr
+		on
+		mcr.loanNumber=sonbid.loanNumber
+		and mcr.financetransfertype='normal'
+		LEFT JOIN
+		(
+		SELECT
+		SUM(if(state='finish',
+		1,
+		0)) AS yhnum,
+		COUNT(*) AS
+		allNum,
+		businessOID,
+		memberOID
+		FROM
+		PAY_RepayPlan
+		GROUP BY
+		businessOID
+		) AS
+		t2
+		ON t2.memberOID=mcr.memberOID
+		GROUP BY
+		sonbid.OID
+		ORDER BY
+		SUBSTRING_INDEX(jkmc,
+		'-',
+		-1) DESC limit #{startPos},#{pageSize}
+	</select>
+
+	<select id="findCount" resultType="Integer">
+		SELECT
+		count(sonbid.OID)
+		FROM
+		(
+		SELECT
+		WEBP2P_PackageBiddingMainContentRuning.OID AS OID,
+		WEBP2P_PackageBiddingMainContentRuning.loanProductRateInfoID,
+		WEBP2P_PackageBiddingMainContentRuning.financetransfertype AS
+		financetransfertype,
+		WEBP2P_PackageBiddingMainContentRuning.productStatus AS productStatus,
+		PAY_DebitCredit.outMemberOID,
+		WEBP2P_PackageBiddingMainContentRuning.debitCreditOID AS
+		debitCreditOID,
+		IFNULL(
+		WEBP2P_PackageBiddingMainContentRuning.debtLoanNumber,
+		WEBP2P_PackageBiddingMainContentRuning.loanNumber
+		) jkmc,
+		ROUND(
+		WEBP2P_LoanProductRateInfo.yearRate * 100,
+		2
+		) jkll,
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount jkje,
+		WEBP2P_PackageBiddingMainContentRuning.OID biddingOID,
+		WEBP2P_LoanProductRateInfo.term,
+		WEBP2P_PackageBiddingMainContentRuning.loanNumber
+		FROM
+		WEBP2P_LoanProductRateInfo,
+		PAY_DebitCredit,
+		WEBP2P_PackageBiddingMainContentRuning,
+		WEBP2P_PackageMainContentMapping,
+		WEBP2P_PackageBiddingMainRuning
+		WHERE
+		WEBP2P_PackageBiddingMainRuning.OID =
+		WEBP2P_PackageMainContentMapping.mainOID
+		AND
+		WEBP2P_PackageBiddingMainRuning.OID = #{OID}
+		AND
+		WEBP2P_PackageMainContentMapping.contentOID =
+		WEBP2P_PackageBiddingMainContentRuning.OID
+		AND
+		WEBP2P_LoanProductRateInfo.OID =
+		WEBP2P_PackageBiddingMainContentRuning.loanProductRateInfoID
+		GROUP BY
+		WEBP2P_PackageBiddingMainContentRuning.OID
+		) sonbid
+
+	</select>
+
+	
+
+
+</mapper>

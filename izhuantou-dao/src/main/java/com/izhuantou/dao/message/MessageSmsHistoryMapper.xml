@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.message.MessageSmsHistoryMapper">
+	<!-- 保存一条用户操作消息 -->
+	<insert id="saveSMSMessageHistory">
+		
+				INSERT INTO message_smshistory (
+					OID,
+					title,
+					content,
+					sendUser,
+					receiveUser,
+					state,							
+					valid,
+					addDateTime,
+					updDateTime,
+					refresh,
+					version
+				)
+				VALUES
+					(
+						#{OID},
+						#{title},
+						#{content},
+						#{sendUser},
+						#{receiveUser},
+						#{state},			
+						1,
+						NOW(),
+						NOW(),
+						1,
+						0
+					)
+
+
+			
+	</insert>
+	
+	
+	
+</mapper>

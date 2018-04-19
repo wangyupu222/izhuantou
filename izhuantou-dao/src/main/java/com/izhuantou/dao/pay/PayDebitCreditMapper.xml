@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.pay.PayDebitCreditMapper">
+	<!--累计特权收益  -->
+	<select id="gainDDTTQBymemberANDstateOne" resultType="map">
+		select *
+		from 	PAY_DebitCredit
+		WHERE 
+		 outMemberOID=#{memberOID} 
+		 AND  creditType = 'BIAP'  
+		 AND   privilegeOID IS NOT NULL 
+		 AND  (state = 'investment' or state = 'finishInvestment')
+		 
+		
+	</select>
+	<!-- 代收特权 -->
+	<select id="gainDDTTQBymemberANDstateTwo" resultType="map">
+		select *
+		from 	PAY_DebitCredit
+		WHERE 
+		 outMemberOID=#{memberOID} 
+		 AND  creditType = 'BIAP'  
+		 AND   privilegeOID IS NOT NULL 
+		 AND (state = 'finish' or state = 'earlyFinish')
+		
+	</select>
+	
+	<select id="findByOID" resultType="com.izhuantou.damain.pay.PayDebitCredit">
+		SELECT principalMoney from
+		PAY_DebitCredit where outMemberOID=inMemberOID AND
+		businessOID=#{OID}
+
+	</select>
+
+	<select id="findByCondition" resultType="com.izhuantou.damain.pay.PayDebitCredit">
+		select * from PAY_DebitCredit where businessOID = #{OID}
+		 and state='finishInvestment'
+
+	</select>
+
+
+	<select id="findByOutMember" resultType="com.izhuantou.damain.pay.PayDebitCredit">
+		select * from PAY_DebitCredit where outMemberOID = #{OID}
+		
+	</select>
+	<!-- 根据主键OID查询 -->
+	<select id="findByDebitCreditOID" resultType="map">
+		SELECT loanNumber,OID,memberOID FROM WEBP2P_NoviceBiddingRuning 
+					WHERE  WEBP2P_NoviceBiddingRuning.OID=#{businessID}
+					UNION ALL SELECT loanNumber,OID,memberOID FROM WEBP2P_PackageBiddingMainContentRuning 
+					WHERE  WEBP2P_PackageBiddingMainContentRuning.OID=#{businessID}
+					UNION ALL SELECT loanNumber,OID,memberOID FROM WEBP2P_NormalBiddingRuning 
+					WHERE   WEBP2P_NormalBiddingRuning.OID=#{businessID}
+		
+	</select>
+	
+	<select id="queryByPKOid" resultType="com.izhuantou.damain.pay.PayDebitCredit">
+		SELECT 
+			* 
+		FROM
+			PAY_DebitCredit 
+		WHERE
+			OID = #{OID}		 
+	</select>
+	
+	<!-- 保存DebitCredit借贷关系 -->
+	<insert id="saveDebitCredit" parameterType="com.izhuantou.damain.pay.PayDebitCredit">
+				INSERT INTO pay_debitcredit(
+			OID,
+			businessOID,
+			cashPoolOID,
+			outMemberOID,
+			inMemberOID,
+			creditType,
+			returnNumber,
+			returnCycle,
+			creditRate,
+			money,
+			principalMoney,
+			state,
+			describe0,
+			NO,
+			addUserOID,
+			updUserOID,
+			valid,
+			addDateTime,
+			updDateTime,
+			refresh,
+			version,
+			privilegePrincipal,
+			privilegeInterest,
+			startDateTime,
+			endDateTime,
+			returnSurplusNumber,
+			interest,
+			surplusPrincipalMoney,
+			laiyuan,
+			privilegeOID,
+			addDateTimeStr
+		)
+		VALUES
+			(
+			#{OID},
+			#{businessOID},
+			#{cashPoolOID},
+			#{outMemberOID},
+			#{inMemberOID},
+			#{creditType},
+			#{returnNumber},
+			#{returnCycle},
+			#{creditRate},
+			#{money},
+			#{principalMoney},
+			#{state},
+			#{describe0},
+			#{NO},
+			#{addUserOID},
+			#{updUserOID},
+			1,
+			NOW(),
+			NOW(),
+			1,
+			0,
+			#{privilegePrincipal},
+			#{privilegeInterest},
+			#{startDateTime},
+			#{endDateTime},
+			#{returnSurplusNumber},
+			#{interest},
+			#{surplusPrincipalMoney},
+			#{laiyuan},
+			#{privilegeOID},
+			#{addDateTimeStr}
+			)
+		
+	</insert>
+	<!-- 根据业务OID和状态查看借贷关系 -->
+	<select id="findByBusinessOIDAndState" resultType="com.izhuantou.damain.pay.PayDebitCredit">
+		SELECT payDebitCredit.* from 
+		PAY_DebitCredit payDebitCredit,
+		PAY_Customer pay_customer
+		 where payDebitCredit.businessOID =#{businessOID} 
+		 and payDebitCredit.state = #{state}
+		 and payDebitCredit.outMemberOID = pay_customer.memberOID
+	
+	
+	</select>
+	
+	<update id="updateDebitCredit" parameterType="com.izhuantou.damain.pay.PayDebitCredit">
+		UPDATE pay_debitcredit
+			SET
+			 businessOID=#{businessOID},
+			 cashPoolOID=#{cashPoolOID},
+			 outMemberOID=#{outMemberOID},
+			 inMemberOID=#{inMemberOID},
+			 creditType=#{creditType},
+			 returnNumber=#{returnNumber},
+			 returnCycle=#{returnCycle},
+			 creditRate=#{creditRate},
+			 money=#{money},
+			 principalMoney=#{principalMoney},
+			 state=#{state},
+			 describe0=#{describe0},
+			 NO=#{NO},
+			 addUserOID=#{addUserOID},
+			 updUserOID=#{updUserOID},
+			 valid=#{valid},
+			 addDateTime=#{addDateTime},
+			 updDateTime=NOW(),
+			 refresh=#{refresh},
+			 version=version+1,
+			 privilegePrincipal=#{privilegePrincipal},
+			 privilegeInterest=#{privilegeInterest},
+			 startDateTime=#{startDateTime},
+			 endDateTime=#{endDateTime},
+			 returnSurplusNumber=#{returnSurplusNumber},
+			 interest=#{interest},
+			 surplusPrincipalMoney=#{surplusPrincipalMoney},
+			 laiyuan=#{laiyuan},
+			 privilegeOID=#{privilegeOID},
+			 addDateTimeStr=#{addDateTimeStr}
+			WHERE
+			OID =#{OID} and
+			version=#{version}
+		
+	
+	</update>
+	
+	
+	
+	
+</mapper>

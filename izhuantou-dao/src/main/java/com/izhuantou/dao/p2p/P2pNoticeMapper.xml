@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.p2p.P2pNoticeMapper">
+	<!-- 查询出所有的 -->
+	<select id="findNoticeByPage" resultType="com.izhuantou.damain.p2p.P2pNotice">
+		select OID,name,uploadImgOID ,messages,addDateTime from  p2p_notice  ORDER BY addDateTime DESC limit #{ startIndex } , #{ pageSize }
+	</select>
+	
+	<!-- 查询出条数 -->
+	<select id="getRowCount" resultType="int">
+		select count(*) from p2p_notice 
+	</select>
+	<!-- 根据OID查询公告内容 -->
+	<select id="findNoticeByOID" resultType="com.izhuantou.damain.p2p.P2pNotice">
+		select OID,name,uploadImgOID ,messages,addDateTime from  p2p_notice where OID=#{OID}
+	</select>
+	
+	<!-- 查询TitleName -->
+	<select id="findNoticeTitleName" resultType="com.izhuantou.damain.p2p.P2pNotice">
+	
+		SELECT OID,NAME,addDateTime from p2p_notice ORDER BY addDateTime DESC LIMIT 7
+		
+	</select>
+	
+	
+	
+</mapper>

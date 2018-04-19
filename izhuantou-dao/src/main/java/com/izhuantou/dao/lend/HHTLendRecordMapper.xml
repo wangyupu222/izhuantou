@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.lend.HHTLendRecordMapper">
+
+
+	<select id="findByOID" resultType="com.izhuantou.damain.lend.HHTLendRecord">
+
+		SELECT
+		PAY_CashPool.memberOID,
+		PAY_CashPool.money,
+		MEMBER_Member.mobile AS
+		NAME,
+		MEMBER_Member.nameCN,
+		PAY_CashPool.principalMoney,
+		PAY_CashPool.addDateTime
+		FROM
+		PAY_CashPool,
+		MEMBER_Member
+		WHERE
+		PAY_CashPool.businessOID = #{OID}
+		AND MEMBER_Member.mobile IS NOT NULL
+		AND PAY_CashPool.memberOID = MEMBER_Member.OID
+		ORDER BY
+		PAY_CashPool.addDateTime DESC
+		limit #{startPos},#{pageSize}
+
+	</select>
+
+
+	<select id="findCount" resultType="Integer">
+		SELECT
+		count(PAY_CashPool.memberOID)
+		FROM
+		PAY_CashPool,
+		MEMBER_Member
+		WHERE
+		PAY_CashPool.businessOID = #{OID}
+		AND MEMBER_Member.mobile IS NOT NULL
+		AND PAY_CashPool.memberOID = MEMBER_Member.OID
+
+	</select>
+	
+	
+	<select id="findList" resultType="com.izhuantou.damain.lend.HHTLendRecord">
+
+		SELECT
+		PAY_CashPool.memberOID,
+		PAY_CashPool.money,
+		MEMBER_Member.mobile AS
+		NAME,
+		MEMBER_Member.nameCN,
+		PAY_CashPool.principalMoney,
+		PAY_CashPool.addDateTime
+		FROM
+		PAY_CashPool,
+		MEMBER_Member
+		WHERE
+		PAY_CashPool.businessOID = #{OID}
+		AND MEMBER_Member.mobile IS NOT NULL
+		AND PAY_CashPool.memberOID = MEMBER_Member.OID
+		ORDER BY
+		PAY_CashPool.addDateTime DESC
+
+	</select>
+
+</mapper>

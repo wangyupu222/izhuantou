@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.pay.PayCustomerTyjMapper">
+	<select id="findTyj" resultType="com.izhuantou.damain.pay.PayCustomerTyj">
+		SELECT * from pay_customertyj
+	</select>
+	
+	<select id="findByMemberOID" resultType="com.izhuantou.damain.vo.CustomerTyjDTO">
+		SELECT * from PAY_CustomerTyj where memberOID = #{memberOID}
+	</select>
+</mapper>
