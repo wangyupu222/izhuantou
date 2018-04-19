@@ -1,4 +1,4 @@
-package com.izhuantou.admin.controller;
+package com.izhauntou.portal.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ public class TestController {
     @ResponseBody
     public String queryMenuByUserName() {
 
-	System.err.println("我在admin的controller中调用的Service为 " + serviceTest.getNumber());
+	System.err.println("我在portal的controller中调用的Service为 " + serviceTest.getNumber());
 	return "goodBay";
     }
 }
