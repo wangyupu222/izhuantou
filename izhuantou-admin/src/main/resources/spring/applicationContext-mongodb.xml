@@ -13,7 +13,7 @@
 
 	<!-- 配置自动扫描(自动注入) -->
 	<context:component-scan base-package="com.izhuantou.service.mongo" />
-	<mongo:mongo id="mongo" host="${monngo.host}" port="${monngo.port}">
+	<mongo:mongo id="mongo" host="${mongo.host}" port="${mongo.port}">
 		<mongo:options connections-per-host="8"
 			threads-allowed-to-block-for-connection-multiplier="4"
 			connect-timeout="1000" max-wait-time="1500" auto-connect-retry="true"
