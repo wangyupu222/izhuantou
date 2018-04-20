@@ -7,26 +7,12 @@
 		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-	
-	<!-- 引入属性文件 -->
-	<context:property-placeholder location="classpath:resource/*.properties" />
-	
-	<context:component-scan base-package="com.izhauntou.portal.controller" />
-	<mvc:annotation-driven />
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
-	</bean>	
+
+	<!-- 服务消费者 -->
+	<dubbo:application name ="portal-consumer"/>	
+	<dubbo:registry  protocol="zookeeper" address="${dubbo.address}"></dubbo:registry>	
 		
-	<!-- 引入dubbo -->
-	<import resource="dubbo-consumer.xml"/>
-	
-	<!-- 全局异常处理 -->
-	<!-- <bean class="com.izhuantou.portal.expection.GlobaExpectionReslolver" />
-	文件上传
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="defaultEncoding" value="UTF-8" />
-        <property name="maxUploadSize" value="5000000" />
-    </bean> -->					
+	<!-- 测试dubbo接口 -->
+	<dubbo:reference interface="com.izhuantou.fund.api.FundServiceTest"
+		id="fundServiceTest" timeout="${dubbo.timeout}" />		  	
 </beans>
