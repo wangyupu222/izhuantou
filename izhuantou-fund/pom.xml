@@ -18,6 +18,11 @@
   		<artifactId>izhuantou-dao</artifactId>
   		<version>${project.version}</version>
   	</dependency>
+  	<dependency>
+  		<groupId>com.izhuantou</groupId>
+  		<artifactId>izhuantou-third-api</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
   
   <build>

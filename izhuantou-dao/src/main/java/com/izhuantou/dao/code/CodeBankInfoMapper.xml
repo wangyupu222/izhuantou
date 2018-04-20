@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.code.CodeBankInfoMapper">
+	<select id="findByBankName">
+		SELECT bankCode,bankName,bankQuota from code_bankinfo  where bankName like #{bankName}% 
+	
+	</select>
+
+</mapper>

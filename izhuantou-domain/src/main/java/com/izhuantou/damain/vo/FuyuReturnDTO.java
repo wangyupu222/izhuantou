@@ -29,6 +29,30 @@ public class FuyuReturnDTO implements Serializable {
      * 备注
      */
     private String rem;
+    /**
+     * 委托充值
+     */
+    private String wtCzParam;
+    /**
+     * 委托提现
+     */
+    private String wtTxparam;
+
+    public String getWtCzParam() {
+	return wtCzParam;
+    }
+
+    public void setWtCzParam(String wtCzParam) {
+	this.wtCzParam = wtCzParam;
+    }
+
+    public String getWtTxparam() {
+	return wtTxparam;
+    }
+
+    public void setWtTxparam(String wtTxparam) {
+	this.wtTxparam = wtTxparam;
+    }
 
     public String getResp_code() {
 	return resp_code;
@@ -73,7 +97,7 @@ public class FuyuReturnDTO implements Serializable {
     @Override
     public String toString() {
 	return "FuyuReturnDTO [resp_code=" + resp_code + ", login_id=" + login_id + ", amt=" + amt + ", mchnt_txn_ssn="
-		+ mchnt_txn_ssn + ", rem=" + rem + "]";
+		+ mchnt_txn_ssn + ", rem=" + rem + ", wtCzParam=" + wtCzParam + ", wtTxparam=" + wtTxparam + "]";
     }
 
 }

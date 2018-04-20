@@ -15,4 +15,6 @@
 	
 	<!-- 服务提供者 -->
 	<import resource="dubbo-provider.xml"/>
+	<!-- 服务消费者 -->
+	<import resource="dubbo-consumer.xml"/>
 </beans>

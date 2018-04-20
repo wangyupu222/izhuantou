@@ -7,18 +7,19 @@
   </parent>
   <artifactId>izhuantou-third</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <dependencies>
-  	<dependency>
-  		<groupId>com.izhuantou</groupId>
-  		<artifactId>izhuantou-service</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.izhuantou</groupId>
-  		<artifactId>izhuantou-fund</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
-  </dependencies>
+  <!-- 内部引用 -->
+   <dependencies>
+  		<dependency>
+  			<groupId>com.izhuantou</groupId>
+  			<artifactId>izhuantou-dao</artifactId>
+  			<version>0.0.1-SNAPSHOT</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.izhuantou</groupId>
+  			<artifactId>izhuantou-third-api</artifactId>
+  			<version>0.0.1-SNAPSHOT</version>
+  		</dependency>
+   </dependencies>
   
   <build>
 		<plugins>

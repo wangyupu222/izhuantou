@@ -3,67 +3,112 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.pay.PayChangeCardMapper">
-	<!--  查看换卡记录-->
+	<!-- 查看换卡记录 -->
 	<select id="findChangeCardList" resultType="com.izhuantou.damain.pay.PayChangeCard">
-		select successStatus, addDateTime,remark,requestStatus from pay_changecard where 
-		memberOID=#{memberOID} order by addDateTime DESC  limit #{startIndex} , #{pageSize}
+		select successStatus,
+		addDateTime,remark,requestStatus from pay_changecard where
+		memberOID=#{memberOID} order by addDateTime DESC limit #{startIndex} ,
+		#{pageSize}
 	</select>
-		<!--  查询条数-->
+	<!-- 查询条数 -->
 	<select id="getRowCount" resultType="int">
-		select count(*) from pay_changecard where memberOID=#{memberOID}
-	
+		select count(*) from
+		pay_changecard where memberOID=#{memberOID}
+
 	</select>
 	<!-- 插入一条换卡记录 -->
 	<insert id="saveChangeCardnotes" parameterType="com.izhuantou.damain.pay.PayChangeCard">
-                   INSERT INTO pay_changecard(
-							OID,
-							memberOID,
-							bankCodeNew,
-							bankNumNew,
-							bankCodeOld,
-							bankNumOld,
-							requestStatus,
-							successStatus,
-							mobile,
-							requestID,
-							valid,
-							addDateTime,
-							updDateTime,
-							refresh,
-							version
-							)
-					VALUES
-						(
-							#{OID},
-							#{memberOID},
-							#{bankCodeNew},
-							#{bankNumNew},
-							#{bankCodeOld},
-							#{bankNumOld},
-							#{requestStatus},
-							#{successStatus},
-							#{mobile},
-							#{requestID},
-							1,
-							NOW(),
-							NOW(),
-							1,
-							0
-						);
+		INSERT INTO
+		pay_changecard(
+		OID,
+		memberOID,
+		bankCodeNew,
+		bankNumNew,
+		bankCodeOld,
+		bankNumOld,
+		requestStatus,
+		successStatus,
+		mobile,
+		requestID,
+		valid,
+		addDateTime,
+		updDateTime,
+		refresh,
+		version
+		)
+		VALUES
+		(
+		#{OID},
+		#{memberOID},
+		#{bankCodeNew},
+		#{bankNumNew},
+		#{bankCodeOld},
+		#{bankNumOld},
+		#{requestStatus},
+		#{successStatus},
+		#{mobile},
+		#{requestID},
+		1,
+		NOW(),
+		NOW(),
+		1,
+		0
+		);
 
 
 	</insert>
-	
+
 	<!-- 更新换卡请求的状态 -->
 	<update id="updataChangeCardStart" parameterType="com.izhuantou.damain.pay.PayChangeCard">
-		UPDATE pay_changecard SET requestStatus =#{requestStatus},updDateTime = NOW(),version+1 WHERE requestID=#{requestID} and version=#{version}
+		UPDATE pay_changecard
+		 SET 
+		 requestStatus =#{requestStatus},
+		 updDateTime =NOW(),
+		 version=version+1 
+		 WHERE requestID=#{requestID} and version=#{version}
 	</update>
 	<!-- 根据RequestID查看更换记录 -->
 	<select id="findChangeByRequestID" resultType="com.izhuantou.damain.pay.PayChangeCard">
-		select * from pay_changecard where requestID=#{requestID}
+		select * from
+		pay_changecard where requestID=#{requestID}
 	</select>
-	
-	
-	
-	
+	<select id="findChangeByRequestAndSuccess" resultType="com.izhuantou.damain.pay.PayChangeCard">
+		select *
+		from pay_changecard 
+		where memberOID=#{memberOID} 
+		and successStatus=#{successStatus} and requestStatus =#{requestStatus}
+	</select>
+
+	<update id="updataChangeCard">
+		UPDATE pay_changecard
+			SET 
+			 memberOID=#{memberOID},
+			 bankCodeNew=#{bankCodeNew},
+			 bankNumNew=#{bankNumNew},
+			 bankCodeOld=#{bankCodeOld},
+			 bankNumOld=#{bankNumOld},
+			 requestStatus=#{requestStatus},
+			 successStatus=#{successStatus},
+			 mobile=#{mobile},
+			 remark=#{remark},
+			 requestID=#{requestID},
+			 describe0=#{describe0},
+			 NO=#{NO},
+			 addUserOID=#{addUserOID},
+			 updUserOID=#{updUserOID},
+			 valid=#{valid},
+			 addDateTime=#{addDateTime},
+			 updDateTime=NOW(),
+			 refresh=#{refresh},
+			 version=version+1
+		WHERE
+			OID=#{OID} and version=#{version}
+		
+	</update>
+
+
+
+
+
+
 </mapper>

@@ -16,6 +16,7 @@
   	<module>izhuantou-third</module>
   	<module>izhuantou-portal</module>
   	<module>izhuantou-app-api</module>
+  	<module>izhuantou-third-api</module>
   </modules>
 
     <!-- 集中定义依赖版本号 -->

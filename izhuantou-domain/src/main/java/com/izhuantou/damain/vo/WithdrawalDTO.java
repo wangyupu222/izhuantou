@@ -35,6 +35,18 @@ public class WithdrawalDTO implements Serializable {
      * 验证码
      */
     private String yzm;
+    /**
+     * 流水号
+     */
+    private String requestID;
+
+    public String getRequestID() {
+	return requestID;
+    }
+
+    public void setRequestID(String requestID) {
+	this.requestID = requestID;
+    }
 
     public String getMemberOID() {
 	return memberOID;
@@ -86,8 +98,8 @@ public class WithdrawalDTO implements Serializable {
 
     @Override
     public String toString() {
-	return "RechargeDTO [memberOID=" + memberOID + ", money=" + money + ", card_id=" + card_id + ", type=" + type
-		+ ", url=" + url + ", yzm=" + yzm + "]";
+	return "WithdrawalDTO [memberOID=" + memberOID + ", money=" + money + ", card_id=" + card_id + ", type=" + type
+		+ ", url=" + url + ", yzm=" + yzm + ", requestID=" + requestID + "]";
     }
 
 }

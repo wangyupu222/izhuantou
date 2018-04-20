@@ -51,4 +51,24 @@ public interface PayChangeCardMapper extends Mapper<PayChangeCard> {
      * @return
      */
     public PayChangeCard findChangeByRequestID(String requestID);
+
+    /**
+     * 根据流水号和状态查询
+     * 
+     * @param requestID
+     * @param successStatus
+     * @param requestStatus
+     * @return
+     */
+    public List<PayChangeCard> findChangeByRequestAndSuccess(@Param("memberOID") String memberOID,
+	    @Param("successStatus") String successStatus, @Param("requestStatus") String requestStatus);
+
+    /**
+     * 更新记录
+     * 
+     * @param change
+     * @return
+     */
+    public int updataChangeCard(PayChangeCard change);
+
 }
