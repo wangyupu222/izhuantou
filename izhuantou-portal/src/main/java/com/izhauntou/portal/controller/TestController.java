@@ -18,7 +18,7 @@ public class TestController {
     @Autowired
     private FundServiceTest fundServiceTest;
 
-    @RequestMapping(value = "/print", method = RequestMethod.POST)
+    @RequestMapping(value = "/print")
     @ResponseBody
     public String queryMenuByUserName() {
 
