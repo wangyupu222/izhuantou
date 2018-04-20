@@ -21,6 +21,8 @@
   </dependencies>		
   
   <build>
+  		<!-- 打包的应用名 -->
+		<finalName>izhuantou-portal</finalName>
 		<plugins>
 			<!-- 配置Tomcat插件 -->
 			<plugin>
@@ -30,6 +32,21 @@
 					<port>8083</port>
 					<path>/</path>
 				</configuration>
+			</plugin>
+			<plugin>
+			    <groupId>com.spotify</groupId>
+			    <artifactId>docker-maven-plugin</artifactId>
+			    <configuration>
+			        <imageName>${project.name}</imageName>
+			        <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+			        <skipDockerBuild>false</skipDockerBuild>
+			        <resources>
+			            <resource>
+			                <directory>${project.build.directory}</directory>
+			                <include>${project.build.finalName}.war</include>
+			            </resource>
+			        </resources>
+			    </configuration>
 			</plugin>
 		</plugins>
 	</build>
