@@ -1,24 +1,27 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.izhuantou</groupId>
-    <artifactId>izhuantou</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>
-  <artifactId>izhuantou-data</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <!-- 内部依赖 -->
-  
-   <dependencies>
-  	<dependency>
-  		<groupId>com.izhuantou</groupId>
-  		<artifactId>izhuantou-service</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
-  </dependencies>
-  
-  <build>
-		<plugins>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.izhuantou</groupId>
+		<artifactId>izhuantou</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>izhuantou-data</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<!-- 内部依赖 -->
+
+	<dependencies>
+		<dependency>
+			<groupId>com.izhuantou</groupId>
+			<artifactId>izhuantou-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<!-- 打包的应用名 -->
+		<finalName>izhuantou-data</finalName>
+		<plugins>	
 			<!-- 配置Tomcat插件 -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
@@ -28,7 +31,22 @@
 					<path>/</path>
 				</configuration>
 			</plugin>
+			<plugin>
+			    <groupId>com.spotify</groupId>
+			    <artifactId>docker-maven-plugin</artifactId>
+			    <configuration>
+			        <imageName>${parent.artifactId}/${project.build.finalName}</imageName>
+			        <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+			        <skipDockerBuild>false</skipDockerBuild>
+			        <resources>
+			            <resource>
+			                <directory>${project.build.directory}</directory>
+			                <include>${project.build.finalName}.war</include>
+			            </resource>
+			        </resources>
+			    </configuration>
+			</plugin>
 		</plugins>
 	</build>
-  <packaging>war</packaging>
+	<packaging>war</packaging>
 </project>
