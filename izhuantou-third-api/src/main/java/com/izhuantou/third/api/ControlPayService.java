@@ -189,4 +189,11 @@ public interface ControlPayService {
      */
     ResetPassWordReqData appUpdatePayPassword(String memberOID);
 
+    /**
+     * 测试使用
+     * 
+     * @return
+     */
+    String queryDate();
+
 }
