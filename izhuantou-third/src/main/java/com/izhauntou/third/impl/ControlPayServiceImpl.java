@@ -40,6 +40,7 @@ import com.izhuantou.damain.vo.CustomerDTO;
 import com.izhuantou.damain.vo.FuyuReturnDTO;
 import com.izhuantou.damain.vo.RechargeDTO;
 import com.izhuantou.damain.vo.WithdrawalDTO;
+import com.izhuantou.dao.TestMapper;
 import com.izhuantou.dao.code.CodeBankInfoMapper;
 import com.izhuantou.dao.loan.LoanDistribeTaskMapper;
 import com.izhuantou.dao.message.MessageContentBusinessMapper;
@@ -98,6 +99,9 @@ public class ControlPayServiceImpl implements ControlPayService {
 
     @Autowired
     private PayFuiouService payFuiService;
+
+    @Autowired
+    private TestMapper testMapper;
 
     @Override
     public Map<String, Object> changeCard(String memberOID) {
@@ -1075,6 +1079,12 @@ public class ControlPayServiceImpl implements ControlPayService {
 	    logger.error("ResetPassWordReqData appUpdatePayPassword(String memberOID)", e.getMessage());
 	    return null;
 	}
+    }
+
+    @Override
+    public String queryDate() {
+
+	return "从Thired中查询到的时间为" + testMapper.queryData();
     }
 
 }
