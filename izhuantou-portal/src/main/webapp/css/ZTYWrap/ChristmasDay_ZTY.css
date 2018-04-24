@@ -1,0 +1,70 @@
+body{
+    font-family: "微软雅黑", Arial;
+}
+.ChristmasDayWrap{
+    width: 100%;
+    min-height: 4384px;
+    background: #cc2626 url("../../image/ChristmasDay/ChristmasDayBg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y:0px ;
+    background-size: 100%;
+    overflow: hidden;
+}
+.ChristmasDayMain{
+    width: 1170px;
+    margin:0 auto;
+    text-align: center;
+}
+.moduleBoxOne{
+    overflow: hidden;
+    margin-top: 580px;
+
+}
+.moduleBoxOne img{
+    display: block;
+    margin: 0 auto;
+}
+.moduleBoxOne .ChristmasDay-tit{
+    margin-top: 75px;
+    margin-bottom: 51px;
+}
+.moduleBoxOne .introduceText{
+    text-align: center;
+    font-size: 22px;
+    color: #fff;
+    line-height: 36px;
+
+}
+.ruleText{
+    font-size: 18px;
+    color: #fff;
+    line-height: 36px;
+    text-align: left;
+    margin-top: 55px;
+}
+.ruleText span{
+    color:#fdeeb5;
+}
+.moduleBoxOne .gift01{
+    margin-top: 66px;
+}
+.ruleTextTwo{
+    margin-top: 83px;
+}
+.moduleBoxOne .gift02{
+    margin-top: 75px;
+}
+.moduleBoxTwo{
+    overflow: hidden;
+}
+.moduleBoxTwo .ChristmasDay-tit{
+    margin-top: 65px;
+    margin-bottom: 50px;
+ }
+.moduleBoxTwo .attentionText{
+    text-align: left;
+    line-height: 38px;
+    color: #fff;
+    font-size: 18px;
+}

@@ -1,0 +1,26 @@
+/* CSS Document */
+.calc_con01{ background:#fff; border:1px solid #e6e6e6;}
+.calc_top{ height:47px; line-height:47px;  text-align:center;}
+.calc_top a{ display:block; float:left; border-right:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6; width:155px; color:#333333;}
+.calc_top a.active{ border-top:2px solid #55b0fd;border-bottom:0;}
+.calc_top span{ display:block; width:525px;height:47px; float:left;border-bottom:1px solid #e6e6e6;}
+
+.calchh{ height:35px; background:#f5f5f5;}
+.calc{ margin-top:20px; font-size:14px; overflow:hidden; margin-bottom:20px;}
+.calc label{ display:block; float:left; height:35px; line-height:35px;margin-right:20px;margin-left:20px;  width:100px; text-align:right;}
+.calc span{  display:block; float:left; height:35px; line-height:35px;00}
+.calc span.calc_inpt{ display:block; width:165px; border:1px solid #55b0fd; border-radius:5px;}
+.calc input{ width:120px; height:30px; border:0; padding-left:10px; }
+.calc select{ border:0; width:150px; height:30px; padding-left:10px;}
+.calc input.calc_btn{ width:130px; height:35px; border:0; margin-left:20px; background:#55b0fd; border-radius:5px; color:#fff; }
+
+.calc_con02{background:#fff; border:1px solid #e6e6e6; margin-top:20px; }
+.con02_top{ width:96%; height:40px; line-height:40px; margin:0 auto; border-bottom:1px solid #e6e6e6; }
+
+.resultcon{ width:95%; margin:0 auto;overflow:hidden;margin-top:20px;}
+.calc_result{ width:33%; float:left; text-align:center;}
+.calc_result span{ display:block;}
+.calc_result span.cjje{ color:#999999; font-size:14px;}
+.calc_result span.jemoney{ color:#333333; font-size:22px;}
+.calc_result span.jemoney label{ color:#ff7800; font-size:42px;}
+.con02_top.bot{ margin-bottom:30px;}

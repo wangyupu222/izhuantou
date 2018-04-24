@@ -1,0 +1,297 @@
+@charset "utf-8";
+/* CSS Document  Microsoft YaHei*/
+.smallcon{ overflow:hidden; margin:0px 0px 30px 0px;}
+.box-small{ overflow:hidden; width:25%; float:left; }
+.box-small span{ display:block; text-align:center;}
+.box-small span img{ margin:38px auto;}
+
+.box-small span.sp04 img{ margin:6px auto;}
+.box-small span.sp02{ font:18px/26px "Microsoft YaHei"; color:#333333;}
+.box-small span.sp03{ font:14px/24px "Microsoft YaHei"; color:#666666;}
+
+.box-small span.sp02 em{ color:#F00;}
+
+.wyjd{ margin-top:70px;}
+.jdtops{ background:url(../images/lineok.png) no-repeat; width:1015px; height:1px; margin:60px auto; position:relative; }
+.jdtops span{ position:absolute; top:-20px; left:450px; display:block; font:24px/26px "Microsoft YaHei"; color:#333333;}
+
+.box-zong{ overflow:hidden; text-align:center; padding-bottom:20px;}
+.boxone{ width:262px; float:left; background-color:#e0ebf1;}
+.tit01{font:24px/40px "Microsoft YaHei"; color:#333333; padding-top:10px;}
+.small-span{font:14px/20px "Microsoft YaHei"; color:#666666;}
+.pic-box img{ margin:10px auto;}
+.jk-button{ display:block; width:50%; height:30px; border-radius:5px;font:14px/30px "Microsoft YaHei"; color:#333333; border:1px solid #cccccc; margin:20px auto;}
+.boxone{ margin-left:34px;}
+.boxone:first-child{ margin-left:0px;}
+.problems{ overflow:hidden; padding-bottom:30px;}
+.pro-box{ margin-left:26px; float:left;width:228px; background-color:#fff; padding:20px;}
+.pro-box .tit-pro{ font:18px/30px "Microsoft YaHei"; color:#333333;}
+.pro-box p{ font:14px/26px "Microsoft YaHei"; color:#666666;}
+.pro-box:first-child{ margin-left:0px; }
+
+/**新手指引**/
+.mainnew01{ background:url(../images/xinshou_01.jpg) no-repeat top center; height:767px;}
+.mainnew02{ background:url(../images/xinshou_02.jpg) no-repeat top center; height:544px;}
+.mainnew03{ background:url(../images/xinshou_03.jpg) no-repeat top center; height:621px;}
+.mainnew04{ background:url(../images/xinshou_04.jpg) no-repeat top center; height:1067px;}
+
+.newcons01{ position:relative;}
+.boxcons{ position:absolute; height:140px; overflow:hidden; width:240px; }
+.boxpk01{ top:120px; left:120px;}
+.boxpk02{ top:316px; left:120px;}
+.boxpk03{ top:274px; right:100px;}
+.boxpk04{ top:208px; right:88px;width:368px;}
+.boxpk05{ top:516px; left:2px;width:770px;}
+.boxcons .p01{ color:#774327;font:24px/68px "Microsoft YaHei";}
+.boxcons .p02{color:#774327;font:14px/16px "Microsoft YaHei";}
+.zhucebox{ width:318px; border-radius:5px; height:81px; background-color:#4fa6fd; color:#fff; font:36px/81px "Microsoft YaHei"; position:absolute; text-align:center; top:440px; left:440px;}
+.zhucebox:hover{ background-color:#1983ed;}
+
+.tityifen{  text-align:center; padding-top:100px; padding-bottom:30px; color:#774327;font:40px/40px "Microsoft YaHei";}
+.tabox{ overflow:hidden; }
+.bzbox{ text-align:center; font:18px/46px "Microsoft YaHei"; color:#e04c54;float:left; margin-left:20px; width:218px; height:46px; cursor:pointer;}
+.tabox .bz01{ background:url(../images/new001.png) no-repeat; margin-left:100px;}
+.tabox .bz02{ background:url(../images/new002.png) no-repeat;}
+.tabox .bz03{ background:url(../images/new002.png) no-repeat;}
+.tabox .bz04{ background:url(../images/new003.png) no-repeat;}
+.tabox .bz01.active{background:url(../images/new01active.png) no-repeat;color:#fff;}
+.tabox .bz02.active{background:url(../images/new002active.png) no-repeat;color:#fff;}
+.tabox .bz03.active{background:url(../images/new002active.png) no-repeat;color:#fff;}
+.tabox .bz04.active{background:url(../images/new003active.png) no-repeat;color:#fff;}
+
+.piccom{ background:url(../images/computers.png) no-repeat; width:768px; height:632px; margin:auto; margin-top:50px;}
+.picimg{ margin-left: 34px; padding-top:32px;}
+.jlzu{ display:block; margin:30px auto 10px; text-align:center; width:224px; height:53px; font:20px/53px "Microsoft YaHei"; color:#fff; border-radius:3px; background-color:#e04c54;}
+.endtext{ text-align:center;font:20px/53px "Microsoft YaHei"; color:#333333;}
+
+/**理财计算器**/
+.jsqcons{ margin-top:20px; background-color:#fff;}
+.titjsq{ height:40px; padding-left:20px;font:20px/40px "Microsoft YaHei"; color:#333333;}
+.jsinp{ overflow:hidden; padding-bottom:20px;}
+.jsinp .jsin01{ margin-left:88px;}
+.jsinbox{ width:30%; float:left;}
+.jsinbox01{ width:23%;}
+.inpbox{ overflow:hidden; margin:20px 0px 0px 20px;}
+.inpbox label,.inpbox span{font:14px/30px "Microsoft YaHei"; color:#333333;}
+.inpbox .inpg{ width:150px; height:30px; border:1px solid #cccccc; border-radius:5px; text-indent:2em;}
+.inpbox .inpg01{ width:150px; height:30px; border:1px solid #cccccc; border-radius:5px; }
+.jsinbox .jsjg{ margin-top:70px; display:block; width:180px; height:40px; background-color:#3a84cf; color:#fff; text-align:center; border-radius:5px;font:18px/40px "Microsoft YaHei";}
+.jsinbox .jsjg:hover{ background-color:#1e68b2;}
+
+.syjg{ background-color:#fff; margin-top:20px; padding:20px 0px;}
+.inpboxsy span{ display:block; text-align:center; margin:auto;}
+.inpboxsy span em{ display:block; margin:auto;}
+.inpboxsy span.sp02{ font:20px/40px "微软雅黑"; color:#ff711c;}
+.inpboxsy{ text-align:center; float:left; margin:0px; width:30%;}
+
+/**美丰借贷*/
+.jdpcons{ overflow:hidden;margin-top: 30px;}
+.navjd{ overflow:hidden;}
+
+.navjd div{ width:220px; height:100px; float:left; border:1px solid #e2e2e2; float:left; margin-left:15px; cursor:pointer;}
+.navjd div a{ display:block;width:220px; height:100px; }
+.navjd div a span{ display:block; float:left; margin:29px 10px 0px 18px;}
+.navjd div a dl{ float:left; margin:25px 0px 0px 5px;}
+.navjd div a dl dt{ font-size:24px; color:#fff; line-height:30px;}
+.navjd div a dl dd{ font-size:14px; color:#fff; line-height:20px;}
+
+.navjd div.div05{float:right; margin-left:0px;}
+
+.navjd div.div01{ margin-left:0px;}
+.navjd div  a{ background:#cccccc; }
+/* .navjd div.div01 a{ background:url(../images/jd01ac.jpg) no-repeat; }
+.navjd div.div02 a{ background:url(../images/jd02ac.jpg) no-repeat; }
+.navjd div.div03 a{ background:url(../images/jd03ac.jpg) no-repeat; }
+.navjd div.div04 a{ background:url(../images/jd04ac.jpg) no-repeat; }
+.navjd div.div05 a{ background:url(../images/jd05ac.jpg) no-repeat; } */
+
+.navjd div.div01.active a{ /* background:url(../images/jd01.jpg) no-repeat; */ background:#f8b74a; }
+.navjd div.div02.active a{ /* background:url(../images/jd02.jpg) no-repeat; */background:#ee81b3; }
+.navjd div.div03.active a{ /* background:url(../images/jd03.jpg) no-repeat; */background:#b08fd8; }
+.navjd div.div04.active a{ /* background:url(../images/jd04.jpg) no-repeat; */background:#69caef; }
+.navjd div.div05.active a{ /* background:url(../images/jd05.jpg) no-repeat; */background:#aacf52; }
+
+.optabjd{ overflow:hidden;}
+.picjdcon{ width:100%; overflow:hidden; height:600px; margin-bottom:20px; border:1px solid #e2e2e2; background-color:#e2e2e2; margin-top:10px;}
+.picjdcon dl{ width:320px; float:left; margin-left:65px; margin-top:40px;}
+.picjdcon dl dt{ font-size:30px; color:#333333; line-height:70px;}
+.picjdcon dl dd{ font:16px/32px "Microsoft yahei"; color:#666666; }
+.picjdcon dl dd a{ display:block; width:120px; height:38px;  text-align:center; font-size:18px; line-height:38px; border-radius:19px; color:#fff; /* float:right; */ margin-top:25px;}
+.picjdcon01 dl dt span{ color:#f8b74a;}
+.picjdcon02 dl dt span{ color:#ee81b3;}
+.picjdcon03 dl dt span{ color:#b08fd8;}
+.picjdcon04 dl dt span{ color:#69caef;}
+.picjdcon05 dl dt span{ color:#aacf52;}
+.picjdcon dl dd .remarks{font:12px/24px "Microsoft yahei"; color:#666666; margin-top:5px;}
+
+.picjdcon01{ background:url(../images/jdbj01.jpg) no-repeat;}
+.picjdcon02{ background:url(../images/jdbj02.jpg) no-repeat;}
+.picjdcon03{ background:url(../images/jdbj03.jpg) no-repeat;}
+.picjdcon04{ background:url(../images/jdbj04.jpg) no-repeat;}
+.picjdcon05{ background:url(../images/jdbj05.jpg) no-repeat;}
+.picjdcon01 dl dd a{ background-color:#f8b74a;}
+.picjdcon01 dl dd a:hover{ background-color:#f18315;}
+
+.picjdcon02 dl dd a{ background-color:#ee81b3;}
+.picjdcon02 dl dd a:hover{ background-color:#de417e;}
+
+.picjdcon03 dl dd a{ background-color:#b08fd8;}
+.picjdcon03 dl dd a:hover{ background-color:#7950b7;}
+
+.picjdcon04 dl dd a{ background-color:#69caef;}
+.picjdcon04 dl dd a:hover{ background-color:#2ba0e0;}
+
+.picjdcon05 dl dd a{ background-color:#aacf52;}
+.picjdcon05 dl dd a:hover{ background-color:#71a81a;}
+
+.jdtitcon{ background-color:#fff; padding:20px 20px 8px 20px; overflow:hidden;}
+.leftdai{ width:60%; float:left;}
+.rightdai{ width:38%; float:right; margin-top:0px;}
+.jdbt{ background-color:#fff; margin-top:20px;font-size:30px; line-height:40px; color:#333333; }
+.jdbt span{ display:block; background:url(../images/littl-icon01.png) no-repeat; width:40px; height:40px; float:left; margin-right:10px;}
+.jdbt01 span{  background:url(../images/littl-icon02.png) no-repeat;}
+.p-titdai{ font-size:14px; color:#333333; line-height:28px; margin-top:10px; width:88%;}
+
+.dai-dl dd{ overflow:hidden; margin-top:16px;}
+.dai-dl dd label{ display:block; font-size:14px; color:#666; float:left;/*  width:66px; */ margin-right:10px;}
+.dai-dl dd div{ float:left; font-size:14px; color:#333333; width:525px;}
+
+.jdtitcon01{ margin-top:30px; background-color:#fff; padding:20px; overflow:hidden;}
+.sxtj{ height:50px; background-color:#eeeeee; border-radius:3px 3px 0px 0px; margin-top:20px;}
+.sxtj span{ font:18px/50px "微软雅黑"; color:#373737; padding-left:20px;}
+.debitend { background-color:#fff; overflow:hidden; padding-bottom:50px; padding-top:30px; border-top:0px;}
+.debitend ul{ overflow:hidden; }
+.debitend ul li{ float:left;}
+.debitend ul.ul-1 li{  width:121px; height:121px;margin-left:100px; display:inline; margin-top:20px;}
+.debitend ul.ul-1 li.li-1{ background:url(../images/jd01.png) no-repeat;}
+.debitend ul.ul-1 li.li-2{background:url(../images/jd02.png) no-repeat;}
+.debitend ul.ul-1 li.li-3{background:url(../images/jd03.png) no-repeat;}
+.debitend ul.ul-1 li.li-4{background:url(../images/jd04.png) no-repeat;}
+.debitend ul.ul-2 li{ font:18px/30px "微软雅黑"; color:#373737;margin-left:135px;display:inline; margin-top:20px;}
+.debitend ul.ul-2 li.li-2{ margin-left:164px;}
+.debitend ul.ul-2 li.li-3{ margin-left:166px;}
+.debitend ul.ul-2 li.li-4{ margin-left:166px;}
+.debitend ul.ul-2 li span{ color:#f57f7f;}
+.debitend ul.ul-3 li span{ font:14px/20px "微软雅黑"; color:#373737;}
+.debitend ul.ul-3 li{ font:14px/20px "微软雅黑"; color:#373737; margin-left:86px;}
+.debitend ul.ul-3 li.li-2{ margin-left:72px;}
+.debitend ul.ul-3 li.li-3{ margin-left:78px;}
+.debitend ul.ul-3 li.li-4{ margin-left:75px;}
+.tude .df01{ float:left;width:219px;height:197px; margin-left:63px;}
+.tude .df01 img{width:100%;}
+.debitfill{  border:1px solid #e2e2e2; margin-bottom:20px; border-top:0px; padding:30px 0px;zoom:1;}
+.debitfill ul{ width:730px;   overflow:hidden;margin-left:364px;}
+.debitfill ul li{ width:730px; overflow:hidden; margin-top:20px;position: relative;}
+.debitfill ul li .sp-yuan{ display:block; background-color:#dedede; float:left; font:16px/40px "微软雅黑"; color:#858585; padding:0 8px; border:1px solid #dedede;}
+.debitfill label{ display:block; width:80px; height:40px; float:left; font:16px/40px "微软雅黑"; color:#413d3c;}
+.debitfill ul li .dfinput{ width:282px ; height:38px; line-height:38px; border:1px solid #EEEEEE;float:left;font:16px/20px "微软雅黑"; color:#778691; text-indent:8px;line-height:38px;}
+.debitfill ul li .dfinput_qx{
+	padding:8px 0px;
+}
+.debitfill ul li .tu_yzm{position: absolute;top: 0;left: 264px;	}
+.debitfill ul li .hqyzm_new {
+    float: left;
+    display: block;
+    width: 118px;
+    text-align: center;
+    color: #fff;
+    border-radius: 0px 3px 3px 0px;
+    background-color: #55b0fd;
+    font: 14px/32px "微软雅黑";
+    font-size: 14px;
+    line-height: 32px;
+    cursor: pointer;
+}
+
+.debitfill ul li .hqyzm_new.loanhqyzm {
+    position: absolute;
+    top: 0;
+    left: 246px;
+    height: 42px;
+    line-height: 40px;
+    color: #fff;
+}
+
+.debitfill ul li .yz{ width:90px;}
+.debitfill ul li .yue{ width:248px; background:url(../images/inpbg_03.jpg) no-repeat right center; padding-right:34px;}
+.yzimg{ margin-left:10px; float:left;}
+a.ya{ padding-left:10px; padding-top:20px; font:16px/40px "微软雅黑"; color:#c1201c;}
+ .debitfill ul li .dfinput:focus { border:1px solid #22a8d4;}
+ .debitfill ul li .dfinput.error:focus { border:1px solid #c00;}
+.debitfill ul li .dfinput-text{ height:120px;}
+.debitfill textarea{ font:12px/20px "微软雅黑"; color:#778691; text-indent:8px;}
+.debit-but{ background-color:#4fa6fd; width:282px; border-radius:5px; height:40px; border:0px; font: bold 18px/40px "微软雅黑"; color:#FFF; text-align:center; margin-left:80px; cursor:pointer;}
+/*三级联动样式*/
+.debitfill ul li .dfinput.select01{ width:100px ; padding:8px 0px;}
+.debitfill ul li .dfinput.select02{ width:150px ; margin-left:-10px; padding:8px 0px; float:none;}
+
+/* 新我要借款页面 */
+.jdpcons {
+    margin-top: 0px;
+}
+.navwrap{
+overflow: hidden;
+	width: 100%;
+    height: 212px;
+}
+.navMain{
+	margin:0 auto;
+	margin-top:35px;
+	
+	position: relative;
+	left:0px;bottom:0px;
+	width:100%;
+	height:177px;	
+}
+.navMain .nav01{
+	position: absolute;
+	left:0px;
+	bottom:0px;
+	cursor: pointer;
+}
+.navMain .nav02{
+	position: absolute;
+	right:0px;
+	bottom:0px;
+	cursor: pointer;
+}
+.loanObj{width:100%;height:580px;margin-top:20px;}
+.loanObj .loanCredit,.loanObj .loanMortgage{
+	width:100%;
+	height:580px;
+	overflow: hidden;
+}
+.loanObj .loanCredit{position: relative;}
+.loanObj .loanCredit .CreditWrap{height:540px;width:2000px;position: relative;left:0px;}
+.loanObj .loanBox{
+	width:382px;
+	height:100%;
+	margin-right:12px;
+	float:left;
+	text-align:center;
+	background-color:#fff;
+	
+}
+.loanObj .loanBox02{margin-right:0px;}
+.loanBox h3{font-size:30px;color:#666;margin-top:16px;text-align:center;}
+.loanBox p{width:335px;margin:0 auto;text-align:left;margin-top:15px;line-height:32px;color:#666;font-size:18px;}
+.loanBox .loanImg{margin-top:62px;}
+.loanBox .loanIFDimg{margin-top:19px;}
+.loanBox .loanIBDimg{margin-top:40px;}
+.loanBox .loanIFangDimg{margin-top:53px;}
+.loanBox .loanICDimg{margin-top:32px;}
+.loanBox .loan_Btn{width:254px;height:48px;color:#fff;background-color:#55b0fd;text-align:center;line-height:48px;border-radius: 8px;margin:0 auto;margin-top:30px;font-size:20px;}
+.loanBox .loan_Btn a{display:block;width:100%;height:100%;color:#FFF;}
+.loanCredit .CreditBtn{
+	width:100%;height:82px;position: absolute;left:0px;top:50%;margin-top:-95px;
+}
+.CreditBtn .CreditBtn_L,.CreditBtn .CreditBtn_R{width:35px;height:82px;background-color: rgba(198, 237, 246, 0.68);float:left;text-align:center;line-height:82px;font-size:36px;color:#fff; cursor: pointer;}
+.CreditBtn .CreditBtn_R{float:right;}
+.CreditBtn .disabled_left{display:none;}
+.loanObj .loanBoxLiu{background:#e2e1e1 url("../images/loanMain_New/loan_Liu.png");background-position: 45px 85px;
+background-repeat: no-repeat;}
+.loanMortgage_warp{height:540px;}
+.Credit_nav{width:100px;height:8px;margin:0 auto;margin-top:20px;overflow: hidden;}
+.Credit_nav span{display: inline-block;width:40px;height:8px;background-color:#fff;margin-right:20px;float:left;}
+.Credit_nav .Credit_nav02{margin-right:0px;}
+.Credit_nav span.active{background-color:#55b0fd;}

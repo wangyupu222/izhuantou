@@ -1,0 +1,198 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body{ background:#eeeeee;}
+/*登录*/
+.logincon{ background:#fff; overflow:hidden; margin-top:100px; margin-bottom:7.5%;}
+.login_left{ float:right;}
+.login_right{ float:left; width:380px; margin-left: 17px;}
+.right_top{ width:80%; margin:0 auto; margin-top:60px;}
+.right_top span{ font-size:18px; color:#333333; }
+.right_top a{ color:#55b0fd; float:right;}
+
+.right_topreg{ margin:0 auto; margin-top:60px;padding-left:0px;}
+.right_topreg span{ font-size:18px; color:#333333;}
+.right_topreg a{ color:#55b0fd; float:right;}
+
+.inpbox{ width:80%; height:44px; margin:0 auto; margin-top:20px; position:relative;}
+.inpbox input{ width:266px; height:42px; line-height:42px; border:1px solid #dadada; border-radius:5px; padding-left:35px;outline:none;}
+.inpbox.active input{ border:1px solid #55b0fd; box-shadow:0px 0px 5px #55b0fd;}
+.inpbox.yhm input{ background:url(../images/phone.png) no-repeat 10px center;}
+.inpbox.pwd input{ background:url(../images/pwd.png) no-repeat 10px center;}
+.inpbox.yzm input{  width:157px;background: #fff url(../images/yzms.png) no-repeat 10px center;}
+.inpbox.yzm img{ margin-left:10px;*+margin-top:-25px;}
+.reademe{ width:80%; margin:0 auto; margin-top:20px; font-size:14px; overflow:hidden;line-height: 20px;}
+.dlbtn{ text-align:center; margin-top:20px;cursor:pointer;}
+.dlbtn button{background:#ff9933;width:80%; height:45px; margin:0 auto; border:0; border-radius:5px;text-align:center; color:#fff; font-size:16px;}
+.dlbtn button:hover{background:#ffaa55;}
+
+
+.reademe a{ float:right; color:#55b0fd;font-size:12px;}
+.reademe a:hover{color:#81c5ff;}
+.reademe01{ font-size:14px; line-height:40px; text-align:center;}
+.reademe01 a{color:#55b0fd;}
+.reademe01 a:hover{color:#81c5ff;}
+.reademe02{ font-size:14px; margin-right:74px; line-height:40px; text-align:center;}
+
+.login_validate{  width: 100%;  height: 25px;  color: #f00;  font-size: 13px;  line-height: 26px;  text-align: center;  }
+.register_validate{  width: 90%; margin-top:8px; height: 25px;  color: #f00;  font-size: 13px;  line-height: 26px;  text-align: center;  }
+/*注册*/
+.registtop{ margin-top:30px; height:30px; line-height:30px;font-size:14px;}
+.registtop a{ color:#55b0fd;}
+.registcon{background:#fff; overflow:hidden; margin-bottom:60px;}
+.registleft{float:left; width:640px;  }
+
+.registleft img{ margin-top:0px;width:760px;height:517px}
+.registright{float:left; width:355px; margin-bottom:20px; margin-left:55px;}
+.redbag_bg{ width:464px; height:62px; line-height:62px; background:url(../images/redbag_bg.jpg) repeat-y; margin-top:20px;}
+.redbag_bg img{ margin-left:20px;}
+.redbag_bg span{ margin-left:10px;}
+.redbag_bg span a{ color:#e73136;}
+
+.regist_inpt{ width:278px; height:42px;line-height:13px; border:1px solid #dadada; border-radius:5px; margin-top:20px; padding-left:35px; position:relative;}
+.regist_inpt.active{border:1px solid #55b0fd; box-shadow:0px 0px 5px #55b0fd;}
+.regist_inpt.phone{ background:url(../images/phone.png) no-repeat 10px center; }
+.regist_inpt.pwd{ background:url(../images/pwd.png) no-repeat 10px center; }
+.regist_inpt.yzm{  width:145px;background: #fff url(../images/yzms.png) no-repeat 10px center;}
+.regist_inpt input{ width:98%; height:41px; line-height:41px; border:0; }
+.regist_inpt.short input{ width:75%; }
+.regist_inpt.yqm{ background:url(../images/yzm.png) no-repeat 10px center; }
+.regist_inpt01{ width:333px;}
+.regist_inpt01 a.hqyzm{ background:#489ae3; color:#fff; padding:11px 23px; text-align:center;  float:right; margin-top:-42px; margin-right:5px; font-size:14px;cursor:pointer;}
+.regist_inpt01 a.hqyzm.send1{background:#cccccc;cursor: no-drop;}
+.hqyzminp{position:absolute;background:#55b0fd; color:#fff; padding:11px 23px; margin-left:199px; text-align:center;  float:right; margin-top:-42px; margin-right:5px;border-radius:5px; font-size:14px;cursor:pointer;}
+.hqyzminp:hover{background:#489ae3;}
+.hqyzminp.send1{background:#cccccc;cursor: no-drop;}
+
+.num_yzm{position:absolute;margin-left:57px;float:right;}
+
+/*  注册修改*/
+.regist_inpt.short{background: #fff url(../images/sms_yzm.png) no-repeat 5px center;}
+.regist_inpt.short2{
+	    background: #fff url(../images/sign_yzm.png) no-repeat 5px center !important;
+}
+.regist_inpt.pwd_short input{
+	width:88%;
+}
+.eye_show{
+	display: inline-block;
+	width:28px;
+	height:15px;
+	cursor: pointer;
+	/* background: url(../images/eye_open.png) no-repeat; */
+}
+.eye_show img{
+	width:28px;
+	height:28px;
+}
+
+/* .regist_inpt span{ float:right; margin-top:8px; margin-right:10px; font-size:12px; color:#cccccc;} */
+.yqmtit{ font-size:18px; color:#55b0fd; margin-top:20px;}
+.yqmtit span{ font-size:14px;}
+.regist_check{ margin-top:16px; font-size:12px; color:#333333; overflow:hidden;position:relative;}
+.regist_check a.ra{ color:#55b0fd;}
+.regist_check a.ra:hover{ color:#81c5ff;}
+.xieyi_text a.ra:hover{ text-decoration: underline;}
+.zcbtn{ text-align:center; margin-top:10px;}
+.zcbtn button{background:#ff9933;width:88%; height:42px; margin:0 auto; border:0; border-radius:5px;text-align:center; color:#fff; font-size:16px; margin-right:135px;cursor:pointer;}
+.zcbtn button:hover{background:#ffaa55;}
+.checklabel{ display:block; float:left; overflow:hidden;}
+.checklabel input{ margin-top:5px; float:left; display:block;}
+.checklabel span{ margin-left:5px; line-height:20px; display:block; float:left;}
+
+.checklabel input[type="checkbox"]{ margin-right:10px;}
+.checklabel label{font-size:12px;}
+.checklabel01 input{ margin-top:3px; float:left; display:block;}
+.regist_check a{ color:#333;}
+
+
+/*滑动验证*/
+.huad{ margin-top:30px;}
+.huadimg{ position:relative;}
+.huadimgyz{ position:absolute; top:-160px; left:-10px;}
+
+/*忘记密码*/
+.forgetpwdcon{background:#fff; overflow:hidden; margin-bottom:60px;margin-top:20px; min-height:600px; border:1px solid #ccc;}
+.forgetpwdtop{ height:65px;border-bottom:1px solid #ccc; }
+.forgetpwdtop span{line-height:65px;color:#333333;}
+.forgetpwdtop span.ttt { float:left; margin-left:20px; }
+.forgetpwdtop span.rrr { float:right; margin-right:20px; }
+.forgetpwdtop span.rrr a {color:#55b0fd; }
+.forgetpwdtop span.rrr a:hover {color:#81c5ff; }
+.wenxints{ color:#777777; font-size:12px; width:600px; margin:0 auto; text-align:center; margin-top:50px;}
+
+/* .forgetpwdtop a{ display:block; float:left; width:50%; height:45px;color:#cccccc;text-align:center;cursor: pointer;padding-top:20px;}
+.forgetpwdtop a span{ display:inline-block; background:#cccccc; width:20px; height:20px; line-height:20px; margin-right:5px; border-radius:20px; color:#fff; text-align:center; font-size:12px;}
+.forgetpwdtop a.active{color:#55b0fd; border-bottom:2px solid #55b0fd;}
+.forgetpwdtop a.active span{background:#55b0fd;} */
+
+.writeyhm{ width:520px; margin:0 auto; margin-top:100px;background-color: #fff}
+.forgetpwd_inpt{ margin-top:25px;}
+.forgetpwd_inpt label{ color:#777777; font-size:16px; margin-right:15px; line-height:38px; display:inline-block; width:120px; text-align: right}
+.forgetpwd_inpt span{ display:inline-block; width:320px; height:38px;border:1px solid #dadada;  /* margin-top:15px; */ padding-left:10px; position:relative;}
+.forgetpwd_inpt input{ width:100%; height:38px; border:0;line-height:38px;*+height:37px;}
+.forgetpwd_inpt a.hqyzm{ /*  background:#ff8a10;  */ color:#4a4a4a; border-left:1px solid #dadada;   display:block; width:110px; height:40px; line-height:40px; font-size:12px; text-align:center; position:absolute; right:0; top:-1px; /* padding:5px 10px;margin-top:8px; margin-right:5px; */ }
+.forgetpwd_inpt a.hqyzm:hover{color:#55b0fd;}
+.forgetpwd_inpt a.hqyzm.send1{ background:#cccccc;cursor: no-drop;}
+.forgetpwd_inpt img.yzmsz{position:absolute; right:0; top:0px;}
+/* .forgetpwd_inpt.short span{width:320px; } */
+.forgetpwd_inpt.short input{ width:90%;}
+.nextbtn{ width:510px;}
+.nextbtn button{ cursor: pointer; border:none; display:block;background:#ff8a10;width:240px; height:45px; line-height:45px; margin:0 auto; margin-top:40px; border:0; border-radius:5px;text-align:center; color:#fff; font-size:18px;}
+.forgetpwd_inpt{position:relative;}
+.forgetpwd_inpt span.error{ border:none; color:#f00; font-size:14px; position:absolute; top:8px; left:330px;}
+.nextbtn button:hover{background:#ffaa55;}
+
+/*验证提示信息样式*/
+.inpbox span.error{color:#f00; font-size:14px; margin-top:5px;}
+.regist_inpt span.error{color:#f00; font-size:14px; position:absolute; top:43.6px; left:49px;}
+.regist_check span.error{display:block;color:#f00; font-size:14px;position:absolute;top:-2px; left:240px;}
+.inpbox.yzm span.error{ position:absolute; left:0px;top:40px; margin-top:1px; margin-left: 0px;}
+.inpbox.yzm{ }
+
+
+.write_hide{  position: absolute;  left: 335px;  display: none;  }
+.writeyhm_wrap{  position: relative;  }
+.pas_select{  width: 95%;  height: 100%;  border: none;  appearance:none;  -moz-appearance:none;  -webkit-appearance:none;  background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;  padding-right: 14px;  }
+
+/*忘记密码--修改成功页面*/
+.writeyhmf03{ width:400px; margin:0 auto; margin-top:100px;background-color: #fff}
+.row01 span{ display:block; float:left;}
+.row01 span.png.right{ background:url(../images/finish.png) no-repeat left center; width:51px; height:51px;}
+.row01 span.txt{ margin-left:15px; font-size:16px; color:#777777; margin-top:5px;}
+.row01 span.txt em{ display:block; font-size:12px;margin-top:5px;}
+.nextbtn.btn-a{ width:340px;}
+.nextbtn a{cursor: pointer; border:none; display:block;background:#ff8a10;width:205px; height:42px; line-height:42px; margin:0 auto; margin-top:40px; border:0; border-radius:5px;text-align:center; color:#fff; font-size:18px;}
+.nextbtn a:hover{background:#ffaa55;}
+
+.unsetproblem{color:#55b0fd; text-align:center; font-size:18px; margin-top:150px;}
+.unsetproblem a{ color:#f00;}
+
+ 
+/* 登录提示 */
+.dlbtn {
+    position: relative;
+}
+.loadingBtn{background: #ff9933;
+    width: 80%;
+    height: 45px;
+    line-height:45px;
+    margin: 0 auto;
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    display: inline-block;
+    position: absolute;
+    left:38px;
+    top:0px;
+    z-index:9;
+    }
+    .loadingBtn img{
+    position: absolute;
+    right: 87px;
+    top: 20px;
+    }
+    .close_btn{position: absolute;right:6px;top:7px;display:none;cursor: pointer;}
+    .regist_inpt .close_btn{top:5px;}
+    .regist_inpt.pwd .close_btn{    right: 34px;}

@@ -1,0 +1,218 @@
+body{
+    font-family: "微软雅黑", Arial;
+}
+.bank_banner{
+    width: 100%;
+    height: 500px;
+    background: url("../image/HXdepository_bank/depository-bank-banner.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    text-align: center;
+}
+
+.bank_content{
+    width: 100%;
+}
+.bank_content　.main{
+    width: 1162px;
+    margin: 0 auto;
+    text-align: center;
+
+}
+.bank_contentBox01{
+    height: 380px;
+}
+.content_tit{
+    text-align: center;
+    color: #353944;
+    overflow: hidden;
+    height: 176px;
+}
+.content_tit h3{
+    font-size: 32px;
+    margin-top: 75px;
+}
+.content_tit p{
+    font-size: 21px;
+    margin-bottom: 13px;
+    margin-top: 10px;
+}
+.content_tit span{
+    display: inline-block;
+    width: 70px;
+    height: 3px;
+    background-color: #2087d4;
+}
+.flow_img{
+    width: 100%;
+    text-align: center;
+    margin-top: 65px;
+}
+.flow_img.compliance{
+    font-size:18px;
+    line-height: 32px;
+    color:#353944;
+}
+.bank_introduct{
+    width: 100%;
+    height: 962px;
+    background: url("../image/HXdepository_bank/depository-bank-Safety.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.qustion_box{margin-bottom: 35px;}
+.qustion_box h3{font-size: 18px;margin-bottom: 15px;}
+.qustion_box h3 span{margin-right: 15px;}
+.qustion_box h3 img{position: relative;
+    top: 2px;}
+.qustion_box p{margin-left: 33px;line-height: 36px;}
+.qustion_btn{
+    width: 272px;height: 60px;background-color: #fff;border-radius: 22px;text-align: center;line-height: 60px;color: #3b54a2;
+    font-size: 24px;margin: 0 auto; margin-top: 50px;}
+.qustion_btn a{display: block;width: 100%;height: 100%;color:#3b54a2; }
+.bank_introduct .content_tit{
+    color: #fff;
+}
+.bank_introduct .content_tit span{
+    background-color: #fff;
+}
+.bank_introduct_Safety_text{
+    margin:0 auto;
+    width: 1160px;text-align: left;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.1em;
+    color:#fff;
+    margin-top: 65px;
+}
+.flow_img03{
+    margin-bottom: 0px;
+    margin-top: 75px;
+}
+.bank_contentBox03{
+    height: 580px;
+
+}
+.introduct_content{
+    width: 1162px;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 45px;
+    font-family: "微软雅黑", Arial;
+}
+.introduct_box{
+    width: 165px;
+    float: left;
+    text-align: center;
+    color: #353944;
+    margin-left: 77px;
+    margin-right: 45px;
+}
+.introduct_box h3{
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 13px;
+    color:#353944;
+}
+.introduct_box p{
+    font-size: 14px;
+    line-height: 23px;
+    color:#353944;
+}
+.introduct_box04{
+    margin-right: 0px;
+}
+.flow_img{
+    margin-bottom: 85px;
+}
+.bank_contentBox05 .introduct_content{
+    height: 610px;
+}
+.bank_contentBox05 .content_tit h3,.bank_contentBox03 .content_tit h3{
+    margin-top: 45px;
+}
+
+.bank_banner_tit{-webkit-animation: cloudy 1s forwards;animation: cloudy 1s forwards;}
+/*.bank_content .content_tit h3{-webkit-animation: cloudy02 1s forwards;animation: cloudy02 1s forwards;}*/
+.bank_content01 .flow_img.point.modelShow img{-webkit-animation: cloudy03 1s forwards;animation: cloudy03 1s forwards;}
+@-webkit-keyframes cloudy {
+    0%{ opacity:0;margin-top:40px;}
+    100%{ opacity:1; margin-top:98px;}
+}
+@keyframes cloudy {
+    0%{ opacity:0;margin-top:40px;}
+    100%{ opacity:1; margin-top:98px;;}
+}
+@-webkit-keyframes cloudy02 {
+    0%{ opacity:0;margin-top:20px;}
+    100%{ opacity:1; margin-top:45px;}
+}
+@keyframes cloudy02 {
+    0%{ opacity:0;margin-top:20px;}
+    100%{ opacity:1; margin-top:75px;}
+}
+@-webkit-keyframes cloudy03 {
+    0%{ opacity:0;margin-left:-200px;}
+    100%{ opacity:1; margin-left:0px;}
+}
+@keyframes cloudy03 {
+    0%{ opacity:0;margin-left:-200px;}
+    100%{ opacity:1; margin-left:0px;}
+}
+@-webkit-keyframes cloudy2{
+    0%{ opacity:0;}
+    100%{ opacity:1; }
+}
+@keyframes cloudy2{
+    0%{ opacity:0;}
+    100%{ opacity:1;}
+}
+@-webkit-keyframes cloudy3{
+    0%{ opacity:0;margin-top:120px;}
+    100%{ opacity:1; margin-top:170px;}
+}
+@keyframes cloudy3{
+    0%{ opacity:0;margin-top:120px;}
+    100%{ opacity:1; margin-top:170px;}
+}
+@-webkit-keyframes cloudy4{
+    0%{ opacity:0;margin-top:120px;}
+    100%{ opacity:1; margin-top:170px;}
+}
+@keyframes cloudy4{
+    0%{ opacity:0;margin-top:120px;}
+    100%{ opacity:1; margin-top:170px;}
+}
+@-webkit-keyframes cloudy5{
+    0%{ opacity:0;margin-top:27px;}
+    100%{ opacity:1; margin-top:77px;}
+}
+@keyframes cloudy5{
+    0%{ opacity:0;margin-top:27px;}
+    100%{ opacity:1; margin-top:77px;}
+}
+@-webkit-keyframes cloudy6{
+    0%{ opacity:0;left:-30px;}
+    100%{ opacity:1; left:0px;}
+}
+@keyframes cloudy6{
+    0%{ opacity:0;left:-30px;}
+    100%{ opacity:1; left:0px;}
+}
+@-webkit-keyframes cloudy7{
+    0%{ opacity:0;left:30px;}
+    100%{ opacity:1; left:0px;}
+}
+@keyframes cloudy7{
+    0%{ opacity:0;left:30px;}
+    100%{ opacity:1; left:0px;}
+}
+@-webkit-keyframes cloudy8{
+    0%{ opacity:0;top:-30px;}
+    100%{ opacity:1; top:0px;}
+}
+@keyframes cloudy8{
+    0%{ opacity:0;top:-30px;}
+    100%{ opacity:1; top:0px;}
+}

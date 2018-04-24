@@ -1,0 +1,21 @@
+/* CSS Document */
+.invitecon{ background:#fff; min-height:818px; border:1px solid #e6e6e6;}
+.invitetop{ height:48px; line-height:48px; border-bottom:1px solid #dadada;}
+.invitetop span{ display:block; width:155px; text-align:center; border-bottom:2px solid #55b0fd;}
+
+/*基本设置*/
+.my_tx{ text-align:center; margin-top:40px;}
+.my_tx img{ border:1px solid #dadad9; border-radius:5px; box-shadow:0 0 10px #dadad9;}
+.my_tx-txt{ text-align:center; margin-top:10px; color:#dadad9;}
+
+.basic_con{ margin-left:200px;}
+.basic_inp{ margin-top:30px; line-height:35px;}
+.basic_inp label{ display:block; float:left; width:80px;}
+.basic_inp input{width:278px; height:35px; border:1px solid #dddddd; padding-left:10px;}
+.basic_inp select{width:290px; height:35px; border:1px solid #dddddd; padding-left:10px;}
+.basic_inp.short input{width:155px; height:35px; border:1px solid #dddddd; padding-left:10px; margin-right:15px;}
+.basic_inp.short img{ border:1px solid #c9c9cf; border-radius:5px;}
+.basic_inp.short a{ color:#55b0fd;}
+
+.basic_save{ width:300px; text-align:center; margin-top:30px;}
+.basic_save input{ background:#55b0fd; width:135px; height:36px; font:16px/36px "Microsoft YaHei"; border-radius:5px; color:#fff; border:0;}

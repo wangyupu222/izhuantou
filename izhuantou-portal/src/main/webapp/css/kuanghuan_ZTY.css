@@ -1,0 +1,342 @@
+body{
+  background:#876ade;
+}
+.content_wrap{
+    width: 100%;
+    height:4500px;
+    background: url("../image/kuanghuan/kuanghuan_bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.top_title{
+    text-align: center;
+    overflow: hidden;
+    height:297px;
+
+
+}
+.top_title img{
+    margin-top:50px;
+}
+.top_title img{-webkit-animation: cloudy 1s forwards;animation: cloudy 1s forwards;}
+.model01{
+    height: 760px;
+    overflow: hidden;
+}
+.model02{
+    height: 667px;
+    overflow: hidden;
+}
+.model03{
+    height: 720px;
+    overflow: hidden;
+}
+.content_box{
+    width:1110px;
+    height: 590px;
+    margin:0 auto;
+    margin-top: 170px;
+    position: relative;
+    left: -65px;
+    background: url("../image/kuanghuan/box_01.png") center no-repeat;
+    overflow: hidden;
+}
+.content_box01{
+    opacity: 0;
+}
+.content_box01.modelShow {-webkit-animation: cloudy4 1s 1s forwards;animation: cloudy4 1s 1s forwards;}
+.content_box2{
+    margin-top: 77px;
+    background: url("../image/kuanghuan/box_02.png") center no-repeat;
+    left: 80px;
+    opacity: 0;
+}
+.content_box3{
+    width: 1120px;
+    height: 643px;
+    margin-top: 77px;
+    left: -81px;
+    background: url("../image/kuanghuan/box_03.png") center no-repeat;
+    opacity: 0;
+}
+.content_box4{
+    left: 65px;
+    background: url("../image/kuanghuan/box_04.png") center no-repeat;
+}
+.content_box5{
+    margin-top: 77px;
+    background: url("../image/kuanghuan/box_06.png") center no-repeat;
+    left:25px;
+    opacity: 0;
+}
+.content_box6{
+    margin-top: 77px;
+    background: url("../image/kuanghuan/box_05.png") center no-repeat;
+    left:25px;
+    opacity: 0;
+    width: 1258px;
+}
+.content_box_kuai{
+    width: 950px;
+    margin-top: 155px;
+    margin-left: 150px;
+}
+.content_box2 .content_box_kuai{
+    margin-left: 0px;
+    margin-top: 142px;
+}
+.content_box3 .content_box_kuai{
+    margin-top: 128px;
+}
+.model01 .point.modelShow .gift_box1{
+    -webkit-animation: cloudy2 1s 1s forwards;animation: cloudy2 1s 1s forwards;
+}
+.model01 .point.modelShow .gift_box2{
+    -webkit-animation: cloudy2 1s 1.5s forwards;animation: cloudy2 1s 1.5s forwards;
+}
+.model01 .point.modelShow .gift_box3{
+    -webkit-animation: cloudy2 1s 2s forwards;animation: cloudy2 1s 2s forwards;
+}
+.model02 .point.modelShow{
+    -webkit-animation: cloudy5 1s forwards;animation: cloudy5 1s forwards;
+}
+.model03 .point.modelShow{
+    -webkit-animation: cloudy5 1s forwards;animation: cloudy5 1s forwards;
+}
+.model06 .point.modelShow{
+    -webkit-animation: cloudy5 1s forwards;animation: cloudy5 1s forwards;
+}
+.model06 .point.modelShow_new{
+    -webkit-animation: cloudy5 1s 1s forwards;animation: cloudy5 1s 1s forwards;
+}
+.gift_box{
+    float: left;
+    text-align: center;
+    margin-left: 95px;
+    color:#7357cb;
+    font-family: qingyuan;
+    font-weight: 600;
+}
+.gift_box1,.gift_box2,.gift_box3{
+    margin-left: 105px;opacity: 0;
+}
+.gift_box h3{
+    font-size: 20px;
+    font-weight: normal;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 36px;
+}
+.gift_box p{
+    margin-top: 36px;
+    font-size: 16px;
+}
+.tishi_text{
+    font-size: 16px;
+    color: #7357cb;
+    margin-left: 245px;
+    margin-top: 46px;
+    font-weight: 600;
+}
+.surpris_left{
+    float: left;
+    margin-left: 80px;
+    margin-top: 18px;
+    text-align: center;
+}
+.surpris_left img{
+    position: relative;
+}
+.model02 .point.modelShow .surpris_left img{
+    -webkit-animation: cloudy6 1s forwards;animation: cloudy6 1s  forwards;
+}
+.model02 .point.modelShow .surpris_content{
+    -webkit-animation: cloudy7 1s forwards;animation: cloudy7 1s  forwards;
+}
+.surpris_content{
+    width: 517px;
+    float: left;
+    font-family: "华康少女";
+    padding-left: 18px;
+    color: #666;
+    position: relative;
+}
+.surpris_content h3{
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+.surpris_content p{
+    font-size: 16px;
+    line-height: 33px;
+    letter-spacing: 1px;
+}
+.encourage_content{
+    font-family: 华康少女;
+    color: #666;
+    position: relative;
+}
+.encourage_top{
+    margin-top: 0px;
+    margin-left: 0px;
+    text-align: center;
+}
+.encourage_top img{
+    position: relative;
+}
+.encourage_explain{
+    float: left;
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-left: 160px;
+
+}
+.explain_content{
+    float: left;
+    font-size: 16px;
+    margin-left: 20px;
+    letter-spacing: 1px;
+    line-height: 31px;
+}
+.model03 .point.modelShow .encourage_top img{
+    -webkit-animation: cloudy8 1s forwards;animation: cloudy8 1s  forwards;
+}
+.model03 .point.modelShow .encourage_content{
+    -webkit-animation: cloudy7 1s forwards;animation: cloudy7 1s  forwards;
+}
+.content_box4 .surpris_content{
+    margin-top: 40px;
+}
+.content_box4 .surpris_content p{
+    line-height: 35px;
+}
+.model05 .content_box_kuai{
+    overflow: hidden;
+}
+.model05 .content_box_kuai table{
+    margin-left: 85px;
+    margin-top: 13px;
+    color: #fff;
+    font-family: qingyuan;
+    letter-spacing: 2px;
+    font-size: 18px;
+}
+.model05 .content_box_kuai table td{
+    width: 200px;
+    height: 48px;
+    text-align: center;
+}
+.model05 .content_box_kuai table td a{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    line-height: 45px;
+    display: inline-block;
+    color: #fff;
+   
+}
+.model05 .content_box_kuai table td a:hover{
+	color:#cc7b65;
+    text-shadow: 0 0 15px #cc7b65;
+}
+.model05 .tishi_text_new{
+margin-left: 91px;
+margin-top: 26px;
+font-size: 14px;
+color: rgba(255, 255, 255, 0.65);
+}
+.attention_content{
+    font-family: 华康少女;
+    margin-left: 70px;
+    line-height: 33px;
+    letter-spacing: 1px;
+    color: #666666;
+}
+.model06 .content_box_kuai{
+    margin-top: 170px;
+}
+.active_link{
+    text-decoration:underline;
+    color: #d49d38;;
+}
+.active_link:hover{
+	color: #b3842f;
+}
+@font-face {
+    font-family: qingyuan;
+    src: url('../image/kuanghuan/font/晴圆.TTC');
+}
+@font-face {
+    font-family: 华康少女;
+    src: url('../image/kuanghuan/font/华康少女体.TTF');
+}
+@-webkit-keyframes cloudy {
+    0%{ opacity:0;margin-top:0px;}
+    100%{ opacity:1; margin-top:50px;}
+}
+@keyframes cloudy {
+    0%{ opacity:0;margin-top:0px;}
+    100%{ opacity:1; margin-top:50px;;}
+}
+@-webkit-keyframes cloudy2{
+    0%{ opacity:0;}
+    100%{ opacity:1; }
+}
+@keyframes cloudy2{
+    0%{ opacity:0;}
+    100%{ opacity:1;}
+}
+@-webkit-keyframes cloudy3{
+    0%{ opacity:0;margin-top:120px;}
+    100%{ opacity:1; margin-top:170px;}
+}
+@keyframes cloudy3{
+    0%{ opacity:0;margin-top:120px;}
+    100%{ opacity:1; margin-top:170px;}
+}
+@-webkit-keyframes cloudy4{
+    0%{ opacity:0;margin-top:120px;}
+    100%{ opacity:1; margin-top:170px;}
+}
+@keyframes cloudy4{
+    0%{ opacity:0;margin-top:120px;}
+    100%{ opacity:1; margin-top:170px;}
+}
+@-webkit-keyframes cloudy5{
+    0%{ opacity:0;margin-top:27px;}
+    100%{ opacity:1; margin-top:77px;}
+}
+@keyframes cloudy5{
+    0%{ opacity:0;margin-top:27px;}
+    100%{ opacity:1; margin-top:77px;}
+}
+@-webkit-keyframes cloudy6{
+    0%{ opacity:0;left:-30px;}
+    100%{ opacity:1; left:0px;}
+}
+@keyframes cloudy6{
+    0%{ opacity:0;left:-30px;}
+    100%{ opacity:1; left:0px;}
+}
+@-webkit-keyframes cloudy7{
+    0%{ opacity:0;left:30px;}
+    100%{ opacity:1; left:0px;}
+}
+@keyframes cloudy7{
+    0%{ opacity:0;left:30px;}
+    100%{ opacity:1; left:0px;}
+}
+@-webkit-keyframes cloudy8{
+    0%{ opacity:0;top:-30px;}
+    100%{ opacity:1; top:0px;}
+}
+@keyframes cloudy8{
+    0%{ opacity:0;top:-30px;}
+    100%{ opacity:1; top:0px;}
+}
+
+@keyframes change {
+    0%{ text-shadow: 0 0 4px #fff}
+    50%{ text-shadow: 0 0 40px #fff}
+    100%{ text-shadow: 0 0 4px #fff}
+}

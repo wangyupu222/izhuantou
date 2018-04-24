@@ -1,0 +1,44 @@
+/* CSS Document */
+/*自动投标*/
+.autozb{ background:#fff; min-height:818px; border:1px solid #e6e6e6;}
+.autozbtop{ height:48px; line-height:48px;}
+.autozbtop span{ display:block; float:left; width:155px; text-align:center; border-top:3px solid #55b0fd;}
+.autozbtop div{float:left; width:682px; height:48px; border:1px solid #dadada; border-right:0;border-top:0;}
+.autovalue{width:500px; margin:0 auto; margin-top:30px;}
+.autorow{ height:30px; line-height:30px; margin-bottom:15px;}
+.autorow label{ width:150px; height:30px;  display:block; float:left; margin-right:20px; text-align:right;}
+.autorow select{ width:140px; height:30px; border:1px solid #778691; border-radius:5px;}
+.autorow span{ color:#2c3e50; margin-right:5px;}
+.autorow span em{ color:#f5a100;}
+.autorow input{ width:140px; height:30px; border:1px solid #778691; border-radius:5px; margin-right:5px;}
+.autorow.short input{ width:45px; }
+.autorow.error label{ color:#ff3d2e;}
+.autorowbtn{ width:400px; text-align:center;}
+.autorowbtn input{ width:298px; height:44px; border:0; background:#55b0fd; border-radius:5px; color:#fff;  font:16px/44px "微软雅黑";}
+
+/*温馨提示*/
+.wxts{ width:90%; margin:0 auto; margin-top:40px;}
+.wxtscon{ background:#e6e6e6; margin:0 auto; padding:20px; margin-top:20px; font-size:14px; line-height:28px;}
+
+/*资金管理*/
+.my_loantop{ height:48px; line-height:48px;}
+.my_loantop a{ display:block; float:left; width:155px; text-align:center; color:#333333; border:1px solid #dadada; border-top:0;}
+.my_loantop a.active{ border:0; border-top:3px solid #55b0fd;}
+
+.autorow span img{ border:1px solid #e2e2e2;}
+.autorow a{ color:#2473ba;}
+
+/*资金管理--交易记录*/
+.jy_recordcon{ width:90%; margin:0 auto;}
+.jy_recordtop{ margin-top:50px; margin-left:50px;}
+.jy_recordtop input{ width:174px; height:32px; margin-left:5px; margin-right:5px; padding-left:10px; border:1px solid #55b0fd;}
+.jy_recordtop input.search{ width:92px; background:#ff7800; border:0; border-radius:5px; color:#fff;}
+
+
+.fundcon{ margin-top:30px;}
+.fund{  margin:0 auto; overflow:hidden;height:55px; line-height:55px; border:1px solid #eeeeee; border-bottom:0;}
+.fund:last-child{ border-bottom:1px solid #eeeeee;}
+.fund.tit{ background:#f3f7fb;}
+.fund span{ display:block; float:left; width:33.3%;  text-align:center;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+
+

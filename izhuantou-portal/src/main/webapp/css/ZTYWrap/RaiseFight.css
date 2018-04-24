@@ -1,0 +1,109 @@
+body{
+    font-family: "微软雅黑", Arial;
+}
+.RaiseFight_main{
+    width: 100%;
+    min-height: 3155px;
+    background: #6818c1 url("../../image/RaiseFight/RaiseFight_bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y:0px ;
+    background-size: 100%;
+    overflow: hidden;
+}
+.RaiseFight_wrap{
+    width: 1170px;
+    margin: 0 auto;
+}
+.RaiseFight_box{
+    width: 100%;
+
+}
+.RaiseFight_box01{
+    margin-top: 580px;
+}
+.RaiseFight_box02,.RaiseFight_box03{
+    margin-top: 87px;
+}
+.RaiseFight_tit{
+    width: 535px;
+    height: 45px;
+    margin: 0 auto;
+    background: url("../../image/RaiseFight/RaiseFight_tit02.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    font-size: 36px;
+    color: #fff;
+}
+.RaiseFight_con{
+    width: 1160px;
+    height: 692px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-top: 55px;
+    text-align: center;
+    overflow: hidden;
+}
+.RaiseFight_con .con-tit{
+    font-size: 24px;
+    color: #f17a06;
+    text-align: center;
+    margin-top: 80px;
+}
+.box01Table{
+    margin: 0 auto;
+    margin-top: 42px;
+}
+.box01Text{
+    font-size: 24px;
+    color: #f17a06;
+    text-align: center;
+    margin-top: 40px;
+    line-height: 52px;
+}
+.RaiseFight_box02 .RaiseFight_tit,.RaiseFight_box03 .RaiseFight_tit{
+    width: 455px;
+    background: url("../../image/RaiseFight/RaiseFight_tit01.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.RaiseFight_box02 .RaiseFight_con{
+    height: 600px;
+}
+.RaiseFight_box02 .example_main,.RaiseFight_box03 .example_main{
+    width: 1015px;
+    margin: 0 auto;
+    margin-top: 78px;
+    text-align: left;
+}
+.RaiseFight_box02 .example_main h3{
+    font-size: 24px;
+    color: #9d34f5;
+    margin-bottom: 28px;
+    font-weight: normal;
+}
+.RaiseFight_box02 .example_main p{
+    font-size: 18px;
+    color: #333;
+    line-height: 55px;
+}
+.example_mainTwo{
+    margin-top: 25px;
+}
+.RaiseFight_box03 .RaiseFight_con{
+    height: 670px;
+}
+.RaiseFight_box03 .example_main p{
+    font-size: 18px;
+    color: #333;
+    line-height: 55px;
+    padding: 0px;
+    margin: 0px;
+}
+.RaiseFight_box03 .example_main p span{
+    font-size: 24px;
+    color: #a953f6;
+    margin-right: 5px;
+}

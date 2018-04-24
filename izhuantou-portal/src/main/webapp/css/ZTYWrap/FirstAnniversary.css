@@ -1,0 +1,211 @@
+body{
+    font-family: "微软雅黑", Arial;
+}
+canvas{
+	width:100%;
+}
+.AnniversaryWrap{
+    width: 100%;
+    /* min-height: 2972px; */
+    background: #f06e3b url("../../image/FirstAnniversary/first_anniversary_Bg.png?v=114");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y:0px ;
+    background-size: 100%;
+    overflow: hidden;
+}
+.AnniversaryMain{
+    text-align: center;
+}
+.AnniversaryWrap img{display: block;margin: 0 auto;}
+.firstTit{
+    margin-top: 120px;
+}
+
+.welfareBox01{
+    margin-top: 140px;
+}
+.AnniversaryWrap .welfareTit01,.AnniversaryWrap .welfareTit02,.AnniversaryWrap .welfareTit03,.AnniversaryWrap .welfareTit04{
+    margin-bottom: 60px;
+    
+}
+.welfareBox02{
+    margin-top: 70px;
+    margin-bottom:70px;
+}
+.welfareBox04{
+    margin-bottom:70px;
+}
+.firstTit img{
+	max-width:61%;
+	-webkit-animation: cloudy 2s forwards;animation: cloudy 2s  forwards;
+}
+.welfareImg01,.welfareImg02,.welfareImg03,.welfareImg04{
+	max-width:56%;
+}
+.welfareTit03{
+	max-width:30%;
+}
+.welfareTit02{
+	max-width:41%;
+}
+.welfareTit04{
+	max-width:39.5%;
+}
+.welfareTit01{
+	max-width:38%;
+}
+.AnniversaryWrap .welfareImg03{
+	margin-bottom:155px;
+}
+.welfareContent{
+	width:702px;
+	padding-top:100px;
+	padding-bottom:100px;
+	margin:0 auto;
+	font-size:18px;
+	text-align:left;
+	color:#fff;
+	line-height:37px;
+}
+
+
+
+@-webkit-keyframes cloudy {
+    0% {
+        opacity: 0;
+        transform: rotate(0deg) scale(0.4);
+    }
+    30% {
+        opacity: 1;
+        transform: rotate(760deg) scale(1.0);
+    }
+    40% {
+        opacity: 1;
+        transform: rotate(680deg) scale(1.0);
+    }
+    50% {
+        opacity: 1;
+        transform: rotate(740deg) scale(1.0);
+    }
+    60% {
+        opacity: 1;
+        transform: rotate(700deg) scale(1.0);
+    }
+    70% {
+        opacity: 1;
+        transform: rotate(720deg) scale(1.4);
+    }
+    80% {
+        opacity: 1;
+        transform: rotate(720deg) scale(0.8);
+    }
+    90% {
+        opacity: 1;
+        transform: rotate(720deg) scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(720deg) scale(1.0);
+    }
+
+}
+@keyframes cloudy {
+    0% {
+        opacity: 0;
+        transform: rotate(0deg) scale(0.4);
+    }
+    30% {
+        opacity: 1;
+        transform: rotate(760deg) scale(1.0);
+    }
+    40% {
+        opacity: 1;
+        transform: rotate(680deg) scale(1.0);
+    }
+    50% {
+        opacity: 1;
+        transform: rotate(740deg) scale(1.0);
+    }
+    60% {
+        opacity: 1;
+        transform: rotate(700deg) scale(1.0);
+    }
+    70% {
+        opacity: 1;
+        transform: rotate(720deg) scale(1.2);
+    }
+    80% {
+        opacity: 1;
+        transform: rotate(720deg) scale(0.8);
+    }
+    90% {
+        opacity: 1;
+        transform: rotate(720deg) scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(720deg) scale(1.0);
+    }
+}
+
+@media screen and (max-width: 1170px) {
+	.firstTit img {
+		max-width: initial;
+	}
+	.welfareImg01,.welfareImg02,.welfareImg03,.welfareImg04 {
+		max-width: initial;
+	}
+	.welfareTit02 {
+		max-width: initial;
+	}
+	.welfareTit01 {
+		max-width: initial;
+	}
+	.welfareTit03 {
+		max-width: initial;
+	}
+	.welfareTit04 {
+		max-width: initial;
+	}
+}
+
+/* 星星榜 top20 */
+.TopAnnualWrap{
+	background: #f06e3b url("../../image/FirstAnniversary/TOPAnnualStar/TopAnnualBg.png");
+}
+.TopAnnualMain{
+	text-align:center;
+}
+.welfareCon{
+	margin-bottom:200px;
+}
+.welfareCon .Tit01{
+	width:34%;
+	max-width:646px;
+	margin-bottom:58px;
+}
+.welfareCon .TableImg01{
+	width:56%;
+	max-width:1160px;
+}
+.welfareConText{
+	width:56%;
+	max-width:1160px;
+	text-align:right;
+	color:#fff;
+	margin:0 auto;
+	margin-top:28px;
+	
+}
+@media screen and (max-width: 1170px) {
+	.welfareCon .Tit01{
+	width:auto;
+	}
+	.welfareCon .TableImg01{
+	width:auto;
+	}
+	.welfareConText{
+	width:auto;
+	}
+}

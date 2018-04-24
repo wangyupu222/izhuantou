@@ -1,0 +1,27 @@
+/* CSS Document */
+/*借款管理、理财管理（债权转让）公共样式*/
+/*借款管理*/
+.my_loan{ background:#fff; min-height:818px; border:1px solid #e6e6e6;}
+.my_loantop{ height:48px; line-height:48px;}
+.my_loantop a{ display:block; float:left; width:155px; text-align:center; color:#333333; border:1px solid #dadada; border-top:0;}
+.my_loantop a.active{ border:0; border-top:3px solid #55b0fd;}
+
+
+.loanrecord01{ margin-top:20px;}
+.loanrow{ width:93%; margin:0 auto; overflow:hidden;height:55px; line-height:55px; border:1px solid #eeeeee; border-bottom:0;}
+.loanrow:last-child{ border-bottom:1px solid #eeeeee;}
+.loanrow.tit{ background:#f3f7fb;}
+.loanrow span{ display:block; float:left; width:14%;  text-align:center;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.loanrow.short span{ width:16.5%;}
+.loanrow span.loanstates{ background:#cccccc; border-radius:12px; width:56px; height:26px; line-height:26px; color:#fff; margin-top:15px; margin-left:30px; font-size:12px;}
+.loanrow span.loanstates.ahead{ background:#55b0fd;}
+.loanrow span.loanstates a{color:#fff;}
+.loanrow span.loanstates.ahead a{ color:#fff;}
+
+.nonemore{ margin-top:20px; text-align:center;}
+
+/*理财管理--债权转让*/
+.loanrow.transfer span{ width:16.5%; }
+
+.loanrow span.transfer_ht a{ color:#55b0fd;}
+.loanrow span.transfer_tates a{color:#ff7800;}

@@ -1,0 +1,146 @@
+body{
+	background-color:#687bdc;
+}
+.cashback_wrap{
+    width: 100%;
+    height:3900px;
+    background: url("../image/fanxian/cashback_bg.png");
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+.top_title{
+    text-align: center;
+    overflow: hidden;
+    height:297px;
+}
+.top_title img{
+    margin-top:40px;
+    margin-right: 38px;
+}
+.top_title img{-webkit-animation: cloudy 1s forwards;animation: cloudy 1s forwards;}
+.model01{
+    height: 760px;
+    overflow: hidden;
+}
+.model02{
+    height: 1984px;
+    overflow: hidden;
+}
+.model03{
+    height: 720px;
+    overflow: hidden;
+}
+.content_box{
+    width:1110px;
+    height: 594px;
+    margin:0 auto;
+    margin-top: 170px;
+    position: relative;
+    left: -65px;
+    background: url("../image/fanxian/cashback_img01.png") center no-repeat;
+    overflow: hidden;
+}
+.content_box2{
+    margin-top: 77px;
+    height: 1905px;
+    width:1245px;
+    background: url("../image/fanxian/cashback_img02.png") center no-repeat;
+    left: -13px;
+    opacity: 0;
+}
+.content_box3{
+    width: 1285px;
+    height: 688px;
+    margin-top: 77px;
+    left: 14px;
+    background: url("../image/fanxian/cashback_img04.png") center no-repeat;
+    opacity: 0;
+}
+.content_box01{
+    opacity: 0;
+}
+.attention_content{
+    font-family: 华康少女;
+    margin-left: 250px;
+    margin-top: 173px;
+    line-height: 24px;
+    letter-spacing: 1px;
+    color: #666;
+    font-size: 20px;
+}
+.attention_content span{
+    color:#5164c3;
+
+}
+.content_box01.modelShow {-webkit-animation: cloudy4 1s 1s forwards;animation: cloudy4 1s 1s forwards;}
+.model02 .point.modelShow{ -webkit-animation: cloudy5 1s forwards;animation: cloudy5 1s forwards;}
+.model03 .point.modelShow{-webkit-animation: cloudy5 1s forwards;animation: cloudy5 1s forwards;  }
+.model03 .point.modelShow_new{-webkit-animation: cloudy5 1s 1s forwards;animation: cloudy5 1s 1s forwards;}
+@font-face {
+    font-family: 华康少女;
+    src: url('../image/fanxian/font/华康少女体.TTF');
+}
+@-webkit-keyframes cloudy {
+    0%{ opacity:0;margin-top:0px;}
+    100%{ opacity:1; margin-top:50px;}
+}
+@keyframes cloudy {
+    0%{ opacity:0;margin-top:0px;}
+    100%{ opacity:1; margin-top:40px;;}
+}
+@-webkit-keyframes cloudy2{
+    0%{ opacity:0;}
+    100%{ opacity:1; }
+}
+@keyframes cloudy2{
+    0%{ opacity:0;}
+    100%{ opacity:1;}
+}
+@-webkit-keyframes cloudy3{
+    0%{ opacity:0;margin-top:120px;}
+    100%{ opacity:1; margin-top:170px;}
+}
+@keyframes cloudy3{
+    0%{ opacity:0;margin-top:120px;}
+    100%{ opacity:1; margin-top:170px;}
+}
+@-webkit-keyframes cloudy4{
+    0%{ opacity:0;margin-top:20px;}
+    100%{ opacity:1; margin-top:70px;}
+}
+@keyframes cloudy4{
+    0%{ opacity:0;margin-top:120px;}
+    100%{ opacity:1; margin-top:170px;}
+}
+@-webkit-keyframes cloudy5{
+    0%{ opacity:0;margin-top:27px;}
+    100%{ opacity:1; margin-top:77px;}
+}
+@keyframes cloudy5{
+    0%{ opacity:0;margin-top:27px;}
+    100%{ opacity:1; margin-top:77px;}
+}
+@-webkit-keyframes cloudy6{
+    0%{ opacity:0;left:-30px;}
+    100%{ opacity:1; left:0px;}
+}
+@keyframes cloudy6{
+    0%{ opacity:0;left:-30px;}
+    100%{ opacity:1; left:0px;}
+}
+@-webkit-keyframes cloudy7{
+    0%{ opacity:0;left:30px;}
+    100%{ opacity:1; left:0px;}
+}
+@keyframes cloudy7{
+    0%{ opacity:0;left:30px;}
+    100%{ opacity:1; left:0px;}
+}
+@-webkit-keyframes cloudy8{
+    0%{ opacity:0;top:-30px;}
+    100%{ opacity:1; top:0px;}
+}
+@keyframes cloudy8{
+    0%{ opacity:0;top:-30px;}
+    100%{ opacity:1; top:0px;}
+}

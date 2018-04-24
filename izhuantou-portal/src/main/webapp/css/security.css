@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+.f_banner{ margin-top:5px;}
+.f_banner img{ width:100%;}
+.con_row{ width: 1170px;min-height: 300px;margin: 0 auto;  padding-top: 65px;padding-bottom: 65px; margin-bottom:10px;}
+.row_left{ float:left;}
+.left_tit{ font-size:24px;font-weight: bold; color:#55a5fe;}
+.left_tit2{ font-size: 21px;color: #55a5fe;margin-top: 10px }
+.odd{  width: 100%;min-height: 300px;background-color: #ffffff;  }
+.even .left_tit{  float: right;  }
+.even .left_tit2{  float: right;  }
+.even{  background-color: #f2f2f2;  }
+.left_txt{ width:578px; font-size:16px; color:#939393; line-height:35px; margin-top:45px;}
+.row_right{ float:right;}
+.row_right .left_txt{float:right}
+.row_right img{  width: 505px;  }
+.row_left img{  width: 505px;  margin-top: 10px;  }
+.con_row.even .row_right{ width:578px;}
+.txt_img4{  margin-top: 20px;  }
+.ljtz{ margin-top:50px; margin-bottom:50px;}
+.ljtz a{ display:block; width:240px; height:56px; margin:0 auto; line-height:56px; text-align:center; font-size:24px; background:#f6b517; color:#fff; border-radius:10px;}

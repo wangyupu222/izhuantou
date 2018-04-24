@@ -1,0 +1,115 @@
+/* CSS Document */
+@charset "utf-8";
+* {box-sizing: border-box;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {border: 0 none; font: inherit; margin: 0;padding: 0;vertical-align: baseline;}
+body{ font-family:"微软雅黑";}
+ul,li,ol{ list-style:none;}
+a{ text-decoration:none;}
+a,input,textarea{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+.hide{ display:none;}
+.heig{ height:14px; background-color:#e7eef3;}
+.main-top{ margin:0 auto; max-width:640px; min-width:300px; position:relative;  background-color:#fff;}
+.main-top img{ width:100%; border:0px; display:block;}
+/**top 返回**/
+.fixed {  position:fixed; top:0; z-index:9; }
+.fixbotnew{max-width:720px; width:63%; margin:0px auto; }
+.fixbot{ margin:0px;max-width:640px; width:100%;  position:fixed; bottom:0px;}
+.top{ width:100%; background-color:#fff;max-width:640px; margin:0 auto;  border-bottom:1px solid #f29004; height:50px; text-align:center;}
+.top a{ font-size:18px; font-family:"微软雅黑"; color:#000; line-height:50px;  }
+.top .topa01{ padding-left:2.2%; z-index:999;}
+.top .topa02{  color:#000000;}
+.top .topacon{ }
+.top a.fhz{font-size:24px; font-family:'黑体'; display:block; position:absolute; color:#f29004; margin-left:4%; text-decoration:none; z-index:9999; width:12px; height:27px; margin-top:12px;}
+.top a.fhz img{ width:100%;}
+/**bottom*/
+.botnav{ overflow:hidden; border-top:1px solid #d6d6d6; padding:1% 0; background-color:#10b3ff; }
+.navcon{ width:25%; text-align:center; float:left;}
+.navcon .nava{ display:block; text-align:center; cursor:pointer;}
+.navcon .nava span{ display:block; margin:0 auto;}
+.navcon .nava span.tub{width:33px; height:34px; margin-top:4%;  }
+.navcon.active .nava span.tub01{width:33px; height:34px; background:url(../images/nav01ac.png) no-repeat 0 0/100%; }
+.navcon.active .nava span.tub02{width:33px; height:34px; background:url(../images/nav02ac.png) no-repeat 0 0/100%; }
+.navcon.active .nava span.tub03{width:33px; height:34px; background:url(../images/nav03ac.png) no-repeat 0 0/100%; }
+.navcon.active .nava span.tub04{width:33px; height:34px; background:url(../images/nav04ac.png) no-repeat 0 0/100%; }
+.navcon .nava span.tub01{width:33px; height:34px; background:url(../images/nav01.png) no-repeat 0 0/100%; }
+.navcon .nava span.tub02{width:33px; height:34px; background:url(../images/nav02.png) no-repeat 0 0/100%; }
+.navcon .nava span.tub03{width:33px; height:34px; background:url(../images/nav03.png) no-repeat 0 0/100%; }
+.navcon .nava span.tub04{width:33px; height:34px; background:url(../images/nav04.png) no-repeat 0 0/100%; }
+
+.navcon.active .nava span.fontz{ color:#157bab;}
+.navcon .nava span.fontz{ font:16px/18px "微软雅黑"; color:#fff; margin-top:0%;}
+.conhbj{padding:0px 0 25% 0; background-color:#e8eaec;}
+.conh{padding:0px 0 21% 0; background-color:#fff;}
+.conhbj01{padding:0px 0 21% 0;}
+.conhbjyhg{ background-color:#fff;}
+.conhnews{ padding:50px 0 12% 0;}
+.tztext{ text-align:center; padding:0% 0px;  font:14px/14px "微软雅黑"; color:#999999;}
+/**筛选**/
+.top .shx{ position:absolute; right:5%; top:15px; z-index:999999; cursor:pointer;  background:url(../images/sx01.png) no-repeat 0 0/100%; width:26px; height:24px; }
+.top .shx.active{ background:url(../images/sxac.png) no-repeat 0 0/100%; width:26px; height:24px;}
+.ul-sx{ position:absolute; right:-27%; width:400%;  z-index:99999; top:125%;}
+.ul-sx li{height:30px;  background-color:#f29004;}
+.ul-sx li div{ color:#fff; font:14px/30px "微软雅黑";  text-align:center; padding-left:6%;}
+
+/**详情页面 立即投资*/
+.ZT{ background-color:#10b3ff; width:100%;}
+.ZT a{ font:18px/46px "微软雅黑"; color:#fff; text-align:center; display:block; margin:0 auto; cursor:pointer;}
+.ZT input{ border:none; background-color:transparent; font:18px/46px "微软雅黑"; color:#fff; text-align:center; display:block; margin:0 auto; cursor:pointer;}
+
+.ZT01{ background-color:#fff; width:100%; border:1px solid #f29004;}
+.ZT01 a{ font:18px/46px "微软雅黑"; color:#f29004; text-align:center; display:block; margin:0 auto;}
+/**详情页面 立即投资+计算器*/
+.ZTj{ background-color:#f29004; width:100%;}
+.ZTj a{ font:18px/46px "微软雅黑"; color:#fff; text-align:center; display:block; margin:0 auto; cursor:pointer;}
+.ZT01j{ background-color:#fff; width:100%; border:1px solid #f29004;}
+.ZT01j a{ font:18px/46px "微软雅黑"; color:#f29004; text-align:center; display:block; margin:0 auto;}
+.jsa{ background:url(../images/jsj.png) no-repeat 0 0/100%; width:55px; height:46px; display:block; float:left;}
+.mcpjs{ overflow:hidden; width:90%; margin:4% auto;}
+.mcpjs label{ display:block; float:left; font:16px/30px "微软雅黑"; width:56%;color:#f29004;}
+.mcpjs a{ display:block; float:right;font:14px/30px "微软雅黑";color:#4d4d4d; width:36%;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.ZT02{ background-color:#fffeff; width:100%;}
+.ZT02 a{ font:18px/46px "微软雅黑"; color:#f29004; text-align:center; display:block; margin:0 auto;}
+/*确认投资弹出框**/
+.qtz{ width:82.6%; max-width:590px; margin:0 auto; background-color:#fff; overflow:hidden; box-shadow:#333 0 0 4px; position:absolute; z-index:99999; left:8%; top:23%; padding-bottom:4%;}
+.qttop{ padding:3% 0px; text-align:center; font:16px/30px "微软雅黑"; color:#f29004; border-bottom:1px solid #f29004;}
+.mcp{ overflow:hidden; width:90%; margin:4% auto;}
+.mcp label{ display:block; float:left; font:16px/30px "微软雅黑"; width:30%;color:#f29004;}
+.mcp a{ display:block; float:right;font:14px/30px "微软雅黑";color:#4d4d4d; width:60%;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.mcp01{ border-bottom:1px solid #f29004; padding-bottom:4%;}
+.qrbot{ overflow:hidden; width:82.6%; margin:2% auto;}
+.qrbot a{ cursor:pointer; display:block; float:left; width:40%; margin-left:6%; text-align:center; padding:2% 0;}
+.qrbot a.aqx01{ border:1px solid #f29004; color:#f29004; border-radius:3px;}
+.qrbot a.aqx02{ background-color:#f29004; color:#fff; border-radius:3px;}
+.qrbot01 a.aqx01{ display:block; float:none; margin:0 auto; text-align:center;}
+#indexd{  z-index:9999; }
+.qtz .textcon{ font:16px/30px "微软雅黑"; text-align:center; color:#4d4d4d; margin:2%;}
+/*债权转让**/
+.mcpjs label.yam{ width:37%;}
+.mcpjs .inp{ float:left; width:33%; height:30px;font:14px/30px "微软雅黑";color:#4d4d4d; text-indent:10px;   border:1px solid #f29004;}
+.mcpjs .inpmc{ width:43%;}
+.mcpjs a.mctwo{ display:block; width:30%; height:30px; border:1px solid #f29004; border-left:0px; color:#f29004; text-align:center;}
+.mcpjs a.widmc{ width:20%;}
+/**more**/
+/*加载更多**/
+.jzmore{ width:90%; height:40px; line-height:40px; margin:0 auto;text-align:center;}
+.jzmore a{ font:16px/40px "微软雅黑"; color:#4d4d4d; }
+/**xiangqing*/
+.xitit{ font:18px/20px "微软雅黑"; color:#333333; width:90%; margin:4% auto;}
+.xqcon{ width:90%; margin:2% auto;font:16px/20px "微软雅黑"; color:#aaaaaa; }
+.xqcon p{width:100%; text-indent:2em;font:16px/20px "微软雅黑"; color:#aaaaaa; }
+.btend{ width:90%; text-align:right; height:20px;font:14px/20px "微软雅黑"; color:#333333; }
+@media screen and (min-width: 320px) and (max-width: 422px) { 
+.top a{ font-size:18px; font-family:"微软雅黑"; color:#fff; }
+}
+@media screen and (min-width: 423px) and (max-width: 450px) { 
+.top a{ font-size:18px; font-family:"微软雅黑"; color:#fff; }
+}
+@media screen and (min-width: 451px) and (max-width: 480px) { 
+.top a{ font-size:18px; font-family:"微软雅黑"; color:#fff; }
+}
+@media screen and (min-width: 481px) and (max-width: 1920px) { 
+.top a{ font-size:18px; font-family:"微软雅黑"; color:#fff; }
+
+} 
+
+

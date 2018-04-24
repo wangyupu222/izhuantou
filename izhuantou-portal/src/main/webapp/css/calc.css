@@ -1,0 +1,77 @@
+/* CSS Document */
+@charset "utf-8";
+
+body{ background:#f5f5f5;}
+.calcbg{ border:1px solid #dcdcdc; background:#fff;}
+.calatop{ overflow:hidden; border-bottom:1px solid #dcdcdc;padding-bottom:40px;}
+.calatop ul{ width:92%; margin:0 auto; margin-top:40px;}
+.calatop ul li{ width:30%; float:left; }
+.calatop ul li.fir{ width:40%; }
+.calatop label{ font:16px/44px "Microsoft yahei"; }
+.calatop input{ width:60%;height:44px; font:16px/44px "Microsoft yahei"; border:1px solid #c9c9c9; margin-left:15px; padding-left:15px;}
+.calatop select{ width:70%;height:46px; font:16px/46px "Microsoft yahei"; border:1px solid #c9c9c9; margin-left:15px; padding-left:15px;}
+.calatop ul li .calc-a{ display:block; float:right;height:46px; width:224px;font:16px/44px "Microsoft yahei"; text-align:center;  background:#55b0fd; color:#fff; cursor:pointer;}
+.calatop ul li .calc-a:hover{ background:#3291f0;}
+/*������*/
+.calaresult{overflow:hidden; border-bottom:1px solid #dcdcdc;padding-bottom:40px;}
+.res-t{width:92%;margin:0 auto; margin-top:40px;}
+.res-t span{ color:#777777;}
+.calaresult ul{width:92%;margin:0 auto; margin-top:40px;}
+.calaresult ul li{ float:left; width:33.3%; text-align:center;}
+.calaresult ul li span{color:#777777;}
+.calaresult ul li .divmoney{ height:100px; line-height:100px; margin-top:40px; border-right:1px solid #d2d2d2;}
+.calaresult ul li:last-child .divmoney{ border-right:0;}
+.calaresult ul li .divmoney em{ color:#489ae3;  font-size:30px;}
+/*�ؿ���ϸ*/
+.mingxi{overflow:hidden; padding-bottom:40px;}
+.mingxi table{ font-size:14px;}
+.mingxi table tr{ height:68px; line-height:68px;  text-align:center; background:#fafafa;}
+.mingxi table tr td{border-left:1px solid #DCDCDC;}
+.mingxi table tr td:first-child{border-left:none;}
+.mingxi table tr.mxtit{background:#f5f5f5;}
+.mingxicon{ width:92%;margin:0 auto; margin-top:40px;}
+.mingxi table tr.mxcon td{ border-bottom:1px solid #fff;}
+
+/*����*/
+.cjqx{ width:92%; margin:30px auto;} 
+a{color:#000; text-decoration:none;}
+.project-screening{background:url(../images/s_select_bg_03.png) repeat-x;background-position:0px 2px;width:1040px;margin:50px auto 0 auto;position:relative;height:9px; margin-bottom:20px;display:none;}
+.screening-select{background:url(../images/s_select_bg_06.png) no-repeat;width:8px;height:9px;position:absolute;top:0px;cursor:pointer}
+.project-screening01 .select-1{left:-1px;}
+.project-screening01 .select-2{left:50%;}
+.project-screening01 .select-3{left:100%;}
+
+
+
+.project-screening02 .select-1{left:-1px;}
+.project-screening02 .select-2{left:25%;}
+.project-screening02 .select-3{left:50%;}
+.project-screening02 .select-4{left:75%;}
+.project-screening02 .select-5{left:100%;}
+
+.project-screening03 .select-1{left:-1px;}
+.project-screening03 .select-2{left:33.3%;}
+.project-screening03 .select-3{left:66.6%;}
+.project-screening03 .select-4{left:100%;}
+/*.project-screening-yellow{background-color: #ff8b24;height:9px;overflow:hidden;width:0;border-radius:10px;}*/
+.project-screening01 .project-screening-yellow{background:url(../images/s_select_bg_04_01.png) no-repeat;background-position:0px 0px;height:10px;overflow:hidden;width:0;border-radius:10px;}
+.project-screening02 .project-screening-yellow{background:url(../images/s_select_bg_04.png) no-repeat;background-position:0px 0px;height:9px;overflow:hidden;width:0;border-radius:10px;}
+.project-screening03 .project-screening-yellow{background:url(../images/s_select_bg_04_03.png) no-repeat;background-position:0px 0px;height:10px;overflow:hidden;width:0;border-radius:10px;}
+.screening-select a{position:absolute;left:-23px;top:-27px;white-space:nowrap;margin:0;padding:0;line-height:none;width:56px; text-align:center;line-height:16px;font-size:12px;}
+.screening-select a:hover{color:#ff8b24;}
+.project-screening .select-1-yellow{background:url(../images/s_select_bg_17.png) no-repeat;cursor: pointer; width:20px;height:20px; position:absolute;left:-6px;bottom:-8px;z-index:3}
+.project-screening .current a{background:url(../images/s_select_bg_09.png) top center no-repeat;color:#fff;height:21px;}
+
+
+.xialakuang{
+    width: 200px;
+    height: 30px;
+}
+.new{
+    width: 80px;
+    text-align: center;
+    position: absolute;
+    bottom: -35px;left: -35px;
+    display: none;
+    color: orangered;
+}

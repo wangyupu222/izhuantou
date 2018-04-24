@@ -1,0 +1,178 @@
+body{min-width:0px;bo}
+.wrap{ margin:0 auto; max-width:640px; min-width:300px;position:relative; overflow: hidden;background-color: #5fb8fd;}
+.registright{
+position: relative;
+width:85%;
+float: none;
+margin:0 auto;
+margin-top: 20px;
+margin-bottom: 0px; 
+z-index:10;
+}
+.zcbtn{
+width:65%;
+margin:0 auto;
+}
+.zcbtn #register{
+width:100%;
+margin-right: 0px;
+}
+.register_bg{
+   position: absolute;
+   width:100%;
+   display:block;
+   left:0px;
+   bottom:0px;
+   z-index:2;
+}
+.invite_top{
+	width:100%;
+	color:#fff;
+	font-size:18px;
+	text-align:center;
+	margin-bottom: 20px;
+}
+.invite_top p{
+	margin-bottom:10px;
+}
+.registright .regist_box{
+	width:100%;
+	height:43px;
+	background-color:#fff;
+	border-radius: 9px;
+	-webkit-box-shadow:3px 2px 3px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow:3px 2px 3px 0px rgba(0, 0, 0, 0.1);
+    box-shadow:3px 2px 3px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom:20px;	
+    position:relative;
+}
+.regist_box p{
+	width:14%;
+	display: inline-block;
+	height:100%;
+	text-align:center;
+    align-items:center;
+
+}
+.regist_box p img{
+	width:36%;
+	position:relative;
+	
+}
+.regist_box input{
+	border:none;
+	height:100%;
+	outline: none;
+	width:70%;
+	font-size:#666;
+}
+.num_yzm{
+	position: absolute;
+	right:3%;
+	top:3%;
+}
+.eye_show {
+    display: inline-block;
+    width: 28px;
+    height: 15px;
+    margin-left: 3%;
+    cursor: pointer;
+    
+}
+.hqyzmbtn {
+    position: absolute;
+    background: #55b0fd;
+    color: #fff;
+    padding: 11px 23px;
+    padding: 0;
+    display: inline-block;
+    width: 117px;
+    height: 94%;
+    right:1%;
+    top:3%;
+    line-height: 40px;
+    margin-left: 199px;
+    text-align: center;
+    float: none;
+    margin-top: 0px;
+    margin-right: 0px;
+    border-radius: 9px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.zcbtn button {
+    background: #fff;
+    width: 100%;
+    height: 42px;
+    margin: 0 auto;
+    border: 0;
+    border-radius: 9px;
+    text-align: center;
+    color: #44abfc;
+    font-size: 18px;
+    margin-right: 0px;
+    cursor: pointer;
+}
+.zcbtn button:hover {
+    background: #fff;  
+}
+.regist_check {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #666;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+.register_validate {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    height: 25px;
+    outline: none;
+    color: #f00;
+    font-size: 13px;
+    line-height: 26px;
+    text-align: center;
+}
+
+
+.invite_success{
+	position: relative;
+width:85%;
+float: none;
+margin:0 auto;
+margin-top: 20px;
+margin-bottom: 0px; 
+z-index:10;
+text-align:center;
+}
+.success_icon{
+	width:40%;
+	margin-top:13%;
+}
+.success_btn{
+	width:65%;
+	height:42px;
+	line-height:42px;
+	text-align:center;
+	background-color:#fff;
+	border-radius: 9px;
+	margin:0 auto;
+	margin-top: 16%;
+}
+.success_btn a{
+	display: inline-block;
+	width:100%;
+	height:100%;
+	color:#44abfc;
+	font-size:18px;
+	outline: none;
+}
+.success_text{
+	text-align:center;
+	color:#fff;
+	margin-top:5%;
+	font-size:14px;
+	
+}

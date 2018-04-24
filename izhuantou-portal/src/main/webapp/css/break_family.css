@@ -1,0 +1,272 @@
+body{
+    min-height: 7873px;
+    background: url("../image/break_family/break_family_bg.jpg");
+    font-family: "微软雅黑";
+}
+.break_wrap{
+    width: 1170px;
+    min-height: 7873px;
+    margin:0 auto;
+}
+.top_people_wrap{
+    width: 1140px;
+    margin: 0 auto;
+    min-height: 1460px;
+    margin-top: 642px;
+
+}
+
+.top_people_top{
+    min-height: 340px;
+    width: 100%;
+    text-align: center;
+    color:#697cba;
+    overflow: hidden;
+}
+.top_people_top img{
+    margin-bottom: 10px;
+}
+.top_people_top p{
+    font-size: 13px;font-weight: bold;
+    line-height: 22px;
+
+}
+.top_people_top .top_peoplr_con{
+    font-size: 14px;
+    color: #697cba;
+    line-height: 22px;
+    margin-top: 12px;
+}
+.hengxian{
+    margin-top: 10px;
+}
+.top_people{
+    min-height: 765px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+.top_people_box{
+    width: 255px;
+    height: 363px;
+    float: left;
+    line-height: 27px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+}
+.top_people_box .box_img{
+    width: 255px;
+    height: 255px;
+    background: url("../image/break_family/break_people01.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.top_people_box .box_img02{
+    background: url("../image/break_family/break_people02.png");
+}
+.top_people_box .box_img03{
+    background: url("../image/break_family/break_people03.png");
+}
+.top_people_box .box_img04{
+    background: url("../image/break_family/break_people04.png");
+}
+.top_people_box .box_img05{
+    background: url("../image/break_family/break_people05.png");
+}
+.top_people_box .box_img06{
+    background: url("../image/break_family/break_people06.png");
+}
+.top_people_box .box_img07{
+    background: url("../image/break_family/break_people07.png");
+}
+.top_people_box .box_img08{
+    background: url("../image/break_family/break_people08.png");
+}
+.box_img:hover{
+    background: url("../image/break_family/break_people_hover.png");
+}
+.top_people_box h3,.bottom_people_box h3{
+    font-size: 24px;
+    color: #697cba;
+    margin-top: 22px;
+    padding-left: 5px;
+}
+.top_people_box p,.bottom_people_box p{
+    font-size: 16px;
+    color: #697cba;
+    margin-top: 2px;
+    padding-left: 5px;
+}
+.top_people_box span{
+    font-size: 14px;
+    color: #7a4977;
+    padding-left: 5px;
+}
+.bottom_people_box{
+    width: 255px;
+    height: 335px;
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 27px;
+    margin-top: 3px;
+}
+.bottom_people_box .box_img{
+    width: 255px;
+    height: 255px;
+    background: url("../image/break_family/break_people09.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.introduce{
+    position: absolute;
+    left: 0px;
+    top:0px;
+    display: none;
+    z-index: 1;
+}
+.top_people_wrap02{
+    min-height: 1145px;
+    margin-top: 45px;
+}
+.top_people_wrap02 .leng_img{
+    margin-top: 35px;
+}
+.top_people_wrap03{
+    min-height: 615px;
+    margin-top: 45px;
+}
+.top_people_wrap03 .columnist_wrap{
+    width: 100%;
+    height: 386px;
+    background: url("../image/break_family/columnist_img.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+}
+.columnist_title{
+    width: 302px;
+    height: 35px;
+    overflow: hidden;
+    margin-top: 65px;
+    margin-left: 484px;
+}
+.columnist_title .shu_xian{
+    width: 6px;
+    height: 29px;
+    float: left;
+    background-color: #697cba;
+}
+.columnist_title .title_text{
+    font-size: 25px;
+    font-weight: bold;
+    float: left;
+    margin-left: 12px;
+    color: #697cba;
+}
+.title_english{
+    font-size: 16px;
+    float: left;
+    margin-left: 12px;
+    color: #697cba;
+    line-height: 29px;
+}
+.columnist_logo{
+    width: 615px;
+    margin-top: 15px;
+    margin-left: 468px;
+}
+.columnist_logo a{
+    margin-right: 30px;
+}
+.columnist_logo a img{
+	transition: 0.5s;
+}
+.columnist_logo a img:hover{
+	-webkit-transform:scale(1.1);
+  -moz-transform:scale(1.1);
+  -ms-transform:scale(1.1);
+  -o-transform:scale(1.1);
+  transform:scale(1.1);
+}
+.columnist_wrap .content_text{
+    font-size: 16px;
+    color: #697cba;
+    width: 630px;
+    text-align: left;
+    margin-left: 444px;
+    margin-top: 72px;
+    line-height: 32px;
+}
+.columnist_wrap .content_text span{
+    color:#7a4977;
+}
+.top_people_wrap04{
+    min-height: 1190px;
+    margin-top: 58px;
+}
+.bibibi_wrap{
+    text-align: center;
+}
+.bibibi_house{
+    margin-top: 46px;
+}
+.bibibi_bottom{
+    font-size: 16px;
+    color: #697cba;
+    text-align: center;
+    line-height: 32px;
+    margin-top: 36px;
+
+
+}
+.bibibi_bottom span{
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.top_people_wrap05{
+    min-height: 1320px;
+    margin-top: 45px;
+}
+.top_people_wrap05 .top_people_top{
+    min-height: 230px;
+}
+.family_product{
+    margin-top: 27px;
+}
+.family_product_bottom{
+    margin-top: 40px;
+}
+.top_people_wrap06{
+    min-height: 680px;
+    margin-top: 45px;
+}
+.top_people_wrap06 .top_people_top{
+    min-height: 230px;
+}
+.break_familys{
+    margin-top: 58px;
+}
+.wechar_er,.weibo_er{
+	position: relative;
+	cursor: pointer;
+}
+.wechar_er img,.weibo_er img{
+	position: absolute;
+	left: 50%;
+    top: 31px;
+    margin-left: -43px;
+    display:none;
+    transition: 0.6s;
+
+}
+.wechar_er:hover img{
+	display:block;
+	transition: 0.6s;
+} 
+.weibo_er:hover img{
+	display:block;
+	transition: 0.6s;
+} 

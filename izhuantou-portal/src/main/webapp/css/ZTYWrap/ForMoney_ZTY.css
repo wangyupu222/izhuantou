@@ -1,0 +1,399 @@
+body{
+    font-family: "微软雅黑", Arial;
+}
+.clear{float: inherit !important;clear: both !important;}
+.ForMonyWrap{
+    width: 100%;
+    min-height:1698px;
+    background: url("../../image/ForMoney_ZTY/ForMoney_Bg.jpg");
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+.ForMonyMain{
+    width: 1170px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.ForMonytit{
+    width: 496px;
+    height: 391px;
+    background: url("../../image/ForMoney_ZTY/ForMoney_tit.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 5px;
+    margin-left: 190px;
+    position: relative;
+}
+.ForMonytit .date-active{
+    position: absolute;
+    bottom: 88px;
+    left: 56px;
+    color: #76463a;
+    font-size: 18px;
+    font-weight: bold;
+}
+.ForMony-Con{
+    margin-left: 45px;
+}
+.Activity-tit{
+    width: 745px;
+    height: 68px;
+    background: url("../../image/ForMoney_ZTY/Activity-tit01.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    margin-top: 119px;
+    margin-left: 5px;
+}
+.Activity-tit p{
+    font-size: 16px;
+    color: #fff;
+    margin-top: 37px;
+    margin-left: 75px;
+    letter-spacing: 1px;
+}
+.MoneyWrap{font-size: 24px;font-weight: bold;color: #fff;margin-top: 60px;}
+.MoneyTop{
+    overflow: hidden;
+
+}
+.MoneyTop span{
+    width: 77px;
+    display: block;
+    text-align: center;
+    float: left;
+    margin-left: 95px;
+    margin-top: 14px;
+}
+.MoneyTop .boxOne{
+    width: 108px;
+    margin-left: 10px;
+    margin-top: 0px;
+}
+.MoneyTop .MoneyNum01{
+    margin-left: 47px;
+}
+.MoneyTop .MoneyNum03{
+    margin-left: 100px;
+}
+.MoneyTop .MoneyNum04{
+    margin-left: 120px;
+}
+.MoneyTop .MoneyNum05{
+    margin-left: 150px;
+}
+.MoneyBtm{margin-top: 50px}
+.GoldWrap{
+    font-size: 24px;
+    color: #792c17;
+    font-weight: bold;
+    height: 170px;
+    margin-top: 40px;
+}
+.GoldWrap div{
+    float: left;
+}
+.GoldWrap .goldBox{
+    width:160px;
+    height:138px;
+    text-align: center;
+    line-height: 138px;
+    cursor:url(../../image//ForMoney_ZTY/goldCursor.ico),auto;
+}
+.GoldWrap .goldBox:hover{
+    -webkit-animation: tada 1s .2s ease both;
+    -moz-animation: tada 1s .2s ease both;
+}
+.GoldWrap .goldBox:hover span{
+    -webkit-animation: cloudy 1s .8s forwards;
+    animation: su-pudding 1s .8s forwards;
+}
+.GoldWrap .goldBox span{
+    opacity: 0;
+}
+.GoldWrap .goldBox em{
+    font-style:normal;
+    font-size: 30px;
+}
+.GoldWrap .goldBox01{
+    background: url("../../image/ForMoney_ZTY/jin01.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 12px;
+}
+.GoldWrap .goldBox02{
+    background: url("../../image/ForMoney_ZTY/jin02.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position-y:13px;
+    margin-left: 7px;
+}
+.GoldWrap .goldBox03{
+    background: url("../../image/ForMoney_ZTY/jin03.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position-y:8px;
+    margin-left: 21px;
+}
+.GoldWrap .goldBox04{
+    background: url("../../image/ForMoney_ZTY/jin04.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position-y:7px;
+    margin-left: 37px;
+}
+.GoldWrap .goldBox05{
+    background: url("../../image/ForMoney_ZTY/jin05.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position-y:-2px;
+    margin-left: 72px;
+    margin-top: -10px;
+    line-height: 158px;
+}
+.Goldtit{
+    color:#fff100;
+    width: 108px;
+    text-align: center;
+    height: 138px;
+    line-height: 138px;
+
+}
+.ExampleWrap{
+    width: 1064px;
+    height: 177px;
+    background: url("../../image/ForMoney_ZTY/Activity-tit02.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    color:#fff;
+    overflow: hidden;
+    margin-top: -15px;
+}
+.ExampleMain{
+    width: 908px;
+    margin-top: 40px;
+    margin-left: 95px;
+}
+.ExampleMain h3{
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+.ExampleMain p{
+    line-height: 30px;
+    letter-spacing: 0.4px;
+}
+.ExampleMain p em{
+    font-style:normal;
+    color:#ffdd33;
+}
+.Announcements{
+    width: 1065px;
+    height: 436px;
+    background: url("../../image/ForMoney_ZTY/Activity-tit03.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    color:#fff;
+    overflow: hidden;
+    margin-top: 40px;
+}
+.AnnouncementsMain{
+    width:940px;
+    margin-top: 66px;
+    margin-left: 95px;
+}
+.AnnouncementsMain h3{
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+.AnnouncementsMain p{
+    line-height: 30px;
+    letter-spacing: 0.4px;
+}
+.AnnouncementsMain p span{
+    display: inline-block;
+    width: 26px;
+}
+
+@-moz-keyframes tada{
+    0%{-moz-transform:scale(1);}
+    10%,20%{-moz-transform:scale(0.9) rotate(-3deg);}
+    30%,50%,70%,90%{-moz-transform:scale(1.2) rotate(3deg);}
+    40%,60%,80%{-moz-transform:scale(1.2) rotate(-3deg);}
+    100%{-moz-transform:scale(1.2) rotate(0deg);}
+}
+
+@-webkit-keyframes tada{
+    0%{-webkit-transform:scale(1);}
+    10%,20%{-webkit-transform:scale(0.9) rotate(-3deg);}
+    30%,50%,70%,90%{-webkit-transform:scale(1.2) rotate(3deg);}
+    40%,60%,80%{-webkit-transform:scale(1.2) rotate(-3deg);}
+    100%{-webkit-transform:scale(1.2) rotate(0deg);}}
+
+@-webkit-keyframes cloudy {
+    0%{ opacity:0;}
+    100%{ opacity:1; }
+}
+@keyframes cloudy {
+    0%{ opacity:0;}
+    100%{ opacity:1;}
+}
+
+@keyframes su-pudding {
+    0% {
+        opacity:0;
+        transform: scale(1.2, 0.8);
+    }
+    1% {
+        transform: scale(1.18, 0.82);
+    }
+    2% {
+        transform: scale(1.16, 0.84);
+    }
+    3% {
+        transform: scale(1.13, 0.87);
+    }
+    4% {
+        transform: scale(1.1, 0.9);
+    }
+    5% {
+        transform: scale(1.07, 0.93);
+    }
+    6% {
+        transform: scale(1.04, 0.96);
+    }
+    7% {
+        transform: scale(1.01, 0.99);
+    }
+    8% {
+        transform: scale(0.99, 1.01);
+    }
+    9% {
+        transform: scale(0.97, 1.03);
+    }
+    10% {
+        transform: scale(0.95, 1.05);
+    }
+    11% {
+        transform: scale(0.94, 1.06);
+    }
+    12% {
+        transform: scale(0.93, 1.07);
+    }
+    13% {
+        transform: scale(0.93, 1.07);
+    }
+    14% {
+        transform: scale(0.93, 1.07);
+    }
+    15% {
+        transform: scale(0.93, 1.07);
+    }
+    16% {
+        transform: scale(0.94, 1.06);
+    }
+    17% {
+        transform: scale(0.94, 1.06);
+    }
+    18% {
+        transform: scale(0.95, 1.05);
+    }
+    19% {
+        transform: scale(0.96, 1.04);
+    }
+    20% {
+        transform: scale(0.98, 1.02);
+    }
+    21% {
+        transform: scale(0.99, 1.01);
+    }
+    22% {
+        transform: scale(1, 1);
+    }
+    23% {
+        transform: scale(1, 1);
+    }
+    24% {
+        transform: scale(1.01, 0.99);
+    }
+    25% {
+        transform: scale(1.02, 0.98);
+    }
+    26% {
+        transform: scale(1.02, 0.98);
+    }
+    27% {
+        transform: scale(1.02, 0.98);
+    }
+    28% {
+        transform: scale(1.03, 0.97);
+    }
+    29% {
+        transform: scale(1.03, 0.97);
+    }
+    30% {
+        transform: scale(1.02, 0.98);
+    }
+    31% {
+        transform: scale(1.02, 0.98);
+    }
+    32% {
+        transform: scale(1.02, 0.98);
+    }
+    33% {
+        transform: scale(1.02, 0.98);
+    }
+    34% {
+        transform: scale(1.01, 0.99);
+    }
+    35% {
+        transform: scale(1.01, 0.99);
+    }
+    36% {
+        transform: scale(1.01, 0.99);
+    }
+    37% {
+        transform: scale(1, 1);
+    }
+    38% {
+        transform: scale(1, 1);
+    }
+    39% {
+        transform: scale(1, 1);
+    }
+    40% {
+        transform: scale(0.99, 1.01);
+    }
+    41% {
+        transform: scale(0.99, 1.01);
+    }
+    42% {
+        transform: scale(0.99, 1.01);
+    }
+    43% {
+        transform: scale(0.99, 1.01);
+    }
+    44% {
+        transform: scale(0.99, 1.01);
+    }
+    45% {
+        transform: scale(0.99, 1.01);
+    }
+    46% {
+        transform: scale(0.99, 1.01);
+    }
+    47% {
+        transform: scale(0.99, 1.01);
+    }
+    48% {
+        transform: scale(0.99, 1.01);
+    }
+    49% {
+
+        transform: scale(1, 1);
+    }
+    100%{
+        opacity:1;
+    }
+}

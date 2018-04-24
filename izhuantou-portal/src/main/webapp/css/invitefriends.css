@@ -1,0 +1,41 @@
+/* CSS Document */
+.invitecon{ background:#fff; min-height:818px; border:1px solid #e6e6e6;}
+.invitetop{ height:48px; line-height:48px; border-bottom:1px solid #dadada;}
+.invitetop span{ display:block; width:155px; text-align:center; border-bottom:2px solid #55b0fd;}
+
+.invitation{ width:95%; margin:0 auto; margin-top:30px; border:1px solid #dadada; font-size:14px; }
+.invitationtop{ height:45px; line-height:45px; background:#f3f7fb;}
+.invitationtop span{ padding-left:20px; font-size:16px;}
+.invitationtop a{ float:right; padding-right:20px; color:#55b0fd;}
+.shouru{ margin-left:40px;margin-bottom:20px;}
+.shouru .bysr{ margin-top:20px;  margin-bottom:20px;}
+.shouru .bysr span{ color:#55b0fd;}
+.shouru .cgzc{ float:left; width:50%;}
+.shouru .zgtz{ float:left; width:50%;}
+
+.shouru_img{ margin-top:30px; padding-bottom:20px;}
+.shouru_img img{ margin-left:10px;margin-right:10px;}
+
+.rules_tit{ text-align:center; font-size:18px; margin-top:20px; margin-bottom:10px;}
+.rules_con{ font-size:14px; line-height:28px; margin-top:20px; /*width:80%; margin:0 auto;*/ }
+
+.invite_record .del{ width:96px; height:34px; line-height:35px; text-align:center; margin-top:20px; margin-left:30px;background:#dc0909; border-radius:3px; color:#fff;}
+.invite_record .del a{color:#fff;}
+
+.record_row{ margin-top:20px; border-bottom:1px solid #dadada; padding-bottom:40px;}
+.row01{padding-left:30px; height:45px; line-height:45px;text-align:center; }
+.row01.active{background:#f3f7fb;}
+.row01 label{ display:block; float:left; width:10%; }
+.row01 span{  display:block; float:left;width:30%; }
+.row01 span.states{ color:#62c39a;}
+.row01 span.states.yzc{ color:#ff8877;}
+
+/*消息中心*/
+.float-a{ float:left;}
+.mes_set{ float:right;width:96px; height:34px; line-height:35px; text-align:center; margin-top:20px; margin-right:30px;background:#55b0fd; border-radius:3px; color:#fff;}
+.mes_set a{color:#fff;}
+.mes .row01 span{ width:25%;}
+.mes .row01 input{ margin-right:15px;}
+.mes .row01.zanwu{ padding-top:20px;}
+/*消息设置*/
+.tis{height:34px; line-height:35px; margin-top:20px; margin-left:30px;}

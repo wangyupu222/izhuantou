@@ -1,0 +1,246 @@
+body{
+    background-color: #fff;
+    font-family: "微软雅黑", Arial;
+}
+.clear{clear: both;}
+.ReportBanner{
+    text-align: center;
+}
+.ReportBanner img{width: 100%;display: block;}
+.ReportModule{height: 840px;text-align: center;width: 100%;overflow: hidden;}
+.Report_tit{height: 65px; width: 830px; margin: 0 auto; background: url("../../image/OperationReport/title_01.jpg"); background-position: center;background-repeat: no-repeat;margin-top: 90px; }
+.ReportModule p{
+    color: #666;
+    font-size: 18px;
+    margin-top: 80px;
+}
+.Report_con{
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 60px;
+}
+.Report_con img{max-width:85%;}
+.ReportModule02{min-height: 4057px;height:auto;}
+.ReportModule02 .Report_tit{background: url("../../image/OperationReport/title_02.jpg"); background-position: center;background-repeat: no-repeat;}
+.ReportModule02,.ReportModule04,.ReportModule06,.ReportModule08,.ReportModule10,.ReportModule12,.ReportModule14,.ReportModule16{
+    background-color: #f5f5f5;
+}
+.ReportModule02 .Report_con{margin-top: 85px}
+.ReportModule02 p{
+    margin-top: 92px;}
+.ReportModule03{min-height:1742px;height:auto;}
+.ReportModule03 .Report_tit{background: url("../../image/OperationReport/title_03.jpg"); background-position: center;background-repeat: no-repeat;}
+.ReportModule03 p{margin-top: 85px;}
+.ReportModule03 .Report_con{margin-top: 75px;}
+.ReportModule03 .Report_con02{margin-top:120px;}
+.ReportModule04{min-height: 2256px;height:auto;}
+.ReportModule04 .Report_tit{background: url("../../image/OperationReport/title_04.jpg"); background-position: center;background-repeat: no-repeat;}
+.ReportModule04 p{margin-top: 86px;}
+.ReportModule04 .Report_con{margin-top: 82px;}
+.ReportModule04 .Report_con02{margin-top:116px;}
+.ReportModule04 .Report_con03{margin-top:95px;}
+.ReportModule05{
+    min-height: 1428px;height:auto;}
+.ReportModule05 .Report_tit{background: url("../../image/OperationReport/title_05.jpg"); background-position: center;background-repeat: no-repeat;}
+.ReportModule05 .Report_con{
+    width: 1080px;}
+.ReportModule05 p{margin-top: 92px;}
+.ReportModule05 .Report_con{margin-top:87px;}
+.ReportModule06{ min-height: 1720px;height:auto;}
+.ReportModule06 .Report_tit{background: url("../../image/OperationReport/title_06.jpg"); background-position: center;background-repeat: no-repeat;}
+.ReportModule06 p{margin-top: 86px;}
+.ReportModule06 .Report_con{margin-top: 85px;}
+
+.activeBox{
+    width:328px;height: 265px;float: left;margin-right: 44px;margin-bottom: 12px;
+}
+.activeBox_s{width:326px;height: 196px;border: 1px solid #6c4fc3;text-align: center; line-height: 191px;position: relative;}
+.activeBox_s img{vertical-align:middle;max-width:315px;}
+.activeBox02{
+    margin-right: 0px;
+}
+.activeBox h3{
+    font-size: 18px;color: #6f52c6;margin-top: 15px;
+}
+.activeBox p{color:#666;font-size: 14px;margin-top: 8px;}
+.active_jiaoT,.active_jiaoB{position: absolute;width: 12px;height: 12px;opacity:0;}
+.active_jiaoT{background: url("../../image/OperationReport/active_jiaoT.png");
+background-position: left top;background-repeat: no-repeat;
+    top:4px;
+    left:4px;
+}
+.active_jiaoB{background: url("../../image/OperationReport/active_jiaoB.png");
+    background-position: left top;background-repeat: no-repeat;
+    bottom:4px;
+    right:4px;
+}
+.activeBox_s:hover .active_jiaoT{
+    -webkit-animation: cloudy 0.5s forwards;animation: cloudy 0.5s forwards;
+}
+
+.activeBox_s:hover .active_jiaoB{
+    -webkit-animation: cloudy02 0.5s forwards;animation: cloudy02 0.5s forwards;
+}
+
+@-webkit-keyframes cloudy {
+    0%{ opacity:0;top:34px;left:34px;}
+    100%{ opacity:1; top:4px;left:4px;}
+}
+@keyframes cloudy {
+    0%{ opacity:0;top:34px;left:34px;}
+    100%{ opacity:1; top:4px;left:4px;}
+}
+
+@-webkit-keyframes cloudy02 {
+    0%{ opacity:0;bottom:34px;right:34px;}
+    100%{ opacity:1; bottom:4px;right:4px;}
+}
+@keyframes cloudy02 {
+    0%{ opacity:0;bottom:34px;right:34px;}
+    100%{ opacity:1; bottom:4px;right:4px;}
+}
+.footerbg {
+    margin-top: 0px;
+}
+
+
+/* 运营报告2017 */
+@font-face {
+    font-family: "hatten-webfont";
+    src: url(../../image/OperationReport2017/fonts/hatten-webfont.eot);
+    src: url(../../image/OperationReport2017/fonts/hatten-webfont.eot?#iefix) format('embedded-opentype'),  
+          url(../../image/OperationReport2017/fonts/hatten-webfont.woff) format('woff'),
+          url(../../image/OperationReport2017/fonts/hatten-webfont.ttf) format('truetype'),
+          url(../fonts/yhg.svg#yhg) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.TradingDataWrap{
+	width:1130px;
+	margin:0 auto;
+}
+.TradingDataBox{
+	text-align:center;
+	font-size:18px;
+	color:#666;
+	float:left;
+	width:290px;
+	margin-right:128px;
+	margin-bottom: 80px;
+	overflow:hidden;
+}
+.TradingDataBox02{
+	margin-right:0px;
+}
+.TradingDataBox p{
+	margin-top:20px;
+}
+.TradingDataBox span{
+	font-family: hatten-webfont;
+	font-size:40px;
+	color:#6f52c6;
+	margin:0px 4px;
+}
+.InvestmentWrap{
+	width:820px;
+	margin:0 auto;
+	overflow:hidden;
+}
+.InvestmentBox{
+	padding-left:115px;
+	height:115px;
+	width:215px;
+	float:left;
+	margin-bottom:70px;
+	background: url("../../image/OperationReport2017/ProjectDataImg01.jpg"); background-position: 0px 0px;background-repeat: no-repeat;
+}
+.InvestmentBox02{
+	float:right;
+	background: url("../../image/OperationReport2017/ProjectDataImg02.jpg"); background-position: 0px 0px;background-repeat: no-repeat;
+}
+.InvestmentBox03{
+	margin-bottom:0px;
+	background: url("../../image/OperationReport2017/ProjectDataImg03.jpg"); background-position: 0px 0px;background-repeat: no-repeat;
+}
+.InvestmentBox04{
+	float:right;
+	margin-bottom:0px;
+	background: url("../../image/OperationReport2017/ProjectDataImg04.jpg"); background-position: 0px 0px;background-repeat: no-repeat;
+}
+.InvestmentBox img{
+	display:block;
+	float:left;
+
+}
+.Investmentcontent{
+	margin-left:20px;
+	font-size:18px;
+	color:#666;
+	text-align: left;
+	overflow: hidden;
+}
+.Investmentcontent p{
+	margin-top:24px;
+}
+.Investmentcontent span{
+	font-family: hatten-webfont;
+	font-size:40px;
+	color:#c542c1;
+	margin:0px 4px;
+}
+.Investmentcontent h3{
+	font-weight: normal;
+	font-size:18px;
+	margin-top:10px;
+}
+.LoanWrap .InvestmentBox{
+	background: url("../../image/OperationReport2017/LoanDataImg01.jpg"); background-position: 0px 0px;background-repeat: no-repeat;
+}
+.LoanWrap .InvestmentBox02{
+	background: url("../../image/OperationReport2017/LoanDataImg02.jpg"); background-position: 0px 0px;background-repeat: no-repeat;
+}
+.LoanWrap .InvestmentBox03{
+	background: url("../../image/OperationReport2017/LoanDataImg03.jpg"); background-position: 0px 0px;background-repeat: no-repeat;
+}
+.LoanWrap .InvestmentBox04{
+	background: url("../../image/OperationReport2017/LoanDataImg04.jpg"); background-position: 0px 0px;background-repeat: no-repeat;
+}
+.LoanWrap .Investmentcontent span {
+    color: #6f52c6;
+}
+.ProgectDataWrap{
+	width:1160px;
+	margin:0 auto;
+}
+.ProgectDataBox{
+	float:left;
+	margin-right:40px;
+	text-align:center;
+	font-size:18px;
+	color:#666;
+	width:260px;
+	margin-bottom: 20px;
+	overflow:hidden;
+}
+.ProgectDataBox02{
+	margin-right:0px;
+}
+.ProgectDataBox03{
+	margin-right:0px;
+	float:right;
+}
+
+.ProgectDataBox p{
+	margin-top:20px;
+}
+.ProgectDataBox span{
+	font-family: hatten-webfont;
+	font-size:40px;
+	color:#6f52c6;
+	margin:0px 4px;
+}
+.OperationReport2017 .Report_con{
+	margin-bottom:90px;
+}
+
+

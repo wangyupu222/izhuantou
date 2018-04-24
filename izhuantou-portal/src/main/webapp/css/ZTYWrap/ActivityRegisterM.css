@@ -1,0 +1,44 @@
+* {box-sizing: border-box;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {border: 0 none; font: inherit; margin: 0;padding: 0;vertical-align: baseline;}
+body{ font-family:"微软雅黑";}
+ul,li,ol{ list-style:none;}
+a{ text-decoration:none;}
+a,input,textarea{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+.hide{ display:none;}
+    	img{vertical-align: middle;}
+        .wrap{ margin:0 auto; max-width:640px; min-width:300px;position:relative;}
+        .wrap img.APPregisterBanner,.wrap img.APPregisterCon{width:100%;display:block;}
+        #FormRegister{overflow:hidden;width:85%;margin:0 auto;padding-top: 10px;}
+        .regist_inpt{border:none;height:45px;padding-left: 40px;margin-top: 15px;border-radius: 8px;}
+        #FormRegister input{outline:none;}
+        .regist_inpt input {height: 44px;line-height: 44px;font-size:14px;}
+        .FormContent{background-color:#ffdd89;}
+        .regist_inpt.phone { width:99%;background: #fff url(../../images/phone.png) no-repeat 10px center !important;}
+        .regist_inpt.yzm {width: 65%;}
+        .yzm_wrap{width:99%;position:relative;}
+        .num_yzm{width:30%;margin-left;right:0px;top:0px;text-align:right;}
+        .num_yzm{max-width:135px;}
+        .regist_inpt.pwd_short input {width: 82%;}
+        .smsYzm_wrap{}
+        .smsYzm_wrap .regist_inpt.yzm {width: 54%;}
+        .regist_inpt.short input {width: 92%;}
+        .hqyzminp {width:41%;position: absolute;background: #55b0fd;color: #fff;padding: 0px 0px;margin-left: 0px;text-align: center;float: initial;margin-top: 0px;border-radius: 8px;font-size: 14px;cursor: pointer;right:0px;top:0px;height:45px;line-height:45px;margin-right: 0px;}
+    	.regist_inpt.pwd {width:99%;background: #fff url(../../images/pwd.png) no-repeat 10px center;}
+    	.regist_inpt.yqm {width:99%; background: #fff url(../../images/yzm.png) no-repeat 10px center;}
+    	.zcbtn button {width: 99%;margin: 0 auto;}
+    	.zcbtn{margin-bottom:38px;}
+    	.regist_inpt.pwd .close_btn {right: 15%;}
+    	.APPregisterBtn{background-color:#fff;overflow: hidden;}
+    	.APPregisterBtn a{display: block;
+    margin: 0 auto;
+    width: 55%;
+    height: 40px;
+    margin-bottom:40px;
+    font-size:14px;
+    color:#fff;
+    text-align:center;
+    line-height:40px;
+    font-weight: bold;
+    border-radius: 4px;
+    background:#ff9933;
+	}

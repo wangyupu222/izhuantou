@@ -1,0 +1,103 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color:#ab62e9;
+    font-family: "微软雅黑", Arial;
+}
+.content_main{
+    min-height: 3700px;
+    background: url("../images/new_welfare_bg.jpg") no-repeat center top;
+}
+.content_wrap{
+    width: 1105px;
+    margin: 0 auto;
+    /*background-color: rgba(0, 0, 0, 0.38);*/
+    height: 3700px;
+    position: relative;
+}
+.new_fu_wrap{
+    width: 100%;
+    height: 462px;
+/*    background-color: rgba(45, 255, 225, 0.38);*/
+    position: absolute;
+    bottom: 860px;
+    left: 0px;
+    text-align: center;
+}
+.num_box{
+    width: 170px;
+    margin-left: 105px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    float: left;
+
+}
+.num_box_top{
+    font-size: 30px;
+}
+.num_box_top span{
+    font-size: 60px;
+    margin-right: 10px;
+}
+.num_box_bottom{
+    margin-top: 10px;
+}
+.Lend_btn{
+    width: 220px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    background-color: #ffd849;
+    font-size: 26px;
+    color: #9b2ed4;
+    border-radius: 13px;
+    margin: 0 auto;
+    font-weight: bold;
+    margin-top: 50px;
+}
+.Lend_btn a{
+    color: #9b2ed4;
+}
+.tiyan_money{
+    width: 220px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    background-color: #ffd849;
+    font-size: 26px;
+    color: #9b2ed4;
+    border-radius: 13px;
+    font-weight: bold;
+    position: absolute;
+    top: 1245px;
+    left: 50%;
+    margin-left: -110px;
+}
+.tiyan_money a{
+    color: #9b2ed4;
+}
+
+.lend_text{
+    font-size: 26px;
+    color: #ffd849;
+    margin-top: 42px;
+}
+.li_register{
+    width: 220px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    background-color: #ffd849;
+    font-size: 26px;
+    color: #9b2ed4;
+    border-radius: 13px;
+    font-weight: bold;
+    left: 50%;
+    margin-left: -110px;
+    top: 2030px;
+    position: absolute;
+}
+.li_register a{
+    color: #9b2ed4;
+}

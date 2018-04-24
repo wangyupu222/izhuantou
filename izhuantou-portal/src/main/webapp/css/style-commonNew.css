@@ -1,0 +1,99 @@
+.qq:hover .qqimg_new{display:block;}
+.qqimg_new{width:210px;height:86px;background: url('../images/qqQun_bg.png?v=115');background-position: center;background-repeat: no-repeat;top: -8px;left: -209px;line-height: 29px;display:none;position:absolute;}
+    .qqimg_new p{font-size:14px;padding-left: 11px;}
+    .qqimg_new p.legal_qqQun{padding-left: 44px;margin-top: -2px;}
+.qqimg_new p a{color:#7f91ab;}
+.qqimg_new p a:hover{color:#55b0fd;}
+.footer_Left{width:635px;float:left;margin-top: 28px;}
+.footer_Right{width:520px;float:right;margin-top: 26px;}
+.fnav {
+    float: none;
+    height: auto;
+    line-height: inherit;
+    font-size: 18px;
+    margin-left: 0px;
+}
+.fnav ul {
+    width: 100%;
+}
+.fnav ul li {
+    text-align: left;
+    width:108.5px;
+}
+.fnav ul li.fnavEnd{
+	width: auto;
+}
+.linkf {
+    margin-top: 52px;
+}
+.linkf span{
+width: 108.5px;
+}
+.linkf ul li {
+    margin-right: 46px;
+}
+.copy{margin-top:30px;width:100%;}
+.copy .fenge_hr{margin: 0px 8px;}
+.custom_service_wrap{float:left;}
+.custom_service_wrap .telephone{overflow: hidden;}
+.custom_service_wrap .telephone img{float:left;margin-top:5px;display: inline-block;margin-right: 8px;}
+.custom_service_wrap .telephone span{float:left;font-size:30px;display: inline-block;}
+.sercive_date{font-size:14px;margin-top:35px;}
+.sercive_date02{margin-top:18px;}
+.footer_downWrap{float:right;width:265px;margin-top: 9px;}
+.footer_erBox{float:left;text-align:center;}
+.er_bgBox{width:125px;height:124px;background-color: #fff;border-radius: 2px;}
+.er_bgBox img{width:113px;margin-top:6px;}
+.footer_erBox p{font-size:18px;margin-top:10px;}
+.footer_erBox02{float:right;}
+.footer_erBox02 .er_bgBox img{width: 113px;margin-top: 6px;}
+.footerbg {
+    min-height: 295px;
+    background: #3e516f;
+}
+.authentication_Wrap{width:100%;height:80px;background-color: #3e516f;margin-top: 25px;}
+.cx {
+    width: 690px;
+    float: inherit;
+    margin:0 auto;
+    margin-top: 11px;
+}
+.fotbot {
+    height: 68px;
+    margin-top:0px;
+}
+.cx ul li {
+    margin-left: 100px;
+}
+.headerright {
+    width: auto;
+}
+
+/* 维权邮箱及qq */
+.E-mailWrap{
+	display:block;
+	float:left;
+	overflow:hidden;
+	font-size:14px;
+}
+.E-mailTit{
+	width:100px;
+	text-align:right;
+	color:#141414;
+	padding-left:28px;
+	margin-left:16px;
+	background: url(../images/legal_icon.png) no-repeat left center;
+}
+.E-mailWrap a{
+	color:#55b0fd;
+	text-decoration:underline;
+}
+.top_left span.hfphone {
+    margin-left: 10px;
+}
+.top_left a {
+    margin-left: -5px;
+}
+.top_right a {
+    padding: 0 18px;
+}

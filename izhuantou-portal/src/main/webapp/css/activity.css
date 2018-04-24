@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*公告*/
+.notice{ border-top:1px solid #CCC;border-bottom:1px solid #CCC; height:54px; line-height:54px;font-size:14px; color:#333333; margin-top:5px;}
+.notice_left{ float:left; width:450px;background:url(../images/index_26.png) no-repeat left center; padding-left:30px;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.notice_time{ float:right; margin-left:50px;}
+.notice_more{float:right;}
+.notice a{ color:#333333;}
+#rollText{line-height:54px;}
+
+
+/*活动页面*/
+.f_banner{ margin-top:5px;}
+.f_banner img{ width:100%;}
+
+.cj_cop{height:60px; overflow:hidden; border-bottom:2px solid #55b0fd; color:#333333;}
+.cjq{font:24px/60px "Microsoft YaHei"; border-right:2px solid #25a0f1; padding-right:10px; }
+.byb{ padding-left:10px;font:18px/60px "Microsoft YaHei";}
+.cj_cop a.more{ float:right;font:14px/60px "Microsoft YaHei";color:#333333;}
+.cjcon{height:440px; margin-top:20px; }
+.cj_left{ float:left; width:320px; height:430px; border:4px solid #25a0f1;}
+.cj_right{ float:right; width:811px; height:437px; background:url(../images/pmd.gif);}
+.cj_left .left_top a{ display:inline-block; width:50%; height:50px; line-height:50px; background:#ccecfc; text-align:center; color:#333333; cursor:pointer;}
+.cj_left .left_top a.active{background:#fff;}
+.left_info{ height:225px; border-bottom:4px solid #25a0f1; padding-top:20px;}
+.inforow span{ display:inline-block; width:33.3%; text-align:center; height:30px; line-height:30px; font-size:14px;}
+.left_cishu{ color:#25a0f1; font-size:18px; text-align:center; line-height:125px;}
+.left_cishu span{font-size:24px;}
+.left_cishu a{ color:#25a0f1; padding-left:10px;}
+
+.zqjf_top{ color:#333333; height:50px; font:24px/60px "Microsoft YaHei";margin-top:10px;}
+.zqjfcon{}
+.zqjf_left{ float:left; width:840px; height:320px; border:1px solid #cccccc; border-top:none;}
+
+.zqjf_tit a{display:inline-block; width:33.3334%; height:50px; line-height:50px; background:#ccecfc; text-align:center; color:#333333; border-top:2px solid #a4c5d5; cursor:pointer;}
+.zqjf_tit a.active{background:#fff; border-top:2px solid #55b0fd;}
+
+.qd{ padding-top:40px;}
+.qd01{float:left; margin-left:100px; width:260px; /*border:1px solid #f00;*/}
+.qdleft{ float:left;}
+.qdright{ float:left; margin-left:20px;color:#666666; width:120px; }
+.qdright span{ display:block; margin-bottom:20px;}
+.qdright span.qdtxt{ font-size:14px;}
+.qdright span.qdinfo{ font-size:12px; line-height:20px;}
+.qdright a{font-size:16px; display:block; width:96px; height:30px; line-height:30px; text-align:center; margin-top:30px; color:#ff9600; border:1px solid #ff9600; }
+
+.zqjf_right{float:right;width:290px;height:320px; background:#55b0fd;}
+.loginbtn{ width:134px; height:48px;font:18px/48px "Microsoft YaHei";  background:#25a0f1; margin:0 auto; margin-top:100px; color#:#fff; text-align:center; border:1px solid #fff;}
+.loginbtn a{ color:#fff; display:block;}
+.dllhbdl{width:134px; margin:0 auto; color:#fff; font-size:16px; margin-top:10px;}
+.dllhbdl span{ color:#ff6940;}
+
+/*理财产品专区*/
+.licaipro{ margin-top:20px;}
+.cj_cop.licai{ border-bottom:0;}
+
+.licaicon{ overflow:hidden;}
+.licai01{ float:left; width:194px; height:284px;  border:1px solid #cccccc; border-top:4px solid #f98d1a; margin-right:40px;}
+.licai01:last-child{ margin-right:0px;}
+.synum{ background:url(../images/active01.png) no-repeat left; margin-top:10px; font-size:14px; color:#fff; padding-left:10px; }
+.cpimg img{ width:165px; height:165px;/* border:1px solid #f00; */margin-left:13px;margin-top:10px;}
+.cptxt{margin-top:10px;}
+.cptxt span{ display:block; color:#333333; text-align:center; }
+
+.cptxt span.cptxt01{ font:14px/20px "Microsoft YaHei"; }
+.cptxt span.cptxt02{ font:12px/28px "Microsoft YaHei"; }
+.cptxt span.cptxt02 em{ color:#f98d1a; font:16px/28px "Microsoft YaHei"; padding-right:5px; }
+
+/*一元众筹*/
+.zhongchou{ margin-top:20px;margin-bottom:40px;}
+.yyzc_con{ overflow:hidden; margin-top:20px;}
+.yyzc-a{ display:block;}
+
+.yyzc01{float:left; width:275px; height:405px;  border:1px solid #cccccc; margin-right:10px;}
+.yyzc01:hover{border:1px solid #f98d1a;}
+
+.yyzc01 img{ width:200px; height:200px; margin-left:32px; margin-top:10px;}
+.yyzc_tit{ font:14px/20px "Microsoft YaHei"; width:95%; height:40px; overflow:hidden; margin:0 auto; margin-top:10px; color:#333333;}
+
+.jdt{position:relative; width:85%; margin:0 auto; height:8px; background:#e3e4e8; border-radius:8px; margin-top:30px;}
+.jdtvalue{position:absolute; width:45%;height:8px;  left:0; top:0; border-radius:8px; background:#55b0fd;}
+.onlyone{ position:absolute; width:60px; height:27px; line-height:23px; font-size:12px; color:#e3e4e8; text-align:center; top:-30px; right:0px; background:url(../images/active04.png) no-repeat;}
+
+.item{ width:90%; height:48px; margin:0 auto; margin-top:10px; font-size:12px;}
+.itemleft{ float:left; width:33.33%; color:#333333; }
+.itemleft.left01{ float:left; width:42%; }
+.itemleft.left02{ float:left; width:29%; }
+.itemleft span{ display:block;}
+.ljcj{background:#e65045; width:60%; height:35px; line-height:35px;margin:0 auto; text-align:center;}
+.ljcj a{display:block; cursor:pointer;color:#e3e4e8;}
+
+/*转盘抽奖*/
+#lottery{width:746px;height:374px;margin:33px auto 0;}
+#lottery table td{width:187px;height:124px;text-align:center;vertical-align:middle;font-size:24px;color:#333;font-index:-999; margin-right:10px;}
+#lottery table td a{/*width:284px;*/height:122px; line-height:115px;display:block;text-decoration:none; }
+#lottery table td.active{background-color:#ea0000;}
+#lottery table td.first{background-color:#8670ff;}
+#lottery table td.second{background-color:#df88cf;}
+#lottery table td.third{background-color:#8ed9f9;}
+#lottery table td.four{background-color:#fef9b9;}
+
+#lottery table td.active{background-color:#ea0000;}
+#demo{width:300px; margin:50px auto 10px; overflow:hidden;}
+#demo a{float:left; width:90px; height:30px; line-height:30px; text-align:center; margin-left:10px; background-color:#000; color:#fff; text-decoration:none; font-weight:bold;}
+#demo a.cur{background-color:#933;}
+
+
+
