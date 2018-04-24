@@ -48,7 +48,7 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
-					<port>8083</port>
+					<port>8280</port>
 					<path>/</path>
 				</configuration>
 			</plugin>
