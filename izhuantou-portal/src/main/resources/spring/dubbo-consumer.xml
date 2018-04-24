@@ -13,6 +13,6 @@
 	<dubbo:registry  protocol="zookeeper" address="${dubbo.registry}"></dubbo:registry>	
 		
 	<!-- 测试dubbo接口 -->
-	<dubbo:reference interface="com.izhuantou.fund.api.FundServiceTest"
+	<dubbo:reference check="false" interface="com.izhuantou.fund.api.FundServiceTest"
 		id="fundServiceTest" timeout="${dubbo.timeout}" />		  	
 </beans>
