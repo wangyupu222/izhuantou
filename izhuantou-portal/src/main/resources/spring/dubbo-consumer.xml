@@ -10,7 +10,7 @@
 
 	<!-- 服务消费者 -->
 	<dubbo:application name ="portal-consumer"/>	
-	<dubbo:registry  protocol="zookeeper" address="${dubbo.address}"></dubbo:registry>	
+	<dubbo:registry  protocol="zookeeper" address="${dubbo.registry}"></dubbo:registry>	
 		
 	<!-- 测试dubbo接口 -->
 	<dubbo:reference interface="com.izhuantou.fund.api.FundServiceTest"
