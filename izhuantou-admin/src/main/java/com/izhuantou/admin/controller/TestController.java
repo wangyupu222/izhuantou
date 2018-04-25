@@ -15,7 +15,7 @@ public class TestController {
     @Autowired
     private ServiceTest serviceTest;
 
-    @RequestMapping(value = "/print", method = RequestMethod.POST)
+    @RequestMapping(value = "/print")
     @ResponseBody
     public String queryMenuByUserName() {
 
