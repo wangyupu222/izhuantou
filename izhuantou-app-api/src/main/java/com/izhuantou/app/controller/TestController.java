@@ -12,14 +12,13 @@ import com.izhuantou.service.api.ServiceTest;
 @RequestMapping("demo")
 public class TestController {
 
-    @Autowired
-    private ServiceTest serviceTest;
+	@Autowired
+	private ServiceTest serviceTest;
 
-    @RequestMapping(value = "/print", method = RequestMethod.POST)
-    @ResponseBody
-    public String queryMenuByUserName() {
-
-	System.err.println("我在app的controller中调用的Service为 " + serviceTest.getNumber());
-	return "goodBay";
-    }
+	@RequestMapping(value = "/print")
+	@ResponseBody
+	public String queryMenuByUserName() {
+		System.err.println("我在admin的controller中调用的Service为 " + serviceTest.getNumber());
+		return "goodBay";
+	}
 }
