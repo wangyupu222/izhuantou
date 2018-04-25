@@ -14,12 +14,17 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.izhuantou</groupId>
-			<artifactId>izhuantou-dao</artifactId>
+			<artifactId>izhuantou-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.izhuantou</groupId>
 			<artifactId>izhuantou-third-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.izhuantou</groupId>
+			<artifactId>izhuantou-fund-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
@@ -55,19 +60,19 @@
 				</configuration>
 			</plugin>
 			<plugin>
-			    <groupId>com.spotify</groupId>
-			    <artifactId>docker-maven-plugin</artifactId>
-			    <configuration>
-			        <imageName>${parent.artifactId}/${project.build.finalName}</imageName>
-			        <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
-			        <skipDockerBuild>false</skipDockerBuild>
-			        <resources>
-			            <resource>
-			                <directory>${project.build.directory}</directory>
-			                <include>${project.build.finalName}.war</include>
-			            </resource>
-			        </resources>
-			    </configuration>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<configuration>
+					<imageName>${parent.artifactId}/${project.build.finalName}</imageName>
+					<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+					<skipDockerBuild>false</skipDockerBuild>
+					<resources>
+						<resource>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.war</include>
+						</resource>
+					</resources>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

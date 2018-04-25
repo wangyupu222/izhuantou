@@ -18,7 +18,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.izhuantou</groupId>
-			<artifactId>izhuantou-dao</artifactId>
+			<artifactId>izhuantou-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

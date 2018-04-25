@@ -16,6 +16,11 @@
 			<artifactId>izhuantou-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+  		<groupId>com.izhuantou</groupId>
+  		<artifactId>izhuantou-fund-api</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
 	</dependencies>
 
 	<build>
