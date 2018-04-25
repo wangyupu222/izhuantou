@@ -28,7 +28,7 @@
 	<!-- 用户查看页面权限过滤 -->
 	 <filter>
     	<filter-name>UserFilter</filter-name>
-    	<filter-class>com.izhauntou.portal.filter.UserFilter</filter-class>
+    	<filter-class>com.izhuantou.portal.filter.UserFilter</filter-class>
  	</filter>	
 	<filter-mapping>
     	<filter-name>UserFilter</filter-name>
@@ -50,7 +50,7 @@
  	<!-- 绑卡页面权限过滤 -->
  	  <filter>
     	<filter-name>BandingCareFilter</filter-name>
-    	<filter-class>com.izhauntou.portal.filter.BandingCareFilter</filter-class>
+    	<filter-class>com.izhuantou.portal.filter.BandingCareFilter</filter-class>
  	</filter>			
  	<filter-mapping>
     	<filter-name>BandingCareFilter</filter-name>

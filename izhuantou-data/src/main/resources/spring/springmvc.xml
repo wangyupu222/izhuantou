@@ -11,7 +11,7 @@
 	<!-- 引入属性文件 -->
 	<context:property-placeholder location="classpath:resource/*.properties" />
 	
-	<context:component-scan base-package="com.izhauntou.portal.controller" />
+	<context:component-scan base-package="com.izhuantou.data.controller" />
 	<mvc:annotation-driven />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
