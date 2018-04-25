@@ -1,4 +1,4 @@
-package com.izhauntou.portal.expection;
+package com.izhauntou.exception;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
