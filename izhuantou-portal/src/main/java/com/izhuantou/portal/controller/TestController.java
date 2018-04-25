@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.izhuantou.fund.api.FundServiceTest;
+import com.izhuantou.fund.rpc.api.FundServiceTest;
 import com.izhuantou.service.api.ServiceTest;
 
 @Controller

@@ -15,7 +15,7 @@
 	<dubbo:provider timeout="${dubbo.timeout}" />
 		
 	<!-- 测试mongodb -->
-	<dubbo:service interface="com.izhuantou.third.api.ControlPayService"
+	<dubbo:service interface="com.izhuantou.third.rpc.api.ControlPayService"
 		ref="controlPayService" />
 			  	
 </beans>

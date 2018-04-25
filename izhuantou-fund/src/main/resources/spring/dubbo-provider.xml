@@ -15,6 +15,6 @@
 	<dubbo:provider timeout="${dubbo.timeout}" />
 		
 	<!-- 测试mongodb -->
-	<dubbo:service interface="com.izhuantou.fund.api.FundServiceTest" ref="fundServiceTest" />
+	<dubbo:service interface="com.izhuantou.fund.rpc.api.FundServiceTest" ref="fundServiceTest" />
 			  	
 </beans>
