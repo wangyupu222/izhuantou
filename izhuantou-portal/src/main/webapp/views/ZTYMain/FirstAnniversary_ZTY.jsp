@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link href="/css/normalize.css" rel="stylesheet" type="text/css">
 <link href="/css/ZTYWrap/FirstAnniversary.css?v=117" rel="stylesheet" type="text/css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js?ver=114"></script>
 </head>
@@ -28,20 +29,20 @@
             <img src="/im/irstAnniversary/firstTit.png">
         </div>
         <div class="welfareBox01" style="width:100%;">
-            <img class="Tit01" src="/image/FirstAnniversary/welfareTit01.png?v=114">
-            <img class="TableImg01" src="../image/FirstAnniversary/welfareImg01.png?v=114">
+            <img class="Tit01" src="<%=pathUrl %>/image/FirstAnniversary/welfareTit01.png?v=114">
+            <img class="TableImg01" src="..<%=pathUrl %>/image/FirstAnniversary/welfareImg01.png?v=114">
         </div>
         <div class="welfareBox02" style="width:100%;">
-            <img class="welfareTit02" src="/image/FirstAnniversary/welfareTit02.png?v=114">
-            <img class="welfareImg02" src="/image/FirstAnniversary/welfareImg02.png?v=114">
+            <img class="welfareTit02" src="<%=pathUrl %>/image/FirstAnniversary/welfareTit02.png?v=114">
+            <img class="welfareImg02" src="<%=pathUrl %>/image/FirstAnniversary/welfareImg02.png?v=114">
         </div>
         <div class="welfareBox04" style="width:100%;">
-            <img class="welfareTit04" src="/image/FirstAnniversary/welfareTit03.png?v=114">
-            <img class="welfareImg04" src="/image/FirstAnniversary/welfareImg03.png?v=114">
+            <img class="welfareTit04" src="<%=pathUrl %>/image/FirstAnniversary/welfareTit03.png?v=114">
+            <img class="welfareImg04" src="<%=pathUrl %>/image/FirstAnniversary/welfareImg03.png?v=114">
         </div>
         <div class="welfareBox03" style="width:100%;">
-            <img class="welfareTit03" src="/image/FirstAnniversary/welfareTit04.png">
-            <img class="welfareImg03" src="/image/FirstAnniversary/welfareImg04.png">
+            <img class="welfareTit03" src="<%=pathUrl %>/image/FirstAnniversary/welfareTit04.png">
+            <img class="welfareImg03" src="<%=pathUrl %>/image/FirstAnniversary/welfareImg04.png">
         </div>
 
 

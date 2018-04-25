@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link href="/css/normalize.css" rel="stylesheet" type="text/css">
 <link href="/css/App_Online.css?ver=114" rel="stylesheet" type="text/css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js?ver=114"></script>
 <script>
@@ -80,19 +81,19 @@
 <div class="phone_wrap">
     <div class="phone_left">
         <div class="phone_main">
-            <img style="opacity: 1;filter:alpha(opacity=1);z-index: 2" src="/image/APP_Online/iphone01.png">
-            <img src="/im/imagePP_Online/iphone02.png">
-            <img src="/image/APP_Online/iphone03.png">
-            <img src="/image/APP_Online/iphone04.png">
+            <img style="opacity: 1;filter:alpha(opacity=1);z-index: 2" src="<%=pathUrl %>/image/APP_Online/iphone01.png">
+            <img src="<%=pathUrl %>/image/APP_Online/iphone02.png">
+            <img src="<%=pathUrl %>/image/APP_Online/iphone03.png">
+            <img src="<%=pathUrl %>/image/APP_Online/iphone04.png">
         </div>
 
     </div>
     <div class="phone_right">
-        <div><img src="/image/APP_Online/new_desing.png?v=114"></div>
-        <div class="phone_tit"><img src="/image/APP_Online/index_img.png?v=115"></div>
-        <div class="phone_tit" style="margin-left: 1px;"><img src="/image/APP_Online/lend_img.png?v=114"></div>
-        <div class="phone_tit" style="margin-left: 8px;"><img src="/image/APP_Online/find_img.png?v=114"></div>
-        <div class="phone_tit" style="margin-left: 6px;"><img src="/image/APP_Online/Account_img.png?v=114"></div>
+        <div><img src="<%=pathUrl %>/image/APP_Online/new_desing.png?v=114"></div>
+        <div class="phone_tit"><img src="<%=pathUrl %>/image/APP_Online/index_img.png?v=115"></div>
+        <div class="phone_tit" style="margin-left: 1px;"><img src="<%=pathUrl %>/image/APP_Online/lend_img.png?v=114"></div>
+        <div class="phone_tit" style="margin-left: 8px;"><img src="<%=pathUrl %>/image/APP_Online/find_img.png?v=114"></div>
+        <div class="phone_tit" style="margin-left: 6px;"><img src="<%=pathUrl %>/image/APP_Online/Account_img.png?v=114"></div>
 
     </div>
     <div class="clear"></div>
@@ -106,8 +107,8 @@
             <span>APP MONEY WITH IZHUANTOU<br>GIVE US THE MONEY, AND YOU ARE ONLY RESPONSIBLE <br>FOR THE GAINS</span>
         </div>
         <div class="bottom_btn">
-            <div class="btn_box"><a target="_blank" href="https://itunes.apple.com/us/app/%E7%A0%96%E5%A4%B4%E7%BD%91/id1252526385?l=zh&ls=1&mt=8"><img src="/image/APP_Online/ios_downImg.png?v=114"></a></div>
-            <div class="btn_box"><a target="_blank" href="http://sj.qq.com/myapp/detail.htm?apkName=com.izhuantou.bricknet"><img src="/image/APP_Online/and_downImg.png?v=114"></a></div>
+            <div class="btn_box"><a target="_blank" href="https://itunes.apple.com/us/app/%E7%A0%96%E5%A4%B4%E7%BD%91/id1252526385?l=zh&ls=1&mt=8"><img src="<%=pathUrl %>/image/APP_Online/ios_downImg.png?v=114"></a></div>
+            <div class="btn_box"><a target="_blank" href="http://sj.qq.com/myapp/detail.htm?apkName=com.izhuantou.bricknet"><img src="<%=pathUrl %>/image/APP_Online/and_downImg.png?v=114"></a></div>
             <div class="clear"></div>
         </div>
 

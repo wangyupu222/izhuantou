@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -6,7 +7,7 @@
     <title>登录</title>
     <link rel="stylesheet" type="text/css" href="/css/style-common.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css?v=116">
-    <Link rel="shortcut icon" href="/images/zhuan.ico" />
+    <Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
     <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
     <script src="/js/com.js"></script>
     <!-- <script src="/js/resubmit.js"></script> -->
@@ -56,12 +57,12 @@
             <div align="center" class="loginErro"><hoontag:Message name="loginErro"/></div>
             <div id="login_val" class="login_validate"> ${msg}</div>
             <div  class="dlbtn" ><button id="login" name="login" value="登录" type="submit" class="dlbtn">登录</button>
-                <span class="loadingBtn" style="display:none;">正在登录中<img src="/images/loading_dian.gif"></span>
+                <span class="loadingBtn" style="display:none;">正在登录中<img src="<%=pathUrl %>/images/loading_dian.gif"></span>
             </div>
             <div class="reademe01">还没有账号？<a href="register.jsp">立即注册</a></div>
         </form>
     </div>
-    <div class="login_left"><a href="ZTYMain/FirstAnniversary_ZTY.jsp"><img src="/images/convention_login_left_new.jpg?v=137"></a></div>
+    <div class="login_left"><a href="ZTYMain/FirstAnniversary_ZTY.jsp"><img src="<%=pathUrl %>/images/convention_login_left_new.jpg?v=137"></a></div>
 </div>
 <!--bottom common-->
 <%@ include file="footer.jsp" %>

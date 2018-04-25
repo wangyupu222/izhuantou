@@ -1,6 +1,6 @@
 body{
     min-height: 7873px;
-    background: url("../image/break_family/break_family_bg.jpg");
+    background: url("http://img.izhuantou.com/image/break_family/break_family_bg.jpg");
     font-family: "微软雅黑";
 }
 .break_wrap{
@@ -56,35 +56,35 @@ body{
 .top_people_box .box_img{
     width: 255px;
     height: 255px;
-    background: url("../image/break_family/break_people01.png");
+    background: url("http://img.izhuantou.com/image/break_family/break_people01.png");
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
     transition: 0.5s;
 }
 .top_people_box .box_img02{
-    background: url("../image/break_family/break_people02.png");
+    background: url("http://img.izhuantou.com/image/break_family/break_people02.png");
 }
 .top_people_box .box_img03{
-    background: url("../image/break_family/break_people03.png");
+    background: url("http://img.izhuantou.com/image/break_family/break_people03.png");
 }
 .top_people_box .box_img04{
-    background: url("../image/break_family/break_people04.png");
+    background: url("http://img.izhuantou.com/image/break_family/break_people04.png");
 }
 .top_people_box .box_img05{
-    background: url("../image/break_family/break_people05.png");
+    background: url("http://img.izhuantou.com/image/break_family/break_people05.png");
 }
 .top_people_box .box_img06{
-    background: url("../image/break_family/break_people06.png");
+    background: url("http://img.izhuantou.com/image/break_family/break_people06.png");
 }
 .top_people_box .box_img07{
-    background: url("../image/break_family/break_people07.png");
+    background: url("http://img.izhuantou.com/image/break_family/break_people07.png");
 }
 .top_people_box .box_img08{
-    background: url("../image/break_family/break_people08.png");
+    background: url("http://img.izhuantou.com/image/break_family/break_people08.png");
 }
 .box_img:hover{
-    background: url("../image/break_family/break_people_hover.png");
+    background: url("http://img.izhuantou.com/image/break_family/break_people_hover.png");
 }
 .top_people_box h3,.bottom_people_box h3{
     font-size: 24px;
@@ -115,7 +115,7 @@ body{
 .bottom_people_box .box_img{
     width: 255px;
     height: 255px;
-    background: url("../image/break_family/break_people09.png");
+    background: url("http://img.izhuantou.com/image/break_family/break_people09.png");
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -140,7 +140,7 @@ body{
 .top_people_wrap03 .columnist_wrap{
     width: 100%;
     height: 386px;
-    background: url("../image/break_family/columnist_img.png");
+    background: url("http://img.izhuantou.com/image/break_family/columnist_img.png");
     background-repeat: no-repeat;
     background-position: center;
     overflow: hidden;

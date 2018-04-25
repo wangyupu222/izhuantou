@@ -21,7 +21,7 @@ body{ background-color:#f5f5f5;}
 .qxbox .oreg em{}
 .blurac{ color:#55b0fd;}
 .blurac:hover{text-decoration: underline;}
-.box{ font:26px/90px "Arial Regular"; width:95px;height:94px;text-align: center;background: url(../images/c.png);margin:0px auto; position:relative;}
+.box{ font:26px/90px "Arial Regular"; width:95px;height:94px;text-align: center;background: url(http://img.izhuantou.com/images/c.png);margin:0px auto; position:relative;}
 .hxqx01 .box{font:18px/95px "Arial Regular";}
 .jctb-jc{ font:14px/14px "Microsoft YaHei"; color:#858585; position:absolute; margin-left:70px; margin-top:-47px;}
 .botbox{ min-height:120px; overflow:hidden; padding:17px 60px;  margin:10px auto;}
@@ -32,10 +32,10 @@ body{ background-color:#f5f5f5;}
 .botfindleft .conter em{color:#ff7800;font-size:16px;}
 .clbox{ overflow:hidden; padding-left:30px;}
 .textcl{ color:#616161;font:16px/18px "Microsoft YaHei"; float:left;  padding-left:20px;}
-.textcl01{width:16%;  background:url(../images/tails01.png) no-repeat;}
-.textcl02{width:25%;  background:url(../images/tails02.png) no-repeat;}
-.textcl03{width:22%;  background:url(../images/tails03.png) no-repeat;}
-.textcl04{width:20%;  background:url(../images/tails04.png) no-repeat;}
+.textcl01{width:16%;  background:url(http://img.izhuantou.com/images/tails01.png) no-repeat;}
+.textcl02{width:25%;  background:url(http://img.izhuantou.com/images/tails02.png) no-repeat;}
+.textcl03{width:22%;  background:url(http://img.izhuantou.com/images/tails03.png) no-repeat;}
+.textcl04{width:20%;  background:url(http://img.izhuantou.com/images/tails04.png) no-repeat;}
 .textcl span{ color:#333333;}
 .textcl span.blue{ color:#5288ce;}
 .qhdetail{ background-color:#fff; margin-top:20px; border:1px solid #cccccc; padding-bottom:30px; }
@@ -70,7 +70,7 @@ body{ background-color:#f5f5f5;}
 .ljtzbox{ background-color:#fff; border:1px solid #cfcfcf; border-top:3px solid #55b0fd; padding:0px 20px;padding-top:15px;height:100%;}
 .sylytext{font:18px/40px "Microsoft YaHei"; color:#333333; margin-bottom:15px; }
 .jine{ width:74%; margin:auto;  border:1px solid #cccccc;  height:30px; text-align:center;line-height:30px;  }
-.shouyi{font:14px/42px "Microsoft YaHei"; color:#666666; background:url(../images/shouyi.png) no-repeat; width:127px; height:39px; text-align:center; margin:auto;}
+.shouyi{font:14px/42px "Microsoft YaHei"; color:#666666; background:url(http://img.izhuantou.com/images/shouyi.png) no-repeat; width:127px; height:39px; text-align:center; margin:auto;}
 .czzc{  overflow:hidden;width:96%;}
 .sylytext span em{ font-size:22px;}
 .czzc01{ font-size:14px; line-height:30px;margin-bottom: 8px; color:#363535}
@@ -95,7 +95,7 @@ body{ background-color:#f5f5f5;}
 .touzinput input.jine{ float:left; border-radius:5px 0px 0px 5px;}
 .touzinput span{ cursor:pointer; width:22%; float:left; line-height:30px; text-align:center; display:inline-block; border-radius:0px 5px 5px 0px; font-size:12px; border: 1px solid #cccccc; border-left:0px;height:30px;*+margin-top:-21px;}
 .bottext{ width:100%; overflow:hidden; margin:auto;font:12px/17px "Microsoft YaHei"; color:#999999;}
-/* .bottext span{ display:block; float:left; background:url(../images/jgdsf.png) no-repeat; width:16px; height:17px; margin-top:1px; margin-right:5px; margin-left:27px;} */
+/* .bottext span{ display:block; float:left; background:url(http://img.izhuantou.com/images/jgdsf.png) no-repeat; width:16px; height:17px; margin-top:1px; margin-right:5px; margin-left:27px;} */
 .aqsm{ margin:18px auto;}
 .aqsm img{ width:100%;}
 
@@ -117,7 +117,7 @@ body{ background-color:#f5f5f5;}
 .bottext_hou01{color:#55b0fd}
 .safe_baozhang .title_hei{}
 .fybha{ background-color:#fff; border:1px solid #cccccc; margin-top:20px;}
-.fytit{ background:url(../images/fengyun.png) no-repeat; height:40px;}
+.fytit{ background:url(http://img.izhuantou.com/images/fengyun.png) no-repeat; height:40px;}
 .fytit span{font:16px/40px "Microsoft YaHei"; padding-left:50px; color:#373737;}
 .fytit a{font:14px/40px "Microsoft YaHei"; float:right; padding-right:20px; color:#3bbce6;}
 .tabjxq{ width:100%;}
@@ -141,7 +141,7 @@ body{ background-color:#f5f5f5;}
 .zdtb{ position:relative; padding-left:16px; padding-bottom:10px;}
 .zdtb input{ float:left;}
 .zdtb a{ cursor:pointer; color:#333333; display:block; right:32px; top:1px; position:absolute;}
-.zdtb a em{ display:block; background:url(../images/asknew.png) no-repeat; width:21px; height:22px; position:absolute; top:0px; right:-22px;}
+.zdtb a em{ display:block; background:url(http://img.izhuantou.com/images/asknew.png) no-repeat; width:21px; height:22px; position:absolute; top:0px; right:-22px;}
 
 .tztext{ font-size:10px; line-height:20px; color:#333333; border:1px solid #F3981E; border-radius:5px; text-align:center; background-color:#FAD49F; position:absolute; top:-33px; right:-51px; padding:5px;}
 
@@ -170,7 +170,7 @@ body{ background-color:#f5f5f5;}
 
 /*出借成功**/
 .tzcgok{ min-height:300px; border:1px solid #e2e2e2; background-color:#fff; padding:120px 0px; text-align:center; }
-.tzcgok .tzimg{ width:14%; margin:auto; background:url(../images/rightok.png) no-repeat left; font-size:18px; color:#272727; line-height:45px; padding-left:55px;}
+.tzcgok .tzimg{ width:14%; margin:auto; background:url(http://img.izhuantou.com/images/rightok.png) no-repeat left; font-size:18px; color:#272727; line-height:45px; padding-left:55px;}
 .tzcgok .tztaq{ font-size:14px; line-height:40px; color:#333333;}
 .tzcgok .tztaq a{ color:#55b0fd;}
 .butlink{ overflow:hidden; width:60%; margin:auto;  margin-top:30px; }
@@ -201,7 +201,7 @@ body{ background-color:#f5f5f5;}
 
 
 /**余额不足**/
-.yebz{ margin:150px auto 250px; width:37%; background:url(../images/asker.png) no-repeat; height:37px; padding-left:50px; font-size:20px; line-height:38px;}
+.yebz{ margin:150px auto 250px; width:37%; background:url(http://img.izhuantou.com/images/asker.png) no-repeat; height:37px; padding-left:50px; font-size:20px; line-height:38px;}
 .yebz a{ color:#55b0fd;}
 
 /*不使用特权样式*/
@@ -223,7 +223,7 @@ body{ background-color:#f5f5f5;}
 	width:90%;
 	height:20px;
 	margin:0 auto;
-	background:url(../images/jindu_z.png) no-repeat;
+	background:url(http://img.izhuantou.com/images/jindu_z.png) no-repeat;
 }
 
 
@@ -344,7 +344,7 @@ transform: rotateZ(180deg);
 .redbag01{ position:relative; width:170px; height:70px; float:left;  margin-left:24px;margin-right:25px; margin-bottom:15px;cursor: pointer;}
 .redbagimg{position:absolute; top:0px; left:0px; width:169px; height:69px; float:left; z-index:900;}
 .imggray{ width:100%;position:relative;}
-.hovergray{ position:absolute; top:0; left:0;width:169px;height:0; display:none; background:url(../images/bag.png) no-repeat;}
+.hovergray{ position:absolute; top:0; left:0;width:169px;height:0; display:none; background:url(http://img.izhuantou.com/images/bag.png) no-repeat;}
 .redbagimg:hover .hovergray{display:block;width:169px; height:69px;}
 .hovergray a{ display:block; height:35px; line-height:35px; width:50%; margin:50px auto;text-align:center; color:#fff; border:1px solid #fff; border-radius:5px;}
 .bg01{position:absolute; top:4px; left:-10px; width:172px; height:70px;/* overflow:hidden; */
@@ -361,10 +361,10 @@ filter: alpha(opacity=20);-moz-opacity: 0.2;opacity: 0.2;
 -o-transform: skewX(5deg);
 -ms-transform: skewX(5deg);
 }
-.red{background:url(../images/red.png) no-repeat;}
-.gray{background:url(../images/gray.png) no-repeat;}
-.addxi{background:url(../images/addxi_new_pulple.png) no-repeat;}
-.grayaddxi{background:url(../images/grayaddxi.png) no-repeat;}
+.red{background:url(http://img.izhuantou.com/images/red.png) no-repeat;}
+.gray{background:url(http://img.izhuantou.com/images/gray.png) no-repeat;}
+.addxi{background:url(http://img.izhuantou.com/images/addxi_new_pulple.png) no-repeat;}
+.grayaddxi{background:url(http://img.izhuantou.com/images/grayaddxi.png) no-repeat;}
 
 /**红包文字**/
 .textone{ overflow:hidden; position:absolute; width: 100%;}
@@ -481,7 +481,7 @@ filter: alpha(opacity=20);-moz-opacity: 0.2;opacity: 0.2;
 .active_click{
 	width:100%;
 	height:100%;
-	background: url("../images/tq_click_bg.png");
+	background: url("http://img.izhuantou.com/images/tq_click_bg.png");
 	position:absolute;
 	left:0px;
 	top:0px;

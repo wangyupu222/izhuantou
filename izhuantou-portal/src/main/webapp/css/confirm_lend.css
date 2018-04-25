@@ -70,7 +70,7 @@
 .comneichujie .close{
 	width: 21px;
     height: 22px;
-	background: url(../images/dual_system/lend_close.png) no-repeat;
+	background: url(http://img.izhuantou.com/images/dual_system/lend_close.png) no-repeat;
 }
 .contentchujie {
    margin-top: 0px;
@@ -110,7 +110,7 @@
 	position: relative;
 	width:30px;
 	height:30px;
-	background: url(../images/dual_system/channel_icon.png) no-repeat;
+	background: url(http://img.izhuantou.com/images/dual_system/channel_icon.png) no-repeat;
 	background-position: center;
 	margin-left: 45px;
 }
@@ -123,7 +123,7 @@
 	font-size:14px;
 	color:#666;
 	line-height:32px;
-	background: url(../images/dual_system/channel_bg_tishi.png) no-repeat;
+	background: url(http://img.izhuantou.com/images/dual_system/channel_bg_tishi.png) no-repeat;
 	background-position: center;
 	display:none;
 	transition:0.6s;

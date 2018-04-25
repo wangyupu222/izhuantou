@@ -134,7 +134,7 @@ html .fc,
 	
 .fc-state-highlight { /* <td> today cell */ /* TODO: add .fc-today to <th> */
 	background: #ffc;
-	/*background:url(../img/1457417673601.png)*/
+	/*background:url(http://img.izhuantou.com/img/1457417673601.png)*/
 	}
 	
 .fc-cell-overlay { /* semi-transparent rectangle while dragging */
@@ -420,7 +420,7 @@ table.fc-border-separate {
 	border-width: 1px 0 0 1px;
 	}
 .fc-border-separate td.fc-day18{
-	/*background:url(../img/1457417673601.png);*/
+	/*background:url(http://img.izhuantou.com/img/1457417673601.png);*/
 	}
 .fc-border-separate th.fc-last,
 .fc-border-separate td.fc-last {

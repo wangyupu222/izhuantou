@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html><head>
 <meta name="renderer" content="webkit">
@@ -11,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="/css/pedetails.css?ver=118">
 <link rel="stylesheet" href="/css/responsiveslides.css">
 <link rel="stylesheet" href="/css/zoom.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 <script src="/js/com.js?ver=116"></script>
 <script src="/js/base.js"></script>
@@ -149,21 +150,21 @@ height:360px;
 <body class="hhbody">
  <div class="HHyuyue_wrap">
 <div class="HHyuyue_box">
-<img class="close_icon_01" src="/images/close_icon_01.png">
+<img class="close_icon_01" src="<%=pathUrl %>/images/close_icon_01.png">
 <div class="HHyuyue_main">
 <div class="HHyuyue_left">
 <div class="HHyuyue_leftBox">
-<img src="/images/yuyueti_icon.png">
+<img src="<%=pathUrl %>/images/yuyueti_icon.png">
 <p>若“标的剩余可投”金额低于您的出借需求金额，您可以在完成剩余可投金额的出借之后，利用“预约出借” 功能，继续出借。注：“预约出借”功能在完成全部剩余可投金额出借后，才会开启。</p>
 <div style="clear:both;"></div>
 </div>
 <div class="HHyuyue_leftBox">
-<img style="margin-top: 12px;" src="/images/yuyueti_icon02.png">
-<p>例：我要投10万元，“标的剩余可投”仅为43200元了，不能投了？不，先按<span><img class="ljcj_btn_icon" src="/images/ljcj_btn_icon.png"></span>43200元， 再 <span><img class="ljcj_btn_icon" src="/images/yycj_btn_icon.png"></span>56800元，需求＆收益两不误！</p>
+<img style="margin-top: 12px;" src="<%=pathUrl %>/images/yuyueti_icon02.png">
+<p>例：我要投10万元，“标的剩余可投”仅为43200元了，不能投了？不，先按<span><img class="ljcj_btn_icon" src="<%=pathUrl %>/images/ljcj_btn_icon.png"></span>43200元， 再 <span><img class="ljcj_btn_icon" src="<%=pathUrl %>/images/yycj_btn_icon.png"></span>56800元，需求＆收益两不误！</p>
 <div style="clear:both;"></div>
 </div>
 <div class="HHyuyue_right">
-<img src="/images/yuyue_break.png">
+<img src="<%=pathUrl %>/images/yuyue_break.png">
 </div>
 <div style="clear:both;"></div>
 </div>
@@ -171,10 +172,10 @@ height:360px;
 
 </div>
 <%-- <p>如果当前“标的剩余可投额度”不能满足您的出借金额需求，您可以先行出借当前标的剩余可投额度，再使用预约出借功能，来满足您的出借金额需求。</p>
-例：如您本次想要出借10万元，但“标的剩余可投额度”只有4万元，您可<span><img class="ljcj_btn_icon" src="/images/ljcj_btn_icon.png"></span>4万元，再<span><img class="ljcj_btn_icon" src="/images/yycj_btn_icon.png"></span>剩余的6万元，这样既能满足您的需求，也不会影响您的收益。 --%>
+例：如您本次想要出借10万元，但“标的剩余可投额度”只有4万元，您可<span><img class="ljcj_btn_icon" src="<%=pathUrl %>/images/ljcj_btn_icon.png"></span>4万元，再<span><img class="ljcj_btn_icon" src="<%=pathUrl %>/images/yycj_btn_icon.png"></span>剩余的6万元，这样既能满足您的需求，也不会影响您的收益。 --%>
 </div>
 </div>
-<div class="show_hhyu_box"><img class="show_hhyu" src="/images/Loan-notes.png"></div> 
+<div class="show_hhyu_box"><img class="show_hhyu" src="<%=pathUrl %>/images/Loan-notes.png"></div> 
 <% try{ %>
 <hoontag:TagAction handleClassName="pageHuanhuanDetails" />
 <!-- 环环投详情页面部分标详情弹出框 -->
@@ -288,7 +289,7 @@ height:360px;
         <a class="close cd-popup-close"></a>
         <p class="commit-1"><span>审核信息</span></p>
        	<div class="yunull yunullimg">
-          	<img src="/images/xinss.jpg" />
+          	<img src="<%=pathUrl %>/images/xinss.jpg" />
         </div> 
     </div>
 
@@ -299,7 +300,7 @@ height:360px;
        <a class="close cd-popup-close"></a>
        <p class="commit-1"><span>充值</span></p>
        <div class="yunull">
-          	<div class="imgczcg"><img src="/images/czok.png" width="313" height="269"></div>
+          	<div class="imgczcg"><img src="<%=pathUrl %>/images/czok.png" width="313" height="269"></div>
             <div class="textmes01">恭喜！充值成功</div>
             <div class="textmes02"><span>5</span>秒后自动跳转至出借页面</div>
            
@@ -329,7 +330,7 @@ height:360px;
     	
     	<div class="detailefts">
         	<div class="topdetail">
-            	<div class="imgpro hide"><img src="/images/hhttyb.png" /></div>
+            	<div class="imgpro hide"><img src="<%=pathUrl %>/images/hhttyb.png" /></div>
             	<div class="xmtits">
             	<%if(session.getAttribute("userMobile") != null){ %>
 				<% }else{ %>
@@ -789,7 +790,7 @@ $(function(){
             	str+='<div class="textone"><div class="hbtop"><div class="leftboxhb"><span>'+result[i].privilegeRange+'</span>%</div>';
             	str+='<dl class="chrome_dl_tit"><dd>'+result[i].privilegeName+'</dd><dd>加息时间：<span class="date_jq">'+result[i].privilegeTerm+'</span>天</dd><dd>出借限额：'+result[i].lowAmount+'元</dd></dl>';
             	str+='</div><div class="hbbottom">有效期：'+result[i].ksDate+'至'+result[i].jsDate+'</div></div>';
-            	str+='<img src="/images/addxi_new_pulple.png" width="169" height="69"><div class="active_click"><img class="tq_click_icon" src="/images/tq_click_icon.png"></div></div>';
+            	str+='<img src="<%=pathUrl %>/images/addxi_new_pulple.png" width="169" height="69"><div class="active_click"><img class="tq_click_icon" src="<%=pathUrl %>/images/tq_click_icon.png"></div></div>';
             	str+='<input type="hidden" class="mapoid_old" name="OID" value="'+result[i].mappingOID+'" /><input type="hidden" class="tqoid_old" name="OID" value="'+result[i].privilegeOID+'" /><input type="hidden" class="tq_lowAmount" value="'+result[i].lowAmount+'" /><input type="hidden" class="tq_privilegeType" value="'+result[i].privilegeType+'" />';
             	str+='</div></div>';
             	$(".boxselct").append(str);

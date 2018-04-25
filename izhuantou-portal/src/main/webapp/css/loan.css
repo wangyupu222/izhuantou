@@ -12,7 +12,7 @@
 .box-small span.sp02 em{ color:#F00;}
 
 .wyjd{ margin-top:70px;}
-.jdtops{ background:url(../images/lineok.png) no-repeat; width:1015px; height:1px; margin:60px auto; position:relative; }
+.jdtops{ background:url(http://img.izhuantou.com/images/lineok.png) no-repeat; width:1015px; height:1px; margin:60px auto; position:relative; }
 .jdtops span{ position:absolute; top:-20px; left:450px; display:block; font:24px/26px "Microsoft YaHei"; color:#333333;}
 
 .box-zong{ overflow:hidden; text-align:center; padding-bottom:20px;}
@@ -30,10 +30,10 @@
 .pro-box:first-child{ margin-left:0px; }
 
 /**新手指引**/
-.mainnew01{ background:url(../images/xinshou_01.jpg) no-repeat top center; height:767px;}
-.mainnew02{ background:url(../images/xinshou_02.jpg) no-repeat top center; height:544px;}
-.mainnew03{ background:url(../images/xinshou_03.jpg) no-repeat top center; height:621px;}
-.mainnew04{ background:url(../images/xinshou_04.jpg) no-repeat top center; height:1067px;}
+.mainnew01{ background:url(http://img.izhuantou.com/images/xinshou_01.jpg) no-repeat top center; height:767px;}
+.mainnew02{ background:url(http://img.izhuantou.com/images/xinshou_02.jpg) no-repeat top center; height:544px;}
+.mainnew03{ background:url(http://img.izhuantou.com/images/xinshou_03.jpg) no-repeat top center; height:621px;}
+.mainnew04{ background:url(http://img.izhuantou.com/images/xinshou_04.jpg) no-repeat top center; height:1067px;}
 
 .newcons01{ position:relative;}
 .boxcons{ position:absolute; height:140px; overflow:hidden; width:240px; }
@@ -50,16 +50,16 @@
 .tityifen{  text-align:center; padding-top:100px; padding-bottom:30px; color:#774327;font:40px/40px "Microsoft YaHei";}
 .tabox{ overflow:hidden; }
 .bzbox{ text-align:center; font:18px/46px "Microsoft YaHei"; color:#e04c54;float:left; margin-left:20px; width:218px; height:46px; cursor:pointer;}
-.tabox .bz01{ background:url(../images/new001.png) no-repeat; margin-left:100px;}
-.tabox .bz02{ background:url(../images/new002.png) no-repeat;}
-.tabox .bz03{ background:url(../images/new002.png) no-repeat;}
-.tabox .bz04{ background:url(../images/new003.png) no-repeat;}
-.tabox .bz01.active{background:url(../images/new01active.png) no-repeat;color:#fff;}
-.tabox .bz02.active{background:url(../images/new002active.png) no-repeat;color:#fff;}
-.tabox .bz03.active{background:url(../images/new002active.png) no-repeat;color:#fff;}
-.tabox .bz04.active{background:url(../images/new003active.png) no-repeat;color:#fff;}
+.tabox .bz01{ background:url(http://img.izhuantou.com/images/new001.png) no-repeat; margin-left:100px;}
+.tabox .bz02{ background:url(http://img.izhuantou.com/images/new002.png) no-repeat;}
+.tabox .bz03{ background:url(http://img.izhuantou.com/images/new002.png) no-repeat;}
+.tabox .bz04{ background:url(http://img.izhuantou.com/images/new003.png) no-repeat;}
+.tabox .bz01.active{background:url(http://img.izhuantou.com/images/new01active.png) no-repeat;color:#fff;}
+.tabox .bz02.active{background:url(http://img.izhuantou.com/images/new002active.png) no-repeat;color:#fff;}
+.tabox .bz03.active{background:url(http://img.izhuantou.com/images/new002active.png) no-repeat;color:#fff;}
+.tabox .bz04.active{background:url(http://img.izhuantou.com/images/new003active.png) no-repeat;color:#fff;}
 
-.piccom{ background:url(../images/computers.png) no-repeat; width:768px; height:632px; margin:auto; margin-top:50px;}
+.piccom{ background:url(http://img.izhuantou.com/images/computers.png) no-repeat; width:768px; height:632px; margin:auto; margin-top:50px;}
 .picimg{ margin-left: 34px; padding-top:32px;}
 .jlzu{ display:block; margin:30px auto 10px; text-align:center; width:224px; height:53px; font:20px/53px "Microsoft YaHei"; color:#fff; border-radius:3px; background-color:#e04c54;}
 .endtext{ text-align:center;font:20px/53px "Microsoft YaHei"; color:#333333;}
@@ -99,17 +99,17 @@
 
 .navjd div.div01{ margin-left:0px;}
 .navjd div  a{ background:#cccccc; }
-/* .navjd div.div01 a{ background:url(../images/jd01ac.jpg) no-repeat; }
-.navjd div.div02 a{ background:url(../images/jd02ac.jpg) no-repeat; }
-.navjd div.div03 a{ background:url(../images/jd03ac.jpg) no-repeat; }
-.navjd div.div04 a{ background:url(../images/jd04ac.jpg) no-repeat; }
-.navjd div.div05 a{ background:url(../images/jd05ac.jpg) no-repeat; } */
+/* .navjd div.div01 a{ background:url(http://img.izhuantou.com/images/jd01ac.jpg) no-repeat; }
+.navjd div.div02 a{ background:url(http://img.izhuantou.com/images/jd02ac.jpg) no-repeat; }
+.navjd div.div03 a{ background:url(http://img.izhuantou.com/images/jd03ac.jpg) no-repeat; }
+.navjd div.div04 a{ background:url(http://img.izhuantou.com/images/jd04ac.jpg) no-repeat; }
+.navjd div.div05 a{ background:url(http://img.izhuantou.com/images/jd05ac.jpg) no-repeat; } */
 
-.navjd div.div01.active a{ /* background:url(../images/jd01.jpg) no-repeat; */ background:#f8b74a; }
-.navjd div.div02.active a{ /* background:url(../images/jd02.jpg) no-repeat; */background:#ee81b3; }
-.navjd div.div03.active a{ /* background:url(../images/jd03.jpg) no-repeat; */background:#b08fd8; }
-.navjd div.div04.active a{ /* background:url(../images/jd04.jpg) no-repeat; */background:#69caef; }
-.navjd div.div05.active a{ /* background:url(../images/jd05.jpg) no-repeat; */background:#aacf52; }
+.navjd div.div01.active a{ /* background:url(http://img.izhuantou.com/images/jd01.jpg) no-repeat; */ background:#f8b74a; }
+.navjd div.div02.active a{ /* background:url(http://img.izhuantou.com/images/jd02.jpg) no-repeat; */background:#ee81b3; }
+.navjd div.div03.active a{ /* background:url(http://img.izhuantou.com/images/jd03.jpg) no-repeat; */background:#b08fd8; }
+.navjd div.div04.active a{ /* background:url(http://img.izhuantou.com/images/jd04.jpg) no-repeat; */background:#69caef; }
+.navjd div.div05.active a{ /* background:url(http://img.izhuantou.com/images/jd05.jpg) no-repeat; */background:#aacf52; }
 
 .optabjd{ overflow:hidden;}
 .picjdcon{ width:100%; overflow:hidden; height:600px; margin-bottom:20px; border:1px solid #e2e2e2; background-color:#e2e2e2; margin-top:10px;}
@@ -124,11 +124,11 @@
 .picjdcon05 dl dt span{ color:#aacf52;}
 .picjdcon dl dd .remarks{font:12px/24px "Microsoft yahei"; color:#666666; margin-top:5px;}
 
-.picjdcon01{ background:url(../images/jdbj01.jpg) no-repeat;}
-.picjdcon02{ background:url(../images/jdbj02.jpg) no-repeat;}
-.picjdcon03{ background:url(../images/jdbj03.jpg) no-repeat;}
-.picjdcon04{ background:url(../images/jdbj04.jpg) no-repeat;}
-.picjdcon05{ background:url(../images/jdbj05.jpg) no-repeat;}
+.picjdcon01{ background:url(http://img.izhuantou.com/images/jdbj01.jpg) no-repeat;}
+.picjdcon02{ background:url(http://img.izhuantou.com/images/jdbj02.jpg) no-repeat;}
+.picjdcon03{ background:url(http://img.izhuantou.com/images/jdbj03.jpg) no-repeat;}
+.picjdcon04{ background:url(http://img.izhuantou.com/images/jdbj04.jpg) no-repeat;}
+.picjdcon05{ background:url(http://img.izhuantou.com/images/jdbj05.jpg) no-repeat;}
 .picjdcon01 dl dd a{ background-color:#f8b74a;}
 .picjdcon01 dl dd a:hover{ background-color:#f18315;}
 
@@ -148,8 +148,8 @@
 .leftdai{ width:60%; float:left;}
 .rightdai{ width:38%; float:right; margin-top:0px;}
 .jdbt{ background-color:#fff; margin-top:20px;font-size:30px; line-height:40px; color:#333333; }
-.jdbt span{ display:block; background:url(../images/littl-icon01.png) no-repeat; width:40px; height:40px; float:left; margin-right:10px;}
-.jdbt01 span{  background:url(../images/littl-icon02.png) no-repeat;}
+.jdbt span{ display:block; background:url(http://img.izhuantou.com/images/littl-icon01.png) no-repeat; width:40px; height:40px; float:left; margin-right:10px;}
+.jdbt01 span{  background:url(http://img.izhuantou.com/images/littl-icon02.png) no-repeat;}
 .p-titdai{ font-size:14px; color:#333333; line-height:28px; margin-top:10px; width:88%;}
 
 .dai-dl dd{ overflow:hidden; margin-top:16px;}
@@ -163,10 +163,10 @@
 .debitend ul{ overflow:hidden; }
 .debitend ul li{ float:left;}
 .debitend ul.ul-1 li{  width:121px; height:121px;margin-left:100px; display:inline; margin-top:20px;}
-.debitend ul.ul-1 li.li-1{ background:url(../images/jd01.png) no-repeat;}
-.debitend ul.ul-1 li.li-2{background:url(../images/jd02.png) no-repeat;}
-.debitend ul.ul-1 li.li-3{background:url(../images/jd03.png) no-repeat;}
-.debitend ul.ul-1 li.li-4{background:url(../images/jd04.png) no-repeat;}
+.debitend ul.ul-1 li.li-1{ background:url(http://img.izhuantou.com/images/jd01.png) no-repeat;}
+.debitend ul.ul-1 li.li-2{background:url(http://img.izhuantou.com/images/jd02.png) no-repeat;}
+.debitend ul.ul-1 li.li-3{background:url(http://img.izhuantou.com/images/jd03.png) no-repeat;}
+.debitend ul.ul-1 li.li-4{background:url(http://img.izhuantou.com/images/jd04.png) no-repeat;}
 .debitend ul.ul-2 li{ font:18px/30px "微软雅黑"; color:#373737;margin-left:135px;display:inline; margin-top:20px;}
 .debitend ul.ul-2 li.li-2{ margin-left:164px;}
 .debitend ul.ul-2 li.li-3{ margin-left:166px;}
@@ -213,7 +213,7 @@
 }
 
 .debitfill ul li .yz{ width:90px;}
-.debitfill ul li .yue{ width:248px; background:url(../images/inpbg_03.jpg) no-repeat right center; padding-right:34px;}
+.debitfill ul li .yue{ width:248px; background:url(http://img.izhuantou.com/images/inpbg_03.jpg) no-repeat right center; padding-right:34px;}
 .yzimg{ margin-left:10px; float:left;}
 a.ya{ padding-left:10px; padding-top:20px; font:16px/40px "微软雅黑"; color:#c1201c;}
  .debitfill ul li .dfinput:focus { border:1px solid #22a8d4;}
@@ -288,7 +288,7 @@ overflow: hidden;
 .CreditBtn .CreditBtn_L,.CreditBtn .CreditBtn_R{width:35px;height:82px;background-color: rgba(198, 237, 246, 0.68);float:left;text-align:center;line-height:82px;font-size:36px;color:#fff; cursor: pointer;}
 .CreditBtn .CreditBtn_R{float:right;}
 .CreditBtn .disabled_left{display:none;}
-.loanObj .loanBoxLiu{background:#e2e1e1 url("../images/loanMain_New/loan_Liu.png");background-position: 45px 85px;
+.loanObj .loanBoxLiu{background:#e2e1e1 url("http://img.izhuantou.com/images/loanMain_New/loan_Liu.png");background-position: 45px 85px;
 background-repeat: no-repeat;}
 .loanMortgage_warp{height:540px;}
 .Credit_nav{width:100px;height:8px;margin:0 auto;margin-top:20px;overflow: hidden;}

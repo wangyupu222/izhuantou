@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/index.css">
 <link rel="stylesheet" type="text/css" href="/css/loan.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com_cj.js"></script>
 <script src="/js/resubmit.js"></script>
@@ -212,17 +213,17 @@ var sends = {
             <div class="rightdai">
             
             	<%if(request.getParameter("OID").equals("b00109ab3fa805780084c164a4175dfe")){%>
-            	<img src="/images/iyd.png" width="430px" >
+            	<img src="<%=pathUrl %>/images/iyd.png" width="430px" >
             	<%}else if(request.getParameter("OID").equals("afffe0d13fa805780045aefe2d2dea06")){%>
-            	<img src="/images/ixd.png" width="430px" >
+            	<img src="<%=pathUrl %>/images/ixd.png" width="430px" >
             	<%}else if(request.getParameter("OID").equals("b000c0093fa8057801cdd66986dc70b7")){%>
-            	<img src="/images/ifd.png" width="430px" >
+            	<img src="<%=pathUrl %>/images/ifd.png" width="430px" >
             	<%}else if(request.getParameter("OID").equals("b000e1223fa805780174f34f25da921c")){%>
-            	<img src="/images/ibd.png" width="430px" >
+            	<img src="<%=pathUrl %>/images/ibd.png" width="430px" >
             	<%}else if(request.getParameter("OID").equals("b00049513fa80578002f968bc2febe97")){%>
-            	<img src="/images/idy.png" width="430px">
+            	<img src="<%=pathUrl %>/images/idy.png" width="430px">
             	<%}else if(request.getParameter("OID").equals("8f45539c0a5dca713ea557825ee495e0")){%>
-            	<img src="/images/loanMain_New/icd.png" width="430px">
+            	<img src="<%=pathUrl %>/images/loanMain_New/icd.png" width="430px">
             	<%}%>
             	
             	
@@ -233,10 +234,10 @@ var sends = {
         	<div class="jdbt jdbt01"><span></span>轻松4步，简单借款</div> 
             <div class="debitend">
                 <div class="tude">
-                    <div class="df01"><img src="/images/wenj01.png"></div>
-                    <div class="df01"><img src="/images/wenj02.png"></div>
-                    <div class="df01"><img src="/images/wenj03.png"></div>
-                    <div class="df01"><img src="/images/wenj04.png"></div>
+                    <div class="df01"><img src="<%=pathUrl %>/images/wenj01.png"></div>
+                    <div class="df01"><img src="<%=pathUrl %>/images/wenj02.png"></div>
+                    <div class="df01"><img src="<%=pathUrl %>/images/wenj03.png"></div>
+                    <div class="df01"><img src="<%=pathUrl %>/images/wenj04.png"></div>
                     <div style="clear:both"></div>
                     
                 </div>

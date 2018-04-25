@@ -61,7 +61,9 @@ public class DetialTBZServiceImpl extends BaseServiceImpl<PayCustomer> implement
 	    if (memberOID != null) {
 		// 根据memberOID寻找人员信息
 		customer = customerMapper.findByMemberOID(memberOID);
-		tbz.setAvailablemoney(customer.getUseMoney());
+		if (customer != null) {
+		    tbz.setAvailablemoney(customer.getUseMoney());
+		}
 	    }
 	    /** 判断是否参加过别的投标 */
 	    if (null != memberOID && !"".equals(memberOID)) {

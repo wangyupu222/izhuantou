@@ -5,7 +5,7 @@ body{
 .ForMonyWrap{
     width: 100%;
     min-height:1698px;
-    background: url("../../image/ForMoney_ZTY/ForMoney_Bg.jpg");
+    background: url("http://img.izhuantou.com/image/ForMoney_ZTY/ForMoney_Bg.jpg");
     background-position-x: center;
     background-repeat: no-repeat;
 }
@@ -17,7 +17,7 @@ body{
 .ForMonytit{
     width: 496px;
     height: 391px;
-    background: url("../../image/ForMoney_ZTY/ForMoney_tit.png");
+    background: url("http://img.izhuantou.com/image/ForMoney_ZTY/ForMoney_tit.png");
     background-position: center;
     background-repeat: no-repeat;
     margin-top: 5px;
@@ -38,7 +38,7 @@ body{
 .Activity-tit{
     width: 745px;
     height: 68px;
-    background: url("../../image/ForMoney_ZTY/Activity-tit01.png");
+    background: url("http://img.izhuantou.com/image/ForMoney_ZTY/Activity-tit01.png");
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -98,7 +98,7 @@ body{
     height:138px;
     text-align: center;
     line-height: 138px;
-    cursor:url(../../image//ForMoney_ZTY/goldCursor.ico),auto;
+    cursor:url(http://img.izhuantou.com/image//ForMoney_ZTY/goldCursor.ico),auto;
 }
 .GoldWrap .goldBox:hover{
     -webkit-animation: tada 1s .2s ease both;
@@ -116,34 +116,34 @@ body{
     font-size: 30px;
 }
 .GoldWrap .goldBox01{
-    background: url("../../image/ForMoney_ZTY/jin01.png");
+    background: url("http://img.izhuantou.com/image/ForMoney_ZTY/jin01.png");
     background-position: center;
     background-repeat: no-repeat;
     margin-left: 12px;
 }
 .GoldWrap .goldBox02{
-    background: url("../../image/ForMoney_ZTY/jin02.png");
+    background: url("http://img.izhuantou.com/image/ForMoney_ZTY/jin02.png");
     background-position: center;
     background-repeat: no-repeat;
     background-position-y:13px;
     margin-left: 7px;
 }
 .GoldWrap .goldBox03{
-    background: url("../../image/ForMoney_ZTY/jin03.png");
+    background: url("http://img.izhuantou.com/image/ForMoney_ZTY/jin03.png");
     background-position: center;
     background-repeat: no-repeat;
     background-position-y:8px;
     margin-left: 21px;
 }
 .GoldWrap .goldBox04{
-    background: url("../../image/ForMoney_ZTY/jin04.png");
+    background: url("http://img.izhuantou.com/image/ForMoney_ZTY/jin04.png");
     background-position: center;
     background-repeat: no-repeat;
     background-position-y:7px;
     margin-left: 37px;
 }
 .GoldWrap .goldBox05{
-    background: url("../../image/ForMoney_ZTY/jin05.png");
+    background: url("http://img.izhuantou.com/image/ForMoney_ZTY/jin05.png");
     background-position: center;
     background-repeat: no-repeat;
     background-position-y:-2px;
@@ -162,7 +162,7 @@ body{
 .ExampleWrap{
     width: 1064px;
     height: 177px;
-    background: url("../../image/ForMoney_ZTY/Activity-tit02.png");
+    background: url("http://img.izhuantou.com/image/ForMoney_ZTY/Activity-tit02.png");
     background-position: center;
     background-repeat: no-repeat;
     color:#fff;
@@ -190,7 +190,7 @@ body{
 .Announcements{
     width: 1065px;
     height: 436px;
-    background: url("../../image/ForMoney_ZTY/Activity-tit03.png");
+    background: url("http://img.izhuantou.com/image/ForMoney_ZTY/Activity-tit03.png");
     background-position: center;
     background-repeat: no-repeat;
     color:#fff;

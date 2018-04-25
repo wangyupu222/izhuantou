@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/personalcenter.css">
 <link rel="stylesheet" type="text/css" href="/css/preother.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 
 <script src="/js/com.js"></script>
@@ -25,7 +26,7 @@
 }
 /* #zclip-ZeroClipboardMovie_1:hover{
 opacity: 1;
-background: url(/p2p/web/images/link_icon_h.png);
+background: url(/p2p/web<%=pathUrl %>/images/link_icon_h.png);
 } */
 .shouru_img a{
     margin: 6px 33px 6px 40px !important;
@@ -59,7 +60,7 @@ position: relative;
             </div> -->
             <div class="my_loantop"><a class="active">邀请好友</a><span class="L1">&nbsp;</span></div>
             
-            <div class="invitent hide"><img src="/images/invient.jpg"></div>
+            <div class="invitent hide"><img src="<%=pathUrl %>/images/invient.jpg"></div>
             <div class="invitenttit">邀请方式</div>
             <div id="member_value" style="display:none;"><%=session.getAttribute("memberOID")%></div>
             <div class="invitation">
@@ -67,11 +68,11 @@ position: relative;
                 <div class="shouru">
                 	<div class="shouru_img">
                 	<div class="bdsharebuttonbox">
-    <a href="#" class="bds_weixin"  style="width: 75px;height: 113px;background: url('/images/wechat.png');background-repeat: no-repeat;background-position: center;" data-cmd="weixin" title="分享到微信"></a>
-    <a href="#" class="bds_qzone" style="width: 75px;height: 113px;background: url('/images/qzone.png');background-repeat: no-repeat;background-position: center;" data-cmd="qzone" title="分享到QQ空间"></a>
-    <a href="#" class="bds_tsina" style="width: 75px;height: 113px;background: url('/images/sina_weibo.png');background-repeat: no-repeat;background-position: center;" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a href="#" class="bds_sqq" style="width: 75px;height: 113px;background: url('/images/qqchat.png');background-repeat: no-repeat;background-position: center;" data-cmd="sqq" title="分享到qq好友"></a>
-	<a href="#" class="bds_link" style="width: 75px;height: 113px; display: inline-block;background: url('/images/link_icon.png');background-repeat: no-repeat;background-position: center;"  title="点击复制链接"></a>
+    <a href="#" class="bds_weixin"  style="width: 75px;height: 113px;background: url('<%=pathUrl %>/images/wechat.png');background-repeat: no-repeat;background-position: center;" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_qzone" style="width: 75px;height: 113px;background: url('<%=pathUrl %>/images/qzone.png');background-repeat: no-repeat;background-position: center;" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_tsina" style="width: 75px;height: 113px;background: url('<%=pathUrl %>/images/sina_weibo.png');background-repeat: no-repeat;background-position: center;" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" style="width: 75px;height: 113px;background: url('<%=pathUrl %>/images/qqchat.png');background-repeat: no-repeat;background-position: center;" data-cmd="sqq" title="分享到qq好友"></a>
+	<a href="#" class="bds_link" style="width: 75px;height: 113px; display: inline-block;background: url('<%=pathUrl %>/images/link_icon.png');background-repeat: no-repeat;background-position: center;"  title="点击复制链接"></a>
                      </div>
                      <div class="InciteLink hide">https://www.izhuantou.com/p2p/web/Invite_FriendsStart.jsp?ssl=<%=session.getAttribute("memberOID")%></div>
                 	</div>
@@ -98,7 +99,7 @@ position: relative;
             
             
             <div class="wxts hide">
-            	<div class="wxtstit"><img src="/images/light.png"><span>温馨提示</span></div>
+            	<div class="wxtstit"><img src="<%=pathUrl %>/images/light.png"><span>温馨提示</span></div>
                 <div class="clear"></div>
                 <div class="wxtscon">特别提醒：
                 <br/>请勿使用他人身份证进行实名认证并且充值，否则将导致无法提现
@@ -159,7 +160,7 @@ $(document).ready(function(){
             afterCopy:function(){alert('复制成功！');}
         }); */
         $(".bds_link").zclip({
-            path:'/image/ZeroClipboard.swf',
+            path:'<%=pathUrl %>/image/ZeroClipboard.swf',
             copy:function(){return $(".InciteLink").text();},
             afterCopy:function(){alert('复制成功！');}
         });
@@ -177,7 +178,7 @@ var oHeight=$("#member_value").text();
             "bdMiniList":false,
             /* "bdUrl":"http://www.izhuantou.com/p2p/web/Invite_FriendsStart.jsp?ssl="+oHeight, */ 
             "bdUrl":"https://www.izhuantou.com/p2p/web/Invite_FriendsStart.jsp?ssl="+oHeight,
-            "bdPic":"https://www.izhuantou.com/p2p/web/images/logof.png", /* 此处填写要分享图片地址 */
+            "bdPic":"https://www.izhuantou.com/p2p/web<%=pathUrl %>/images/logof.png", /* 此处填写要分享图片地址 */
             "bdStyle":"0",
             "bdSize":"16"
         },

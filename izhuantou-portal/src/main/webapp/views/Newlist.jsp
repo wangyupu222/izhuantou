@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/personalcenter.css">
 <link rel="stylesheet" type="text/css" href="/css/preother.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
 <script language="javascript" src="/js/menu.js"></script>
@@ -62,7 +63,7 @@ line-height:28px;
        <a class="close cd-popup-close"></a>
        <p class="commit-1"><span>充值</span></p>
        <div class="yunull">
-          	<div class="imgczcg"><img src="/images/czok.png" width="313" height="269"></div>
+          	<div class="imgczcg"><img src="<%=pathUrl %>/images/czok.png" width="313" height="269"></div>
             <div class="textmes01">恭喜！充值成功</div>
             <div class="textmes02"><span>5</span>秒后自动跳转至出借页面</div>
            

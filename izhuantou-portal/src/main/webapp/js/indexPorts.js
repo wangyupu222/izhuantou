@@ -186,7 +186,7 @@ $(window).load(function() {
         var HHyb03=$(".finedataHH03 .HHyb");
         var HHdjs04=$(".finedataHH04 .HHdjs");
         var HHyb04=$(".finedataHH04 .HHyb");
-        var strImg='<img src="/image/Addyxjh.png">';
+        var strImg='<img src="http://img.izhuantou.com/image/Addyxjh.png">';
         if(result.length>=1){
         	if(result[0].szds==1 && result[0].dsTime>0){
         		HHyb01.remove();

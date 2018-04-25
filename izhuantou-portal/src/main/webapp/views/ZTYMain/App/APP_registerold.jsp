@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <link href="/css/normalize.css" type="text/css" rel="stylesheet">
 <link href="/css/appcommon.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/login.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
     <style>
     	img{vertical-align: middle;}
@@ -19,7 +20,7 @@
         #FormRegister input{outline:none;}
         .regist_inpt input {height: 44px;line-height: 44px;font-size:14px;}
         .FormContent{background-color:#ffdd89;}
-        .regist_inpt.phone { width:99%;background: #fff url(//images/phone.png) no-repeat 10px center !important;}
+        .regist_inpt.phone { width:99%;background: #fff url(/<%=pathUrl %>/images/phone.png) no-repeat 10px center !important;}
         .regist_inpt.yzm {width: 65%;}
         .yzm_wrap{width:99%;position:relative;}
         .num_yzm{width:30%;margin-left;right:0px;top:0px;text-align:right;}
@@ -29,8 +30,8 @@
         .smsYzm_wrap .regist_inpt.yzm {width: 54%;}
         .regist_inpt.short input {width: 92%;}
         .hqyzminp {width:41%;position: absolute;background: #55b0fd;color: #fff;padding: 0px 0px;margin-left: 0px;text-align: center;float: initial;margin-top: 0px;border-radius: 8px;font-size: 14px;cursor: pointer;right:0px;top:0px;height:45px;line-height:45px;margin-right: 0px;}
-    	.regist_inpt.pwd {width:99%;background: #fff url(/images/pwd.png) no-repeat 10px center;}
-    	.regist_inpt.yqm {width:99%; background: #fff url(/images/yzm.png) no-repeat 10px center;}
+    	.regist_inpt.pwd {width:99%;background: #fff url(<%=pathUrl %>/images/pwd.png) no-repeat 10px center;}
+    	.regist_inpt.yqm {width:99%; background: #fff url(<%=pathUrl %>/images/yzm.png) no-repeat 10px center;}
     	.zcbtn button {width: 99%;margin: 0 auto;}
     	.zcbtn{margin-bottom:38px;}
     </style>
@@ -140,13 +141,13 @@ var sends = {
 </head> 
 <body> 
 	<div class="wrap">
-		<img class="APPregisterBanner" src="/image/registerActive/APPregisterBanner.jpg">
+		<img class="APPregisterBanner" src="<%=pathUrl %>/image/registerActive/APPregisterBanner.jpg">
 		<div class="FormContent">
 			<form handleClassName="regist" name="FormRegister">
 				<input type="hidden" value="注册" readonly="readonly" name="register" />
 				<div class="regist_inpt phone urog-form-role">
 					<input type="text" name="phone_reg" id="phone_reg" placeholder="请输入您的手机号码" required="" data-rule-mobile="true" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的手机号码'">
-					<img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="phone_reg" />
+					<img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="phone_reg" />
 				</div>
 				<div class="yzm_wrap">
 				<div class="regist_inpt yzm short short2">
@@ -163,11 +164,11 @@ var sends = {
 				
 				<div class="regist_inpt pwd pwd_short urog-form-role">
 					<input type="password" name="password_reg" id="password_reg" placeholder="请输入8~20位字符密码" required="" data-rule-password="true" minlength="8" maxlength="20" onfocus="this.placeholder=''" onblur="this.placeholder='请输入8~20位字符密码'">
-					<img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="password_reg" /><i class="eye_show"><img src="/images/eye_close.png"></i>
+					<img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="password_reg" /><i class="eye_show"><img src="<%=pathUrl %>/images/eye_close.png"></i>
 				</div>
 				<div class="regist_inpt yqm urog-form-role">
 					<input type="text" name="yqm_reg" id="yqm_reg" placeholder="请输入推荐人手机号" onfocus="this.placeholder=''" onblur="this.placeholder='请输入推荐人手机号'">
-					<img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="yqm_reg" />
+					<img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="yqm_reg" />
 				</div>
 				<div class="regist_check xieyi_text">
 					<label class="checklabel checklabel01"><input type="checkbox" checked="checked" required="" data-msg-required="必选" name="isAgree" id="isAgree" value="ok">我已阅读并同意</label> <a href="agreement_z.jsp?contractType=1&biddingType=qt" target="_blank" class="ra">《砖头网注册协议》</a>
@@ -182,7 +183,7 @@ var sends = {
 				
 			</form>
 		</div>
-		<img class="APPregisterCon" src="/image/registerActive/APPregisterCon.jpg">
+		<img class="APPregisterCon" src="<%=pathUrl %>/image/registerActive/APPregisterCon.jpg">
 
 	</div>
 </body> 

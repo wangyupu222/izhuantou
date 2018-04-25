@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -8,9 +9,9 @@
 <meta name="keywords"	content="新手指引" />
 <title>砖头网-新手引导</title>
 <link rel="stylesheet" type="text/css" href="/css/style-common.css?v=114">
-<link rel="stylesheet" type="text/css" href="/guide/guide_new/guide.css">
-<link rel="stylesheet" type="text/css" href="/guide/guide_new/round_hover.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<link rel="stylesheet" type="text/css" href="/css/guide_new/guide.css">
+<link rel="stylesheet" type="text/css" href="/css/guide_new/round_hover.css">
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 </head>
 <style>
 .header{border-bottom: 1px solid #ddd; position: relative;z-index: 16;background:white;}
@@ -18,7 +19,7 @@
 		.header .left{float: left;width:420px;height: 40px;}
 		.header .left p{float: left;height: 100%;font-size: 14px;line-height: 42px;color: #595757;margin-right: 5px;}
 		.header .left a{float: left;width: 30px;height: 100%;margin: 0 5px;}
-		.wx,.qq,.sina{background-image: url("/images/homepage/tb01.png");background-repeat: no-repeat;}
+		.wx,.qq,.sina{background-image: url("<%=pathUrl %>/images/homepage/tb01.png");background-repeat: no-repeat;}
 		.wx{background-position: 1px 10px;}
 		.qq{background-position: 1px -58px;}
 		.sina{background-position: 1px -125px;}
@@ -33,7 +34,7 @@
 		.top_left{ float:left; font-size:14px;  color:#141414;}
 		.top_left a{color:#141414;}
 		.top_left a + a{ color:#ff9934;}
-		<%-- .top_left span{ background:url(..//images/shape.png) no-repeat left center; padding-left:24px; margin-left:20px;} --%>
+		<%-- .top_left span{ background:url(../<%=pathUrl %>/images/shape.png) no-repeat left center; padding-left:24px; margin-left:20px;} --%>
 		.top_mid{ float:left; }
 		.top_mid span{ display:block; float:left; border:1px solid #e7e7e7;width:26px; height:26px; line-height:24px; border-radius:26px; margin-top:6px; margin-left:10px;}
 		.top_mid span img{ margin-left:7px;}
@@ -70,9 +71,9 @@
             <div class="module_top module_tit01">我有什么福利？</div>
             </div>
             <div class="module_bottom">
-                <img class="brick01" src="/image/NoviceBoot/brick01.png">
-                <div class="guideTit"><img  src="/image/NoviceBoot/guideTit.png"><a class="linkone" href="/portal/user/register"></a><a class="linktwo" href="/portal/detial/tzdetailsnew"></a><a class="linkthree" href="/portal/page/New_privileges"></a></div>
-                <img class="xinxin01" src="/image/NoviceBoot/xinxin04.png">
+                <img class="brick01" src="<%=pathUrl %>/image/NoviceBoot/brick01.png">
+                <div class="guideTit"><img  src="<%=pathUrl %>/image/NoviceBoot/guideTit.png"><a class="linkone" href="/portal/user/register"></a><a class="linktwo" href="/portal/detial/tzdetailsnew"></a><a class="linkthree" href="/portal/page/New_privileges"></a></div>
+                <img class="xinxin01" src="<%=pathUrl %>/image/NoviceBoot/xinxin04.png">
                 <div class="clear"></div>
             </div>
         </div>
@@ -80,7 +81,7 @@
             <div class="zhanwei"></div>
             <div class="module_top module_tit02">如何选择适合我的产品？</div>
             <div class="module_bottom point">
-                <img class="xinxin02" src="/image/NoviceBoot/xinxin01.png">
+                <img class="xinxin02" src="<%=pathUrl %>/image/NoviceBoot/xinxin01.png">
                 <div class="module02_text ">
                     <div class="module_yuan">
                     <a href="/portal/detial/Newtzdetails?OID=">
@@ -88,12 +89,12 @@
                         <p>优质<span>高收益</span>产品综合年化15.00%出借期限15天</p>
                     </a>
                     </div>
-                    <div class="tbz_yuan"><a href="/portal/detial/Newtzdetails?OID="><img src="/image/NoviceBoot/tbz_yuan.png"></a></div>
+                    <div class="tbz_yuan"><a href="/portal/detial/Newtzdetails?OID="><img src="<%=pathUrl %>/image/NoviceBoot/tbz_yuan.png"></a></div>
                     <div class="text">头笔赚是一款散标标的，其周期短、利息高，让你头一笔
                         出借就能感受到砖头网真实可靠的出借收益效果</div>
                         <div class="clear"></div>
                 </div>
-                <img class="brick02" src="/image/NoviceBoot/brick02.png">
+                <img class="brick02" src="<%=pathUrl %>/image/NoviceBoot/brick02.png">
                 <div class="clear"></div>
             </div>
         </div>
@@ -172,7 +173,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="charts_ieImg"><a href="/portal/lend/HuanhuanProjects"><img src="/image/NoviceBoot/charts_ieImg.png"></a></div>
+                <div class="charts_ieImg"><a href="/portal/lend/HuanhuanProjects"><img src="<%=pathUrl %>/image/NoviceBoot/charts_ieImg.png"></a></div>
                 <div class="clear"></div>
             </div>
         </div>
@@ -181,8 +182,8 @@
             <div class="zhanwei"></div>
             <div class="module_top module_tit04">赶紧算算我能赚多少！</div>
             <div class="module_bottom">
-                <img class="xinxin03" src="/image/NoviceBoot/xinxin02.png">
-                <div class="calculatorImg"><a href="/portal/page/calc"><img src="/image/NoviceBoot/calculatorImg.png"></a></div>
+                <img class="xinxin03" src="<%=pathUrl %>/image/NoviceBoot/xinxin02.png">
+                <div class="calculatorImg"><a href="/portal/page/calc"><img src="<%=pathUrl %>/image/NoviceBoot/calculatorImg.png"></a></div>
                 <div class="calculator_icon"><a href="/portal/page/calc"></a></div>
                 <div class="clear"></div>
             </div>
@@ -191,9 +192,9 @@
             <div class="zhanwei"></div>
             <div class="module_top module_tit05">那么我的钱借给了谁呢？</div>
             <div class="module_bottom">
-                <img class="xinxin04" src="/image/NoviceBoot/xinxin03.png">
-                <img class="flow_Img" src="/image/NoviceBoot/flow_Img.png">
-                <img class="brick03" src="/image/NoviceBoot/brick03.png">
+                <img class="xinxin04" src="<%=pathUrl %>/image/NoviceBoot/xinxin03.png">
+                <img class="flow_Img" src="<%=pathUrl %>/image/NoviceBoot/flow_Img.png">
+                <img class="brick03" src="<%=pathUrl %>/image/NoviceBoot/brick03.png">
                 <div class="clear"></div>
             </div>
         </div>
@@ -202,7 +203,7 @@
             <div class="zhanwei"></div>
             <div class="module_top module_tit05">等不及了  上砖头儿  有赚头儿</div>
             <div class="module_bottom">
-                <img class="registerTv" src="/image/NoviceBoot/registerTv.png">
+                <img class="registerTv" src="<%=pathUrl %>/image/NoviceBoot/registerTv.png">
                 <div class="registerBtn"><a href="/portal/user/register">立即注册</a></div>
             </div>
         </div>

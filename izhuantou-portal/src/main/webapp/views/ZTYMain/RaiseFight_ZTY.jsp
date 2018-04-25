@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link href="/css/normalize.css" rel="stylesheet" type="text/css">
 <link href="/css/ZTYWrap/ForMoney_ZTY.css" rel="stylesheet" type="text/css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js?ver=114"></script>
 <style>

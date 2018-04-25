@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true" %>
+    <%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
@@ -22,7 +23,7 @@
 <div class="headerbg">
 <div class="main header">
   <div class="con headercon">
-    <div class="headerleft"><a href="/portal/user/index"><img src="/images/logo.png"></a></div>
+    <div class="headerleft"><a href="/portal/user/index"><img src="<%=pathUrl %>/images/logo.png"></a></div>
     <div class="headerright">
         <div id="navigation">
             <ul class="navcsr">
@@ -46,7 +47,7 @@
 <%-- <script type="text/javascript" src="js/move.js"></script> --%>
 <div class="error_wrap">
 <div class="error_mian">
-<img src="/images/error_img.png">
+<img src="<%=pathUrl %>/images/error_img.png">
 <%-- <div class="error_btn"><a href="index.jsp" ></a></div> --%>
 </div>
 

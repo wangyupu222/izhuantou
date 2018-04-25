@@ -16,9 +16,9 @@ body{ background:#eeeeee;}
 .inpbox{ width:80%; height:44px; margin:0 auto; margin-top:20px; position:relative;}
 .inpbox input{ width:266px; height:42px; line-height:42px; border:1px solid #dadada; border-radius:5px; padding-left:35px;outline:none;}
 .inpbox.active input{ border:1px solid #55b0fd; box-shadow:0px 0px 5px #55b0fd;}
-.inpbox.yhm input{ background:url(../images/phone.png) no-repeat 10px center;}
-.inpbox.pwd input{ background:url(../images/pwd.png) no-repeat 10px center;}
-.inpbox.yzm input{  width:157px;background: #fff url(../images/yzms.png) no-repeat 10px center;}
+.inpbox.yhm input{ background:url(http://img.izhuantou.com/images/phone.png) no-repeat 10px center;}
+.inpbox.pwd input{ background:url(http://img.izhuantou.com/images/pwd.png) no-repeat 10px center;}
+.inpbox.yzm input{  width:157px;background: #fff url(http://img.izhuantou.com/images/yzms.png) no-repeat 10px center;}
 .inpbox.yzm img{ margin-left:10px;*+margin-top:-25px;}
 .reademe{ width:80%; margin:0 auto; margin-top:20px; font-size:14px; overflow:hidden;line-height: 20px;}
 .dlbtn{ text-align:center; margin-top:20px;cursor:pointer;}
@@ -43,19 +43,19 @@ body{ background:#eeeeee;}
 
 .registleft img{ margin-top:0px;width:760px;height:517px}
 .registright{float:left; width:355px; margin-bottom:20px; margin-left:55px;}
-.redbag_bg{ width:464px; height:62px; line-height:62px; background:url(../images/redbag_bg.jpg) repeat-y; margin-top:20px;}
+.redbag_bg{ width:464px; height:62px; line-height:62px; background:url(http://img.izhuantou.com/images/redbag_bg.jpg) repeat-y; margin-top:20px;}
 .redbag_bg img{ margin-left:20px;}
 .redbag_bg span{ margin-left:10px;}
 .redbag_bg span a{ color:#e73136;}
 
 .regist_inpt{ width:278px; height:42px;line-height:13px; border:1px solid #dadada; border-radius:5px; margin-top:20px; padding-left:35px; position:relative;}
 .regist_inpt.active{border:1px solid #55b0fd; box-shadow:0px 0px 5px #55b0fd;}
-.regist_inpt.phone{ background:url(../images/phone.png) no-repeat 10px center; }
-.regist_inpt.pwd{ background:url(../images/pwd.png) no-repeat 10px center; }
-.regist_inpt.yzm{  width:145px;background: #fff url(../images/yzms.png) no-repeat 10px center;}
+.regist_inpt.phone{ background:url(http://img.izhuantou.com/images/phone.png) no-repeat 10px center; }
+.regist_inpt.pwd{ background:url(http://img.izhuantou.com/images/pwd.png) no-repeat 10px center; }
+.regist_inpt.yzm{  width:145px;background: #fff url(http://img.izhuantou.com/images/yzms.png) no-repeat 10px center;}
 .regist_inpt input{ width:98%; height:41px; line-height:41px; border:0; }
 .regist_inpt.short input{ width:75%; }
-.regist_inpt.yqm{ background:url(../images/yzm.png) no-repeat 10px center; }
+.regist_inpt.yqm{ background:url(http://img.izhuantou.com/images/yzm.png) no-repeat 10px center; }
 .regist_inpt01{ width:333px;}
 .regist_inpt01 a.hqyzm{ background:#489ae3; color:#fff; padding:11px 23px; text-align:center;  float:right; margin-top:-42px; margin-right:5px; font-size:14px;cursor:pointer;}
 .regist_inpt01 a.hqyzm.send1{background:#cccccc;cursor: no-drop;}
@@ -66,9 +66,9 @@ body{ background:#eeeeee;}
 .num_yzm{position:absolute;margin-left:57px;float:right;}
 
 /*  注册修改*/
-.regist_inpt.short{background: #fff url(../images/sms_yzm.png) no-repeat 5px center;}
+.regist_inpt.short{background: #fff url(http://img.izhuantou.com/images/sms_yzm.png) no-repeat 5px center;}
 .regist_inpt.short2{
-	    background: #fff url(../images/sign_yzm.png) no-repeat 5px center !important;
+	    background: #fff url(http://img.izhuantou.com/images/sign_yzm.png) no-repeat 5px center !important;
 }
 .regist_inpt.pwd_short input{
 	width:88%;
@@ -78,7 +78,7 @@ body{ background:#eeeeee;}
 	width:28px;
 	height:15px;
 	cursor: pointer;
-	/* background: url(../images/eye_open.png) no-repeat; */
+	/* background: url(http://img.izhuantou.com/images/eye_open.png) no-repeat; */
 }
 .eye_show img{
 	width:28px;
@@ -157,7 +157,7 @@ body{ background:#eeeeee;}
 /*忘记密码--修改成功页面*/
 .writeyhmf03{ width:400px; margin:0 auto; margin-top:100px;background-color: #fff}
 .row01 span{ display:block; float:left;}
-.row01 span.png.right{ background:url(../images/finish.png) no-repeat left center; width:51px; height:51px;}
+.row01 span.png.right{ background:url(http://img.izhuantou.com/images/finish.png) no-repeat left center; width:51px; height:51px;}
 .row01 span.txt{ margin-left:15px; font-size:16px; color:#777777; margin-top:5px;}
 .row01 span.txt em{ display:block; font-size:12px;margin-top:5px;}
 .nextbtn.btn-a{ width:340px;}

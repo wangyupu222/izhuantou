@@ -18,7 +18,7 @@ padding-bottom: 30px;}
 float: right;
 margin-right: 0px;
 display: block;
-background: url(../images/spirit.png) no-repeat 2px -8px;
+background: url(http://img.izhuantou.com/images/spirit.png) no-repeat 2px -8px;
 width: 19px;
 height: 8px;
 margin-top: 6px;
@@ -26,11 +26,11 @@ margin-top: 6px;
 .wdzq .ahg01{display:block; width:90%; margin:0 auto; font-size:16px; color:#4d4d4d; line-height:38px;}
 .topnavhelp .sp01{ display:block;   width:24px; height:26px; margin:0 auto;margin-top:16px;}
 .wdzq .ahg .sp02{font: 14px/38px "微软雅黑"; color:#4d4d4d; display:block; float:left; padding-left:2%; width:50%;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-.topnavhelp .div01:nth-child(1) .sp01{ background:url(../images/more01.png) no-repeat 0 0/100%;}
-.topnavhelp .div01:nth-child(2) .sp01{ background:url(../images/more02.png) no-repeat 0 0/100%;}
-.topnavhelp .div01:nth-child(3) .sp01{ background:url(../images/more03.png) no-repeat 0 0/100%;}
-.topnavhelp .div01:nth-child(4) .sp01{ background:url(../images/more04.png) no-repeat 0 0/100%;}
-.topnavhelp .div01:nth-child(5) .sp01{ background:url(../images/more05.png) no-repeat 0 0/100%;}
-.topnavhelp .div01:nth-child(6) .sp01{ background:url(../images/more06.png) no-repeat 0 0/100%;}
+.topnavhelp .div01:nth-child(1) .sp01{ background:url(http://img.izhuantou.com/images/more01.png) no-repeat 0 0/100%;}
+.topnavhelp .div01:nth-child(2) .sp01{ background:url(http://img.izhuantou.com/images/more02.png) no-repeat 0 0/100%;}
+.topnavhelp .div01:nth-child(3) .sp01{ background:url(http://img.izhuantou.com/images/more03.png) no-repeat 0 0/100%;}
+.topnavhelp .div01:nth-child(4) .sp01{ background:url(http://img.izhuantou.com/images/more04.png) no-repeat 0 0/100%;}
+.topnavhelp .div01:nth-child(5) .sp01{ background:url(http://img.izhuantou.com/images/more05.png) no-repeat 0 0/100%;}
+.topnavhelp .div01:nth-child(6) .sp01{ background:url(http://img.izhuantou.com/images/more06.png) no-repeat 0 0/100%;}
 
 

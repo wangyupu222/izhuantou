@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,15 +8,15 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/personalcenter.css">
 <link rel="stylesheet" type="text/css" href="/css/preother.css?v=118">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
 <script language="javascript" src="/js/menu.js"></script>
 <script src="/js/paging.js"></script>
 <style>
-.hide_liu{  width: 100%;  height: 400px;  text-align: center;  background:#fff url("/images/j_brand_new_liu_new.png"); background-repeat: no-repeat; background-position:center center; display: none;  }
-.j_lose_liu{background:#fff url("/images/j_lose_efficacy_liu_new.png");background-repeat: no-repeat; background-position:center center;}
-.j_used_liu{background:#fff url("/images/j_used_liu_new.png");background-repeat: no-repeat; background-position:center center;}
+.hide_liu{  width: 100%;  height: 400px;  text-align: center;  background:#fff url("<%=pathUrl %>/images/j_brand_new_liu_new.png"); background-repeat: no-repeat; background-position:center center; display: none;  }
+.j_lose_liu{background:#fff url("<%=pathUrl %>/images/j_lose_efficacy_liu_new.png");background-repeat: no-repeat; background-position:center center;}
+.j_used_liu{background:#fff url("<%=pathUrl %>/images/j_used_liu_new.png");background-repeat: no-repeat; background-position:center center;}
 .hbcon{min-height:665px;}
 .xqdeleft{padding-bottom:0;}
 #iframepage_new{
@@ -168,7 +169,7 @@ $(function(){
                 	str+='<dd>加息时间：'+dataItems[i].useTerm+'天</dd>';
                 } 
                 str+='<dd>起投金额：'+(dataItems[i].lowAmount).toFixed(2)+'元</dd></dl></div><div class="hbbottom">有效期'+dataItems[i].startDate+'至'+dataItems[i].endDate+'</div></div>';
-                str+='<img src="/images/addxi_new_pulple.png" width="265" height="134"><div class="hovergray"><a href="#"><div class="hovergray_wrap"><h3>使用规则：</h3><p>'+dataItems[i].ruleIntroduce+'</p></div></a></div></div></div></div>';
+                str+='<img src="<%=pathUrl %>/images/addxi_new_pulple.png" width="265" height="134"><div class="hovergray"><a href="#"><div class="hovergray_wrap"><h3>使用规则：</h3><p>'+dataItems[i].ruleIntroduce+'</p></div></a></div></div></div></div>';
                 $(".brand_new .PrivilegeWrap").append(str);
         	}
         	$(".brand_new .PrivilegeWrap").append('<div style="clear:both;"></div>');
@@ -195,7 +196,7 @@ $(function(){
         		                	str+='<dd>加息时间：'+dataItems[i].useTerm+'天</dd>';
         		                } 
         		                str+='<dd>起投金额：'+(dataItems[i].lowAmount).toFixed(2)+'元</dd></dl></div><div class="hbbottom">有效期'+dataItems[i].startDate+'至'+dataItems[i].endDate+'</div></div>';
-        		                str+='<img src="/images/addxi_new_pulple.png" width="265" height="134"><div class="hovergray"><a href="#"><div class="hovergray_wrap"><h3>使用规则：</h3><p>'+dataItems[i].ruleIntroduce+'</p></div></a></div></div></div></div>';
+        		                str+='<img src="<%=pathUrl %>/images/addxi_new_pulple.png" width="265" height="134"><div class="hovergray"><a href="#"><div class="hovergray_wrap"><h3>使用规则：</h3><p>'+dataItems[i].ruleIntroduce+'</p></div></a></div></div></div></div>';
         		                $(".brand_new .PrivilegeWrap").append(str);
         		        	}
         		        	$(".brand_new .PrivilegeWrap").append('<div style="clear:both;"></div>');
@@ -239,7 +240,7 @@ $(function(){
                 	str+='<dd>加息时间：'+dataItems[i].useTerm+'天</dd>';
                 } 
                 str+='<dd>起投金额：'+(dataItems[i].lowAmount).toFixed(2)+'元</dd></dl></div><div class="hbbottom">有效期'+dataItems[i].startDate+'至'+dataItems[i].endDate+'</div></div>';
-                str+='<img src="/images/tq_used_img.png" width="265" height="134"></div></div></div>';
+                str+='<img src="<%=pathUrl %>/images/tq_used_img.png" width="265" height="134"></div></div></div>';
                 $(".brand_YSY .PrivilegeWrap").append(str);
         	}
         	$(".brand_YSY .PrivilegeWrap").append('<div style="clear:both;"></div>');
@@ -266,7 +267,7 @@ $(function(){
         		                	str+='<dd>加息时间：'+dataItems[i].useTerm+'天</dd>';
         		                } 
         		                str+='<dd>起投金额：'+(dataItems[i].lowAmount).toFixed(2)+'元</dd></dl></div><div class="hbbottom">有效期'+dataItems[i].startDate+'至'+dataItems[i].endDate+'</div></div>';
-        		                str+='<img src="/images/tq_used_img.png" width="265" height="134"></div></div></div>';
+        		                str+='<img src="<%=pathUrl %>/images/tq_used_img.png" width="265" height="134"></div></div></div>';
         		                $(".brand_YSY .PrivilegeWrap").append(str);
         		        	}
         		        	$(".brand_YSY .PrivilegeWrap").append('<div style="clear:both;"></div>');
@@ -311,7 +312,7 @@ $(function(){
                 	str+='<dd>加息时间：'+dataItems[i].useTerm+'天</dd>';
                 } 
                 str+='<dd>起投金额：'+(dataItems[i].lowAmount).toFixed(2)+'元</dd></dl></div><div class="hbbottom">有效期'+dataItems[i].startDate+'至'+dataItems[i].endDate+'</div></div>';
-                str+='<img src="/images/tq_expire_img.png" width="265" height="134"></div></div></div>';
+                str+='<img src="<%=pathUrl %>/images/tq_expire_img.png" width="265" height="134"></div></div></div>';
                 $(".brand_YGQ .PrivilegeWrap").append(str);
         	}
         	$(".brand_YGQ .PrivilegeWrap").append('<div style="clear:both;"></div>');
@@ -338,7 +339,7 @@ $(function(){
         		                	str+='<dd>加息时间：'+dataItems[i].useTerm+'天</dd>';
         		                } 
         		                str+='<dd>起投金额：'+(dataItems[i].lowAmount).toFixed(2)+'元</dd></dl></div><div class="hbbottom">有效期'+dataItems[i].startDate+'至'+dataItems[i].endDate+'</div></div>';
-        		                str+='<img src="/images/tq_expire_img.png" width="265" height="134"></div></div></div>';
+        		                str+='<img src="<%=pathUrl %>/images/tq_expire_img.png" width="265" height="134"></div></div></div>';
         		                $(".brand_YGQ .PrivilegeWrap").append(str);
         		        	}
         		        	$(".brand_YGQ .PrivilegeWrap").append('<div style="clear:both;"></div>');

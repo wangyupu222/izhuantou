@@ -1205,22 +1205,22 @@ body {
   
 }
 body.dark {
-  background: url('../img/wood-black.jpg') repeat;
+  background: url('http://img.izhuantou.com/img/wood-black.jpg') repeat;
 }
 body.light {
-  background: url('../img/light.jpg') repeat;
+  background: url('http://img.izhuantou.com/img/light.jpg') repeat;
 }
 body.wood {
-  background: url('../img/wood.jpg') repeat;
+  background: url('http://img.izhuantou.com/img/wood.jpg') repeat;
 }
 body.retina-wood {
-  background: url('../img/retina_wood.png') repeat;
+  background: url('http://img.izhuantou.com/img/retina_wood.png') repeat;
 }
 body.linen {
-  background: url('../img/low_contrast_linen.png') repeat;
+  background: url('http://img.izhuantou.com/img/low_contrast_linen.png') repeat;
 }
 body.paper {
-  background: url('../img/natural_paper.png') repeat;
+  background: url('http://img.izhuantou.com/img/natural_paper.png') repeat;
 }
 .style-toggler {
   position: absolute;
@@ -1274,29 +1274,29 @@ body.paper {
   border-radius: 3px 3px 3px 3px;
 }
 .style-switcher .pattern li a.default {
-  background: url('../img/bg2.png') repeat;
+  background: url('http://img.izhuantou.com/img/bg2.png') repeat;
   color: #333;
 }
 .style-switcher .pattern li a.dark {
-  background: url('../img/wood-black.jpg') repeat;
+  background: url('http://img.izhuantou.com/img/wood-black.jpg') repeat;
 }
 .style-switcher .pattern li a.light {
-  background: url('../img/light.jpg') repeat;
+  background: url('http://img.izhuantou.com/img/light.jpg') repeat;
   color: #333;
 }
 .style-switcher .pattern li a.wood {
-  background: url('../img/wood.jpg') repeat;
+  background: url('http://img.izhuantou.com/img/wood.jpg') repeat;
   color: #333;
 }
 .style-switcher .pattern li a.retina-wood {
-  background: url('../img/retina_wood.png') repeat;
+  background: url('http://img.izhuantou.com/img/retina_wood.png') repeat;
   color: #333;
 }
 .style-switcher .pattern li a.linen {
-  background: url('../img/low_contrast_linen.png') repeat;
+  background: url('http://img.izhuantou.com/img/low_contrast_linen.png') repeat;
 }
 .style-switcher .pattern li a.paper {
-  background: url('../img/natural_paper.png') repeat;
+  background: url('http://img.izhuantou.com/img/natural_paper.png') repeat;
   color: #333;
 }
 .style-switcher .color {
@@ -1510,7 +1510,7 @@ body.paper {
 .topbar input {
   color: #888888;
   margin-left: 25px;
-  background: url('../img/magnifier_grey.png') no-repeat 182px 6px #272727;
+  background: url('http://img.izhuantou.com/img/magnifier_grey.png') no-repeat 182px 6px #272727;
   border: 0;
   margin-top: 12px;
   width: 195px;
@@ -2184,7 +2184,7 @@ body.paper {
   border-color: #839bcc;
 }
 .messages li.user2 .info .arrow {
-  background: url('../img/arrow-right.png') no-repeat;
+  background: url('http://img.izhuantou.com/img/arrow-right.png') no-repeat;
   position: absolute;
   right: -5px;
   display: block;
@@ -2214,7 +2214,7 @@ body.paper {
   clear: both;
 }
 .messages li .info .arrow {
-  background: url('../img/arrow-left.png') no-repeat;
+  background: url('http://img.izhuantou.com/img/arrow-left.png') no-repeat;
   position: absolute;
   left: -5px;
   display: block;
@@ -2370,7 +2370,7 @@ body.paper {
   border: none;
   width: 18px;
   padding: 0;
-  background: url(../img/spinner_arrows.gif) no-repeat 0 -100px;
+  background: url(http://img.izhuantou.com/img/spinner_arrows.gif) no-repeat 0 -100px;
   cursor: pointer;
 }
 .ui-spinner .ui-spinner-up {
@@ -2433,7 +2433,7 @@ body.paper {
   -webkit-border-radius: 1px 1px 1px 1px;
   -moz-border-radius: 1px 1px 1px 1px;
   border-radius: 1px 1px 1px 1px;
-  background: url(../img/icons/fugue/magnifier.png) no-repeat 195px #ffffff;
+  background: url(http://img.izhuantou.com/img/icons/fugue/magnifier.png) no-repeat 195px #ffffff;
 }
 .dataTables_length {
   float: right;
@@ -2483,19 +2483,19 @@ table.table thead .sorting_desc_disabled {
   filter: dropshadow(color=#000000, offx=1px, offy=1px);
 }
 table.table thead .sorting {
-  background: url('../img/sort_both.png') no-repeat center right #f3f3f3;
+  background: url('http://img.izhuantou.com/img/sort_both.png') no-repeat center right #f3f3f3;
 }
 table.table thead .sorting_asc {
-  background: url('../img/sort_asc.png') no-repeat center right #f3f3f3;
+  background: url('http://img.izhuantou.com/img/sort_asc.png') no-repeat center right #f3f3f3;
 }
 table.table thead .sorting_desc {
-  background: url('../img/sort_desc.png') no-repeat center right #f3f3f3;
+  background: url('http://img.izhuantou.com/img/sort_desc.png') no-repeat center right #f3f3f3;
 }
 table.table thead .sorting_asc_disabled {
-  background: url('../img/sort_asc_disabled.png') no-repeat center right #f3f3f3;
+  background: url('http://img.izhuantou.com/img/sort_asc_disabled.png') no-repeat center right #f3f3f3;
 }
 table.table thead .sorting_desc_disabled {
-  background: url('../img/sort_desc_disabled.png') no-repeat center right #f3f3f3;
+  background: url('http://img.izhuantou.com/img/sort_desc_disabled.png') no-repeat center right #f3f3f3;
 }
 table.table thead tr th:focus {
   outline: none;
@@ -2522,10 +2522,10 @@ table.table thead tr th:focus {
 }
 .content .box-content .ui-slider-handle.ui-state-default {
   border: 0;
-  background: url(../img/slider.png) no-repeat;
+  background: url(http://img.izhuantou.com/img/slider.png) no-repeat;
 }
 .content .box-content .ui-slider-handle.ui-state-hover {
-  background: url(../img/slider_hover.png) no-repeat;
+  background: url(http://img.izhuantou.com/img/slider_hover.png) no-repeat;
 }
 .content .box-content .ui-slider-handle.ui-state-focus {
   outline: none;

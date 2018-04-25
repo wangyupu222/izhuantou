@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/personalcenter.css?v=115">
 <!--<link rel="stylesheet" href="css/jquery.onoff.css" media="screen" />-->
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <!--日历-->
 <link rel="stylesheet" href="/css/style.css">
 <!--必要样式-->
@@ -54,7 +55,7 @@ a,img{border:0;}
 #canvas{behavior: url(/js/ie-css3.htc);}
 .rowbox03 .div-text.short{width:13.2%;}
 .rowbox03 .div-text.long{width:17.2%;}
-.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("/images/xiangqing_liu.png"); background-repeat: no-repeat; background-position:center center; display: none;  }
+.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("<%=pathUrl %>/images/xiangqing_liu.png"); background-repeat: no-repeat; background-position:center center; display: none;  }
 .personal_jie_liu{background:#fff url("images/JKjilu.jpg")no-repeat center;}
 td.yuqi {
     color: #f00;
@@ -163,7 +164,7 @@ margin:165px auto;
         
     	<div class="xqdeleft">
         	<div class="yhtop">
-            	<div class="tx01" ><a  class="cd-popup-trigger5"><img id="imgTx" src="/images/web_head_icon.png" onclick="passonOID('<%=request.getAttribute("memberOID")%>')"></a></div>
+            	<div class="tx01" ><a  class="cd-popup-trigger5"><img id="imgTx" src="<%=pathUrl %>/images/web_head_icon.png" onclick="passonOID('<%=request.getAttribute("memberOID")%>')"></a></div>
             	<% 
             	String picOID = (String)request.getAttribute("picOID");
             	if((!"".equals(picOID)) && picOID!=null){ %>

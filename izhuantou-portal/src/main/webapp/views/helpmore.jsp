@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -6,7 +7,7 @@
 <title>砖头网-帮助中心</title>
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/helpmore.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/slides.min.jquery.js"></script>
 <script src="/js/com.js"></script>
@@ -126,7 +127,7 @@ $(function(){
         		        }
         		        },
         				error:function(result){
-        		    	alert("发生错误 ");
+        					console.log("发生错误 ");
         		    	}
         		    });
         		}
@@ -136,7 +137,7 @@ $(function(){
         
         },
 		error:function(result){
-    	alert("发生错误 ");
+			console.log("发生错误 ");
     	}
     });
 	

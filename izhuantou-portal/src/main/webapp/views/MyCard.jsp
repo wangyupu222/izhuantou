@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/personalcenter.css">
 <link rel="stylesheet" type="text/css" href="/css/preother.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/paging.js"></script>
 <script src="/js/com.js"></script>
@@ -85,52 +86,52 @@
                     if("0102".equals(bankCode)){
                     %>
                     <!-- 工商 -->
-                    <img id="cardImage" src="/images/card_gs.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_gs.png">
                     <% }else if("0105".equals(bankCode)){%>                    
                     <!-- 建行 -->
-                    <img id="cardImage" src="/images/card_jh.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_jh.png">
                     <% }else if("0103".equals(bankCode)){%>
                     <!-- 农行 -->
-                    <img id="cardImage" src="/images/card_ny.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_ny.png">
                     <% }else if("0104".equals(bankCode)){%>
                     <!-- 中国 -->
-                    <img id="cardImage" src="/images/card_zg.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_zg.png">
                     <% }else if("0303".equals(bankCode)){%>
                     <!-- 光大 -->
-                    <img id="cardImage" src="/images/card_gd.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_gd.png">
                     <% }else if("0302".equals(bankCode)){%>
                     <!-- 中信 -->
-                    <img id="cardImage" src="/images/card_zx.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_zx.png">
                     <% }else if("0304".equals(bankCode)){%>
                     <!-- 华夏 -->
-                    <img id="cardImage" src="/images/card_hx.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_hx.png">
                     <% }else if("0305".equals(bankCode)){%>                    
                     <!-- 民生 -->
-                    <img id="cardImage" src="/images/card_ms.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_ms.png">
                     <% }else if("0306".equals(bankCode)){%>
                     <!-- 广发 -->
-                    <img id="cardImage" src="/images/card_gf.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_gf.png">
                     <% }else if("0307".equals(bankCode)){%>
                     <!-- 平安 -->
-                    <img id="cardImage" src="/images/card_pa.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_pa.png">
                     <% }else if("0308".equals(bankCode)){%>
                     <!-- 招商 -->
-                    <img id="cardImage" src="/images/card_zs.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_zs.png">
                     <% }else if("0309".equals(bankCode)){%>
                     <!-- 兴业 -->
-                    <img id="cardImage" src="/images/card_xy.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_xy.png">
                     <% }else if("0310".equals(bankCode)){%>
                     <!-- 上海浦东发展银行 -->
-                    <img id="cardImage" src="/images/card_pf.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_pf.png">
                     <% }else if("0301".equals(bankCode)){%>
                     <!-- 交通银行 -->
-                    <img id="cardImage" src="/images/card_jt.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_jt.png">
                     <% }else if("0319".equals(bankCode)){%>
                     <!-- 徽商银行 -->
-                    <img id="cardImage" src="/images/card_hs.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_hs.png">
                     <% }else if("0403".equals(bankCode)){%>
                     <!-- 邮政储蓄 -->
-                    <img id="cardImage" src="/images/card_yz.png">
+                    <img id="cardImage" src="<%=pathUrl %>/images/card_yz.png">
                     
                     <%} %>
                     </span></div>
@@ -147,7 +148,7 @@
                     </div> 
                     <div class="clear"></div>                  
                     <div class="Replace_text">点此<a id="ReplaceCardId">更换银行卡</a>，如有疑问，请联系砖头网客服400-900-9677。</div>
-                     <div class="sqlc" style="border-top:none;"><%-- <img src="/images/sqlc.png"> --%></div>
+                     <div class="sqlc" style="border-top:none;"><%-- <img src="<%=pathUrl %>/images/sqlc.png"> --%></div>
                      
                 </div>
                 <div class="clear"></div>
@@ -202,37 +203,37 @@ $(function(){
         success: function(result){
         var CodeStr='';
         if(result.dataValue.bankCode=='0102'){
-        	CodeStr='<img id="cardImage" src="/images/card_gs.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_gs.png">';
         }else if(result.dataValue.bankCode=='0105'){
-        	CodeStr='<img id="cardImage" src="/images/card_jh.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_jh.png">';
         }else if(result.dataValue.bankCode=='0103'){
-        	CodeStr='<img id="cardImage" src="/images/card_ny.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_ny.png">';
         }else if(result.dataValue.bankCode=='0104'){
-        	CodeStr='<img id="cardImage" src="/images/card_zg.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_zg.png">';
         }else if(result.dataValue.bankCode=='0303'){
-        	CodeStr='<img id="cardImage" src="/images/card_gd.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_gd.png">';
         }else if(result.dataValue.bankCode=='0302'){
-        	CodeStr='<img id="cardImage" src="/images/card_zx.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_zx.png">';
         }else if(result.dataValue.bankCode=='0304'){
-        	CodeStr='<img id="cardImage" src="/images/card_hx.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_hx.png">';
         }else if(result.dataValue.bankCode=='0305'){
-        	CodeStr='<img id="cardImage" src="/images/card_ms.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_ms.png">';
         }else if(result.dataValue.bankCode=='0306'){
-        	CodeStr='<img id="cardImage" src="/images/card_gf.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_gf.png">';
         }else if(result.dataValue.bankCode=='0307'){
-        	CodeStr='<img id="cardImage" src="/images/card_pa.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_pa.png">';
         }else if(result.dataValue.bankCode=='0308'){
-        	CodeStr='<img id="cardImage" src="/images/card_zs.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_zs.png">';
         }else if(result.dataValue.bankCode=='0309'){
-        	CodeStr='<img id="cardImage" src="/images/card_xy.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_xy.png">';
         }else if(result.dataValue.bankCode=='0310'){
-        	CodeStr='<img id="cardImage" src="/images/card_pf.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_pf.png">';
         }else if(result.dataValue.bankCode=='0301'){
-        	CodeStr='<img id="cardImage" src="/images/card_jt.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_jt.png">';
         }else if(result.dataValue.bankCode=='0319'){
-        	CodeStr='<img id="cardImage" src="/images/card_hs.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_hs.png">';
         }else if(result.dataValue.bankCode=='0403'){
-        	CodeStr='<img id="cardImage" src="/images/card_yz.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_yz.png">';
         }
         $(".sp-img").append(CodeStr);
         $(".sp-name").append(result.dataValue.nameCN);

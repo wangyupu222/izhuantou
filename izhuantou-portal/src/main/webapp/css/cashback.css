@@ -4,7 +4,7 @@ body{
 .cashback_wrap{
     width: 100%;
     height:3900px;
-    background: url("../image/fanxian/cashback_bg.png");
+    background: url("http://img.izhuantou.com/image/fanxian/cashback_bg.png");
     background-position-x: center;
     background-repeat: no-repeat;
 }
@@ -37,14 +37,14 @@ body{
     margin-top: 170px;
     position: relative;
     left: -65px;
-    background: url("../image/fanxian/cashback_img01.png") center no-repeat;
+    background: url("http://img.izhuantou.com/image/fanxian/cashback_img01.png") center no-repeat;
     overflow: hidden;
 }
 .content_box2{
     margin-top: 77px;
     height: 1905px;
     width:1245px;
-    background: url("../image/fanxian/cashback_img02.png") center no-repeat;
+    background: url("http://img.izhuantou.com/image/fanxian/cashback_img02.png") center no-repeat;
     left: -13px;
     opacity: 0;
 }
@@ -53,7 +53,7 @@ body{
     height: 688px;
     margin-top: 77px;
     left: 14px;
-    background: url("../image/fanxian/cashback_img04.png") center no-repeat;
+    background: url("http://img.izhuantou.com/image/fanxian/cashback_img04.png") center no-repeat;
     opacity: 0;
 }
 .content_box01{
@@ -78,7 +78,7 @@ body{
 .model03 .point.modelShow_new{-webkit-animation: cloudy5 1s 1s forwards;animation: cloudy5 1s 1s forwards;}
 @font-face {
     font-family: 华康少女;
-    src: url('../image/fanxian/font/华康少女体.TTF');
+    src: url('http://img.izhuantou.com/image/fanxian/font/华康少女体.TTF');
 }
 @-webkit-keyframes cloudy {
     0%{ opacity:0;margin-top:0px;}

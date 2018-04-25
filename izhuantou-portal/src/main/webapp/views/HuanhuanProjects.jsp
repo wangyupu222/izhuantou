@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/css/project.css?v=115">
 
 <link rel="stylesheet" href="/css/responsiveslides.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/radialIndicator.js"></script>
 <script src="/js/com.js"></script>
@@ -79,7 +80,7 @@
 <!--我要出借-->
 <div class="main conheight">
 	<div class="con projectscon">
-    	<div class="projectscon_tit"><img src="/images/dual_system/hhtProject_tit.png"></div>
+    	<div class="projectscon_tit"><img src="<%=pathUrl %>/images/dual_system/hhtProject_tit.png"></div>
         
         <div class="bottomlist bottomlist01">
         	
@@ -91,21 +92,21 @@
                     <div class="sortdiv hide"><%=request.getParameter("sortp") %></div>
                     
                     <%if("nhll2desc".equals(request.getParameter("sortp"))) {%>
-                    <td width="13.6%"><a href="HuanhuanProjects.jsp?sortp=nhll2asc">预期年化收益&nbsp;&nbsp;<em id="sortnhll"><img src="/images/dual_system/triangle_bottom.png"></em></a></td>
+                    <td width="13.6%"><a href="HuanhuanProjects.jsp?sortp=nhll2asc">预期年化收益&nbsp;&nbsp;<em id="sortnhll"><img src="<%=pathUrl %>/images/dual_system/triangle_bottom.png"></em></a></td>
                     <%}else{ %>
-                    <td width="13.6%"><a href="HuanhuanProjects.jsp?sortp=nhll2desc">预期年化收益&nbsp;&nbsp;<em id="sortnhll"><img src="/images/dual_system/triangle_top.png"></em></a></td>
+                    <td width="13.6%"><a href="HuanhuanProjects.jsp?sortp=nhll2desc">预期年化收益&nbsp;&nbsp;<em id="sortnhll"><img src="<%=pathUrl %>/images/dual_system/triangle_top.png"></em></a></td>
                     <%} %>
                     
                     <%if("cjqx2desc".equals(request.getParameter("sortp"))) {%>
-                    <td width="13.6%"><a href="HuanhuanProjects.jsp?sortp=cjqx2asc">出借期限&nbsp;&nbsp<em id="sortcjqx"><img src="/images/dual_system/triangle_bottom.png"></em></a></td>
+                    <td width="13.6%"><a href="HuanhuanProjects.jsp?sortp=cjqx2asc">出借期限&nbsp;&nbsp<em id="sortcjqx"><img src="<%=pathUrl %>/images/dual_system/triangle_bottom.png"></em></a></td>
                     <%}else{ %>
-                    <td width="13.6%"><a href="HuanhuanProjects.jsp?sortp=cjqx2desc">出借期限&nbsp;&nbsp<em id="sortcjqx"><img src="/images/dual_system/triangle_top.png"></em></a></td>
+                    <td width="13.6%"><a href="HuanhuanProjects.jsp?sortp=cjqx2desc">出借期限&nbsp;&nbsp<em id="sortcjqx"><img src="<%=pathUrl %>/images/dual_system/triangle_top.png"></em></a></td>
                     <%} %>
                     
                     <%if("hkfs2desc".equals(request.getParameter("sortp"))) {%>
-                    <td width="16.6%"><a href="HuanhuanProjects.jsp?sortp=hkfs2asc">回款方式&nbsp;&nbsp;<em id="sorthkfs"><img src="/images/dual_system/triangle_bottom.png"></em></a></td>
+                    <td width="16.6%"><a href="HuanhuanProjects.jsp?sortp=hkfs2asc">回款方式&nbsp;&nbsp;<em id="sorthkfs"><img src="<%=pathUrl %>/images/dual_system/triangle_bottom.png"></em></a></td>
                     <%}else{ %>
-                    <td width="16.6%"><a href="HuanhuanProjects.jsp?sortp=hkfs2desc">回款方式&nbsp;&nbsp;<em id="sorthkfs"><img src="/images/dual_system/triangle_top.png"></em></a></td>
+                    <td width="16.6%"><a href="HuanhuanProjects.jsp?sortp=hkfs2desc">回款方式&nbsp;&nbsp;<em id="sorthkfs"><img src="<%=pathUrl %>/images/dual_system/triangle_top.png"></em></a></td>
                     <%} %>
                     
                    <%--  <%if("xmze2desc".equals(request.getParameter("sortp"))) {%>
@@ -115,9 +116,9 @@
                     <%-- <%} %> --%>
                     
                     <%if("xmze2desc".equals(request.getParameter("sortp"))) {%>
-                    <td class="hide" width="0%"><a href="HuanhuanProjects.jsp?sortp=xmze2asc">剩余可投&nbsp;&nbsp;<em id="sortxmze"><img src="/images/dual_system/triangle_bottom.png"></em></a></td>
+                    <td class="hide" width="0%"><a href="HuanhuanProjects.jsp?sortp=xmze2asc">剩余可投&nbsp;&nbsp;<em id="sortxmze"><img src="<%=pathUrl %>/images/dual_system/triangle_bottom.png"></em></a></td>
                     <%}else{ %>
-                    <td class="hide" width="0%"><a href="HuanhuanProjects.jsp?sortp=xmze2desc">剩余可投&nbsp;&nbsp;<em id="sortxmze"><img src="/images/dual_system/triangle_top.png"></em></a></td>
+                    <td class="hide" width="0%"><a href="HuanhuanProjects.jsp?sortp=xmze2desc">剩余可投&nbsp;&nbsp;<em id="sortxmze"><img src="<%=pathUrl %>/images/dual_system/triangle_top.png"></em></a></td>
                     <%} %>                   
                     <td width="16.6%"></td>
                 </tr>
@@ -240,14 +241,14 @@ $(function(){
         		        	}
         		        },
         		        error:function(result){
-        		        	alert("发生错误 ");
+        		        	console.log("发生错误 ");
         		        }
         		    });
         		}
         	})
         },
         error:function(result){
-        	alert("发生错误 ");
+        	console.log("发生错误 ");
         }
     });
 	

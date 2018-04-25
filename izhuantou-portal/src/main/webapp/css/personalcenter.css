@@ -9,7 +9,7 @@ body{ background-color:#f5f5f5;}
 
 /**左侧菜单*/
 .menuDiv .h3{ cursor:pointer; position:relative; text-align:left; padding-left:40px; height:48px; background-color:#ffffff; overflow:hidden; border-bottom:1px solid #e2e2e2; }
-.menuDiv .h3 span{ display:block; background:url(../images/aboutus01.png) 0px 0px; width:10px; height:10px; float:left; margin:20px 12px;}
+.menuDiv .h3 span{ display:block; background:url(http://img.izhuantou.com/images/aboutus01.png) 0px 0px; width:10px; height:10px; float:left; margin:20px 12px;}
 .menuDiv .h3 a{ width:100%; display:block; float:left; color:#333333;font:16px/48px "Microsoft YaHei"; }
 .menuDiv .h3 a{ position:relative;}
 .menuDiv .h3 a:after{ content:"▼"; font-size:14px; color:#cccccc; position:absolute; right:30px;}
@@ -19,7 +19,7 @@ body{ background-color:#f5f5f5;}
 
 
 .menuDiv .h3.active{ background-color:#55b0fd;}
-.menuDiv .h3.active span{ background:url(../images/aboutus01.png) 0px -25px;}
+.menuDiv .h3.active span{ background:url(http://img.izhuantou.com/images/aboutus01.png) 0px -25px;}
 .menuDiv .h3.active a{ color:#fff;}
 .menuDiv ul li{ height:48px; overflow:hidden; border-bottom:1px solid #e2e2e2; border-left:3px solid #55b0fd;}
 .menuDiv ul li a{ padding-left:60px;  display:block;font:14px/48px "Microsoft YaHei";  color:#555555;}
@@ -69,15 +69,15 @@ body{ background-color:#f5f5f5;}
 .username02 span.yu_e{ margin-left:20px; font-size:14px;}
 .username02 span.yu_e label{ margin-left:5px; font-size:18px; color:#55b0fd;}
 .rz span{ display:inline-block; margin-top:15px;}
-.rz span.rz01{ width:15px;  height:21px; background:url(../images/rz.png) no-repeat -5px -5px; margin-right:15px;}
-.rz span.rz02{ width:19px;  height:21px; background:url(../images/rz.png) no-repeat -45px -5px;margin-right:15px;}
-.rz span.rz03{ width:21px; height:21px;  background:url(../images/rz.png) no-repeat -93px -5px;margin-right:15px;}
-.rz span.rz04{ width:16px; height:21px; background:url(../images/rz.png) no-repeat -145px -5px;margin-right:15px;}
+.rz span.rz01{ width:15px;  height:21px; background:url(http://img.izhuantou.com/images/rz.png) no-repeat -5px -5px; margin-right:15px;}
+.rz span.rz02{ width:19px;  height:21px; background:url(http://img.izhuantou.com/images/rz.png) no-repeat -45px -5px;margin-right:15px;}
+.rz span.rz03{ width:21px; height:21px;  background:url(http://img.izhuantou.com/images/rz.png) no-repeat -93px -5px;margin-right:15px;}
+.rz span.rz04{ width:16px; height:21px; background:url(http://img.izhuantou.com/images/rz.png) no-repeat -145px -5px;margin-right:15px;}
 
-.rz span.rz01.active{ width:15px;  height:21px; background:url(../images/rz.png) no-repeat -25px -5px; margin-right:15px;}
-.rz span.rz02.active{ width:19px;  height:21px; background:url(../images/rz.png) no-repeat -69px -5px;margin-right:15px;}
-.rz span.rz03.active{ width:21px; height:21px;  background:url(../images/rz.png) no-repeat -119px -5px;margin-right:15px;}
-.rz span.rz04.active{ width:16px; height:21px; background:url(../images/rz.png) no-repeat -166px -5px;margin-right:15px;}
+.rz span.rz01.active{ width:15px;  height:21px; background:url(http://img.izhuantou.com/images/rz.png) no-repeat -25px -5px; margin-right:15px;}
+.rz span.rz02.active{ width:19px;  height:21px; background:url(http://img.izhuantou.com/images/rz.png) no-repeat -69px -5px;margin-right:15px;}
+.rz span.rz03.active{ width:21px; height:21px;  background:url(http://img.izhuantou.com/images/rz.png) no-repeat -119px -5px;margin-right:15px;}
+.rz span.rz04.active{ width:16px; height:21px; background:url(http://img.izhuantou.com/images/rz.png) no-repeat -166px -5px;margin-right:15px;}
 
 .rz span.myjf{ font-size:14px;}
 .yhright{ float:left; padding-top:22px;}
@@ -203,15 +203,15 @@ tr.rowbox03.tit td{border-bottom:0;}
 .box-rightpre dl{ font-size:16px; color:#333333; line-height:30px;}
 .box-rightpre dl a{ color:#3399ff; padding-left:10px; font-size:16px;}
 .box-rightpre dl dd{ margin-top:15px; padding-left:15px;}
-.box-rightpre dl .dd01 label{ display:block; float:left; background:url(../images/b_regbag.png) no-repeat; width:30px; height:30px; margin-right:10px;}
-.box-rightpre dl .dd02 label{ display:block; float:left; background:url(../images/b_licai.png) no-repeat; width:30px; height:30px;margin-right:10px;}
-.box-rightpre dl .dd03 label{ display:block; float:left; background:url(../images/b_add.png) no-repeat; width:30px; height:30px;margin-right:10px;}
-.box-rightpre dl .dd04 label{ display:block; float:left; background:url(../images/b_invent.png) no-repeat; width:30px; height:30px;margin-right:10px;}
+.box-rightpre dl .dd01 label{ display:block; float:left; background:url(http://img.izhuantou.com/images/b_regbag.png) no-repeat; width:30px; height:30px; margin-right:10px;}
+.box-rightpre dl .dd02 label{ display:block; float:left; background:url(http://img.izhuantou.com/images/b_licai.png) no-repeat; width:30px; height:30px;margin-right:10px;}
+.box-rightpre dl .dd03 label{ display:block; float:left; background:url(http://img.izhuantou.com/images/b_add.png) no-repeat; width:30px; height:30px;margin-right:10px;}
+.box-rightpre dl .dd04 label{ display:block; float:left; background:url(http://img.izhuantou.com/images/b_invent.png) no-repeat; width:30px; height:30px;margin-right:10px;}
 
-.box-rightpre dl .dd01 label.active{ display:block; float:left; background:url(../images/a_regbag.png) no-repeat; width:30px; height:30px; margin-right:10px;}
-.box-rightpre dl .dd02 label.active{ display:block; float:left; background:url(../images/a_licai.png) no-repeat; width:30px; height:30px;margin-right:10px;}
-.box-rightpre dl .dd03 label.active{ display:block; float:left; background:url(../images/a_add.png) no-repeat; width:30px; height:30px;margin-right:10px;}
-.box-rightpre dl .dd04 label.active{ display:block; float:left; background:url(../images/a_invent.png) no-repeat; width:30px; height:30px;margin-right:10px;}
+.box-rightpre dl .dd01 label.active{ display:block; float:left; background:url(http://img.izhuantou.com/images/a_regbag.png) no-repeat; width:30px; height:30px; margin-right:10px;}
+.box-rightpre dl .dd02 label.active{ display:block; float:left; background:url(http://img.izhuantou.com/images/a_licai.png) no-repeat; width:30px; height:30px;margin-right:10px;}
+.box-rightpre dl .dd03 label.active{ display:block; float:left; background:url(http://img.izhuantou.com/images/a_add.png) no-repeat; width:30px; height:30px;margin-right:10px;}
+.box-rightpre dl .dd04 label.active{ display:block; float:left; background:url(http://img.izhuantou.com/images/a_invent.png) no-repeat; width:30px; height:30px;margin-right:10px;}
 .box-rightpre dl a{ float:right; margin-right:10px; color:#999999;}
 .box-rightpre dl a.active{ color:#55b0fd;}
 .zdinput{ margin:auto;margin-top:10px; }
@@ -256,7 +256,7 @@ tr.rowbox03.tit td{border-bottom:0;}
 .rowbox06 span.subject{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 /*左侧菜单*/
 .centerleft{background:#f5f5f5; }
-.menuDivTop{ background:#3cb4f9 url(../images/home.png) no-repeat 20px center; height:48px; line-height:48px; margin-bottom:10px; padding-left:60px; color:#fff;}
+.menuDivTop{ background:#3cb4f9 url(http://img.izhuantou.com/images/home.png) no-repeat 20px center; height:48px; line-height:48px; margin-bottom:10px; padding-left:60px; color:#fff;}
 .menuDivTop a{ color:#fff;}
 
 .wdzh{background:#ffffff; padding-bottom:100px;/*border:1px solid #e2e2e2;*/}
@@ -265,16 +265,16 @@ tr.rowbox03.tit td{border-bottom:0;}
 .financial-cal-menu .financial-cal-menu-item {/* margin-bottom: 2px; */ }
 .financial-cal-menu .financial-cal-menu-title {	border-bottom:1px solid #ececec;display: block;	height: 48px;line-height: 48px;font-size: 16px;	color: #666;background: #fff; padding-left: 30px;padding-right: 20px;cursor: pointer;}
 .financial-cal-menu .financial-cal-menu-title.active{ color:#fff;background: #55b0fd}
-/*.financial-cal-menu .financial-cal-menu-title.menu01{background:#ececec url(../images/person.png) no-repeat 20px center ;}
-.financial-cal-menu .financial-cal-menu-title.menu01.active{background: #99ccff url(../images/person_ac.png) no-repeat 20px center ;}
-.financial-cal-menu .financial-cal-menu-title.menu02{background:#ececec url(../images/dk.png) no-repeat 20px center ;}
-.financial-cal-menu .financial-cal-menu-title.menu02.active{background: #99ccff url(../images/dk_ac.png) no-repeat 20px center ;}
-.financial-cal-menu .financial-cal-menu-title.menu03{background:#ececec url(../images/lc.png) no-repeat 20px center ;}
-.financial-cal-menu .financial-cal-menu-title.menu03.active{background: #99ccff url(../images/lc_ac.png) no-repeat 20px center ;}
-.financial-cal-menu .financial-cal-menu-title.menu04{background:#ececec url(../images/set.png) no-repeat 20px center ;}
-.financial-cal-menu .financial-cal-menu-title.menu04.active{background: #99ccff url(../images/set_ac.png) no-repeat 20px center ;}*/
+/*.financial-cal-menu .financial-cal-menu-title.menu01{background:#ececec url(http://img.izhuantou.com/images/person.png) no-repeat 20px center ;}
+.financial-cal-menu .financial-cal-menu-title.menu01.active{background: #99ccff url(http://img.izhuantou.com/images/person_ac.png) no-repeat 20px center ;}
+.financial-cal-menu .financial-cal-menu-title.menu02{background:#ececec url(http://img.izhuantou.com/images/dk.png) no-repeat 20px center ;}
+.financial-cal-menu .financial-cal-menu-title.menu02.active{background: #99ccff url(http://img.izhuantou.com/images/dk_ac.png) no-repeat 20px center ;}
+.financial-cal-menu .financial-cal-menu-title.menu03{background:#ececec url(http://img.izhuantou.com/images/lc.png) no-repeat 20px center ;}
+.financial-cal-menu .financial-cal-menu-title.menu03.active{background: #99ccff url(http://img.izhuantou.com/images/lc_ac.png) no-repeat 20px center ;}
+.financial-cal-menu .financial-cal-menu-title.menu04{background:#ececec url(http://img.izhuantou.com/images/set.png) no-repeat 20px center ;}
+.financial-cal-menu .financial-cal-menu-title.menu04.active{background: #99ccff url(http://img.izhuantou.com/images/set_ac.png) no-repeat 20px center ;}*/
 
-.ver-ico-url {background-image: url(../images/vr-ico.png);}
+.ver-ico-url {background-image: url(http://img.izhuantou.com/images/vr-ico.png);}
 
 
 .financial-cal-menu .financial-cal-menu-title em {display: block;float: right;	width: 9px;	height: 5px;margin-top: 20px;background-position: -38px -38px}
@@ -392,12 +392,12 @@ div.financial-cal-menu-list{ background:#fff;}
     border-top: 1px solid #9dacbe;border-right:1px solid #9dacbe;color:#444;position:relative;
 }
 .hui_table th{height:30px;font-weight:bold;font-size:14px;}
-.hui_table td.date_has_event{background-position:162px 0px;color:#444;cursor: pointer;background: url("../images/yuandian.png")no-repeat center}
-.hui_table td.padding{background:url(../images/calpad.jpg);}
+.hui_table td.date_has_event{background-position:162px 0px;color:#444;cursor: pointer;background: url("http://img.izhuantou.com/images/yuandian.png")no-repeat center}
+.hui_table td.padding{background:url(http://img.izhuantou.com/images/calpad.jpg);}
 .hui_table td.today{background-position:81px 0px;color:#55b0Fe;}
 .hui_table td.today:hover{background-position:81px -81px;}
 .events{position:relative;}
-.events ul{text-align:left;position:absolute;display:none;z-index:1000;padding:15px;background:#E7ECF2 url(../images/popup.png) no-repeat;color:white;border:1px solid white;font-size:15px;width:200px;-moz-border-radius:3px;-khtml-border-radius:3px;-webkit-border-radius:3px;-border-radius:3px;list-style:none;color:#444444;-webkit-box-shadow:0px 8px 8px #333;}
+.events ul{text-align:left;position:absolute;display:none;z-index:1000;padding:15px;background:#E7ECF2 url(http://img.izhuantou.com/images/popup.png) no-repeat;color:white;border:1px solid white;font-size:15px;width:200px;-moz-border-radius:3px;-khtml-border-radius:3px;-webkit-border-radius:3px;-border-radius:3px;list-style:none;color:#444444;-webkit-box-shadow:0px 8px 8px #333;}
 .events li{padding-bottom:5px;}
 .events li span{display:block;font-size:12px;text-align:justify;color:#555;}
 .events li span.title{font-weight:bold;color:#222;}
@@ -415,7 +415,7 @@ div.financial-cal-menu-list{ background:#fff;}
 	width:24px;
 	height:24px;
 	vertical-align:middle;
-	background:url(../images/tyj_deng.png) no-repeat;
+	background:url(http://img.izhuantou.com/images/tyj_deng.png) no-repeat;
 }
 .tyj_tishi span{
 	line-height:12px;
@@ -558,7 +558,7 @@ div.financial-cal-menu-list{ background:#fff;}
 .TYJzhuang_tk i{margin-left: -7px;position: absolute;right: 23px;top: 0px; font-style:normal;}
 .TYJzhuang_tk i img{width:25px;}
 .TYJzhuang_tk i:hover .tyj_tishibox{display:block;}
-.TYJzhuang_tk i .tyj_tishibox {position: absolute;right:-7px;top:65px;width:390px; height:60px;background:url(../images/dual_system/tyj_tishibox.png);font-size:14px;color:#999;display:none;}
+.TYJzhuang_tk i .tyj_tishibox {position: absolute;right:-7px;top:65px;width:390px; height:60px;background:url(http://img.izhuantou.com/images/dual_system/tyj_tishibox.png);font-size:14px;color:#999;display:none;}
 .TYJzhuang_tk i .tyj_tishibox p{line-height: 18px;text-align: left;margin-top: 19px;padding-left: 15px;padding-right: 11px;}
 .TYJkindly_reminder h3{
 	color:#666;font-size:18px;font-weight: normal;margin-bottom: 11px;margin-top:20px;

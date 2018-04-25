@@ -635,46 +635,46 @@ $(document).ready(function(){
 $(function(){
 	$('.jsq,.online,.app,.weixin,.qq,.weibo').mouseover(function(){
 		if($(this).is('.jsq')){
-			$('.jsq img').attr('src','/p2p/web/images/xf01.png');
+			$('.jsq img').attr('src','http://img.izhuantou.com/images/xf01.png');
 		}
 		if($(this).is('.online')){
-			$('.online img').attr('src','/p2p/web/images/xf002.png');
+			$('.online img').attr('src','http://img.izhuantou.com/images/xf002.png');
 		}
 		if($(this).is('.weibo')){
-			$('.weibo img').attr('src','/p2p/web/images/xf005.png');
+			$('.weibo img').attr('src','http://img.izhuantou.com/images/xf005.png');
 		}
 		if($(this).is('.app')){
 			$('.appimg').show();
 		}
 		if($(this).is('.weixin')){
-			$('.weixin img.xf04').attr('src','/p2p/web/images/xf004.png');
+			$('.weixin img.xf04').attr('src','http://img.izhuantou.com/images/xf004.png');
 			$('.weixinimg').show();
 		}
 		if($(this).is('.qq')){
 			//$('.qqimg').show();
-			$('.qq img').attr('src','/p2p/web/images/xf006.png');
+			$('.qq img').attr('src','http://img.izhuantou.com/images/xf006.png');
 		}
 		
 	}).mouseout(function(){
 		if($(this).is('.jsq')){
-			$('.jsq img').attr('src','/p2p/web/images/xf01ac.png');
+			$('.jsq img').attr('src','http://img.izhuantou.com/images/xf01ac.png');
 		}
 		if($(this).is('.online')){
-			$('.online img').attr('src','/p2p/web/images/xf02.png');
+			$('.online img').attr('src','http://img.izhuantou.com/images/xf02.png');
 		}
 		if($(this).is('.weibo')){
-			$('.weibo img').attr('src','/p2p/web/images/xf05.png');
+			$('.weibo img').attr('src','http://img.izhuantou.com/images/xf05.png');
 		}
 		if($(this).is('.app')){
 			$('.appimg').hide();
 		}
 		if($(this).is('.weixin')){
-			$('.weixin img.xf04').attr('src','/p2p/web/images/xf04.png');
+			$('.weixin img.xf04').attr('src','http://img.izhuantou.com/images/xf04.png');
 			$('.weixinimg').hide();
 		}
 		if($(this).is('.qq')){
 			//$('.qqimg').hide();
-			$('.qq img').attr('src','/p2p/web/images/xf06.png');
+			$('.qq img').attr('src','http://img.izhuantou.com/images/xf06.png');
 		}
 		
 		
@@ -783,27 +783,27 @@ function getScrollTop(){
 $(function(){
 	$('.weibos').mouseover(function(){
 		//$('.qqsimg').show();
-		$('.weibos img').attr('src','/p2p/web/images/xl01.png');
+		$('.weibos img').attr('src','http://img.izhuantou.com/images/xl01.png');
 	}).mouseout(function(){
 		//$('.qqsimg').hide();
-		$('.weibos img').attr('src','/p2p/web/images/xl.png');
+		$('.weibos img').attr('src','http://img.izhuantou.com/images/xl.png');
 	})
 })
 $(function(){
 	$('.qqs').mouseover(function(){
 		//$('.qqsimg').show();
-		$('.qqs img').attr('src','/p2p/web/images/qq01.png');
+		$('.qqs img').attr('src','http://img.izhuantou.com/images/qq01.png');
 	}).mouseout(function(){
 		//$('.qqsimg').hide();
-		$('.qqs img').attr('src','/p2p/web/images/qq.png');
+		$('.qqs img').attr('src','http://img.izhuantou.com/images/qq.png');
 	})
 })
 $(function(){
 	$('.weixins').mouseover(function(){
-		$('.weixins img.wxs').attr('src','/p2p/web/images/wx01.png');
+		$('.weixins img.wxs').attr('src','http://img.izhuantou.com/images/wx01.png');
 		$('.weixinsimg').show();
 	}).mouseout(function(){
-		$('.weixins img.wxs').attr('src','/p2p/web/images/wx.png');
+		$('.weixins img.wxs').attr('src','http://img.izhuantou.com/images/wx.png');
 		$('.weixinsimg').hide();
 	})
 })

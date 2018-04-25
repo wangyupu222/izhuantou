@@ -1,5 +1,5 @@
 body {
-    background: url("../image/New_privileges/new_pricileges_bg.jpg");
+    background: url("http://img.izhuantou.com/image/New_privileges/new_pricileges_bg.jpg");
     background-repeat: no-repeat;
     background-position-x: center;
     font-family: "微软雅黑";
@@ -20,7 +20,7 @@ body {
     width: 560px;
     height: 40px;
     margin: 0 auto;
-    background: url("../image/New_privileges/privileges_title.png");
+    background: url("http://img.izhuantou.com/image/New_privileges/privileges_title.png");
     background-position: center;
     background-repeat: no-repeat;
     font-size: 32px;
@@ -75,7 +75,7 @@ body {
     width: 155px;
     height: 225px;
     margin: 0 auto;
-    background: url("../image/New_privileges/hongbao_01.png");
+    background: url("http://img.izhuantou.com/image/New_privileges/hongbao_01.png");
     background-repeat: no-repeat;
     background-position-x: center;
     cursor: pointer;
@@ -88,21 +88,21 @@ body {
     margin-top: 30px;
 }
 .hongbao01:hover{
-    background: url("../image/New_privileges/hongbao_hover_01.png");
+    background: url("http://img.izhuantou.com/image/New_privileges/hongbao_hover_01.png");
 }
 .hongbao02{
     width: 210px;
     height: 300px;
-    background: url("../image/New_privileges/hongbao_02.png");
+    background: url("http://img.izhuantou.com/image/New_privileges/hongbao_02.png");
 }
 .hongbao02:hover{
-    background: url("../image/New_privileges/hongbao_hover_02.png");
+    background: url("http://img.izhuantou.com/image/New_privileges/hongbao_hover_02.png");
 }
 .hongbao03{
-    background: url("../image/New_privileges/hongbao_03.png");
+    background: url("http://img.izhuantou.com/image/New_privileges/hongbao_03.png");
 }
 .hongbao03:hover{
-    background: url("../image/New_privileges/hongbao_hover_03.png");
+    background: url("http://img.izhuantou.com/image/New_privileges/hongbao_hover_03.png");
 }
 .ticket_wrap{
     width: 1010px;
@@ -180,7 +180,7 @@ body {
 .fireworks_icon{
     position:absolute;
     left:50%;
-    background:url(../image/New_privileges/fireworks_img.png) no-repeat;
+    background:url(http://img.izhuantou.com/image/New_privileges/fireworks_img.png) no-repeat;
     opacity:0; filter:alpha(opacity=0);
     z-index:100;
     -webkit-animation:Fireworks_box 2s cubic-bezier(.11,1.11,0.64,0.95) infinite both;

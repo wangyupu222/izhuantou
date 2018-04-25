@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -14,15 +15,15 @@
 </head> 
 <body> 
 <div class="wrap">
-<img src="/image/OperationReport2017/AppOperationReportImg01.png">
-<img src="/image/OperationReport2017/AppOperationReportImg02.png">
-<img src="/image/OperationReport2017/AppOperationReportImg03.png">
-<img src="/image/OperationReport2017/AppOperationReportImg04.png">
-<img src="/image/OperationReport2017/AppOperationReportImg05.png">
-<img src="/image/OperationReport2017/AppOperationReportImg06.png">
-<img src="/image/OperationReport2017/AppOperationReportImg07.png">
-<img src="/image/OperationReport2017/AppOperationReportImg08.png">
-<img src="/image/OperationReport2017/AppOperationReportImg09.png">
+<img src="<%=pathUrl %>/image/OperationReport2017/AppOperationReportImg01.png">
+<img src="<%=pathUrl %>/image/OperationReport2017/AppOperationReportImg02.png">
+<img src="<%=pathUrl %>/image/OperationReport2017/AppOperationReportImg03.png">
+<img src="<%=pathUrl %>/image/OperationReport2017/AppOperationReportImg04.png">
+<img src="<%=pathUrl %>/image/OperationReport2017/AppOperationReportImg05.png">
+<img src="<%=pathUrl %>/image/OperationReport2017/AppOperationReportImg06.png">
+<img src="<%=pathUrl %>/image/OperationReport2017/AppOperationReportImg07.png">
+<img src="<%=pathUrl %>/image/OperationReport2017/AppOperationReportImg08.png">
+<img src="<%=pathUrl %>/image/OperationReport2017/AppOperationReportImg09.png">
 </div>
 </body> 
 </html>

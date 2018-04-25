@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/css/comsty.css">
 <link rel="stylesheet" type="text/css" href="/css/pedetails.css">
 <link rel="stylesheet" href="/css/responsiveslides.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
 <!--<script src="/js/comjd.js"></script>-->
@@ -16,7 +17,7 @@
 <style type="text/css">
 .cd-popup-container1{ width:700px;}/*充值框大小*/
 .cd-popup-container2{ width:860px;margin: 40px auto;}/*出借框大小*/
-.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("/images/xiangqing_liu.png")no-repeat center;  display: none;  }
+.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("<%=pathUrl %>/images/xiangqing_liu.png")no-repeat center;  display: none;  }
 
 .cd-popup-container1, .cd-popup-container2, .cd-popup-container4, .cd-popup-container5, .cd-popup-containerh{ width:875px;}
 </style>

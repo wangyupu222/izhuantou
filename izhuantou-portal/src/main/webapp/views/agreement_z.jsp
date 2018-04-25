@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <title>砖头网</title>
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <link rel="stylesheet" type="text/css" href="css/style-common.css">
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <style>
@@ -73,7 +74,7 @@ body {
 <% try{ %>
 	<div class="main con1090">
 		<div class="agree_top">
-			<img src="/images/agree_03.png" />
+			<img src="<%=pathUrl %>/images/agree_03.png" />
 		</div>
 		<div class="titltsub">
 			

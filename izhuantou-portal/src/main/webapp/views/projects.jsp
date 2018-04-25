@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <title>砖头网-我要出借</title>
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/project.css?v=115">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <link rel="stylesheet" href="/css/responsiveslides.css">
 
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
@@ -33,17 +34,17 @@
     	<!-- <div class="project_icon"></div>
     	<div class="project_text"></div> -->
     	<div class="project_text project_text01">
-    	<img class="project_icon" src="/images/pro_time.png" />
+    	<img class="project_icon" src="<%=pathUrl %>/images/pro_time.png" />
     	<h3>出借期限</h3>
     	<span><i>15</i>天</span>
     	</div>
     	<div class="project_text project_text02">
-    	<img class="project_icon" src="/images/pro_money.png" />
+    	<img class="project_icon" src="<%=pathUrl %>/images/pro_money.png" />
     	<h3>预期年化</h3>
     	<span><i>15.00</i>%</span>
     	</div>
     	<div class="project_text project_text03">
-    	<img class="project_icon" src="/images/pro_touzi.png" />
+    	<img class="project_icon" src="<%=pathUrl %>/images/pro_touzi.png" />
     	<h3>最低出借</h3>
     	<span><i>100</i>元起</span>
     	</div>
@@ -61,17 +62,17 @@
     	<!-- <div class="project_icon"></div>
     	<div class="project_text"></div> -->
     	<div class="project_text project_text01">
-    	<img class="project_icon" src="/images/pro_time.png" />
+    	<img class="project_icon" src="<%=pathUrl %>/images/pro_time.png" />
     	<h3>出借期限</h3>
     	<span><i>1~24</i>个月</span>
     	</div>
     	<div class="project_text project_text02" style="width:124px;margin-left:70px;">
-    	<img class="project_icon" src="/images/pro_money.png" />
+    	<img class="project_icon" src="<%=pathUrl %>/images/pro_money.png" />
     	<h3>预期年化</h3>
     	<span><i>7.20</i>%<i>~14.00</i>%</span>
     	</div>
     	<div class="project_text project_text03" style="margin-left:90px;">
-    	<img class="project_icon" src="/images/pro_touzi.png" />
+    	<img class="project_icon" src="<%=pathUrl %>/images/pro_touzi.png" />
     	<h3>最低出借</h3>
     	<span><i>100</i>元起</span>
     	</div>
@@ -91,17 +92,17 @@
     	<p style="min-height: 78px;">点点投系列产品是砖头网为出借人精心推荐的抵押类标的，每个标的均有实物抵押，还款能力更进一步，让您更安心。</p>
     	<div class="project_money">
     	<div class="project_text project_text01">
-    	<img class="project_icon" src="/images/pro_time.png" />
+    	<img class="project_icon" src="<%=pathUrl %>/images/pro_time.png" />
     	<h3>出借期限</h3>
     	<span><i>3</i>个月</span>
     	</div>
     	<div class="project_text project_text02">
-    	<img class="project_icon" src="/images/pro_money.png" />
+    	<img class="project_icon" src="<%=pathUrl %>/images/pro_money.png" />
     	<h3>预期年化</h3>
     	<span><i>7.20</i>%</span>
     	</div>
     	<div class="project_text project_text03">
-    	<img class="project_icon" src="/images/pro_touzi.png" />
+    	<img class="project_icon" src="<%=pathUrl %>/images/pro_touzi.png" />
     	<h3>最低出借</h3>
     	<span><i>100</i>元起</span>
     	</div>
@@ -118,17 +119,17 @@
     	<!-- <div class="project_icon"></div>
     	<div class="project_text"></div> -->
     	<div class="project_text project_text01">
-    	<img class="project_icon" src="/images/pro_time.png" />
+    	<img class="project_icon" src="<%=pathUrl %>/images/pro_time.png" />
     	<h3>出借期限</h3>
     	<span><i>3~12</i>个月</span>
     	</div>
     	<div class="project_text project_text02">
-    	<img class="project_icon" src="/images/pro_money.png" />
+    	<img class="project_icon" src="<%=pathUrl %>/images/pro_money.png" />
     	<h3>预期年化</h3>
     	<span><i>7.20</i>%</span>
     	</div>
     	<div class="project_text project_text03">
-    	<img class="project_icon" src="/images/pro_touzi.png" />
+    	<img class="project_icon" src="<%=pathUrl %>/images/pro_touzi.png" />
     	<h3>最低出借</h3>
     	<span><i>100</i>元起</span>
     	</div>

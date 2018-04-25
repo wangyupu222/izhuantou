@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <link href="/css/normalize.css" type="text/css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/login.css">
 <link rel="stylesheet" type="text/css" href="/css/ZTYWrap/ActivityRegisterM.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
     
 <script>
@@ -109,7 +110,7 @@ var sends = {
 <% try{ %>
 
 	<div class="wrap">
-		<img class="APPregisterBanner" src="/image/registerActive/SpreadRegister/APPregisterBanner.png?v=114">
+		<img class="APPregisterBanner" src="<%=pathUrl %>/image/registerActive/SpreadRegister/APPregisterBanner.png?v=114">
 		<div class="FormContent">
 			<form handleClassName="SpreadRegistWeb" name="FormRegister">
 				<input type="hidden" value="wapRegister" readonly="readonly" name="register" />
@@ -117,7 +118,7 @@ var sends = {
 				<input type="hidden" value="TwentyFourfun" readonly="readonly" name="typeVal"/>
 				<div class="regist_inpt phone urog-form-role">
 					<input type="text" name="phone_reg" id="phone_reg" placeholder="请输入您的手机号码" required="" data-rule-mobile="true" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的手机号码'">
-					<img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="phone_reg" />
+					<img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="phone_reg" />
 				</div>
 				<div class="yzm_wrap">
 				<div class="regist_inpt yzm short short2">
@@ -134,11 +135,11 @@ var sends = {
 				
 				<div class="regist_inpt pwd pwd_short urog-form-role">
 					<input type="password" name="password_reg" id="password_reg" placeholder="请输入8~20位字符密码" required="" data-rule-password="true" minlength="8" maxlength="20" onfocus="this.placeholder=''" onblur="this.placeholder='请输入8~20位字符密码'">
-					<img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="password_reg" /><i class="eye_show"><img src="/images/eye_close.png"></i>
+					<img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="password_reg" /><i class="eye_show"><img src="<%=pathUrl %>/images/eye_close.png"></i>
 				</div>
 				<div class="regist_inpt yqm urog-form-role">
 					<input type="text" name="yqm_reg" id="yqm_reg" placeholder="请输入推荐人手机号" onfocus="this.placeholder=''" onblur="this.placeholder='请输入推荐人手机号'">
-					<img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="yqm_reg" />
+					<img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="yqm_reg" />
 				</div>
 				<div class="regist_check xieyi_text">
 					<label class="checklabel checklabel01"><input type="checkbox" checked="checked" required="" data-msg-required="必选" name="isAgree" id="isAgree" value="ok">我已阅读并同意</label> <a href="agreement_z.jsp?contractType=1&biddingType=qt" target="_blank" class="ra">《砖头网注册协议》</a>
@@ -153,9 +154,9 @@ var sends = {
 				
 			</form>
 		</div>
-		<img class="APPregisterCon" src="/image/registerActive/SpreadRegister/APPregisterCon01.jpg?v=114">
-		<img class="APPregisterCon" src="/image/registerActive/APPregisterCon02.jpg">
-		<img class="APPregisterCon" src="/image/registerActive/APPregisterCon03.jpg">
+		<img class="APPregisterCon" src="<%=pathUrl %>/image/registerActive/SpreadRegister/APPregisterCon01.jpg?v=114">
+		<img class="APPregisterCon" src="<%=pathUrl %>/image/registerActive/APPregisterCon02.jpg">
+		<img class="APPregisterCon" src="<%=pathUrl %>/image/registerActive/APPregisterCon03.jpg">
 		<div class="APPregisterBtn"><a href="#">立即注册</a></div>
 	</div>
 
@@ -172,10 +173,10 @@ $(function(){
 	$(".eye_show").click(function(){
 		if($(".pwd_short input").attr("type")=="password"){
 			$(".pwd_short input").attr("type","text");
-			$(".eye_show img").attr("src","/images/eye_open.png");
+			$(".eye_show img").attr("src","<%=pathUrl %>/images/eye_open.png");
 		}else if($(".pwd_short input").attr("type")=="text"){
 			$(".pwd_short input").attr("type","password");
-			$(".eye_show img").attr("src","/images/eye_close.png");
+			$(".eye_show img").attr("src","<%=pathUrl %>/images/eye_close.png");
 		}
 	})
 })

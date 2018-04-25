@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,15 +8,15 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/personalcenter.css">
 <link rel="stylesheet" type="text/css" href="/css/preother.css?=v114">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 
 <script src="/js/com.js"></script>
 <script language="javascript" src="/js/menu.js"></script>
 <style>
-.hide_liu{  width: 100%;  height: 400px;  text-align: center;  background:#fff url("/images/h_brand_new_liu_new.png"); background-repeat: no-repeat; background-position:center center; display: none;  }
-.h_lose_liu{background:#fff url("/images/h_lose_efficacy_liu_new.png");background-repeat: no-repeat; background-position:center center;}
-.h_used_liu{background:#fff url("/images/h_used_liu_new.png");background-repeat: no-repeat; background-position:center center;}
+.hide_liu{  width: 100%;  height: 400px;  text-align: center;  background:#fff url("<%=pathUrl %>/images/h_brand_new_liu_new.png"); background-repeat: no-repeat; background-position:center center; display: none;  }
+.h_lose_liu{background:#fff url("<%=pathUrl %>/images/h_lose_efficacy_liu_new.png");background-repeat: no-repeat; background-position:center center;}
+.h_used_liu{background:#fff url("<%=pathUrl %>/images/h_used_liu_new.png");background-repeat: no-repeat; background-position:center center;}
 .hbcon{min-height:570px;}
 .xqdeleft{padding-bottom:0;}
 </style>
@@ -78,7 +79,7 @@
                 
                 </div>
                 <%-- <div class="wxts">
-            	<div class="wxtstit"><img src="/images/light.png"><span>温馨提示</span></div>
+            	<div class="wxtstit"><img src="<%=pathUrl %>/images/light.png"><span>温馨提示</span></div>
                 <div class="clear"></div>
                 <div class="wxtscon">特别提醒：
                 <br/>请勿使用他人身份证进行实名认证并且充值，否则将导致无法提现

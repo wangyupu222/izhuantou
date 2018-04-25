@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link href="/css/normalize.css" rel="stylesheet" type="text/css">
 <link href="/css/ZTYWrap/LanternFestival_ZTY.css?v=119" rel="stylesheet" type="text/css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js?ver=114"></script>
 </head>
@@ -31,7 +32,7 @@
         <div class="titBox">福利一 天天都有小钱钱</div>
         <div class="RawardMain">
         <p class="p1">活动期间每天，如满足单日出借累计年化金额排名前三名的用户均可获得现金红包奖励，奖励如下：</p>
-        <img class="img01" src='/image/HappyNewYearUI/ModuleOneImg.png'>
+        <img class="img01" src='<%=pathUrl %>/image/HappyNewYearUI/ModuleOneImg.png'>
         <p class="p2">*累计年化金额=单笔出借金额*期限/12+单笔出借金额*期限/12（每个单笔的年化金额累计相加）</p>
         </div>
         </div>

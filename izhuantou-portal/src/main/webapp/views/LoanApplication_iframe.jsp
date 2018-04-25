@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" %> 
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %> 
 <!doctype html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <%-- <link rel="stylesheet" type="text/css" href="/css/preother.css"> --%>
 <link rel="stylesheet" type="text/css" href="/css/Loaniframe.css">
 
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <!--<link rel="stylesheet" href="/css/jquery.onoff.css" media="screen" />-->
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <!--<script src="/js/jquery.onoff.min.js"></script>-->
@@ -128,7 +129,7 @@ var sends = {
                 </li>
                 
             <!--<li><label>备注</label><textarea type="text" id="textarea" class="dfinput dfinput-text" ></textarea></li>-->
-              <!--	<li><label>验证码</label><input type="text" class="dfinput yz"/><div class="yzimg"><img src="/images/jdyz.jpg"  /></div><a class="ya" href="#">换一张</a></li>-->
+              <!--	<li><label>验证码</label><input type="text" class="dfinput yz"/><div class="yzimg"><img src="<%=pathUrl %>/images/jdyz.jpg"  /></div><a class="ya" href="#">换一张</a></li>-->
                <li class="single_ctrl"><input type="checkbox" required="" data-msg-required="请勾选协议" name="isAgree" id="isAgree" value="1"><label for="isAgree" class="isAgree-style">我已阅读并同意</label><a href="agreement_z.jsp?contractType=9" target="_blank" >《借款咨询服务协议》 </a><a href="/agreement_z.jsp?contractType=6&biddingType=qt" target="_blank" >《砖头网借款协议》 </a><a href="agreement_z.jsp?contractType=8&biddingType=qt" target="_blank" >《砖头网债权预回购协议》</a></li>
                <div align="left" style="margin-left:80px;color:#f00;" id="sign_val">${msg}</div>
                <%-- <div align="left" style="color:#f00;margin-left:80px;" id="sign_val" ><hoontag:Message name="LoanAppl registerErro"/></div> --%>

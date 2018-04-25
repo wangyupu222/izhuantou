@@ -4,7 +4,7 @@ body{
 .RaiseFight_main{
     width: 100%;
     min-height: 3155px;
-    background: #6818c1 url("../../image/RaiseFight/RaiseFight_bg.jpg");
+    background: #6818c1 url("http://img.izhuantou.com/image/RaiseFight/RaiseFight_bg.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-position-y:0px ;
@@ -29,7 +29,7 @@ body{
     width: 535px;
     height: 45px;
     margin: 0 auto;
-    background: url("../../image/RaiseFight/RaiseFight_tit02.png");
+    background: url("http://img.izhuantou.com/image/RaiseFight/RaiseFight_tit02.png");
     background-repeat: no-repeat;
     background-position: center;
     text-align: center;
@@ -65,7 +65,7 @@ body{
 }
 .RaiseFight_box02 .RaiseFight_tit,.RaiseFight_box03 .RaiseFight_tit{
     width: 455px;
-    background: url("../../image/RaiseFight/RaiseFight_tit01.png");
+    background: url("http://img.izhuantou.com/image/RaiseFight/RaiseFight_tit01.png");
     background-repeat: no-repeat;
     background-position: center;
 }

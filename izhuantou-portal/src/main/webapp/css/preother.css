@@ -150,8 +150,8 @@ table.ddttable tr.loanrow.loanrow01 td{ width:16.6%;}
 .debitfill label{ display:block; width:80px; height:40px; float:left; font:16px/40px "微软雅黑"; color:#413d3c;}
 .debitfill ul li .dfinput{ width:410px ; height:40px; line-height:40px; border:1px solid #EEEEEE;float:left;font:16px/20px "微软雅黑"; color:#778691; text-indent:8px;line-height:40px;}
 .debitfill ul li .yz{ width:90px;}
-.debitfill ul li .yue{ width:376px; background:url(../images/inpbg_03.jpg) no-repeat right center; padding-right:34px;}
-.debitfill ul li .yue01{ width:376px; background:url(../images/inpbg_03b.png) no-repeat right center; padding-right:34px;}
+.debitfill ul li .yue{ width:376px; background:url(http://img.izhuantou.com/images/inpbg_03.jpg) no-repeat right center; padding-right:34px;}
+.debitfill ul li .yue01{ width:376px; background:url(http://img.izhuantou.com/images/inpbg_03b.png) no-repeat right center; padding-right:34px;}
 .yzimg{ margin-left:10px; float:left;}
 a.ya{ padding-left:10px; padding-top:20px; font:16px/40px "微软雅黑"; color:#c1201c;}
  .debitfill ul li .dfinput:focus { border:1px solid #22a8d4;}
@@ -200,7 +200,7 @@ table.applayrecord tr td a.loanstates:hover{color:#55b0fd;}
 .hbtabcar a{ cursor:pointer; display:block; padding:0px 30px; float:left; font:14px/47px "微软雅黑"; color:#000; border:1px solid #e2e2e2; }
 .hbtabcar a.active{ border:none; border-top:4px solid #55b0fd; position:relative;}
 .cardyong{  }
-.cardyonglist{margin:40px; display:block; width:312px; height:200px; /* background:#f5f5f5;border:2px solid #f0f0f0; */background:url(../images/card.png) no-repeat;  border-radius:5px;}
+.cardyonglist{margin:40px; display:block; width:312px; height:200px; /* background:#f5f5f5;border:2px solid #f0f0f0; */background:url(http://img.izhuantou.com/images/card.png) no-repeat;  border-radius:5px;}
 .cartop{font:16px/40px "微软雅黑"; overflow:hidden; color:#000;}
 .cartop .sp01{ float:left; padding-left:20px;}
 .cartop .sp02{ float:right; padding-right:20px;}
@@ -224,7 +224,7 @@ table.applayrecord tr td a.loanstates:hover{color:#55b0fd;}
 
 .cardyonglist02{ display:block; width:340px; height:100px;}
 .card02 span{ display:inline-block; float:left; padding-right:20px;height:100px; line-height:100px;}
-.card02 span.sp-yz{ padding-left:25px; background:url(../images/yz.jpg) no-repeat left center;}
+.card02 span.sp-yz{ padding-left:25px; background:url(http://img.izhuantou.com/images/yz.jpg) no-repeat left center;}
 
 /*申请变更*/
 .sqbg{ width:409px; text-align: center; margin-top:-12px; font-size:18px;}
@@ -247,7 +247,7 @@ table.applayrecord tr td a.loanstates:hover{color:#55b0fd;}
 /*新改注册资金账户页面*/
 .cardtit{width:100%; height:30px; border-top:1px dashed #dddddd; position:relative; margin-top:40px; }
 .titp{ display:block;color:#55b0fd; background:#fff; font-size:16px; padding-right:15px; position:absolute; top:-12px;}
-.tishis{ font-size:12px; color:#fc806c; background:url(../images/ts.png) no-repeat left center; padding-left:20px;}
+.tishis{ font-size:12px; color:#fc806c; background:url(http://img.izhuantou.com/images/ts.png) no-repeat left center; padding-left:20px;}
 .cardcon{ width:75%; margin:0 auto;}
 
 
@@ -274,7 +274,7 @@ table.applayrecord tr td a.loanstates:hover{color:#55b0fd;}
 .redbag01{ position:relative; width:288px; height:134px; float:left;  margin-left:10px; margin-bottom:15px;}
 .redbagimg{position:absolute; top:0px; left:0px; width:265px; height:134px; float:left; z-index:900;}
 .imggray{ width:100%; height:134px; position:relative;}
-.hovergray{ position:absolute; top:0; left:0;width:265px;height:0; display:none; background:url(../images/bag.png) no-repeat;}
+.hovergray{ position:absolute; top:0; left:0;width:265px;height:0; display:none; background:url(http://img.izhuantou.com/images/bag.png) no-repeat;}
 .redbagimg:hover .hovergray{display:block;width:265px; height:134px;}
 .hovergray a{ display:block; height:35px; line-height:35px; width:50%; margin:50px auto;text-align:center; color:#fff; border:1px solid #fff; border-radius:5px;}
 .bg01{position:absolute; top:4px; left:-20px; width:265px; height:134px;/* overflow:hidden; */
@@ -291,10 +291,10 @@ filter: alpha(opacity=40);-moz-opacity: 0.4;opacity: 0.4;
 -o-transform: skewX(5deg);
 -ms-transform: skewX(5deg);
 }
-.red{background:url(../images/red.png) no-repeat;}
-.gray{background:url(../images/gray.png) no-repeat;}
-.addxi{background:url(../images/addxi_new_pulple.png) no-repeat;}
-.grayaddxi{background:url(../images/grayaddxi.png) no-repeat;}
+.red{background:url(http://img.izhuantou.com/images/red.png) no-repeat;}
+.gray{background:url(http://img.izhuantou.com/images/gray.png) no-repeat;}
+.addxi{background:url(http://img.izhuantou.com/images/addxi_new_pulple.png) no-repeat;}
+.grayaddxi{background:url(http://img.izhuantou.com/images/grayaddxi.png) no-repeat;}
 /*错误信息提示*/
 .box-yhk span.error{ float:left; color:#f00; position:absolute; top:0px; left:470px;}
 /*三级联动样式*/
@@ -305,7 +305,7 @@ filter: alpha(opacity=40);-moz-opacity: 0.4;opacity: 0.4;
 .hqyzm.loanhqyzm{position:absolute; top:0; left:373px;  height:42px; line-height:40px; color:#fff; }
 
 .sqwt{ padding-left:20px; overflow:hidden; width:510px; margin:30px auto 0px; color:#f40606;}
-.sqwt span{display:block; float:left; background:url(../images/ts1.png) no-repeat; width:15px; height:20px; margin:4px 10px;}
+.sqwt span{display:block; float:left; background:url(http://img.izhuantou.com/images/ts1.png) no-repeat; width:15px; height:20px; margin:4px 10px;}
 .sqwt a{ color:#4fa6fd; padding-left:5px;}
 
 /**红包文字**/
@@ -338,7 +338,7 @@ margin: 19px 0px 0px 10px;
 }
 @font-face {
     font-family: impact;
-    src: url('../image/kuanghuan/font/IMPACT.TTF');
+    src: url('http://img.izhuantou.com/image/kuanghuan/font/IMPACT.TTF');
 }
 .hbtop dl dd {
     line-height: 23px;
@@ -664,7 +664,7 @@ margin: 19px 0px 0px 10px;
 	display: inline-block;
 }
 .hxAddCard_i{position: relative;float:left;margin-left:12px;margin-top: 5px;}
-.hxAddCard_text{position: absolute;left:-225px;top:36px;width:310px;height:43px;font-size:14px;padding-top: 20px;padding-left: 9px;color:#666;text-align:left;background:url(../images/dual_system/hxAddCard_textBG.png) no-repeat center;}
+.hxAddCard_text{position: absolute;left:-225px;top:36px;width:310px;height:43px;font-size:14px;padding-top: 20px;padding-left: 9px;color:#666;text-align:left;background:url(http://img.izhuantou.com/images/dual_system/hxAddCard_textBG.png) no-repeat center;}
 /* next04 */
 .addblank04_top{
 	text-align:center;

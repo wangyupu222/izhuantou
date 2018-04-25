@@ -1,10 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>砖头网</title>
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <link rel="stylesheet" type="text/css" href="css/style-common.css">
 <script type="text/javascript" src="/js/pdfobject.js"></script>
 <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/personalcenter.css">
 <link rel="stylesheet" type="text/css" href="/css/CapitalDetailed.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
 <script language="javascript" src="/js/menu.js"></script>
@@ -22,7 +23,7 @@
 .rowbox06 span.subject{}
 .rowbox06 li.yuqi{color:#f00;}
 .rowbox06 li.zchk{color:#04b277;}
-.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("/images/JKjilu.jpg"); background-repeat: no-repeat; background-position:center center; display: none;  }
+.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("<%=pathUrl %>/images/JKjilu.jpg"); background-repeat: no-repeat; background-position:center center; display: none;  }
 </style>
 </head>
 <body>
@@ -35,7 +36,7 @@
        <p class="commit-1"><span>立即还款</span></p>
        <div class="yunull yunullchujie">
           	<div class="boxtitle">
-            	<img src="/images/chujie.png" width="65" height="53">
+            	<img src="<%=pathUrl %>/images/chujie.png" width="65" height="53">
                 <div class="titlebt"><a href="Diantzdetails.jsp">i房贷—房产周转贷款</a></div>
                 <div class="titlebt"><a href="#">ZT20160309</a></div>
             </div>

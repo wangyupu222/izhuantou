@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -28,7 +29,7 @@
     	<%}%></title>
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/aboutus.css?v=118">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <%-- <script src="/js/jquery.zoomImgRollover.js" type="text/javascript"></script> --%>
 <script type="text/javascript" src="/js/team_introduce.js"></script>
@@ -140,49 +141,49 @@ $(function(){
             <div class="about_right_bottom environment_wrap">
             <div class="environment_top">
             <div class="environment_top_left01">
-            <div class="environment_top_left_T"><img class="testimg" src="/image/Group_environment/Group_environment01.png"></div>
-            <div class="environment_top_left_B"><img class="testimg" src="/image/Group_environment/Group_environment02.png"></div>
+            <div class="environment_top_left_T"><img class="testimg" src="<%=pathUrl %>/image/Group_environment/Group_environment01.png"></div>
+            <div class="environment_top_left_B"><img class="testimg" src="<%=pathUrl %>/image/Group_environment/Group_environment02.png"></div>
             </div>
             <div class="environment_top_left02">
-            <img class="testimg" src="/image/Group_environment/Group_environment03.png">
+            <img class="testimg" src="<%=pathUrl %>/image/Group_environment/Group_environment03.png">
             </div>
             <div class="environment_top_left03">
-            <img class="testimg" src="/image/Group_environment/Group_environment04.png">
+            <img class="testimg" src="<%=pathUrl %>/image/Group_environment/Group_environment04.png">
             </div>
             <div class="environment_top_left04">
-            <img class="testimg" src="/image/Group_environment/Group_environment05.png">
+            <img class="testimg" src="<%=pathUrl %>/image/Group_environment/Group_environment05.png">
             </div>
             
             </div>
             
             <div class="environment_bottom">
             <div class="environment_bottom_left01">
-            <img class="testimg" src="/image/Group_environment/Group_environment06.png">
+            <img class="testimg" src="<%=pathUrl %>/image/Group_environment/Group_environment06.png">
             </div>
             <div class="environment_bottom_left02">
-            <div class="environment_bottom_left_T"><img class="testimg" src="/image/Group_environment/Group_environment07.png"></div>
-            <div class="environment_bottom_left_B"><img class="testimg" src="/image/Group_environment/Group_environment08.png"></div>
+            <div class="environment_bottom_left_T"><img class="testimg" src="<%=pathUrl %>/image/Group_environment/Group_environment07.png"></div>
+            <div class="environment_bottom_left_B"><img class="testimg" src="<%=pathUrl %>/image/Group_environment/Group_environment08.png"></div>
             </div>
             <div class="environment_bottom_left03">
-            <img class="testimg" src="/image/Group_environment/Group_environment09.png">
+            <img class="testimg" src="<%=pathUrl %>/image/Group_environment/Group_environment09.png">
             </div>
             
             </div>
                 <!-- <div class="right_bottom_left">
-                    <div class="left_box1"><img class="testimg" src="/images/environment_img_03.png"></div>
-                    <div class="left_box2"><img class="testimg" src="/images/environment_img_14.png"></div>
+                    <div class="left_box1"><img class="testimg" src="<%=pathUrl %>/images/environment_img_03.png"></div>
+                    <div class="left_box2"><img class="testimg" src="<%=pathUrl %>/images/environment_img_14.png"></div>
                 </div>
                 <div class="right_bottom_left">
-                    <div class="left_box3"><img class="testimg" src="/images/environment_img_05.png"></div>
-                    <div class="left_box4"><img class="testimg" src="/images/environment_img_16.png"></div>
+                    <div class="left_box3"><img class="testimg" src="<%=pathUrl %>/images/environment_img_05.png"></div>
+                    <div class="left_box4"><img class="testimg" src="<%=pathUrl %>/images/environment_img_16.png"></div>
                 </div>
                 <div class="right_bottom_right">
-                    <div class="bottom_right_top"><img class="testimg" src="/images/environment_img_07.png"></div>
+                    <div class="bottom_right_top"><img class="testimg" src="<%=pathUrl %>/images/environment_img_07.png"></div>
                     <div class="bottom_right_bottom">
-                        <div class="left_box5"><img class="testimg" src="/images/environment_img_11.png"></div>
+                        <div class="left_box5"><img class="testimg" src="<%=pathUrl %>/images/environment_img_11.png"></div>
                         <div class="bottom_right_bottom_wrap">
-                            <div class="left_box6"><img class="testimg" src="/images/environment_img_13.png"></div>
-                            <div class="left_box7"><img class="testimg" src="/images/environment_img_18.png"></div>
+                            <div class="left_box6"><img class="testimg" src="<%=pathUrl %>/images/environment_img_13.png"></div>
+                            <div class="left_box7"><img class="testimg" src="<%=pathUrl %>/images/environment_img_18.png"></div>
                         </div>
                         <div style="clear: left"></div>
                     </div>
@@ -206,7 +207,7 @@ $(function(){
         <div class="about_right_content">
             <div style="border-bottom: 1px dotted #bfbfbf ">
                 <div class="team_top">
-                    <div class="team_top_img1"><img src="/images/team_title.jpg"></div>
+                    <div class="team_top_img1"><img src="<%=pathUrl %>/images/team_title.jpg"></div>
                 </div>
             </div>
         </div>
@@ -218,7 +219,7 @@ $(function(){
                     <div class="team_wrap_top">
                         <div class="team_wrap_mian">
                             <div class="team_wrap_box" style="display: block;z-index: 2">
-                                <div class="team_wrap_img"><img src="/images/1wangboss-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/1wangboss-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>王晨松 Simon</h3>砖头网董事长兼总裁<br>&nbsp;
@@ -230,7 +231,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/2xiaoboss-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/2xiaoboss-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>萧振良 Winks</h3>砖头网副总裁<br>&nbsp;
@@ -242,7 +243,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/3Vivian-2.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/3Vivian-2.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>林琳 Vivian</h3>砖头网运营总监<br>&nbsp;
@@ -254,7 +255,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/Ricky_boss.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/Ricky_boss.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>苏友祺 Ricky</h3>砖头网风控总监<br>&nbsp;
@@ -276,18 +277,18 @@ $(function(){
                     </div>
                     <div class="team_wrap_bottom team_wrap_bottom2">
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/1wangboss-1.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/1wangboss-1.jpg"></div>
 
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/2xiaoboss-1.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/2xiaoboss-1.jpg"></div>
 
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/3Vivian-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/3Vivian-2.jpg"></div>
                         </div>
                         <div class="team_bottom_box" style="margin-right: 0px">
-                            <div class="team_bottom_box_img1"><img src="/images/Ricky_boss.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/Ricky_boss.jpg"></div>
                         </div>
                         <div style="clear: both"></div>
                     </div>
@@ -300,7 +301,7 @@ $(function(){
                     <div class="team_wrap_top">
                         <div class="team_wrap_mian">
                         <div class="team_wrap_box" style="display: block;z-index: 2">
-                                <div class="team_wrap_img"><img src="/images/fuwu.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/fuwu.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <br>
@@ -313,7 +314,7 @@ $(function(){
                                  </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/fengkong.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/fengkong.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <br>
@@ -326,7 +327,7 @@ $(function(){
                                  </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/team_1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/team_1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <br>
@@ -340,7 +341,7 @@ $(function(){
                             </div>
                             
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/team_2.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/team_2.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <br>
@@ -353,7 +354,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/team_3.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/team_3.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <br>
@@ -366,7 +367,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/team_4.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/team_4.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <br>
@@ -379,7 +380,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/team_5.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/team_5.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <br>
@@ -392,7 +393,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/team_6.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/team_6.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <br>
@@ -405,7 +406,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/team_7.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/team_7.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <br>
@@ -418,7 +419,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/team_8.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/team_8.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <br>
@@ -442,43 +443,43 @@ $(function(){
                     </div>
                     <div class="team_wrap_bottom team_wrap_bottom2">
                     <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/fuwu.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/fuwu.jpg"></div>
 
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/fengkong.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/fengkong.jpg"></div>
 
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/team_1.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/team_1.jpg"></div>
 
                         </div>
                         <div class="team_bottom_box" style="margin-right: 0px">
-                            <div class="team_bottom_box_img1"><img src="/images/team_2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/team_2.jpg"></div>
 
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/team_3.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/team_3.jpg"></div>
 
                         </div>
                         <div class="team_bottom_box" >
-                            <div class="team_bottom_box_img1"><img src="/images/team_4.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/team_4.jpg"></div>
 
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/team_5.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/team_5.jpg"></div>
 
                         </div>
                         <div class="team_bottom_box" style="margin-right: 0px">
-                            <div class="team_bottom_box_img1"><img src="/images/team_6.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/team_6.jpg"></div>
 
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/team_7.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/team_7.jpg"></div>
 
                         </div>
                         <div class="team_bottom_box" >
-                            <div class="team_bottom_box_img1"><img src="/images/team_8.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/team_8.jpg"></div>
 
                         </div>
                         <div style="clear: both"></div>
@@ -491,7 +492,7 @@ $(function(){
                     <div class="team_wrap_top">
                         <div class="team_wrap_mian">
                             <div class="team_wrap_box" style="display: block;z-index: 2">
-                                <div class="team_wrap_img"><img src="/images/11Pitt-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/11Pitt-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>张帅 Pitt</h3>项目运营主管<br>个人座右铭：爱一件事需要理由吗？不需要！
@@ -506,7 +507,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/12Holy-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/12Holy-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>盛洁  Holy</h3>VI设计师<br>个人座右铭：喜欢的事自然可以坚持,不喜欢的事怎么也长久不了
@@ -521,7 +522,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/13Jeff-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/13Jeff-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>尹津 Jeff</h3>客户服务中心主管<br>个人座右铭：精诚所至，金石为开
@@ -536,7 +537,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/14Oscar-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/14Oscar-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>邓迪 Oscar</h3>商务拓展负责人<br>个人座右铭：I can i up ，不can我学习
@@ -562,20 +563,20 @@ $(function(){
                     </div>
                     <div class="team_wrap_bottom team_wrap_bottom3">
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/11Pitt-1.jpg"></div>
-                            <div class="team_bottom_box_img2"><img src="/images/11Pitt-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/11Pitt-1.jpg"></div>
+                            <div class="team_bottom_box_img2"><img src="<%=pathUrl %>/images/11Pitt-2.jpg"></div>
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/12Holy-1.jpg"></div>
-                            <div class="team_bottom_box_img2"><img src="/images/12Holy-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/12Holy-1.jpg"></div>
+                            <div class="team_bottom_box_img2"><img src="<%=pathUrl %>/images/12Holy-2.jpg"></div>
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/13Jeff-1.jpg"></div>
-                            <div class="team_bottom_box_img2"><img src="/images/13Jeff-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/13Jeff-1.jpg"></div>
+                            <div class="team_bottom_box_img2"><img src="<%=pathUrl %>/images/13Jeff-2.jpg"></div>
                         </div>
                         <div class="team_bottom_box" style="margin-right: 0px">
-                            <div class="team_bottom_box_img1"><img src="/images/14Oscar-1.jpg"></div>
-                            <div class="team_bottom_box_img2"><img src="/images/14Oscar-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/14Oscar-1.jpg"></div>
+                            <div class="team_bottom_box_img2"><img src="<%=pathUrl %>/images/14Oscar-2.jpg"></div>
                         </div>
                     </div>
                 </div>
@@ -586,7 +587,7 @@ $(function(){
                     <div class="team_wrap_top">
                         <div class="team_wrap_mian">
                             <div class="team_wrap_box" style="display: block;z-index: 2">
-                                <div class="team_wrap_img"><img src="/images/15Milo-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/15Milo-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>李旭超 Milo</h3>前端工程师<br>个人座右铭：最简单的事是坚持，最难的事还是坚持。
@@ -600,7 +601,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/18Vivi-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/18Vivi-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>赵伟 Vivi</h3>数据清算专员<br>个人座右铭：只要能解决的就都不是事儿。
@@ -615,7 +616,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/17Irene-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/17Irene-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>高悦 Irene</h3>项目运营专员<br>个人座右铭：生活不止眼前的苟且还有吃吃吃和买买买。
@@ -629,7 +630,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/16Eva-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/16Eva-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>李潇宇 Eva</h3>助理设计师<br>个人座右铭：好饭不嫌晚，总能等到我爱吃的那碗。
@@ -654,20 +655,20 @@ $(function(){
                     </div>
                     <div class="team_wrap_bottom team_wrap_bottom2">
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/15Milo-1.jpg"></div>
-                            <div class="team_bottom_box_img2"><img src="/images/15Milo-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/15Milo-1.jpg"></div>
+                            <div class="team_bottom_box_img2"><img src="<%=pathUrl %>/images/15Milo-2.jpg"></div>
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/18Vivi-1.jpg"></div>
-                            <div class="team_bottom_box_img2"><img src="/images/18Vivi-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/18Vivi-1.jpg"></div>
+                            <div class="team_bottom_box_img2"><img src="<%=pathUrl %>/images/18Vivi-2.jpg"></div>
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/17Irene-1.jpg"></div>
-                            <div class="team_bottom_box_img2"><img src="/images/17Irene-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/17Irene-1.jpg"></div>
+                            <div class="team_bottom_box_img2"><img src="<%=pathUrl %>/images/17Irene-2.jpg"></div>
                         </div>
                         <div class="team_bottom_box" style="margin-right: 0px">
-                            <div class="team_bottom_box_img1"><img src="/images/16Eva-1.jpg"></div>
-                            <div class="team_bottom_box_img2"><img src="/images/16Eva-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/16Eva-1.jpg"></div>
+                            <div class="team_bottom_box_img2"><img src="<%=pathUrl %>/images/16Eva-2.jpg"></div>
                         </div>
                     </div>
                 </div>
@@ -678,7 +679,7 @@ $(function(){
                     <div class="team_wrap_top">
                         <div class="team_wrap_mian">
                             <div class="team_wrap_box" style="display: block;z-index: 2">
-                                <div class="team_wrap_img"><img src="/images/19Jane-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/19Jane-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>候敏 Jane</h3>行政事务专员<br>个人座右铭：努力就有回报。
@@ -692,7 +693,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/20Owen-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/20Owen-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>万东文 Owen</h3>新媒体运营专员<br>个人座右铭：坚持就有希望。
@@ -707,7 +708,7 @@ $(function(){
                                 </div>
                             </div>
                             <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/21Michelle-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/21Michelle-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>聂文君 Michelle</h3>客服专员<br>个人座右铭：天下万物的来和去，都有他的时间。
@@ -721,7 +722,7 @@ $(function(){
                                 </div>
                             </div>
                            &lt;!&ndash; <div class="team_wrap_box">
-                                <div class="team_wrap_img"><img src="/images/10Tommy-1.jpg"></div>
+                                <div class="team_wrap_img"><img src="<%=pathUrl %>/images/10Tommy-1.jpg"></div>
                                 <div class="team_wrap_text">
                                     <div class="team_wrap_text_top">
                                         <h3>郭东岳 Tommy</h3>创意文案<br>个人座右铭：成功的含义不在于得到什么,而是在于你从那个奋斗的起点走了多远.
@@ -746,20 +747,20 @@ $(function(){
                     </div>
                     <div class="team_wrap_bottom team_wrap_bottom2">
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/19Jane-1.jpg"></div>
-                            <div class="team_bottom_box_img2"><img src="/images/19Jane-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/19Jane-1.jpg"></div>
+                            <div class="team_bottom_box_img2"><img src="<%=pathUrl %>/images/19Jane-2.jpg"></div>
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/20Owen-1.jpg"></div>
-                            <div class="team_bottom_box_img2"><img src="/images/20Owen-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/20Owen-1.jpg"></div>
+                            <div class="team_bottom_box_img2"><img src="<%=pathUrl %>/images/20Owen-2.jpg"></div>
                         </div>
                         <div class="team_bottom_box">
-                            <div class="team_bottom_box_img1"><img src="/images/21Michelle-1.jpg"></div>
-                            <div class="team_bottom_box_img2"><img src="/images/21Michelle-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/21Michelle-1.jpg"></div>
+                            <div class="team_bottom_box_img2"><img src="<%=pathUrl %>/images/21Michelle-2.jpg"></div>
                         </div>
                         &lt;!&ndash;<div class="team_bottom_box" style="margin-right: 0px">
-                            <div class="team_bottom_box_img1"><img src="/images/10Tommy-1.jpg"></div>
-                            <div class="team_bottom_box_img2"><img src="/images/10Tommy-2.jpg"></div>
+                            <div class="team_bottom_box_img1"><img src="<%=pathUrl %>/images/10Tommy-1.jpg"></div>
+                            <div class="team_bottom_box_img2"><img src="<%=pathUrl %>/images/10Tommy-2.jpg"></div>
                         </div>&ndash;&gt;
                     </div>
                 </div>
@@ -866,28 +867,28 @@ $(function(){
         <div class="about_right_content">
             <div class="aptitude_wrap">
                 <!-- <div class="aptitude_box">
-                    <div class="aptitude_box_img"><img class="testimg" src="/images/zizhi_9.jpg"></div>
+                    <div class="aptitude_box_img"><img class="testimg" src="<%=pathUrl %>/images/zizhi_9.jpg"></div>
                     <div class="aptitude_box_text">
                         常年法律顾问
                     </div>
 
                 </div> -->
                 <div class="aptitude_box" >
-                    <div class="aptitude_box_img"><img class="testimg" src="/images/zizhi_13.jpg"></div>
+                    <div class="aptitude_box_img"><img class="testimg" src="<%=pathUrl %>/images/zizhi_13.jpg"></div>
                     <div class="aptitude_box_text">
          中国最具投资价值互联网金融品牌
                     </div>
 
                 </div>
                 <div class="aptitude_box" >
-                    <div class="aptitude_box_img"><img class="testimg" src="/images/zizhi_12.jpg"></div>
+                    <div class="aptitude_box_img"><img class="testimg" src="<%=pathUrl %>/images/zizhi_12.jpg"></div>
                     <div class="aptitude_box_text">
           中国金融管理年度创新人物
                     </div>
 
                 </div>
                 <div class="aptitude_box" style="margin-right: 0px">
-                    <div class="aptitude_box_img"><img class="testimg" src="/images/zizhi_10.jpg"></div>
+                    <div class="aptitude_box_img"><img class="testimg" src="<%=pathUrl %>/images/zizhi_10.jpg"></div>
                     <div class="aptitude_box_text">
           计算机软件著作权登记证书
                     </div>
@@ -898,7 +899,7 @@ $(function(){
             <div class="aptitude_wrap">
                 
                 <div class="aptitude_box">
-                    <div class="aptitude_box_img"><img class="testimg" src="/images/zizhi_11.jpg"></div>
+                    <div class="aptitude_box_img"><img class="testimg" src="<%=pathUrl %>/images/zizhi_11.jpg"></div>
                     <div class="aptitude_box_text">
           2016年互联网金融最佳企业奖
                     </div>
@@ -907,14 +908,14 @@ $(function(){
                 
             
                 <div class="aptitude_box" >
-                    <div class="aptitude_box_img"><img class="testimg" src="/images/zizhi_2.jpg"></div>
+                    <div class="aptitude_box_img"><img class="testimg" src="<%=pathUrl %>/images/zizhi_2.jpg"></div>
                     <div class="aptitude_box_text">
              中国互联网金融行业新领军人物
                     </div>
 
                 </div>
                 <div class="aptitude_box" style="margin-right: 0px">
-                    <div class="aptitude_box_img"><img class="testimg" src="/images/zizhi_1.jpg"></div>
+                    <div class="aptitude_box_img"><img class="testimg" src="<%=pathUrl %>/images/zizhi_1.jpg"></div>
                     <div class="aptitude_box_text">
             中国最值得信赖金融服务机构
                     </div>
@@ -925,7 +926,7 @@ $(function(){
             <!-- <div class="aptitude_wrap">
                 
                 <div class="aptitude_box" >
-                    <div class="aptitude_box_img" ><img class="testimg" src="/images/zizhi_4.jpg"></div>
+                    <div class="aptitude_box_img" ><img class="testimg" src="<%=pathUrl %>/images/zizhi_4.jpg"></div>
                     <div class="aptitude_box_text">
      2016中国互联网金融创新活力企业
                     </div>
@@ -935,7 +936,7 @@ $(function(){
                 
             
                  <div class="aptitude_box" style="margin-right: 0px">
-                    <div class="aptitude_box_img"><img class="testimg" src="/images/zizhi_5.jpg"></div>
+                    <div class="aptitude_box_img"><img class="testimg" src="<%=pathUrl %>/images/zizhi_5.jpg"></div>
                     <div class="aptitude_box_text">
       中国金融理财行业信用AAA级单位
                     </div>
@@ -945,7 +946,7 @@ $(function(){
             </div>
             <div class="aptitude_box">
                 <div class="aptitude_box" style="margin-right: 0px">
-                    <div class="aptitude_box_img"><img class="testimg" src="/images/zizhi_3.jpg"></div>
+                    <div class="aptitude_box_img"><img class="testimg" src="<%=pathUrl %>/images/zizhi_3.jpg"></div>
                     <div class="aptitude_box_text">
         前海股权交易中心挂牌上市企业
                     </div>
@@ -965,7 +966,7 @@ $(function(){
             <div class="shangjiantou"></div>
         </div>
 	<div class="about_right_content">
-	 <div class="f_banner"><img src="/images/safe_banner.jpg"></div>
+	 <div class="f_banner"><img src="<%=pathUrl %>/images/safe_banner.jpg"></div>
             <div class="aqbz aqbz_con">
                 <div class="odd">
                     <div class="con_row ">
@@ -976,7 +977,7 @@ $(function(){
 在相关法律法规和平台运营规则的约束下，平台不会对融资项目的期限进行拆分，严格审核融资项目的真实性、合法性。</div>
                         </div>
                         <div class="row_right">
-                            <div class="txt_img"><img src="/images/safe_img1.jpg"></div>
+                            <div class="txt_img"><img src="<%=pathUrl %>/images/safe_img1.jpg"></div>
                         </div>
                         <div style="clear: both"></div>
                     </div>
@@ -984,7 +985,7 @@ $(function(){
                 <div class="even">
                     <div class="con_row ">
                         <div class="row_left">
-                            <div class="txt_img"><img src="/images/safe_img2.jpg"></div>
+                            <div class="txt_img"><img src="<%=pathUrl %>/images/safe_img2.jpg"></div>
                         </div>
                         <div class="row_right">
                             <div class="left_tit">质量保障服务专款</div>
@@ -1008,7 +1009,7 @@ $(function(){
                                 第三方资金托管是目前业内公认的合理安全模式，有效保证平台杜绝归集出借人资金的问题，真正意义的实现互联网金融中介平台的作用。</div>
                         </div>
                         <div class="row_right">
-                            <div class="txt_img"><img src="/images/safe_img3.jpg"></div>
+                            <div class="txt_img"><img src="<%=pathUrl %>/images/safe_img3.jpg"></div>
                         </div>
                         <div style="clear: both"></div>
                     </div>
@@ -1016,7 +1017,7 @@ $(function(){
                 <div class="even">
                     <div class="con_row ">
                         <div class="row_left">
-                            <div class="txt_img txt_img4"><img src="/images/safe_img4.png"></div>
+                            <div class="txt_img txt_img4"><img src="<%=pathUrl %>/images/safe_img4.png"></div>
                         </div>
                         <div class="row_right">
                             <div class="left_tit">专业先进技术支持</div>
@@ -1150,7 +1151,7 @@ $(function(){
                             </label>
                         </div>
                         <h4 class="DA_wz1"><div>累计促成出借金额趋势图</div><span>（万元）</span><span class="r">（日期）</span></h4>
-                        <div class="DA_nr" id="myDA_nr" style="width:100%; height:450px; position:relative; top:-50px;"><!--<img src="/image/tu_01.jpg" alt=""/>--></div>
+                        <div class="DA_nr" id="myDA_nr" style="width:100%; height:450px; position:relative; top:-50px;"><!--<img src="<%=pathUrl %>/image/tu_01.jpg" alt=""/>--></div>
 
 
                     </div>
@@ -1238,8 +1239,8 @@ $(function(){
 					邮政编码：300192</p>
                 </div>
                 <div class="contace_er">
-                <div class="er_box"><img src="/images/er_icon1.png"><p>微信公众号</p></div>
-                <div class="er_box"><img src="/images/weibo_icon2.png"><p>新浪官博</p></div>
+                <div class="er_box"><img src="<%=pathUrl %>/images/er_icon1.png"><p>微信公众号</p></div>
+                <div class="er_box"><img src="<%=pathUrl %>/images/weibo_icon2.png"><p>新浪官博</p></div>
                 </div>
                 </div>
                 <div class="contact_us_right">

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -6,7 +7,7 @@
 <title>砖头网-安全保障</title>
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/security.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
 </head>
@@ -15,7 +16,7 @@
 <%@ include file="header.jsp" %>
 
 <!--中间部分开始-->
-    <div class="f_banner"><img src="/images/safe_banner.jpg"></div>
+    <div class="f_banner"><img src="<%=pathUrl %>/images/safe_banner.jpg"></div>
     <div class="aqbz aqbz_con">
     <div class="odd">
     <div class="con_row ">
@@ -26,7 +27,7 @@
     在相关法律法规和平台运营规则的约束下，平台不会对融资项目的期限进行拆分，严格审核融资项目的真实性、合法性。</div>
     </div>
     <div class="row_right">
-    <div class="txt_img"><img src="/images/safe_img1.jpg"></div>
+    <div class="txt_img"><img src="<%=pathUrl %>/images/safe_img1.jpg"></div>
     </div>
     <div style="clear: both"></div>
     </div>
@@ -34,7 +35,7 @@
     <div class="even">
     <div class="con_row ">
     <div class="row_left">
-    <div class="txt_img"><img src="/images/safe_img2.jpg"></div>
+    <div class="txt_img"><img src="<%=pathUrl %>/images/safe_img2.jpg"></div>
     </div>
     <div class="row_right">
     <div class="left_tit">质量保障服务专款</div>
@@ -58,7 +59,7 @@
     第三方资金托管是目前业内公认的合理安全模式，有效保证平台杜绝归集出借人资金的问题，真正意义的实现互联网金融中介平台的作用。</div>
     </div>
     <div class="row_right">
-    <div class="txt_img"><img src="/images/safe_img3.jpg"></div>
+    <div class="txt_img"><img src="<%=pathUrl %>/images/safe_img3.jpg"></div>
     </div>
     <div style="clear: both"></div>
     </div>
@@ -66,7 +67,7 @@
     <div class="even">
     <div class="con_row ">
     <div class="row_left">
-    <div class="txt_img txt_img4"><img src="/images/safe_img4.png"></div>
+    <div class="txt_img txt_img4"><img src="<%=pathUrl %>/images/safe_img4.png"></div>
     </div>
     <div class="row_right">
     <div class="left_tit">专业先进技术支持</div>

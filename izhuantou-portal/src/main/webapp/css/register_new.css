@@ -7,7 +7,7 @@ body{
 .banner_reg{
     width:100%;
     height: 581px;
-    background: url("../images/register_New/register_banner.jpg?v=114");
+    background: url("http://img.izhuantou.com/images/register_New/register_banner.jpg?v=114");
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
@@ -69,7 +69,7 @@ margin-left: 180px;
 .register_title{
     width: 100%;
     height: 80px;
-    background: url("../images/register_New/title_bg.png");
+    background: url("http://img.izhuantou.com/images/register_New/title_bg.png");
     background-position: center;
     background-repeat: no-repeat;
     text-align: center;
@@ -82,7 +82,7 @@ margin-left: 180px;
 .register_title_new{
     width: 100%;
     height: 80px;
-    background: url("../images/register_New/title_bg_new.png");
+    background: url("http://img.izhuantou.com/images/register_New/title_bg_new.png");
     background-position: center;
     background-repeat: no-repeat;
     text-align: center;
@@ -93,7 +93,7 @@ margin-left: 180px;
 
 }
 .register_title_new02{
-	background: url("../images/register_New/title_bg_new02.png");background-position: center;
+	background: url("http://img.izhuantou.com/images/register_New/title_bg_new02.png");background-position: center;
     background-repeat: no-repeat; margin-top: 90px;
 }
 .register_title02{
@@ -137,7 +137,7 @@ margin-left: 180px;
     width: 155px;
     height: 224px;
     margin: 0 auto;
-    background: url("../images/register_New/hongbao_img01.png");
+    background: url("http://img.izhuantou.com/images/register_New/hongbao_img01.png");
     background-repeat: no-repeat;
     background-position: center;
 
@@ -146,28 +146,28 @@ margin-left: 180px;
     margin-top: 45px;
 }
 .hongbao_img:hover{
-    background: url("../images/register_New/hongbao_img01_hover.png");
+    background: url("http://img.izhuantou.com/images/register_New/hongbao_img01_hover.png");
     transition: 0.6s;
 }
 .hongbao_box02 .hongbao_img02{
     width: 210px;
     height: 300px;
     margin: 0 auto;
-    background: url("../images/register_New/hongbao_img02.png");
+    background: url("http://img.izhuantou.com/images/register_New/hongbao_img02.png");
 }
 .hongbao_box02 .hongbao_img02:hover{
-    background: url("../images/register_New/hongbao_img02_hover.png");
+    background: url("http://img.izhuantou.com/images/register_New/hongbao_img02_hover.png");
 }
 .hongbao_box03 .hongbao_img03{
-    background: url("../images/register_New/hongbao_img03.png");
+    background: url("http://img.izhuantou.com/images/register_New/hongbao_img03.png");
 }
 .hongbao_box03 .hongbao_img03:hover{
-    background: url("../images/register_New/hongbao_img03_hover.png");
+    background: url("http://img.izhuantou.com/images/register_New/hongbao_img03_hover.png");
 }
 .sanjiao_icon{
     width: 55px;
     height: 35px;
-    background: url("../images/register_New/sanjiao.png");
+    background: url("http://img.izhuantou.com/images/register_New/sanjiao.png");
     background-position: center;
     background-repeat: no-repeat;
     position: absolute;
@@ -195,19 +195,19 @@ margin-left: 180px;
 .safe_icon{
     width: 130px;
     height: 160px;
-    background: url("../images/register_New/safe_icon01.png");
+    background: url("http://img.izhuantou.com/images/register_New/safe_icon01.png");
     background-position: center;
     background-repeat: no-repeat;
     margin: 0 auto;
 }
 .safe_icon02{
-    background: url("../images/register_New/safe_icon02.png");
+    background: url("http://img.izhuantou.com/images/register_New/safe_icon02.png");
 }
 .safe_icon03{
-    background: url("../images/register_New/safe_icon03.png");
+    background: url("http://img.izhuantou.com/images/register_New/safe_icon03.png");
 }
 .safe_icon04{
-    background: url("../images/register_New/safe_icon04.png");
+    background: url("http://img.izhuantou.com/images/register_New/safe_icon04.png");
 }
 .safe_box h3{
     font-size: 18px;
@@ -235,16 +235,16 @@ margin-left: 180px;
     color: #fff;
 }
 .safe_box:hover .safe_icon{
-    background: url("../images/register_New/safe_icon01_hover.png");
+    background: url("http://img.izhuantou.com/images/register_New/safe_icon01_hover.png");
 }
 .safe_box:hover .safe_icon02{
-    background: url("../images/register_New/safe_icon02_hover.png");
+    background: url("http://img.izhuantou.com/images/register_New/safe_icon02_hover.png");
 }
 .safe_box:hover .safe_icon03{
-    background: url("../images/register_New/safe_icon03_hover.png");
+    background: url("http://img.izhuantou.com/images/register_New/safe_icon03_hover.png");
 }
 .safe_box:hover .safe_icon04{
-    background: url("../images/register_New/safe_icon04_hover.png");
+    background: url("http://img.izhuantou.com/images/register_New/safe_icon04_hover.png");
 }
 
 .safe_box:hover h3,.safe_box:hover p{
@@ -261,7 +261,7 @@ margin-left: 180px;
     position: relative;
     width:1200px;
     height:280px;
-    background: url("../images/register_New/product_wrap.jpg");
+    background: url("http://img.izhuantou.com/images/register_New/product_wrap.jpg");
 }
 .product_box{
 	width:150px;
@@ -286,7 +286,7 @@ margin-left: 180px;
 .register_bottom{
     margin-top: 20px;
     height: 150px;
-    background: url("../images/register_New/register_bottom.jpg");
+    background: url("http://img.izhuantou.com/images/register_New/register_bottom.jpg");
     background-repeat: no-repeat;
     background-position: center;
 }

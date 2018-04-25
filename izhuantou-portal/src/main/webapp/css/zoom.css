@@ -24,7 +24,7 @@
 	border-radius: 4px;
 }
 #zoom .content.loading {
-	background-image: url('../images/loading.gif');
+	background-image: url('http://img.izhuantou.com/images/loading.gif');
 }
 #zoom img {
 	display: block;
@@ -41,7 +41,7 @@
 	width: 49px;
 	height: 49px;
 	cursor: pointer;
-	background: transparent url('../images/close.png') no-repeat 50% 50%;
+	background: transparent url('http://img.izhuantou.com/images/close.png') no-repeat 50% 50%;
 	opacity: 1;
 	filter: alpha(opacity=100);
 	border-radius: 0 0 0 4px;
@@ -59,12 +59,12 @@
 }
 #zoom .previous {
 	left: 0;
-	background: url('../images/arrows.png') no-repeat 0 0;
+	background: url('http://img.izhuantou.com/images/arrows.png') no-repeat 0 0;
 	border-radius: 0 4px 4px 0;
 }
 #zoom .next {
 	right: 0;
-	background: url('../images/arrows.png') no-repeat 100% 0;
+	background: url('http://img.izhuantou.com/images/arrows.png') no-repeat 100% 0;
 	border-radius: 4px 0 0 4px;
 }
 #zoom .close:hover {

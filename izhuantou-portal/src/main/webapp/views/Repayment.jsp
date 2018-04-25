@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/personalcenter.css">
 <link rel="stylesheet" type="text/css" href="/css/CapitalDetailed.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <!--<link rel="stylesheet" href="/css/jquery.onoff.css" media="screen" />-->
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <!--<script src="/js/jquery.onoff.min.js"></script>-->
@@ -21,7 +22,7 @@
 <!--日期时间-->
 <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 <style>
-.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("/images/Capital_liu.jpg"); background-repeat: no-repeat; background-position:center center; display: none;  }
+.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("<%=pathUrl %>/images/Capital_liu.jpg"); background-repeat: no-repeat; background-position:center center; display: none;  }
 .cd-popup-container1, .cd-popup-container2, .cd-popup-container4, .cd-popup-container5, .cd-popup-container6, .cd-popup-containerh{ width:853px;}
 .commit-2 span.spjineyue{display:none;}
 .commit-2 span.balance_y {
@@ -62,7 +63,7 @@
       <form action="pageRepaymentFormljhksave" name="Formljhk" id="Formljhk"  >
 <div class="yunull yunullchujie">
           	<div class="boxtitle">
-            	<img src="/images/chujie.png" width="65" height="53">
+            	<img src="<%=pathUrl %>/images/chujie.png" width="65" height="53">
                 <div class="titlebt"><web:WidgetTextOut name="Formljhk" property="biaoti"  /></div>
                 <input type="hidden" id="planOID" name="planOID" value=""></a></div>
             </div>
@@ -96,7 +97,7 @@
       <form action="" name="Formljhk"  id="Formyqhk" >
 <div class="yunull yunullchujie">
           	<div class="boxtitle">
-            	<img src="/images/chujie.png" width="65" height="53">
+            	<img src="<%=pathUrl %>/images/chujie.png" width="65" height="53">
                 <div class="titlebt"><web:WidgetTextOut name="Formljhk" property="biaoti"  /></div>
                 <input type="hidden" id="planOID" name="planOID" value=""></a></div>
             </div>
@@ -139,7 +140,7 @@
       <form action="" name="Formyjjq"  id="Formyjjq" >
 <div class="yunull yunullchujie">
           	<div class="boxtitle">
-            	<img src="/images/chujie.png" width="65" height="53">
+            	<img src="<%=pathUrl %>/images/chujie.png" width="65" height="53">
                 <div class="titlebt"><web:WidgetTextOut name="Formyjjq" property="biaoti"  /></div>
                 <%-- <div class="titlebt"><a href="#"><web:WidgetTextOut name="Formyjjq" property="businessBM"  /> --%>
                 <input type="hidden" id="businessOID" name="businessOID" value=""></a></div>

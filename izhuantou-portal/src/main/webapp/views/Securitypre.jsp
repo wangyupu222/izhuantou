@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/personalcenter.css">
 <link rel="stylesheet" type="text/css" href="/css/zhglaq.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
 <script src="/js/resubmit.js"></script>
@@ -124,7 +125,7 @@ var sends = {
     <!-- <p class="p-t1"><span>安全信息</span><div class="clear"></div></p> -->
     <div class="cw-rxg">
     <ul>
-    <li class="iscrea"><div class="cw_wrap"><img id="iscreatefyImg" class="sp_img" src="/images/warn_icon.png" /><span class="sp-2">实名认证</span>    
+    <li class="iscrea"><div class="cw_wrap"><img id="iscreatefyImg" class="sp_img" src="<%=pathUrl %>/images/warn_icon.png" /><span class="sp-2">实名认证</span>    
         <span class="sp-3"><span class="wei_new">未认证</span><span style="margin-top: 2px">绑定银行卡，完成实名认证</span></span>
    <a class="ljrz-1" href="addbankcard.jsp">立即认证</a>
          
@@ -133,8 +134,8 @@ var sends = {
     <!--<li><div class="cw_wrap"><img class="sp_img" src="images/right_icon.png"><span class="sp-2">实名认证</span><span class="sp-3">王**（120***********4432）身份证不允许修改、更换或注销</span></div></li>-->
     <li>
     
-    <div class="cw_wrap"><img class="sp_img" src="/images/right_icon.png"><span class="sp-2">手机认证</span><span class="sp-3 phoneSet"></span><div class="clear" style="clear: both"></div></div></li>
-    <li><div class="cw_wrap"><img class="sp_img" src="/images/right_icon.png"><span class="sp-2">登录密码</span><span class="sp-3">已设置</span><a class="ljrz-1 slide_down ljrz-2">重置</a><div class="clear" style="clear: both"></div></div>
+    <div class="cw_wrap"><img class="sp_img" src="<%=pathUrl %>/images/right_icon.png"><span class="sp-2">手机认证</span><span class="sp-3 phoneSet"></span><div class="clear" style="clear: both"></div></div></li>
+    <li><div class="cw_wrap"><img class="sp_img" src="<%=pathUrl %>/images/right_icon.png"><span class="sp-2">登录密码</span><span class="sp-3">已设置</span><a class="ljrz-1 slide_down ljrz-2">重置</a><div class="clear" style="clear: both"></div></div>
     <div style="clear: both"></div>
     <div class="hide_list" id="resetPassword1">
     <div class="down_wrap">
@@ -163,17 +164,17 @@ var sends = {
     </div>
     </li>
     <!-- 修改交易密码-->
-    <li class='questPwd'><div class="cw_wrap"><img id="iscreatefyImg2" class="sp_img" src="/images/warn_icon.png"><span class="sp-2">交易密码</span>
+    <li class='questPwd'><div class="cw_wrap"><img id="iscreatefyImg2" class="sp_img" src="<%=pathUrl %>/images/warn_icon.png"><span class="sp-2">交易密码</span>
          <span class="sp-3"><span class="wei_new">未设置</span><span style="margin-top: 2px">您必须设置交易密码才可以进行出借和借款</span></span><a class="ljrz-1 ljrz-new" href="MyCard.jsp">立即设置</a>
          <a class="ljrz-1 ljrz-2 hide" href="/portal/cash/updatePayPassword" target="_blank">重置</a>
          <script type="text/javascript">
-          $("#iscreatefyImg2").attr("src","/images/right_icon.png");	
+          $("#iscreatefyImg2").attr("src","<%=pathUrl %>/images/right_icon.png");	
          </script>
     
    <div class="clear" style="clear: both"></div></div>
     </li>
     <!--设置密保问题-->
-    <li><div class="cw_wrap"><img id="questionImg" class="sp_img" src="/images/warn_icon.png">
+    <li><div class="cw_wrap"><img id="questionImg" class="sp_img" src="<%=pathUrl %>/images/warn_icon.png">
     <span class="sp-2">密保问题</span><span class="sp-3 pwdSet">
         <span class="wei_new">未设置</span> <span style="margin-top: 2px">密保问题可以提高密码安全性</span></span><a class="ljrz-1 slide_down">立即设置</a>
         
@@ -277,18 +278,18 @@ $(function(){
         if(result.dataValue.iscreatefy==1){
         	$(".iscrea .sp-3").html(result.dataValue.nameCN);
         	$(".iscrea .ljrz-1").addClass("hide");
-        	$("#iscreatefyImg").attr("src","/images/right_icon.png");	
+        	$("#iscreatefyImg").attr("src","<%=pathUrl %>/images/right_icon.png");	
         	$(".questPwd .sp-3").html("已设置");
         	$(".questPwd .ljrz-1").addClass("hide");
         	$(".ljrz-new").addClass("hide");
         	$(".ljrz-2").removeClass("hide");
-        	$("#iscreatefyImg2").attr("src","/images/right_icon.png");
+        	$("#iscreatefyImg2").attr("src","<%=pathUrl %>/images/right_icon.png");
         }
         $(".phoneSet").text(result.dataValue.mobile+"（暂不支持手机号码更换）");
         if(result.dataValue.question==1){
         	$(".pwdSet").html("已设置");
         	$(".pwdSet").next(".slide_down").addClass("hide");
-        	$("#questionImg").attr("src","/images/right_icon.png");
+        	$("#questionImg").attr("src","<%=pathUrl %>/images/right_icon.png");
         }
         
         },

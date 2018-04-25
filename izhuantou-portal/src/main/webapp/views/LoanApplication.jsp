@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/personalcenter.css">
 <link rel="stylesheet" type="text/css" href="/css/preother.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <!--<link rel="stylesheet" href="/css/jquery.onoff.css" media="screen" />-->
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <!--<script src="/js/jquery.onoff.min.js"></script>-->
@@ -18,7 +19,7 @@
 <style>
 .dfinput.yue span.erro{ float:right; display:block;}
 span.error{ float:left; color:#C00; padding:0 15px; display:block; line-height: 40px; }
-.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("/images/JKshenqing.jpg"); background-repeat: no-repeat; background-position:center center; display: none;  }
+.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("<%=pathUrl %>/images/JKshenqing.jpg"); background-repeat: no-repeat; background-position:center center; display: none;  }
 .cd-popup-container1, .cd-popup-container2, .cd-popup-container4{width:856px;margin: 8% auto;}
 
 .tu_yzm {
@@ -251,7 +252,7 @@ var sends = {
                 </li>
                 
             <!--<li><label>备注</label><textarea type="text" id="textarea" class="dfinput dfinput-text" ></textarea></li>-->
-              <!--	<li><label>验证码</label><input type="text" class="dfinput yz"/><div class="yzimg"><img src="/images/jdyz.jpg"  /></div><a class="ya" href="#">换一张</a></li>-->
+              <!--	<li><label>验证码</label><input type="text" class="dfinput yz"/><div class="yzimg"><img src="<%=pathUrl %>/images/jdyz.jpg"  /></div><a class="ya" href="#">换一张</a></li>-->
                <li class="single_ctrl"><input type="checkbox" required="" data-msg-required="请勾选协议" name="isAgree" id="isAgree" value="1"><label for="isAgree" class="isAgree-style">我已阅读并同意 </label><a href="agreement_z.jsp?contractType=9" target="_blank" >《借款咨询服务协议》 </a>
 <a href="agreement_z.jsp?contractType=6&biddingType=qt" target="_blank" >《砖头网借款协议》 </a>
 <a href="agreement_z.jsp?contractType=8&biddingType=qt" target="_blank" >《砖头网债权预回购协议》</a></li>

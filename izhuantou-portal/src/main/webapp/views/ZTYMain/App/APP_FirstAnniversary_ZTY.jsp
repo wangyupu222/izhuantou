@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -12,8 +13,8 @@
 </head> 
 <body> 
 <div class="wrap">
-<img src="/image/FirstAnniversary/first_anniversaryAPPImg01.png?v=114">
-<img src="/image/FirstAnniversary/first_anniversaryAPPImg02.png?v=114">
+<img src="<%=pathUrl %>/image/FirstAnniversary/first_anniversaryAPPImg01.png?v=114">
+<img src="<%=pathUrl %>/image/FirstAnniversary/first_anniversaryAPPImg02.png?v=114">
 </div>
 </body> 
 </html>

@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/login.css">
 <link rel="stylesheet" type="text/css" href="/css/register_new.css?v=118">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
 <script>
@@ -114,7 +115,7 @@ var sends = {
 						<a class="hqyzm hqyzminp" onclick="huoquyzm()">获取验证码</a>
 						<div class="regist_inpt pwd pwd_short urog-form-role">
 							<input type="password" name="password" id="password_reg" placeholder='请输入8~20位字符密码' required data-rule-password='true'    minlength='8' maxlength='20' onfocus="this.placeholder=''" onblur="this.placeholder='请输入8~20位字符密码'"/>
-							<img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="password_reg" /><i class="eye_show"><img src="/images/eye_close.png"></i>
+							<img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="password_reg" /><i class="eye_show"><img src="<%=pathUrl %>/images/eye_close.png"></i>
 						</div>
 						<div class="regist_inpt yqm urog-form-role">
 							<input type="text" name="referrals" id="yqm_reg" placeholder='请输入推荐人手机号' onfocus="this.placeholder=''" onblur="this.placeholder='请输入推荐人手机号'" />
@@ -153,7 +154,7 @@ var sends = {
 					在砖头网注册后没有出借行为的用户，均可获得<a href="/tzdetailsnew.jsp" style="color: #f00;">18888元</a>体验金礼包
 				</div>
 				<div class="new_money_wrap">
-					<img src="/images/register_New/new_guest_gift.jpg"><a class="tyj_newBtn" href="/tzdetailsnew.jsp"></a>
+					<img src="<%=pathUrl %>/images/register_New/new_guest_gift.jpg"><a class="tyj_newBtn" href="/tzdetailsnew.jsp"></a>
 				</div>
 
 			</div>
@@ -194,7 +195,7 @@ var sends = {
 				</div>
 				<div class="introduced_text introduced_text02">9月14日12:00-10月15日12:00</div>
 				<div class="new_money_wrap">
-					<img src="/images/register_New/new_money.png">
+					<img src="<%=pathUrl %>/images/register_New/new_money.png">
 				</div>
 
 			</div>
@@ -263,7 +264,7 @@ var sends = {
 				<p>IZHUANTOU BIG EVENT</p>
 			</div>
 			<div class="izhuantou_wrap">
-				<img src="/images/register_New/izhuantou_box.jpg?v=114">
+				<img src="<%=pathUrl %>/images/register_New/izhuantou_box.jpg?v=114">
 			</div>
 
 
@@ -308,7 +309,7 @@ var sends = {
 				<p>GOOD MANNERS</p>
 			</div>
 			<div class="register_manner">
-				<img src="/images/register_New/register_manner.jpg?v=114">
+				<img src="<%=pathUrl %>/images/register_New/register_manner.jpg?v=114">
 			</div>
 
 
@@ -329,10 +330,10 @@ $(function(){
 	$(".eye_show").click(function(){
 		if($(".pwd_short input").attr("type")=="password"){
 			$(".pwd_short input").attr("type","text");
-			$(".eye_show img").attr("src","/images/eye_open.png");
+			$(".eye_show img").attr("src","<%=pathUrl %>/images/eye_open.png");
 		}else if($(".pwd_short input").attr("type")=="text"){
 			$(".pwd_short input").attr("type","password");
-			$(".eye_show img").attr("src","/images/eye_close.png");
+			$(".eye_show img").attr("src","<%=pathUrl %>/images/eye_close.png");
 		}
 	})
 })

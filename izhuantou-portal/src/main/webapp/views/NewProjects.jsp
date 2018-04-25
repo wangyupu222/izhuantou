@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <title>砖头网-头笔赚</title>
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/project.css?v=115">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <link rel="stylesheet" href="/css/responsiveslides.css">
 
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
@@ -26,7 +27,7 @@
 <!--我要出借-->
 <div class="main conheight">
 	<div class="con projectscon">
-    	<div class="projectscon_tit"><img src="/images/dual_system/tbzProject_tit.png"></div>
+    	<div class="projectscon_tit"><img src="<%=pathUrl %>/images/dual_system/tbzProject_tit.png"></div>
        	
         
         <div class="bottomlist bottomlist01">
@@ -39,32 +40,32 @@
                     <div class="sortdiv hide"><%=request.getParameter("sortp") %></div>
                     
                     <%if("nhll2desc".equals(request.getParameter("sortp"))) {%>
-                    <td width="10.3%"><a href="NewProjects.jsp?sortp=nhll2asc">预期年化收益&nbsp;&nbsp;<em id="sortnhll"><img src="/images/dual_system/triangle_bottom.png"></em></a></td>
+                    <td width="10.3%"><a href="NewProjects.jsp?sortp=nhll2asc">预期年化收益&nbsp;&nbsp;<em id="sortnhll"><img src="<%=pathUrl %>/images/dual_system/triangle_bottom.png"></em></a></td>
                     <%}else{ %>
-                    <td width="10.3%"><a href="NewProjects.jsp?sortp=nhll2desc">预期年化收益&nbsp;&nbsp;<em id="sortnhll"><img src="/images/dual_system/triangle_top.png"></em></a></td>
+                    <td width="10.3%"><a href="NewProjects.jsp?sortp=nhll2desc">预期年化收益&nbsp;&nbsp;<em id="sortnhll"><img src="<%=pathUrl %>/images/dual_system/triangle_top.png"></em></a></td>
                     <%} %>
                     
                     <%if("cjqx2desc".equals(request.getParameter("sortp"))) {%>
-                    <td width="10.3%"><a href="NewProjects.jsp?sortp=cjqx2asc">出借期限&nbsp;&nbsp<em id="sortcjqx"><img src="/images/dual_system/triangle_bottom.png"></em></a></td>
+                    <td width="10.3%"><a href="NewProjects.jsp?sortp=cjqx2asc">出借期限&nbsp;&nbsp<em id="sortcjqx"><img src="<%=pathUrl %>/images/dual_system/triangle_bottom.png"></em></a></td>
                     <%}else{ %>
-                    <td width="10.3%"><a href="NewProjects.jsp?sortp=cjqx2desc">出借期限&nbsp;&nbsp<em id="sortcjqx"><img src="/images/dual_system/triangle_top.png"></em></a></td>
+                    <td width="10.3%"><a href="NewProjects.jsp?sortp=cjqx2desc">出借期限&nbsp;&nbsp<em id="sortcjqx"><img src="<%=pathUrl %>/images/dual_system/triangle_top.png"></em></a></td>
                     <%} %>
                     
                     <%if("hkfs2desc".equals(request.getParameter("sortp"))) {%>
-                    <td width="11.3%"><a href="NewProjects.jsp?sortp=hkfs2asc">回款方式&nbsp;&nbsp;<em id="sorthkfs"><img src="/images/dual_system/triangle_bottom.png"></em></a></td>
+                    <td width="11.3%"><a href="NewProjects.jsp?sortp=hkfs2asc">回款方式&nbsp;&nbsp;<em id="sorthkfs"><img src="<%=pathUrl %>/images/dual_system/triangle_bottom.png"></em></a></td>
                     <%}else{ %>
-                    <td width="11.3%"><a href="NewProjects.jsp?sortp=hkfs2desc">回款方式&nbsp;&nbsp;<em id="sorthkfs"><img src="/images/dual_system/triangle_top.png"></em></a></td>
+                    <td width="11.3%"><a href="NewProjects.jsp?sortp=hkfs2desc">回款方式&nbsp;&nbsp;<em id="sorthkfs"><img src="<%=pathUrl %>/images/dual_system/triangle_top.png"></em></a></td>
                     <%} %>
                      <%if("xmze2desc".equals(request.getParameter("sortp"))) {%>
-                    <td width="12.3%"><a href="NewProjects.jsp?sortp=xmze2asc">标的金额&nbsp;&nbsp;<em id="sortxmze"><img src="/images/dual_system/triangle_bottom.png"></em></a></td>
+                    <td width="12.3%"><a href="NewProjects.jsp?sortp=xmze2asc">标的金额&nbsp;&nbsp;<em id="sortxmze"><img src="<%=pathUrl %>/images/dual_system/triangle_bottom.png"></em></a></td>
                     <%}else{ %> 
-                    <td width="12.3%"><a href="NewProjects.jsp?sortp=xmze2desc">标的金额&nbsp;&nbsp;<em id="sortxmze"><img src="/images/dual_system/triangle_top.png"></em></a></td>
+                    <td width="12.3%"><a href="NewProjects.jsp?sortp=xmze2desc">标的金额&nbsp;&nbsp;<em id="sortxmze"><img src="<%=pathUrl %>/images/dual_system/triangle_top.png"></em></a></td>
                      <%} %> 
                      
                      <%if("sykt2desc".equals(request.getParameter("sortp"))) {%>
-                    <td width="12.3%"><a href="NewProjects.jsp?sortp=sykt2asc">剩余金额&nbsp;&nbsp;<em id="sortsykt"><img src="/images/dual_system/triangle_bottom.png"></em></a></td>
+                    <td width="12.3%"><a href="NewProjects.jsp?sortp=sykt2asc">剩余金额&nbsp;&nbsp;<em id="sortsykt"><img src="<%=pathUrl %>/images/dual_system/triangle_bottom.png"></em></a></td>
                     <%}else{ %> 
-                    <td width="12.3%"><a href="NewProjects.jsp?sortp=sykt2desc">剩余金额&nbsp;&nbsp;<em id="sortsykt"><img src="/images/dual_system/triangle_top.png"></em></a></td>
+                    <td width="12.3%"><a href="NewProjects.jsp?sortp=sykt2desc">剩余金额&nbsp;&nbsp;<em id="sortsykt"><img src="<%=pathUrl %>/images/dual_system/triangle_top.png"></em></a></td>
                      <%} %> 
                      
                     <%-- <%if("xmze2desc".equals(request.getParameter("sortp"))) {%>
@@ -167,14 +168,14 @@ $(function(){
         		        	}
         		        },
         		        error:function(result){
-        		        	alert("发生错误 ");
+        		        	console.log("发生错误 ");
         		        }
         		    });
         		}
         	})
         },
         error:function(result){
-        	alert("发生错误 ");
+        	console.log("发生错误 ");
         }
     });
 	

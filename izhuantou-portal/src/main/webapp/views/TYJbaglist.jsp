@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 	href="/css/personalcenter.css">
 <link rel="stylesheet" type="text/css"
 	href="/css/preother.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript"
 	src="/js/jquery-1.10.1.min.js"></script>
 
@@ -209,7 +210,7 @@ $(function(){
         			if(result.dataValue.isjs=='true'){
         			str+='<td class="zhuang_tk">已完成</td>';
         			}else if(result.dataValue.isjs=='false'  && result.dataValue.isxs=='false'){
-        				str+='<td class="zhuang_tk TYJzhuang_tk" style="color:#ff8a01;">收益回款中<i><img src="/images/dual_system/TYJwen_icon.png"><div class="tyj_tishibox"><p>待产品出借期满后，体验金收益与出借收益一并到账，其体验记录状态将由“收益回款中”变为“已完成”。</p></div></i></td>';
+        				str+='<td class="zhuang_tk TYJzhuang_tk" style="color:#ff8a01;">收益回款中<i><img src="<%=pathUrl %>/images/dual_system/TYJwen_icon.png"><div class="tyj_tishibox"><p>待产品出借期满后，体验金收益与出借收益一并到账，其体验记录状态将由“收益回款中”变为“已完成”。</p></div></i></td>';
         			}else{
         				str+='<td class="zhuang_tk"><span class="tixian_btn">提现</span></td>';
         			}

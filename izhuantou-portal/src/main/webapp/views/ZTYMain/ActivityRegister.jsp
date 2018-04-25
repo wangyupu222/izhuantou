@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/login.css">
 <link rel="stylesheet" type="text/css" href="/css/register_new.css?v=119">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <style>
 .register_content {
@@ -15,7 +16,7 @@
     margin-top: 38px;
 }
 .banner_reg {
-    background: url(/image/registerActive/registerActive_banner.png?v=115);
+    background: url(<%=pathUrl %>/image/registerActive/registerActive_banner.png?v=115);
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -23,7 +24,7 @@
 width:437px;
 height:260px;
 margin:0 auto;
-background: url(/image/registerActive/tianya_coupons.png);
+background: url(<%=pathUrl %>/image/registerActive/tianya_coupons.png);
 background-position:center;
 background-repeat:no-repeat;
 }
@@ -133,7 +134,7 @@ var sends = {
 <!--common header-->
 <div class="register-top">
 <div class="register-con">
-<div class="register-logo"><img src="/images/logo.png"></div>
+<div class="register-logo"><img src="<%=pathUrl %>/images/logo.png"></div>
 <a href="/" class="back_index">返回首页</a>
 <div class="register-clear"></div>
 </div>
@@ -149,16 +150,16 @@ var sends = {
     	<input type="hidden" value="webRegister" readonly="readonly" name="register"/>
     	<input type="hidden" value="tianya" readonly="readonly" name="Channel"/>
         <div class="regist_inpt phone urog-form-role"><input type="text" name="phone_reg" id="phone_reg" placeholder="请输入您的手机号码" required data-rule-mobile="true" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的手机号码'">
-        <img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="phone_reg"/>
+        <img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="phone_reg"/>
         </div>
         <div class="regist_inpt yzm short short2" ><input type="text" name="yzm" id="yzm" autocomplete="off" placeholder="请输入验证码" required minlength="4" maxlength="4" onfocus="this.placeholder=''" onblur="this.placeholder='请输入验证码'"><a href="#" class="num_yzm"><img width="110" height="40" src="${systemPath}/cn/com/hoonsoft/servlet/ServletValidateCode"  class="m" alt="如果看不清,请点击我!" title="如果看不清,请点击我!""  onclick="this.src='${systemPath}/cn/com/hoonsoft/servlet/ServletValidateCode?' + Math.random();"></a>
         
         </div>
         <div class="regist_inpt yzm short sms_yzm "><input type="text" name="yzm_reg" id="yzm_reg" placeholder="请输入短信验证码" required onfocus="this.placeholder=''" onblur="this.placeholder='请输入短信验证码'"></div><a  class="hqyzm hqyzminp" onclick="huoquyzm()">获取验证码</a>
-        <div class="regist_inpt pwd pwd_short urog-form-role"><input type="password" name="password_reg" id="password_reg" placeholder="请输入8~20位字符密码" required data-rule-password="true" minlength="8" maxlength="20" onfocus="this.placeholder=''" onblur="this.placeholder='请输入8~20位字符密码'"><img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="password_reg"/><i class="eye_show"><img src="/images/eye_close.png"></i>
+        <div class="regist_inpt pwd pwd_short urog-form-role"><input type="password" name="password_reg" id="password_reg" placeholder="请输入8~20位字符密码" required data-rule-password="true" minlength="8" maxlength="20" onfocus="this.placeholder=''" onblur="this.placeholder='请输入8~20位字符密码'"><img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="password_reg"/><i class="eye_show"><img src="<%=pathUrl %>/images/eye_close.png"></i>
         </div>
          <div class="regist_inpt yqm urog-form-role"><input type="text" name="yqm_reg" id="yqm_reg" placeholder="请输入推荐人手机号" onfocus="this.placeholder=''" onblur="this.placeholder='请输入推荐人手机号'">
-         <img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="yqm_reg"/>
+         <img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="yqm_reg"/>
          </div> 
         <div class="regist_check xieyi_text"><label class="checklabel checklabel01"><input type="checkbox" checked="checked" required data-msg-required="必选" name="isAgree" id="isAgree" value="ok">我已阅读并同意</label>
         <a href="agreement_z.jsp?contractType=1&biddingType=qt" target="_blank" class="ra" >《砖头网注册协议》</a></div>
@@ -182,7 +183,7 @@ var sends = {
             <p>THE NEW GUEST GIFT PACKAGE</p>
         </div>
         <div class="introduced_text introduced_text02">在砖头网注册后没有出借行为的用户，均可获得<a href="javascript:;" style="color:#f00;">18888元</a>体验金礼包</div>
-        <div class="new_money_wrap"><img src="/images/register_New/new_guest_gift.jpg"><a class="tyj_newBtn" href="javascript:;"></a></div>
+        <div class="new_money_wrap"><img src="<%=pathUrl %>/images/register_New/new_guest_gift.jpg"><a class="tyj_newBtn" href="javascript:;"></a></div>
 
     </div>
 
@@ -221,7 +222,7 @@ var sends = {
             <p>NEW GUEST BENEFITS OVERLAY</p>
         </div>
         <div class="introduced_text introduced_text02">9月14日12:00-10月15日12:00</div>
-        <div class="new_money_wrap"><img src="/images/register_New/new_money.png"></div>
+        <div class="new_money_wrap"><img src="<%=pathUrl %>/images/register_New/new_money.png"></div>
 
     </div>
 </div>
@@ -273,7 +274,7 @@ var sends = {
             <p>IZHUANTOU BIG EVENT</p>
         </div>
         <div class="izhuantou_wrap">
-            <img src="/images/register_New/izhuantou_box.jpg?v=114">
+            <img src="<%=pathUrl %>/images/register_New/izhuantou_box.jpg?v=114">
         </div>
 
 
@@ -299,7 +300,7 @@ var sends = {
             <p>GOOD MANNERS</p>
         </div>
         <div class="register_manner">
-            <img src="/images/register_New/register_manner.jpg?v=114">
+            <img src="<%=pathUrl %>/images/register_New/register_manner.jpg?v=114">
         </div>
 
 
@@ -323,10 +324,10 @@ $(function(){
 	$(".eye_show").click(function(){
 		if($(".pwd_short input").attr("type")=="password"){
 			$(".pwd_short input").attr("type","text");
-			$(".eye_show img").attr("src","/images/eye_open.png");
+			$(".eye_show img").attr("src","<%=pathUrl %>/images/eye_open.png");
 		}else if($(".pwd_short input").attr("type")=="text"){
 			$(".pwd_short input").attr("type","password");
-			$(".eye_show img").attr("src","/images/eye_close.png");
+			$(".eye_show img").attr("src","<%=pathUrl %>/images/eye_close.png");
 		}
 	})
 })

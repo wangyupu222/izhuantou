@@ -4,7 +4,7 @@ body{
 .content_wrap{
     width: 100%;
     height:4500px;
-    background: url("../image/kuanghuan/kuanghuan_bg.jpg");
+    background: url("http://img.izhuantou.com/image/kuanghuan/kuanghuan_bg.jpg");
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -38,7 +38,7 @@ body{
     margin-top: 170px;
     position: relative;
     left: -65px;
-    background: url("../image/kuanghuan/box_01.png") center no-repeat;
+    background: url("http://img.izhuantou.com/image/kuanghuan/box_01.png") center no-repeat;
     overflow: hidden;
 }
 .content_box01{
@@ -47,7 +47,7 @@ body{
 .content_box01.modelShow {-webkit-animation: cloudy4 1s 1s forwards;animation: cloudy4 1s 1s forwards;}
 .content_box2{
     margin-top: 77px;
-    background: url("../image/kuanghuan/box_02.png") center no-repeat;
+    background: url("http://img.izhuantou.com/image/kuanghuan/box_02.png") center no-repeat;
     left: 80px;
     opacity: 0;
 }
@@ -56,22 +56,22 @@ body{
     height: 643px;
     margin-top: 77px;
     left: -81px;
-    background: url("../image/kuanghuan/box_03.png") center no-repeat;
+    background: url("http://img.izhuantou.com/image/kuanghuan/box_03.png") center no-repeat;
     opacity: 0;
 }
 .content_box4{
     left: 65px;
-    background: url("../image/kuanghuan/box_04.png") center no-repeat;
+    background: url("http://img.izhuantou.com/image/kuanghuan/box_04.png") center no-repeat;
 }
 .content_box5{
     margin-top: 77px;
-    background: url("../image/kuanghuan/box_06.png") center no-repeat;
+    background: url("http://img.izhuantou.com/image/kuanghuan/box_06.png") center no-repeat;
     left:25px;
     opacity: 0;
 }
 .content_box6{
     margin-top: 77px;
-    background: url("../image/kuanghuan/box_05.png") center no-repeat;
+    background: url("http://img.izhuantou.com/image/kuanghuan/box_05.png") center no-repeat;
     left:25px;
     opacity: 0;
     width: 1258px;
@@ -264,11 +264,11 @@ color: rgba(255, 255, 255, 0.65);
 }
 @font-face {
     font-family: qingyuan;
-    src: url('../image/kuanghuan/font/晴圆.TTC');
+    src: url('http://img.izhuantou.com/image/kuanghuan/font/晴圆.TTC');
 }
 @font-face {
     font-family: 华康少女;
-    src: url('../image/kuanghuan/font/华康少女体.TTF');
+    src: url('http://img.izhuantou.com/image/kuanghuan/font/华康少女体.TTF');
 }
 @-webkit-keyframes cloudy {
     0%{ opacity:0;margin-top:0px;}

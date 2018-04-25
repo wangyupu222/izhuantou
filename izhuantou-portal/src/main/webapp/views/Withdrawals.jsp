@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/css/preother.css?v=114">
 <link rel="stylesheet" type="text/css" href="/css/CapitalDetailed.css">
 
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
 <script language="javascript" src="/js/menu.js"></script>
@@ -154,7 +155,7 @@ function huoquyzm(){
 	<div class="comnei ">
         <p class="commit-1">温馨提示</p>
        <div class="prompt_content">
-       <img src="/images/reminder_icon.png">
+       <img src="<%=pathUrl %>/images/reminder_icon.png">
        <p>请您在新打开的第三方账户管理账户内完成提现<br>交易完成前请不要关闭此窗口<br>完成提现后请点击下面的按钮</p>
        <div class="prompt_btn"><a href="Withdrawals.jsp">完成操作</a></div>
        <div class="prompt_tishi">（由于富友及网络影响，您的账户金额可能会延迟显示，请稍后查看即可）</div>
@@ -203,12 +204,12 @@ function huoquyzm(){
             </div>
             <div class="autovalue ">
             <div class="autorow autorow01"><label>可提现金额：</label><span><em id="yue_money"></em>元</span><span>（免费提现额度为：<em id="FreeAmount">1000.00</em>元）</span>
-            <span class="limit_tishi"><img src="/images/dual_system/question-mark.png"><div class="limit-module"><p>免费提现额度为用户参与出借的本金及其利息、特权收益之和。<br>充值但没有参与出借的部分需要收取手续费。</p></div></span>
+            <span class="limit_tishi"><img src="<%=pathUrl %>/images/dual_system/question-mark.png"><div class="limit-module"><p>免费提现额度为用户参与出借的本金及其利息、特权收益之和。<br>充值但没有参与出借的部分需要收取手续费。</p></div></span>
             </div>
             <div class="autorow autorow02"><label>提现金额：</label><input type="text" name="money" id="money" autocomplete='off' placeholder='提现金额不得少于100元' txtype='FloatZ1000W'	required  data-rule-gt='true' data-gt='0'  maxlength='10' /><span class="tixian_all">全部提现</span><span style="clear:both;"></span></div>
             <div class="autorow yzm"><label>验证码：</label><input type="text" name="yzm" id="yzm" autocomplete='off' required minlength='4' maxlength='4'" /><span><img width="76" height="30" src="/portal/user/checkcode"  class="m" alt="如果看不清,请点击我!" title="如果看不清,请点击我!""  onclick="this.setAttribute('src','/portal/user/checkcode?x='+Math.random());"></span></div>
             <div class="autorow tisxf"><div class="shouxuF"><label>提现费用：</label><div class="divbox"><span ><i class="SXF-Amount">0.00</i>元</span>
-            <span class="expenses_tishi"><img src="/images/dual_system/question-mark.png"><div class="expenses-module"><p>扣除手续费=（提现金额-免费提现额度）*0.3%，由第三方富友支付收取</p></div></span>
+            <span class="expenses_tishi"><img src="<%=pathUrl %>/images/dual_system/question-mark.png"><div class="expenses-module"><p>扣除手续费=（提现金额-免费提现额度）*0.3%，由第三方富友支付收取</p></div></span>
             </div></div></div>
             <div class="autorow"><label>到账金额：</label><div class="divbox"><span><em id="sxf">0.00<i>元</i></em></span></div></div>
            <div class="autorow error" id="sign_val"><div align="center"><hoontag:Message /></div></div>
@@ -217,7 +218,7 @@ function huoquyzm(){
             </div>
             </form>
             <div class="wxts">
-            	<div class="wxtstit"><%-- <img src="/images/light.png"> --%><span>温馨提示</span></div>
+            	<div class="wxtstit"><%-- <img src="<%=pathUrl %>/images/light.png"> --%><span>温馨提示</span></div>
                 <div class="clear"></div>
                 <div class="wxtscon">
                 1. 为了您的资金安全，您需要在充值之前开通第三方资金托管账户，完成实名认证，并设置交易密码；<br/>
@@ -340,7 +341,7 @@ $(function(){
         	$(".card_tishi span").text(result.dataValue.mobile);
         },
         error:function(result){
-        	alert("发生错误 ");
+        	console.log("发生错误 ");
         }
     });
     	$.ajax({
@@ -386,7 +387,7 @@ $(function(){
 	        		        		}
 	        		        },
 	        		        error:function(result){
-	        		        	alert("发生错误 ");
+	        		        	console.log("发生错误 ");
 	        		        }
 	        		    });
 	        		}
@@ -396,7 +397,7 @@ $(function(){
 	        	
 	        },
 	        error:function(result){
-	        	alert("发生错误 ");
+	        	console.log("发生错误 ");
 	        }
 	    });
         
@@ -507,37 +508,37 @@ $(function(){
         console.log(result.dataValue);
         var CodeStr='';
         if(result.dataValue.bankCode=='0102'){
-        	CodeStr='<img id="cardImage" src="/images/card_gs.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_gs.png">';
         }else if(result.dataValue.bankCode=='0105'){
-        	CodeStr='<img id="cardImage" src="/images/card_jh.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_jh.png">';
         }else if(result.dataValue.bankCode=='0103'){
-        	CodeStr='<img id="cardImage" src="/images/card_ny.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_ny.png">';
         }else if(result.dataValue.bankCode=='0104'){
-        	CodeStr='<img id="cardImage" src="/images/card_zg.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_zg.png">';
         }else if(result.dataValue.bankCode=='0303'){
-        	CodeStr='<img id="cardImage" src="/images/card_gd.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_gd.png">';
         }else if(result.dataValue.bankCode=='0302'){
-        	CodeStr='<img id="cardImage" src="/images/card_zx.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_zx.png">';
         }else if(result.dataValue.bankCode=='0304'){
-        	CodeStr='<img id="cardImage" src="/images/card_hx.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_hx.png">';
         }else if(result.dataValue.bankCode=='0305'){
-        	CodeStr='<img id="cardImage" src="/images/card_ms.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_ms.png">';
         }else if(result.dataValue.bankCode=='0306'){
-        	CodeStr='<img id="cardImage" src="/images/card_gf.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_gf.png">';
         }else if(result.dataValue.bankCode=='0307'){
-        	CodeStr='<img id="cardImage" src="/images/card_pa.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_pa.png">';
         }else if(result.dataValue.bankCode=='0308'){
-        	CodeStr='<img id="cardImage" src="/images/card_zs.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_zs.png">';
         }else if(result.dataValue.bankCode=='0309'){
-        	CodeStr='<img id="cardImage" src="/images/card_xy.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_xy.png">';
         }else if(result.dataValue.bankCode=='0310'){
-        	CodeStr='<img id="cardImage" src="/images/card_pf.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_pf.png">';
         }else if(result.dataValue.bankCode=='0301'){
-        	CodeStr='<img id="cardImage" src="/images/card_jt.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_jt.png">';
         }else if(result.dataValue.bankCode=='0319'){
-        	CodeStr='<img id="cardImage" src="/images/card_hs.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_hs.png">';
         }else if(result.dataValue.bankCode=='0403'){
-        	CodeStr='<img id="cardImage" src="/images/card_yz.png">';
+        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_yz.png">';
         }
         $(".sp-img").append(CodeStr);
         $(".sp-name").append(result.dataValue.nameCN);

@@ -7,7 +7,7 @@ canvas{
 .AnniversaryWrap{
     width: 100%;
     /* min-height: 2972px; */
-    background: #f06e3b url("../../image/FirstAnniversary/first_anniversary_Bg.png?v=114");
+    background: #f06e3b url("http://img.izhuantou.com/image/FirstAnniversary/first_anniversary_Bg.png?v=114");
     background-repeat: no-repeat;
     background-position: center;
     background-position-y:0px ;
@@ -172,7 +172,7 @@ canvas{
 
 /* 星星榜 top20 */
 .TopAnnualWrap{
-	background: #f06e3b url("../../image/FirstAnniversary/TOPAnnualStar/TopAnnualBg.png");
+	background: #f06e3b url("http://img.izhuantou.com/image/FirstAnniversary/TOPAnnualStar/TopAnnualBg.png");
 }
 .TopAnnualMain{
 	text-align:center;

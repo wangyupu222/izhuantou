@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link href="/css/normalize.css" rel="stylesheet" type="text/css">
 <link href="/css/ZTYWrap/ChristmasDay_ZTY.css" rel="stylesheet" type="text/css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js?ver=114"></script>
 </head>
@@ -25,16 +26,16 @@
 <div class="ChristmasDayWrap">
     <div class="ChristmasDayMain">
         <div class="moduleBoxOne">
-            <img class="ChristmasDay-tit" src="/image/ChristmasDay/ChristmasDay-tit01.png">
+            <img class="ChristmasDay-tit" src="<%=pathUrl %>/image/ChristmasDay/ChristmasDay-tit01.png">
             <div class="introduceText">有钱也要有面儿，<br>圣诞节到了，<br>送她的礼物准备好了吗？<br>没准备不要紧，我们为你准备好了！<br>圣诞节，在砖头网，<br>手有多快，礼物就有多大！</div>
             <div class="ruleText">★ 圣诞活动期间，砖头网共为您准备【圣诞礼物】9份，每日8时、12时、20时三个时段，<span>首位出借季皆盈≥3万元的出借用户可【随机】<br>获得一份【圣诞礼物】</span>！且，以日计算，<span>每日三个获奖者中，出借金额最高的者可获礼品选择权</span>（任意选择一份未送出的礼品）！<br>
                 【圣诞礼物】如下：</div>
-            <img class="gift01" src="/image/ChristmasDay/gift01.png">
+            <img class="gift01" src="<%=pathUrl %>/image/ChristmasDay/gift01.png">
             <div class="ruleText ruleTextTwo">★ 此外，全天出借季皆盈产品单笔金额≥3万元的出借用户，可获得Chrome Hearts巧克力一盒。</div>
-            <img class="gift02" src="/image/ChristmasDay/gift02.png">
+            <img class="gift02" src="<%=pathUrl %>/image/ChristmasDay/gift02.png">
         </div>
         <div class="moduleBoxTwo">
-            <img class="ChristmasDay-tit" src="/image/ChristmasDay/ChristmasDay-tit02.png">
+            <img class="ChristmasDay-tit" src="<%=pathUrl %>/image/ChristmasDay/ChristmasDay-tit02.png">
             <div class="attentionText">
                 1、活动时间：2017年12月25日0:00-27日24:00。<br>
                 2、若每日最高获奖者出借金额一致，则按时间顺序，第1位【圣诞礼物】获奖者享有礼品选择权。<br>

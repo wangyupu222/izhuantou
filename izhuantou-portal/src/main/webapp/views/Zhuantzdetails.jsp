@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html><head>
 <meta charset="utf-8">
@@ -8,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/css/confirm_lend.css">
 <link rel="stylesheet" type="text/css" href="/css/pedetails.css">
 <link rel="stylesheet" href="/css/responsiveslides.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
 <script src="/js/comzz.js"></script>
@@ -22,7 +23,7 @@
 <style type="text/css">
 .cd-popup-container1{ width:700px;}/*充值框大小*/
 .cd-popup-container2{ width:860px; margin: 40px auto;}/*出借框大小*/
-.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("/images/xiangqing_liu.png")no-repeat center;  display: none;  }
+.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("<%=pathUrl %>/images/xiangqing_liu.png")no-repeat center;  display: none;  }
 .cd-popup-container1, .cd-popup-container2, .cd-popup-container4, .cd-popup-container5, .cd-popup-containerh{ width:875px;}
 .botfindbox{line-height:25px;}
 .messagebox dl {
@@ -159,7 +160,7 @@ position: absolute;
         <a class="close cd-popup-close"></a>
         <p class="commit-1"><span>审核信息</span></p>
        	<div class="yunull yunullimg">
-          	<img src="/images/zanwu.jpg" />
+          	<img src="<%=pathUrl %>/images/zanwu.jpg" />
         </div> 
     </div>
 
@@ -188,7 +189,7 @@ position: absolute;
     	
     	<div class="detailefts">
         	<div class="topdetail">
-            	<div class="imgpro"><img src="/images/zhuanbiao.png" /></div>
+            	<div class="imgpro"><img src="<%=pathUrl %>/images/zhuanbiao.png" /></div>
             	<div class="xmtits">
             	
             	<%if(session.getAttribute("userMobile") != null){ %>
@@ -455,7 +456,7 @@ function changeimg(photoOID){
 	if(photoOID!=""){
 			var imgurl="/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=fileDownload&OID="+photoOID;
 		}else{
-			var imgurl="/images/zanwu.jpg";
+			var imgurl="<%=pathUrl %>/images/zanwu.jpg";
 		}
 		$('.cd-popup3 .yunullimg img').attr('src',imgurl);
 	

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -6,7 +7,7 @@
 <title>砖头网-操作成功</title>
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/debitone.css"/>
-<link rel="shortcut icon" href="/images/zhuan.ico" />
+<link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 <style>
 body{background-color:#fff;}
@@ -35,9 +36,9 @@ body{background-color:#fff;}
 <div class="con jksucess">
 
         <div class="successok">
-        <div class="scok-p"><div><img src="/images/operation_icon.png"></div>
+        <div class="scok-p"><div><img src="<%=pathUrl %>/images/operation_icon.png"></div>
         <div class="tishi_text" >操作完成，请关闭窗口，并在砖头网查看操作结果</div>
-        <div class="exclamatory"><img src="/images/exclamatory_mark_i.jpg"><em>温馨提示</em><div class="clear"></div></div>
+        <div class="exclamatory"><img src="<%=pathUrl %>/images/exclamatory_mark_i.jpg"><em>温馨提示</em><div class="clear"></div></div>
         <p class="tishi_text_new">由于网络的影响，您账户余额可能会延迟显示，如果<br>20分钟内还未解决，请及时联系客服400-900-9677。</p>
         </div>
         <div class="okok"><a id="backpre" onclick="closeWebPage();" >关闭该窗口</a></div>

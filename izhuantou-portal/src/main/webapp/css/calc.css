@@ -35,8 +35,8 @@ body{ background:#f5f5f5;}
 /*����*/
 .cjqx{ width:92%; margin:30px auto;} 
 a{color:#000; text-decoration:none;}
-.project-screening{background:url(../images/s_select_bg_03.png) repeat-x;background-position:0px 2px;width:1040px;margin:50px auto 0 auto;position:relative;height:9px; margin-bottom:20px;display:none;}
-.screening-select{background:url(../images/s_select_bg_06.png) no-repeat;width:8px;height:9px;position:absolute;top:0px;cursor:pointer}
+.project-screening{background:url(http://img.izhuantou.com/images/s_select_bg_03.png) repeat-x;background-position:0px 2px;width:1040px;margin:50px auto 0 auto;position:relative;height:9px; margin-bottom:20px;display:none;}
+.screening-select{background:url(http://img.izhuantou.com/images/s_select_bg_06.png) no-repeat;width:8px;height:9px;position:absolute;top:0px;cursor:pointer}
 .project-screening01 .select-1{left:-1px;}
 .project-screening01 .select-2{left:50%;}
 .project-screening01 .select-3{left:100%;}
@@ -54,13 +54,13 @@ a{color:#000; text-decoration:none;}
 .project-screening03 .select-3{left:66.6%;}
 .project-screening03 .select-4{left:100%;}
 /*.project-screening-yellow{background-color: #ff8b24;height:9px;overflow:hidden;width:0;border-radius:10px;}*/
-.project-screening01 .project-screening-yellow{background:url(../images/s_select_bg_04_01.png) no-repeat;background-position:0px 0px;height:10px;overflow:hidden;width:0;border-radius:10px;}
-.project-screening02 .project-screening-yellow{background:url(../images/s_select_bg_04.png) no-repeat;background-position:0px 0px;height:9px;overflow:hidden;width:0;border-radius:10px;}
-.project-screening03 .project-screening-yellow{background:url(../images/s_select_bg_04_03.png) no-repeat;background-position:0px 0px;height:10px;overflow:hidden;width:0;border-radius:10px;}
+.project-screening01 .project-screening-yellow{background:url(http://img.izhuantou.com/images/s_select_bg_04_01.png) no-repeat;background-position:0px 0px;height:10px;overflow:hidden;width:0;border-radius:10px;}
+.project-screening02 .project-screening-yellow{background:url(http://img.izhuantou.com/images/s_select_bg_04.png) no-repeat;background-position:0px 0px;height:9px;overflow:hidden;width:0;border-radius:10px;}
+.project-screening03 .project-screening-yellow{background:url(http://img.izhuantou.com/images/s_select_bg_04_03.png) no-repeat;background-position:0px 0px;height:10px;overflow:hidden;width:0;border-radius:10px;}
 .screening-select a{position:absolute;left:-23px;top:-27px;white-space:nowrap;margin:0;padding:0;line-height:none;width:56px; text-align:center;line-height:16px;font-size:12px;}
 .screening-select a:hover{color:#ff8b24;}
-.project-screening .select-1-yellow{background:url(../images/s_select_bg_17.png) no-repeat;cursor: pointer; width:20px;height:20px; position:absolute;left:-6px;bottom:-8px;z-index:3}
-.project-screening .current a{background:url(../images/s_select_bg_09.png) top center no-repeat;color:#fff;height:21px;}
+.project-screening .select-1-yellow{background:url(http://img.izhuantou.com/images/s_select_bg_17.png) no-repeat;cursor: pointer; width:20px;height:20px; position:absolute;left:-6px;bottom:-8px;z-index:3}
+.project-screening .current a{background:url(http://img.izhuantou.com/images/s_select_bg_09.png) top center no-repeat;color:#fff;height:21px;}
 
 
 .xialakuang{

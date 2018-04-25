@@ -21,7 +21,7 @@
 .hbtabcar a{ cursor:pointer; display:block; padding:0px 30px; float:left; font:14px/47px "微软雅黑"; color:#000; border:1px solid #e2e2e2;}
 .hbtabcar a.active{ border:none; border-top:4px solid #55b0fd; position:relative;}
 .cardyong{ margin:20px; float:left;}
-.cardyonglist{ display:block; width:262px; height:145px; background:url(../images/yhkcas.png) no-repeat;}
+.cardyonglist{ display:block; width:262px; height:145px; background:url(http://img.izhuantou.com/images/yhkcas.png) no-repeat;}
 .cartop{font:16px/40px "微软雅黑"; overflow:hidden; color:#000;}
 .cartop .sp01{ float:left; padding-left:20px;}
 .cartop .sp02{ float:right; padding-right:20px;}

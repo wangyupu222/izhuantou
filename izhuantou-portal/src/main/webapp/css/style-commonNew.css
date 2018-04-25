@@ -1,5 +1,5 @@
 .qq:hover .qqimg_new{display:block;}
-.qqimg_new{width:210px;height:86px;background: url('../images/qqQun_bg.png?v=115');background-position: center;background-repeat: no-repeat;top: -8px;left: -209px;line-height: 29px;display:none;position:absolute;}
+.qqimg_new{width:210px;height:86px;background: url('http://img.izhuantou.com/images/qqQun_bg.png?v=115');background-position: center;background-repeat: no-repeat;top: -8px;left: -209px;line-height: 29px;display:none;position:absolute;}
     .qqimg_new p{font-size:14px;padding-left: 11px;}
     .qqimg_new p.legal_qqQun{padding-left: 44px;margin-top: -2px;}
 .qqimg_new p a{color:#7f91ab;}
@@ -82,7 +82,7 @@ width: 108.5px;
 	color:#141414;
 	padding-left:28px;
 	margin-left:16px;
-	background: url(../images/legal_icon.png) no-repeat left center;
+	background: url(http://img.izhuantou.com/images/legal_icon.png) no-repeat left center;
 }
 .E-mailWrap a{
 	color:#55b0fd;

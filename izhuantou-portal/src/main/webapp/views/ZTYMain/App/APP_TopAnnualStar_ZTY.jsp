@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -14,17 +15,17 @@
 </head> 
 <body> 
 <div class="wrap">
-<img src="/image/FirstAnniversary/TOPAnnualStar/TopAnnualAppImg01.png?v=114">
-<img id="tableImg" src="/image/FirstAnniversary/TOPAnnualStar/TopAnnualAppImg02.png?v=114">
+<img src="<%=pathUrl %>/image/FirstAnniversary/TOPAnnualStar/TopAnnualAppImg01.png?v=114">
+<img id="tableImg" src="<%=pathUrl %>/image/FirstAnniversary/TOPAnnualStar/TopAnnualAppImg02.png?v=114">
 <div class="bottom">
-<img src="/image/FirstAnniversary/TOPAnnualStar/TopAnnualAppImg03.png">
+<img src="<%=pathUrl %>/image/FirstAnniversary/TOPAnnualStar/TopAnnualAppImg03.png">
 </div>
 
 </div>
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script>
 $(function(){
-	$("#tableImg").attr('src', "/image/FirstAnniversary/TOPAnnualStar/TopAnnualAppImg02.png?v="+ Math.random());
+	$("#tableImg").attr('src', "<%=pathUrl %>/image/FirstAnniversary/TOPAnnualStar/TopAnnualAppImg02.png?v="+ Math.random());
 })
 </script>
 </body> 

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 	href="/css/personalcenter.css">
 <link rel="stylesheet" type="text/css"
 	href="/css/preother.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript"
 	src="/js/jquery-1.10.1.min.js"></script>
 

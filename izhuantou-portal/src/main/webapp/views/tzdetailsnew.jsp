@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html><head>
 <meta charset="utf-8">
@@ -7,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/comsty.css">
 <link rel="stylesheet" type="text/css" href="/css/pedetails.css">
 <link rel="stylesheet" href="/css/responsiveslides.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script type="text/javascript">
 $(function () {
@@ -151,7 +152,7 @@ font-size:16px;color:#666;margin:0 auto;width:70%;text-align: left;
        <p class="commit-1"><span>确认出借</span></p>
        <div class="yunull yunullchujie">
           	<div class="boxtitle">
-            	<img src="/images/chujie.png" width="65" height="53">
+            	<img src="<%=pathUrl %>/images/chujie.png" width="65" height="53">
                 <div class="titlebt">体验标</div>
                 
             </div>
@@ -243,7 +244,7 @@ font-size:16px;color:#666;margin:0 auto;width:70%;text-align: left;
     	
     	<div class="detailefts">
         	<div class="topdetail">
-            	<div class="imgpro"><img src="/images/newtyb2.png" /></div>
+            	<div class="imgpro"><img src="<%=pathUrl %>/images/newtyb2.png" /></div>
             	<%-- <div class="xmtits"><%=request.getAttribute("xmmc")%> </div> --%>
             	<div class="xmtits" style="padding-left:127px;">新手福利-体验标 </div>
                 <div class="huiback">
@@ -309,7 +310,7 @@ font-size:16px;color:#666;margin:0 auto;width:70%;text-align: left;
                 <div class="neircon">
                 	<div class="optabg">
                     	<div class="newxsbiao">
-                        	<div class="imgfl flzc"><img src="/images/tznews01.jpg" width="198" height="201"></div>
+                        	<div class="imgfl flzc"><img src="<%=pathUrl %>/images/tznews01.jpg" width="198" height="201"></div>
                             <dl class="flzc">
                             	<dt>什么是体验标</dt>
                                 <dd>体验标是砖头网为第一次接触平台的出借用户量身定做的一款体验项目，砖头网打造这个产品的目的，就是为了给刚刚注册我们平台的用户提供快速了解平台业务的通道，同时让用户体验到获得资金收益的快感。</dd>
@@ -322,11 +323,11 @@ font-size:16px;color:#666;margin:0 auto;width:70%;text-align: left;
                             	<dt>什么时候可以获取收益</dt>
                                 <dd>您在砖头网平台出借体验标之后，根据您出借的体验标项目的出借期限和实际计息日期来计算您的收益到账日期，通常标的时间较短，会让您快速体验出借与获得收益的快感。</dd>
                             </dl>
-                        	<div class="imgfl flzc"><img src="/images/tznews02.jpg" width="198" height="201"></div>	
+                        	<div class="imgfl flzc"><img src="<%=pathUrl %>/images/tznews02.jpg" width="198" height="201"></div>	
                         </div>
                         
                         <div class="newxsbiao">
-                        	<div class="imgfl flzc"><img src="/images/tznews03.jpg" width="198" height="201"></div>
+                        	<div class="imgfl flzc"><img src="<%=pathUrl %>/images/tznews03.jpg" width="198" height="201"></div>
                             <dl class="flzc">
                             	<dt>如何获取体验金</dt>
                                 <dd>用户在注册砖头网平台之后，即可获得砖头网提供的18888元新手体验金。</dd>
@@ -339,7 +340,7 @@ font-size:16px;color:#666;margin:0 auto;width:70%;text-align: left;
                                 <dd>如果您满足以下条件，即可申请提现：</dd>
                                 <dd>1、完成认证并开通资金账户；<br>2、您出借一次非新手类产品，体验标收益会在您这次出借完成后，随本息一并回款至您的账户中。</dd>          
                             </dl>
-                        	<div class="imgfl flzc"><img src="/images/tznews04.jpg" width="198" height="201"></div>	
+                        	<div class="imgfl flzc"><img src="<%=pathUrl %>/images/tznews04.jpg" width="198" height="201"></div>	
                         </div>
                         
                         

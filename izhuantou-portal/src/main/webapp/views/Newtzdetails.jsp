@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html><head>
 <meta charset="utf-8">
@@ -9,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/css/pedetails.css?ver=114">
 <link rel="stylesheet" href="/css/responsiveslides.css">
 <link rel="stylesheet" href="/css/zoom.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 <script src="/js/com.js"></script>
 <script src="/js/base.js"></script>
@@ -167,7 +168,7 @@ text-decoration:underline;
         <a class="close cd-popup-close"></a>
         <p class="commit-1"><span>审核信息</span></p>
        	<div class="yunull yunullimg">
-          	<img src="/images/zanwu.jpg" />
+          	<img src="<%=pathUrl %>/images/zanwu.jpg" />
         </div> 
     </div>
         
@@ -192,7 +193,7 @@ text-decoration:underline;
     	
     	<div class="detailefts">
         	<div class="topdetail">
-            	<div class="imgpro hide"><img src="/images/newtyb.png" /></div>
+            	<div class="imgpro hide"><img src="<%=pathUrl %>/images/newtyb.png" /></div>
             	<div class="xmtits">
             	
             	<%if(session.getAttribute("userMobile") != null){ %>
@@ -525,7 +526,7 @@ function changeimg(photoOID){
 	if(photoOID!=""){
 		var imgurl="/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=fileDownload&OID="+photoOID;
 	}else{
-		var imgurl="/images/zanwu.jpg";
+		var imgurl="<%=pathUrl %>/images/zanwu.jpg";
 	}
 	$('.cd-popup3 .yunullimg img').attr('src',imgurl);
 }

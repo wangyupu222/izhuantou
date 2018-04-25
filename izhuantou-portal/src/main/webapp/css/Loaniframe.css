@@ -23,8 +23,8 @@
 .debitfill label{ display:block; width:80px; height:30px; float:left; font:14px/30px "微软雅黑"; color:#413d3c;}
 .debitfill ul li .dfinput{ width:310px; height:30px; line-height:30px; border:1px solid #EEEEEE;float:left;font:12px/20px "微软雅黑"; color:#778691; text-indent:8px;}
 .debitfill ul li .yz{ width:90px;}
-.debitfill ul li .yue{ width:276px; background:url(../images/inpbg_03.jpg) no-repeat right center; padding-right:34px;}
-.debitfill ul li .yue01{ width:276px; background:url(../images/inpbg_03b.png) no-repeat right center; padding-right:34px;}
+.debitfill ul li .yue{ width:276px; background:url(http://img.izhuantou.com/images/inpbg_03.jpg) no-repeat right center; padding-right:34px;}
+.debitfill ul li .yue01{ width:276px; background:url(http://img.izhuantou.com/images/inpbg_03b.png) no-repeat right center; padding-right:34px;}
 .yzimg{ margin-left:10px; float:left;}
 a.ya{ padding-left:10px; padding-top:20px; font:14px/30px "微软雅黑"; color:#c1201c;}
  .debitfill ul li .dfinput:focus { border:1px solid #22a8d4;}

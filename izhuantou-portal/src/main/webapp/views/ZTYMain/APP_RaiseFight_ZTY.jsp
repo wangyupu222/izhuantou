@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 
 <!-- <div class="fixed_t"></div> -->
 <div class="wrap">
-<img src="/image/RaiseFight/AppRaiseFight_bg.jpg">
+<img src="<%=pathUrl %>/image/RaiseFight/AppRaiseFight_bg.jpg">
 
 </div>
 </body> 

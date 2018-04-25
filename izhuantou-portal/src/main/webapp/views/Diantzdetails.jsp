@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html><head>
 <meta charset="utf-8">
@@ -9,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/css/pedetails.css?v=114">
 <link rel="stylesheet" href="/css/zoom.css">
 <link rel="stylesheet" href="/css/responsiveslides.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 <script src="/js/com.js"></script>
 <script src="/js/base.js"></script>
@@ -23,7 +24,7 @@
 <style type="text/css">
 .cd-popup-container1{ width:700px;}/*充值框大小*/
 .cd-popup-container2{ width:860px;margin: 40px auto;}/*出借框大小*/
-.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("/images/xiangqing_liu.png")no-repeat center;  display: none;  }
+.hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("<%=pathUrl %>/images/xiangqing_liu.png")no-repeat center;  display: none;  }
 .qxbox .sp02 .add_new{font-size:18px;color:#ff7800;}
 .qxbox .sp02 .add_new .add_sign{color:#666;font-size:14px;}
 .login_tishi{
@@ -160,7 +161,7 @@ position: absolute;
         <a class="close cd-popup-close"></a>
         <p class="commit-1"><span>审核信息</span></p>
        	<div class="yunull yunullimg">
-          	<img src="/images/zanwu.jpg" />
+          	<img src="<%=pathUrl %>/images/zanwu.jpg" />
         </div> 
     </div>
         
@@ -187,7 +188,7 @@ position: absolute;
         <input id="switch_val" type="hidden" value="0" readonly="readonly" >
     	<div class="detailefts">
         	<div class="topdetail">
-            	<div class="imgpro hide"><img src="/images/diantou.png" /></div>
+            	<div class="imgpro hide"><img src="<%=pathUrl %>/images/diantou.png" /></div>
             	<div class="xmtits">
             	<%if(session.getAttribute("userMobile") != null){ %>
 				    <%-- <a class="text-xstext" href="/agreement_z.jsp?contractType=3" target="_blank">《点点投服务协议》</a>
@@ -540,7 +541,7 @@ function changeimg(photoOID){
 	if(photoOID!=""){
 		var imgurl="/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=fileDownload&OID="+photoOID;
 	}else{
-		var imgurl="/images/zanwu.jpg";
+		var imgurl="<%=pathUrl %>/images/zanwu.jpg";
 	}
 	$('.cd-popup3 .yunullimg img').attr('src',imgurl);
 }
@@ -730,7 +731,7 @@ $(function(){
             	str+='<div class="textone"><div class="hbtop"><div class="leftboxhb"><span>'+result[i].privilegeRange+'</span>%</div>';
             	str+='<dl class="chrome_dl_tit"><dd>'+result[i].privilegeName+'</dd><dd>加息时间：<span class="date_jq">'+result[i].privilegeTerm+'</span>天</dd><dd>出借限额：'+result[i].lowAmount+'元</dd></dl>';
             	str+='</div><div class="hbbottom">有效期：'+result[i].ksDate+'至'+result[i].jsDate+'</div></div>';
-            	str+='<img src="/images/addxi_new_pulple.png" width="169" height="69"><div class="active_click"><img class="tq_click_icon" src="/images/tq_click_icon.png"></div></div>';
+            	str+='<img src="<%=pathUrl %>/images/addxi_new_pulple.png" width="169" height="69"><div class="active_click"><img class="tq_click_icon" src="<%=pathUrl %>/images/tq_click_icon.png"></div></div>';
             	str+='<input type="hidden" class="mapoid_old" name="OID" value="'+result[i].mappingOID+'" /><input type="hidden" class="tqoid_old" name="OID" value="'+result[i].privilegeOID+'" /><input type="hidden" class="tq_lowAmount" value="'+result[i].lowAmount+'" /><input type="hidden" class="tq_privilegeType" value="'+result[i].privilegeType+'" />';
             	str+='</div></div>';
             	$(".boxselct").append(str);

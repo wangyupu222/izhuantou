@@ -1,0 +1,1 @@
+<% String pathUrl = "http://img.izhuantou.com"; %>

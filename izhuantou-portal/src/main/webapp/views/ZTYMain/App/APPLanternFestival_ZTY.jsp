@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -14,9 +15,9 @@
 </head> 
 <body> 
 <div class="wrap">
-<img src="/image/HappyNewYearUI/LanternFestivalAPPImg01.jpg?v=114">
-<img src="/image/HappyNewYearUI/LanternFestivalAPPImg02.jpg?v=114">
-<img src="/image/HappyNewYearUI/LanternFestivalAPPImg03.jpg?v=114">
+<img src="<%=pathUrl %>/image/HappyNewYearUI/LanternFestivalAPPImg01.jpg?v=114">
+<img src="<%=pathUrl %>/image/HappyNewYearUI/LanternFestivalAPPImg02.jpg?v=114">
+<img src="<%=pathUrl %>/image/HappyNewYearUI/LanternFestivalAPPImg03.jpg?v=114">
 </div>
 </body> 
 </html>

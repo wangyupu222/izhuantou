@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -37,7 +38,7 @@ a,img{border:0;}
  <div class="changetxbox" >
           
             	<div class="changetx01" id="preview">
-                <img src="/images/web_head_icon.png" id="imghead" >
+                <img src="<%=pathUrl %>/images/web_head_icon.png" id="imghead" >
                 </div>
                  
               	<div class="changetxt">

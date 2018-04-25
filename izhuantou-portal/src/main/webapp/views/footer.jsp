@@ -24,18 +24,18 @@
     </div>
   <div class="footer_Right">
   <div class="custom_service_wrap">
-  <div class="telephone"><img src="/images/custom_service.png"><span>400-900-9677</span></div>
+  <div class="telephone"><img src="<%=pathUrl %>/images/custom_service.png"><span>400-900-9677</span></div>
   <div class="sercive_date">服务时间：周一至周五9:00-18:00</div>
   <div class="sercive_date sercive_date02">客服邮箱：service@izhuantou.com</div>
   <div class="sercive_date sercive_date02">商务邮箱：brand@izhuantou.com</div>
   </div>
   <div class="footer_downWrap">
   <div class="footer_erBox">
-  <div class="er_bgBox"><img src="/images/FooterDownloadApp.png"></div>
+  <div class="er_bgBox"><img src="<%=pathUrl %>/images/FooterDownloadApp.png"></div>
   <p>客户端下载</p>
   </div>
   <div class="footer_erBox footer_erBox02">
-  <div class="er_bgBox"><img src="/images/Footerwechat_er.png?v=114"></div>
+  <div class="er_bgBox"><img src="<%=pathUrl %>/images/Footerwechat_er.png?v=114"></div>
   <p>官方微信号</p>
   </div>
   <div class="clear"></div>
@@ -67,14 +67,14 @@
 <div class="xuanf">
 
 <%-- <span class="online"><a href="#"><img src="/images/xf02.png"  onclick="IB.chat();"></a></span> --%>
- <span class="jsq"><a target="_blank" href="/portal/page/calc"><img src="/images/xf01ac.png"></a></span>
-<span class="app"> <a href="/portal/ZTYMain/APP_Online"><img class="xf03" src="/images/xf03.png"></a>  <div class="appimg hide"><img style="width: 90px;" src="/image/APP_Online/down_er.jpg"></div></span>
-<span class="weixin"> <a ><img class="xf04" src="/images/xf04.png"></a> <div class="weixinimg hide"><img src="/images/weixin.jpg"></div> </span>
-<span class="weibo"><a target="_blank" href="https://weibo.com/6016937712/profile?topnav=1&wvr=6&is_all=1"  ><img src="/images/xf05.png"></a></span>
-<span class="qq"> <a target="_blank" href="javascript:;"  ><img src="/images/xf06.png"></a><div class="qqimg_new"><p><a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=f6826aa1258e0d71ab1ca1a69c818ebfb3d3ceb2a3985b11f5516847c457c146">砖头网新手用户群（已注册）</a></p>
+ <span class="jsq"><a target="_blank" href="/portal/page/calc"><img src="<%=pathUrl %>/images/xf01ac.png"></a></span>
+<span class="app"> <a href="/portal/ZTYMain/APP_Online"><img class="xf03" src="<%=pathUrl %>/images/xf03.png"></a>  <div class="appimg hide"><img style="width: 90px;" src="<%=pathUrl %>/image/APP_Online/down_er.jpg"></div></span>
+<span class="weixin"> <a ><img class="xf04" src="<%=pathUrl %>/images/xf04.png"></a> <div class="weixinimg hide"><img src="<%=pathUrl %>/images/weixin.jpg"></div> </span>
+<span class="weibo"><a target="_blank" href="https://weibo.com/6016937712/profile?topnav=1&wvr=6&is_all=1"  ><img src="<%=pathUrl %>/images/xf05.png"></a></span>
+<span class="qq"> <a target="_blank" href="javascript:;"  ><img src="<%=pathUrl %>/images/xf06.png"></a><div class="qqimg_new"><p><a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=f6826aa1258e0d71ab1ca1a69c818ebfb3d3ceb2a3985b11f5516847c457c146">砖头网新手用户群（已注册）</a></p>
 <p><a target="_blank" href="https://shang.qq.com/wpa/qunwpa?idkey=ab97e6a98aa0c5fd6c358aba770b97dd7bc97c8869ef87ad71e364d31b33c5d5">砖头网资深用户群（已出借）</a></p>
 <p class="legal_qqQun"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2936828573&site=qq&menu=yes">砖头网申诉客服</a></p></div> </span>
-<span class="return_top"><a href="#" class="return_topa"><img  src="/images/xf07.png"></a></span>
+<span class="return_top"><a href="#" class="return_topa"><img  src="<%=pathUrl %>/images/xf07.png"></a></span>
 </div>
 <%-- <script language="javascript" src="https://c.ibangkf.com/i/c-meifeng.js"></script> --%>
 <script>
@@ -85,7 +85,7 @@ $(function(){
 	$(".safe_union02 img").css({"width":"88px","height":"32px"});
 	if($(this).is('.qq')){
 		//$('.qqimg').show();
-		$('.qq img').attr('src','/p2p/web/images/xf006.png?v=114');
+		$('.qq img').attr('src','/p2p/web<%=pathUrl %>/images/xf006.png?v=114');
 	}
 })
 function initBackToTop01 () {

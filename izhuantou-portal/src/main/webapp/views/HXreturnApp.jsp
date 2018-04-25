@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -34,7 +35,7 @@ body{ background-color:#fff !important;}
 <% try{ %>
 <div class="rigthfh">
         <div class="rightout">
-            <div class="right_fh"><img src="/images/app_recharge_icon.jpg">
+            <div class="right_fh"><img src="<%=pathUrl %>/images/app_recharge_icon.jpg">
             <p>您的操作已受理</p>
             <p>稍后返回个人中心即可查看操作结果</p>
             <%-- <p>您的账户余额：<span><%=request.getAttribute("availablemoney")%></span>元</p> --%>

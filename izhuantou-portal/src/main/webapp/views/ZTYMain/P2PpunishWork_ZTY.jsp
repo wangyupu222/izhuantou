@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -6,7 +7,7 @@
 <title>砖头网-加薪大作战</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js?ver=114"></script>
 <style>
@@ -26,11 +27,11 @@ display:block;
 <%@ include file="../header.jsp" %>
 <div class="addbox" style="height:79px;display:none;"></div>
 <div class="p2pPunishWork">
-<img src="/image/P2Ppunish_ZTY/P2Ppunish_banner.jpg">
-<img src="/image/P2Ppunish_ZTY/P2PpunishBox01.jpg">
-<img src="/image/P2Ppunish_ZTY/P2PpunishBox02.jpg">
-<img src="/image/P2Ppunish_ZTY/P2PpunishBox03.jpg">
-<img src="/image/P2Ppunish_ZTY/P2PpunishBox04.jpg">
+<img src="<%=pathUrl %>/image/P2Ppunish_ZTY/P2Ppunish_banner.jpg">
+<img src="<%=pathUrl %>/image/P2Ppunish_ZTY/P2PpunishBox01.jpg">
+<img src="<%=pathUrl %>/image/P2Ppunish_ZTY/P2PpunishBox02.jpg">
+<img src="<%=pathUrl %>/image/P2Ppunish_ZTY/P2PpunishBox03.jpg">
+<img src="<%=pathUrl %>/image/P2Ppunish_ZTY/P2PpunishBox04.jpg">
 <div style="height:80px;"></div>
 </div> 
 

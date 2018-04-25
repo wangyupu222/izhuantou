@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link rel="stylesheet" type="text/css" href="/css/personalcenter.css">
 <link rel="stylesheet" type="text/css" href="/css/CapitalDetailed.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
 <script language="javascript" src="/js/menu.js"></script>
@@ -114,7 +115,7 @@ $(function(){
         		        	}
         		        },
         		        error:function(result){
-        		        	alert("发生错误 ");
+        		        	console.log("发生错误 ");
         		        }
         		    });
         			
@@ -122,7 +123,7 @@ $(function(){
         	})
         },
         error:function(result){
-        	alert("发生错误 ");
+        	console.log("发生错误 ");
         }
     });
 	
@@ -134,7 +135,7 @@ $(function(){
         		$(".msgbox-count span").text(str);
         },
         error:function(result){
-        	alert("发生错误 ");
+        	console.log("发生错误 ");
         }
     });
 	

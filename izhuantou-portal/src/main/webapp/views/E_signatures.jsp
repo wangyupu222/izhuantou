@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link href="/css/normalize.css" rel="stylesheet" type="text/css">
 <link href="/E-signatures/E-signatures.css" rel="stylesheet" type="text/css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 </head>
 
 <body>

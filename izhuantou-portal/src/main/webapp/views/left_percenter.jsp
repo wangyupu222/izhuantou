@@ -1,7 +1,10 @@
 ﻿﻿<%@ page contentType="text/html; charset=UTF-8" %>
-<%String url=request.getRequestURL().toString();
+<%
+String url=request.getRequestURL().toString();
+String url2=url.substring(url.indexOf("views"),url.length());
+String url3=url2.substring(url2.indexOf("/"),url2.length()-4);
 %>
-<div class="localurl hide " id="localurl"><%=url %></div>
+<div class="localurl hide " id="localurl"><%=url3 %></div>
 <div class="xqderight aboutcon centerleft">
 <script type="text/javascript">
 $(function(){

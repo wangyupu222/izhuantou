@@ -1,4 +1,5 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style_new2.css?v=118"> 
 <link rel="stylesheet" type="text/css" href="/css/index.css?v=135">
 <!-- 砖头狂欢 end  -->
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
 <script type="text/javascript" src='https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js'></script>
@@ -29,6 +30,7 @@
     <script src="/guide/css3-mediaqueries.js"></script>
 <![endif]-->
 <script>
+	var 
 $(function(){
 	var afterdata01=$(".afterdata01 em").text();
 	var afterdata02=$(".afterdata02 em").text();
@@ -40,6 +42,7 @@ $(function(){
     $(".afterdata02 em").text(afterdata02.replace(re,"$1"));
     $(".afterdata03 em").text(afterdata03.replace(re,"$1"));
     //$(".gong_title").eq(0).css("color","#e84148");
+    
 })
 </script>
 <script src="/js/com.js"></script>
@@ -97,23 +100,23 @@ canvas{
 <!-- open/close -->
  <div class="cd-popup3 hide">
     <div class="cd-popup-container_new">
-        <a href="notice_details.jsp?OID=84dbe2060a5dca715c9ce94a512552ab"><img src="http://39.106.161.33:8089/image/image/relocated_img.png"></a>
-        <a href="#0" class="cd-popup-close"><img src="http://39.106.161.33:8089/image/image/close.png"></a>
+        <a href="notice_details.jsp?OID=84dbe2060a5dca715c9ce94a512552ab"><img src="<%=pathUrl %>/image/relocated_img.png"></a>
+        <a href="#0" class="cd-popup-close"><img src="<%=pathUrl %>/image/close.png"></a>
     </div>
 </div>  
  <div class="closing_down hide">
 <a href="notice_details.jsp?OID=5a1bd9d20a5dca71274b3548a52cd257">
-<img class="plan_img" src="http://39.106.161.33:8089/image/images/plan_img.png">
+<img class="plan_img" src="<%=pathUrl %>/images/plan_img.png">
     <div class="clouds_img">
-<img  src="/images/clouds_img.png">
+<img  src="<%=pathUrl %>/image/clouds_img.png">
     </div>
     <div class="closing_down_text"><p>停机公告</p><span>Stop notice</span></div>
     </a>
 </div> 
  <div class="TopAnuuaWarp hide">
 <a href="ZTYMain/TopAnnualStar_ZTY.jsp">
-<img class="suspension_img" src="/image/FirstAnniversary/TOPAnnualStar/suspensionImg.png">
-<img class="suspension_text" src="/image/FirstAnniversary/TOPAnnualStar/suspensionText.png">
+<img class="suspension_img" src="<%=pathUrl %>/image/FirstAnniversary/TOPAnnualStar/suspensionImg.png">
+<img class="suspension_text" src="<%=pathUrl %>/image/FirstAnniversary/TOPAnnualStar/suspensionText.png">
 </a>
 </div>
 <!-- 砖头狂欢  end -->
@@ -518,7 +521,7 @@ canvas{
       </div>
       </div>
         <div class="recommendBox recommendBox02 hide">
-        <img src="/images/dual_system/HHbrick_liu.png">
+        <img src="<%=pathUrl %>/images/dual_system/HHbrick_liu.png">
         <div class="ingtext">优质标的正在路上，敬请期待吧！</div>
         </div>
       </div>
@@ -592,7 +595,7 @@ canvas{
       </div>
       </div>
         <div class="recommendBox recommendBox02 hide">
-        <img src="/images/dual_system/HHbrick_liu.png">
+        <img src="<%=pathUrl %>/images/dual_system/HHbrick_liu.png">
         <div class="ingtext">优质标的正在路上，敬请期待吧！</div>
         </div>
       </div>
@@ -670,7 +673,7 @@ canvas{
       </div>
       </div>
         <div class="recommendBox recommendBox02 hide">
-        <img src="/images/dual_system/HHbrick_liu.png">
+        <img src="<%=pathUrl %>/images/dual_system/HHbrick_liu.png">
         <div class="ingtext">优质标的正在路上，敬请期待吧！</div>
         </div>
       </div>
@@ -741,7 +744,7 @@ canvas{
       <div class="cell row3"></div>
       </div>
         <div class="recommendBox recommendBox02 hide">
-        <img src="/images/dual_system/HHbrick_liu.png">
+        <img src="<%=pathUrl %>/images/dual_system/HHbrick_liu.png">
         <div class="ingtext">优质标的正在路上，敬请期待吧！</div>
         </div>
       </div>
@@ -763,7 +766,7 @@ canvas{
    <div class="meiti_box">
    <div class="meiti_top "><div class="title_top">答疑入口</div><div style="clear:both;"></div></div>
    <div class="new_img">
-   <a href="ZTYMain/P2PpunishWork_ZTY"><img style="width:338px;" src="/image/P2Ppunish_ZTY/questions_entrance.jpg"></a>
+   <a href="ZTYMain/P2PpunishWork_ZTY"><img style="width:338px;" src="<%=pathUrl %>/image/P2Ppunish_ZTY/questions_entrance.jpg"></a>
    
    </div>
   

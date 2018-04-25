@@ -9,7 +9,7 @@
 <% }else{ %>
 <div class="top_left "><span class="welcome">您好，欢迎登录砖头网！</span><a href="/portal/user/login">【登录】</a><a href="/portal/user/register" class="orgcolor">【立即注册】</a><span class="hfphone">客服电话：400-900-9677</span></div>
 <%}%>
-<div style="display:none;"><img src="/images/QQcard_logo.jpg"></div>
+<div style="display:none;"><img src="<%=pathUrl %>/images/QQcard_logo.jpg"></div>
 <div class="E-mailWrap"><span class="E-mailTit">投诉&建议：</span><a href="mailto:service@izhuantou.com">service@izhuantou.com</a></div><div class="top_right"> <a class="app-a" href="/portal/ZTYMain/APP_Online">手机客户端</a> <a href="/portal/page/aboutus?OID=a13702c03fa8056b00abf22527d84c22" >关于我们</a><a href="/portal/page/guide">新手引导</a><a href="/portal/page/helpmore">帮助中心</a>
 </div>
 </div>
@@ -17,7 +17,7 @@
 </div>
 <div class="main header">
   <div class="con headercon">
-    <div class="headerleft"><a href="/portal/user/index"><img src="/images/logo.png"></a></div>
+    <div class="headerleft"><a href="/portal/user/index"><img src="<%=pathUrl %>/images/logo.png"></a></div>
     <div class="headerright">
         <div id="navigation">
             <ul class="navcsr">

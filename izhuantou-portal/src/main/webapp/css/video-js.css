@@ -1308,7 +1308,7 @@ video::-webkit-media-text-track-display {
   }
 }
 .vjs-big-play-button_new{
-	background:#666 url("../images/video_left02.png") !important;
+	background:#666 url("http://img.izhuantou.com/images/video_left02.png") !important;
 	background-position: center !important;
 	background-repeat: no-repeat !important;
 	filter:Alpha(opacity=50);

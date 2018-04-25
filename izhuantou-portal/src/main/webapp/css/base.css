@@ -150,7 +150,7 @@ body,.bgF{ background-color: #FFF; }
 .checkbox input[type="checkbox"]:checked + label .icon-ok-sign { background-color: #3498db; color: #fff; }
 
 /*ico*/
-.ico2,.ErrIco{ background-image:url(../images/backgd02.png); display:inline-block; background-repeat:no-repeat; width:16px; height:16px; }
+.ico2,.ErrIco{ background-image:url(http://img.izhuantou.com/images/backgd02.png); display:inline-block; background-repeat:no-repeat; width:16px; height:16px; }
 .ICOverifica_err{ width:18px; height:18px; background-position:-538px -52px;}
 .ICOpassword_level{ width:52px; height:12px; background-position:-612px -64px;}
 .ICOpassword_level.ID0{ background-position:-612px -64px;}
@@ -211,11 +211,11 @@ body,.bgF{ background-color: #FFF; }
 .ICOjiantou02{ background-position:-629px -140px; width:12px; height:12px;}
 .ICOjiantou02_2,.on .ICOjiantou02{ background-position:-649px -140px; width:12px; height:12px;}
 .ICOfanhui{background-position:-433px -159px; width:18px; height:18px;} /* 返回、撤销 */
-.ICOsearchNull{ background-image:url(../image/ico_weiqu.png); width:179px; height:151px; }
+.ICOsearchNull{ background-image:url(http://img.izhuantou.com/image/ico_weiqu.png); width:179px; height:151px; }
 .ICOradio{ background-position: -513px -118px; width:14px; height:14px; display:none; } /* 单选 */
 label.on .ICOradio{ background-position: -535px -118px; width:14px; height:14px; } /* 单选选中 */
-.ICOtianjiaka{ background-image:url(../image/novice_ico.png); background-position:-290px -94px; width:148px; height:148px; } /*目前用于添加银行卡*/
-.L_tu_b{position:relative; top:7px; background: url(../image/y_backgd.png) no-repeat -112px -100px;width: 39px;height: 46px;display: inline-block;}
+.ICOtianjiaka{ background-image:url(http://img.izhuantou.com/image/novice_ico.png); background-position:-290px -94px; width:148px; height:148px; } /*目前用于添加银行卡*/
+.L_tu_b{position:relative; top:7px; background: url(http://img.izhuantou.com/image/y_backgd.png) no-repeat -112px -100px;width: 39px;height: 46px;display: inline-block;}
 .L_xsh_sy_l{ width:180px; float:left; text-align:center;}
 .L_xsh_sy_r{ width:148px; float:right;text-align:center;}
 .L_xsh_sy_wz{ font-size:14px; color:#666;}
@@ -223,7 +223,7 @@ label.on .ICOradio{ background-position: -535px -118px; width:14px; height:14px;
 .L_xsh_sy_wz1 span{ font-size:12px; color:#999;}
 .L_xsh_sy_l,.xsh_sy_r{ line-height:25px;}
 
-.IDxinshouzhangBgimg{ position:absolute; left:804px; top:13px; display:inline-block; width:104px; height:104px; background:url(../image/xinshouzhang.gif) no-repeat 0px 0px;}
+.IDxinshouzhangBgimg{ position:absolute; left:804px; top:13px; display:inline-block; width:104px; height:104px; background:url(http://img.izhuantou.com/image/xinshouzhang.gif) no-repeat 0px 0px;}
 
 /*标题项*/
 .StyH2_01{ font-size:24px; line-height:55px; padding-top:5px; color:#333; font-weight:normal;}
@@ -311,7 +311,7 @@ a.c_cheng:hover,a.c_chengI:hover{ text-decoration:underline;}
 .StyTable04 td{height:50px; line-height: 50px; font-size:14px; color:#999; border-bottom:1px dashed #EEE;}
 .StyTable04 td.lineh20{ line-height:20px;}
 
-.b_tu{ background:url(../image/y_backgd.png) no-repeat; width:60px; height:16px; display:inline-block; vertical-align:middle; cursor:pointer;}
+.b_tu{ background:url(http://img.izhuantou.com/image/y_backgd.png) no-repeat; width:60px; height:16px; display:inline-block; vertical-align:middle; cursor:pointer;}
 .Ico_y{ background-position:0 -196px;}
 .Ico_y2{ background-position:-62px -196px;}
 .Ico_y3{ background-position:-124px -196px;}
@@ -349,7 +349,7 @@ a.c_cheng:hover,a.c_chengI:hover{ text-decoration:underline;}
 .bz_tan li{ background:#fff; border:#dedede 1px dashed; border-radius:5px; padding:10px 15px 20px 15px; display:none; position:relative;zoom:1;}
 .bz_tan li h3{font-size:12px; color:#666; font-weight:normal; line-height:30px;}
 .bz_tan li p{ /* width:470px; */ font-size:12px; color:#666; text-indent:2em; line-height:25px;}
-.bz_img{ background:url(../image/jsh_tb.png) no-repeat -57px -94px; width:10px; height:5px; display:inline-block; position:absolute; left:22px; top:-5px;}
+.bz_img{ background:url(http://img.izhuantou.com/image/jsh_tb.png) no-repeat -57px -94px; width:10px; height:5px; display:inline-block; position:absolute; left:22px; top:-5px;}
 .bz_tan_ID01{ width:auto;}
 .bz_tan_ID01 li{ padding:10px; padding-right:30px;}
 .xiantou,.xiantou_hui,.xiantou_bai{position:relative;top:-2px;display:inline-block;margin-left:5px;width:auto;padding: 0px 3px;border:1px solid #FC5C42;height:14px;/* border-radius:3px; */overflow:hidden;background:#fff;font-size:12px;line-height:14px;color:#FC5C42;vertical-align:middle;*vertical-align:auto;*top:0px; *padding:0px 3px 1px;*height:auto;*line-height:12px;*zoom:1;*left:5px;}
@@ -366,7 +366,7 @@ a.c_cheng:hover,a.c_chengI:hover{ text-decoration:underline;}
 .BaoZhangIcoList i.b_txt{ position:relative; display:inline-block; display:inline\0; font-size: 12px;line-height: 16px;*line-height: 14px;border-width: 1px;border-style: solid; padding:0px 4px 0px 3px; *padding:0 4px 2px 3px; top:0; zoom:0.88; vertical-align:middle;}
 .BaoZhangIcoList i.ico{ padding-left: 18px;}
 .BaoZhangIcoList i.ico>em{ position:absolute; left:3px; top:1px; display:inline-block; width:14px; height:14px;}
-.BaoZhangIcoList .Ico_y2>em{ background:url(../image/y_backgd.png) no-repeat -64px -197px;}
+.BaoZhangIcoList .Ico_y2>em{ background:url(http://img.izhuantou.com/image/y_backgd.png) no-repeat -64px -197px;}
 
 
 
@@ -424,7 +424,7 @@ a#nav_ad {margin: 0px;}
     top: -1px;
     right: 0px;
     display: none;
-    background-image:url(../images/look_on.png); display:inline-block; background-repeat:no-repeat; width:16px; height:16px;
+    background-image:url(http://img.izhuantou.com/images/look_on.png); display:inline-block; background-repeat:no-repeat; width:16px; height:16px;
     
 }
 .IDyinhangkaListDiv label .ICOfS01_37{
@@ -565,7 +565,7 @@ input {
     display: block;
     width: 312px;
     height: 200px;
-    background: url(../images/card.png) no-repeat;
+    background: url(http://img.izhuantou.com/images/card.png) no-repeat;
     border-radius: 5px;
 }
 .card_tishi{

@@ -1,5 +1,5 @@
-﻿
-<%@ page contentType="text/html; charset=UTF-8" %>
+﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -14,7 +14,7 @@
 	href="/css/CapitalDetailed.css">
 <link rel="stylesheet" type="text/css"
 	href="/css/base.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript"
 	src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
@@ -150,7 +150,7 @@ function huoquyzm(){
 	<div class="comnei ">
         <p class="commit-1">温馨提示</p>
        <div class="prompt_content">
-       <img src="/images/reminder_icon.png">
+       <img src="<%=pathUrl %>/images/reminder_icon.png">
        <p>请您在新打开的第三方账户管理账户内完成充值<br>付款完成前请不要关闭此窗口<br>完成充值后请点击下面的按钮</p>
        <div class="prompt_btn"><a href="Recharge_new2.jsp">完成操作</a></div>
        <div class="prompt_tishi">（由于富友及网络影响，您的账户金额可能会延迟显示，请稍后查看即可）</div>
@@ -186,7 +186,7 @@ function huoquyzm(){
 									<li class="on"><span>快捷充值</span><i class="ico2 ICOfS01_36"></i></li>
 
 								</ul>
-								<div class="wen_tishi"><img class="wen_iconImg" src="/images/wen_icon_c.png">
+								<div class="wen_tishi"><img class="wen_iconImg" src="<%=pathUrl %>/images/wen_icon_c.png">
 								<div class="tishi_box">
 								<div class="tishi_wrap">
 								<h3>1、什么是快捷充值？</h1>
@@ -700,7 +700,7 @@ function huoquyzm(){
         	$(".card_tishi span").text(result.dataValue.mobile);
         },
         error:function(result){
-        	alert("发生错误 ");
+        	console.log("发生错误 ");
         }
     });
 	//资金流水留白
@@ -747,7 +747,7 @@ function huoquyzm(){
 	        		        		}
 	        		        },
 	        		        error:function(result){
-	        		        	alert("发生错误 ");
+	        		        	console.log("发生错误 ");
 	        		        }
 	        		    });
 	        		}
@@ -757,7 +757,7 @@ function huoquyzm(){
 	        	
 	        },
 	        error:function(result){
-	        	alert("发生错误 ");
+	        	console.log("发生错误 ");
 	        }
 	    });
 	})
@@ -808,52 +808,52 @@ function huoquyzm(){
 	        console.log(result.dataValue);
 	        var CodeStr='';
 	        if(result.dataValue.bankCode=='0102'){
-	        	CodeStr='<img id="cardImage" src="/images/card_gs.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_gs.png">';
 	        	$(".0102").css("display","block");
 	        }else if(result.dataValue.bankCode=='0105'){
-	        	CodeStr='<img id="cardImage" src="/images/card_jh.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_jh.png">';
 	        	$(".0105").css("display","block");
 	        }else if(result.dataValue.bankCode=='0103'){
-	        	CodeStr='<img id="cardImage" src="/images/card_ny.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_ny.png">';
 	        	$(".0103").css("display","block");
 	        }else if(result.dataValue.bankCode=='0104'){
-	        	CodeStr='<img id="cardImage" src="/images/card_zg.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_zg.png">';
 	        	$(".0104").css("display","block");
 	        }else if(result.dataValue.bankCode=='0303'){
-	        	CodeStr='<img id="cardImage" src="/images/card_gd.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_gd.png">';
 	        	$(".0303").css("display","block");
 	        }else if(result.dataValue.bankCode=='0302'){
-	        	CodeStr='<img id="cardImage" src="/images/card_zx.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_zx.png">';
 	        	$(".0302").css("display","block");
 	        }else if(result.dataValue.bankCode=='0304'){
-	        	CodeStr='<img id="cardImage" src="/images/card_hx.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_hx.png">';
 	        	$(".0304").css("display","block");
 	        }else if(result.dataValue.bankCode=='0305'){
-	        	CodeStr='<img id="cardImage" src="/images/card_ms.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_ms.png">';
 	        	$(".0305").css("display","block");
 	        }else if(result.dataValue.bankCode=='0306'){
-	        	CodeStr='<img id="cardImage" src="/images/card_gf.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_gf.png">';
 	        	$(".0306").css("display","block");
 	        }else if(result.dataValue.bankCode=='0307'){
-	        	CodeStr='<img id="cardImage" src="/images/card_pa.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_pa.png">';
 	        	$(".0307").css("display","block");
 	        }else if(result.dataValue.bankCode=='0308'){
-	        	CodeStr='<img id="cardImage" src="/images/card_zs.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_zs.png">';
 	        	$(".0308").css("display","block");
 	        }else if(result.dataValue.bankCode=='0309'){
-	        	CodeStr='<img id="cardImage" src="/images/card_xy.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_xy.png">';
 	        	$(".0309").css("display","block");
 	        }else if(result.dataValue.bankCode=='0310'){
-	        	CodeStr='<img id="cardImage" src="/images/card_pf.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_pf.png">';
 	        	$(".0310").css("display","block");
 	        }else if(result.dataValue.bankCode=='0301'){
-	        	CodeStr='<img id="cardImage" src="/images/card_jt.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_jt.png">';
 	        	$(".0301").css("display","block");
 	        }else if(result.dataValue.bankCode=='0319'){
-	        	CodeStr='<img id="cardImage" src="/images/card_hs.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_hs.png">';
 	        	$(".0319").css("display","block");
 	        }else if(result.dataValue.bankCode=='0403'){
-	        	CodeStr='<img id="cardImage" src="/images/card_yz.png">';
+	        	CodeStr='<img id="cardImage" src="<%=pathUrl %>/images/card_yz.png">';
 	        	$(".0403").css("display","block");
 	        }
 	        $(".sp-img").append(CodeStr);

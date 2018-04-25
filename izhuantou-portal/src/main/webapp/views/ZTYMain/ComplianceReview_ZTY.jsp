@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-common.css">
 <link href="/css/normalize.css" rel="stylesheet" type="text/css">
 <link href="/css/ZTYWrap/ComplianceReview_ZTY.css" rel="stylesheet" type="text/css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js?ver=114"></script>
 </head>
@@ -26,11 +27,11 @@
 <div class="ComplianceWrap">
     <div class="ComplianceMain">
         <div class="ReviewTit">
-            <img class="topBiao" src="/image/ComplianceReview_ZTY/topBiao.png">
+            <img class="topBiao" src="<%=pathUrl %>/image/ComplianceReview_ZTY/topBiao.png">
             <p>从开始到现在。<br>
                 <span>砖头网的成长时期恰逢2016~2017监管元年之际，这个时期砖头网的成长在合规监管的引导下不断壮大。</span>
                 因此，在寻求合规发展的道路上，砖头网从未停下脚步。</p>
-            <img class="botBiao" src="/image/ComplianceReview_ZTY/botBiao.png">
+            <img class="botBiao" src="<%=pathUrl %>/image/ComplianceReview_ZTY/botBiao.png">
         </div>
 
     </div>
@@ -121,10 +122,10 @@
     </div>
     <div class="ComplianceMain">
         <div class="ReviewTit">
-            <img class="topBiao" src="/image/ComplianceReview_ZTY/topBiao.png">
+            <img class="topBiao" src="<%=pathUrl %>/image/ComplianceReview_ZTY/topBiao.png">
             <p>2017年12月8日，P2P网络借贷风险专项整治工作领导小组办公室下发了<span>“关于做好P2P网络借贷风险专项整治整改验收工作的通知”</span>（以下简称通知）。<br>
                 就此，我们专门就该通知的内容结合大家的疑问回复总结如下：</p>
-            <img class="botBiao" src="/image/ComplianceReview_ZTY/botBiao.png">
+            <img class="botBiao" src="<%=pathUrl %>/image/ComplianceReview_ZTY/botBiao.png">
         </div>
 
     </div>

@@ -1,5 +1,5 @@
-﻿
-<%@ page contentType="text/html; charset=UTF-8" %>
+﻿<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="/include/url.jsp" %>
 <!doctype html>
 <html>
 <head>
@@ -14,7 +14,7 @@
 	href="/css/CapitalDetailed.css">
 <link rel="stylesheet" type="text/css"
 	href="/css/base.css">
-<Link rel="shortcut icon" href="/images/zhuan.ico" />
+<Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript"
 	src="/js/jquery-1.10.1.min.js"></script>
 <script src="/js/com.js"></script>
@@ -145,7 +145,7 @@ function huoquyzm(){
 	<div class="comnei ">
         <p class="commit-1">温馨提示</p>
        <div class="prompt_content">
-       <img src="/images/reminder_icon.png">
+       <img src="<%=pathUrl %>/images/reminder_icon.png">
        <p>请您在新打开的第三方账户管理账户内完成充值<br>付款完成前请不要关闭此窗口<br>完成充值后请点击下面的按钮</p>
        <div class="prompt_btn"><a href="Recharge_new.jsp">完成操作</a></div>
        <div class="prompt_tishi">（由于富友及网络影响，您的账户金额可能会延迟显示，请稍后查看即可）</div>
@@ -181,7 +181,7 @@ function huoquyzm(){
 									<li><a href="Recharge_new2.jsp"><span>快捷充值</span><i class="ico2 ICOfS01_36"></i></a></li>
 
 								</ul>
-								<div class="wen_tishi"><img class="wen_iconImg" src="/images/wen_icon_c.png">
+								<div class="wen_tishi"><img class="wen_iconImg" src="<%=pathUrl %>/images/wen_icon_c.png">
 								<div class="tishi_box">
 								<div class="tishi_wrap">
 								<h3>1、什么是快捷充值？</h1>
@@ -208,72 +208,72 @@ function huoquyzm(){
 									<div class="IDyinhangkaListDiv">
 										<label class="on"> <input type="checkbox" name="bankId"
 											value="0801040000" checked="checked"> <img
-											src="/images/card_01.jpg" alt="中行"> <i
+											src="<%=pathUrl %>/images/card_01.jpg" alt="中行"> <i
 											class="ico2 ICOfS01_37" style="display: inline;"></i>
 										</label> <label style="text-align:center;"> <input type="checkbox" name="bankId"
 											value="0801030000"> <img style="width: 150px;"
-											src="/images/card_02.png" alt="工行"> <i
+											src="<%=pathUrl %>/images/card_02.png" alt="工行"> <i
 											class="ico2 ICOfS01_37"></i>
 										</label> <label> <input type="checkbox" name="bankId"
 											value="0801020000"> <img
-											src="/images/card_03.jpg" alt="建行"> <i
+											src="<%=pathUrl %>/images/card_03.jpg" alt="建行"> <i
 											class="ico2 ICOfS01_37"></i>
 										</label> <label> <input type="checkbox" name="bankId"
 											value="0801050000"> <img
-											src="/images/card_04.jpg" alt="交行"> <i
+											src="<%=pathUrl %>/images/card_04.jpg" alt="交行"> <i
 											class="ico2 ICOfS01_37"></i>
 										</label> <label> <input type="checkbox" name="bankId"
 											value="0803080000"> <img
-											src="/images/card_05.jpg" alt="招行"> <i
+											src="<%=pathUrl %>/images/card_05.jpg" alt="招行"> <i
 											class="ico2 ICOfS01_37"></i>
 										</label> 
 										<%-- <label> <input type="checkbox" name="bankId"
 											value="0803010000"> <img
-											src="/images/card_06.jpg" alt="民生"> <i
+											src="<%=pathUrl %>/images/card_06.jpg" alt="民生"> <i
 											class="ico2 ICOfS01_37"></i>
 										</label> --%>
 										 <label> <input type="checkbox" name="bankId"
 											value="0803050000"> <img
-											src="/images/card_07.jpg" alt="兴业"> <i
+											src="<%=pathUrl %>/images/card_07.jpg" alt="兴业"> <i
 											class="ico2 ICOfS01_37"></i>
 										</label> 
 										<%-- <label> <input type="checkbox" name="bankId"
 											value="0803090000"> <img
-											src="/images/card_08.jpg" alt="广发"> <i
+											src="<%=pathUrl %>/images/card_08.jpg" alt="广发"> <i
 											class="ico2 ICOfS01_37"></i>
 										</label> --%>
 										  <label> <input type="checkbox" name="bankId"
 											value="0803060000"> <img
-											src="/images/card_09.jpg" alt="中信"> <i
+											src="<%=pathUrl %>/images/card_09.jpg" alt="中信"> <i
 											class="ico2 ICOfS01_37"></i>
 										</label> <label> <input type="checkbox" name="bankId"
 											value="0803020000"> <img
-											src="/images/card_10.jpg" alt="华夏"> <i
+											src="<%=pathUrl %>/images/card_10.jpg" alt="华夏"> <i
 											class="ico2 ICOfS01_37"></i>
 										</label> <label> <input type="checkbox" name="bankId"
 											value="0803030000"> <img
-											src="/images/card_11.jpg" alt="光大"> <i
+											src="<%=pathUrl %>/images/card_11.jpg" alt="光大"> <i
 											class="ico2 ICOfS01_37"></i>
 										</label> <label class="IDyinhang_no_qiye"> <input
 											type="checkbox" name="bankId" value="0803040000"> <img
-											src="/images/card_12.jpg" alt="邮储"> <i
+											src="<%=pathUrl %>/images/card_12.jpg" alt="邮储"> <i
 											class="ico2 ICOfS01_37"></i>
 										</label> <label> <input type="checkbox" name="bankId"
 											value="0803100000"> <img
-											src="/images/card_13.jpg" alt="浦发"> <i
+											src="<%=pathUrl %>/images/card_13.jpg" alt="浦发"> <i
 											class="ico2 ICOfS01_37"></i>
 										</label> <label class="IDyinhang_yes_qiye"> <input
 											type="checkbox" name="bankId" value="0804105840"> <img
-											src="/images/card_14.jpg" alt="徽商银行">
+											src="<%=pathUrl %>/images/card_14.jpg" alt="徽商银行">
 											<i class="ico2 ICOfS01_37"></i>
 										</label> <label class="IDyinhang_yes_qiye"> <input
 											type="checkbox" name="bankId" value="0804031000"> <img
-											src="/images/card_15.jpg" alt="天津银行">
+											src="<%=pathUrl %>/images/card_15.jpg" alt="天津银行">
 											<i class="ico2 ICOfS01_37"></i>
 										</label>
 										<label class="IDyinhang_yes_qiye"> <input
 											type="checkbox" name="bankId" value="0801000000"> <img
-											src="/images/card_17.jpg" alt="邮政储蓄">
+											src="<%=pathUrl %>/images/card_17.jpg" alt="邮政储蓄">
 											<i class="ico2 ICOfS01_37"></i>
 										</label>
 										
@@ -965,7 +965,7 @@ function huoquyzm(){
         	$("#available").text((result.dataValue.useMoney).toFixed(2));
         },
         error:function(result){
-        	alert("发生错误 ");
+        	console.log("发生错误 ");
         }
     });
       
@@ -1011,7 +1011,7 @@ function huoquyzm(){
 		        		        		}
 		        		        },
 	        		        error:function(result){
-	        		        	alert("发生错误 ");
+	        		        	console.log("发生错误 ");
 	        		        }
 	        		    });
 	        		}
@@ -1021,7 +1021,7 @@ function huoquyzm(){
 	        	
 	        },
 	        error:function(result){
-	        	alert("发生错误 ");
+	        	console.log("发生错误 ");
 	        }
 	    });
       
