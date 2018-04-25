@@ -19,9 +19,6 @@
 		<property name="suffix" value=".jsp" />
 	</bean>	
 		
-	<!-- 引入dubbo -->
-	<import resource="dubbo-consumer.xml"/>
-	
 	<!-- 全局异常处理 -->
 	 <bean class="com.izhuantou.exception.GlobaExpectionReslolver" />
 	<!-- 文件上传 -->

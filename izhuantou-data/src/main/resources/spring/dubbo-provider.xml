@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 			
 	<!-- 服务提供者 -->
-	<dubbo:application name ="data-provider"/>
+	<dubbo:application name ="izhuantou-data"/>
 	<dubbo:registry  protocol="zookeeper" address="${dubbo.address}"></dubbo:registry>
 	<dubbo:protocol name="dubbo" port="${dubbo.port}"/>
 	<dubbo:provider timeout="${dubbo.timeout}" />

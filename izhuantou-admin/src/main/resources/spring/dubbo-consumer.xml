@@ -9,8 +9,8 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 服务消费者 -->
-	<dubbo:application name ="admin-consumer"/>	
-	<dubbo:registry  protocol="zookeeper" address="${dubbo.registry}"></dubbo:registry>	
+	<dubbo:application name ="izhuantou-admin"/>	
+	<dubbo:registry  protocol="zookeeper" address="${dubbo.address}"></dubbo:registry>	
 		
 	<!-- 测试dubbo接口 -->
 	<dubbo:reference check="false" interface="com.izhuantou.fund.api.FundServiceTest"
