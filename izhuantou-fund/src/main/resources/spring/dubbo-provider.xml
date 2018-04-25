@@ -12,6 +12,7 @@
 	<dubbo:application name ="fund-provider"/>
 	<dubbo:registry  protocol="zookeeper" address="${dubbo.address}"></dubbo:registry>
 	<dubbo:protocol name="dubbo" port="${dubbo.port}"/>
+	<dubbo:provider timeout="5000" />
 		
 	<!-- 测试mongodb -->
 	<dubbo:service interface="com.izhuantou.fund.api.FundServiceTest"
