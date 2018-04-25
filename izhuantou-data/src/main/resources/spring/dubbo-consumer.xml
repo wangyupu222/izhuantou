@@ -11,8 +11,5 @@
 	<!-- 服务消费者 -->
 	<dubbo:application name ="data-consumer"/>	
 	<dubbo:registry  protocol="zookeeper" address="${dubbo.registry}"></dubbo:registry>	
-		
-	<!-- 测试dubbo接口 -->
-	<dubbo:reference check="false" interface="com.izhuantou.fund.api.FundServiceTest"
-		id="fundServiceTest" timeout="${dubbo.timeout}" />		  	
+	
 </beans>
