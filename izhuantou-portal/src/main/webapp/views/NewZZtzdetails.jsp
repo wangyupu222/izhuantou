@@ -553,6 +553,7 @@ $(function(){
         url: "/portal/detial/detialTBZ/?OID="+OID,
         dataType: "json",
         success: function(result){
+        	var result=result.dataValue;
         	$(".xmtits").text(result.xmmc);
         	$(".lend_title div").text(result.xmmc);
         	$(".oreg .nhll").text(result.nhll);
@@ -593,7 +594,7 @@ $(function(){
         url: "/portal/detial/detialmark/?OID="+OID,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	$(".messagebox dd").eq(0).find("span").text(result.zrr);
         	$(".messagebox dd").eq(1).find("span").text((result.ybze).toFixed(2)+"元");
         	$(".messagebox dd").eq(2).find("span").text(result.dsbj+"元");
@@ -612,7 +613,7 @@ $(function(){
         url: "/portal/detial/lendRecord/1?OID="+OID,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	for(var i=0;i<result.data.length;i++){
         		var str='<tr class="tr02"><td>'+(i+1)+'</td><td>'+result.data[i].mobile+'</td><td>'+(result.data[i].money).toFixed(2)+'元</td><td>'+result.data[i].sj+'</td></tr>';
         		$(".tabxq tbody").append(str);
@@ -632,6 +633,7 @@ $(function(){
             		        url: "/portal/detial/lendRecord/"+num+"?OID="+OID,
             		        dataType: "json",
             		        success: function(result){
+            		        	var result=result.dataValue;
             		        	$(".tabxq tbody").find("tr").remove();
             		        	for(var i=0;i<result.data.length;i++){
             		        		var str='<tr class="tr02"><td>'+(((num-1)*10+(i+1)))+'</td><td>'+result.data[i].mobile+'</td><td>'+(result.data[i].money).toFixed(2)+'元</td><td>'+result.data[i].sj+'</td></tr>';

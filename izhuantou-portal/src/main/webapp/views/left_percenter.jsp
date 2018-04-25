@@ -14,8 +14,8 @@ $(function(){
         url: "/portal/personal/num",
         dataType: "json",
         success: function(result){
+        	var result=result.dataValue;
         	$(".accview-msg-num").text(result.countMessage)
-        	console.log(result);
         	
         },
 		error:function(result){    	

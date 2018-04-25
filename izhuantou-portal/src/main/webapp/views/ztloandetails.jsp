@@ -99,7 +99,6 @@ function huoquyzm(){
 		        	yzm:yzm
 		        }, 
 		        success: function(result){
-		        	console.info(result);
 		            sends.send();
 		            $('.yzmsz').attr("src","/portal/user/checkcode?x="+Math.random());
 		        },
@@ -365,7 +364,7 @@ $(function(){
         url: "/portal/detial/pageLoan?OID="+Oid_num,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	$(".jdbt").html("<span></span>"+result.title);
         	$(".p-titdai").text(result.miaoshu);
         	$(".jobject").html(result.jobject);

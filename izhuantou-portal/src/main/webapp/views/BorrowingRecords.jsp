@@ -181,7 +181,7 @@ $(function(){
         url: "/portal/personal/myLendRecord",
         dataType: "json",
         success: function(result){
-        	console.log(result.data);
+        	var result=result.dataValue;
         	if(result.data<1){
         		$(".JKjilu_liu").css("display","block");
         	}

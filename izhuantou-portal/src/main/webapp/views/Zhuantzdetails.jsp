@@ -500,7 +500,7 @@ $(function(){
         url: "/portal/detial/detailZZT/?OID="+OID,
         dataType: "json",
         success: function(result){
-
+        	var result=result.dataValue;
         	$(".xmtits").text(result.xmmc);
         	$(".lend_title div").text(result.xmmc);
         	$("#data-cjqx").text(result.cjqx);
@@ -545,7 +545,7 @@ $(function(){
         url: "/portal/detial/zztlendRecord/1?OID="+OID,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	for(var i=0;i<result.data.length;i++){
         		var str='<tr class="tr02"><td>'+(i+1)+'</td><td>'+result.data[i].name+'</td><td>'+result.data[i].money+'元</td><td>'+result.data[i].sj+'</td></tr>';
         		$(".tabxq tbody").append(str);
@@ -565,6 +565,7 @@ $(function(){
             		        url: "/portal/detial/zztlendRecord/"+num+"?OID="+OID,
             		        dataType: "json",
             		        success: function(result){
+            		        	var result=result.dataValue;
             		        	$(".tabxq tbody").find("tr").remove();
             		        	for(var i=0;i<result.data.length;i++){
             		        		var str='<tr class="tr02"><td>'+((num-1)*10+(i+1))+'</td><td>'+result.data[i].mobile+'</td><td>'+result.data[i].money+'元</td><td>'+result.data[i].sj+'</td></tr>';

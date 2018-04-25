@@ -399,7 +399,7 @@ $(function(){
         url: "/portal/detial/isTyjUse",
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	$("#tyNum").text(result.count);
         	
         	var strBtn;

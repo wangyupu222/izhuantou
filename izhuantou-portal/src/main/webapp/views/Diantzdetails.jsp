@@ -583,6 +583,7 @@ $(function(){
         url: "/portal/detial/detailDDT/?OID="+OID,
         dataType: "json",
         success: function(result){
+        	var result=result.dataValue;
         	$(".xmtits").text(result.xmmc);
         	$(".lend_title div").text(result.xmmc);
         	$("#data-cjqx").text(result.cjqx);
@@ -620,6 +621,7 @@ $(function(){
         url: "/portal/detial/detailExDDT/?OID="+OID,
         dataType: "json",
         success: function(result){
+        	var result=result.dataValue;
         	$(".p-content").text(result.loanuse)
         	if(result.style=='per'){
         		$(".messagebox02").remove();
@@ -663,6 +665,7 @@ $(function(){
         url: "/portal/detial/auditDDTInfo/?OID="+OID,
         dataType: "json",
         success: function(result){
+        	var result=result.dataValue;
         	for(var i=0;i<result.length;i++){
         		var str='<div class="informationImg_box"><a href="/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=fileDownload&OID='+result[i].photoOID+'"><img src="/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=fileDownload&OID='+result[i].photoOID+'"><p class="psnr hide">'+result[i].nameCN+'</p></a></div>';
         		$(".informationImg_wrap").append(str);
@@ -680,7 +683,7 @@ $(function(){
         url: "/portal/detial/ddtlendRecord/1?OID="+OID,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	for(var i=0;i<result.data.length;i++){
         		var str='<tr class="tr02"><td>'+(i+1)+'</td><td>'+result.data[i].name+'</td><td>'+result.data[i].money+'元</td><td>'+result.data[i].sj+'</td></tr>';
         		$(".tabxq tbody").append(str);
@@ -700,6 +703,7 @@ $(function(){
             		        url: "/portal/detial/ddtlendRecord/"+num+"?OID="+OID,
             		        dataType: "json",
             		        success: function(result){
+            		        	var result=result.dataValue;
             		        	$(".tabxq tbody").find("tr").remove();
             		        	for(var i=0;i<result.data.length;i++){
             		        		var str='<tr class="tr02"><td>'+((num-1)*10+(i+1))+'</td><td>'+result.data[i].mobile+'</td><td>'+result.data[i].money+'元</td><td>'+result.data[i].sj+'</td></tr>';
@@ -726,6 +730,7 @@ $(function(){
         url: "/portal/detial/ddtprivilege/?OID="+OID,
         dataType: "json",
         success: function(result){
+        	var result=result.dataValue;
         	for(var i=0;i<result.length;i++){
         		var str='<div class="redbag01"><div class="bg01 addxi"></div><div class="bg02 addxi"></div><div class="redbagimg"><div class="imggray">';
             	str+='<div class="textone"><div class="hbtop"><div class="leftboxhb"><span>'+result[i].privilegeRange+'</span>%</div>';

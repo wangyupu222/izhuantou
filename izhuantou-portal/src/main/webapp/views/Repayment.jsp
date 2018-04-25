@@ -305,7 +305,7 @@ $(function(){
         url: "/portal/detial/islogin",
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	$("#Formljhk #balance").text(result);
         	$("#Formyjjq #balance").text(result);
         	$("#Formyqhk #balance").text(result);
@@ -319,7 +319,7 @@ $(function(){
         url: "/portal/personal/repaymentBack",
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	if(result.length<1){
         		$(".HKjilu_liu").css("display","block");
         	}

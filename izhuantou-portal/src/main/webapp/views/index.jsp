@@ -991,6 +991,7 @@ $(window).load(function() {
         url: "/portal/index/touBiZhuan",//地址，就是json文件的请求路径
         dataType: "json",//数据类型可以为 text xml json  script  jsonp
         success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
+        	var result=result.dataValue;
         	$(".newcome .bigtit").text(result.biddingName);
         	$(".newcome .nhll").text(result.rate);
         	$(".newcome .cjqx").text(result.days);
@@ -1063,6 +1064,7 @@ $(window).load(function() {
         url: "/portal/index/fourNum",//地址，就是json文件的请求路径
         dataType: "json",//数据类型可以为 text xml json  script  jsonp
         success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
+        	var result=result.dataValue;
         $(".data-num01").attr("data-val",result.money1);
         $(".data-num01").text(result.money1);
         $(".data-num02").attr("data-val",result.insertMoney1);
@@ -1082,6 +1084,7 @@ $(window).load(function() {
         url: "/portal/index/TYMoney",//地址，就是json文件的请求路径
         dataType: "json",//数据类型可以为 text xml json  script  jsonp
         success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
+        	var result=result.dataValue;
         $("#tyjNum").text(result.experienceMember);
         },
 		error:function(result){

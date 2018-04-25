@@ -110,7 +110,7 @@ $(function(){
         dataType:"json",
         url:"/portal/lend/displayTBZ/1?sortp="+sortp,
         success: function(result){
-        	console.log(result.data);
+        	var result=result.dataValue;
         	for(var i=0;i<result.data.length;i++){
         		console.log(result.data[i].sykt);
         		if(result.data[i].szds==1){
@@ -143,10 +143,9 @@ $(function(){
         		        dataType:"json",
         		        url:"/portal/lend/displayTBZ/"+num+"?sortp=",
         		        success: function(result){
-        		        	console.log(result.data);
+        		        	var result=result.dataValue;
         		        	$(".tab01 tbody tr").remove();
         		        	for(var i=0;i<result.data.length;i++){
-        		        		console.log(result.data[i].OID);
         		        		if(result.data[i].szds==1){
         		        			
         		        		}else{

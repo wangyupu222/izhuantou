@@ -721,7 +721,7 @@ $(function(){
         url: "/portal/detial/detialHHT/?OID="+OID,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	$(".xmtits").text(result.xmmc);
         	$(".lend_title div").text(result.xmmc);
         	if(result.jx==true){
@@ -784,7 +784,7 @@ $(function(){
         url: "/portal/detial/hhtprivilege/?OID="+OID,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	for(var i=0;i<result.length;i++){
         		var str='<div class="redbag01"><div class="bg01 addxi"></div><div class="bg02 addxi"></div><div class="redbagimg"><div class="imggray">';
             	str+='<div class="textone"><div class="hbtop"><div class="leftboxhb"><span>'+result[i].privilegeRange+'</span>%</div>';
@@ -810,7 +810,7 @@ $(function(){
         url: "/portal/detial/hhtTagComponent/1?OID="+OID,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	for(var i=0;i<result.data.length;i++){
         		var syqs=result.data[i].syqs;
         		var jkmc=result.data[i].jkmc;
@@ -840,7 +840,7 @@ $(function(){
             		        url: "/portal/detial/hhtTagComponent/"+num+"?OID="+OID,
             		        dataType: "json",
             		        success: function(result){
-            		        	console.log(result);
+            		        	var result=result.dataValue;
             		        	$(".tabhuan tbody").find("tr").remove();
             		        	for(var i=0;i<result.data.length;i++){
             		        		var syqs=result.data[i].syqs;
@@ -878,7 +878,7 @@ $(function(){
         url: "/portal/detial/hhtLendRecord/1?OID="+OID,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	for(var i=0;i<result.data.length;i++){
         		var str='<tr class="tr02"><td>'+(i+1)+'</td><td>'+result.data[i].name+'</td><td>'+(result.data[i].principalMoney).toFixed(2)+'元</td><td>'+result.data[i].sj+'</td></tr>';
         		$(".tabxq tbody").append(str);
@@ -898,6 +898,7 @@ $(function(){
             		        url: "/portal/detial/hhtLendRecord/"+num+"?OID="+OID,
             		        dataType: "json",
             		        success: function(result){
+            		        	var result=result.dataValue;
             		        	$(".tabxq tbody").find("tr").remove();
             		        	for(var i=0;i<result.data.length;i++){
             		        		var str='<tr class="tr02"><td>'+((num-1)*10+(i+1))+'</td><td>'+result.data[i].name+'</td><td>'+(result.data[i].principalMoney).toFixed(2)+'元</td><td>'+result.data[i].sj+'</td></tr>';

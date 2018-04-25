@@ -89,7 +89,7 @@ $(function(){
         	currentpage:1
         },		
         success: function(result){
-        	console.log(result)
+        	var result=result.dataValue;
         	for(var i=0;i<result.data.length;i++){
         		var str="<div class=\"boxrow\"><div class=\"boxrowtit\"><span class=\"cell02\">"+result.data[i].title+"</span><span class=\"cell03\">"+result.data[i].sendUser+"</span><span class=\"cell04\">"+result.data[i].sendDateTime+"</span><span><a class=\"zk-a\">查看</a></span></div><p>"+result.data[i].content+"</p></div>";
         		$("#MessageHistoryWrap").append(str);
@@ -108,6 +108,7 @@ $(function(){
         		        	currentpage:num
         		        },		
         		        success: function(result){
+        		        	var result=result.dataValue;
         		        	$("#MessageHistoryWrap .boxrow").remove();
         		        	for(var i=0;i<result.data.length;i++){
         		        		var str="<div class=\"boxrow\"><div class=\"boxrowtit\"><span class=\"cell02\">"+result.data[i].title+"</span><span class=\"cell03\">"+result.data[i].sendUser+"</span><span class=\"cell04\">"+result.data[i].sendDateTime+"</span><span><a class=\"zk-a\">查看</a></span></div><p>"+result.data[i].content+"</p></div>";
@@ -131,6 +132,7 @@ $(function(){
         dataType:"json",
         url:"/portal/personal/num",
         success: function(result){
+        	var result=result.dataValue;
         		var str="共"+result.countMessageAll+"条消息,其中"+result.countMessage+"条未读";
         		$(".msgbox-count span").text(str);
         },

@@ -176,6 +176,7 @@ $(function(){
         url: "/portal/detial/hhtZZInfo/?OID="+biddingOID,
         dataType: "json",
         success: function(result){
+        	var result=result.dataValue;
         	$(".dataMain td").eq(0).text(result.zzr);
         	$(".dataMain td").eq(1).text((result.zrje).toFixed(2)+"元");
         	$(".dataMain td").eq(2).text((result.dsbj).toFixed(2)+"元");
@@ -195,7 +196,7 @@ $(function(){
         url: "/portal/detial/exBorrowHHTCDZInfo/?OID="+biddingOID,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	$(".messagebox02 dl").eq(0).find('dd').eq(0).find('span').text(result.realName);
         	$(".messagebox02 dl").eq(0).find('dd').eq(1).find('span').text(result.gender);
         	
@@ -219,7 +220,7 @@ $(function(){
         url: "/portal/detial/auditCDHHTInfo/?OID="+biddingOID,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	for(var i=0;i<result.length;i++){
         		var str='<div class="informationImg_box"><a href="/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=fileDownload&OID='+result[i].photoOID+'"><img src="/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=fileDownload&OID='+result[i].photoOID+'"><p class="psnr hide">'+result[i].nameCN+'</p></a></div>';
         		$(".informationImg_wrap").append(str);

@@ -4,7 +4,7 @@ $(window).load(function() {
         url: "/portal/index/DDTou",//地址，就是json文件的请求路径
         dataType: "json",//数据类型可以为 text xml json  script  jsonp
         success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
-        	console.log(result.length);
+        	var result=result.dataValue;
         if(result.length>=2){
         	var DDyb01=$(".DDLen02 .share_right_box1 .DDyb");
     		var DDdjs01=$(".DDLen02 .share_right_box1 .DDdjs");
@@ -178,6 +178,7 @@ $(window).load(function() {
         url: "/portal/index/HHTou",//地址，就是json文件的请求路径
         dataType: "json",//数据类型可以为 text xml json  script  jsonp
         success: function(result){
+        	var result=result.dataValue;
         var HHdjs01=$(".finedataHH01 .HHdjs");
         var HHyb01=$(".finedataHH01 .HHyb");
         var HHdjs02=$(".finedataHH02 .HHdjs");

@@ -579,7 +579,7 @@ $(function(){
         url: "/portal/detial/detialTBZ/?OID="+OID,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
 
         	$(".xmtits").text(result.xmmc);
         	$(".lend_title div").text(result.xmmc);
@@ -621,6 +621,7 @@ $(function(){
         url: "/portal/detial/exDetial/?OID="+OID,
         dataType: "json",
         success: function(result){
+        	var result=result.dataValue;
         	$(".p-content").text(result.loanuse)
         	$(".messagebox dd").eq(0).find("span").text(result.realName);
         	$(".messagebox dd").eq(1).find("span").text(result.gender);
@@ -653,6 +654,7 @@ $(function(){
         url: "/portal/detial/auditInfo/?OID="+OID,
         dataType: "json",
         success: function(result){
+        	var result=result.dataValue;
         	for(var i=0;i<result.length;i++){
         		var str='<div class="informationImg_box"><a href="/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=fileDownload&OID='+result[i].photoOID+'"><img src="/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=fileDownload&OID='+result[i].photoOID+'"><p class="psnr hide">'+result[i].nameCN+'</p></a></div>';
         		$(".informationImg_wrap").append(str);
@@ -670,7 +672,7 @@ $(function(){
         url: "/portal/detial/lendRecord/1?OID="+OID,
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	var result=result.dataValue;
         	for(var i=0;i<result.data.length;i++){
         		var str='<tr class="tr02"><td>'+(i+1)+'</td><td>'+result.data[i].mobile+'</td><td>'+(result.data[i].money).toFixed(2)+'元</td><td>'+result.data[i].sj+'</td></tr>';
         		$(".tabxq tbody").append(str);
@@ -690,6 +692,7 @@ $(function(){
             		        url: "/portal/detial/lendRecord/"+num+"?OID="+OID,
             		        dataType: "json",
             		        success: function(result){
+            		        	var result=result.dataValue;
             		        	$(".tabxq tbody").find("tr").remove();
             		        	for(var i=0;i<result.data.length;i++){
             		        		var str='<tr class="tr02"><td>'+((num-1)*10+(i+1))+'</td><td>'+result.data[i].mobile+'</td><td>'+(result.data[i].money).toFixed(2)+'元</td><td>'+result.data[i].sj+'</td></tr>';

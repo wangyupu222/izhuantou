@@ -286,7 +286,7 @@ $(function(){
         url: "/portal/index/touBiZhuan",//地址，就是json文件的请求路径
         dataType: "json",//数据类型可以为 text xml json  script  jsonp
         success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
-        	console.log(result);
+        	var result=result.dataValue;
         	$(".module_yuan a").attr('href','/portal/detial/Newtzdetails?OID='+result.oid);
         	$(".tbz_yuan a").attr('href','/portal/detial/Newtzdetails?OID='+result.oid);
         },
