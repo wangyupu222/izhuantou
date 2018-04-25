@@ -11,10 +11,5 @@
 	<!-- 引入属性文件 -->
 	<context:property-placeholder location="classpath:resource/*.properties" />
 	<!-- 配置自动扫描(自动注入) -->
-	<context:component-scan base-package="com.izhuantou.fund.impl" />
-	
-	<!-- 服务提供者 -->
-	<import resource="dubbo-provider.xml"/>
-	<!-- 服务消费者 -->
-	<import resource="dubbo-consumer.xml"/>
+	<context:component-scan base-package="com.izhuantou.service" />	
 </beans>
