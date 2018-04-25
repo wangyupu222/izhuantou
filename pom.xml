@@ -5,18 +5,22 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
-  	<module>izhuantou-admin</module>
-  	<module>izhuantou-domain</module>
+  	<!-- 基础jar包 -->
   	<module>izhuantou-common</module>
+  	<module>izhuantou-domain</module>
   	<module>izhuantou-dao</module>
+  	<module>izhuantou-service</module>
+  	<!-- 对外应用 -->
+  	<module>izhuantou-admin</module>
+  	<module>izhuantou-portal</module>
+  	<module>izhuantou-app-api</module>
+  	<!-- dubbo服务 -->
+  	<module>izhuantou-data-api</module>
   	<module>izhuantou-data</module>
   	<module>izhuantou-fund-api</module>
   	<module>izhuantou-fund</module>
-  	<module>izhuantou-service</module>
-  	<module>izhuantou-third</module>
-  	<module>izhuantou-portal</module>
-  	<module>izhuantou-app-api</module>
   	<module>izhuantou-third-api</module>
+  	<module>izhuantou-third</module>
   </modules>
 
     <!-- 集中定义依赖版本号 -->
