@@ -23,6 +23,7 @@ public class TestController {
 	public String queryMenuByUserName() {
 		System.err.println("我在admin的controller中调用的Service为 " + serviceTest.getNumber());
 		String result = fundServiceTest.queryDate();
+		System.out.println(result);
 		return "goodBay";
 	}
 }
