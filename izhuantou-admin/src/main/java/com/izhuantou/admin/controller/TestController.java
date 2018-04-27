@@ -25,6 +25,7 @@ public class TestController {
 		String result = fundServiceTest.queryDate();
 		System.out.println(result);
 		System.out.println("test");
+		System.out.println("test111111111");
 		return "goodBay";
 	}
 }
