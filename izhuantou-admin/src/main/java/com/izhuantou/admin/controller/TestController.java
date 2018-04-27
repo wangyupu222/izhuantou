@@ -24,6 +24,7 @@ public class TestController {
 		System.err.println("我在admin的controller中调用的Service为 " + serviceTest.getNumber());
 		String result = fundServiceTest.queryDate();
 		System.out.println(result);
+		System.out.println("test");
 		return "goodBay";
 	}
 }
