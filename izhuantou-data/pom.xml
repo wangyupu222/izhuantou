@@ -9,6 +9,11 @@
 	<artifactId>izhuantou-data</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	
+	<properties>
+		<jetty-server.version>9.2.22.v20170606</jetty-server.version>
+	</properties>
+	
 	<!-- 内部依赖 -->
 	<dependencies>
 		<dependency>
@@ -26,8 +31,43 @@
 			<artifactId>izhuantou-fund-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<!-- Xxl-job-core  -->
+		
+		<dependency>
+  			<groupId>com.xuxueli</groupId>
+  			<artifactId>xxl-job-core</artifactId>
+  			<version>1.8.2</version>
+		</dependency>		
 	</dependencies>
-
+	
+	<dependencyManagement>		
+		<dependencies>
+			<!-- jetty -->
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-server</artifactId>
+				<version>${jetty-server.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-util</artifactId>
+				<version>${jetty-server.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-http</artifactId>
+				<version>${jetty-server.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-io</artifactId>
+				<version>${jetty-server.version}</version>
+			</dependency>
+		
+		
+		</dependencies>		
+	</dependencyManagement>
+	
 	<build>
 		<!-- 打包的应用名 -->
 		<finalName>izhuantou-data</finalName>
