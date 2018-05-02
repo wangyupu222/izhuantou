@@ -43,7 +43,7 @@
         </div>
         <div class="loanBox">
         <h3>i房贷</h3>
-        <p>i房贷服务于市内六区、新四区及滨海/贷款的申请人，具有审核通过率高，放款及时的特点。</p>
+        <p>i房贷服务于市内六区、新四区及滨海新区的，持自有住房，商住两用公寓、有按揭贷款的申请人，具有审核通过率高，放款及时的特点。</p>
         <img class="loanImg loanIFDimg" src="<%=pathUrl %>/images/loanMain_New/loan_IFDimg.png">
         <div class="loan_Btn"><a href="ztloandetails.jsp?OID=b000c0093fa8057801cdd66986dc70b7">了解详情</a></div>
         </div>

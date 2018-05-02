@@ -190,10 +190,12 @@ public interface ControlPayService {
     ResetPassWordReqData appUpdatePayPassword(String memberOID);
 
     /**
-     * 测试使用
+     * 划拨冻结到冻结
      * 
-     * @return
+     * @param outMemberOID
+     * @param inMemberOID
+     * @param money
      */
-    String queryDate();
+    String transferFreezeToFreeze(String outMemberOID, String inMemberOID, BigDecimal money);
 
 }

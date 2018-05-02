@@ -103,7 +103,12 @@ public class DetialHHTServiceImpl extends BaseServiceImpl<WebP2pPackageBiddingMa
 	    if (memberOID != null) {
 		customer = customerMapper.findByMemberOID(memberOID);
 		// 可用余额
-		detialHHT.setUseMoney(customer.getUseMoney());
+		if (customer != null) {
+		    detialHHT.setUseMoney(customer.getUseMoney());
+		} else {
+		    // 表示该用户未实名认证
+		    detialHHT.setUseMoney(new BigDecimal(0.00));
+		}
 	    }
 
 	    // 还款方式

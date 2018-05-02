@@ -1,13 +1,13 @@
 package com.izhuantou.fund.rpc.impl;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.izhuantou.damain.lend.PlanContent;
+import com.izhuantou.damain.vo.bidding.BiddingDTO;
 import com.izhuantou.damain.webp2p.WebP2pNoviceBiddingRuning;
 import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning;
 import com.izhuantou.dao.webp2p.WebP2pNoviceBiddingRuningMapper;
@@ -24,7 +24,7 @@ import com.izhuantou.fund.rpc.api.ProcessPageBidding;
  */
 @Service("processPageBidding")
 public class ProcessPageBiddingImpl implements ProcessPageBidding {
-
+    private static final Logger logger = LoggerFactory.getLogger(ProcessPageBiddingImpl.class);
     @Autowired
     private ControlNoviceBidding controlNoviceBidding;
     @Autowired
@@ -35,60 +35,46 @@ public class ProcessPageBiddingImpl implements ProcessPageBidding {
     private WebP2pPackageBiddingMainRuningMapper packageBiddingMainRuningMapper;
 
     @Override
-    public String ProcessPageChujiesave(Map<String, Object> map) {
-	// 通过相关的type的类型进行具体的业务操作
+    public String ProcessPageNewChujiesave(BiddingDTO biddto) {
 	try {
-	    String type = (String) map.get("type"); // 标的类型
-	    String biddingOID = (String) map.get("biddingOID"); // 标的OID
-	    String memberOID = (String) map.get("memberOID");
-	    String tqOID = (String) map.get("tqOID");
-	    String mappingOID = (String) map.get("mappingOID");
-	    BigDecimal amount = new BigDecimal((String) map.get("amount"));
-	    String laiyuan = (String) map.get("laiyuan");
-	    // String type = (String) map.get("type"); // 标的类型
-	    // String biddingOID = (String) map.get("biddingOID"); // 标的OID
-
-	    if ("dd".equals(type)) {
-		// 点点
-	    } else if ("new".equals(type)) {
-		// 新手
-		WebP2pNoviceBiddingRuning noviceBid = this.noviceBiddingRuningMapper.findByOID(biddingOID);
-		if (noviceBid != null && noviceBid.getProductStatus().equals("1")) {
-		    // 表示可以投标
-		    Map<String, Object> typeMap = new HashMap<>();
-		    // 参数封装
-		    typeMap.put("memberOID", memberOID);
-		    typeMap.put("biddingOID", biddingOID);
-		    typeMap.put("amount", amount);
-		    typeMap.put("tqOID", tqOID);
-		    typeMap.put("laiyuan", laiyuan);
-		    typeMap.put("mappingOID", mappingOID);
-		    if (this.controlNoviceBidding.bidNomalBidding(typeMap) == 1) {
-			System.out.println("======新手出借成功========");
+	    if (biddto != null) {
+		WebP2pNoviceBiddingRuning noviceBid = this.noviceBiddingRuningMapper.findByOID(biddto.getBiddingOID());
+		if (noviceBid != null && "1".equals(noviceBid.getProductStatus())) {
+		    String res = this.controlNoviceBidding.bidNoviceBidding(biddto);
+		    if ("1".equals(res)) {
+			logger.info("======新手出借成功========");
+			return "1";
 		    } else {
-			System.out.println("======新手出借失败========");
+			logger.info("======新手出借失败========" + res);
+			return "0";
 		    }
-
 		} else {
-		    // 表示已经停标
-		    System.out.println("========已经停标========");
+		    logger.info("========已经停标========");
 		}
-	    } else if ("hh".equals(type)) {
-		// 环环
-		WebP2pPackageBiddingMainRuning mr = packageBiddingMainRuningMapper.findByOID(biddingOID);
+	    }
+	    logger.info("======新手出借失败========");
+	    return "0";
+	} catch (Exception e) {
+	    logger.error("ProcessPageNewChujiesave(BiddingDTO biddto)" + e.getMessage());
+	    return null;
+	}
+    }
 
-		if ("1".equals(mr.getProductStatus())) {
-		    // memberOID, biddingOID, amount, tqOID, laiyuan, mappingOID
-		    // 20171108因以租代购标的新建出借方法--Cannon
-		    Map<String, Object> typeMap = new HashMap<>();
-		    typeMap.put("memberOID", map.get("memberOID"));
-		    typeMap.put("biddingOID", biddingOID);
-		    typeMap.put("amount", map.get("amount"));
-		    typeMap.put("tqOID", map.get("tqOID"));
-		    typeMap.put("laiyuan", map.get("laiyuan"));
-		    typeMap.put("mappingOID", map.get("mappingOID"));
-		    typeMap.put("money", new BigDecimal(100));
-		    Integer n = controlPackageBiddingMainRuning.bidPackageBiddingDifferent(typeMap);
+    @Override
+    public String ProcessPageHHChujiesave(BiddingDTO biddto) {
+	try {
+	    if (biddto != null) {
+		// 环环
+		WebP2pPackageBiddingMainRuning mr = packageBiddingMainRuningMapper.findByOID(biddto.getBiddingOID());
+
+		if (mr != null && "1".equals(mr.getProductStatus())) {
+		    // 耗时太久。需要优化
+		    String n = controlPackageBiddingMainRuning.bidPackageBiddingDifferent(biddto);
+		    if (StringUtils.isNotEmpty(n) && "1".equals(n)) {
+			logger.info("======环环投出借成功=====");
+			return "1";
+
+		    }
 		    // 获取线程状态
 		    // DTO d =
 		    // controlPlanContent.gainPlanByClassName("cn.com.hoonsoft.WebP2P.PrivilegeMemberReturnSend");
@@ -101,18 +87,27 @@ public class ProcessPageBiddingImpl implements ProcessPageBidding {
 		     * (String) map.get("biddingOID")); } }
 		     */
 		    // 提示信息
-		    System.out.print("======环环投出借成功=====");
 		} else {
 		    // 提示信息
-		    System.out.print("======环环投出借失败=====");
+		    logger.info("======环环投出借失败=====");
 		}
-	    } else if ("ZZ".equals(type)) {
-		// 转转
 	    }
-
+	    return null;
 	} catch (Exception e) {
-	    System.out.println(e.getMessage());
+	    logger.error("ProcessPageHHChujiesave(BiddingDTO biddto)" + e.getMessage());
+	    return null;
 	}
+    }
+
+    @Override
+    public String ProcessPageDDChujiesave(BiddingDTO biddto) {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public String ProcessPageZZChujiesave(BiddingDTO biddto) {
+	// TODO Auto-generated method stub
 	return null;
     }
 }

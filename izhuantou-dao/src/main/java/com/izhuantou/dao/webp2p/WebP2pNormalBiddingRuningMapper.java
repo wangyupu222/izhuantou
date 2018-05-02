@@ -10,6 +10,7 @@ import com.izhuantou.damain.webp2p.WebP2pNormalBiddingRuning;
  * @version 1.0
  */
 public interface WebP2pNormalBiddingRuningMapper extends Mapper<WebP2pNormalBiddingRuning> {
+
     public WebP2pNormalBiddingRuning findByOID(String OID);
 
     public WebP2pNormalBiddingRuning findByLoan(String LoanNum);

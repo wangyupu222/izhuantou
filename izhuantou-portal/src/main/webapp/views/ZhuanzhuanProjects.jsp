@@ -127,7 +127,8 @@ $(function(){
         	}
         	if(result.totalNumber<1){
     	        $(".zhuanzhuan_liu").css("display","block");
-    	    }else if(result.totalNumber<10){
+    	    }
+        	if(result.totalNumber<10){
     	    	$("#page").remove();
     	    }
         	$("#page").paging({

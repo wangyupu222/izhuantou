@@ -1,7 +1,5 @@
 package com.izhuantou.dao.webp2p;
 
-import java.util.List;
-
 import com.github.abel533.mapper.Mapper;
 import com.izhuantou.damain.webp2p.WebP2pBiddingExamine;
 
@@ -16,10 +14,11 @@ public interface WebP2pBiddingExamineMapper extends Mapper<WebP2pBiddingExamine>
     public WebP2pBiddingExamine findByloanNumber(String loanNumber);
 
     /**
-     * 点点投
+     * 根据memberOID查询
      * 
-     * @param loanNumber
+     * @param memberOID
      * @return
      */
-    public List<WebP2pBiddingExamine> findByLoan(String loanNumber);
+    public WebP2pBiddingExamine findByMemberOID(String memberOID);
+
 }

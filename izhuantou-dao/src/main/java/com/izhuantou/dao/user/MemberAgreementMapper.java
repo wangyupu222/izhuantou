@@ -4,7 +4,7 @@ import com.github.abel533.mapper.Mapper;
 import com.izhuantou.damain.user.MemberAgreement;
 
 /**
- * 用户协议
+ * 协议模板
  * 
  * @author dear
  * @version 1.0

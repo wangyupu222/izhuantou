@@ -2,9 +2,9 @@ package com.izhuantou.fund.rpc.api;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 import com.izhuantou.damain.pay.PayCashPool;
+import com.izhuantou.damain.vo.bidding.BiddingDTO;
 
 /**
  * 投标接口类
@@ -54,22 +54,7 @@ public interface ControlCashPool extends BaseService<PayCashPool> {
      *            Timestamp endDate, BigDecimal privilegePrincipal, BigDecimal
      *            privilegeInterest, String tqOID, String ly))
      */
-    PayCashPool investment(Map<String, Object> typeMap);
-
-    /**
-     * 
-     * @param strBusinessOID
-     * @return
-     */
-    List<PayCashPool> gainCashPoolByBusinessOID(String strBusinessOID);
-
-    /**
-     * 根据BusinessOID获取
-     * 
-     * @param outBusinessOID
-     * @return
-     */
-    List<PayCashPool> gainCashPoolByBusinessOIDAndHaveMoney(String outBusinessOID);
+    PayCashPool investment(BiddingDTO bidto);
 
     /**
      * 真正投资
@@ -121,5 +106,20 @@ public interface ControlCashPool extends BaseService<PayCashPool> {
      * @param money
      */
     void investmentNew(String businessOID, String outMemberOID, String inMemberOID, BigDecimal money);
+
+    /**
+     * 
+     * @param strBusinessOID
+     * @return
+     */
+    List<PayCashPool> gainCashPoolByBusinessOID(String strBusinessOID);
+
+    /**
+     * 根据BusinessOID获取
+     * 
+     * @param outBusinessOID
+     * @return
+     */
+    List<PayCashPool> gainCashPoolByBusinessOIDAndHaveMoney(String outBusinessOID);
 
 }

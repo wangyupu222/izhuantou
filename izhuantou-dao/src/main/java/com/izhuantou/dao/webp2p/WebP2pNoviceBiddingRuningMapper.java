@@ -28,4 +28,5 @@ public interface WebP2pNoviceBiddingRuningMapper extends Mapper<WebP2pNoviceBidd
      */
     public int updateNoviceBiddingRuningByOID(WebP2pNoviceBiddingRuning noviceBiddingRuning);
     // public WEBP2P_NoviceBiddingRuning findByLoan(String loanNum);
+
 }

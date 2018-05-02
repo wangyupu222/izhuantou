@@ -203,7 +203,7 @@ height:360px;
 
 <div class="cd-popup2">
 <div class="cd-popup-container2">
-<form action="" method="post" name="FormChujie" id="FormChujie" >
+<form action="/portal/control/hhbidding" method="post" name="FormChujie" id="FormChujie" >
 <input type="hidden" name="biddingOID" value='<%=request.getParameter("OID") %>' >
 <input type="hidden" id="tabInx" name="tabInx" value='<%=request.getParameter("tabInx") %>' >
 <!--确认出借-->
@@ -721,6 +721,7 @@ $(function(){
         url: "/portal/detial/detialHHT/?OID="+OID,
         dataType: "json",
         success: function(result){
+        	console.log(result);
         	var result=result.dataValue;
         	$(".xmtits").text(result.xmmc);
         	$(".lend_title div").text(result.xmmc);

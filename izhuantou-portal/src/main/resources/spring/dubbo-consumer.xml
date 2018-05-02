@@ -12,7 +12,8 @@
 	<dubbo:application name ="izhuantou-portal"/>	
 	<dubbo:registry  protocol="zookeeper" address="${dubbo.address}"></dubbo:registry>	
 		
-	<!-- 测试dubbo接口 -->
-	<dubbo:reference check="false" interface="com.izhuantou.fund.rpc.api.FundServiceTest"
-		id="fundServiceTest" timeout="${dubbo.timeout}" />
+	<!-- 投标相关接口 -->
+	<dubbo:reference check="false" interface="com.izhuantou.fund.rpc.api.ProcessPageBidding"  id="processPageBidding" timeout="${dubbo.timeout}" />
+	<!-- 换卡相关接口 -->
+	<dubbo:reference  check="false"  interface="com.izhuantou.third.rpc.api.ControlPayService" id="controlPayService" timeout="${dubbo.timeout}" />
 </beans>

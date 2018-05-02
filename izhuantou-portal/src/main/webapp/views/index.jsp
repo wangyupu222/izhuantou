@@ -18,8 +18,6 @@
 <!-- 砖头狂欢 end  -->
 <Link rel="shortcut icon" href="<%=pathUrl %>/images/zhuan.ico" />
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
-<script type="text/javascript" src='https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js'></script>
 <!-- <script type="text/javascript" src="/js/main.js?v=114"></script> -->
 <!-- 砖头狂欢  -->
   <%-- <script type="text/javascript" src="/js/modernizr.custom.js"></script>--%>
@@ -29,46 +27,16 @@
 <!--[if lt IE 9]>
     <script src="/guide/css3-mediaqueries.js"></script>
 <![endif]-->
-<script>
-	var 
-$(function(){
-	var afterdata01=$(".afterdata01 em").text();
-	var afterdata02=$(".afterdata02 em").text();
-	var afterdata03=$(".afterdata03 em").text();
-	var index=$(".afterdata");
-    var aNew;
-    var re = /([0-9]+\.[0-9]{2})[0-9]*/;
-    $(".afterdata01 em").text(afterdata01.replace(re,"$1"));
-    $(".afterdata02 em").text(afterdata02.replace(re,"$1"));
-    $(".afterdata03 em").text(afterdata03.replace(re,"$1"));
-    //$(".gong_title").eq(0).css("color","#e84148");
-    
-})
-</script>
+
 <script src="/js/com.js"></script>
 <script type="text/javascript" src="/js/video.min.js"></script>
 <script type="text/javascript" src="/js/videojs-ie8.min.js"></script>
 <!--进度-->
 <script src="/js/radialIndicator.js"></script>
 <!--首页焦点图-->
-<script src="/js/jquery.flexslider-min.js"></script>
-<script type="text/javascript" src="/image/FirstAnniversary/jQuerySnow.js"></script> 
 <script>
 $(window).load(function() {
-	$('.flexslider').flexslider({
-		directionNav: false,
-		pauseOnAction: false,
-		manualControls: "aaa",
-	});
-	/* if("msDoNotTrack" in window.navigator){
-		alert("a");
-		$(".vjs-big-play-button").addClass("vjs-big-play-button_new");
-	} */
-	$('.flexslider .slides li').each(function(i){
-		  var title = $(this).find('a').attr('data-val');
-		  $('.flexslider .flex-control-nav li').eq(i).find('a').html(title);
-		})
-		 $(".flex-control-nav").css("display","block");
+	
 	if(navigator.userAgent.indexOf("MSIE 8.0")>0)  
     {  
 		$(".vjs-big-play-button").addClass("vjs-big-play-button_new");
@@ -959,6 +927,7 @@ $(".jindupercent").each(function(){
 });
 $(window).load(function() {
 	/* Banner  */
+	<%if(session.getAttribute("userMobile") != null){ %>
 	$.ajax({
         type: "get",
         url: "/portal/user/threeNumber",
@@ -971,15 +940,27 @@ $(window).load(function() {
 		error:function(result){    	
     	}
     });
+	<%} %>
 	$.ajax({
         type: "get",
         url: "/portal/page/getbanner",
         dataType: "json",
         success: function(result){
         		for(var i=0;i<result.dataValue.length;i++){
-        			var str="<li style='background: url(https://www.izhuantou.com/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=fileDownload&OID="+result.dataValue[i].oid+") 50% 0 no-repeat;'><a href='"+result.dataValue[i].jumpurl+"' data-val='"+result.dataValue[i].name+"'> </a></li>";  
+        			var str="<li style='background: url(http://182.92.10.89/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=fileDownload&OID="+result.dataValue[i].oid+") 50% 0 no-repeat;'><a href='"+result.dataValue[i].jumpurl+"' data-val='"+result.dataValue[i].name+"'> </a></li>";  
         			$(".slides").append(str);
         		}
+        		$("body").append('<script src="\/js\/jquery.flexslider-min.js"><\/script>');
+        		$('.flexslider').flexslider({
+        			directionNav: false,
+        			pauseOnAction: false,
+        			manualControls: "aaa",
+        		});
+        		$('.flexslider .slides li').each(function(i){
+        			  var title = $(this).find('a').attr('data-val');
+        			  $('.flexslider .flex-control-nav li').eq(i).find('a').html(title);
+        			})
+        			 $(".flex-control-nav").css("display","block");
         },
 		error:function(result){    	
     	}

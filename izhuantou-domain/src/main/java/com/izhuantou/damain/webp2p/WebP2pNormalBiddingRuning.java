@@ -4,17 +4,18 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.izhuantou.damain.BasePojo;
 
-@Table(name = "webp2p_normalbiddingruning")
 /**
  * 在投中散标表
  * 
  * @author dear
  * @version 1.0
  */
+@Table(name = "webp2p_normalbiddingruning")
 public class WebP2pNormalBiddingRuning extends BasePojo {
 
     /**
@@ -24,6 +25,7 @@ public class WebP2pNormalBiddingRuning extends BasePojo {
     /**
      * OID
      */
+    @Id
     @Column(name = "OID")
     private String OID;
     /**
@@ -111,12 +113,12 @@ public class WebP2pNormalBiddingRuning extends BasePojo {
      * 是否推荐（0,不推荐，1,推荐）
      */
     @Column(name = "isRecommend")
-    private String isRecommend = "0";
+    private String isRecommend;
     /**
      * 是否财务参与投标(0:未参与；1:参与)
      */
     @Column(name = "isCWTB")
-    private String isCWTB = "0";
+    private String isCWTB;
     /**
      * 投资编号
      */

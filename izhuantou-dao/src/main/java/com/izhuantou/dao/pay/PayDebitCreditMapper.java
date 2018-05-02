@@ -56,14 +56,6 @@ public interface PayDebitCreditMapper extends Mapper<PayDebitCredit> {
     public PayDebitCredit findByDebitCreditOID(String OID);
 
     /**
-     * 查看 loanNumber编号,OID,memberOID 用户
-     * 
-     * @param businessID
-     * @return
-     */
-    public List<Map<String, Object>> findBybusinessID(String businessID);
-
-    /**
      * 根据唯一主键 获取对应的实体类
      * 
      * @param Oid

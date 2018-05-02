@@ -14,7 +14,7 @@
 	<dubbo:protocol name="dubbo" port="${dubbo.port}"/>
 	<dubbo:provider timeout="${dubbo.timeout}" />
 		
-	<!-- 测试mongodb -->
-	<dubbo:service interface="com.izhuantou.fund.rpc.api.FundServiceTest" ref="fundServiceTest" />
+	<!-- 投标相关接口 -->
+	<dubbo:service interface="com.izhuantou.fund.rpc.api.ProcessPageBidding" ref="processPageBidding" /> 
 			  	
 </beans>

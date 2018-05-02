@@ -39,7 +39,7 @@ import com.izhuantou.service.api.personalCenter.MyLendRecordService;
 import com.izhuantou.service.api.personalCenter.MyRepaymentService;
 import com.izhuantou.service.api.personalCenter.PersonalCenterService;
 import com.izhuantou.service.api.personalCenter.UpdPicService;
-import com.izhuantou.service.api.user.MemberAgreementService;
+import com.izhuantou.service.api.user.MemberMemberAgreementService;
 
 /***
  * 个人中心
@@ -53,7 +53,7 @@ public class PersonalCenterController {
     @Autowired
     private PersonalCenterService personalMessage;
     @Autowired
-    private MemberAgreementService memberAgreementService;
+    private MemberMemberAgreementService memberAgreementService;
     @Autowired
     private UpdPicService updPicService;
     @Autowired

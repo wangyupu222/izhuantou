@@ -3,13 +3,16 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.webp2p.WebP2pNormalBiddingRuningMapper">
-	<select id="findByOID"
-		resultType="com.izhuantou.damain.webp2p.WebP2pNormalBiddingRuning">
-		select * from WEBP2P_NormalBiddingRuning where OID= #{OID}
+	
+	<select id="findByOID" resultType="com.izhuantou.damain.webp2p.WebP2pNormalBiddingRuning">
+		SELECT * FROM WEBP2P_NormalBiddingRuning WHERE OID=#{OID}
 	</select>
-
-	<select id="findByLoan"
-		resultType="com.izhuantou.damain.webp2p.WebP2pNormalBiddingRuning">
+	<select id="findNormalByOID" resultType="com.izhuantou.damain.webp2p.WebP2pNormalBiddingRuning">
+		SELECT * FROM WEBP2P_NormalBiddingRuning WHERE OID=#{OID}
+	</select>
+	
+	
+	<select id="findByLoan" resultType="com.izhuantou.damain.webp2p.WebP2pNormalBiddingRuning">
 		SELECT * FROM WEBP2P_NormalBiddingRuning WHERE loanNumber = #{LoanNum}
 	</select>
 

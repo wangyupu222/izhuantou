@@ -83,7 +83,7 @@ text-decoration:underline;
 
 <div class="cd-popup2">
 <div class="cd-popup-container2">
-<form handleClassName="pageNewProDetailsFormChujiesave" name="FormChujie" >
+<form action="/portal/control/newbidding" method="post" name="FormChujie" id="FormChujie">
 <input type="hidden" name="biddingOID" value='<%=request.getParameter("OID") %>' >
 <!--确认出借-->
    <div class="comnei comneichujie">
@@ -143,7 +143,7 @@ text-decoration:underline;
             
            
         </div>
-        <p class="commit-2"><span>市场有风险，出借需谨慎</span><web:WidgetButton value="确认" customProperty="class='zcbtn_input confirmbtn' " property="class='colseok'"  /><!-- <a class="colseok" href="tzdetailsok.jsp">确认</a> --><span class="spjine">需支付￥<em id="paymoney"></em>元</span></p>
+        <p class="commit-2"><span>市场有风险，出借需谨慎</span><button id="class='colseok'" name="class='colseok'" type="submit" value="确认" class="zcbtn_input confirmbtn">确认</button><!-- <a class="colseok" href="tzdetailsok.jsp">确认</a> --><span class="spjine">需支付￥<em id="paymoney"></em>元</span></p>
    </div>    
        <!--确认出借结束-->
     </form>    

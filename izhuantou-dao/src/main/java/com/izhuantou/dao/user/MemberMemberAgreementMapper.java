@@ -4,9 +4,10 @@ import org.apache.ibatis.annotations.Param;
 
 import com.github.abel533.mapper.Mapper;
 import com.izhuantou.damain.user.MemberMemberAgreement;
+import com.izhuantou.damain.vo.LeanYuBiaoDTO;
 
 /**
- * 协议模板
+ * 用户协议
  * 
  * @author dear
  * @version 1.0
@@ -51,5 +52,42 @@ public interface MemberMemberAgreementMapper extends Mapper<MemberMemberAgreemen
      * @return
      */
     public int saveMemberAgreement(MemberMemberAgreement agreement);
+
+    /**
+     * 协议总数
+     * 
+     * @param agreement
+     * @return
+     */
+    public int countMemberAgreement(@Param("biddingType") String biddingType,
+	    @Param("contractType") String contractType);
+
+    /**
+     * 根据用户OID和产品OID查看债权转让协议
+     * 
+     * @param memberOID
+     * @param biddingOID
+     * @return
+     */
+    public MemberMemberAgreement findBymemberOIDBiddingOIDForZQZR(@Param("memberOID") String memberOID,
+	    @Param("biddingOID") String biddingOID);
+
+    /**
+     * 根据协议编号查看原标
+     * 
+     * @param loanNumber
+     * @return
+     */
+    public LeanYuBiaoDTO findByYBInfoByJKXY(String loanNumber);
+
+    /**
+     * 查看协议的编号
+     * 
+     * @param biddingOID
+     * @param contractType
+     * @return
+     */
+    public String findByAgreementJKXYBHCK(@Param("biddingOID") String biddingOID,
+	    @Param("contractType") String contractType);
 
 }

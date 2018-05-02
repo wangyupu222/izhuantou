@@ -76,9 +76,73 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{pdfPic}
 		);
 
-
-
 	</insert>
+
+	<select id="countMemberAgreement" resultType="int">
+
+	SELECT COUNT(*) from MEMBER_MemberAgreement WHERE
+	biddingType=#{biddingType} and 
+	contractType=#{contractType} and
+	addDateTime &lt; = NOW()
+	
+	</select>
+	
+	<select id="findBymemberOIDBiddingOIDForZQZR" resultType="com.izhuantou.damain.user.MemberMemberAgreement">
+		SELECT * from MEMBER_MemberAgreement WHERE
+		biddingType=#{biddingType} and 
+		contractType='7' and
+		memberOID=#{memberOID}
+	
+	</select>
+
+		<select id="findByYBInfoByJKXY" resultType="com.izhuantou.damain.vo.LeanYuBiaoDTO">
+			SELECT
+			bdff.memberOID jkrOID,
+			bdff.realName jkrxm,
+			bdff.mobile jkrsjh,
+			bdff.idCard jkrsfzh,
+			pbc.OID biddingOID,
+			pbc.loanDay loanDay
+			FROM
+			WEBP2P_BiddingExamine bdff
+			JOIN WEBP2P_PackageBiddingMainContentRuning pbc ON bdff.loanNumber =pbc.loanNumber
+			WHERE pbc.financetransfertype = 'normal' AND bdff.loanNumber =#{loanNumber}
+			UNION ALL
+			SELECT
+			bdff.memberOID jkrOID,
+			bdff.realName jkrxm,
+			bdff.mobile jkrsjh,
+			bdff.idCard jkrsfzh,
+			nbr.OID biddingOID,
+			nbr.loanDay loanDay
+			FROM
+			WEBP2P_BiddingExamine bdff
+			JOIN WEBP2P_NoviceBiddingRuning nbr ON nbr.loanNumber = bdff.loanNumber
+			WHERE nbr.debitCreditOID IS NULL AND bdff.loanNumber =#{loanNumber}
+			UNION ALL
+			SELECT
+			pbcr.memberOID jkrOID,
+			clci.customername jkrxm,
+			clci.phone jkrsjh,
+			clci.certificatesid jkrsfzh,
+			pbcr.OID biddingOID,
+			pbcr.loanDay loanDay
+			FROM
+			WEBP2P_CarLoanCenterInfo clci
+			JOIN WEBP2P_PackageBiddingMainContentRuning pbcr ON pbcr.loanNumber =clci.loanNumber
+			WHERE pbcr.financetransfertype = 'normal' AND clci.loanNumber = #{loanNumber}
+			
+	</select>
+
+	<select id="findByAgreementJKXYBHCK" resultType="string">
+		select 
+			xybh 
+		from 
+			MEMBER_MemberAgreement 
+		where  
+			biddingOID =#{biddingOID} and contractType =#{contractType}
+	
+	</select>
 
 
 

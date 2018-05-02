@@ -112,7 +112,7 @@ public class WebP2pNoviceBiddingRuning extends BasePojo {
      * 是否推荐（0,不推荐，1,推荐）
      */
     @Column(name = "isRecommend")
-    private String isRecommend = "0";
+    private String isRecommend;
     /**
      * 是否财务参与投标(0:未参与；1:参与)
      */

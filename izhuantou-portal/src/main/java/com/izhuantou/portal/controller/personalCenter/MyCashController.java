@@ -35,6 +35,7 @@ import com.izhuantou.damain.vo.FuyuReturnDTO;
 import com.izhuantou.damain.vo.RechargeDTO;
 import com.izhuantou.damain.vo.WithdrawalDTO;
 import com.izhuantou.service.api.personalCenter.MyCashService;
+import com.izhuantou.third.rpc.api.ControlPayService;
 
 /***
  * 个人中心
@@ -50,6 +51,8 @@ public class MyCashController {
     private static final Logger logger = LoggerFactory.getLogger(MyCashController.class);
     @Autowired
     private MyCashService myCashService;
+    @Autowired
+    private ControlPayService controlPayService;
 
     /**
      * 富友回调的统一页面
@@ -257,7 +260,7 @@ public class MyCashController {
 	if (StringUtil.isNotEmpty(sms) && !sms.equals(checksms)) {// 测试>>>>>>>>>>>
 	    session.removeAttribute(VALIDATE_CODE);
 	    session.removeAttribute(SMS_VALIDATE_CODE);
-	    rows = myCashService.insertCustomer(customer);
+	    rows = controlPayService.createCustomerAccount(customer);
 	    if ("1".equals(rows)) {
 		return "redirect:/portal/cash/MyCard";
 	    }
@@ -285,16 +288,19 @@ public class MyCashController {
 	    recharge.setMemberOID(memberOID);
 	    if (StringUtil.isNotEmpty(yzm) && yzm.toUpperCase().equals(check)) {// 测试
 		if (StringUtil.isNotEmpty(type) && "1".equals(type)) {
-		    Map<String, Object> resulltmap = myCashService.rechargeWY(recharge);
-
-		    Wy500012ReqData data = (Wy500012ReqData) resulltmap.get("data");
-		    FuiouService.wy500012(data, response);
-		    return null;
+		    Wy500012ReqData data = controlPayService.rechargeWY(recharge);
+		    if (data != null) {
+			FuiouService.wy500012(data, response);
+		    }
+		    view.addFlashAttribute("msg", "接口调用失败");
+		    return "redirect:/portal/cash/Recharge_new";
 		} else {
-		    Map<String, Object> resulltmap = myCashService.recharge(recharge);
-		    AppTransReqData data = (AppTransReqData) resulltmap.get("data");
-		    FuiouServiceMy.p2p500405(data, response);
-		    return null;
+		    AppTransReqData data = controlPayService.recharge(recharge);
+		    if (data != null) {
+			FuiouServiceMy.p2p500405(data, response);
+		    }
+		    view.addFlashAttribute("msg", "接口调用失败");
+		    return "redirect:/portal/cash/Recharge_new2";
 		}
 	    } else {
 		view.addFlashAttribute("msg", "验证码有误");
@@ -317,17 +323,16 @@ public class MyCashController {
     @RequestMapping(value = "/rechargeCallback")
     public void rechargeCallback(RedirectAttributes view, FuyuReturnDTO fureturn) {
 	Map<String, String> map = new HashMap<String, String>();
-	map.put("resp_code", fureturn.getResp_code());
-	map.put("login_id", fureturn.getLogin_id());
-	map.put("amt", fureturn.getAmt());
-	map.put("mchnt_txn_ssn", fureturn.getMchnt_txn_ssn());
-	map.put("rem", fureturn.getRem());
-	map.put("ly", "web");
-	String phone = fureturn.getLogin_id();
-	String rows = myCashService.rechargeFinish(map);
-	if ("1".equals(rows)) {
-	    String rowss = myCashService.updateCustomerMoney(phone);
+	if (fureturn != null) {
+	    map.put("resp_code", fureturn.getResp_code());
+	    map.put("login_id", fureturn.getLogin_id());
+	    map.put("amt", fureturn.getAmt());
+	    map.put("mchnt_txn_ssn", fureturn.getMchnt_txn_ssn());
+	    map.put("rem", fureturn.getRem());
+	    map.put("ly", "web");
+	    controlPayService.rechargeFinish(map);
 	}
+
     }
 
     /**
@@ -348,7 +353,7 @@ public class MyCashController {
 	    withdrawal.setMemberOID(memberOID);
 	    withdrawal.setMoney(new BigDecimal(money));
 	    if (StringUtil.isNotEmpty(yzm) && yzm.toUpperCase().equals(check)) {// 测试
-		Map<String, Object> resultmap = myCashService.withdrawal(withdrawal);
+		Map<String, Object> resultmap = controlPayService.withdrawals(withdrawal);
 		if (resultmap != null) {
 		    String message = (String) resultmap.get("message");
 		    if ("1".equals(message)) {
@@ -386,16 +391,10 @@ public class MyCashController {
 	map.put("mchnt_txn_ssn", fureturn.getMchnt_txn_ssn());
 	map.put("rem", fureturn.getRem());
 	map.put("ly", "web");
-	String phone = fureturn.getLogin_id();
-	String rows = myCashService.withdrawalsFinish(map);
+	String rows = controlPayService.withdrawalsFinish(map);
 	if ("1".equals(rows)) {
-	    String rowss = myCashService.updateCustomerMoney(phone);
-	    if ("1".equals(rowss)) {
-		String row = myCashService.withdrawalsSxfFinish(map);
-		if ("1".equals(row)) {
-		    String ro = myCashService.updateCustomerMoney(phone); // 成功
-		}
-	    }
+	    controlPayService.withdrawalsSxfFinish(map);
+
 	}
     }
 
@@ -406,20 +405,18 @@ public class MyCashController {
      * @return
      */
     @RequestMapping(value = "/updatePayPassword")
-    @ResponseBody
     public String updatePayPassword(HttpServletResponse response, HttpServletRequest request) {
 	try {
 	    HttpSession session = request.getSession();
 	    String memberOID = (String) session.getAttribute("memberOID");
 	    if (StringUtil.isNotEmpty(memberOID)) {
-		Map<String, Object> map = myCashService.updatePayPassword(memberOID);
-		if (map != null) {
-		    ResetPassWordReqData data = (ResetPassWordReqData) map.get("data");
+		ResetPassWordReqData data = controlPayService.updatePayPassword(memberOID);
+		if (data != null) {
 		    FuiouService.resetPassWord(data, response);
 		    return null;
 		}
 	    }
-	    return "memberOID不能为空";
+	    return "redirect:/portal/personal/Securitypre";
 	} catch (Exception e) {
 	    logger.error("updatePayPassword(HttpServletResponse response,HttpServletRequest request)", e.getMessage());
 	    return "接口调用失败";
@@ -427,27 +424,29 @@ public class MyCashController {
     }
 
     /**
-     * 换卡接口 未开发完成延期
+     * 换卡接口
      * 
      * @param response
      * @param request
      * @return
      */
     @RequestMapping(value = "/changeBankCard")
-    public String changeBankCard(HttpServletResponse response, HttpServletRequest request) {
+    public String changeBankCard(HttpServletResponse response, RedirectAttributes view, HttpServletRequest request) {
 	try {
-	    String memberOID = request.getParameter("memberOID");// (String)
-								 // session.getAttribute("memberOID");
-	    Map<String, Object> resultmap = myCashService.changeBankCard(memberOID);
-	    if (resultmap != null) {
-		String message = (String) resultmap.get("message");
-		if ("1".equals(message)) {
-		    ChangeCard2ReqData data = (ChangeCard2ReqData) resultmap.get("data");
-		    FuiouService.changeCard2(data, response);
-		    return null;
+	    String memberOID = request.getParameter("memberOID");
+	    String message = null;
+	    if (StringUtil.isNotEmpty(memberOID)) {
+		Map<String, Object> resultmap = controlPayService.changeCard(memberOID);
+		if (resultmap != null) {
+		    message = (String) resultmap.get("message");
+		    if ("1".equals(message)) {
+			ChangeCard2ReqData data = (ChangeCard2ReqData) resultmap.get("data");
+			FuiouService.changeCard2(data, response);
+			return null;
+		    }
 		}
-		return "redirect:/portal/cash/MyCard";
 	    }
+	    view.addFlashAttribute("msg", message);
 	    return "redirect:/portal/cash/MyCard";
 	} catch (Exception e) {
 	    logger.error("changeBankCard(HttpServletResponse response,HttpServletRequest request)", e.getMessage());
@@ -456,7 +455,7 @@ public class MyCashController {
     }
 
     /**
-     * 换卡回调 未开发完成延期
+     * 换卡回调
      * 
      * @param response
      * @param request
@@ -468,7 +467,7 @@ public class MyCashController {
 	map.put("Login_id", fureturn.getLogin_id());
 	map.put("mchnt_txn_ssn", fureturn.getMchnt_txn_ssn());
 	map.put("resp_code", fureturn.getResp_code());
-	String retr = myCashService.changeBankCardReturn(map);
+	String retr = controlPayService.changeBankCardReturn(map);
 	if (StringUtil.isNotEmpty(retr)) {
 	    if ("1".equals(retr)) {
 		view.addFlashAttribute("msg", "申请成功");
@@ -488,18 +487,18 @@ public class MyCashController {
      * @return
      */
     @RequestMapping(value = "/authorization")
-    public String authorization(HttpServletRequest request, HttpServletResponse response) {
+    public String authorization(HttpServletRequest request, RedirectAttributes view, HttpServletResponse response) {
 	HttpSession session = request.getSession();
 	try {
-	    String memberOID = request.getParameter("memberOID");
+	    String memberOID = (String) session.getAttribute("memberOID");
 	    if (StringUtil.isNotEmpty(memberOID)) {
-		Map<String, Object> resultMap = myCashService.authorization(memberOID);
-		if (resultMap != null) {
-		    AuthorizationReqData data = (AuthorizationReqData) resultMap.get("data");
+		AuthorizationReqData data = controlPayService.authorization(memberOID);
+		if (data != null) {
 		    FuiouServiceMy.authorization(data, response);
 		    return null;
 		}
 	    }
+	    view.addFlashAttribute("msg", "接口调用失败");
 	    return "redirect:/portal/personal/LoanApplication";
 	} catch (Exception e) {
 	    logger.error("authorization(HttpServletRequest request,HttpServletResponse response)", e.getMessage());
@@ -515,17 +514,15 @@ public class MyCashController {
      */
     @RequestMapping(value = "/authorizationCallback")
     @ResponseBody
-    public void authorizationCallback(String resp_code, String login_id, String mchnt_txn_ssn, String wtCzParam,
-	    String wtTxparam) {
-
-	Map<String, String> map = new HashMap<String, String>();
-	map.put("resp_code", resp_code);
-	map.put("login_id", login_id);
-	map.put("mchnt_txn_ssn", mchnt_txn_ssn);
-	map.put("wtCzParam", wtCzParam);
-	map.put("wtTxparam", wtTxparam);
-	String result = myCashService.authorizationCallback(map);
-
+    public void authorizationCallback(FuyuReturnDTO result) {
+	if (result != null) {
+	    String rows = controlPayService.authorizationFinish(result);
+	    if ("1".equals(rows)) {
+		logger.info("授权成功");
+	    } else {
+		logger.error(rows);
+	    }
+	}
     }
 
 }

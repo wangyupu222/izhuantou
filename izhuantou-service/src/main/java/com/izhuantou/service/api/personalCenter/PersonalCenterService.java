@@ -16,16 +16,37 @@ import com.izhuantou.damain.vo.UserDTO;
  */
 public interface PersonalCenterService {
 
-    /** 查询未读消息 */
+    /**
+     * 查询未读消息
+     * 
+     * @param page
+     * @param memberOID
+     * @return
+     */
     public Pagination<MessageContentBusiness> findMessage(Integer page, String memberOID);
 
-    /** 查询已读消息 */
+    /**
+     * 查询已读消息
+     * 
+     * @param page
+     * @param memberOID
+     * @return
+     */
     public Pagination<MessageContentBusiness> findHistoryMessage(Integer page, String memberOID);
 
-    /** 根据memberOID找到消息总条数和未读条数 */
+    /**
+     * 根据memberOID找到消息总条数和未读条数
+     * 
+     * @param memberOID
+     * @return
+     */
     public Map<String, Integer> findMessageNum(String memberOID);
 
-    /** 删除未读信息添加到已读信息中 */
+    /**
+     * 删除未读信息添加到已读信息中
+     * 
+     * @param OID
+     */
     public void insertMessage(String OID);
 
     /**

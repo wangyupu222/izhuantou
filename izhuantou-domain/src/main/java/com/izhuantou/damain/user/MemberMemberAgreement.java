@@ -9,14 +9,13 @@ import javax.persistence.Table;
 import com.izhuantou.damain.BasePojo;
 
 /**
- * 协议模板
+ * 用户协议
  * 
  * @author dear
  * @version 1.0
  */
 @Table(name = "member_memberagreement")
 public class MemberMemberAgreement extends BasePojo {
-
     /**
      * 
      */

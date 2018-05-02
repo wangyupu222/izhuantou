@@ -1,6 +1,7 @@
 package com.izhuantou.dao.webp2p;
 
 import com.github.abel533.mapper.Mapper;
+import com.izhuantou.damain.vo.ContentMappingDTO;
 import com.izhuantou.damain.webp2p.WebP2pPackageMainContentMapping;
 
 /**
@@ -10,5 +11,12 @@ import com.izhuantou.damain.webp2p.WebP2pPackageMainContentMapping;
  * @version 1.0
  */
 public interface WebP2pPackageMainContentMappingMapper extends Mapper<WebP2pPackageMainContentMapping> {
+
+    /**
+     * 查询主产品 的 产品期限（月）： productTerm 年利率：yearRate 还款方式（文字）：repaymentType
+     * 
+     * @return
+     */
+    public ContentMappingDTO findBycontentOID(String contentOID);
 
 }

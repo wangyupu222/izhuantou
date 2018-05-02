@@ -36,4 +36,5 @@ public interface WebP2pPackageBiddingMainRuningMapper extends Mapper<WebP2pPacka
      * 
      */
     public List<ActivityNewPrivilegesDTO> findOIDAndTerm();
+
 }

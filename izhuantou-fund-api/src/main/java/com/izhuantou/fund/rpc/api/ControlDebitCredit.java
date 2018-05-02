@@ -3,11 +3,11 @@ package com.izhuantou.fund.rpc.api;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import com.izhuantou.damain.pay.PayCashPool;
 import com.izhuantou.damain.pay.PayDebitCredit;
 import com.izhuantou.damain.pay.PayTransferReturn;
+import com.izhuantou.damain.vo.bidding.BiddingDTO;
 
 /**
  *
@@ -16,9 +16,9 @@ import com.izhuantou.damain.pay.PayTransferReturn;
  */
 public interface ControlDebitCredit extends BaseService<PayDebitCredit> {
 
-    public Map<String, Object> addDebitCreditNew(Map<String, Object> map);
+    public PayDebitCredit addDebitCreditNew(BiddingDTO biddto);
 
-    public PayTransferReturn addTransferReturnZZ(Map<String, Object> map);
+    public PayTransferReturn addTransferReturnZZ(BiddingDTO biddto);
 
     /**
      * 新手标满标流程
@@ -35,7 +35,7 @@ public interface ControlDebitCredit extends BaseService<PayDebitCredit> {
      *            businessOID 标的OID beginDate 债转日期 isTZorCW 投资类型(XS/DD/HH/ZZ/CW)
      *            isTZorCW 投资类型(XS/DD/HH/ZZ) ly : 数据来源 App/Web
      */
-    public void finishTransferReturnNEW(Map<String, Object> typeMap);
+    public void finishTransferReturnNEW(BiddingDTO biddto);
 
     /**
      * 投资
@@ -45,7 +45,7 @@ public interface ControlDebitCredit extends BaseService<PayDebitCredit> {
      *            beginDate, String ly)
      * @return
      */
-    public PayCashPool investment(Map<String, Object> map);
+    public PayCashPool investment(BiddingDTO biddto);
 
     /**
      * 获取资金池资金
@@ -128,5 +128,5 @@ public interface ControlDebitCredit extends BaseService<PayDebitCredit> {
      * @param map
      * @return
      */
-    public PayTransferReturn addTransferReturn(Map<String, Object> map);
+    public PayTransferReturn addTransferReturn(BiddingDTO biddto);
 }

@@ -10,16 +10,11 @@ import com.izhuantou.damain.pay.PayCustomer;
 import com.izhuantou.damain.pay.PayCustomerBusiness;
 import com.izhuantou.dao.pay.PayCustomerBusinessMapper;
 import com.izhuantou.dao.pay.PayCustomerMapper;
-import com.izhuantou.fund.rpc.api.ControlCustomer;
 import com.izhuantou.fund.rpc.api.ControlCustomerBusiness;
 
 @Service("controlCustomerBusiness")
 public class ControlCustomerBusinessImpl extends BaseServiceImpl<PayCustomerBusiness>
 	implements ControlCustomerBusiness {
-
-    @Autowired
-    private ControlCustomer controlCustomer;
-
     @Autowired
     private PayCustomerBusinessMapper customerBusinessMapper;
 

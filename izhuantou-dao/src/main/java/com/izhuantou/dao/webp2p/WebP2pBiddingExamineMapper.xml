@@ -9,10 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{loanNumber}
 	</select>
 
-	<select id="findByLoan"
+	<select id="findByMemberOID"
 		resultType="com.izhuantou.damain.webp2p.WebP2pBiddingExamine">
-		SELECT * from WEBP2P_BiddingExamine where loanNumber =
-		#{loanNumber}
+		SELECT * from WEBP2P_BiddingExamine where memberOID =
+		#{memberOID}
 	</select>
 
 </mapper>

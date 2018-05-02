@@ -1,5 +1,7 @@
 package com.izhuantou.dao.code;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.github.abel533.mapper.Mapper;
 import com.izhuantou.damain.code.CodeContent;
 
@@ -17,4 +19,14 @@ public interface CodeContentMapper extends Mapper<CodeContent> {
      * @return
      */
     public CodeContent findTwoQuestion(Integer NO);
+
+    /**
+     * 根据编码类型和ID查询单条
+     * 
+     * @param ID
+     * @param definitionName
+     * @return
+     */
+    public CodeContent findCodeContent(@Param("ID") String ID, @Param("definitionName") String definitionName);
+
 }

@@ -12,4 +12,5 @@ import com.izhuantou.damain.webp2p.WebP2pProductRateInfo;
 public interface WebP2pProductRateInfoMapper extends Mapper<WebP2pProductRateInfo> {
 
     public WebP2pProductRateInfo findByOID(String OID);
+
 }

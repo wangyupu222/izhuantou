@@ -12,5 +12,5 @@
 	<dubbo:registry  protocol="zookeeper" address="${dubbo.address}"></dubbo:registry>	
 	
 	<!-- dubbo接口 -->
-	<dubbo:reference check="false" interface="com.izhuantou.third.rpc.api.ControlPayService" id="controlPayService" timeout="${dubbo.timeout}" />
+	<dubbo:reference  check="false"  interface="com.izhuantou.third.rpc.api.ControlPayService" id="controlPayService" timeout="${dubbo.timeout}" />
 </beans>

@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.code.CodeBankInfoMapper">
-	<select id="findByBankName">
+	<select id="findByBankName" resultType="com.izhuantou.damain.code.CodeBankInfo">
 		SELECT bankCode,bankName,bankQuota from code_bankinfo  where bankName like #{bankName}% 
 	
 	</select>

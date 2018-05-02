@@ -122,33 +122,19 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 
 		RegReqData data = new RegReqData();
 
-		// 商户代码 mchnt_cd
 		data.setMchnt_cd(paySeller.getID());
-		// 流水号 mchnt_txn_ssn
 		String strRequestID = StringUtil.getUUID().substring(2);
 		data.setMchnt_txn_ssn(strRequestID);
-		// 客户姓名 cust_nm
 		data.setCust_nm(payCustomer.getNameCN());
-		// 证件类型 certif_tp
 		data.setCertif_tp(payCustomer.getCardType());
-		// 身份证号码/证件 certif_id
 		data.setCertif_id(payCustomer.getCardNO());
-		// 手机号码 mobile_no
 		data.setMobile_no(payCustomer.getMobile());
-		// 开户行地区代码 city_id
 		data.setCity_id(payCustomer.getBankCityCode());
-		// 开户行行别 parent_bank_id
 		data.setParent_bank_id(payCustomer.getBankCode());
-		// 开户行支行名称 bank_nm
 		data.setBank_nm(payCustomer.getBankNameCN());
-		// 帐号 capAcntNo
 		data.setCapAcntNo(payCustomer.getBankNumber());
-		// 提现密码 password
 		data.setPassword(payCustomer.getWithdrawalsPassword());
-		// 登录密码 lpassword
 		data.setLpassword(payCustomer.getLoginPassword());
-		// 备注 rem
-		data.setRem(payCustomer.getDescribe0());
 		CommonRspData resultData = FuiouService.reg(data);
 		String strCode = resultData.getResp_code();
 		if (strCode.equals("0000")) {
@@ -176,12 +162,9 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		    PayCustomer customer = payCustomerMapper.findByMemberOID(memberOID);
 		    PaySeller paySeller = paySellerMapper.gainSellerByName(defaultSeller);
 		    QueryBalanceReqData data = new QueryBalanceReqData();
-		    // 商户代码
 		    data.setMchnt_cd(paySeller.getID());
-		    // 流水号
 		    String strRequestID = StringUtil.getUUID().substring(2);
 		    data.setMchnt_txn_ssn(strRequestID);
-		    // 交易日期
 		    data.setMchnt_txn_dt(DateUtils.formatJustDate(new Date().getTime()));
 		    data.setCust_no(customer.getName());
 		    QueryBalanceRspData resultData = FuiouService.balanceAction(data);
@@ -206,18 +189,12 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 
 		AuthorizationReqData data = new AuthorizationReqData();
 		String ID = paySeller.getID();
-		// 商户代码
 		data.setMchnt_cd(ID);
-		// 流水号
 		String strRequestID = StringUtil.getUUID().substring(2);
 		data.setMchnt_txn_ssn(strRequestID);
-		// 用户的资金账户
 		PayCustomer customer = payCustomerMapper.findByMemberOID(memberOID);
-		// 用户登录名
 		data.setLogin_id(customer.getName());
-		// 类型
 		data.setBusi_tp("2");
-		// 商户返回地址
 		data.setPage_notify_url(authorizationCallbackURL);
 
 		String fsjm = SecurityUtils.sign(data.createSignValue());
@@ -241,7 +218,7 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		}
 		PaySeller paySeller = paySellerMapper.gainSellerByName(defaultSeller);
 		String memberOID = recharge.getMemberOID();
-		this.updateAccount(memberOID);
+		// this.updateAccount(memberOID);
 
 		BigDecimal fen = new BigDecimal(100);
 		BigDecimal money = recharge.getMoney();
@@ -250,18 +227,15 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		AppTransReqData data = new AppTransReqData();
 
 		String ID = paySeller.getID();
-		// 商户代码
 		data.setMchnt_cd(ID);
-		// 流水号
 		String strRequestID = StringUtil.getUUID().substring(2);
 		data.setMchnt_txn_ssn(strRequestID);
-		// 用户的资金账户
 		PayCustomer customer = payCustomerMapper.findByMemberOID(memberOID);
-		// 用户登录名
+		// 閻€劍鍩涢惂璇茬秿閸氾拷
 		data.setLogin_id(customer.getName());
-		// 充值金额
+		// 閸忓懎锟藉ジ鍣炬０锟�
 		data.setAmt(String.valueOf(fenMoney.intValue()));
-		// 商户返回地址
+		// 閸熷棙鍩涙潻鏂挎礀閸︽澘娼�
 		if (StringUtil.isEmpty(url)) {
 		    url = rechargeForwardURL;
 		}
@@ -298,27 +272,27 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		Wy500012ReqData data = new Wy500012ReqData();
 
 		String ID = paySeller.getID();
-		// 商户代码
+		// 閸熷棙鍩涙禒锝囩垳
 		data.setMchnt_cd(ID);
-		// 流水号
+		// 濞翠焦鎸夐崣锟�
 		String strRequestID = StringUtil.getUUID().substring(2);
 		data.setMchnt_txn_ssn(strRequestID);
-		// 用户的资金账户
+		// 閻€劍鍩涢惃鍕カ闁叉垼澶勯幋锟�
 		PayCustomer customer = payCustomerMapper.findByMemberOID(memberOID);
-		// 用户登录名
+		// 閻€劍鍩涢惂璇茬秿閸氾拷
 		data.setLogin_id(customer.getName());
-		// 充值金额
+		// 閸忓懎锟藉ジ鍣炬０锟�
 		data.setAmt(String.valueOf(fenMoney.intValue()));
 		data.setOrder_pay_type("B2C");
-		// 银行卡
+		// 闁炬儼顢戦崡锟�
 		data.setIss_ins_cd(bankNO);
-		// 商户返回地址
+		// 閸熷棙鍩涙潻鏂挎礀閸︽澘娼�
 		if (StringUtil.isEmpty(url)) {
-		    // 商户返回地址 商户接收交易结果通知地址
+		    // 閸熷棙鍩涙潻鏂挎礀閸︽澘娼� 閸熷棙鍩涢幒銉︽暪娴溿倖妲楃紒鎾寸亯闁氨鐓￠崷鏉挎絻
 		    url = rechargeForwardURL;
 		}
 		data.setPage_notify_url(url);
-		// 商户接收后台结果通知地址
+		// 閸熷棙鍩涢幒銉︽暪閸氬骸褰寸紒鎾寸亯闁氨鐓￠崷鏉挎絻
 		data.setBack_notify_url(rechargeCallbackURL);
 		String fsjm = SecurityUtils.sign(data.createSignValue());
 		logger.info(fsjm);
@@ -350,20 +324,20 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		BigDecimal fen = new BigDecimal(100);
 		BigDecimal fenMoney = money.multiply(fen);
 		AppTransReqData data = new AppTransReqData();
-		// 商户代码
+		// 閸熷棙鍩涙禒锝囩垳
 		data.setMchnt_cd(paySeller.getID());
-		// 流水号
+		// 濞翠焦鎸夐崣锟�
 		data.setMchnt_txn_ssn(requestID);
-		// 用户登录名
+		// 閻€劍鍩涢惂璇茬秿閸氾拷
 		data.setLogin_id(customer.getName());
-		// 提现金额
+		// 閹绘劗骞囬柌鎴︻杺
 		data.setAmt(String.valueOf(fenMoney.intValue()));
-		// 商户返回地址
+		// 閸熷棙鍩涙潻鏂挎礀閸︽澘娼�
 		if (StringUtil.isEmpty(url)) {
 		    url = withdrawalsForwardURL;
 		}
 		data.setPage_notify_url(url);
-		// 商户后台通知地址
+		// 閸熷棙鍩涢崥搴″酱闁氨鐓￠崷鏉挎絻
 		data.setBack_notify_url(withdrawalsCallbackURL);
 		String fsjm = SecurityUtils.sign(data.createSignValue());
 		logger.info(fsjm);
@@ -388,18 +362,18 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		ResetPassWordReqData data = new ResetPassWordReqData();
 
 		String ID = paySeller.getID();
-		// 商户代码
+		// 閸熷棙鍩涙禒锝囩垳
 		data.setMchnt_cd(ID);
-		// 流水号
+		// 濞翠焦鎸夐崣锟�
 		String strRequestID = StringUtil.getUUID().substring(2);
 		data.setMchnt_txn_ssn(strRequestID);
-		// 用户的资金账户
+		// 閻€劍鍩涢惃鍕カ闁叉垼澶勯幋锟�
 		PayCustomer customer = payCustomerMapper.findByMemberOID(memberOID);
-		// 用户登录名
+		// 閻€劍鍩涢惂璇茬秿閸氾拷
 		data.setLogin_id(customer.getName());
-		// 类型
+		// 缁鐎�
 		data.setBusi_tp("3");
-		// 商户返回地址
+		// 閸熷棙鍩涙潻鏂挎礀閸︽澘娼�
 		data.setBack_url(updatePayPasswordForwardURL);
 		String fsjm = SecurityUtils.sign(data.createSignValueFor().toString());
 		logger.info(fsjm);
@@ -427,16 +401,16 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		BigDecimal fen = new BigDecimal(100);
 		BigDecimal fenMoney = money.multiply(fen);
 		String ID = paySeller.getID();
-		// 商户代码
+		// 閸熷棙鍩涙禒锝囩垳
 		data.setMchnt_cd(ID);
-		// 流水号
+		// 濞翠焦鎸夐崣锟�
 		String strRequestID = StringUtil.getUUID().substring(2);
 		data.setMchnt_txn_ssn(strRequestID);
-		// 用户的资金账户
+		// 閻€劍鍩涢惃鍕カ闁叉垼澶勯幋锟�
 		PayCustomer customer = payCustomerMapper.findByMemberOID(memberOID);
-		// 用户登录名
+		// 閻€劍鍩涢惂璇茬秿閸氾拷
 		data.setLogin_id(customer.getName());
-		// 充值金额
+		// 閸忓懎锟藉ジ鍣炬０锟�
 		data.setAmt(String.valueOf(fenMoney.intValue()));
 		data.setPage_notify_url(mobilerechargeCallbackURL);
 		data.setBack_notify_url(appRechargeForwardURL);
@@ -467,18 +441,18 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		BigDecimal fen = new BigDecimal(100);
 		BigDecimal fenMoney = money.multiply(fen);
 		AppTransReqData data = new AppTransReqData();
-		// 商户代码
+		// 閸熷棙鍩涙禒锝囩垳
 		data.setMchnt_cd(paySeller.getID());
-		// 流水号
+		// 濞翠焦鎸夐崣锟�
 		data.setMchnt_txn_ssn(requestID);
-		// 用户登录名
+		// 閻€劍鍩涢惂璇茬秿閸氾拷
 		data.setLogin_id(customer.getName());
-		// 提现金额
+		// 閹绘劗骞囬柌鎴︻杺
 		data.setAmt(String.valueOf(fenMoney.intValue()));
 
-		// 商户返回地址
+		// 閸熷棙鍩涙潻鏂挎礀閸︽澘娼�
 		data.setPage_notify_url(mobilewithdrawalsCallbackURL);
-		// 商户后台通知地址
+		// 閸熷棙鍩涢崥搴″酱闁氨鐓￠崷鏉挎絻
 		data.setBack_notify_url(appWithdrawalsForwardURL);
 		String fsjm = SecurityUtils.sign(data.createSignValue());
 		logger.info(fsjm);
@@ -502,18 +476,18 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 
 		ResetPassWordReqData data = new ResetPassWordReqData();
 		String ID = paySeller.getID();
-		// 商户代码
+		// 閸熷棙鍩涙禒锝囩垳
 		data.setMchnt_cd(ID);
-		// 流水号
+		// 濞翠焦鎸夐崣锟�
 		String strRequestID = StringUtil.getUUID().substring(2);
 		data.setMchnt_txn_ssn(strRequestID);
-		// 用户的资金账户
+		// 閻€劍鍩涢惃鍕カ闁叉垼澶勯幋锟�
 		PayCustomer customer = payCustomerMapper.findByMemberOID(memberOID);
-		// 用户登录名
+		// 閻€劍鍩涢惂璇茬秿閸氾拷
 		data.setLogin_id(customer.getName());
-		// 类型
+		// 缁鐎�
 		data.setBusi_tp("3");
-		// 商户返回地址
+		// 閸熷棙鍩涙潻鏂挎礀閸︽澘娼�
 		data.setBack_url(appUpdatePayPasswordForwardURL);
 
 		String fsjm = SecurityUtils.sign(data.createSignValueFor().toString());
@@ -534,22 +508,22 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		if (StringUtil.isNotEmpty(strOutMemberOID) && StringUtil.isNotEmpty(strInMemberOID) && money != null) {
 		    PaySeller paySeller = paySellerMapper.gainSellerByName(defaultSeller);
 		    TransferBmuReqData data = new TransferBmuReqData();
-		    // 商户代码
+		    // 閸熷棙鍩涙禒锝囩垳
 		    data.setMchnt_cd(paySeller.getID());
-		    // 流水号
+		    // 濞翠焦鎸夐崣锟�
 		    String strRequestID = StringUtil.getUUID().substring(2);
 		    data.setMchnt_txn_ssn(strRequestID);
-		    // 预授权金额
+		    // 妫板嫭宸块弶鍐櫨妫帮拷
 		    BigDecimal fen = new BigDecimal(100);
 		    BigDecimal fenMoney = money.multiply(fen);
 		    data.setAmt(String.valueOf(fenMoney.intValue()));
-		    // 用户的资金账户
+		    // 閻€劍鍩涢惃鍕カ闁叉垼澶勯幋锟�
 		    PayCustomer dtoOutCustomer = payCustomerMapper.findByMemberOID(strOutMemberOID);
-		    // 出账账户
+		    // 閸戦缚澶勭拹锔藉煕
 		    data.setOut_cust_no(dtoOutCustomer.getName());
 
 		    PayCustomer dtoInCustomer = payCustomerMapper.findByMemberOID(strInMemberOID);
-		    // 入账账户
+		    // 閸忋儴澶勭拹锔藉煕
 		    data.setIn_cust_no(dtoInCustomer.getName());
 		    String fsjm = SecurityUtils.sign(data.createSignValue());
 		    logger.info(fsjm);
@@ -573,25 +547,25 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 	    try {
 		PaySeller dtoSeller = paySellerMapper.gainSellerByName(defaultSeller);
 		TransferBmuAndFreezeReqData data = new TransferBmuAndFreezeReqData();
-		// 商户代码
+		// 閸熷棙鍩涙禒锝囩垳
 		data.setMchnt_cd(dtoSeller.getID());
-		// 流水号
+		// 濞翠焦鎸夐崣锟�
 		String strRequestID = ToolString.gainUUID(this).substring(2);
 		data.setMchnt_txn_ssn(strRequestID);
-		// 划拨冻结金额
+		// 閸掓帗瀚ч崘鑽ょ波闁叉垿顤�
 		BigDecimal fen = new BigDecimal(100);
 		BigDecimal fenMoney = money.multiply(fen);
 		data.setAmt(String.valueOf(fenMoney.intValue()));
 		PayCustomer outCustomer = payCustomerMapper.findByMemberOID(outMemberOID);
-		// 出账账户
+		// 閸戦缚澶勭拹锔藉煕
 		data.setOut_cust_no(outCustomer.getName());
 
 		PayCustomer inCustomer = payCustomerMapper.findByMemberOID(inMemberOID);
-		// 入账账户
+		// 閸忋儴澶勭拹锔藉煕
 		data.setIn_cust_no(inCustomer.getName());
 		String fsjm = SecurityUtils.sign(data.createSignValue());
 		logger.info(fsjm);
-		CommonRspData resultData = FuiouService.transferBuAndFreeze(data);// 可用划拨到冻结
+		CommonRspData resultData = FuiouService.transferBuAndFreeze(data);// 閸欘垳鏁ら崚鎺撳閸掓澘鍠曠紒锟�
 		return resultData;
 	    } catch (Exception e) {
 		logger.error("public String transferFreeze(String outMemberOID, String inMemberOID, BigDecimal money)",
@@ -609,22 +583,22 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		if (StringUtil.isNotEmpty(outMemberOID) && StringUtil.isNotEmpty(inMemberOID) && money != null) {
 		    PaySeller dtoSeller = paySellerMapper.gainSellerByName(defaultSeller);
 		    TransferBmuAndFreezeReqData data = new TransferBmuAndFreezeReqData();
-		    // 商户代码
+		    // 閸熷棙鍩涙禒锝囩垳
 		    data.setMchnt_cd(dtoSeller.getID());
-		    // 流水号
+		    // 濞翠焦鎸夐崣锟�
 		    String strRequestID = StringUtil.getUUID().substring(2);
 		    data.setMchnt_txn_ssn(strRequestID);
-		    // 划拨冻结金额
+		    // 閸掓帗瀚ч崘鑽ょ波闁叉垿顤�
 		    BigDecimal fen = new BigDecimal(100);
 		    BigDecimal fenMoney = money.multiply(fen);
 		    data.setAmt(String.valueOf(fenMoney.intValue()));
 
 		    PayCustomer dtoOutCustomer = payCustomerMapper.findByMemberOID(outMemberOID);
-		    // 出账账户
+		    // 閸戦缚澶勭拹锔藉煕
 		    data.setOut_cust_no(dtoOutCustomer.getName());
 
 		    PayCustomer dtoInCustomer = payCustomerMapper.findByMemberOID(inMemberOID);
-		    // 入账账户
+		    // 閸忋儴澶勭拹锔藉煕
 		    data.setIn_cust_no(dtoInCustomer.getName());
 		    String fsjm = SecurityUtils.sign(data.createSignValue());
 		    logger.info(fsjm);
@@ -648,12 +622,12 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		if (StringUtil.isNotEmpty(memberOID) && money != null) {
 		    PaySeller dtoSeller = paySellerMapper.gainSellerByName(defaultSeller);
 		    FreezeReqData data = new FreezeReqData();
-		    // 商户代码
+		    // 閸熷棙鍩涙禒锝囩垳
 		    data.setMchnt_cd((String) dtoSeller.getID());
-		    // 流水号
+		    // 濞翠焦鎸夐崣锟�
 		    String strRequestID = ToolString.gainUUID(this).substring(2);
 		    data.setMchnt_txn_ssn(strRequestID);
-		    // 解冻金额
+		    // 鐟欙絽鍠曢柌鎴︻杺
 		    BigDecimal fen = new BigDecimal(100);
 		    BigDecimal fenMoney = money.multiply(fen);
 		    data.setAmt(String.valueOf(fenMoney.intValue()));
@@ -679,17 +653,17 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		if (StringUtil.isNotEmpty(memberOID) && money != null) {
 		    PaySeller dtoSeller = paySellerMapper.gainSellerByName(this.defaultSeller);
 		    FreezeReqData data = new FreezeReqData();
-		    // 商户代码
+		    // 閸熷棙鍩涙禒锝囩垳
 		    data.setMchnt_cd(dtoSeller.getID());
-		    // 流水号
+		    // 濞翠焦鎸夐崣锟�
 		    String strRequestID = ToolString.gainUUID(this).substring(2);
 		    data.setMchnt_txn_ssn(strRequestID);
-		    // 冻结金额
+		    // 閸愯崵绮ㄩ柌鎴︻杺
 		    BigDecimal fen = new BigDecimal(100);
 		    BigDecimal fenMoney = money.multiply(fen);
 		    data.setAmt(String.valueOf(fenMoney.intValue()));
 		    PayCustomer dtoCustomer = payCustomerMapper.findByMemberOID(memberOID);
-		    // 账户
+		    // 鐠愶附鍩�
 		    data.setCust_no(dtoCustomer.getName());
 		    String fsjm = SecurityUtils.sign(data.createSignValue());
 		    logger.info(fsjm);
@@ -711,16 +685,16 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		if (StringUtil.isNotEmpty(outMemberOID)) {
 		    PaySeller dtoSeller = paySellerMapper.gainSellerByName(this.defaultSeller);
 		    QueryBalanceReqData data = new QueryBalanceReqData();
-		    // 商户代码
+		    // 閸熷棙鍩涙禒锝囩垳
 		    data.setMchnt_cd(dtoSeller.getID());
-		    // 流水号
+		    // 濞翠焦鎸夐崣锟�
 		    String strRequestID = ToolString.gainUUID(this).substring(2);
 		    data.setMchnt_txn_ssn(strRequestID);
-		    // 商户查询当前日期
+		    // 閸熷棙鍩涢弻銉嚄瑜版挸澧犻弮銉︽埂
 		    String orderDate = ToolsDatas.gainTimeNow();
 		    data.setMchnt_txn_dt(orderDate);
 		    PayCustomer dtoCustomer = payCustomerMapper.findByMemberOID(outMemberOID);
-		    // 出账账户
+		    // 閸戦缚澶勭拹锔藉煕
 		    data.setCust_no(dtoCustomer.getName());
 		    String fsjm = SecurityUtils.sign(data.createSignValue());
 		    logger.info(fsjm);
@@ -741,15 +715,15 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 	    try {
 		PaySeller dtoSeller = paySellerMapper.gainSellerByName(this.defaultSeller);
 		QueryChangeCardReqData data = new QueryChangeCardReqData();
-		// 商户代码
+		// 閸熷棙鍩涙禒锝囩垳
 		data.setMchnt_cd(dtoSeller.getID());
-		// 流水号
+		// 濞翠焦鎸夐崣锟�
 		String strRequestID = ToolString.gainUUID(this).substring(2);
 		data.setMchnt_txn_ssn(strRequestID);
 		PayCustomer dtoCustomer = payCustomerMapper.findByMemberOID(memberOID);
-		// 用户登录名
+		// 閻€劍鍩涢惂璇茬秿閸氾拷
 		data.setLogin_id(dtoCustomer.getName());
-		// 请求流水
+		// 鐠囬攱鐪板ù浣规寜
 		data.setTxn_ssn(requestID);
 		String fsjm = SecurityUtils.sign(data.createSignValue());
 		logger.info(fsjm);

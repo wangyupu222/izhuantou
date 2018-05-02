@@ -85,7 +85,7 @@ text-decoration:underline;
 
 <div class="cd-popup2">
 <div class="cd-popup-container2">
-<form action="" name="FormChujie" id="FormChujie">
+<form action="/portal/control/newbidding" method="post" name="FormChujie" id="FormChujie">
 <input type="hidden" name="biddingOID" value='<%=request.getParameter("OID") %>' >
 
 <!--确认出借-->

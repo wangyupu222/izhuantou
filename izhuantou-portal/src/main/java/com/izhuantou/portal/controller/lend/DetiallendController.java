@@ -110,7 +110,6 @@ public class DetiallendController {
     }
 
     /** 判断是否登录 */
-    @SuppressWarnings("rawtypes")
     @RequestMapping(value = "/islogin")
     @ResponseBody
     public OpResult islogin(HttpServletRequest request) {
@@ -386,7 +385,6 @@ public class DetiallendController {
      * @param request
      * @return
      */
-    @SuppressWarnings("rawtypes")
     @RequestMapping(value = "/detialHHT")
     @ResponseBody
     public OpResult FindResultHHT(@RequestParam(value = "OID", defaultValue = "") String OID,
@@ -394,7 +392,7 @@ public class DetiallendController {
 	HttpSession session = request.getSession();
 	String memberOID = (String) session.getAttribute("memberOID");
 	DetialHHT hht = detialHHTService.findByCondition(OID, memberOID);
-
+	System.err.println(hht);
 	return OpResult.getSuccessResult(hht);
     }
 

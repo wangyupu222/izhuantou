@@ -40,7 +40,6 @@ import com.izhuantou.damain.vo.CustomerDTO;
 import com.izhuantou.damain.vo.FuyuReturnDTO;
 import com.izhuantou.damain.vo.RechargeDTO;
 import com.izhuantou.damain.vo.WithdrawalDTO;
-import com.izhuantou.dao.TestMapper;
 import com.izhuantou.dao.code.CodeBankInfoMapper;
 import com.izhuantou.dao.loan.LoanDistribeTaskMapper;
 import com.izhuantou.dao.message.MessageContentBusinessMapper;
@@ -99,9 +98,6 @@ public class ControlPayServiceImpl implements ControlPayService {
 
     @Autowired
     private PayFuiouService payFuiService;
-
-    @Autowired
-    private TestMapper testMapper;
 
     @Override
     public Map<String, Object> changeCard(String memberOID) {
@@ -495,7 +491,7 @@ public class ControlPayServiceImpl implements ControlPayService {
 		resultMap.put("message", "membeerOID不能为空");
 		return resultMap;
 	    }
-	    this.updateAccount(memberOID);
+	    // this.updateAccount(memberOID);
 
 	    PayCustomer customer = payCustomerMapper.findByMemberOID(memberOID);
 	    BigDecimal useMoney = customer.getUseMoney();
@@ -756,7 +752,7 @@ public class ControlPayServiceImpl implements ControlPayService {
     public String transferFreeze(String outMemberOID, String inMemberOID, BigDecimal money) {
 	try {
 	    if (StringUtil.isNotEmpty(outMemberOID) && StringUtil.isNotEmpty(inMemberOID) && money != null) {
-		CommonRspData resultData = this.payFuiService.transfer(outMemberOID, inMemberOID, money);
+		CommonRspData resultData = this.payFuiService.transferFreeze(outMemberOID, inMemberOID, money);
 		if (resultData != null) {
 		    String strCode = resultData.getResp_code();
 		    if (strCode.equals("0000")) {
@@ -987,7 +983,6 @@ public class ControlPayServiceImpl implements ControlPayService {
 	    String login_id = map.get("login_id");
 	    String amt = map.get("amt");
 	    String requestID = map.get("mchnt_txn_ssn");
-	    String describe = map.get("remark");
 	    String ly = map.get("ly");
 	    if ("0000".equals(resp_code)) {
 		PayCustomer customer = payCustomerMapper.findPAYCustomerByName(login_id);
@@ -1082,9 +1077,50 @@ public class ControlPayServiceImpl implements ControlPayService {
     }
 
     @Override
-    public String queryDate() {
+    public String transferFreezeToFreeze(String outMemberOID, String inMemberOID, BigDecimal money) {
+	try {
+	    if (StringUtil.isNotEmpty(outMemberOID) && StringUtil.isNotEmpty(inMemberOID) && money != null) {
+		UnFreezeRspData resultData = this.payFuiService.transferFreezeToFreeze(outMemberOID, inMemberOID,
+			money);
+		if (resultData != null) {
+		    String strCode = resultData.getResp_code();
+		    if (strCode.equals("0000")) {
+			PayCustomer dtoOutCustomer = payCustomerMapper.findByMemberOID(outMemberOID);
 
-	return "从Thired中查询到的时间为" + testMapper.queryData();
+			PayCustomer dtoInCustomer = payCustomerMapper.findByMemberOID(inMemberOID);
+			PayCustomerOperation operation = new PayCustomerOperation();
+			operation.setContent("划拨完成");
+			operation.setMoney(money);
+			operation.setState("outTransferFrozen");
+			operation.setMemberOID(outMemberOID);
+			operation.setCustomerOID(dtoOutCustomer.getOID());
+			operation.setRequestID(resultData.getMchnt_txn_ssn());
+			operation.setOID(StringUtil.getUUID());
+			payCustomerOperationMapper.insertRechargeRecord(operation);
+
+			operation = new PayCustomerOperation();
+			operation.setContent("划拨完成");
+			operation.setMoney(money);
+			operation.setState("inTransferFrozen");
+			operation.setMemberOID(inMemberOID);
+			operation.setCustomerOID(dtoInCustomer.getOID());
+			operation.setRequestID(resultData.getMchnt_txn_ssn());
+			operation.setOID(StringUtil.getUUID());
+			payCustomerOperationMapper.insertRechargeRecord(operation);
+			this.updateAccount(outMemberOID);
+			this.updateAccount(inMemberOID);
+			return "1";
+		    } else {
+			return FuiouErrorCode.errorCode(strCode);
+		    }
+		}
+	    }
+	    return null;
+	} catch (Exception e) {
+	    logger.error("transferFreezeToFreeze(String outMemberOID, String inMemberOID,BigDecimal money)",
+		    e.getMessage());
+	    return null;
+	}
     }
 
 }

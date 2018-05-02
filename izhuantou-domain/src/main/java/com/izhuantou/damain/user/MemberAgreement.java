@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import com.izhuantou.damain.BasePojo;
 
 /**
- * 用户协议
+ * 协议模板
  * 
  * @author dear
  * @version 1.0

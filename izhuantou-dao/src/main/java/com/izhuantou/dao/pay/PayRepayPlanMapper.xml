@@ -105,9 +105,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{isYQ}
 			)
 
-		
-
 	</insert> 
+	<select id="findByBusinessOIDAndMemberOID" resultType="com.izhuantou.damain.pay.PayRepayPlan">
+		SELECT * from  pay_repayplan where businessOID=#{businessOID} and memberOID=#{memberOID}
+	
+	</select>
+
 
 
 </mapper>

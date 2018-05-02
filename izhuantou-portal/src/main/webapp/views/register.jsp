@@ -102,7 +102,7 @@ var sends = {
 						<input type="hidden" value="注册" readonly="readonly" id="register" name="register" />
 						<div class="regist_inpt phone urog-form-role">
 							<input type="text" id="phone_reg" name="name" placeholder='请输入您的手机号码' required data-rule-mobile='true'  onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的手机号码'"  />
-							<img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="phone_reg" />
+							<img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="phone_reg" />
 						</div>
 						<div class="regist_inpt yzm short short2">
 							<input type="text" name="yzm" id="yzm" autocomplete='off' placeholder='请输入验证码' required  minlength='4' maxlength='4' onfocus="this.placeholder=''" onblur="this.placeholder='请输入验证码'" />
@@ -115,7 +115,7 @@ var sends = {
 						<a class="hqyzm hqyzminp" onclick="huoquyzm()">获取验证码</a>
 						<div class="regist_inpt pwd pwd_short urog-form-role">
 							<input type="password" name="password" id="password_reg" placeholder='请输入8~20位字符密码' required data-rule-password='true'    minlength='8' maxlength='20' onfocus="this.placeholder=''" onblur="this.placeholder='请输入8~20位字符密码'"/>
-							<img src="/image/close_icon.png" class="urog-regclose close_btn" data-close="password_reg" /><i class="eye_show"><img src="<%=pathUrl %>/images/eye_close.png"></i>
+							<img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="password_reg" /><i class="eye_show"><img src="<%=pathUrl %>/images/eye_close.png"></i>
 						</div>
 						<div class="regist_inpt yqm urog-form-role">
 							<input type="text" name="referrals" id="yqm_reg" placeholder='请输入推荐人手机号' onfocus="this.placeholder=''" onblur="this.placeholder='请输入推荐人手机号'" />

@@ -176,6 +176,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	</update>
+	<select id="findByBusinessOIDDifferent" resultType="com.izhuantou.damain.pay.PayTransferReturn">
+		SELECT
+		*
+		FROM
+		PAY_TransferReturn
+		WHERE
+		businessOID = #{businessOID}
+		AND outMemberOID != inMemberOID
+	
+	</select>
+	
+	
 	
 	
 </mapper>

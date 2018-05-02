@@ -92,4 +92,11 @@ public interface PayTransferReturnMapper extends Mapper<PayTransferReturn> {
      */
     public int updataTransferReturn(PayTransferReturn transferReturn);
 
+    /**
+     * 再债转新手标被购买生成债权转让协议时，由于合并的需要，需要区别合并时出账户于入账户都是财务用户的那条记录
+     * 
+     * @param businessOID
+     */
+    public List<PayTransferReturn> findByBusinessOIDDifferent(String businessOID);
+
 }
