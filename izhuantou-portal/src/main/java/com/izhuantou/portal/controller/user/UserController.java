@@ -212,38 +212,39 @@ public class UserController {
 	// 获取session中的验证码
 	String check = (String) session.getAttribute(VALIDATE_CODE);
 	// 转化成大写，
-	if (StringUtil.isNotEmpty(yzm) && yzm.toUpperCase().equals(check)) {
-	    session.removeAttribute(VALIDATE_CODE);
-	    MemberMember member = this.userService.findUserByName(us);
-	    if (member == null) {
-		view.addFlashAttribute("msg", "账号或密码错误");
-		return "redirect:/portal/user/login";
+	// 使用拖动条验证
+	// if (StringUtil.isNotEmpty(yzm) && yzm.toUpperCase().equals(check)) {
+	session.removeAttribute(VALIDATE_CODE);
+	MemberMember member = this.userService.findUserByName(us);
+	if (member == null) {
+	    view.addFlashAttribute("msg", "账号或密码错误");
+	    return "redirect:/portal/user/login";
+	} else {
+	    Map<String, String> admin = new HashMap<String, String>();
+	    PayCustomer custome = userService.findCustomerByMemberOID(member.getOID());
+	    if (custome != null) {
+		session.setAttribute("isCreate", "true");
 	    } else {
-		Map<String, String> admin = new HashMap<String, String>();
-		PayCustomer custome = userService.findCustomerByMemberOID(member.getOID());
-		if (custome != null) {
-		    session.setAttribute("isCreate", "true");
-		} else {
-		    session.setAttribute("isCreate", "false");
-		}
-		session.setAttribute("userMobile", member.getName());
-		session.setAttribute("memberOID", member.getOID());
-
-		String isRemeber = us.getIsRememberMe();
-		if (StringUtil.isNotEmpty(isRemeber) && "ok".equals(isRemeber)) {
-		    Cookie c = new Cookie("password", us.getPassword());
-		    Cookie c1 = new Cookie("userMobile", us.getName());
-		    c.setMaxAge(60 * 60 * 24 * 7);
-		    response.addCookie(c);
-		    c1.setMaxAge(60 * 60 * 24 * 7);
-		    response.addCookie(c1);
-		    // session.setAttribute("password",member.getPassword());
-		}
-		return "redirect:/portal/user/index";
+		session.setAttribute("isCreate", "false");
 	    }
+	    session.setAttribute("userMobile", member.getName());
+	    session.setAttribute("memberOID", member.getOID());
+
+	    String isRemeber = us.getIsRememberMe();
+	    if (StringUtil.isNotEmpty(isRemeber) && "ok".equals(isRemeber)) {
+		Cookie c = new Cookie("password", us.getPassword());
+		Cookie c1 = new Cookie("userMobile", us.getName());
+		c.setMaxAge(60 * 60 * 24 * 7);
+		response.addCookie(c);
+		c1.setMaxAge(60 * 60 * 24 * 7);
+		response.addCookie(c1);
+		// session.setAttribute("password",member.getPassword());
+	    }
+	    return "redirect:/portal/user/index";
 	}
-	view.addFlashAttribute("msg", "验证码有误");
-	return "redirect:/portal/user/login";
+	// }
+	// view.addFlashAttribute("msg", "验证码有误");
+	// return "redirect:/portal/user/login";
     }
 
     /**
