@@ -26,6 +26,12 @@
 			<artifactId>izhuantou-third-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<!-- 外部引用 -->
+		<dependency>
+   			<groupId>com.koomii.redismq</groupId>
+   			<artifactId>redismq</artifactId>
+   			<version>0.0.1</version>
+  		</dependency>
 	</dependencies>
 
 	<build>

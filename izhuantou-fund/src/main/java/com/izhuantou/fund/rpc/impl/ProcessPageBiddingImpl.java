@@ -1,6 +1,6 @@
 package com.izhuantou.fund.rpc.impl;
 
-import org.slf4j.Logger;
+/*import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import com.izhuantou.dao.webp2p.WebP2pNoviceBiddingRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
 import com.izhuantou.fund.rpc.api.ControlNoviceBidding;
 import com.izhuantou.fund.rpc.api.ControlPackageBiddingMainRuning;
-import com.izhuantou.fund.rpc.api.ProcessPageBidding;
+import com.izhuantou.fund.rpc.api.ProcessPageBidding;*/
 
 /**
  * 投标相关接口的实现类
@@ -22,7 +22,7 @@ import com.izhuantou.fund.rpc.api.ProcessPageBidding;
  * @author fucheng
  * @date 2018-03-06
  */
-@Service("processPageBidding")
+/*@Service("processPageBidding")
 public class ProcessPageBiddingImpl implements ProcessPageBidding {
     private static final Logger logger = LoggerFactory.getLogger(ProcessPageBiddingImpl.class);
     @Autowired
@@ -79,13 +79,13 @@ public class ProcessPageBiddingImpl implements ProcessPageBidding {
 		    // DTO d =
 		    // controlPlanContent.gainPlanByClassName("cn.com.hoonsoft.WebP2P.PrivilegeMemberReturnSend");
 		    PlanContent d = new PlanContent();
-		    /*
+		    
 		     * if (d != null) { String state = (String) d.getState(); if
 		     * (state.equals("start")) {
 		     * this.controlPrivilegeSpecialPS.savePrivilegePs((String)
 		     * map.get("memberOID"), (BigDecimal) map.get("amount"),
 		     * (String) map.get("biddingOID")); } }
-		     */
+		     
 		    // 提示信息
 		} else {
 		    // 提示信息
@@ -110,4 +110,4 @@ public class ProcessPageBiddingImpl implements ProcessPageBidding {
 	// TODO Auto-generated method stub
 	return null;
     }
-}
+}*/

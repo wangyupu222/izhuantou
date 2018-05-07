@@ -37,7 +37,15 @@
   			<groupId>com.xuxueli</groupId>
   			<artifactId>xxl-job-core</artifactId>
   			<version>1.8.2</version>
-		</dependency>		
+		</dependency>
+		
+		<!-- redisMQ -->
+		
+		<dependency>
+   			<groupId>com.koomii.redismq</groupId>
+   			<artifactId>redismq</artifactId>
+   			<version>0.0.1</version>
+  		</dependency>		
 	</dependencies>
 	
 	<dependencyManagement>		
