@@ -738,7 +738,6 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 	    CodeContent code = codeContentMapper.findCodeContent(customer.getBankCode(), "cncity");
 	    replaceMap.put("dz", code.getNameCN());
 	    replaceMap.put("sfzh", Examine.getIdCard());
-	    // TODO aDto.put("jkjexx", bdxx.get("applyAmount"));
 	    replaceMap.put("jkjexx", "");
 	    BigDecimal aBigDecimal = new BigDecimal(0);
 	    if (novice.getLoanAmount() == null) {
@@ -750,10 +749,6 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 	    String jkjedx = ToolMath.toBigMoney(d);
 	    replaceMap.put("jkjedx", jkjedx);
 	    replaceMap.put("jkyt", Examine.getLoanuse());
-
-	    // TODO aDto.put("jkqx", bdxx.get("loanTerm")); 老项目协议有问题
-	    // aDto.put("jkll", bdxx.get("yearRate"));
-
 	    replaceMap.put("jkqx", rateInfo.getLoanTerm());
 	    replaceMap.put("jkll", rateInfo.getYearRate());
 	    replaceMap.put("ksrq", ToolDateTime.gainDate());

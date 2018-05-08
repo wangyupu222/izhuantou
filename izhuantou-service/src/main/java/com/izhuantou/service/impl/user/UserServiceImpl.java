@@ -39,7 +39,7 @@ import com.izhuantou.dao.pay.PayPrivilegeMemberMappingMapper;
 import com.izhuantou.dao.pay.PayReturnPlanMapper;
 import com.izhuantou.dao.personalCenter.PersonalCenterMapper;
 import com.izhuantou.dao.user.MemberMemberMapper;
-import com.izhuantou.service.api.user.MemberAgreementService;
+import com.izhuantou.service.api.user.MemberMemberAgreementService;
 import com.izhuantou.service.api.user.UserService;
 import com.izhuantou.service.impl.BaseServiceImpl;
 
@@ -69,7 +69,7 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
     private P2pCompanyPerMapper p2pCompanyPerDao;
 
     @Autowired
-    private MemberAgreementService memberAgreementService;
+    private MemberMemberAgreementService memberAgreementService;
     @Autowired
     private PayPrivilegeMapper privilegeMapper;
     @Autowired

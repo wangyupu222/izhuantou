@@ -11,4 +11,9 @@
 	<!-- 服务消费者 -->
 	<dubbo:registry  protocol="zookeeper" address="${dubbo.address}"></dubbo:registry>	
 	
+	<!-- 富友接口 -->
+	 <dubbo:reference check="false" interface="com.izhuantou.third.rpc.api.ControlPayService" id="controlPayService" timeout="${dubbo.timeout}" />  
+	<!-- 满标后调用fund满标流程 -->
+	<dubbo:reference check="false" interface="com.izhuantou.fund.rpc.api.ProcessPageFinish" id="processPageFinish" timeout="${dubbo.timeout}" />  
+
 </beans>

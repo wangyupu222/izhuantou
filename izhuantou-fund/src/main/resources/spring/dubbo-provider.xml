@@ -15,6 +15,7 @@
 	<dubbo:provider timeout="${dubbo.timeout}" />
 		
 	<!-- 投标相关接口 -->
-	<dubbo:service interface="com.izhuantou.fund.rpc.api.ProcessPageBidding" ref="processPageBidding" /> 
-			  	
+	<dubbo:service interface="com.izhuantou.fund.rpc.api.bidding.ProcessPageBidding" ref="processPageBidding" /> 
+	<!-- 满标后调用 -->
+	<dubbo:service interface="com.izhuantou.fund.rpc.api.ProcessPageFinish" ref="processPageFinish" />		  	
 </beans>

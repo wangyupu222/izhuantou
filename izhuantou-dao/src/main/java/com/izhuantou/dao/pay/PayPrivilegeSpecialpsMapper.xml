@@ -34,6 +34,54 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						OID=#{OID} and version=#{version}
 	
 	</update>
-
+	<insert id="savePrivilegeSpecialPS" parameterType="com.izhuantou.damain.pay.PayPrivilegeSpecialps">
+		INSERT INTO pay_privilegespecialps(
+					OID,
+					memberOID,
+					privilegeOID,
+					money,
+					lowMoney,
+					returnDate,
+					sendDate,
+					sendType,
+					isUsed,
+					productInfoOID,
+					JXDay,
+					describe0,
+					NO,
+					addUserOID,
+					updUserOID,
+					valid,
+					addDateTime,
+					updDateTime,
+					refresh,
+					version
+				)
+				VALUES
+					(
+						#{OID},
+						#{memberOID},
+						#{privilegeOID},
+						#{money},
+						#{lowMoney},
+						#{returnDate},
+						#{sendDate},
+						#{sendType},
+						#{isUsed},
+						#{productInfoOID},
+						#{JXDay},
+						#{describe0},
+						#{NO},
+						#{addUserOID},
+						#{updUserOID},
+						1,
+						NOW(),
+						NOW(),
+						1,
+						1
+					)
+	</insert>
+	
+	
 
 </mapper>

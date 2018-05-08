@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.izhuantou.common.bean.OpResult;
 import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.vo.BannerDTO;
@@ -22,7 +21,6 @@ import com.izhuantou.service.api.p2p.PageService;
 @RequestMapping("page")
 public class PageController {
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
     @Autowired
     private PageService pageService;
 

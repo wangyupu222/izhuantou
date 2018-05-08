@@ -14,7 +14,7 @@
 	<dubbo:protocol name="dubbo" port="${dubbo.port}"/>
 	<dubbo:provider timeout="${dubbo.timeout}" />
 		
-	<!-- 测试mongodb -->
+	<!-- 富友接口调用 -->
 	<dubbo:service  interface="com.izhuantou.third.rpc.api.ControlPayService" ref="controlPayService" />
 			  	
 </beans>

@@ -39,7 +39,7 @@
 <div class="main mainscok minhh">
     <div class="con jksucess">
         <div class="succ">
-        <div class="scok-p scok-error"><span></span>异常信息提示<hoontag:Message /></div>        
+        <div class="scok-p scok-error"><span></span>${msg}</div>        
         <div class="btn"><a onclick="window.history.back();" class="btn-a">返回上一页</a><span class="timetxt"><span id="time">5</span>秒后自动跳转首页，<a >点击立刻跳转。</a></span></div>
         </div>
     </div>

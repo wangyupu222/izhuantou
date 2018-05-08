@@ -19,5 +19,10 @@ public interface PayPrivilegeSpecialpsMapper extends Mapper<PayPrivilegeSpecialp
      * @return
      */
     public int updatePrivilegeSpecialPS(PayPrivilegeSpecialps privilegeSpecialPS);
-
+    /**
+     * 保存
+     * @param privilegeSpecialPS
+     * @return
+     */
+    public int savePrivilegeSpecialPS(PayPrivilegeSpecialps privilegeSpecialPS);
 }
