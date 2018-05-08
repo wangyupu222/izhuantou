@@ -864,7 +864,7 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
     @Override
     public void gainmemberzqhgHHTAgreementDifferent(String contractType, String biddingOID) {
 	// TODO Auto-generated method stub
-
+   
     }
 
     @Override

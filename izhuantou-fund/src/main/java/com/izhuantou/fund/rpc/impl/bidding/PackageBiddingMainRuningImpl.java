@@ -62,6 +62,17 @@ public class PackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pPackageB
 		    biddto.setBeginDate(ToolDateTime.gainDate());
 		    // 将bitdto存入redis
 		    result = controlDebitCredit.investment(biddto);
+		    if (StringUtils.isNotEmpty(result) && "1".equals(result)) {
+				// 将环环标的数据放到redis队列中
+				String biddtoStr = JsonUtil.toStr(biddto);
+				System.err.println("发送的信息为"+biddtoStr);
+				Long mqResult = messageSender.put(new Message(MessageType.HH_BIDDING_MESSAGE, biddtoStr));
+				if (mqResult != null) {
+				    System.out.println("消息发送成功");
+				} else {
+				    System.out.println("消息发送失败");
+				}
+			    }
 		} else {
 		    PayPrivilege tq = privilegeMapper.findByOID(biddto.getTqOID());
 		    if (tq != null) {
@@ -83,6 +94,7 @@ public class PackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pPackageB
 		    if (StringUtils.isNotEmpty(result) && "1".equals(result)) {
 			// 将环环标的数据放到redis队列中
 			String biddtoStr = JsonUtil.toStr(biddto);
+			System.err.println("发送的信息为"+biddtoStr);
 			Long mqResult = messageSender.put(new Message(MessageType.HH_BIDDING_MESSAGE, biddtoStr));
 			if (mqResult != null) {
 			    System.out.println("消息发送成功");
