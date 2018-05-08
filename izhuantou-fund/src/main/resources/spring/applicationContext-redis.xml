@@ -7,28 +7,42 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">  
-        <!-- 最大连接数 -->  
-        <property name="maxTotal" value="${redis.maxTotal}" />  
-        <!-- 最大空闲连接数 -->  
-        <property name="maxIdle" value="${redis.maxIdle}" />  
-        <!-- 每次释放连接的最大数目 -->  
-        <property name="numTestsPerEvictionRun" value="${redis.numTestsPerEvictionRun}" />  
-        <!-- 释放连接的扫描间隔（毫秒） -->  
-        <property name="timeBetweenEvictionRunsMillis" value="${redis.timeBetweenEvictionRunsMillis}" />  
-        <!-- 连接最小空闲时间 -->  
-        <property name="minEvictableIdleTimeMillis" value="${redis.minEvictableIdleTimeMillis}" />  
-         
-    </bean>
-	
-	<!-- 配置jedis连接池 -->
-	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
-		<constructor-arg name="host" value="${redis.host}" />
-		<constructor-arg name="port" value="${redis.port}" />
-		<constructor-arg name="password" value="${redis.password}" />
-		<constructor-arg name="timeout" value="${redis.timeout}" />
-		<constructor-arg name="poolConfig" ref="jedisPoolConfig"/>
+	<!-- 配置消息总线线程池 -->
+	<bean id="messageTrunktaskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<!-- 线程池维护线程的最少数量 -->
+		<property name="corePoolSize" value="100" />
+		<!-- 线程池维护线程所允许的空闲时间 -->
+		<property name="keepAliveSeconds" value="30000" />
+		<!-- 线程池维护线程的最大数量 -->
+		<property name="maxPoolSize" value="1000" />
+		<!-- 线程池所使用的缓冲队列 -->
+		<property name="queueCapacity" value="1000" />
 	</bean>
-	<!-- 配置操作单机版redis的实现类 -->
-	<!-- <bean id="poolJedisClient" class="com.izhuantou.common.RedisPool" /> -->
+	
+	<bean id="redisMQMessageSender" class="com.koomii.redismq.RedisMQMessageSender">
+	</bean>
+	
+	<bean id="redisUtil" class="com.koomii.redismq.RedisUtil">
+		<constructor-arg name="pool" ref="jedisPool"/>
+	</bean>
+	
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg name="poolConfig" ref="jedisPoolConfig"/>
+		<constructor-arg name="host" value="${redis.host}"/>
+		<constructor-arg name="port" value="${redis.port}"/>
+		<constructor-arg name="timeout" value="${redis.timeout}"/>
+	</bean>
+	
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${redis.maxActive}" />
+		<property name="maxIdle" value="${redis.maxIdle}" />
+		<property name="maxWaitMillis" value="${redis.maxWait}" />
+	</bean>
+
+
+	<!-- 开启注解扫描 -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.izhuantou.fund" />
 </beans>
