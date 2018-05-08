@@ -662,6 +662,7 @@ public class PayFuiouServiceImpl implements PayFuiouService {
 		    return resultData;
 		}
 	    } catch (Exception e) {
+		System.err.println(e.getMessage());
 		logger.error("PayFuiouServiceImpl类中freeze方法，冻结封装condition={}" + memberOID + "," + money,
 			e.getMessage());
 		return null;

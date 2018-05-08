@@ -20,9 +20,10 @@ import com.koomii.redismq.AbstarctMessageHandler;
 @Service
 public class DemoHandler extends AbstarctMessageHandler {
     private static Log logger = LogFactory.getLog(DemoHandler.class);
-    
-    
-    
+
+    @Autowired
+    private ControlPackageBiddingMainRuning controlPackageBidding;
+
     public DemoHandler() {
 	// 说明该handler监控的消息类型
 	super(MessageType.HH_BIDDING_MESSAGE, 10);
@@ -33,10 +34,12 @@ public class DemoHandler extends AbstarctMessageHandler {
      */
     @Override
     public void handle(String message) {
-    System.err.println("接收到的信息为"+message);
+	System.err.println("接收到的信息为" + message);
 	BiddingDTO biddingDTO = JsonUtil.toObj(message, BiddingDTO.class);
-	System.err.println("获取到的message为：" + biddingDTO);
-		
+	// System.err.println("获取到的message为：" + biddingDTO);
+	String s = this.controlPackageBidding.bidPackageBiddingDifferent(biddingDTO);
+	System.out.println(s);
+
     }
 
     @Override
