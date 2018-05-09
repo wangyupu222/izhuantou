@@ -20,7 +20,7 @@ public interface WebP2pPackageBiddingMainContentRuningMapper extends Mapper<WebP
      * @param loanNum
      * @return
      */
-    public WebP2pPackageBiddingMainContentRuning findByLoanNum(String loanNum);
+    public List<WebP2pPackageBiddingMainContentRuning> findByLoanNum(String loanNum);
 
     /**
      * 根据主表产品OID
