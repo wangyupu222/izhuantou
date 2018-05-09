@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.izhuantou.common.utils.DateUtils;
 import com.izhuantou.damain.vo.ListRepaymentCollection;
+import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainContentRuning;
 import com.izhuantou.dao.personalCenter.MyLoanMapper;
 import com.izhuantou.dao.webp2p.WebP2pLoanProductRateInfoMapper;
 import com.izhuantou.dao.webp2p.WebP2pNormalBiddingRuningMapper;
@@ -177,9 +178,10 @@ public class MyRepaymentServiceImpl implements MyRepaymentService {
 			yhbj = surplusPrincipal.add(principalMoney);
 			sylx = applyAmount.multiply(debitRate).multiply(BigDecimal.valueOf(intesertday.doubleValue()))
 				.divide(new BigDecimal(36500), 2, BigDecimal.ROUND_HALF_UP);// 未还利息
-
-			String loanProductRateInfoID = packageBiddingMainContentRuningMapper.findByLoanNum(biaoti)
-				.getLoanProductRateInfoID();
+			List<WebP2pPackageBiddingMainContentRuning>  contentList=
+					packageBiddingMainContentRuningMapper.findByLoanNum(biaoti);
+			// 按照来项目逻辑是一个列表 
+			String loanProductRateInfoID =  contentList.get((contentList.size()-1)).getLoanProductRateInfoID();
 			if (loanProductRateInfoID == null) {
 			    loanProductRateInfoID = noviceBiddingRuningMapper.findByCondition(biaoti)
 				    .getLoanProductRateInfoID();

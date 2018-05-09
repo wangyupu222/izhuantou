@@ -39,7 +39,7 @@ import com.izhuantou.service.api.personalCenter.MyLendRecordService;
 import com.izhuantou.service.api.personalCenter.MyRepaymentService;
 import com.izhuantou.service.api.personalCenter.PersonalCenterService;
 import com.izhuantou.service.api.personalCenter.UpdPicService;
-import com.izhuantou.service.api.user.MemberMemberAgreementService;
+import com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService;
 
 /***
  * 个人中心

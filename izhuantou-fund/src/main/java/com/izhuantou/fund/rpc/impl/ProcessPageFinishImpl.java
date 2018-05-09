@@ -27,8 +27,8 @@ import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pProductRateInfoMapper;
 import com.izhuantou.fund.rpc.api.ControlDebitCredit;
 import com.izhuantou.fund.rpc.api.ProcessPageFinish;
-import com.izhuantou.service.api.user.MemberMemberAgreementService;
 import com.izhuantou.third.rpc.api.ControlPayService;
+import com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService;
 @Service("processPageFinish")
 public class ProcessPageFinishImpl implements ProcessPageFinish {
 	private static final Logger logger = LoggerFactory.getLogger(ProcessPageFinishImpl.class);

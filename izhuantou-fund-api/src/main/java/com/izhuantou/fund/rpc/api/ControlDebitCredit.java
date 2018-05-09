@@ -48,7 +48,7 @@ public interface ControlDebitCredit extends BaseService<PayDebitCredit> {
 	public PayCashPool investment(BiddingDTO biddto);
 
 	/**
-	 * 获取资金池资金
+	 * 获取资金池站岗资金资金
 	 * 
 	 * @param mainBiddingOID
 	 * @return

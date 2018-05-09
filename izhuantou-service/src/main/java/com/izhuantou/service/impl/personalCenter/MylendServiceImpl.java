@@ -115,7 +115,7 @@ public class MylendServiceImpl implements MylendService {
 	    // 取得总页数，总页数=总记录数/总页数
 	    Integer totalPage = pageController.getTotalPage();
 	    // 设置每页显示5条
-	    pageController.setPageSize(5);
+	    pageController.setPageSize(12);
 	    // 起始位置
 	    Integer startIndex = (pageController.getCurrentPage() - 1) * (pageController.getPageSize());
 	    // 每页条数
@@ -284,7 +284,7 @@ public class MylendServiceImpl implements MylendService {
 	    // 取得总页数，总页数=总记录数/总页数
 	    Integer totalPage = pageController.getTotalPage();
 	    // 设置每页显示5条
-	    pageController.setPageSize(5);
+	    pageController.setPageSize(12);
 	    // 起始位置
 	    Integer startIndex = (pageController.getCurrentPage() - 1) * (pageController.getPageSize());
 	    // 每页条数
@@ -604,7 +604,7 @@ public class MylendServiceImpl implements MylendService {
 		// 取得总页数，总页数=总记录数/总页数
 		Integer totalPage = pageController.getTotalPage();
 		// 设置每页显示5条
-		pageController.setPageSize(5);
+		pageController.setPageSize(12);
 		// 起始位置
 		Integer startIndex = (pageController.getCurrentPage() - 1) * (pageController.getPageSize());
 		// 每页条数
@@ -738,7 +738,7 @@ public class MylendServiceImpl implements MylendService {
 	    // 取得总页数，总页数=总记录数/总页数
 	    Integer totalPage = pageController.getTotalPage();
 	    // 设置每页显示5条
-	    pageController.setPageSize(5);
+	    pageController.setPageSize(12);
 	    // 起始位置
 	    Integer startIndex = (pageController.getCurrentPage() - 1) * (pageController.getPageSize());
 	    // 每页条数
@@ -791,7 +791,7 @@ public class MylendServiceImpl implements MylendService {
 	    // 取得总页数，总页数=总记录数/总页数
 	    Integer totalPage = pageController.getTotalPage();
 	    // 设置每页显示5条
-	    pageController.setPageSize(5);
+	    pageController.setPageSize(12);
 	    // 起始位置
 	    Integer startIndex = (pageController.getCurrentPage() - 1) * (pageController.getPageSize());
 	    // 每页条数

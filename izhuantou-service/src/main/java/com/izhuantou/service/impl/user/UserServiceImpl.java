@@ -39,9 +39,10 @@ import com.izhuantou.dao.pay.PayPrivilegeMemberMappingMapper;
 import com.izhuantou.dao.pay.PayReturnPlanMapper;
 import com.izhuantou.dao.personalCenter.PersonalCenterMapper;
 import com.izhuantou.dao.user.MemberMemberMapper;
-import com.izhuantou.service.api.user.MemberMemberAgreementService;
 import com.izhuantou.service.api.user.UserService;
 import com.izhuantou.service.impl.BaseServiceImpl;
+
+import net.sf.jsqlparser.expression.StringValue;
 
 @Service("userService")
 public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements UserService {
@@ -67,9 +68,6 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
     private PayCustomerMapper PayCustomerMapper;
     @Autowired
     private P2pCompanyPerMapper p2pCompanyPerDao;
-
-    @Autowired
-    private MemberMemberAgreementService memberAgreementService;
     @Autowired
     private PayPrivilegeMapper privilegeMapper;
     @Autowired
@@ -291,7 +289,6 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 	    if (StringUtil.isNotEmpty(user.getName()) && StringUtil.isNotEmpty(user.getPassword())) {
 		MemberMember member = userDao.findUserByName(user.getName());
 		if (member == null) {
-		    /*** 调用注册方法 */
 		    String OID = StringUtil.getUUID();
 		    String password = md5.Md5(user.getPassword());
 		    MemberMember us = new MemberMember();
@@ -301,16 +298,7 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 		    us.setPassword(password);
 		    us.setYewuOID(user.getYqm_reg());
 		    int rows = userDao.registUser(us);
-		    if (rows == 1) {
-			String resu = memberAgreementService.gainupdateMemberAgreement(user.getName(), "1",
-				us.getMemberAccount());
-			if (StringUtil.isEmpty(resu)) {
-			    logger.error("生成协议失败");
-			}
-			return String.valueOf(rows);
-		    } else {
-			return "注册失败";
-		    }
+		    return String.valueOf(rows);
 		} else {
 		    return "账号已存在";
 		}

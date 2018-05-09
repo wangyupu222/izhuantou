@@ -15,7 +15,7 @@ import com.izhuantou.data.rpc.api.bidding.ControlDebitCredit;
 import com.izhuantou.data.rpc.api.bidding.ControlPackageBiddingMainRuning;
 import com.izhuantou.data.rpc.impl.BaseServiceImpl;
 import com.izhuantou.fund.rpc.api.ProcessPageFinish;
-import com.izhuantou.service.api.user.MemberMemberAgreementService;
+import com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService;
 
 @Service("ControlPackageBiddingMainRuning")
 public class ControlPackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pPackageBiddingMainRuning>
@@ -29,7 +29,8 @@ public class ControlPackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pP
 	private MemberMemberAgreementService memberAgreementService;
 	@Autowired
 	private ProcessPageFinish processPageFinish;
-	
+	 
+	private int a;
 	@Override
 	public String bidPackageBiddingDifferent(BiddingDTO biddto) {
 		try {
@@ -39,7 +40,8 @@ public class ControlPackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pP
 				PayCashPool aDto = new PayCashPool();
 
 				aDto = controlDebitCredit.investment(biddto);
- 
+				
+				System.err.print(">>>>>>>>>>>>第"+a+"执行>>>>>>>>>>>");
 				memberAgreementService.gainMemberHHTAgreement(biddto.getMemberOID(), "4", biddto.getBiddingOID(),
 						aDto.getOID());
 				BigDecimal ytje = pbm.getHoldingAmount();// 已投金额
@@ -49,7 +51,7 @@ public class ControlPackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pP
 				packageBiddingMainRuningMapper.updatePackageBiddingMainRuning(pbm);
 
 				//调用fund系统中的环环投标流程
-				processPageFinish.hhInvestmentFinish(biddto.getLaiyuan());
+				//processPageFinish.hhInvestmentFinish(biddto.getLaiyuan());
 				
 				BigDecimal zero = new BigDecimal(0);
 				BigDecimal xe = pbm.getSxAmount();

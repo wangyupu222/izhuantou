@@ -1437,7 +1437,7 @@ public class ControlDebitCreditImpl extends BaseServiceImpl<PayDebitCredit> impl
 			List<PayCashPool> dtocCashPool = this.controlCashPool.gainCashPoolByBusinessOID(strBusinessOID);
 
 			for (PayCashPool dtoCashPool : dtocCashPool) {
-				principalMoney = principalMoney.add((BigDecimal) dtoCashPool.getMoney());
+				principalMoney = principalMoney.add(dtoCashPool.getMoney());
 			}
 			return principalMoney;
 		} catch (Exception e) {
@@ -1518,7 +1518,7 @@ public class ControlDebitCreditImpl extends BaseServiceImpl<PayDebitCredit> impl
 				dtoCashPool.setMoney(dtoCashPool.getMoney().subtract(principal));
 
 				this.payCashPoolMapper.updatePayCashPool(dtoCashPool);
-
+ 
 				this.controlCashPool.realInvestment(inBusinessOID,dtoCashPool.getMemberOID(),
 						dtoDebitInfo.getMemberOID(), principal);
 				if (flag) {

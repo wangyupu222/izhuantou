@@ -16,4 +16,8 @@
 	<dubbo:reference check="false" interface="com.izhuantou.fund.rpc.api.bidding.ProcessPageBidding"  id="processPageBidding" timeout="${dubbo.timeout}" />
 	<!-- 换卡相关接口 -->
 	<dubbo:reference  check="false"  interface="com.izhuantou.third.rpc.api.ControlPayService" id="controlPayService" timeout="${dubbo.timeout}" />
+	<!-- 协议接口 -->
+	<dubbo:reference  check="false"  interface="com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService" id="memberMemberAgreementService" timeout="${dubbo.timeout}" />
+	
+	
 </beans>
