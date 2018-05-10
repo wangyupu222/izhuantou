@@ -63,14 +63,6 @@
                 
 
             }
-        }).mouseout(function (e) {
-            isMove = false;
-            var _x = e.pageX - x;
-            if(_x < maxWidth){ //鼠标松开时，如果没有达到最大距离位置，滑块就返回初始位置
-                handler.css({'left': 0});
-                drag_bg.css({'width': 0});
-            }
-            console.log("yichu");
         });
         
         //清空事件

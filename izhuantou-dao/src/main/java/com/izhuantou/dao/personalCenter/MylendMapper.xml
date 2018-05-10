@@ -25,14 +25,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				DATE_ADD(
 					payCashPool.startDateTime,
 					INTERVAL 1 MONTH
-				) AS xghkr,
+				) AS dqsj,
 				DATE_ADD(
 					DATE_ADD(
 						payCashPool.startDateTime,
 						INTERVAL ProductRateInfo.productTerm MONTH
 					),
 					INTERVAL 1 DAY
-				) AS dqsj,
+				) AS xghkr,
 				PackageBiddingMainRuning.packageName AS xmmc,
 				payCashPool.principalMoney AS cjje,
 				round(

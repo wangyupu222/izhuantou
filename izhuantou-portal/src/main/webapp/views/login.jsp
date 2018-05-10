@@ -112,7 +112,7 @@
                 <img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="phone"/></div>
             <div class="inpbox pwd urog-form-role"><input type="password" id="password" name="password" autocomplete='off' placeholder='请输入密码' required data-rule-password='true'  minlength='0' maxlength='20' onfocus="this.placeholder=''" onblur="this.placeholder='请输入密码'" value='<%= password %>'    />
                 <img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="password"/></div>
-                <div class="inpbox yhm urog-form-role"><div id="drag"></div><input style="opacity: 0;visibility: hidden;" type="text" name="yzmIsFlag" id="yzmIsFlag" required data-rule-yzm='true'></div>
+                <div class="inpbox yhm urog-form-role"><div id="drag"></div><input style="opacity: 0;height:1px;visibility: hidden;" type="text" name="yzmIsFlag" id="yzmIsFlag" required data-rule-yzm='true'></div>
             <div class="reademe"><label class="checklabel"><input type="checkbox" id="isRememberMe" name="isRememberMe" value="ok" /><label for="isRememberMe">记住我</label>
             </label><a href="forgetpwd01.jsp">忘记密码？</a></div>
             <div align="center" class="loginErro"><hoontag:Message name="loginErro"/></div>
@@ -157,7 +157,7 @@ $('#drag').drag();
         var oLogin_paw = $(".pwd input");
         var oLogin_val = $("#login_val");
         var oLogin_yzm = $(".yzm input");
-        var isRememberMe = $("#isRememberMe");
+        var yzmIsFlag = $("#yzmIsFlag");
         
         $(".dlbtn").click(function () {
             var isright = true;
@@ -174,7 +174,7 @@ $('#drag').drag();
             } else if(/^[0-9a-zA-Z]*$/.test(oLogin_paw.val()) == false){
                 str += "密码只能是数字和字母";
                 isright = false;
-            }else if (/^yzmok$/.test(isRememberMe.val()) == false) {
+            }else if (/^yzmok$/.test(yzmIsFlag.val()) == false) {
                 str += "请按住滑块，拖动到最右边";
                 isright = false;
             }
