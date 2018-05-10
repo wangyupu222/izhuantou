@@ -3,7 +3,9 @@ package com.izhuantou.service.api.personalCenter;
 import java.util.List;
 import java.util.Map;
 
+import com.izhuantou.common.bean.Pagination;
 import com.izhuantou.damain.vo.HHThavingDetailsDTO;
+import com.izhuantou.damain.vo.MylendDaoDTO;
 import com.izhuantou.damain.vo.MylendResultDTO;
 import com.izhuantou.damain.vo.MylendZQZRDTO;
 
@@ -13,7 +15,7 @@ public interface MylendService {
      * 
      * @return
      */
-    public Map<String, Object> findHHhavingBymemberOID(String memberOID, Integer currentPage);
+    public Pagination<MylendDaoDTO> findHHhavingBymemberOID(String memberOID, Integer currentPage);
 
     /**
      * 查询用户持有环环投列表详情

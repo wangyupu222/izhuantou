@@ -120,7 +120,83 @@ public class MylendDaoDTO implements Serializable {
      */
     private String tatalTerm;
 
-    public String getTimejssj() {
+    /**
+     * 回款状态
+     */
+    private String hkzt;
+    /**
+     * 特权名字
+     */
+    private String privilegeName;
+
+    /**
+     * 特权域(红包数额/加息百分位)
+     */
+    private BigDecimal privilegeRange;
+    /**
+     * 特权期限
+     */
+    private Integer privilegeTerm;
+    /**
+     * 特权收益
+     */
+    private BigDecimal tqsy;
+
+    /**
+     * 
+     */
+    private Integer judeg;
+
+    /**
+     * // 额外加息利率
+     */
+    private BigDecimal JXother;
+    /**
+     * 额外加息
+     */
+    private BigDecimal  JXinterest;
+    
+    public BigDecimal getJXinterest() {
+		return JXinterest;
+	}
+
+	public void setJXinterest(BigDecimal jXinterest) {
+		JXinterest = jXinterest;
+	}
+
+	public String getHkzt() {
+		return hkzt;
+	}
+
+	public void setHkzt(String hkzt) {
+		this.hkzt = hkzt;
+	}
+
+	public String getPrivilegeName() {
+		return privilegeName;
+	}
+
+	public void setPrivilegeName(String privilegeName) {
+		this.privilegeName = privilegeName;
+	}
+
+	public BigDecimal getPrivilegeRange() {
+		return privilegeRange;
+	}
+
+	public void setPrivilegeRange(BigDecimal privilegeRange) {
+		this.privilegeRange = privilegeRange;
+	}
+
+	public Integer getPrivilegeTerm() {
+		return privilegeTerm;
+	}
+
+	public void setPrivilegeTerm(Integer privilegeTerm) {
+		this.privilegeTerm = privilegeTerm;
+	}
+
+	public String getTimejssj() {
 	return Timejssj;
     }
 
@@ -296,14 +372,40 @@ public class MylendDaoDTO implements Serializable {
 	this.nhll = nhll;
     }
 
-    @Override
-    public String toString() {
-	return "MylendDaoDTO [xtTime=" + xtTime + ", productInfoOID=" + productInfoOID + ", OID=" + OID + ", tqOID="
-		+ tqOID + ", businessOID=" + businessOID + ", CashPoolOID=" + CashPoolOID + ", ysbx=" + ysbx + ", zqs="
-		+ zqs + ", productStatus=" + productStatus + ", sxAmount=" + sxAmount + ", holdingAmount="
-		+ holdingAmount + ", syqs=" + syqs + ", money=" + money + ", creditType=" + creditType + ", cjsjTime="
-		+ cjsjTime + ", xghkr=" + xghkr + ", dqsj=" + dqsj + ", xmmc=" + xmmc + ", cjje=" + cjje + ", nhll="
-		+ nhll + ", Timejssj=" + Timejssj + ", tatalTerm=" + tatalTerm + "]";
-    }
+    public BigDecimal getTqsy() {
+		return tqsy;
+	}
+
+	public void setTqsy(BigDecimal tqsy) {
+		this.tqsy = tqsy;
+	}
+
+	public Integer getJudeg() {
+		return judeg;
+	}
+
+	public void setJudeg(Integer judeg) {
+		this.judeg = judeg;
+	}
+
+	public BigDecimal getJXother() {
+		return JXother;
+	}
+
+	public void setJXother(BigDecimal jXother) {
+		JXother = jXother;
+	}
+
+	@Override
+	public String toString() {
+		return "MylendDaoDTO [xtTime=" + xtTime + ", productInfoOID=" + productInfoOID + ", OID=" + OID + ", tqOID="
+				+ tqOID + ", businessOID=" + businessOID + ", CashPoolOID=" + CashPoolOID + ", ysbx=" + ysbx + ", zqs="
+				+ zqs + ", productStatus=" + productStatus + ", sxAmount=" + sxAmount + ", holdingAmount="
+				+ holdingAmount + ", syqs=" + syqs + ", money=" + money + ", creditType=" + creditType + ", cjsjTime="
+				+ cjsjTime + ", xghkr=" + xghkr + ", dqsj=" + dqsj + ", xmmc=" + xmmc + ", cjje=" + cjje + ", nhll="
+				+ nhll + ", Timejssj=" + Timejssj + ", tatalTerm=" + tatalTerm + ", hkzt=" + hkzt + ", privilegeName="
+				+ privilegeName + ", privilegeRange=" + privilegeRange + ", privilegeTerm=" + privilegeTerm + ", tqsy="
+				+ tqsy + ", judeg=" + judeg + ", JXother=" + JXother + ", JXinterest=" + JXinterest + "]";
+	}
 
 }

@@ -5,42 +5,55 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.izhuantou.dao.personalCenter.MylendMapper">
 	<!-- 环环投持有中列表 -->
 	<select id="findHHhavingBymemberOID" resultType="com.izhuantou.damain.vo.MylendDaoDTO">
-		SELECT
-		ProductRateInfo.OID AS productInfoOID,PackageBiddingMainRuning.OID AS
-		OID,payCashPool.tqOID,
-		payCashPool.businessOID AS
-		businessOID,payCashPool.OID AS CashPoolOID,
-		payCashPool.principalMoney
-		+ payCashPool.interestMoney *
-		payCashPool.returnSurplusNumber AS ysbx,
-		ProductRateInfo.productTerm AS zqs,
-		PackageBiddingMainRuning.productStatus,PackageBiddingMainRuning.sxAmount,PackageBiddingMainRuning.holdingAmount,
-		payCashPool.returnSurplusNumber AS syqs,payCashPool.money AS
-		money,ProductRateInfo.repaymentType AS creditType,
-		payCashPool.startDateTime AS
-		cjsjTime,DATE_ADD(payCashPool.startDateTime,INTERVAL 1 MONTH) AS
-		xghkr,DATE_ADD(DATE_ADD(payCashPool.startDateTime,INTERVAL
-		ProductRateInfo.productTerm MONTH), INTERVAL 1 DAY) AS
-		dqsj,PackageBiddingMainRuning.packageName AS xmmc,
-		payCashPool.principalMoney AS cjje,round(ProductRateInfo.yearRate *
-		100,2) AS nhll
-		FROM PAY_CashPool
-		payCashPool,WEBP2P_PackageBiddingMainRuning
-		PackageBiddingMainRuning,
-		WEBP2P_ProductRateInfo ProductRateInfo WHERE payCashPool.memberOID
-		=#{memberOID}
-		AND payCashPool.businessOID =
-		PackageBiddingMainRuning.OID
-		AND
-		PackageBiddingMainRuning.productRateInfoID = ProductRateInfo.OID
-		AND
-		PackageBiddingMainRuning.productStatus != 2
-		AND payCashPool.state
-		='investment' ORDER BY payCashPool.startDateTime
-		DESC
-		limit #{
-		startIndex } , #{ pageSize }
-
+				SELECT
+				ProductRateInfo.OID AS productInfoOID,
+				PackageBiddingMainRuning.OID AS OID,
+				payCashPool.tqOID,
+				payCashPool.businessOID AS businessOID,
+				payCashPool.OID AS CashPoolOID,
+				payCashPool.principalMoney + payCashPool.interestMoney * payCashPool.returnSurplusNumber AS ysbx,
+				ProductRateInfo.productTerm AS zqs,
+				PackageBiddingMainRuning.productStatus,
+				PackageBiddingMainRuning.sxAmount,
+				PackageBiddingMainRuning.holdingAmount,
+				payCashPool.returnSurplusNumber AS syqs,
+				payCashPool.money AS money,
+				ProductRateInfo.repaymentType AS creditType,
+				payCashPool.startDateTime AS cjsjTime,
+				payCashPool.JXinterest JXinterest,
+				payCashPool.JXother JXother,
+				DATE_ADD(
+					payCashPool.startDateTime,
+					INTERVAL 1 MONTH
+				) AS xghkr,
+				DATE_ADD(
+					DATE_ADD(
+						payCashPool.startDateTime,
+						INTERVAL ProductRateInfo.productTerm MONTH
+					),
+					INTERVAL 1 DAY
+				) AS dqsj,
+				PackageBiddingMainRuning.packageName AS xmmc,
+				payCashPool.principalMoney AS cjje,
+				round(
+					ProductRateInfo.yearRate * 100,
+					2
+				) AS nhll
+			FROM
+				PAY_CashPool payCashPool,
+				WEBP2P_PackageBiddingMainRuning PackageBiddingMainRuning,
+				WEBP2P_ProductRateInfo ProductRateInfo
+			WHERE
+				payCashPool.memberOID =#{memberOID}
+			AND payCashPool.businessOID = PackageBiddingMainRuning.OID
+			AND PackageBiddingMainRuning.productRateInfoID = ProductRateInfo.OID
+			AND PackageBiddingMainRuning.productStatus != 2
+			AND payCashPool.state = 'investment'
+			ORDER BY
+				payCashPool.startDateTime DESC
+			LIMIT #{
+			startIndex },
+			 #{ pageSize }
 	</select>
 	<!-- 查询持有列表所有个数 -->
 	<select id="gethavingRowCount" resultType="int">
@@ -62,8 +75,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<!-- 通过产品OID在产品与标的内容映射表上查找，该产品OID对应的内容标的OID。再通过标的OID在借贷关系表中查找对应的真实借贷关系 -->
-	<select id="gainRecordeFromDebitCredit" resultType="map">
-		SELECT * FROM
+	<select id="gainRecordeFromDebitCredit" resultType="int">
+		SELECT count(0) FROM
 		PAY_DebitCredit ,
 		(SELECT contentOID FROM
 		WEBP2P_PackageMainContentMapping WHERE mainOID =#{mainOID} ) maps

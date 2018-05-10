@@ -792,7 +792,7 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
     @Override
     public void gainMemberHHTAgreement(String memberOID, String contractType, String biddingOID, String ckOID) {
 	try {
-
+		System.err.println(Thread.currentThread().getName());
 	    MemberMember member = userDao.findUserByOID(memberOID);
 
 	    WebP2pPackageBiddingMainRuning biddingMain = packageBiddingMainRuningMapper.findByOID(biddingOID);

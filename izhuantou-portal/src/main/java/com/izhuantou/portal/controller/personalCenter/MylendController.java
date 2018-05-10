@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.izhuantou.common.bean.OpResult;
+import com.izhuantou.common.bean.Pagination;
 import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.vo.HHThavingDetailsDTO;
+import com.izhuantou.damain.vo.MylendDaoDTO;
 import com.izhuantou.damain.vo.MylendResultDTO;
 import com.izhuantou.damain.vo.MylendZQZRDTO;
 import com.izhuantou.service.api.personalCenter.MylendService;
@@ -58,7 +60,11 @@ public class MylendController {
     public OpResult hhhavingList(HttpServletRequest request, Integer currentPage) {
 	HttpSession session = request.getSession();
 	String memberOID = (String) session.getAttribute("memberOID");
-	Map<String, Object> map = mylendService.findHHhavingBymemberOID(memberOID, currentPage);
+	long start=System.currentTimeMillis();
+	
+	Pagination<MylendDaoDTO> map = mylendService.findHHhavingBymemberOID(memberOID, currentPage);
+	System.err.println("持有列表耗时"+(System.currentTimeMillis()-start));
+	System.err.println(map);
 	if (map != null) {
 	    return OpResult.getSuccessResult(map);
 	}

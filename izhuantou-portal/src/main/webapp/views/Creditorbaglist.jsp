@@ -224,26 +224,26 @@ $(function(){
         success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
         	console.log(result);
         //资金流水留白
-        if(result.dataValue.pageController.totalNumber<1){
+        if(result.dataValue.totalNumber<1){
         	$(".loanrow_liu").css("display","block");
         }
-        if(result.dataValue.pageController.totalNumber<=10){
+        if(result.dataValue.totalNumber<=10){
         	$(".pageCY").remove();
         }
         
-        for(var i=0;i<result.dataValue.resultList.length;i++){
-        	var str='<tr class="loanrow loanrowList"><td class="ddtit"><a href="HHtzdetails.jsp?OID='+result.dataValue.resultList[i].OID+'">'+result.dataValue.resultList[i].xmmc+'</a><div><a href="#" class="cd-popup-trigger1 hht_trigger look_btn" onclick="seedetails(\'4\',\''+result.dataValue.resultList[i].OID+'\',\''+result.dataValue.resultList[i].cashPoolOID+'\')">查看详情</a>';
-        	if(result.dataValue.resultList[i].judeg!=1){
+        for(var i=0;i<result.dataValue.data.length;i++){
+        	var str='<tr class="loanrow loanrowList"><td class="ddtit"><a href="HHtzdetails.jsp?OID='+result.dataValue.data[i].OID+'">'+result.dataValue.data[i].xmmc+'</a><div><a href="#" class="cd-popup-trigger1 hht_trigger look_btn" onclick="seedetails(\'4\',\''+result.dataValue.data[i].OID+'\',\''+result.dataValue.data[i].cashPoolOID+'\')">查看详情</a>';
+        	if(result.dataValue.data[i].judeg!=1){
         		str+='<a class="look_btn tq_btn" onclick="seedetails_new(\'\',\'\',\'\',\'\',\'\')">查看特权</a>';
         	}else{
-        	str+='<a class="look_btn tq_btn" onclick="seedetails_new(\''+(result.dataValue.resultList[i].tqsy).toFixed(2)+'\',\''+result.dataValue.resultList[i].privilegeName+'\',\''+(result.dataValue.resultList[i].privilegeRange).toFixed(2)+'\',\''+result.dataValue.resultList[i].privilegeTerm+'\',\''+result.dataValue.resultList[i].judeg+'\')">查看特权</a>';
+        	str+='<a class="look_btn tq_btn" onclick="seedetails_new(\''+(result.dataValue.data[i].tqsy).toFixed(2)+'\',\''+result.dataValue.data[i].privilegeName+'\',\''+(result.dataValue.data[i].privilegeRange).toFixed(2)+'\',\''+result.dataValue.data[i].privilegeTerm+'\',\''+result.dataValue.data[i].judeg+'\')">查看特权</a>';
         	}
-        	str+='<div style="clear:both;"></div></div></td><td>'+result.dataValue.resultList[i].cjje+'</td><td id="nhll">'+result.dataValue.resultList[i].nhll+'%</td><td class="ddtit">'+result.dataValue.resultList[i].cjsjTime+'</td><td class="ddtit">'+result.dataValue.resultList[i].cjsjTime+'</td><td class="cjsj_date2">'+result.dataValue.resultList[i].dqsj+'</td><td class="cjsj_date">'+result.dataValue.resultList[i].xghkr+'</td><td  class="transfer_tates">'+result.dataValue.resultList[i].ysbx+'</td><td><a class="transfer_ht" >'+result.dataValue.resultList[i].hkzt+'</a></td></tr>';
+        	str+='<div style="clear:both;"></div></div></td><td>'+result.dataValue.data[i].cjje+'</td><td id="nhll">'+result.dataValue.data[i].nhll+'%</td><td class="ddtit">'+result.dataValue.data[i].cjsjTime+'</td><td class="ddtit">'+result.dataValue.data[i].cjsjTime+'</td><td class="cjsj_date2">'+result.dataValue.data[i].dqsj+'</td><td class="cjsj_date">'+result.dataValue.data[i].xghkr+'</td><td  class="transfer_tates">'+result.dataValue.data[i].ysbx+'</td><td><a class="transfer_ht" >'+result.dataValue.data[i].hkzt+'</a></td></tr>';
         	$(".hhtchiyou tbody").append(str);
         }
         $(".pageCY").paging({
-			totalPage: result.dataValue.pageController.totalPage,
-			totalSize: result.dataValue.pageController.totalNumber,
+			totalPage: result.dataValue.totalPage,
+			totalSize: result.dataValue.totalNumber,
 			callback: function(num) {
 				$.ajax({
                     type: "post",//请求方式
@@ -255,14 +255,14 @@ $(function(){
                     success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
                     	console.log(result);
                     	$(".hhtchiyou tbody tr").remove();
-                    	for(var i=0;i<result.dataValue.resultList.length;i++){
-                    		var str='<tr class="loanrow loanrowList"><td class="ddtit"><a href="HHtzdetails.jsp?OID='+result.dataValue.resultList[i].OID+'">'+result.dataValue.resultList[i].xmmc+'</a><div><a href="#" class="cd-popup-trigger1 hht_trigger look_btn" onclick="seedetails(\'4\',\''+result.dataValue.resultList[i].OID+'\',\''+result.dataValue.resultList[i].cashPoolOID+'\')">查看详情</a>';
-                        	if(result.dataValue.resultList[i].judeg!=1){
+                    	for(var i=0;i<result.dataValue.data.length;i++){
+                    		var str='<tr class="loanrow loanrowList"><td class="ddtit"><a href="HHtzdetails.jsp?OID='+result.dataValue.data[i].OID+'">'+result.dataValue.data[i].xmmc+'</a><div><a href="#" class="cd-popup-trigger1 hht_trigger look_btn" onclick="seedetails(\'4\',\''+result.dataValue.data[i].OID+'\',\''+result.dataValue.data[i].cashPoolOID+'\')">查看详情</a>';
+                        	if(result.dataValue.data[i].judeg!=1){
                         		str+='<a class="look_btn tq_btn" onclick="seedetails_new(\'\',\'\',\'\',\'\',\'\')">查看特权</a>';
                         	}else{
-                        	str+='<a class="look_btn tq_btn" onclick="seedetails_new(\''+(result.dataValue.resultList[i].tqsy).toFixed(2)+'\',\''+result.dataValue.resultList[i].privilegeName+'\',\''+(result.dataValue.resultList[i].privilegeRange).toFixed(2)+'\',\''+result.dataValue.resultList[i].privilegeTerm+'\',\''+result.dataValue.resultList[i].judeg+'\')">查看特权</a>';
+                        	str+='<a class="look_btn tq_btn" onclick="seedetails_new(\''+(result.dataValue.data[i].tqsy).toFixed(2)+'\',\''+result.dataValue.data[i].privilegeName+'\',\''+(result.dataValue.data[i].privilegeRange).toFixed(2)+'\',\''+result.dataValue.data[i].privilegeTerm+'\',\''+result.dataValue.data[i].judeg+'\')">查看特权</a>';
                         	}
-                        	str+='<div style="clear:both;"></div></div></td><td>'+result.dataValue.resultList[i].cjje+'</td><td id="nhll">'+result.dataValue.resultList[i].nhll+'%</td><td class="ddtit">'+result.dataValue.resultList[i].cjsjTime+'</td><td class="ddtit">'+result.dataValue.resultList[i].cjsjTime+'</td><td class="cjsj_date2">'+result.dataValue.resultList[i].dqsj+'</td><td class="cjsj_date">'+result.dataValue.resultList[i].xghkr+'</td><td  class="transfer_tates">'+result.dataValue.resultList[i].ysbx+'</td><td><a class="transfer_ht" >'+result.dataValue.resultList[i].hkzt+'</a></td></tr>';
+                        	str+='<div style="clear:both;"></div></div></td><td>'+result.dataValue.data[i].cjje+'</td><td id="nhll">'+result.dataValue.data[i].nhll+'%</td><td class="ddtit">'+result.dataValue.data[i].cjsjTime+'</td><td class="ddtit">'+result.dataValue.data[i].cjsjTime+'</td><td class="cjsj_date2">'+result.dataValue.data[i].dqsj+'</td><td class="cjsj_date">'+result.dataValue.data[i].xghkr+'</td><td  class="transfer_tates">'+result.dataValue.data[i].ysbx+'</td><td><a class="transfer_ht" >'+result.dataValue.data[i].hkzt+'</a></td></tr>';
                         	$(".hhtchiyou tbody").append(str);;
                         }
                     }    			            	            	

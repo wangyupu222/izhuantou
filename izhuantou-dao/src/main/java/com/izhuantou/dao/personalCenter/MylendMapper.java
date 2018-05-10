@@ -1,7 +1,6 @@
 package com.izhuantou.dao.personalCenter;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -35,7 +34,7 @@ public interface MylendMapper {
      * @param mainOID
      * @return
      */
-    public List<Map<String, String>> gainRecordeFromDebitCredit(String mainOID);
+    public int gainRecordeFromDebitCredit(String mainOID);
 
     /**
      * 我的出借-》环环投持有中列表详情列表
