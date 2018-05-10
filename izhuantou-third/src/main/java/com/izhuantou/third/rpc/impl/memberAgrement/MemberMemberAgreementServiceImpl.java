@@ -32,6 +32,7 @@ import com.izhuantou.damain.vo.MemberAgrennmentDTO;
 import com.izhuantou.damain.webp2p.WebP2pBiddingExamine;
 import com.izhuantou.damain.webp2p.WebP2pLoanProductRateInfo;
 import com.izhuantou.damain.webp2p.WebP2pNoviceBiddingRuning;
+import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainContentRuning;
 import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning;
 import com.izhuantou.damain.webp2p.WebP2pProductRateInfo;
 import com.izhuantou.dao.code.CodeContentMapper;
@@ -867,26 +868,26 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 
     @Override
     public void gainmemberzqhgHHTAgreementDifferent(String contractType, String biddingOID) {
-    /*	WebP2pPackageBiddingMainContentRuning contentRuning=
+   /* WebP2pPackageBiddingMainContentRuning contentRuning=
     			packageBiddingMainContentRuningMapper.findByOID(biddingOID);
     	
     	String loanProductInfoOID =contentRuning.getLoanProductRateInfoID();
     	WebP2pLoanProductRateInfo loanRateInfo = loanProductRateInfoMapper
 			    .findByOID(loanProductInfoOID);
     	
-    	
     	String bidLoanNumber = contentRuning.getLoanNumber();
     	String financetransfertype =contentRuning.getFinancetransfertype();
+    	String jkrMemberOID = "";
+		String jkrMemberOIDTwo = "";
     	if (financetransfertype.equals("financetransfer")) {
     		List<WebP2pPackageBiddingMainContentRuning> content=packageBiddingMainContentRuningMapper.findByLoanNum(bidLoanNumber);
-    		
-    		 content.get(content.size()-1);
-    		
-    		
+    		jkrMemberOID= content.get(content.size()-1).getMemberOID();
     	}
+    	int term = loanRateInfo.getTerm();
+    	if(StringUtil.isNotEmpty(jkrMemberOID)){
     		
-    	  */
-    	  
+    	}*/
+    	
     	  
     	  
     }

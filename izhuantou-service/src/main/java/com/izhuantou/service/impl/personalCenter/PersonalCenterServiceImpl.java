@@ -45,7 +45,7 @@ public class PersonalCenterServiceImpl implements PersonalCenterService {
     private PersonalCenterMapper personalMessageMapper;
 
     @Autowired
-    private PayCustomerMapper PAY_CustomerMapper;
+    private PayCustomerMapper customerMapper;
 
     @Autowired
     private MemberMemberMapper userDao;
@@ -157,7 +157,7 @@ public class PersonalCenterServiceImpl implements PersonalCenterService {
     public Map<String, Object> userCenterIndex(String memberOID) {
 	try {
 	    if (StringUtil.isNotEmpty(memberOID)) {
-		PayCustomer payCustomer = PAY_CustomerMapper.findByMemberOID(memberOID);
+		PayCustomer payCustomer = customerMapper.findByMemberOID(memberOID);
 		MemberMember member = userDao.findUserByOID(memberOID);
 
 		Map<String, Object> map = userService.findIndexNumber(memberOID);
@@ -237,7 +237,7 @@ public class PersonalCenterServiceImpl implements PersonalCenterService {
 	    // 普通账户
 	    MemberMember member = userDao.findUserByOID(memberOID);
 	    // 是否注册资金帐户
-	    PayCustomer customer = PAY_CustomerMapper.findByMemberOID(memberOID);
+	    PayCustomer customer = customerMapper.findByMemberOID(memberOID);
 	    // 手机号
 	    if (StringUtil.isNotEmpty(member.getName())) {
 		map.put("mobile", "*******" + member.getName().substring(7));

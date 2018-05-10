@@ -85,7 +85,10 @@ public class PersonalCenterController {
 	HttpSession session = request.getSession();
 	String memberOID = (String) session.getAttribute("memberOID");
 	if (StringUtil.isNotEmpty(memberOID)) {
+		long start=System.currentTimeMillis();
 	    Map<String, Object> map = personalMessage.userCenterIndex(memberOID);
+	    System.err.println("中心首页耗时"+(System.currentTimeMillis()-start));
+	    
 	    if (map != null) {
 		return OpResult.getSuccessResult(map);
 	    } else {
