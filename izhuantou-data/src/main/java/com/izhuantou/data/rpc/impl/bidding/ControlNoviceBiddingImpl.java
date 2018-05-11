@@ -95,7 +95,7 @@ public class ControlNoviceBiddingImpl extends BaseServiceImpl<WebP2pNoviceBiddin
 				// 满标了
 				noviceBid.setProductStatus("2");
 				noviceBid.setLoanDay(ToolDateTime.gainDate());
-				// 穿过去的是标的的金额
+				// 传过去的是标的的金额
 				biddto.setAmount(bdje);
 				processPageFinish.noviceZzBiddingFinish(biddto);
 			

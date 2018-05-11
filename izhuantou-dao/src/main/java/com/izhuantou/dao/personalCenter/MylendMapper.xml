@@ -20,19 +20,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				payCashPool.money AS money,
 				ProductRateInfo.repaymentType AS creditType,
 				payCashPool.startDateTime AS cjsjTime,
-				payCashPool.JXinterest JXinterest,
-				payCashPool.JXother JXother,
+				payCashPool.JXinterest AS JXinterest,
+				payCashPool.JXother AS JXother,
+				maprows.rows AS hkzt,
 				DATE_ADD(
 					payCashPool.startDateTime,
-					INTERVAL 1 MONTH
+					INTERVAL ProductRateInfo.productTerm MONTH
 				) AS dqsj,
-				DATE_ADD(
-					DATE_ADD(
-						payCashPool.startDateTime,
-						INTERVAL ProductRateInfo.productTerm MONTH
-					),
-					INTERVAL 1 DAY
-				) AS xghkr,
 				PackageBiddingMainRuning.packageName AS xmmc,
 				payCashPool.principalMoney AS cjje,
 				round(
@@ -42,7 +36,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			FROM
 				PAY_CashPool payCashPool,
 				WEBP2P_PackageBiddingMainRuning PackageBiddingMainRuning,
-				WEBP2P_ProductRateInfo ProductRateInfo
+				WEBP2P_ProductRateInfo ProductRateInfo,			
+				(SELECT count(*) rows FROM(
+				SELECT contentOID FROM
+						(SELECT payCashPool.businessOID from 
+						pay_cashpool payCashPool,
+						WEBP2P_PackageBiddingMainRuning PackageBiddingMainRuning,
+						WEBP2P_ProductRateInfo ProductRateInfo
+						WHERE payCashPool.memberOID=#{memberOID}
+							AND payCashPool.businessOID = PackageBiddingMainRuning.OID
+							AND PackageBiddingMainRuning.productRateInfoID = ProductRateInfo.OID
+							AND PackageBiddingMainRuning.productStatus != 2
+							AND payCashPool.state = 'investment'
+						) busine,
+						WEBP2P_PackageMainContentMapping  contentMapping
+				WHERE contentMapping.mainOID =  busine.businessOID ) maps,
+				PAY_DebitCredit credit
+			WHERE credit.businessOID=maps.contentOID) maprows
 			WHERE
 				payCashPool.memberOID =#{memberOID}
 			AND payCashPool.businessOID = PackageBiddingMainRuning.OID
@@ -51,9 +61,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			AND payCashPool.state = 'investment'
 			ORDER BY
 				payCashPool.startDateTime DESC
-			LIMIT #{
-			startIndex },
-			 #{ pageSize }
+			LIMIT #{startIndex }, #{ pageSize }
+			
 	</select>
 	<!-- 查询持有列表所有个数 -->
 	<select id="gethavingRowCount" resultType="int">

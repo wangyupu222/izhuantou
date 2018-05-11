@@ -63,7 +63,7 @@ public class MylendController {
 	long start=System.currentTimeMillis();
 	
 	Pagination<MylendDaoDTO> map = mylendService.findHHhavingBymemberOID(memberOID, currentPage);
-	System.err.println("持有列表耗时"+(System.currentTimeMillis()-start));
+	System.err.println("持有列表总耗时"+(System.currentTimeMillis()-start));
 	System.err.println(map);
 	if (map != null) {
 	    return OpResult.getSuccessResult(map);

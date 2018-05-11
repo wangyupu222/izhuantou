@@ -27,8 +27,6 @@ public class ControlPackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pP
 	private WebP2pPackageBiddingMainRuningMapper packageBiddingMainRuningMapper;
 	@Autowired
 	private MemberMemberAgreementService memberAgreementService;
-	@Autowired
-	private ProcessPageFinish processPageFinish;
 
 	@Override
 	public String bidPackageBiddingDifferent(BiddingDTO biddto) {
@@ -40,7 +38,6 @@ public class ControlPackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pP
 
 				aDto = controlDebitCredit.investment(biddto);
 				
-		
 				memberAgreementService.gainMemberHHTAgreement(biddto.getMemberOID(), "4", biddto.getBiddingOID(),
 						aDto.getOID());
 				BigDecimal ytje = pbm.getHoldingAmount();// 已投金额

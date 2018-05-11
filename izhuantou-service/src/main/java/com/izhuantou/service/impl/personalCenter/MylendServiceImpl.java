@@ -109,7 +109,7 @@ public class MylendServiceImpl implements MylendService {
 			if (currentPage != null) {
 				pageController.setCurrentPage(currentPage);
 			}
-			int num =mylendMapper.gethavingRowCount(memberOID);
+			int num = mylendMapper.gethavingRowCount(memberOID);
 			pageController.setTotalNumber(num);
 			// 起始位置
 			Integer startIndex = (pageController.getCurrentPage() - 1) * (pageController.getPageSize());
@@ -117,110 +117,78 @@ public class MylendServiceImpl implements MylendService {
 			Integer pageSize = pageController.getPageSize();
 			// 获取查询记录
 			long sstart = System.currentTimeMillis();
-			List<MylendDaoDTO>hhtList = mylendMapper.findHHhavingBymemberOID(memberOID, startIndex, pageSize);
+			List<MylendDaoDTO> hhtList = mylendMapper.findHHhavingBymemberOID(memberOID, startIndex, pageSize);
 			System.err.println("获取查询记录耗时" + (System.currentTimeMillis() - sstart));
 			System.err.println(hhtList);
 
 			for (MylendDaoDTO mldto : hhtList) {
-				
-				String businessOID = mldto.getBusinessOID();
-				// 根据businessOID查询环环头的信息
-				long ssstart = System.currentTimeMillis();
-				List<PayReturnPlan> prp = payReturnPlanDao.findReturnPlanByMemberOIDAndState(businessOID, "agentPlan");
-				System.err.println("根据businessOID查询环环头的信息耗时" + (System.currentTimeMillis() - ssstart));
-
-				if (prp != null && prp.size() > 0) {
-					if (StringUtil.isNotEmpty(mldto.getCreditType()) && (mldto.getCreditType().equals("OPI"))) {
-						// 出借时间
-						Date cjsj = DateUtils.getJustDate(mldto.getCjsjTime());
-						String cjsjTime = DateUtils.formatJustDate(cjsj.getTime());
-						mldto.setCjsjTime(cjsjTime);
-						// 到期时间
-						Date dqsj = DateUtils.getJustDate(mldto.getDqsj());
-						// 下期回款日
-						String xghkr = DateUtils.formatJustDate(dqsj.getTime());
-						mldto.setXghkr(xghkr);
-						// 改变后的到期时间
-						Calendar cal = Calendar.getInstance();
-						cal.setTime(dqsj);
-						cal.add(Calendar.DAY_OF_MONTH, -1);
-						String dqsjTiem = DateUtils.formatJustDate(cal.getTimeInMillis());
-						mldto.setDqsj(dqsjTiem);
-					} else {
-						// 出借时间
-						Date cjsj = DateUtils.getJustDate(mldto.getCjsjTime());
-						String cjsjTime = DateUtils.formatJustDate(cjsj.getTime());
-						mldto.setCjsjTime(cjsjTime);
-						// 剩余期数
-						int syqs = mldto.getSyqs();
-						 String	xghkr = DateUtils.gainPlusAndReduceDay(cjsjTime, 1, 0);
-						 mldto.setXghkr(xghkr);
-						 mldto.setDqsj(DateUtils.gainPlusAndReduceDay(cjsjTime, syqs, 0));
-
-					}
-					// 判断标的状态
-					int c = mldto.getMoney().compareTo((new BigDecimal(0.00)));
-					if (c == 0) {
+				// 出借时间
+				Date cjsj = DateUtils.getJustDate(mldto.getCjsjTime());
+				String cjsjTime = DateUtils.formatJustDate(cjsj.getTime());
+				mldto.setCjsjTime(cjsjTime);
+				String dqsjTime = mldto.getDqsj();
+				mldto.setDqsj(dqsjTime);
+				String zqs = mldto.getZqs();
+				Integer syqs = mldto.getSyqs();
+				// 应还期数
+				Integer yhqs = Integer.valueOf(zqs) - syqs;
+				String xghkr = DateUtils.gainPlusAndDay(cjsjTime, 1, 0);
+				xghkr = DateUtils.gainPlusAndDateTime(xghkr, yhqs, 0);
+				mldto.setXghkr(xghkr);
+				// 判断标的状态
+				int c = mldto.getMoney().compareTo((new BigDecimal(0.00)));
+				if (c == 0) {
+					mldto.setHkzt("正在回款中");
+				} else {
+					Integer hkzt = Integer.valueOf(mldto.getHkzt());
+					if (StringUtil.isNotEmpty(mldto.getHkzt()) && Integer.valueOf(mldto.getHkzt()) > 0) {
 						mldto.setHkzt("正在回款中");
 					} else {
-						int rows= mylendMapper
-								.gainRecordeFromDebitCredit(mldto.getBusinessOID());
-						if (rows > 0) {
-							mldto.setHkzt("正在回款中");
-						} else {
-							mldto.setHkzt("预约中");
-						}
+						mldto.setHkzt("预约中");
 					}
-					// 特权
-					if (StringUtil.isNotEmpty(mldto.getTqOID())) {
-						// 查询特权信息
-						long sssstart = System.currentTimeMillis();
-						PayPrivilege tqInfo = PAY_PrivilegeMapper.findByOID(mldto.getTqOID());
-						System.err.println("根据" + (System.currentTimeMillis() - ssstart));
-						// 特权名字
-						String privilegeName = tqInfo.getPrivilegeName();
-						// 特权域(红包数额/加息百分位)
-						BigDecimal privilegeRange = tqInfo.getPrivilegeRange();
+				}
+				// 特权
+				if (StringUtil.isNotEmpty(mldto.getTqOID())) {
+					// 查询特权信息
+					PayPrivilege tqInfo = PAY_PrivilegeMapper.findByOID(mldto.getTqOID());
+					// 特权名字
+					String privilegeName = tqInfo.getPrivilegeName();
+					// 特权域(红包数额/加息百分位)
+					BigDecimal privilegeRange = tqInfo.getPrivilegeRange();
+					// 特权期限(天数)
+					int privilegeTerm = tqInfo.getPrivilegeTerm();
+					// 特殊券判别
+					if (privilegeTerm == 0) {
 
-						// 特权期限(天数)
-						int privilegeTerm = tqInfo.getPrivilegeTerm();
-
-						// 特殊券判别
-						if (privilegeTerm == 0) {
-
-							WebP2pProductRateInfo product = WEBP2P_ProductRateInfoMapper
-									.findByOID(mldto.getProductInfoOID());
-							privilegeTerm = (int) (product.getProductTerm() * 30);
-						}
-
-						// 计算特权收益
-						BigDecimal tqsy = new BigDecimal(0);
-						tqsy = tqsy.add(mldto.getCjje());
-						tqsy = tqsy.multiply(privilegeRange)
-								.divide(new BigDecimal("36500"), 8, BigDecimal.ROUND_HALF_EVEN)
-								.multiply(new BigDecimal(privilegeTerm)).setScale(2, BigDecimal.ROUND_HALF_EVEN);
-						mldto.setPrivilegeName(privilegeName);
-
-						mldto.setPrivilegeRange(privilegeRange);
-
-						mldto.setPrivilegeTerm(privilegeTerm);
-						mldto.setTqsy(tqsy);
-						mldto.setJudeg(1);
+						WebP2pProductRateInfo product = WEBP2P_ProductRateInfoMapper
+								.findByOID(mldto.getProductInfoOID());
+						privilegeTerm = (int) (product.getProductTerm() * 30);
 					}
 
-					// 此Sql可去掉
-					BigDecimal zero = new BigDecimal(0);
-					if (mldto.getJXother() != null && (mldto.getJXother().compareTo(zero) > 0)) {
-						// 额外加息利率
-						BigDecimal jx = mldto.getJXother();
-						// 原产品预收本息
-						BigDecimal ysbx = mldto.getYsbx();
-						mldto.setJXother(jx);
-						ysbx = ysbx.add(mldto.getJXinterest());
-						mldto.setYsbx(ysbx);
-					} else {
-						mldto.setJXother(new BigDecimal(0));
-					}
+					// 计算特权收益
+					BigDecimal tqsy = new BigDecimal(0);
+					tqsy = tqsy.add(mldto.getCjje());
+					tqsy = tqsy.multiply(privilegeRange).divide(new BigDecimal("36500"), 8, BigDecimal.ROUND_HALF_EVEN)
+							.multiply(new BigDecimal(privilegeTerm)).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+					mldto.setPrivilegeName(privilegeName);
+
+					mldto.setPrivilegeRange(privilegeRange);
+
+					mldto.setPrivilegeTerm(privilegeTerm);
+					mldto.setTqsy(tqsy);
+					mldto.setJudeg(1);
+				}
+				BigDecimal zero = new BigDecimal(0);
+				if (mldto.getJXother() != null && (mldto.getJXother().compareTo(zero) > 0)) {
+					// 额外加息利率
+					BigDecimal jx = mldto.getJXother();
+					// 原产品预收本息
+					BigDecimal ysbx = mldto.getYsbx();
+					mldto.setJXother(jx);
+					ysbx = ysbx.add(mldto.getJXinterest());
+					mldto.setYsbx(ysbx);
+				} else {
+					mldto.setJXother(new BigDecimal(0));
 				}
 			}
 			pageController.setData(hhtList);

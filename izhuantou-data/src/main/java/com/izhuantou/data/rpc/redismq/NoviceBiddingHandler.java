@@ -8,25 +8,25 @@ import org.springframework.stereotype.Service;
 import com.izhuantou.common.redismq.MessageType;
 import com.izhuantou.common.utils.JsonUtil;
 import com.izhuantou.damain.vo.bidding.BiddingDTO;
-import com.izhuantou.data.rpc.api.bidding.ControlPackageBiddingMainRuning;
+import com.izhuantou.data.rpc.api.bidding.ControlNoviceBidding;
 import com.koomii.redismq.AbstarctMessageHandler;
 
 /**
- * DemoMessage消息的处理器
+ * 环环投Message消息的处理器
  * 
  * @category @author fucheng
  * @since 2018年5月8日
  */
 @Service
-public class DemoHandler extends AbstarctMessageHandler {
-    private static Log logger = LogFactory.getLog(DemoHandler.class);
+public class NoviceBiddingHandler extends AbstarctMessageHandler {
+    private static Log logger = LogFactory.getLog(NoviceBiddingHandler.class);
 
     @Autowired
-    private ControlPackageBiddingMainRuning controlPackageBidding;
+    private ControlNoviceBidding controlNoviceBidding;
 
-    public DemoHandler() {
+    public NoviceBiddingHandler() {
 	// 说明该handler监控的消息类型
-	super(MessageType.HH_BIDDING_MESSAGE, 10);
+	super(MessageType.NOVICE_BIDDING_MESSAGE, 10);
     }
 
     /**
@@ -37,7 +37,7 @@ public class DemoHandler extends AbstarctMessageHandler {
 	System.err.println("接收到的信息为" + message);
 	BiddingDTO biddingDTO = JsonUtil.toObj(message, BiddingDTO.class);
 	// System.err.println("获取到的message为：" + biddingDTO);
-	String s = this.controlPackageBidding.bidPackageBiddingDifferent(biddingDTO);
+	String s = this.controlNoviceBidding.bidNoviceBiddingNew(biddingDTO);
 	System.out.println(s);
 
     }

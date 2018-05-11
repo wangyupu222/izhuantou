@@ -619,5 +619,24 @@ public abstract class DateUtils {
 	long sss = (timeMills - day * 24 * 60 * 60 * 1000 - hour * 60 * 60 * 1000 - min * 60 * 1000 - s * 1000);
 	return (day > 0 ? day + "," : "") + hour + ":" + min + ":" + s + "." + sss;
     }
-
+    
+    /**
+     * 对日期进行格式化
+     * @param da
+     * @param strFormat
+     * @return
+     */
+    public static String formartDate(Date da,String strFormat){
+    	SimpleDateFormat sdf=new SimpleDateFormat(strFormat);
+		String date=sdf.format(da);
+		return date;
+	}
+	
+	public static String formartDate(String strDate,String strFormat){
+		Date da =DateUtils.getDate(strDate);
+		return formartDate(da,strFormat);
+	}
+    
+    
+    
 }
