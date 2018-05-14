@@ -126,15 +126,21 @@ public class MylendServiceImpl implements MylendService {
 				Date cjsj = DateUtils.getJustDate(mldto.getCjsjTime());
 				String cjsjTime = DateUtils.formatJustDate(cjsj.getTime());
 				mldto.setCjsjTime(cjsjTime);
-				String dqsjTime = mldto.getDqsj();
+				Date dqsj = DateUtils.getJustDate(mldto.getDqsj());
+				String dqsjTime =DateUtils.formatJustDate(dqsj.getTime());
 				mldto.setDqsj(dqsjTime);
-				String zqs = mldto.getZqs();
-				Integer syqs = mldto.getSyqs();
-				// 应还期数
-				Integer yhqs = Integer.valueOf(zqs) - syqs;
-				String xghkr = DateUtils.gainPlusAndDay(cjsjTime, 1, 0);
-				xghkr = DateUtils.gainPlusAndDateTime(xghkr, yhqs, 0);
-				mldto.setXghkr(xghkr);
+				if (StringUtil.isNotEmpty(mldto.getCreditType()) && (mldto.getCreditType().equals("OPI"))) {
+					// 环环投的全是一次性还本付息的  5/14
+					String xghkr = DateUtils.gainPlusAndDay(dqsjTime, 1, 0);
+					mldto.setXghkr(xghkr);
+				}else{
+					int syqs = mldto.getSyqs();
+					String	xghkr = DateUtils.gainPlusAndReduceDay(cjsjTime, 1, 0);
+					mldto.setXghkr(xghkr);
+					mldto.setDqsj(DateUtils.gainPlusAndReduceDay(cjsjTime, syqs, 0));
+					
+				}
+				
 				// 判断标的状态
 				int c = mldto.getMoney().compareTo((new BigDecimal(0.00)));
 				if (c == 0) {

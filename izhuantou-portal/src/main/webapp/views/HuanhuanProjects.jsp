@@ -191,7 +191,7 @@ $(function(){
         	}
         	}
         	if(result.totalNumber<1){
-    	        $(".huanhuan_liu").css("display","block");
+    	        $(".huanhuan_liu").css("display","block");  
     	    }
         	$("#page").paging({
         		totalPage: result.totalPage,

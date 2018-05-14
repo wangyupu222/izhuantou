@@ -15,7 +15,7 @@ import com.izhuantou.damain.lend.DisplayHHT;
  */
 public interface DisplayHHTMapper extends Mapper<DisplayHHT> {
     /**
-     * 点点投展示
+     * 环环投展示
      * 
      * @param sortp
      *            排序字段
@@ -25,16 +25,35 @@ public interface DisplayHHTMapper extends Mapper<DisplayHHT> {
      *            页数
      * @return
      */
-    public List<DisplayHHT> findByCondition(@Param(value = "sortp") StringBuilder sortp,
-	    @Param(value = "startPos") Integer startPos, @Param(value = "pageSize") Integer pageSize);
+    public List<DisplayHHT> findByCondition(
+    		@Param("startPos") Integer startPos,
+    		@Param("pageSize") Integer pageSize);
 
     /**
      * 总页数
      * 
      * @return
      */
-    public long getPageCount();
+    public int getPageCount();
 
+    /**
+     * 在投的产品
+     * @param startPos
+     * @param pageSize
+     * @return
+     */
+    public List<DisplayHHT>  findByConditionZt(
+    		@Param("startPos") Integer startPos,
+    		@Param("pageSize") Integer pageSize);
+    /**
+     * 再投产品总数
+     * @return
+     */
+    public int getPageZtCount();
+    
+    
+    
+    
     /** 根据OID查询单条环环投信息 */
     public DisplayHHT findByOID(String OID);
 

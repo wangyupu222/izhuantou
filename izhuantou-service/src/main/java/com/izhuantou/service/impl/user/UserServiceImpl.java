@@ -173,10 +173,10 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 	    BigDecimal yjsy = new BigDecimal(0.0);
 	    // 用来盛放用户参加环环头和点点头的数据信息 // -----------
 	    List<Map<String, Object>> dtorps = new ArrayList<Map<String, Object>>();
-	    List<JoinSelectAllDTO> hhdtorps = payReturnPlanDao.gainReturnPlanByMemberOIDAndState(memberOID,
-		    "agentPlan");
-	    List<JoinSelectAllDTO> dddtorps = personalCenterMapper.gainDDReturnMoneyBymemberOIDANDState(memberOID,
-		    "plan");
+	    List<JoinSelectAllDTO> hhdtorps = payReturnPlanDao.gainReturnPlanByMemberOIDAndState(memberOID,"agentPlan");
+		 
+	    List<JoinSelectAllDTO> dddtorps = personalCenterMapper.gainDDReturnMoneyBymemberOIDANDState(memberOID, "plan");
+		   
 
 	    if (hhdtorps.size() > 0) {
 		for (JoinSelectAllDTO payReturnPlan : hhdtorps) {
@@ -206,10 +206,10 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 	    if (memberCashPool != null) {
 		for (PayCashPool pcp : memberCashPool) {
 		    if ("investment".equals(pcp.getState()) && null != pcp.getJXinterest()) {
-			jxsy = jxsy.add((BigDecimal) pcp.getJXinterest());
+			jxsy = jxsy.add(pcp.getJXinterest());
 		    }
 		    if ("investment".equals(pcp.getState()) && null != pcp.getPrivilegeIncome()) {
-			tqsyds = tqsyds.add((BigDecimal) pcp.getPrivilegeIncome());
+			tqsyds = tqsyds.add(pcp.getPrivilegeIncome());
 		    }
 		}
 	    }

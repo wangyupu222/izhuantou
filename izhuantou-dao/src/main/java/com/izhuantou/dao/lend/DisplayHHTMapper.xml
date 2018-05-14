@@ -3,6 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.lend.DisplayHHTMapper">
+	<!-- 环环投所有 -->
 	<select id="findByCondition" resultType="com.izhuantou.damain.lend.DisplayHHT">
 		SELECT
 		*
@@ -17,15 +18,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		C.xmze,
 		(
 		CASE
-		WHEN
-		ISNULL(C.sykt) THEN
+		WHEN ISNULL(C.sykt) THEN
 		0.00
 		ELSE
 		C.sykt
 		END
 		) AS sykt,
-		100 - ROUND(sykt /
-		C.xmze) * 100 jd,
+		100 - ROUND(sykt / C.xmze) * 100 jd,
 		C.productStatus,
 		C.type,
 		C.OID,
@@ -53,8 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		0
 		) xmze,
 		SUM(
-		WEBP2P_PackageBiddingMainContentRuning.biddingAmount -
-		WEBP2P_PackageBiddingMainContentRuning.holdingAmount
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount - WEBP2P_PackageBiddingMainContentRuning.holdingAmount
 		) sykt,
 		WEBP2P_PackageBiddingMainRuning.productStatus productStatus,
 		'hh' type,
@@ -65,42 +63,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WEBP2P_PackageBiddingMainRuning.JXother
 		FROM
 		WEBP2P_PackageBiddingMainRuning
-		LEFT JOIN
-		WEBP2P_PackageMainContentMapping ON
+		LEFT JOIN WEBP2P_PackageMainContentMapping ON
 		WEBP2P_PackageBiddingMainRuning.OID =
 		WEBP2P_PackageMainContentMapping.mainOID
-		LEFT JOIN
-		WEBP2P_PackageBiddingMainContentRuning ON
+		LEFT JOIN WEBP2P_PackageBiddingMainContentRuning ON
 		WEBP2P_PackageMainContentMapping.contentOID =
 		WEBP2P_PackageBiddingMainContentRuning.OID,
 		WEBP2P_ProductRateInfo
 		WHERE
-		WEBP2P_ProductRateInfo.OID =
-		WEBP2P_PackageBiddingMainRuning.productRateInfoID
-		AND
-		WEBP2P_PackageBiddingMainRuning.productStatus != 99
+		WEBP2P_ProductRateInfo.OID = WEBP2P_PackageBiddingMainRuning.productRateInfoID
+		AND WEBP2P_PackageBiddingMainRuning.productStatus != 99
 		GROUP BY
 		WEBP2P_PackageBiddingMainRuning.OID
 		) C
 		) allbidding
-		where szds is null or szds ='0'
+		WHERE
+		allbidding.type = 'hh'
 		ORDER BY
-		
 		allbidding.productStatus + 0,
 		allbidding.productType,
-		allbidding. NO DESC
-		${sortp},
-		allbidding.JXother DESC,
+		allbidding. NO
+		DESC,
 		allbidding.cjqx,
 		SUBSTRING_INDEX(allbidding.xmmc, '-' ,- 1) DESC
 		limit
 		#{startPos},#{pageSize}
 	</select>
-	<select id="getPageCount" resultType="long">
+	<!-- 环环投所有 总数-->
+	<select id="getPageCount" resultType="int">
 		SELECT
-		COUNT(xmmc) count
+		COUNT(*)
 		FROM
-		(
+		WEBP2P_PackageBiddingMainRuning
+	</select>
+	<!--  -->
+	<select id="findByConditionZt" resultType="com.izhuantou.damain.lend.DisplayHHT">
+		SELECT * FROM (
 		SELECT
 		C.productType,
 		C.xmmc,
@@ -110,15 +108,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		C.xmze,
 		(
 		CASE
-		WHEN
-		ISNULL(C.sykt) THEN
+		WHEN ISNULL(C.sykt) THEN
 		0.00
 		ELSE
 		C.sykt
 		END
 		) AS sykt,
-		100 - ROUND(sykt /
-		C.xmze) * 100 jd,
+		100 - ROUND(sykt / C.xmze) * 100 jd,
 		C.productStatus,
 		C.type,
 		C.OID,
@@ -146,8 +142,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		0
 		) xmze,
 		SUM(
-		WEBP2P_PackageBiddingMainContentRuning.biddingAmount -
-		WEBP2P_PackageBiddingMainContentRuning.holdingAmount
+		WEBP2P_PackageBiddingMainContentRuning.biddingAmount - WEBP2P_PackageBiddingMainContentRuning.holdingAmount
 		) sykt,
 		WEBP2P_PackageBiddingMainRuning.productStatus productStatus,
 		'hh' type,
@@ -158,26 +153,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WEBP2P_PackageBiddingMainRuning.JXother
 		FROM
 		WEBP2P_PackageBiddingMainRuning
-		LEFT JOIN
-		WEBP2P_PackageMainContentMapping ON
+		LEFT JOIN WEBP2P_PackageMainContentMapping ON
 		WEBP2P_PackageBiddingMainRuning.OID =
 		WEBP2P_PackageMainContentMapping.mainOID
-		LEFT JOIN
-		WEBP2P_PackageBiddingMainContentRuning ON
+		LEFT JOIN WEBP2P_PackageBiddingMainContentRuning ON
 		WEBP2P_PackageMainContentMapping.contentOID =
 		WEBP2P_PackageBiddingMainContentRuning.OID,
 		WEBP2P_ProductRateInfo
 		WHERE
-		WEBP2P_ProductRateInfo.OID =
-		WEBP2P_PackageBiddingMainRuning.productRateInfoID
-		AND
-		WEBP2P_PackageBiddingMainRuning.productStatus != 99
+		WEBP2P_ProductRateInfo.OID = WEBP2P_PackageBiddingMainRuning.productRateInfoID
+		AND WEBP2P_PackageBiddingMainRuning.productStatus != 99
+		AND WEBP2P_PackageBiddingMainRuning.productStatus = '1'
 		GROUP BY
 		WEBP2P_PackageBiddingMainRuning.OID
 		) C
 		) allbidding
-		where szds is null or szds ='0'
+		WHERE
+		(allbidding.type = 'hh')
+		ORDER BY
+		allbidding.productStatus + 0,
+		allbidding.productType,
+		allbidding. NO
+		DESC,
+		allbidding.cjqx,
+		SUBSTRING_INDEX(allbidding.xmmc, '-' ,- 1) DESC
+		limit #{startPos},#{pageSize}
 	</select>
+	
+	<select id="getPageZtCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		WEBP2P_PackageBiddingMainRuning
+		WHERE
+		productStatus != 99
+		AND productStatus = '1'
+	</select>
+
 
 	<select id="findByOID" resultType="com.izhuantou.damain.lend.DisplayHHT">
 	SELECT * from (

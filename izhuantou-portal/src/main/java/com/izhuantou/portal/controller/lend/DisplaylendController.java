@@ -73,10 +73,6 @@ public class DisplaylendController {
 	if (StringUtils.isBlank(page)) {
 	    page = "1";
 	}
-	if (StringUtils.isBlank(sortp)) {
-	    sortp = "";
-	}
-
 	Pagination<DisplayHHT> list = this.displayHHTService.showProductsByPage(Integer.parseInt(page), sortp);
 
 	return OpResult.getSuccessResult(list);
