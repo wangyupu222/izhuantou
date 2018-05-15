@@ -26,6 +26,7 @@ import com.izhuantou.common.utils.ImageUtil;
 import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.pay.PayCustomer;
 import com.izhuantou.damain.user.MemberMember;
+import com.izhuantou.damain.vo.PersonalDTO;
 import com.izhuantou.damain.vo.UserDTO;
 import com.izhuantou.service.api.user.UserCheckSendSmsService;
 import com.izhuantou.service.api.user.UserService;
@@ -370,9 +371,11 @@ public class UserController {
 		HttpSession session = request.getSession();
 		String memberOID = (String) session.getAttribute("memberOID");
 		if (StringUtil.isNotEmpty(memberOID)) {
-			Map<String, Object> map = userService.findIndexNumber(memberOID);
-			if (map != null) {
-				return OpResult.getSuccessResult(map);
+			long startTime=System.currentTimeMillis();
+			PersonalDTO personal = userService.findIndexNumber(memberOID);
+			System.err.print("首页数据查寻耗时"+(System.currentTimeMillis()-startTime));
+			if (personal != null) {
+				return OpResult.getSuccessResult(personal);
 			} else {
 				return OpResult.getFailedResult("暂无数据");
 			}

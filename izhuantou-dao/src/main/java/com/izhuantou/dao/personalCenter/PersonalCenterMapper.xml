@@ -5,7 +5,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper
 	namespace="com.izhuantou.dao.personalCenter.PersonalCenterMapper">
 
-
 	<select id="findAllMessage"
 		resultType="com.izhuantou.damain.message.MessageContentBusiness">
 		SELECT

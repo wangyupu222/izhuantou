@@ -94,7 +94,7 @@ $(function(){
         if(result.dataValue.totalNumber<1){
         	$(".Capital_liu").css("display","block");
         }
-        if(result.dataValue.totalNumber<=10){
+        if(result.dataValue.totalNumber<10){
         	$("#page").remove();
         }
         for(var i=0;i<result.dataValue.data.length;i++){

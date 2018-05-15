@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.izhuantou.damain.pay.PayCustomer;
 import com.izhuantou.damain.user.MemberMember;
+import com.izhuantou.damain.vo.PersonalDTO;
 import com.izhuantou.damain.vo.UserDTO;
 import com.izhuantou.service.api.BaseService;
 
@@ -37,7 +38,7 @@ public interface UserService extends BaseService<MemberMember> {
      * @param memberOID
      * @return
      */
-    public Map<String, Object> findIndexNumber(String memberOID);
+    public PersonalDTO findIndexNumber(String memberOID);
 
     /**
      * @param memberOID

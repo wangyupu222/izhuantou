@@ -12,7 +12,8 @@ import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainContentRuning;
  * @version 1.0
  */
 public interface WebP2pPackageBiddingMainContentRuningMapper extends Mapper<WebP2pPackageBiddingMainContentRuning> {
-    public WebP2pPackageBiddingMainContentRuning findByOID(String OID);
+   
+	public WebP2pPackageBiddingMainContentRuning findByOID(String OID);
 
     /**
      * 通过normal和loanNum查找

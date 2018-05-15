@@ -87,8 +87,9 @@ $(function(){
         	},		
         success: function(result){
         	var result=result.dataValue;
+        	console.log(result)
         	for(var i=0;i<result.data.length;i++){
-        		var str="<div class=\"boxrow\"><div class=\"boxrowtit\"><span class=\"cell02\">"+result.data[i].title+"</span><span class=\"cell03\">"+result.data[i].sendUser+"</span><span class=\"cell04\">"+result.data[i].sendDateTime+"</span><span><a href='/portal/personal/insert?OID="+result.data[i].OID+"' class=\"zk-a01\">我知道了</a><a class=\"zk-a\">查看</a></span></div><p>"+result.data[i].content+"</p></div>";
+        		var str="<div class=\"boxrow\"><div class=\"boxrowtit\"><span class=\"cell02\">"+result.data[i].title+"</span><span class=\"cell03\">"+result.data[i].sendUser+"</span><span class=\"cell04\">"+result.data[i].sendDateTime+"</span><span><a href='/portal/personal/insert?OID="+result.data[i].oid+"' class=\"zk-a01\">我知道了</a><a class=\"zk-a\">查看</a></span></div><p>"+result.data[i].content+"</p></div>";
         		$("#MessageWrap").append(str);
         	}
         	if(result.totalNumber<1){
@@ -108,7 +109,7 @@ $(function(){
         		        	var result=result.dataValue;
         		        	$("#MessageWrap .boxrow").remove();
         		        	for(var i=0;i<result.data.length;i++){
-        		        		var str="<div class=\"boxrow\"><div class=\"boxrowtit\"><span class=\"cell02\">"+result.data[i].title+"</span><span class=\"cell03\">"+result.data[i].sendUser+"</span><span class=\"cell04\">"+result.data[i].sendDateTime+"</span><span><a href='/portal/personal/insert?OID="+result.data[i].OID+"' class=\"zk-a01\">我知道了</a><a class=\"zk-a\">查看</a></span></div><p>"+result.data[i].content+"</p></div>";
+        		        		var str="<div class=\"boxrow\"><div class=\"boxrowtit\"><span class=\"cell02\">"+result.data[i].title+"</span><span class=\"cell03\">"+result.data[i].sendUser+"</span><span class=\"cell04\">"+result.data[i].sendDateTime+"</span><span><a href='/portal/personal/insert?OID="+result.data[i].oid+"' class=\"zk-a01\">我知道了</a><a class=\"zk-a\">查看</a></span></div><p>"+result.data[i].content+"</p></div>";
         		        		$("#MessageWrap").append(str);
         		        	}
         		        },

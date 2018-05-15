@@ -97,7 +97,7 @@
 	<div class="comnei ">
         <a class="close cd-popup-close"></a>
         <p class="commit-1"><span>协议列表</span></p>
-        <iframe src="AgreementList_iframe.jsp?DOID=&biOID=" width="99%" height="160" id="iframepage" name="iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+        <iframe src="/portal/mylend/AgreementList_iframe.jsp?DOID=&biOID=" width="99%" height="160" id="iframepage" name="iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
     </div>
 
        
@@ -182,11 +182,21 @@ $(function(){
         dataType: "json",
         success: function(result){
         	var result=result.dataValue;
+        	console.log(result)
         	if(result.data<1){
         		$(".JKjilu_liu").css("display","block");
         	}
         	for(var i=0;i<result.data.length;i++){
-        		var str='<ul class="rowbox06 value"><li class="subject longspan">'+result.data[i].loanNumber+'</li><li>'+result.data[i].loanAmount+'</li><li class="shortspan">'+(result.data[i].yearRate).toFixed(2)+'%</li><li class="longspan">'+result.data[i].loanDay+'</li><li class="shortspan">'+result.data[i].nextDay+'</li>';
+        		var loanDay=result.data[i].loanDay;
+        		var nextDay=result.data[i].nextDay;
+        		if(loanDay==null || loanDay==''){
+        			loanDay='';
+        		}
+        		if(nextDay==null || nextDay==''){
+        			nextDay='';
+        		}
+        		
+        		var str='<ul class="rowbox06 value"><li class="subject longspan">'+result.data[i].loanNumber+'</li><li>'+result.data[i].loanAmount+'</li><li class="shortspan">'+(result.data[i].yearRate).toFixed(2)+'%</li><li class="longspan">'+loanDay+'</li><li class="shortspan">'+nextDay+'</li>';
         		if(result.data[i].nextDay!=null && result.data[i].nextDay!=''){
 
         		if(result.data[i].space>=1){
@@ -209,7 +219,7 @@ $(function(){
         		}else{
         			str+='<li class="zchk">待满标</li>';
         		}
-        		str+='<li class="shortspan"><a class="cd-popup-trigger1" href="#" target="_self" onclick="xiyieOID(\'jk\',\''+result.data[i].businessOID+'\',\''+result.data[i].loanNumber+'\',\''+result.data[i].xyType+'\')" >查看协议</a></li></ul>';
+        		str+='<li class="shortspan"><a class="cd-popup-trigger1" href="#" target="_self" onclick="xiyieOID(\'jk\',\''+result.data[i].businessOID+'\',\''+result.data[i].loanNumber+'\',\''+result.xyType+'\')" >查看协议</a></li></ul>';
         		$(".listItem").append(str);
         	}
         	        		        	
@@ -217,11 +227,15 @@ $(function(){
 		error:function(result){    	
     	}
     });
+    $(document).on('click','.cd-popup-trigger1', function(event){
+        event.preventDefault();
+        $('.cd-popup1').addClass('is-visible1');
+    });
     
  //   alert($(".chi_you").next().find(".ddtit").length);
 })
 function xiyieOID(type,biOID,loanNumber,xyType){
-	 var iframeurl ="AgreementList_iframe.jsp?type="+type+"&biOID="+biOID+"&loanNumber="+loanNumber+"&xyType="+xyType;
+	 var iframeurl ="/portal/mylend/AgreementList_iframe.jsp?type="+type+"&biOID="+biOID+"&loanNumber="+loanNumber+"&xyType="+xyType;
 		$("#iframepage").attr("src",iframeurl);
  }
 </script>

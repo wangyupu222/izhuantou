@@ -11,11 +11,11 @@ $(function(){
 	/* Banner  */
 	$.ajax({
         type: "get",
-        url: "/portal/personal/num",
+        url: "/portal/personal/leftnum",
         dataType: "json",
         success: function(result){
         	var result=result.dataValue;
-        	$(".accview-msg-num").text(result.countMessage)
+        	$(".accview-msg-num").text(result)
         	
         },
 		error:function(result){    	
@@ -34,7 +34,7 @@ $(function(){
                     <a href="/portal/personal/Securitypre" class="<%if(request.getRequestURL().toString().indexOf("Securitypre")>0){%>active<%}%>"><span><strong><i></i></strong>安全中心</span></a>
                     <%-- <a href="MyCard" class="<%if(request.getRequestURL().toString().indexOf("MyCard")>0 || request.getRequestURL().toString().indexOf("addbankcard")>0){%>active<%}%>"><span><strong><i></i></strong>我的银行卡</span></a> --%>
                      <a href="/portal/personal/MessageNotification" class="<%if(request.getRequestURL().toString().indexOf("MessageNotification")>0 || request.getRequestURL().toString().indexOf("MessageHistoryNotification")>0){%>active<%}%>"><span><strong><i></i></strong>我的消息</span>
-                    <em class="accview-msg-num"><%=request.getAttribute("countMessage")%></em>   </a>          
+                    <em class="accview-msg-num">0</em>   </a>          
                 </div>
             </div>
             <!--5-end-->

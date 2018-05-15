@@ -15,27 +15,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{startPos},#{pageSize}
 	</select>
 
-
-	<select id="findCashDetial" resultType="com.izhuantou.damain.pay.PayCustomerBusiness">
-		SELECT * from
-		PAY_CustomerBusiness WHERE
-		memberOID
-		=#{memberOID} and
-		type!='债权转让' ORDER
-		BY addDateTime DESC
-		limit
-		#{startPos},#{pageSize}
-
-	</select>
-
-
-
-	<select id="findcount" resultType="Integer">
-		SELECT count(OID) from
-		PAY_CustomerBusiness WHERE memberOID
-		=#{memberOID} and type!='债权转让'
-	</select>
-
 	<select id="findcountByCondition" resultType="Integer">
 		SELECT count(*) FROM(
 		SELECT * from PAY_CustomerBusiness WHERE

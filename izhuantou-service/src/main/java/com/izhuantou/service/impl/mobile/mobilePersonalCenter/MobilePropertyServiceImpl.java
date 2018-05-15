@@ -30,6 +30,7 @@ import com.izhuantou.damain.vo.MyLentTBZDaoDTO;
 import com.izhuantou.damain.vo.MylendDDTDaoDTO;
 import com.izhuantou.damain.vo.MylendDaoDTO;
 import com.izhuantou.damain.vo.MylendZZTDaoDTO;
+import com.izhuantou.damain.vo.PersonalDTO;
 import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning;
 import com.izhuantou.dao.mobile.IndividualPropertyMapper;
 import com.izhuantou.dao.pay.PayCashPoolMapper;
@@ -325,14 +326,14 @@ public class MobilePropertyServiceImpl implements MobilePropertyService {
 	    ljsy = ljsy.add(yjzq).add(tqsy).add(jxys);
 	    money.setLjsy(ljsy);
 
-	    Map<String, Object> indexNumber = userService.findIndexNumber(memberOID);
+	    PersonalDTO indexNumber = userService.findIndexNumber(memberOID);
 	    // 获取待收本金/待收利息
 	    BigDecimal dsbj = new BigDecimal(0);
 	    BigDecimal dslx = new BigDecimal(0);
 	    // 代收本金
-	    dsbj = (BigDecimal) indexNumber.get("cybj");
+	    dsbj = indexNumber.getCybj();
 	    // 代收利息
-	    dslx = dslx.add((BigDecimal) indexNumber.get("yjsy"));
+	    dslx = dslx.add(indexNumber.getYjsy());
 	    money.setDsbj(dsbj);
 	    money.setDslx(dslx);
 
@@ -341,11 +342,10 @@ public class MobilePropertyServiceImpl implements MobilePropertyService {
 	    BigDecimal useMoney = payCustomer.getUseMoney();
 	    money.setKyye(useMoney);
 	    BigDecimal zzc = new BigDecimal(0.0);
-	    BigDecimal tqsyds = (BigDecimal) indexNumber.get("tqsyds");
+	    BigDecimal tqsyds =indexNumber.getTqsyds();
 	    zzc = useMoney.add(dslx).add(tqsyds).add(dsbj);
 	    money.setTqsyds(tqsyds);
 	    money.setZzc(zzc);
-
 	    return money;
 	} catch (Exception e) {
 	    logger.error("findIndexProperty(String memberOID)", e.getMessage());

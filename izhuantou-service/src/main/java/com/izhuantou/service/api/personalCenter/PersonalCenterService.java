@@ -6,6 +6,8 @@ import java.util.Map;
 import com.izhuantou.common.bean.Pagination;
 import com.izhuantou.damain.message.MessageContentBusiness;
 import com.izhuantou.damain.vo.LendMoneyDTO;
+import com.izhuantou.damain.vo.PersonalDTO;
+import com.izhuantou.damain.vo.PersonalMessageDTO;
 import com.izhuantou.damain.vo.UserDTO;
 
 /**
@@ -17,22 +19,22 @@ import com.izhuantou.damain.vo.UserDTO;
 public interface PersonalCenterService {
 
     /**
-     * 查询未读消息
+     * 查询未读消息列表
      * 
      * @param page
      * @param memberOID
      * @return
      */
-    public Pagination<MessageContentBusiness> findMessage(Integer page, String memberOID);
+    public Pagination<PersonalMessageDTO> findMessage(Integer page, String memberOID);
 
     /**
-     * 查询已读消息
+     * 查询已读消息列表
      * 
      * @param page
      * @param memberOID
      * @return
      */
-    public Pagination<MessageContentBusiness> findHistoryMessage(Integer page, String memberOID);
+    public Pagination<PersonalMessageDTO> findHistoryMessage(Integer page, String memberOID);
 
     /**
      * 根据memberOID找到消息总条数和未读条数
@@ -40,8 +42,14 @@ public interface PersonalCenterService {
      * @param memberOID
      * @return
      */
-    public Map<String, Integer> findMessageNum(String memberOID);
-
+    public Integer findMessageNum(String memberOID);
+   /**
+    * 查询消息 历史记录消息总条数
+    * @param memberOID
+    * @return
+    */
+    public Integer findHistoryMessageNum(String memberOID);
+    
     /**
      * 删除未读信息添加到已读信息中
      * 
@@ -54,7 +62,7 @@ public interface PersonalCenterService {
      * 
      * @param memberOID
      */
-    public Map<String, Object> userCenterIndex(String memberOID);
+    public PersonalDTO userCenterIndex(String memberOID);
 
     /**
      * 查询借款账户

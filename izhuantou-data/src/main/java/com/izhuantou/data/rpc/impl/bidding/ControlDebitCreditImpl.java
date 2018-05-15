@@ -643,7 +643,7 @@ public class ControlDebitCreditImpl extends BaseServiceImpl<PayDebitCredit> impl
 					creditRateTemp = creditRate.divide(new BigDecimal("365"), 8, BigDecimal.ROUND_HALF_EVEN);
 					endDate = ToolDateTime.addDay(biddto.getBeginDate(), returnNumber);
 				}
-				// 类型
+				// 类型按月返息，到期返本
 				String creditType = dtoProductInfo.getDebitType();
 				if ("BIAP".equals(creditType)) {
 					BiddingDTO bidto = new BiddingDTO();

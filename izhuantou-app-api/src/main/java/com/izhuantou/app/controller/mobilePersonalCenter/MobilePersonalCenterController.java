@@ -34,6 +34,7 @@ import com.izhuantou.damain.vo.ListRepaymentCollection;
 import com.izhuantou.damain.vo.MyInvitationDaoDTO;
 import com.izhuantou.damain.vo.MyLendRecord;
 import com.izhuantou.damain.vo.MyPrivilegeDaoDTO;
+import com.izhuantou.damain.vo.PersonalMessageDTO;
 import com.izhuantou.damain.webp2p.WebP2pLoanApply;
 import com.izhuantou.service.api.lend.ExperienceMoneyService;
 import com.izhuantou.service.api.lend.isLoginService;
@@ -684,7 +685,7 @@ public class MobilePersonalCenterController {
 	    e.printStackTrace();
 	}
 	String str = null;
-	Pagination<MessageContentBusiness> list = this.personalMessage.findMessage(page, memberOID);
+	Pagination<PersonalMessageDTO> list = this.personalMessage.findMessage(page, memberOID);
 
 	return OpResult.getSuccessResult(list);
     }
@@ -706,7 +707,7 @@ public class MobilePersonalCenterController {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-	Pagination<MessageContentBusiness> list = this.personalMessage.findHistoryMessage(page, memberOID);
+	Pagination<PersonalMessageDTO> list = this.personalMessage.findHistoryMessage(page, memberOID);
 
 	return OpResult.getSuccessResult(list);
     }
