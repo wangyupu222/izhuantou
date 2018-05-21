@@ -774,7 +774,8 @@ public class ControlPayServiceImpl implements ControlPayService {
 						dtoCustomerOperation.setMemberOID(outMemberOID);
 						dtoCustomerOperation.setCustomerOID(dtoOutCustomer.getOID());
 						dtoCustomerOperation.setRequestID(resultData.getMchnt_txn_ssn());
-						dtoCustomerOperation.setOID(StringUtil.getUUID());
+						String oid=StringUtil.getUUID();
+						dtoCustomerOperation.setOID(oid);
 						payCustomerOperationMapper.insertRechargeRecord(dtoCustomerOperation);
 
 						PayCustomerOperation operation = new PayCustomerOperation();
@@ -784,8 +785,9 @@ public class ControlPayServiceImpl implements ControlPayService {
 						operation.setMemberOID(outMemberOID);
 						operation.setCustomerOID(dtoInCustomer.getOID());
 						operation.setRequestID(resultData.getMchnt_txn_ssn());
-						operation.setOID(StringUtil.getUUID());
-						payCustomerOperationMapper.insertRechargeRecord(dtoCustomerOperation);
+						String ooid=StringUtil.getUUID();
+						operation.setOID(ooid);
+						payCustomerOperationMapper.insertRechargeRecord(operation);
 						this.updateAccount(outMemberOID);
 						this.updateAccount(inMemberOID);
 						return "1";

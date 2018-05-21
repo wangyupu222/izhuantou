@@ -68,12 +68,10 @@ public class DisplaylendController {
     @RequestMapping(value = "/displayHHT/{page}", method = RequestMethod.GET)
     @ResponseBody
     public OpResult FindResulthh(@PathVariable(value = "page") String page,
-	    @RequestParam(value = "sortp", defaultValue = "") String sortp) {
+	    @RequestParam(value = "sortp", defaultValue = "") String sortp,
+	    @RequestParam(value = "status", defaultValue = "") String status) {
 
-	if (StringUtils.isBlank(page)) {
-	    page = "1";
-	}
-	Pagination<DisplayHHT> list = this.displayHHTService.showProductsByPage(Integer.parseInt(page), sortp);
+	Pagination<DisplayHHT> list = this.displayHHTService.showProductsByPage(Integer.parseInt(page),status,sortp);
 
 	return OpResult.getSuccessResult(list);
     }

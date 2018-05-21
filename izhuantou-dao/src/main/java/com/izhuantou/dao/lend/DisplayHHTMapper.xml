@@ -82,8 +82,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY
 		allbidding.productStatus + 0,
 		allbidding.productType,
-		allbidding. NO
-		DESC,
+		allbidding. NO DESC
+		${sortp},
 		allbidding.cjqx,
 		SUBSTRING_INDEX(allbidding.xmmc, '-' ,- 1) DESC
 		limit
@@ -173,8 +173,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY
 		allbidding.productStatus + 0,
 		allbidding.productType,
-		allbidding. NO
-		DESC,
+		allbidding.NO DESC
+		${sortp},
 		allbidding.cjqx,
 		SUBSTRING_INDEX(allbidding.xmmc, '-' ,- 1) DESC
 		limit #{startPos},#{pageSize}
