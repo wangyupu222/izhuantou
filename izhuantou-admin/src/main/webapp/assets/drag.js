@@ -28,6 +28,7 @@
             timeArr = [];
             timestamp=new Date().getTime();
             timeArr.push(timestamp);
+            console.log(timeArr);
         });
         
         //鼠标指针在上下文移动时，移动距离大于0小于最大间距，滑块x轴位置等于鼠标移动距离
@@ -41,10 +42,8 @@
                     dragOk();
                     timestamp=new Date().getTime();
                     timeArr.push(timestamp);
+                    console.log(timeArr);
                     $("#yzmIsFlag").val("yzmok");
-                }
-                if(_x>5){
-                    handler.css({"border-top-left-radius":"0px","border-bottom-left-radius":"0px"});
                 }
             }
         }).mouseup(function(e){
@@ -54,10 +53,11 @@
                 handler.css({'left': 0});
                 drag_bg.css({'width': 0});
                 timeArr = [];
-                handler.css({"border-top-left-radius":"5px","border-bottom-left-radius":"5px"});
+                console.log(timeArr);
             }else{
                 timestamp=new Date().getTime();
                 timeArr.push(timestamp);
+                console.log(timeArr);
                 $("#timeWrap").val(timeArr);
                 $(document).unbind('mouseup');
                 
