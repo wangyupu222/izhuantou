@@ -3,6 +3,7 @@ package com.izhuantou.service.impl.lend;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,24 @@ public class DisplayHHTServiceImpl extends BaseServiceImpl<DisplayHHT> implement
 	private DisplayHHTMapper displayHHTMapper;
 
 	@Override
-	public Pagination<DisplayHHT> showProductsByPage(Integer page, String status) {
+	public Pagination<DisplayHHT> showProductsByPage(Integer page, String status,String sortp) {
 
 		List<DisplayHHT> lendList = new ArrayList<DisplayHHT>();
 		List<DisplayHHT> lendListResult = new ArrayList<DisplayHHT>();
 		Pagination<DisplayHHT> pageController = new Pagination<>();
 		try {
-
+			StringBuilder strsortword = new StringBuilder("");
+			if (!StringUtils.isBlank(sortp)) {
+				String[] words = sortp.split("2");
+				strsortword.append(",allbidding.");
+				strsortword.append(words[0]);
+				strsortword.append("  ");
+				strsortword.append(words[1]);
+			} else {
+				strsortword.append("  ");
+			}
+			sortp=strsortword.toString();
+			
 			if (page != null) {
 				pageController.setCurrentPage(page);
 			}
@@ -43,7 +55,7 @@ public class DisplayHHTServiceImpl extends BaseServiceImpl<DisplayHHT> implement
 				Integer startIndex = (pageController.getCurrentPage() - 1) * (pageController.getPageSize());
 				// 每页条数
 				Integer pageSize = pageController.getPageSize();
-				lendList = displayHHTMapper.findByConditionZt(startIndex, pageSize);
+				lendList = displayHHTMapper.findByConditionZt(startIndex, pageSize,sortp);
 
 			} else {
 				Integer totalNumber = displayHHTMapper.getPageCount();
@@ -54,7 +66,7 @@ public class DisplayHHTServiceImpl extends BaseServiceImpl<DisplayHHT> implement
 				Integer startIndex = (pageController.getCurrentPage() - 1) * (pageController.getPageSize());
 				// 每页条数
 				Integer pageSize = pageController.getPageSize();
-				lendList = displayHHTMapper.findByCondition(startIndex, pageSize);
+				lendList = displayHHTMapper.findByCondition(startIndex, pageSize,sortp);
 			}
 
 			for (DisplayHHT displayHHT : lendList) {

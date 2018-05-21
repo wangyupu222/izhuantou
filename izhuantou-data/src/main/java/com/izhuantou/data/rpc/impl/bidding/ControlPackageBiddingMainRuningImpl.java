@@ -14,7 +14,6 @@ import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
 import com.izhuantou.data.rpc.api.bidding.ControlDebitCredit;
 import com.izhuantou.data.rpc.api.bidding.ControlPackageBiddingMainRuning;
 import com.izhuantou.data.rpc.impl.BaseServiceImpl;
-import com.izhuantou.fund.rpc.api.ProcessPageFinish;
 import com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService;
 
 @Service("ControlPackageBiddingMainRuning")

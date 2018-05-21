@@ -27,7 +27,8 @@ public interface DisplayHHTMapper extends Mapper<DisplayHHT> {
      */
     public List<DisplayHHT> findByCondition(
     		@Param("startPos") Integer startPos,
-    		@Param("pageSize") Integer pageSize);
+    		@Param("pageSize") Integer pageSize,
+    		@Param("sortp") String sortp);
 
     /**
      * 总页数
@@ -44,7 +45,8 @@ public interface DisplayHHTMapper extends Mapper<DisplayHHT> {
      */
     public List<DisplayHHT>  findByConditionZt(
     		@Param("startPos") Integer startPos,
-    		@Param("pageSize") Integer pageSize);
+    		@Param("pageSize") Integer pageSize,
+    		@Param("sortp") String sortp);
     /**
      * 再投产品总数
      * @return

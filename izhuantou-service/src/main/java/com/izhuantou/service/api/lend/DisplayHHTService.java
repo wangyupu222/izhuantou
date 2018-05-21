@@ -21,7 +21,7 @@ public interface DisplayHHTService extends BaseService<DisplayHHT> {
      *            排序参数
      * @return
      */
-    public Pagination<DisplayHHT> showProductsByPage(Integer page, String sortp);
+    public Pagination<DisplayHHT> showProductsByPage(Integer page, String status,String sortp);
 
     public List<DisplayHHT> findProductList();
 
