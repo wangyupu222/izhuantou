@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- shiro的核心Filter -->
+		<bean id="shiroFilter"
+	class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager"/>		
+		<property name="loginUrl" value="/login.html"/>		
+		<property name="successUrl" value="/index.html"/>
+		<property name="unauthorizedUrl" value="/unauthorized.html"/>
+		<!-- shiro URL控制过滤器规则 -->
+		<property name="FilterChainDefinitions">
+			<value>
+				<!-- /login.html* = anon
+				/userAction_login.action* = anon
+				/validatecode.jsp* = anon
+				/css/** = anon
+				/js/** = anon
+				/images/** = anon
+				/service/** = anon
+				/page/base/courier.html* = perms[courier]
+				/pages/base/area.html* = roles[base]
+				/** = authc -->
+			</value>
+		</property>		
+	</bean>
+	<!-- 配置 securityManager -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="realm"></property>	
+	</bean>
+	<bean id="realm" class="com.izhuantou.admin.realm.BOSRealm"/>
+</beans>
