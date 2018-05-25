@@ -58,12 +58,4 @@ public interface MobileUserService {
      */
     public String MobileSetSecurityQuestion(MobilequestionDTO question);
 
-    /**
-     * app端修改支付密码
-     * 
-     * @param memberOID
-     * @return
-     */
-    public Map<String, Object> AppUpdatePayPassword(String memberOID);
-
 }

@@ -26,7 +26,7 @@ function huoquyzm(){
 	var phoneNum = document.getElementById('phone_reg').value;	
 	var yzm= document.getElementById('yzm').value;	
 	  var oSign_val=$("#sign_val");
-	  var smsValidateCode="smsValidateCode";
+	  var smsValidateCode="smsForgetPassword";
 	  alert(1);
 	if (phoneNum!=""){
 		if(yzm!=""){
@@ -41,9 +41,11 @@ function huoquyzm(){
 		        	yzm:yzm
 		        },   
 		        success: function(result){
-		            console.info(result);
-		            //alert(result);
-		            sends.send();
+		        	if(result.status==2){
+		            	oSign_val[0].innerHTML =result.message;
+		            }else{
+			            sends.send();
+		            }
 		            $('.m').attr("src","checkcode?x="+Math.random());
 		        },
 		        error:function(){

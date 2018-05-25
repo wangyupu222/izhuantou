@@ -21,21 +21,4 @@ public interface MobilePropertyService {
      * @return
      */
     public MobilePropertyTJDTO findIndexProperty(String memberOID);
-
-    /**
-     * 用户充值
-     * 
-     * @param recharge
-     * @return
-     */
-    public Map<String, Object> AppRecharge(String memberOID, BigDecimal money);
-
-    /**
-     * App端用户提现
-     * 
-     * @param withdrawal
-     * @return
-     */
-    public Map<String, Object> Appwithdrawal(String memberOID, BigDecimal money);
-
 }

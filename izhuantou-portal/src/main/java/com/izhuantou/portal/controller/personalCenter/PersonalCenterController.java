@@ -26,7 +26,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.izhuantou.common.bean.OpResult;
 import com.izhuantou.common.bean.Pagination;
 import com.izhuantou.common.utils.StringUtil;
-import com.izhuantou.damain.message.MessageContentBusiness;
 import com.izhuantou.damain.pay.PayCustomer;
 import com.izhuantou.damain.user.MemberAgreement;
 import com.izhuantou.damain.user.MemberMemberAgreement;
@@ -42,7 +41,6 @@ import com.izhuantou.service.api.personalCenter.MyLendRecordService;
 import com.izhuantou.service.api.personalCenter.MyRepaymentService;
 import com.izhuantou.service.api.personalCenter.PersonalCenterService;
 import com.izhuantou.service.api.personalCenter.UpdPicService;
-import com.izhuantou.service.impl.user.ReadPropertiesl;
 import com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService;
 
 /***

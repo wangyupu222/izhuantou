@@ -291,6 +291,7 @@ public class MyCashController {
 					Wy500012ReqData data = controlPayService.rechargeWY(recharge);
 					if (data != null) {
 						FuiouService.wy500012(data, response);
+						return null;
 					}
 					view.addFlashAttribute("msg", "接口调用失败");
 					return "redirect:/portal/cash/Recharge_new";
@@ -298,6 +299,7 @@ public class MyCashController {
 					AppTransReqData data = controlPayService.recharge(recharge);
 					if (data != null) {
 						FuiouServiceMy.p2p500405(data, response);
+						return null;
 					}
 					view.addFlashAttribute("msg", "接口调用失败");
 					return "redirect:/portal/cash/Recharge_new2";

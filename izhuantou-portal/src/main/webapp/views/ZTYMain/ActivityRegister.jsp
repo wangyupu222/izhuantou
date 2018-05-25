@@ -40,58 +40,39 @@ function huoquyzm(){
 	var phoneNum = document.getElementById('phone_reg').value;	
 	var yzm= document.getElementById('yzm').value;	
 	  var oSign_val=$("#sign_val");
+	  var smsValidateCode="smsValidateCode";
 	if (phoneNum!=""){
 		if(yzm!=""){
-			
-		
-		//var data = {
-		        //"handleClassName":"pageRegisterFormRegisterdjGetYzm","phone":phoneNum
-	//	    };
 	//验证手机号是否存在
-		
-  	 $.ajax({
+			$.ajax({
 		        type:"POST",
 		        dataType:"json",
-		        url:"/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=registVerification&phone_reg="+phoneNum+"&yzm="+yzm,
-		        data:"{}",
+		        url:"/portal/user/checksms",
+		        data:{
+		        	name:phoneNum,
+		        	yzm:yzm
+		        },   
 		        success: function(result){
-		   		if(result[0].error){
-		   		    oSign_val[0].innerHTML = result[0].error;
-		   		$('.m').attr("src","/p2p/cn/com/hoonsoft/servlet/ServletValidateCode?"+Math.random());
-	        		}else{
-	        		    $.ajax({
-	        		        type:"POST",
-	        		        dataType:"text",
-	        		        url:"/p2p/cn/com/hoonsoft/servlet/ServletSMSValidateCode?name=smsValidateCode&mobile="+phoneNum+"&yzm="+yzm,
-	        		        data:{},
-	        		        
-	        		        success: function(result){
-	        		            console.info(result);
-	        		            //alert(result);
-	        		            
-	        		              
-	        		        },
-	        		        error:function(){
-	        		          	oSign_val[0].innerHTML ="系统异常！";	        		            
-	        		        }
-	        		    });
-	        		    sends.send();
-	        		    $('.m').attr("src","/p2p/cn/com/hoonsoft/servlet/ServletValidateCode?"+Math.random());
-	        		}
+		            if(result.status==2){
+		            	oSign_val[0].innerHTML =result.message;
+		            }else{
+			            sends.send();
+		            }
+		            $('.m').attr("src","/portal/user/checkcode?x="+Math.random());
 		        },
-		        error:function(result){
-		        	$('.m').attr("src","/p2p/cn/com/hoonsoft/servlet/ServletValidateCode?"+Math.random());
+		        error:function(){
+		          	oSign_val[0].innerHTML ="系统异常！";	        		            
 		        }
 		    });
+		    
 		}else{
 			oSign_val[0].innerHTML ="请输入验证码！";
-			$('.m').attr("src","/p2p/cn/com/hoonsoft/servlet/ServletValidateCode?"+Math.random());
+			$('.m').attr("src","/portal/user/checkcode?x="+Math.random());
 		}
 	}else{
 		oSign_val[0].innerHTML ="请输入手机号！";
-		$('.m').attr("src","/p2p/cn/com/hoonsoft/servlet/ServletValidateCode?"+Math.random());
+		$('.m').attr("src","/portal/user/checkcode?x="+Math.random());
 	}
-
 }
 //倒计时
 var sends = {
@@ -145,14 +126,14 @@ var sends = {
     <div class="banner_wrap">
         <div class="register_content">
         <div class="registright">
-    <form handleClassName="ActivityRegistWeb" name="FormRegister"  >
+    <form action="/portal/user/registTianya" method="post" id="FormRegister" name="FormRegister"  >
     	<!-- <div class="redbag_bg"><img src="images/redbag.jpg"><span>新用户注册成功领取<a>红包大礼</a></span></div> -->
     	<input type="hidden" value="webRegister" readonly="readonly" name="register"/>
     	<input type="hidden" value="tianya" readonly="readonly" name="Channel"/>
         <div class="regist_inpt phone urog-form-role"><input type="text" name="phone_reg" id="phone_reg" placeholder="请输入您的手机号码" required data-rule-mobile="true" onfocus="this.placeholder=''" onblur="this.placeholder='请输入您的手机号码'">
         <img src="<%=pathUrl %>/image/close_icon.png" class="urog-regclose close_btn" data-close="phone_reg"/>
         </div>
-        <div class="regist_inpt yzm short short2" ><input type="text" name="yzm" id="yzm" autocomplete="off" placeholder="请输入验证码" required minlength="4" maxlength="4" onfocus="this.placeholder=''" onblur="this.placeholder='请输入验证码'"><a href="#" class="num_yzm"><img width="110" height="40" src="${systemPath}/cn/com/hoonsoft/servlet/ServletValidateCode"  class="m" alt="如果看不清,请点击我!" title="如果看不清,请点击我!""  onclick="this.src='${systemPath}/cn/com/hoonsoft/servlet/ServletValidateCode?' + Math.random();"></a>
+        <div class="regist_inpt yzm short short2" ><input type="text" name="yzm" id="yzm" autocomplete="off" placeholder="请输入验证码" required minlength="4" maxlength="4" onfocus="this.placeholder=''" onblur="this.placeholder='请输入验证码'"><a href="#" class="num_yzm"><img width="110" height="40" src="/portal/user/checkcode"  class="m" alt="如果看不清,请点击我!" title="如果看不清,请点击我!"  onclick="this.setAttribute('src','/portal/user/checkcode?x='+Math.random());"></a>
         
         </div>
         <div class="regist_inpt yzm short sms_yzm "><input type="text" name="yzm_reg" id="yzm_reg" placeholder="请输入短信验证码" required onfocus="this.placeholder=''" onblur="this.placeholder='请输入短信验证码'"></div><a  class="hqyzm hqyzminp" onclick="huoquyzm()">获取验证码</a>
@@ -164,7 +145,7 @@ var sends = {
         <div class="regist_check xieyi_text"><label class="checklabel checklabel01"><input type="checkbox" checked="checked" required data-msg-required="必选" name="isAgree" id="isAgree" value="ok">我已阅读并同意</label>
         <a href="agreement_z.jsp?contractType=1&biddingType=qt" target="_blank" class="ra" >《砖头网注册协议》</a></div>
         <div align="center"></div>
-        <div class="register_validate" id="sign_val"><hoontag:Message name="registerErro"/></div>
+        <div class="register_validate" id="sign_val">${msg}</div>
          <div class="zcbtn"><button id="register2" name="register2" type="submit" value="注册即送加息好礼" class="zcbtn_input">注册即送加息好礼</button></div>
         
         </form>

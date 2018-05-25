@@ -31,7 +31,7 @@ min-height:580px;
 /* 加息券取消分页 */
 .consquan{
 	height: 626px;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
     margin-bottom: 70px;
 }
@@ -152,7 +152,6 @@ $(function(){
         	currentPage:1
         },
         success: function(result){
-        	console.log(result)
         	if(result.dataValue.totalNumber<1){
         		 $(".j_brand_new_liu").css("display","block");
         	}
@@ -160,10 +159,11 @@ $(function(){
        		 $(".pageWSY").remove();
        		}
         	var dataItems=result.dataValue.data;
+        	if(dataItems!=null && dataItems!='null'){
         	for(var i=0;i<dataItems.length;i++){  
         		var str='<div class="redbag01"><div class="bg01 addxi"></div><div class="bg02 addxi"></div><div class="redbagimg"><div class="imggray"><div class="textone"><div class="hbtop">';
         		str+='<div class="leftboxhb">'+(dataItems[i].privilegeRange).toFixed(2)+'<span>%</span></div><dl><dd class="privilegeName">'+dataItems[i].privilegeName+'</dd>';
-                if(dataItems[i].useTerm==0){
+                if(dataItems[i].useTerm==0 || dataItems[i].useTerm=='null' || dataItems[i].useTerm==null){
                 	str+='<dd>加息时间：同产品期限</dd>';
                 }else{
                 	str+='<dd>加息时间：'+dataItems[i].useTerm+'天</dd>';
@@ -182,7 +182,7 @@ $(function(){
         		        dataType:"json",
         		        url:"/portal/mytq/canUseJxq",
         		        data:{
-        		        	currentpage:num
+        		        	currentPage:num
         		        },		
         		        success: function(result){
         		        	$(".brand_new .PrivilegeWrap .redbag01").remove();
@@ -190,7 +190,7 @@ $(function(){
         		        	for(var i=0;i<dataItems.length;i++){  
         		        		var str='<div class="redbag01"><div class="bg01 addxi"></div><div class="bg02 addxi"></div><div class="redbagimg"><div class="imggray"><div class="textone"><div class="hbtop">';
         		        		str+='<div class="leftboxhb">'+(dataItems[i].privilegeRange).toFixed(2)+'<span>%</span></div><dl><dd class="privilegeName">'+dataItems[i].privilegeName+'</dd>';
-        		                if(dataItems[i].useTerm==0){
+        		                if(dataItems[i].useTerm==0 || dataItems[i].useTerm=='null' || dataItems[i].useTerm==null){
         		                	str+='<dd>加息时间：同产品期限</dd>';
         		                }else{
         		                	str+='<dd>加息时间：'+dataItems[i].useTerm+'天</dd>';
@@ -210,6 +210,7 @@ $(function(){
         	})
         	
         	
+        	}
         },
         error:function(result){
         	console.log("发生错误 ");
@@ -223,7 +224,6 @@ $(function(){
         	currentPage:1
         },
         success: function(result){
-        	console.log(result)
         	if(result.dataValue.totalNumber<1){
         		 $(".j_used_liu").css("display","block");
         	}
@@ -231,10 +231,11 @@ $(function(){
        		 $(".pageYSY").remove();
        		}
         	var dataItems=result.dataValue.data;
+        	if(dataItems!=null && dataItems!='null'){
         	for(var i=0;i<dataItems.length;i++){  
         		var str='<div class="redbag01 redbag03"><div class="bg01 grayaddxi"></div><div class="bg02 grayaddxi"></div><div class="redbagimg"><div class="imggray"><div class="textone"><div class="hbtop hbtopgray">';
         		str+='<div class="leftboxhb">'+(dataItems[i].privilegeRange).toFixed(2)+'<span>%</span></div><dl><dd class="privilegeName">'+dataItems[i].privilegeName+'</dd>';
-                if(dataItems[i].useTerm==0){
+                if(dataItems[i].useTerm==0 || dataItems[i].useTerm=='null' || dataItems[i].useTerm==null){
                 	str+='<dd>加息时间：同产品期限</dd>';
                 }else{
                 	str+='<dd>加息时间：'+dataItems[i].useTerm+'天</dd>';
@@ -253,7 +254,7 @@ $(function(){
         		        dataType:"json",
         		        url:"/portal/mytq/isUseJxq",
         		        data:{
-        		        	currentpage:num
+        		        	currentPage:num
         		        },		
         		        success: function(result){
         		        	$(".brand_YSY .PrivilegeWrap .redbag01").remove();
@@ -261,7 +262,7 @@ $(function(){
         		        	for(var i=0;i<dataItems.length;i++){  
         		        		var str='<div class="redbag01 redbag03"><div class="bg01 grayaddxi"></div><div class="bg02 grayaddxi"></div><div class="redbagimg"><div class="imggray"><div class="textone"><div class="hbtop hbtopgray">';
         		        		str+='<div class="leftboxhb">'+(dataItems[i].privilegeRange).toFixed(2)+'<span>%</span></div><dl><dd class="privilegeName">'+dataItems[i].privilegeName+'</dd>';
-        		                if(dataItems[i].useTerm==0){
+        		                if(dataItems[i].useTerm==0 || dataItems[i].useTerm=='null' || dataItems[i].useTerm==null){
         		                	str+='<dd>加息时间：同产品期限</dd>';
         		                }else{
         		                	str+='<dd>加息时间：'+dataItems[i].useTerm+'天</dd>';
@@ -280,7 +281,7 @@ $(function(){
         		}
         	})
         	
-        	
+        	}
         },
         error:function(result){
         	console.log("发生错误 ");
@@ -295,7 +296,6 @@ $(function(){
         	currentPage:1
         },
         success: function(result){
-        	console.log(result)
         	if(result.dataValue.totalNumber<1){
         		$(".j_lose_liu").css("display","block");
         	}
@@ -303,10 +303,11 @@ $(function(){
        		 $(".pageYGQ").remove();
        		}
         	var dataItems=result.dataValue.data;
+        	if(dataItems!=null && dataItems!='null'){
         	for(var i=0;i<dataItems.length;i++){  
         		var str='<div class="redbag01 redbag02"><div class="bg01 grayaddxi"></div><div class="bg02 grayaddxi"></div><div class="redbagimg"><div class="imggray"><div class="textone"><div class="hbtop hbtopgray">';
         		str+='<div class="leftboxhb">'+(dataItems[i].privilegeRange).toFixed(2)+'<span>%</span></div><dl><dd class="privilegeName">'+dataItems[i].privilegeName+'</dd>';
-                if(dataItems[i].useTerm==0){
+                if(dataItems[i].useTerm==0 || dataItems[i].useTerm=='null' || dataItems[i].useTerm==null){
                 	str+='<dd>加息时间：同产品期限</dd>';
                 }else{
                 	str+='<dd>加息时间：'+dataItems[i].useTerm+'天</dd>';
@@ -325,7 +326,7 @@ $(function(){
         		        dataType:"json",
         		        url:"/portal/mytq/GqJxq",
         		        data:{
-        		        	currentpage:num
+        		        	currentPage:num
         		        },		
         		        success: function(result){
         		        	$(".brand_YGQ .PrivilegeWrap .redbag01").remove();
@@ -333,7 +334,7 @@ $(function(){
         		        	for(var i=0;i<dataItems.length;i++){  
         		        		var str='<div class="redbag01 redbag02"><div class="bg01 grayaddxi"></div><div class="bg02 grayaddxi"></div><div class="redbagimg"><div class="imggray"><div class="textone"><div class="hbtop hbtopgray">';
         		        		str+='<div class="leftboxhb">'+(dataItems[i].privilegeRange).toFixed(2)+'<span>%</span></div><dl><dd class="privilegeName">'+dataItems[i].privilegeName+'</dd>';
-        		                if(dataItems[i].useTerm==0){
+        		                if(dataItems[i].useTerm==0 || dataItems[i].useTerm=='null' || dataItems[i].useTerm==null){
         		                	str+='<dd>加息时间：同产品期限</dd>';
         		                }else{
         		                	str+='<dd>加息时间：'+dataItems[i].useTerm+'天</dd>';
@@ -352,7 +353,7 @@ $(function(){
         		}
         	})
         	
-        	
+        	}
         },
         error:function(result){
         	console.log("发生错误 ");

@@ -252,7 +252,7 @@ font-size:16px;color:#666;margin:0 auto;width:70%;text-align: left;
                     <%-- <div class="qxbox qx01"><span class="sp01">还款方式</span><span class="sp02"><%=request.getAttribute("hkfs") %></span></div> --%>
                     
                     <div class="qxbox qx01"><span class="sp01">出借期限</span><span class="sp02 oreg"><em id="data-cjqx">1</em>天</span></div>
-                    <div class="qxbox qx01"><span class="sp01">已体验人数</span><span class="sp02 oreg"><em id="tyNum"><%=request.getAttribute("count")%></em>人</span></div>
+                    <div class="qxbox qx01"><span class="sp01">已体验人数</span><span class="sp02 oreg"><em id="tyNum"></em>人</span></div>
                 </div>
        			<div class="botbox">
                 	<div class="botfindbox">
@@ -292,7 +292,7 @@ font-size:16px;color:#666;margin:0 auto;width:70%;text-align: left;
 				<%if(session.getAttribute("userMobile") != null){ %>
                  <div class="jineBtn"></div>
 				<% }else{ %>
-				<a class="caozuo" href="login.jsp">立即登录</a>
+				<a class="caozuo" href="/portal/user/login">立即登录</a>
 				<div class="register_btn"><a  href="register.jsp">还没有账号？立即注册</a></div>
 				<%}%>
             </div>
@@ -399,6 +399,7 @@ $(function(){
         url: "/portal/detial/isTyjUse",
         dataType: "json",
         success: function(result){
+        	console.log(result)
         	var result=result.dataValue;
         	$("#tyNum").text(result.count);
         	

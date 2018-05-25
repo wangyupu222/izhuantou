@@ -17,58 +17,39 @@ function huoquyzm(){
 	var phoneNum = document.getElementById('phone_reg').value;	
 	var yzm= document.getElementById('yzm').value;	
 	  var oSign_val=$("#sign_val");
+	  var smsValidateCode="smsValidateCode";
 	if (phoneNum!=""){
 		if(yzm!=""){
-			
-		
-		//var data = {
-		        //"handleClassName":"pageRegisterFormRegisterdjGetYzm","phone":phoneNum
-	//	    };
 	//验证手机号是否存在
-		
-  	 $.ajax({
+			$.ajax({
 		        type:"POST",
 		        dataType:"json",
-		        url:"/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=registVerification&phone_reg="+phoneNum+"&yzm="+yzm,
-		        data:"{}",
+		        url:"/portal/user/checksms",
+		        data:{
+		        	name:phoneNum,
+		        	yzm:yzm
+		        },   
 		        success: function(result){
-		   		if(result[0].error){
-		   		    oSign_val[0].innerHTML = result[0].error;
-		   		$('.m').attr("src","/p2p/cn/com/hoonsoft/servlet/ServletValidateCode?"+Math.random());
-	        		}else{
-	        		    $.ajax({
-	        		        type:"POST",
-	        		        dataType:"text",
-	        		        url:"/p2p/cn/com/hoonsoft/servlet/ServletSMSValidateCode?name=smsValidateCode&mobile="+phoneNum+"&yzm="+yzm,
-	        		        data:{},
-	        		        
-	        		        success: function(result){
-	        		            console.info(result);
-	        		            //alert(result);
-	        		            
-	        		              
-	        		        },
-	        		        error:function(){
-	        		          	oSign_val[0].innerHTML ="系统异常！";	        		            
-	        		        }
-	        		    });
-	        		    sends.send();
-	        		    $('.m').attr("src","/p2p/cn/com/hoonsoft/servlet/ServletValidateCode?"+Math.random());
-	        		}
+		            if(result.status==2){
+		            	oSign_val[0].innerHTML =result.message;
+		            }else{
+			            sends.send();
+		            }
+		            $('.m').attr("src","/portal/user/checkcode?x="+Math.random());
 		        },
-		        error:function(result){
-		        	$('.m').attr("src","/p2p/cn/com/hoonsoft/servlet/ServletValidateCode?"+Math.random());
+		        error:function(){
+		          	oSign_val[0].innerHTML ="系统异常！";	        		            
 		        }
 		    });
+		    
 		}else{
 			oSign_val[0].innerHTML ="请输入验证码！";
-			$('.m').attr("src","/p2p/cn/com/hoonsoft/servlet/ServletValidateCode?"+Math.random());
+			$('.m').attr("src","/portal/user/checkcode?x="+Math.random());
 		}
 	}else{
 		oSign_val[0].innerHTML ="请输入手机号！";
-		$('.m').attr("src","/p2p/cn/com/hoonsoft/servlet/ServletValidateCode?"+Math.random());
+		$('.m').attr("src","/portal/user/checkcode?x="+Math.random());
 	}
-
 }
 //倒计时
 var sends = {
@@ -112,7 +93,7 @@ var sends = {
 	<div class="wrap">
 		<img class="APPregisterBanner" src="<%=pathUrl %>/image/registerActive/APPregisterBanner.jpg?v=114">
 		<div class="FormContent">
-			<form handleClassName="AppRegistWeb" name="FormRegister">
+			<form action="/portal/user/registTianya" method="post" id="FormRegister" name="FormRegister" >
 				<input type="hidden" value="tianya" readonly="readonly" name="Channel"/>
 				<input type="hidden" value="wapRegister" readonly="readonly" name="register" />
 				<div class="regist_inpt phone urog-form-role">
@@ -123,7 +104,7 @@ var sends = {
 				<div class="regist_inpt yzm short short2">
 					<input type="text" name="yzm" id="yzm" autocomplete="off" placeholder="请输入验证码" required="" minlength="4" maxlength="4" onfocus="this.placeholder=''" onblur="this.placeholder='请输入验证码'">
 				</div>
-				<a href="#" class="num_yzm"><img width="100%" height="42" src="${systemPath}/cn/com/hoonsoft/servlet/ServletValidateCode" class="m" alt="如果看不清,请点击我!" title="如果看不清,请点击我!" "  onclick="this.src='${systemPath}/cn/com/hoonsoft/servlet/ServletValidateCode?' + Math.random();"></a>
+				<a href="#" class="num_yzm"><img width="100%" height="42" src="/portal/user/checkcode" class="m" alt="如果看不清,请点击我!" title="如果看不清,请点击我!" onclick="this.setAttribute('src','/portal/user/checkcode?x='+Math.random());"></a>
 				</div>
 				<div class="yzm_wrap smsYzm_wrap">
 				<div class="regist_inpt yzm short sms_yzm ">
@@ -145,7 +126,7 @@ var sends = {
 				</div>
 				<div align="center"></div>
 				<div class="register_validate" id="sign_val">
-					<hoontag:Message name="registerErro" />
+					${msg}
 				</div>
 				<div class="zcbtn">
 					<button id="register2" name="register2" type="submit" value="注册即送加息好礼" class="zcbtn_input">注册即送加息好礼</button>

@@ -51,8 +51,11 @@ function huoquyzm(){
 		        	yzm:yzm
 		        }, 
 		        success: function(result){
-		        	console.info(result);
-		            sends.send();
+		        	if(result.status==2){
+		            	oSign_val[0].innerHTML =result.message;
+		            }else{
+			            sends.send();
+		            }
 		            $('.yzmsz2').attr("src","/portal/user/checkcode?x="+Math.random());
 		        },
 		        error:function(result){

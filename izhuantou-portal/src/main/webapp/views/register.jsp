@@ -25,14 +25,15 @@ function huoquyzm(){
 		        dataType:"json",
 		        url:"/portal/user/checksms",
 		        data:{
-		        	msmType:smsValidateCode,
 		        	name:phoneNum,
 		        	yzm:yzm
 		        },   
 		        success: function(result){
-		            console.info(result);
-		            //alert(result);
-		            sends.send();
+		            if(result.status==2){
+		            	oSign_val[0].innerHTML =result.message;
+		            }else{
+			            sends.send();
+		            }
 		            $('.m').attr("src","checkcode?x="+Math.random());
 		        },
 		        error:function(){
@@ -127,7 +128,6 @@ var sends = {
 						<div align="center"></div>
 						<div class="register_validate" id="sign_val">
 							${msg}
-							<hoontag:Message name="registerErro"/>
 						</div>
 						<div class="zcbtn">
 							<button id="register2" name="register2" type="submit" value="注册即送9%加息好礼" class="zcbtn_input">注册即送9%加息好礼..</button>
@@ -358,23 +358,7 @@ $(function(){
 		submitHandler: function(form) {
 			 form.submit();     
 			//验证通过后 的js代码写在这里
-			/* $.ajax({
-                url : "",
-                type : "post",
-                dataType : "json",
-                data: {
-                	register: $("#register").val(),
-                    phone_reg: $("#phone_reg").val(),
-                    password_reg: $("#password_reg").val(),
-                    yzm_reg: $("#yzm_reg").val(),
-                    yqm_reg: $("#yqm_reg").val()
-                },
-                success : function(result) {
-                	if(result[0].error){
-    		   		    $("#sign_val")[0].innerHTML = result[0].error;
-    	        	}
-                }
-            }); */
+			
 		}
 	})
 	
@@ -386,56 +370,6 @@ $(function(){
     var onum_yzm = $(".short2 input");
     var oSign_tjr = $(".yqm input");
     var oSign_val=$("#sign_val");
-    $(".hqyzm").click(function () {
-        var isright = true;
-        var str = "";
-        if (!oSign_ph.val()) {
-            str += "请输入手机号！";
-            isright = false;
-        }  else if (/^1(3|4|5|7|8)\d{9}$/.test(oSign_ph.val()) == false) {
-            str += "请输入正确的手机号！";
-            isright = false;
-        }else if (!onum_yzm.val()) {
-            str += "请输入图形验证码";
-            isright = false;
-        } else if (!oSign_yzm.val()) {
-            str += "请输入短信验证码";
-            isright = false;
-        } else if (!oSign_paw.val()) {
-            str += "请输入密码！";
-            isright = false;
-        } else if (/^\w*(?=\w*\d)(?=\w*[a-zA-Z])\w{8,20}$/.test(oSign_paw.val()) == false) {
-            str += "请输入8~20位字符密码，仅支持字母和数字！";
-            isright = false;
-        } 
-        
-/*         else{
- 	 $.ajax({
-	        type:"POST",
-	        dataType:"json",
-	        url:"/p2p/cn/com/hoonsoft/servlet/ServletAction?handleClassName=registVerification&phone_reg="+oSign_ph.val()+"&password_reg="+oSign_paw.val()+"&yzm_reg="+oSign_yzm.val()+"&yqm_reg="+oSign_tjr.val(),
-	        data:"{}",
-	        success: function(result){
-	   		if(result[0].error){
-	   		oSign_val[0].innerHTML = result[0].error;
-     		}else{
-     			$("[name='FormRegister']").submit();
-     		}
-	        },
-	        error:function(result){
-	            
-	        }
-	    });} */
- 
-
-        if (isright == true) {
-            oSign_val[0].innerHTML = "";
-            //alert("恭喜你，注册成功！");
-
-        } else {
-            oSign_val[0].innerHTML = str;
-        }
-    })
 
     $(".zcbtn").click(function () {
         var isright = true;

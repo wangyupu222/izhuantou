@@ -39,8 +39,11 @@ function huoquyzm(){
 		        	yzm:yzm
 		        }, 
 		        success: function(result){
-		        	console.info(result);
-		            sends.send();
+		        	if(result.status==2){
+		            	oSign_val[0].innerHTML =result.message;
+		            }else{
+			            sends.send();
+		            }
 		            $('.yzmsz').attr("src","/portal/user/checkcode?x="+Math.random());
 		        },
 		        error:function(result){
@@ -57,31 +60,6 @@ function huoquyzm(){
 				}
 
 			}
-
-/* function huoquyzm(){	
-	var phoneNum = document.getElementById('phone').value;	
-	if (phoneNum!=""){
-	var data = {
-	        //"handleClassName":"pageRegisterUCAFormRegisterUCAdjGetYzm","phone":phoneNum
-	    };
-	    $.ajax({
-	        type:"POST",
-	        dataType:"text",
-	        url:"/p2p/cn/com/hoonsoft/servlet/ServletSMSValidateCode?name=smsAddCard&mobile="+phoneNum,
-	        data:data,
-	        success: function(result){
-	            console.info(result);
-	            //alert(result);
-	        },
-	        error:function(){
-	            alert("异常!!!");
-	            
-	        }
-	    });
-	  	//倒计时
-		sends.send();
-	    }else{alert("请输入手机号");}
-} */
 //倒计时
 var sends = {
 		checked:1,

@@ -28,9 +28,9 @@ import com.izhuantou.damain.pay.PayCustomer;
 import com.izhuantou.damain.user.MemberMember;
 import com.izhuantou.damain.vo.PersonalDTO;
 import com.izhuantou.damain.vo.UserDTO;
-import com.izhuantou.service.api.user.UserCheckSendSmsService;
 import com.izhuantou.service.api.user.UserService;
 import com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService;
+import com.izhuantou.third.rpc.api.message.SendMessageService;
 
 @Controller
 @RequestMapping("user")
@@ -38,15 +38,13 @@ public class UserController {
 	public static final String VALIDATE_CODE = "validateCode";
 	public static final String SMS_VALIDATE_CODE = "smsValidateCode";
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
+	
 	@Autowired
 	private UserService userService;
-
-	@Autowired
-	private UserCheckSendSmsService userCheckSendSmsService;
 	@Autowired
 	private MemberMemberAgreementService memberAgreementService;
-
+	@Autowired
+	private SendMessageService  sendMessage;
 	/**
 	 * 登录页面
 	 * 
@@ -185,7 +183,9 @@ public class UserController {
 			// 将短信验证码放入session
 			request.getSession().setAttribute(SMS_VALIDATE_CODE, strValidateCode);
 			String msmType = us.getMsmType();
-			String result = userCheckSendSmsService.Send(name, msmType, strValidateCode);
+			Map<String, String> reMap=new HashMap<String, String>();
+			reMap.put(SMS_VALIDATE_CODE, strValidateCode);
+			String result =sendMessage.sendMessage(name, msmType, reMap); 
 			if (StringUtil.isNotEmpty(result) && result.equals("1")) {
 				return OpResult.getSuccessResult("发送成功");
 			} else {
@@ -224,7 +224,6 @@ public class UserController {
 			view.addFlashAttribute("msg", "账号或密码错误");
 			return "redirect:/portal/user/login";
 		} else {
-			Map<String, String> admin = new HashMap<String, String>();
 			PayCustomer custome = userService.findCustomerByMemberOID(member.getOID());
 			if (custome != null) {
 				session.setAttribute("isCreate", "true");
@@ -242,7 +241,6 @@ public class UserController {
 				response.addCookie(c);
 				c1.setMaxAge(60 * 60 * 24 * 7);
 				response.addCookie(c1);
-				// session.setAttribute("password",member.getPassword());
 			}
 			return "redirect:/portal/user/index";
 		}
@@ -417,8 +415,8 @@ public class UserController {
 			session.removeAttribute(SMS_VALIDATE_CODE);
 			// 邀请人
 			String yqr = "";
-			if (StringUtil.isNotEmpty(us.getYqm_reg())) {
-				Map<String, String> yqmReturn = userService.registUseryqm_reg(us.getYqm_reg());
+			if (StringUtil.isNotEmpty(us.getYqmReg())) {
+				Map<String, String> yqmReturn = userService.registUseryqmReg(us.getYqmReg());
 				if (yqmReturn != null) {
 					String message = yqmReturn.get("message");
 					String yqm_reg = yqmReturn.get("yqm_reg");
@@ -434,21 +432,16 @@ public class UserController {
 				}
 			}
 			// 放入邀请人
-			us.setYqm_reg(yqr);
+			us.setYqmReg(yqr);
 			// 用户注册
 			String rows = userService.registUser(us);
 			if (StringUtil.isNotEmpty(rows) && "1".equals(rows)) {
 
 				memberAgreementService.gainupdateMemberAgreement(us.getName(), "1");
-
+				sendMessage.spreadRegistWeb(us.getName());
+				
 				view.addFlashAttribute("msg", "注册成功");
-				// 发送加息券
-				String jxq = userService.SpreadRegistWeb(us);
-				if (StringUtil.isNotEmpty(jxq) && jxq.equals("1")) {
-					view.addFlashAttribute("msg", "加息券发送成功");
-					return "redirect:/portal/user/index";
-				}
-				return "redirect:/portal/user/index";// 没有个人中心页面
+				return "redirect:/portal/user/index";
 			} else {
 				view.addFlashAttribute("msg", rows);
 				return url;
@@ -486,8 +479,8 @@ public class UserController {
 			session.removeAttribute(SMS_VALIDATE_CODE);
 			// 邀请人
 			String yqr = "";
-			if (StringUtil.isNotEmpty(us.getYqm_reg())) {
-				Map<String, String> yqmReturn = userService.registUseryqm_reg(us.getYqm_reg());
+			if (StringUtil.isNotEmpty(us.getYqmReg())) {
+				Map<String, String> yqmReturn = userService.registUseryqmReg(us.getYqmReg());
 				if (yqmReturn != null) {
 					String message = yqmReturn.get("message");
 					String yqm_reg = yqmReturn.get("yqm_reg");
@@ -503,19 +496,14 @@ public class UserController {
 				}
 			}
 			
-			us.setYqm_reg(yqr);
+			us.setYqmReg(yqr);
 			String rows = userService.registUser(us);
 			if (StringUtil.isNotEmpty(rows) && "1".equals(rows)) {
 				memberAgreementService.gainupdateMemberAgreement(us.getName(), "1");
-
-				view.addFlashAttribute("msg", "注册成功");
 				// 发送加息券
-				String jxq = userService.tianyaRegist(us);
-				if (StringUtil.isNotEmpty(jxq) && jxq.equals("1")) {
-					view.addFlashAttribute("msg", "加息券发送成功");
-					return "redirect:/portal/personal/personalcenter";
-				}
-				return "redirect:/portal/personal/personalcenter";// 没有个人中心页面
+				sendMessage.tianyaRegist(us.getName());
+				view.addFlashAttribute("msg", "注册成功");
+				return "redirect:/portal/user/index";
 			} else {
 				view.addFlashAttribute("msg", rows);
 				return url;
