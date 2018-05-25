@@ -1,0 +1,138 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>砖头网后台管理</title>
+    <link rel="stylesheet" href="/start/layui/css/layui.css">
+    <link rel="stylesheet" href="/start/layui/css/login2.css">
+    <link rel="icon" href="/favicon.ico">
+<style>
+html,
+body {
+  overflow: hidden;
+    background: #f1f2f6;
+    background-image: url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg);
+    background-repeat: no-repeat;
+    background-position: center 110px;
+    background-size: 100%;
+}
+.logoImg{
+    margin-top: 35px;
+    margin-left: 40px;
+}
+.layadmin-user-login-main {
+    margin-top: 60px;
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
+}
+
+
+</style>
+
+</head>
+<body>
+<div class="logoImg">
+<img src="/start/layui/images/logo.png">
+</div>
+<div id="wrapper LAY-user-login" >
+    <div class="layadmin-user-login-main">
+        <div class="layadmin-user-login-box layadmin-user-login-header">
+            <h2>砖头网管理控制台</h2>
+        </div>
+        <form action="/manager/user/login">
+        <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
+                <input type="text" name="username" id="LAY-user-login-username" lay-verify="required" placeholder="用户名" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+                <input type="password" name="password" id="LAY-user-login-password" lay-verify="required" placeholder="密码" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-phone"></label>
+                <input type="text" name="password" id="LAY-user-login-phone" lay-verify="required" placeholder="手机号" class="layui-input">
+            </div>
+            <div class="layui-form-item"><div id="drag"></div><input type="hidden" name="yzmIsFlag" id="yzmIsFlag" required data-rule-yzm='true'></div>
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-xs7">
+                        <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"></label>
+                        <input type="text" name="vercode" id="LAY-user-login-vercode" lay-verify="required" placeholder="验证码" class="layui-input">
+                    </div>
+                    <div class="layui-col-xs5">
+                        <div style="margin-left: 10px;">
+                            <button type="button" class="layui-btn layui-btn-primary layui-btn-fluid" id="LAY-user-getsmscode">获取验证码</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn submitBtn layui-btn-fluid layui-btn-normal" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+<script src="/start/layui/layui.js"></script>
+<script src="/start/layui/layui.all.js"></script>
+<!--<script src="../src/index.js"></script>-->
+<script src="/start/layui/lay/jquery-1.4.2.min.js"></script>
+<script src="/start/layui/lay/drag.js"></script>
+<!--<script src="layui/lay/admin.js"></script>-->
+
+<script>
+    $('#drag').drag();
+    $(".submitBtn").click(function () {
+       // window.location.href='index.html';
+    });
+    layui.use(['admin', 'form', 'user'], function(){
+        var $ = layui.$
+            ,setter = layui.setter
+            ,admin = layui.admin
+            ,form = layui.form
+            ,router = layui.router()
+            ,search = router.search,layer = layui.layer;
+
+        form.render();
+
+        //提交
+        form.on('submit(LAY-user-login-submit)', function(obj){
+
+            //请求登入接口
+            admin.req({
+                url: '' //实际使用请改成服务端真实接口
+                ,data: obj.field
+                ,done: function(res){
+
+                    //请求成功后，写入 access_token
+                    layui.data(setter.tableName, {
+                        key: setter.request.tokenName
+                        ,value: res.data.access_token
+                    });
+
+                    //登入成功的提示与跳转
+                    layer.msg('登入成功', {
+                        offset: '15px'
+                        ,icon: 1
+                        ,time: 1000
+                    }, function(){
+                        location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
+                    });
+                }
+            });
+
+        });
+
+
+        //实际使用时记得删除该代码
+
+            layer.msg('为了方便演示，用户名密码可随意输入', {
+            offset: '15px'
+            ,icon: 1
+            });
+    });
+</script>
+
+</body>
+</html>
