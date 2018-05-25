@@ -1,0 +1,212 @@
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.layui-table-view .layui-table {
+    position: relative;
+    width: 95%;
+    margin: 0 auto;
+}
+.DistributeWrap{
+    background-color: #fff;
+    margin-top: 25px;
+}
+.switchWrap{
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+.switchWrap .switchInput{
+    width: 213px;
+    height: 32px;
+    padding-left: 12px;
+    border: 1px solid #eaeaea;
+    border-right:none;
+    border-radius: 5px;
+    float: left;
+    display: inline-block;
+    outline: none;
+}
+.switchBtn{
+    width: 70px;
+    height: 34px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 34px;
+    text-align: center;
+    border-radius: 3px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border: none;
+    background-color: #1E9FFF;
+    float: left;
+    display: inline-block;
+    margin-left: -2px;
+}
+.resetBtn{
+    width: 70px;
+    height: 34px;
+    font-size: 16px;
+    color: #666;
+    line-height: 34px;
+    text-align: center;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    float: left;
+    display: inline-block;
+    margin-left: 15px;
+}
+.switchWrap .selectSwitch .switchInput{
+    width: 213px;
+    height: 38px;
+    padding-left: 12px;
+    border: 1px solid #eaeaea;
+    border-right:none;
+    border-radius: 5px;
+    /*float: left;*/
+    display: inline-block;
+    border:none;
+    outline: none;
+}
+.switchBtn.selectMainBtn{
+    width: 70px;
+    height: 40px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 3px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border: none;
+    background-color: #1E9FFF;
+    float: left;
+    display: inline-block;
+    margin-left: -2px;
+}
+.resetBtn.selectMainBtn{
+    width: 70px;
+    height: 40px;
+    font-size: 16px;
+    color: #666;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    float: left;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.layui-table td, .layui-table th {
+
+
+}
+.layui-table-view .layui-table td, .layui-table-view .layui-table th {
+    padding: 15px 0px;
+    border:1px solid #eaeaea;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+.layui-tab {
+    margin: 0px 0px;
+    text-align: left!important;
+}
+.layui-tab-title{
+    background-color: #fff;
+    padding-left: 35px;
+}
+.layui-tab-brief>.layui-tab-title .layui-this {
+    color: #1890FF;
+}
+.layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after {
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid #1890FF;
+}
+.operaBtn{
+    color: #1890FF;
+    cursor: pointer;
+}
+.operaBtn+.operaBtn{
+    margin-left: 10px;
+}
+.operaBtn:hover{
+    color: #1890FF;
+}
+.recommendIcon{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: #f00;
+    left: 0px;
+    top: 4px;
+    color: #fff;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 3px;
+}
+
+/* 表头蓝块 */
+.tableAlert___qQVM4 {
+    margin-bottom: 16px;
+}
+.ant-alert-info {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(0,0,0,.65);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    padding: 8px 15px 8px 37px;
+    border-radius: 4px;
+    border: 1px solid #91d5ff;
+    background-color: #e6f7ff;
+}
+.ant-alert-info .ant-alert-icon {
+    color: #1890ff;
+}
+.ant-alert-icon {
+    top: 12.5px;
+    left: 16px;
+    position: absolute;
+}
+.anticon {
+    display: inline-block;
+    font-style: normal;
+    vertical-align: baseline;
+    text-align: center;
+    text-transform: none;
+    line-height: 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.anticon-info-circle:before {
+    content: "\E628";
+}
+.anticon:before {
+    display: block;
+    font-family: "anticon"!important;
+}
+.ant-alert {
+    font-family: "Monospaced Number","Chinese Quote",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(0,0,0,.65);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    padding: 8px 15px 8px 37px;
+    border-radius: 4px;
+}
