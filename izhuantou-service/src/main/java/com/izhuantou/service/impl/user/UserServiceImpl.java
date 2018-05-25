@@ -1,7 +1,6 @@
 package com.izhuantou.service.impl.user;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,18 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.izhuantou.common.tool.ToolClient;
-import com.izhuantou.common.utils.DateUtils;
 import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.common.utils.UtilsMD5;
 import com.izhuantou.damain.code.CodeContent;
-import com.izhuantou.damain.message.MessageContentBusiness;
-import com.izhuantou.damain.message.MessageSmsHistory;
 import com.izhuantou.damain.p2p.P2pCompanyPer;
 import com.izhuantou.damain.pay.PayCashPool;
 import com.izhuantou.damain.pay.PayCustomer;
-import com.izhuantou.damain.pay.PayPrivilege;
-import com.izhuantou.damain.pay.PayPrivilegeMemberMapping;
 import com.izhuantou.damain.user.MemberMember;
 import com.izhuantou.damain.vo.JoinSelectAllDTO;
 import com.izhuantou.damain.vo.PersonalDTO;
@@ -50,31 +43,19 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 	private MemberMemberMapper userDao;
 	@Autowired
 	private PayCashPoolMapper payCashPoolDao;
-
 	@Autowired
 	private PayDebitCreditMapper payDebitcreditDao;
-
 	@Autowired
 	private PayReturnPlanMapper payReturnPlanDao;
 	@Autowired
 	private PersonalCenterMapper personalCenterMapper;
-
 	@Autowired
 	private CodeContentMapper codeContentDao;
-
 	@Autowired
 	private PayCustomerMapper PayCustomerMapper;
 	@Autowired
 	private P2pCompanyPerMapper p2pCompanyPerDao;
-	@Autowired
-	private PayPrivilegeMapper privilegeMapper;
-	@Autowired
-	private PayPrivilegeMemberMappingMapper payPrivilegeMapper;
-	@Autowired
-	private MessageSmsHistoryMapper messageSmsHistoryMapper;
-	@Autowired
-	private MessageContentBusinessMapper messageContentBusinessMapper;
-
+	
 	/** 登录验证账户密码 */
 	@Override
 	public MemberMember findUserByName(UserDTO user) {
@@ -279,7 +260,8 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 					us.setMemberAccount("ZT" + user.getName());
 					us.setOID(OID);
 					us.setPassword(password);
-					us.setYewuOID(user.getYqm_reg());
+					us.setYewuOID(user.getYqmReg());
+					us.setAddUserOID(user.getChannel());
 					int rows = userDao.registUser(us);
 					return String.valueOf(rows);
 				} else {
@@ -297,7 +279,7 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 	 * 获取邀请ren的OID
 	 */
 	@Override
-	public Map<String, String> registUseryqm_reg(String yqm_reg) {
+	public Map<String, String> registUseryqmReg(String yqm_reg) {
 		Map<String, String> map = new HashMap<String, String>();
 		try {
 			if (StringUtil.isNotEmpty(yqm_reg) && yqm_reg.contains("手机")) {
@@ -337,178 +319,4 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 			return null;
 		}
 	}
-
-	/**
-	 * 赠送天涯加息券
-	 */
-	@Override
-	public String tianyaRegist(UserDTO user) {
-		try {
-			MemberMember member = userDao.findUserByName(user.getName());
-			Map<String, String> propMap = ReadPropertiesl.gainPropertiesMap("privilege.properties");
-			String isJX = propMap.get("isJX");
-			String days = propMap.get("days");
-			String tyDays = propMap.get("tyDays");
-			String[] zc = { "zc2", "zc3", "zc5", "zcty" };
-			if ("1".equals(isJX)) {
-				for (int i1 = 0; i1 <= zc.length - 1; i1++) {
-					String key = zc[i1];
-					String tqOID = propMap.get(key);
-					PayPrivilege privilege = privilegeMapper.findByOID(tqOID);
-					int i = privilege.getPrivilegeTerm();
-					int j = DateUtils.daysBetween(privilege.getBeginDateTime(), privilege.getEndDateTime());
-
-					String k = DateUtils.getDateFormatter();
-					String st = DateUtils.formatDate(member.getAddDateTime(), "");
-					int day = Integer.valueOf(days);
-					if ("zcty".equals(zc[i1])) {
-						day = Integer.valueOf(tyDays);
-					}
-					String et = DateUtils.gainPlusAndDateTime(st, day, 0);
-					DateUtils.getJustDate(et);
-					PayPrivilegeMemberMapping privi = new PayPrivilegeMemberMapping();
-
-					String oid = StringUtil.getUUID();
-					privi.setOID(oid);
-					privi.setPrivilegeOID(tqOID);
-					privi.setMemberOID(member.getOID());
-					privi.setIsUsed("0");
-					String addTime = DateUtils.formatDate(member.getAddDateTime(), "");
-					Timestamp addT = Timestamp.valueOf(addTime);
-					privi.setStartDate(addT);
-
-					String endTime = DateUtils.formatDate(member.getAddDateTime(), "");
-					Timestamp endT = Timestamp.valueOf(endTime);
-					privi.setEndDate(endT);
-					privi.setUseTerm(i);
-					payPrivilegeMapper.saveUserPrivelege(privi);
-				}
-				MessageContentBusiness messageBusiness = new MessageContentBusiness();
-				String mOID = StringUtil.getUUID();
-				messageBusiness.setOID(mOID);
-				messageBusiness.setTitle("您已获得新用户加息劵");
-				String content = "【砖头网】尊敬的用户：感谢您注册砖头网， 9%加息券（2%+3%+4%）及天涯3%专享券已发放到您的账户中，详情请在【我的特权】-【加息券】中进行查看！如有问题，请联系客服400-900-9677，感谢您的支持，祝您生活愉快。";
-				messageBusiness.setContent(content);
-				messageBusiness.setSendUser("系统");
-				messageBusiness.setReceiveUserOID(member.getOID());
-
-				int row = messageContentBusinessMapper.saveMessageBusiness(messageBusiness);
-				if (row == 1) {
-					Map<String, String> smsMap = ReadPropertiesl.gainPropertiesMap("SMS.properties");
-					String userName = smsMap.get("account");
-					String password = smsMap.get("password");
-
-					MessageSmsHistory smsHistory = new MessageSmsHistory();
-					String sOID = StringUtil.getUUID();
-					smsHistory.setOID(sOID);
-					smsHistory.setTitle("您已获得新用户加息劵");
-					String scontent = "【砖头网】尊敬的用户：感谢您注册砖头网， 9%加息券（2%+3%+4%）及天涯3%专享券已发放到您的账户中，详情请在【我的特权】-【加息券】中进行查看！如有问题，请联系客服400-900-9677，感谢您的支持，祝您生活愉快。退订回N";
-					smsHistory.setContent(scontent);
-					smsHistory.setSendUser("系统");
-					smsHistory.setReceiveUser("测试");
-					smsHistory.setReceiveUser(member.getName());
-					Map<String, String> result = ToolClient.sendSMS(member.getName(), userName, password, scontent,
-							null);
-					String state = result.get("Description");
-					smsHistory.setState(state);
-					messageSmsHistoryMapper.saveSMSMessageHistory(smsHistory);
-				}
-			}
-			member.setAddUserOID(user.getChannel());
-			int srow = userDao.updateMemberMember(member);
-			return String.valueOf(srow);
-		} catch (Exception e) {
-			logger.error("tianyaRegist(UserDTO user)", e.getMessage());
-			return null;
-		}
-
-	}
-
-	/**
-	 * 注册 魔积分
-	 */
-	@Override
-	public String SpreadRegistWeb(UserDTO user) {
-		try {
-			MemberMember member = userDao.findUserByName(user.getName());
-			Map<String, String> propMap = ReadPropertiesl.gainPropertiesMap("privilege.properties");
-			String isJX = propMap.get("isJX");
-			String days = propMap.get("days");
-			String tyDays = propMap.get("tyDays");
-			String[] zc = { "zc2", "zc3", "zc5" };
-			if ("1".equals(isJX)) {
-				for (int i1 = 0; i1 <= zc.length - 1; i1++) {
-					String key = zc[i1];
-					String tqOID = propMap.get(key);
-					PayPrivilege privilege = privilegeMapper.findByOID(tqOID);
-					int i = privilege.getPrivilegeTerm();
-					int j = DateUtils.daysBetween(privilege.getBeginDateTime(), privilege.getEndDateTime());
-
-					String k = DateUtils.getDateFormatter();
-					String st = DateUtils.formatDate(member.getAddDateTime(), "");
-					int day = Integer.valueOf(days);
-					if ("zcty".equals(zc[i1])) {
-						day = Integer.valueOf(tyDays);
-					}
-					String et = DateUtils.gainPlusAndDateTime(st, day, 0);
-					DateUtils.getJustDate(et);
-					PayPrivilegeMemberMapping privi = new PayPrivilegeMemberMapping();
-
-					String oid = StringUtil.getUUID();
-					privi.setOID(oid);
-					privi.setPrivilegeOID(tqOID);
-					privi.setMemberOID(member.getOID());
-					privi.setIsUsed("0");
-					String addTime = DateUtils.formatDate(member.getAddDateTime(), "");
-					Timestamp addT = Timestamp.valueOf(addTime);
-					privi.setStartDate(addT);
-
-					String endTime = DateUtils.formatDate(member.getAddDateTime(), "");
-					Timestamp endT = Timestamp.valueOf(endTime);
-					privi.setEndDate(endT);
-					privi.setUseTerm(i);
-					int rows = payPrivilegeMapper.saveUserPrivelege(privi);
-				}
-				MessageContentBusiness messageBusiness = new MessageContentBusiness();
-				String mOID = StringUtil.getUUID();
-				messageBusiness.setOID(mOID);
-				messageBusiness.setTitle("您已获得新用户加息劵");
-				String content = "【砖头网】尊敬的用户：感谢您成功注册砖头网， 9%的加息券（2%+3%+4%）已返到您的账户中，详情请在【我的特权】-【加息券】中进行查看！出借即可使用(App端需v2.0.0以上版本)，"
-						+ days + "天内有效。祝您生活愉快！";
-				messageBusiness.setContent(content);
-				messageBusiness.setSendUser("系统");
-				messageBusiness.setReceiveUserOID(member.getOID());
-
-				int row = messageContentBusinessMapper.saveMessageBusiness(messageBusiness);
-				if (row == 1) {
-					Map<String, String> smsMap = ReadPropertiesl.gainPropertiesMap("SMS.properties");
-					String userName = smsMap.get("account");
-					String password = smsMap.get("password");
-
-					MessageSmsHistory smsHistory = new MessageSmsHistory();
-					String sOID = StringUtil.getUUID();
-					smsHistory.setOID(sOID);
-					smsHistory.setTitle("您已获得新用户加息劵");
-					String scontent = "【砖头网】尊敬的用户：感谢您成功注册砖头网， 9%的加息券（2%+3%+4%）已返到您的账户中，详情请在【我的特权】-【加息券】中进行查看！出借即可使用(App端需v2.0.0以上版本)，"
-							+ days + "天内有效。如有问题，请联系客服400-900-9677，感谢您的支持，祝您生活愉快！";
-					smsHistory.setContent(scontent);
-					smsHistory.setSendUser("系统");
-					smsHistory.setReceiveUser("测试");
-					smsHistory.setReceiveUser(member.getName());
-					Map<String, String> result = ToolClient.sendSMS(member.getName(), userName, password, scontent,
-							null);
-					String state = result.get("Description");
-					smsHistory.setState(state);
-					int rowa = messageSmsHistoryMapper.saveSMSMessageHistory(smsHistory);
-				}
-			}
-			member.setAddUserOID(user.getChannel());
-			int srow = userDao.updateMemberMember(member);
-			return String.valueOf(srow);
-		} catch (Exception e) {
-			logger.error("tianyaRegist(UserDTO user)", e.getMessage());
-			return null;
-		}
-	}
-
 }

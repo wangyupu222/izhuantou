@@ -21,7 +21,6 @@ import com.fuiou.data.ResetPassWordReqData;
 import com.fuiou.data.UnFreezeRspData;
 import com.fuiou.data.Wy500012ReqData;
 import com.izhuantou.common.AuthorizationReqData;
-import com.izhuantou.common.tool.ToolClient;
 import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.common.utils.UtilsMD5;
 import com.izhuantou.damain.code.CodeBankInfo;
@@ -40,6 +39,7 @@ import com.izhuantou.damain.vo.CustomerDTO;
 import com.izhuantou.damain.vo.FuyuReturnDTO;
 import com.izhuantou.damain.vo.RechargeDTO;
 import com.izhuantou.damain.vo.WithdrawalDTO;
+import com.izhuantou.dao.PropPrivilegeMapper;
 import com.izhuantou.dao.code.CodeBankInfoMapper;
 import com.izhuantou.dao.loan.LoanDistribeTaskMapper;
 import com.izhuantou.dao.message.MessageContentBusinessMapper;
@@ -54,51 +54,42 @@ import com.izhuantou.dao.pay.PayWithdrawalRecordMapper;
 import com.izhuantou.dao.user.MemberMemberMapper;
 import com.izhuantou.third.rpc.api.ControlPayService;
 import com.izhuantou.third.rpc.api.PayFuiouService;
+import com.izhuantou.third.rpc.api.message.SendMessageService;
 
 @Service("controlPayService")
 public class ControlPayServiceImpl implements ControlPayService {
 	private static final Logger logger = LoggerFactory.getLogger(ControlPayServiceImpl.class);
 	private static final UtilsMD5 md5 = new UtilsMD5();
-	@Value("${txfl}")
-	private String txfl;
 	@Autowired
 	private PayCustomerOperationMapper payCustomerOperationMapper;
-
 	@Autowired
 	private PayCustomerMapper payCustomerMapper;
-
 	@Autowired
 	private PayChangeCardMapper payChangeCardMapper;
-
 	@Autowired
 	private MemberMemberMapper userDao;
-
 	@Autowired
 	private P2pHuiYuanUserMapper p2pHuiYuanUserDao;
-
 	@Autowired
 	private LoanDistribeTaskMapper loanDistribeTaskMapper;
-
 	@Autowired
 	private PayCustomerBusinessMapper customerBusinessMapper;
-
 	@Autowired
 	private MessageContentBusinessMapper messageContentBusinessMapper;
-
 	@Autowired
 	private MessageSmsHistoryMapper messageSmsHistoryMapper;
-
 	@Autowired
 	private PayWithdrawalRecordMapper payWithdrawalRecordMapper;
-
 	@Autowired
 	private CodeBankInfoMapper codeBankInfoMapper;
 	@Autowired
 	private PayCashPoolOperationMapper payCashPoolOperationMapper;
-
 	@Autowired
 	private PayFuiouService payFuiService;
-
+	@Autowired
+	private SendMessageService  sendMessage;
+	@Autowired
+	private  PropPrivilegeMapper  propPrivilegeMapper;
 	@Override
 	public Map<String, Object> changeCard(String memberOID) {
 		try {
@@ -474,7 +465,7 @@ public class ControlPayServiceImpl implements ControlPayService {
 				smsHistory.setSendUser("系统");
 				smsHistory.setReceiveUser("测试");
 				smsHistory.setReceiveUser(customer.getName());
-				Map<String, String> result = ToolClient.sendSMS(customer.getName(), userName, password, scontent, null);
+				Map<String, String> result =sendMessage.sendMessage(customer.getName(), scontent);
 				String state = result.get("Description");
 				smsHistory.setState(state);
 				messageSmsHistoryMapper.saveSMSMessageHistory(smsHistory);
@@ -501,12 +492,12 @@ public class ControlPayServiceImpl implements ControlPayService {
 				return resultMap;
 			}
 			 this.updateAccount(memberOID);
-
+			 
 			PayCustomer customer = payCustomerMapper.findByMemberOID(memberOID);
 			BigDecimal useMoney = customer.getUseMoney();
 			// 提现金额小于可用余额
 			if (money.compareTo(useMoney) <= 0) {
-
+				Map<String, String> proMap=propPrivilegeMapper.findPrivilege();
 				BigDecimal mfed = new BigDecimal("0");
 				// 判断用户是否有免费额度
 				if (null != customer.getFreeline()) {
@@ -519,7 +510,7 @@ public class ControlPayServiceImpl implements ControlPayService {
 				BigDecimal freeline = new BigDecimal("0");
 				// 提现手续费
 				BigDecimal sxf = new BigDecimal("0");
-
+				String txfl=proMap.get("txfl");
 				if (ce.compareTo(new BigDecimal("0")) > 0) {
 					sxf = sxf.add(ce.multiply(new BigDecimal(txfl))).setScale(2, BigDecimal.ROUND_HALF_EVEN);
 					if (sxf.compareTo(new BigDecimal("0")) == 0) {
@@ -578,6 +569,7 @@ public class ControlPayServiceImpl implements ControlPayService {
 			BigDecimal useMoney = customer.getUseMoney();
 			// 提现金额小于可用余额
 			if (money.compareTo(useMoney) <= 0) {
+				Map<String, String> proMap=propPrivilegeMapper.findPrivilege();
 				// 免费额度
 				BigDecimal mfed = new BigDecimal("0");
 				// 判断用户是否有免费额度
@@ -591,7 +583,7 @@ public class ControlPayServiceImpl implements ControlPayService {
 				BigDecimal freeline = new BigDecimal("0");
 				// 提现手续费
 				BigDecimal sxf = new BigDecimal("0");
-
+				String txfl=proMap.get("txfl");
 				if (ce.compareTo(new BigDecimal("0")) > 0) {
 					sxf = sxf.add(ce.multiply(new BigDecimal(txfl))).setScale(2, BigDecimal.ROUND_HALF_EVEN);
 					if (sxf.compareTo(new BigDecimal("0")) == 0) {

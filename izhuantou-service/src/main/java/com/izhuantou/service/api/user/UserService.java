@@ -78,21 +78,6 @@ public interface UserService extends BaseService<MemberMember> {
      * @param yqm_reg
      * @return
      */
-    public Map<String, String> registUseryqm_reg(String yqm_reg);
-
-    /**
-     * 赠送天涯加息券
-     * 
-     * @return
-     */
-    public String tianyaRegist(UserDTO user);
-
-    /**
-     * 注册 魔积分
-     * 
-     * @param user
-     * @return
-     */
-    public String SpreadRegistWeb(UserDTO user);
+    public Map<String, String> registUseryqmReg(String yqm_reg);
 
 }

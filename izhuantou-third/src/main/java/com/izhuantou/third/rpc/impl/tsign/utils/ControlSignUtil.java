@@ -5,7 +5,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.izhuantou.service.impl.user.ReadPropertiesl;
+import com.izhuantou.third.rpc.impl.ReadPropertiesl;
+
 
 public class ControlSignUtil {
 

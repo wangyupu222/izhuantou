@@ -15,7 +15,7 @@ public class ReadPropertiesl {
      * 
      * @throws IOException
      */
-    public Properties readSMS() throws IOException {
+   public Properties readSMS() throws IOException {
 	InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("SMS.properties");// 获取类加载路径，读取src下的文件
 	Properties properties = new Properties();
 	try {

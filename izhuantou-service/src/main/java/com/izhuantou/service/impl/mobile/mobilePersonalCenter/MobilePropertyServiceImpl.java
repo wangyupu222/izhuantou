@@ -3,7 +3,6 @@ package com.izhuantou.service.impl.mobile.mobilePersonalCenter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,17 +11,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fuiou.data.AppTransReqData;
-import com.fuiou.util.SecurityUtils;
 import com.izhuantou.common.utils.DateUtils;
-import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.mobile.personalCenter.MobilePropertyTJDTO;
 import com.izhuantou.damain.pay.PayCashPool;
 import com.izhuantou.damain.pay.PayCustomer;
 import com.izhuantou.damain.pay.PayCustomerOperation;
 import com.izhuantou.damain.pay.PayPrivilege;
-import com.izhuantou.damain.pay.PaySeller;
-import com.izhuantou.damain.pay.PayWithdrawalRecord;
 import com.izhuantou.damain.user.MemberMember;
 import com.izhuantou.damain.vo.CustomerTyjDTO;
 import com.izhuantou.damain.vo.JoinSelectAllDTO;
@@ -40,14 +34,11 @@ import com.izhuantou.dao.pay.PayCustomerTyjMapper;
 import com.izhuantou.dao.pay.PayPrivilegeMapper;
 import com.izhuantou.dao.pay.PayPrivilegeProductMappingMapper;
 import com.izhuantou.dao.pay.PayReturnPlanMapper;
-import com.izhuantou.dao.pay.PaySellerMapper;
-import com.izhuantou.dao.pay.PayWithdrawalRecordMapper;
 import com.izhuantou.dao.personalCenter.MylendMapper;
 import com.izhuantou.dao.user.MemberMemberMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
 import com.izhuantou.service.api.mobile.mobilePersonalCenter.MobilePropertyService;
 import com.izhuantou.service.api.user.UserService;
-import com.izhuantou.service.impl.user.ReadPropertiesl;
 
 @Service("mobilePropertyService")
 public class MobilePropertyServiceImpl implements MobilePropertyService {
@@ -86,16 +77,6 @@ public class MobilePropertyServiceImpl implements MobilePropertyService {
 
     @Autowired
     private PayCustomerMapper payCustomerMapper;
-
-    @Autowired
-    private PaySellerMapper paySellerMapper;
-
-    @Autowired
-    private PayCustomerMapper PayCustomerMapper;
-
-    @Autowired
-    private PayWithdrawalRecordMapper PayWithdrawalRecordMapper;
-
     /**
      * 根据memberOID查看个人资产详情
      */
@@ -124,7 +105,6 @@ public class MobilePropertyServiceImpl implements MobilePropertyService {
 	    List<MylendDaoDTO> hhtList = individualPropertyMapper.findAppHHhavingBymemberOID(memberOID);
 	    // 转转投持有
 	    List<MylendZZTDaoDTO> zztlist = individualPropertyMapper.findAppZZThavingBymemberOID(memberOID);
-
 	    // 查询完成的头笔赚
 	    List<MyLentTBZDaoDTO> tbzWCdto = mylendMapper.findTBZWCBymemberOID(memberOID);
 	    // 点点投完成
@@ -352,132 +332,4 @@ public class MobilePropertyServiceImpl implements MobilePropertyService {
 	    return null;
 	}
     }
-
-    /**
-     * app充值
-     */
-    @Override
-    public Map<String, Object> AppRecharge(String memberOID, BigDecimal money) {
-	try {
-
-	    Map<String, Object> resultmap = new HashMap<String, Object>();
-	    String sellerName = ReadPropertiesl.gainPropertiesValue("defaultSeller", "Pay.properties");
-	    PaySeller paySeller = paySellerMapper.gainSellerByName(sellerName);
-
-	    AppTransReqData data = new AppTransReqData();
-
-	    BigDecimal fen = new BigDecimal(100);
-	    BigDecimal fenMoney = money.multiply(fen);
-	    String ID = paySeller.getID();
-	    // 商户代码
-	    data.setMchnt_cd(ID);
-	    // 流水号
-	    String strRequestID = StringUtil.getUUID().substring(2);
-	    data.setMchnt_txn_ssn(strRequestID);
-	    // 用户的资金账户
-	    PayCustomer customer = PayCustomerMapper.findByMemberOID(memberOID);
-	    // 用户登录名
-	    data.setLogin_id(customer.getName());
-	    // 充值金额
-	    data.setAmt(String.valueOf(fenMoney.intValue()));
-	    Map<String, String> pMap = ReadPropertiesl.gainPropertiesMap("Pay.properties");
-	    data.setPage_notify_url(pMap.get("mobilerechargeCallbackURL"));
-	    data.setBack_notify_url(pMap.get("appRechargeForwardURL"));
-	    String fsjm = SecurityUtils.sign(data.createSignValue());
-	    resultmap.put("data", data);
-	    return resultmap;
-	} catch (Exception e) {
-	    logger.error("AppRecharge(String memberOID, BigDecimal money)", e.getMessage());
-	    return null;
-	}
-    }
-
-    @Override
-    public Map<String, Object> Appwithdrawal(String memberOID, BigDecimal money) {
-	try {
-	    Map<String, Object> resultMap = new HashMap<String, Object>();
-	    if (StringUtil.isEmpty(memberOID)) {
-		resultMap.put("message", "membeerOID不能为空");
-		return resultMap;
-	    }
-	    String txfl = ReadPropertiesl.gainPropertiesValue("txfl", "privilege.properties");
-	    PayCustomer customer = PayCustomerMapper.findByMemberOID(memberOID);
-	    BigDecimal useMoney = customer.getUseMoney();
-	    // 提现金额小于可用余额
-	    if (money.compareTo(useMoney) <= 0) {
-		// 免费额度
-		BigDecimal mfed = new BigDecimal("0");
-		// 判断用户是否有免费额度 terry
-		if (null != customer.getFreeline()) {
-		    mfed = mfed.add(customer.getFreeline());
-		}
-		// 提现金额
-		BigDecimal txje = money;
-		// 提现金额减去可用免费额度获取差额
-		BigDecimal ce = txje.subtract(mfed);
-		BigDecimal freeline = new BigDecimal("0");
-		// 提现手续费
-		BigDecimal sxf = new BigDecimal("0");
-
-		if (ce.compareTo(new BigDecimal("0")) > 0) {
-		    sxf = sxf.add(ce.multiply(new BigDecimal(txfl))).setScale(2, BigDecimal.ROUND_HALF_EVEN);
-		    if (sxf.compareTo(new BigDecimal("0")) == 0) {
-			sxf = new BigDecimal("0.01");
-		    }
-		}
-		// 替换用户可用额度
-		if (ce.compareTo(new BigDecimal("0")) <= 0) {
-		    freeline = ce.abs();
-		}
-		String strRequestID = StringUtil.getUUID().substring(2);
-		PayWithdrawalRecord withdrawalRecord = new PayWithdrawalRecord();
-		String oid = StringUtil.getUUID();
-		withdrawalRecord.setMemberOID(memberOID);
-		withdrawalRecord.setOID(oid);
-		withdrawalRecord.setSxf(sxf);
-		withdrawalRecord.setMfed(freeline);
-		withdrawalRecord.setMfedbefor(mfed);
-		withdrawalRecord.setMoney(money);
-		withdrawalRecord.setStatus("0");
-		withdrawalRecord.setRequestID(strRequestID);
-		int rows = PayWithdrawalRecordMapper.saveWithdrawalrecord(withdrawalRecord);
-		if (rows == 1) {
-		    Map<String, String> propMap = ReadPropertiesl.gainPropertiesMap("Pay.properties");
-		    String sellerName = propMap.get("defaultSeller");
-		    PaySeller paySeller = paySellerMapper.gainSellerByName(sellerName);
-
-		    BigDecimal fen = new BigDecimal(100);
-		    BigDecimal fenMoney = money.multiply(fen);
-		    AppTransReqData data = new AppTransReqData();
-		    // 商户代码
-		    data.setMchnt_cd(paySeller.getID());
-		    // 流水号
-		    data.setMchnt_txn_ssn(strRequestID);
-		    // 用户登录名
-		    data.setLogin_id(customer.getName());
-		    // 提现金额
-		    data.setAmt(String.valueOf(fenMoney.intValue()));
-
-		    // 商户返回地址
-		    data.setPage_notify_url(propMap.get("mobilewithdrawalsCallbackURL"));
-		    // 商户后台通知地址
-		    data.setBack_notify_url(propMap.get("appWithdrawalsForwardURL"));
-		    String fsjm = SecurityUtils.sign(data.createSignValue());
-		    resultMap.put("message", "1");
-		    resultMap.put("data", data);
-		} else {
-		    resultMap.put("message", "提现失败");
-		}
-		return resultMap;
-	    } else {
-		resultMap.put("message", "可用余额不足");
-		return resultMap;
-	    }
-	} catch (Exception e) {
-	    logger.error("withdrawal(WithdrawalDTO withdrawal) ", e.getMessage());
-	    return null;
-	}
-
-    }
-
 }

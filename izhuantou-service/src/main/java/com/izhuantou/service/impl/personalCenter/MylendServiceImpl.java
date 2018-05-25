@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -352,6 +351,8 @@ public class MylendServiceImpl implements MylendService {
 							resultDTO.setXmmc(tbzDto.getBiddingName());
 							// 绑定oid
 							resultDTO.setOID(tbzDto.getBiOID());
+							resultDTO.setDqsj(tbzDto.getDqsj());
+							resultDTO.setXghkr(tbzDto.getXghkr());
 						} else {
 							// 满标时，要获取计息时间，根据新手投产品计算对应的预期收益以及下个回款日
 							WebP2pNoviceBiddingRuning novice = WEBP2PNoviceBiddingRuningMapper
@@ -385,12 +386,29 @@ public class MylendServiceImpl implements MylendService {
 							// 绑定oid
 							resultDTO.setOID(tbzDto.getBiOID());
 							resultDTO.setJxsj(jxsj);
+							resultDTO.setDqsj(tbzDto.getDqsj());
+							resultDTO.setXghkr(tbzDto.getXghkr());
 						}
 						resultDTO.setIfzz(0);
 
 					} else {
 						// 新手标为债转标时，借贷关系中的addDateTime为计息时间
 						String jxsj = tbzDto.getCjsjDate();
+						resultDTO.setJxsj(jxsj);
+						resultDTO.setDOID(tbzDto.getdOID());
+						resultDTO.setProductStatus(tbzDto.getHkzt());
+						resultDTO.setNhll(tbzDto.getNhll());
+						resultDTO.setCond(tbzDto.getCond());
+						resultDTO.setFullscale(tbzDto.isFullscale());
+						// 还款状态
+						resultDTO.setHkzt(tbzDto.getHkzt());
+						resultDTO.setXmmc(tbzDto.getBiddingName());
+						resultDTO.setCjje(tbzDto.getCjje());
+						resultDTO.setYsbx(tbzDto.getYsbx());
+						resultDTO.setOID(tbzDto.getBiOID());
+						resultDTO.setCjsjTime(tbzDto.getCjsjDate());
+						resultDTO.setDqsj(tbzDto.getDqsj());
+						resultDTO.setXghkr(tbzDto.getXghkr());
 						// 根据memberOID在transferReturn中查询相应的出借时间
 						PayTransferReturn transferReturn = payTransferReturnMapper.gainByOutMemberOID(memberOID);
 						if (transferReturn != null) {
@@ -407,7 +425,7 @@ public class MylendServiceImpl implements MylendService {
 
 							// 替换显示时间
 							resultDTO.setCjsjTime(cjsjDate);
-							resultDTO.setJxsj(jxsj);
+							
 							// 替换出借金额
 							resultDTO.setCjje(cjje);
 							// 装填预期收益
@@ -415,14 +433,7 @@ public class MylendServiceImpl implements MylendService {
 							resultDTO.setIfzz(1);
 							resultDTO.setOID(transferReturn.getOID());
 						}
-						resultDTO.setDOID(tbzDto.getdOID());
-						resultDTO.setProductStatus(tbzDto.getHkzt());
-						resultDTO.setNhll(tbzDto.getNhll());
-						resultDTO.setCond(tbzDto.getCond());
-						resultDTO.setFullscale(tbzDto.isFullscale());
-						// 还款状态
-						resultDTO.setHkzt(tbzDto.getHkzt());
-						resultDTO.setXmmc(tbzDto.getBiddingName());
+						
 					}
 					if ("1".equals(tbzDto.getHkzt())) {
 						resultDTO.setHkzt("wmb");

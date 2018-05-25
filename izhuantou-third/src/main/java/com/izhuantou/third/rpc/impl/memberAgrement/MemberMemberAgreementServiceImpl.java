@@ -32,7 +32,6 @@ import com.izhuantou.damain.vo.MemberAgrennmentDTO;
 import com.izhuantou.damain.webp2p.WebP2pBiddingExamine;
 import com.izhuantou.damain.webp2p.WebP2pLoanProductRateInfo;
 import com.izhuantou.damain.webp2p.WebP2pNoviceBiddingRuning;
-import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainContentRuning;
 import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning;
 import com.izhuantou.damain.webp2p.WebP2pProductRateInfo;
 import com.izhuantou.dao.code.CodeContentMapper;
