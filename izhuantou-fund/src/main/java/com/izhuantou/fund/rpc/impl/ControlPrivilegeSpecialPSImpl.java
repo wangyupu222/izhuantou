@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.pay.PayPrivilegeSpecialps;
 import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning;
 import com.izhuantou.damain.webp2p.WebP2pProductRateInfo;
+import com.izhuantou.dao.PropPrivilegeMapper;
 import com.izhuantou.dao.pay.PayPrivilegeSpecialpsMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pProductRateInfoMapper;
@@ -27,6 +30,9 @@ public class ControlPrivilegeSpecialPSImpl extends BaseServiceImpl<PayPrivilegeS
 	private WebP2pProductRateInfoMapper productRateInfoMapper;
 	@Autowired
 	private PayPrivilegeSpecialpsMapper payPrivilegeSpecialpsMapper;
+	@Autowired
+	private PropPrivilegeMapper propPrivilegeMapper;
+	private static final Logger logger = LoggerFactory.getLogger(ControlCashPoolImpl.class);
 	@Override
 	public void savePrivilegePs(String memberOID, BigDecimal amount, String biddingOID) {
 		try {
@@ -51,7 +57,7 @@ public class ControlPrivilegeSpecialPSImpl extends BaseServiceImpl<PayPrivilegeS
 			 * 根据金额判断tqOID
 			 */
 			String tqOID = "";
-			Map<String, String>remap=ReadPropertiesl.gainPropertiesMap("privilege.properties");
+			Map<String, String>remap=propPrivilegeMapper.findPrivilege();
 			amount.compareTo(BigDecimal.valueOf(50000));
 			if (amount.compareTo(BigDecimal.valueOf(50000)) == -1) {
 				// 如果小于5万
@@ -79,7 +85,7 @@ public class ControlPrivilegeSpecialPSImpl extends BaseServiceImpl<PayPrivilegeS
 			special.setIsUsed("0");
 			payPrivilegeSpecialpsMapper.savePrivilegeSpecialPS(special);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			logger.error("savePrivilegePs(String memberOID, BigDecimal amount, String biddingOID)"+e.getMessage());
 		}
 	}
 }

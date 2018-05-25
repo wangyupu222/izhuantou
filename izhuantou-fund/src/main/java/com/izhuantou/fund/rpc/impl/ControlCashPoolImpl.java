@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.izhuantou.common.tool.ToolClient;
 import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.message.MessageContentBusiness;
 import com.izhuantou.damain.message.MessageSmsHistory;
@@ -31,10 +30,11 @@ import com.izhuantou.dao.webp2p.WebP2pProductRateInfoMapper;
 import com.izhuantou.fund.rpc.api.ControlCashPool;
 import com.izhuantou.fund.rpc.api.ControlCustomerBusiness;
 import com.izhuantou.third.rpc.api.ControlPayService;
+import com.izhuantou.third.rpc.api.message.SendMessageService;
 
 @Service("controlCashPool")
 public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements ControlCashPool {
-
+	private static final Logger logger = LoggerFactory.getLogger(ControlCashPoolImpl.class);
 	@Autowired
 	private ControlPayService controlPay;
 	@Autowired
@@ -55,7 +55,8 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 	private MemberMemberMapper memberMapper;
 	@Autowired
 	private MessageSmsHistoryMapper messageSmsHistoryMapper;
-	private static final Logger logger = LoggerFactory.getLogger(ControlCashPoolImpl.class);
+	@Autowired
+	private SendMessageService sendMessageService;
 
 	@Override
 	public void onceProceduresMoney(String businessOID, String memberOID, BigDecimal money) {
@@ -204,10 +205,6 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 				messageContentBusinessMapper.saveMessageBusiness(messageBusiness);
 
 				MemberMember member = memberMapper.findUserByOID(bidto.getOutMemberOID());
-				Map<String, String> smsMap = ReadPropertiesl.gainPropertiesMap("SMS.properties");
-				String userName = smsMap.get("account");
-				String password = smsMap.get("password");
-
 				MessageSmsHistory smsHistory = new MessageSmsHistory();
 				String sOID = StringUtil.getUUID();
 				smsHistory.setOID(sOID);
@@ -216,7 +213,7 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 				smsHistory.setContent(scontent);
 				smsHistory.setSendUser("系统");
 				smsHistory.setReceiveUser(member.getName());
-				Map<String, String> result = ToolClient.sendSMS(member.getName(), userName, password, scontent, null);
+				Map<String, String> result = sendMessageService.sendMessage(member.getName(), scontent);
 				String state = result.get("Description");
 				smsHistory.setState(state);
 				messageSmsHistoryMapper.saveSMSMessageHistory(smsHistory);
@@ -274,10 +271,6 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 				messageContentBusinessMapper.saveMessageBusiness(messageBusiness);
 
 				MemberMember member = memberMapper.findUserByOID(outMemberOID);
-				Map<String, String> smsMap = ReadPropertiesl.gainPropertiesMap("SMS.properties");
-				String userName = smsMap.get("account");
-				String password = smsMap.get("password");
-
 				MessageSmsHistory smsHistory = new MessageSmsHistory();
 				String sOID = StringUtil.getUUID();
 				smsHistory.setOID(sOID);
@@ -286,7 +279,7 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 				smsHistory.setContent(scontent);
 				smsHistory.setSendUser("系统");
 				smsHistory.setReceiveUser(member.getName());
-				Map<String, String> result = ToolClient.sendSMS(member.getName(), userName, password, scontent, null);
+				Map<String, String> result = sendMessageService.sendMessage(member.getName(), scontent);
 				String state = result.get("Description");
 				smsHistory.setState(state);
 				messageSmsHistoryMapper.saveSMSMessageHistory(smsHistory);
@@ -327,10 +320,6 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 				messageContentBusinessMapper.saveMessageBusiness(messageBusiness);
 
 				MemberMember member = memberMapper.findUserByOID(outMemberOID);
-				Map<String, String> smsMap = ReadPropertiesl.gainPropertiesMap("SMS.properties");
-				String userName = smsMap.get("account");
-				String password = smsMap.get("password");
-
 				MessageSmsHistory smsHistory = new MessageSmsHistory();
 				String sOID = StringUtil.getUUID();
 				smsHistory.setOID(sOID);
@@ -339,7 +328,7 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 				smsHistory.setContent(scontent);
 				smsHistory.setSendUser("系统");
 				smsHistory.setReceiveUser(member.getName());
-				Map<String, String> result = ToolClient.sendSMS(member.getName(), userName, password, scontent, null);
+				Map<String, String> result = sendMessageService.sendMessage(member.getName(), scontent);
 				String state = result.get("Description");
 				smsHistory.setState(state);
 				messageSmsHistoryMapper.saveSMSMessageHistory(smsHistory);
@@ -393,10 +382,6 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 			messageContentBusinessMapper.saveMessageBusiness(messageBusiness);
 
 			MemberMember member = memberMapper.findUserByOID(outMemberOID);
-			Map<String, String> smsMap = ReadPropertiesl.gainPropertiesMap("SMS.properties");
-			String userName = smsMap.get("account");
-			String password = smsMap.get("password");
-
 			MessageSmsHistory smsHistory = new MessageSmsHistory();
 			String sOID = StringUtil.getUUID();
 			smsHistory.setOID(sOID);
@@ -405,7 +390,7 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 			smsHistory.setContent(scontent);
 			smsHistory.setSendUser("系统");
 			smsHistory.setReceiveUser(member.getName());
-			Map<String, String> result = ToolClient.sendSMS(member.getName(), userName, password, scontent, null);
+			Map<String, String> result = sendMessageService.sendMessage(member.getName(), scontent);
 			String state = result.get("Description");
 			smsHistory.setState(state);
 			messageSmsHistoryMapper.saveSMSMessageHistory(smsHistory);

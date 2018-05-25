@@ -17,5 +17,8 @@
 	<dubbo:reference check="false" interface="com.izhuantou.fund.rpc.api.ProcessPageFinish" id="processPageFinish" timeout="${dubbo.timeout}" />  
 	<!-- 协议接口 -->
 	<dubbo:reference  check="false"  interface="com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService" id="memberMemberAgreementService" timeout="${dubbo.timeout}" />
+	<!-- 短信接口 -->
+	<dubbo:reference  check="false"  interface="com.izhuantou.third.rpc.api.message.SendMessageService" id="sendMessageService" timeout="${dubbo.timeout}" />
+	
 	
 </beans>

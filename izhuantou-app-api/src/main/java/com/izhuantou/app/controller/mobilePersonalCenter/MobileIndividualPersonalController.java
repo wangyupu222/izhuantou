@@ -25,6 +25,7 @@ import com.izhuantou.damain.mobile.personalCenter.MobilePropertyTJDTO;
 import com.izhuantou.damain.vo.FuyuReturnDTO;
 import com.izhuantou.service.api.mobile.mobilePersonalCenter.MobilePropertyService;
 import com.izhuantou.service.api.personalCenter.MyCashService;
+import com.izhuantou.third.rpc.api.ControlPayService;
 
 @Controller
 @RequestMapping(value = "app/individual", produces = "application/json;charset=UTF-8")
@@ -36,7 +37,9 @@ public class MobileIndividualPersonalController {
     private MobilePropertyService mobilePropertyService;
     @Autowired
     private MyCashService myCashService;
-
+    @Autowired
+    private ControlPayService controlPayService;
+    
     /**
      * 富友回调的统一页面
      * 
@@ -172,10 +175,9 @@ public class MobileIndividualPersonalController {
 	    HttpSession session = requset.getSession();
 	    session.setAttribute("channelRecharge", channel);
 	    if (StringUtil.isNotEmpty(memberOID) && StringUtil.isNotEmpty(money)) {
-		Map<String, Object> resulltmap = mobilePropertyService.AppRecharge(memberOID, new BigDecimal(money));
-		if (resulltmap != null) {
-		    AppTransReqData data = (AppTransReqData) resulltmap.get("data");
-		    FuiouService.app500002(data, response);
+		AppTransReqData resultDate = controlPayService.appRecharge(memberOID, new BigDecimal(money));
+		if (resultDate != null) {
+		    FuiouService.app500002(resultDate, response);
 		    return null;
 		}
 		return OpResult.getFailedResult("接口调用失败");
@@ -205,13 +207,9 @@ public class MobileIndividualPersonalController {
 	map.put("mchnt_txn_ssn", fureturn.getMchnt_txn_ssn());
 	map.put("rem", fureturn.getRem());
 	map.put("ly", ly);
-	String phone = fureturn.getLogin_id();
-	String rows = myCashService.rechargeFinish(map);
+	String rows =controlPayService.rechargeFinish(map);
 	if ("1".equals(rows)) {
-	    String rowss = myCashService.updateCustomerMoney(phone);
-	    if ("1".equals(rowss)) {
 		return "success";
-	    }
 	}
 	return "fail";
     }
@@ -240,7 +238,7 @@ public class MobileIndividualPersonalController {
 	    session.setAttribute("channelWithdrawal", channel);
 
 	    if (StringUtil.isNotEmpty(memberOID) && StringUtil.isNotEmpty(money)) {
-		Map<String, Object> resultmap = mobilePropertyService.Appwithdrawal(memberOID, new BigDecimal(money));
+		Map<String, Object> resultmap =controlPayService.appWithdrawals(memberOID, new BigDecimal(money));
 		String message = null;
 		if (resultmap != null) {
 		    message = (String) resultmap.get("message");
@@ -278,20 +276,10 @@ public class MobileIndividualPersonalController {
 	map.put("mchnt_txn_ssn", fureturn.getMchnt_txn_ssn());
 	map.put("rem", fureturn.getRem());
 	map.put("ly", ly);
-	String phone = fureturn.getLogin_id();
-	String rows = myCashService.withdrawalsFinish(map);
-	String str = "";
+	String rows = controlPayService.withdrawalsFinish(map);
 	if ("1".equals(rows)) {
-	    String rowss = myCashService.updateCustomerMoney(phone);
-	    if ("1".equals(rowss)) {
-		String row = myCashService.withdrawalsSxfFinish(map);
-		if ("1".equals(row)) {
-		    String ro = myCashService.updateCustomerMoney(phone);
-		    if ("1".equals(ro)) {
-			return "success";
-		    }
-		}
-	    }
+		controlPayService.withdrawalsSxfFinish(map);
+		return "success";
 	}
 	return "fail";
     }

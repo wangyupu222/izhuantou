@@ -15,9 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
-import com.izhuantou.common.tool.ToolClient;
 import com.izhuantou.common.tool.ToolDateTime;
-import com.izhuantou.common.tool.ToolString;
 import com.izhuantou.common.tool.ToolsDatas;
 import com.izhuantou.common.utils.DateUtils;
 import com.izhuantou.common.utils.StringUtil;
@@ -59,6 +57,7 @@ import com.izhuantou.fund.rpc.api.ControlCashPool;
 import com.izhuantou.fund.rpc.api.ControlCustomerBusiness;
 import com.izhuantou.fund.rpc.api.ControlDebitCredit;
 import com.izhuantou.third.rpc.api.ControlPayService;
+import com.izhuantou.third.rpc.api.message.SendMessageService;
 
 /**
  *
@@ -105,6 +104,8 @@ public class ControlDebitCreditImpl extends BaseServiceImpl<PayDebitCredit> impl
 	private MessageContentBusinessMapper messageContentBusinessMapper;
 	@Autowired
 	private MessageSmsHistoryMapper messageSmsHistoryMapper;
+	@Autowired
+	private  SendMessageService sendMessageService;
 	@Override
 	public PayDebitCredit addDebitCreditNew(BiddingDTO biddto) {
 		try {
@@ -1164,6 +1165,8 @@ public class ControlDebitCreditImpl extends BaseServiceImpl<PayDebitCredit> impl
 					// 新手结算
 					// ********************************************************************************************************
 					if ("CW".equals(biddto.getIsTZorCW()) && "XS".equals(biddto.getTzType())) {
+						String inmemberOID=dtoTransferReturn.getInMemberOID();
+						String mobile=customerMapper.findByMemberOID(inmemberOID).getName();
 						ProductInfoDTO dtoProductInfo = this.gainProductInfo(biddto.getBiddingOID());
 						// 解冻贴息
 						BigDecimal tll = dtoProductInfo.getCreditRate().divide(new BigDecimal("365"), 8,
@@ -1185,10 +1188,6 @@ public class ControlDebitCreditImpl extends BaseServiceImpl<PayDebitCredit> impl
 						messageBusiness.setReceiveUserOID(dtoTransferReturn.getInMemberOID());
 						messageContentBusinessMapper.saveMessageBusiness(messageBusiness);
 
-						Map<String, String> smsMap = ReadPropertiesl.gainPropertiesMap("SMS.properties");
-						String userName = smsMap.get("account");
-						String password = smsMap.get("password");
-
 						MessageSmsHistory smsHistory = new MessageSmsHistory();
 						String sOID = StringUtil.getUUID();
 						smsHistory.setOID(sOID);
@@ -1197,9 +1196,9 @@ public class ControlDebitCreditImpl extends BaseServiceImpl<PayDebitCredit> impl
 						smsHistory.setContent(scontent);
 						smsHistory.setSendUser("系统");
 						smsHistory.setReceiveUser("测试");
-						smsHistory.setReceiveUser(dtoTransferReturn.getInMemberOID());
-						Map<String, String> result = ToolClient.sendSMS(dtoTransferReturn.getInMemberOID(), userName,
-								password, scontent, null);
+						smsHistory.setReceiveUser(mobile);
+						
+						Map<String, String> result =sendMessageService.sendMessage(mobile, scontent);
 						String state = result.get("Description");
 						smsHistory.setState(state);
 						messageSmsHistoryMapper.saveSMSMessageHistory(smsHistory);
@@ -1241,49 +1240,6 @@ public class ControlDebitCreditImpl extends BaseServiceImpl<PayDebitCredit> impl
 		} catch (Exception e) {
 			logger.error("finishTransferReturnNEW(BiddingDTO biddto)" + e.getMessage());
 		}
-	}
-
-	/**
-	 * 通过OID判断是新增还是修改
-	 * 
-	 * @param debitcreditNEW
-	 * @return
-	 */
-	private PayDebitCredit insertDebitcreditNEW(PayDebitCredit debitcreditNEW) {
-		try {
-			PayDebitCredit objEntity = null;
-			// 判断是否新增还是修改,通过OID
-			String strOID = debitcreditNEW.getOID();
-			if (StringUtils.isBlank(strOID)) // 表示新增
-			{
-				String typeOID = ToolString.gainUUID(this);
-				debitcreditNEW.setOID(typeOID);
-				// version
-				// refresh
-				// debitcreditNEW.setUpdated(t);
-				if (debitcreditNEW.getAddDateTimeStr() == null) {
-					debitcreditNEW.setAddDateTimeStr(DateUtils.getDateFormatter());
-				}
-				// valid
-				// 保存实体
-				this.save(debitcreditNEW);
-				objEntity = debitcreditNEW;
-				return objEntity;
-
-			} else {
-				objEntity = this.queryByid(strOID);
-				if (objEntity == null) {
-					System.out.println("该实体不存在,OID=" + strOID);
-				}
-				// TODO 修改实体类
-				this.updateById(objEntity);
-			}
-			return objEntity;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return null;
-		}
-
 	}
 
 	/**
@@ -1491,8 +1447,6 @@ public class ControlDebitCreditImpl extends BaseServiceImpl<PayDebitCredit> impl
 				dtoDebitCredit.setState("investment");
 				dtoDebitCredit.setReturnSurplusNumber(dtoDebitInfo.getRepayNumber());
 				dtoDebitCredit.setLaiyuan(dtoCashPool.getLaiyuan());
-				Date sqlDate = new Date();
-
 				dtoDebitCredit.setStartDateTime(new Date());
 				String edt = ToolsDatas.gainPlusAndReduceDay(
 						DateUtils.formatJustDate(dtoDebitCredit.getStartDateTime().getTime()),

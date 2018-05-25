@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class OpResult<E> implements Serializable {
     private static final long serialVersionUID = 1L;
     public static final int OP_SUCCESS = 1;
-    public static final int OP_FAILED = 1;
+    public static final int OP_FAILED = 2;
     private int status; // 1 成功 2 失败
     private String errorCode; // 错误业务码
     private String message; // 提示信息
@@ -24,7 +24,8 @@ public class OpResult<E> implements Serializable {
     }
 
     public OpResult(int status, String message) {
-
+    	this.status=status;
+    	this.message=message;
     }
 
     public OpResult(int status, String message, E dataValue) {

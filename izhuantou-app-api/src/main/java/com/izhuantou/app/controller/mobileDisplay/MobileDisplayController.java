@@ -88,12 +88,13 @@ public class MobileDisplayController {
     @ResponseBody
     public OpResult FindResulthh(Integer page) {
 	try {
-	    if (page == null) {
+	    if (page == null) { // TODO 手机端显示什么？是所有的可投还是单个的可投
 		page = 1;
 	    }
 	    String str = null;
 	    String sortp = "";
-	    Pagination<DisplayHHT> list = this.displayHHTService.showProductsByPage(page, sortp);
+	    String status="";
+	    Pagination<DisplayHHT> list = this.displayHHTService.showProductsByPage(page,status,sortp);
 	    List<DisplayHHT> hhtlist = list.getData();
 	    List<DisplayModel> hhtResult = new ArrayList<DisplayModel>();
 	    for (DisplayHHT displayHHT : hhtlist) {

@@ -17,8 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据用户输入的账号和密码进行注册 -->
 	<insert id="registUser" parameterType="com.izhuantou.damain.user.MemberMember">
 		insert into member_member
-		(OID,name,memberAccount,password,valid,addDateTime,updDateTime,refresh,version,yewuOID)
-		value(#{OID},#{name},#{memberAccount},#{password},1,NOW(),NOW(),1,0,#{yewuOID})
+		(OID,name,memberAccount,password,valid,addDateTime,updDateTime,refresh,version,yewuOID,addUserOID)
+		value(#{OID},#{name},#{memberAccount},#{password},1,NOW(),NOW(),1,0,#{yewuOID},#{addUserOID})
 	</insert>
 	<!-- 根据用户输入的账号进行密码修改 -->
 	<update id="updatePassword" parameterType="com.izhuantou.damain.user.MemberMember">

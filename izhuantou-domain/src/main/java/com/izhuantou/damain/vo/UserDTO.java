@@ -44,7 +44,7 @@ public class UserDTO implements Serializable {
     /**
      * 推荐人
      */
-    private String yqm_reg;
+    private String yqmReg;
 
     /**
      * 是否记住密码
@@ -104,14 +104,7 @@ public class UserDTO implements Serializable {
 	this.typeVal = typeVal;
     }
 
-    public String getYqm_reg() {
-	return yqm_reg;
-    }
-
-    public void setYqm_reg(String yqm_reg) {
-	this.yqm_reg = yqm_reg;
-    }
-
+  
     public String getChannel() {
 	return Channel;
     }
@@ -224,13 +217,21 @@ public class UserDTO implements Serializable {
 	this.yzm = yzm;
     }
 
-    @Override
-    public String toString() {
-	return "UserDTO [OID=" + OID + ", name=" + name + ", password=" + password + ", password2=" + password2
-		+ ", yzm=" + yzm + ", msm=" + msm + ", msmType=" + msmType + ", yqm_reg=" + yqm_reg + ", isRememberMe="
-		+ isRememberMe + ", state=" + state + ", answerOne=" + answerOne + ", answerTwo=" + answerTwo
-		+ ", questionOne=" + questionOne + ", questionTwo=" + questionTwo + ", Channel=" + Channel
-		+ ", typeVal=" + typeVal + ", register=" + register + "]";
-    }
+	public String getYqmReg() {
+		return yqmReg;
+	}
+
+	public void setYqmReg(String yqmReg) {
+		this.yqmReg = yqmReg;
+	}
+
+	@Override
+	public String toString() {
+		return "UserDTO [OID=" + OID + ", name=" + name + ", password=" + password + ", password2=" + password2
+				+ ", yzm=" + yzm + ", msm=" + msm + ", msmType=" + msmType + ", yqmReg=" + yqmReg + ", isRememberMe="
+				+ isRememberMe + ", state=" + state + ", answerOne=" + answerOne + ", answerTwo=" + answerTwo
+				+ ", questionOne=" + questionOne + ", questionTwo=" + questionTwo + ", Channel=" + Channel
+				+ ", typeVal=" + typeVal + ", register=" + register + "]";
+	}
 
 }
