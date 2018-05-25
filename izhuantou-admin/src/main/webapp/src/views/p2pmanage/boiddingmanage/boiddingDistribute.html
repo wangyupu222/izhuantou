@@ -1,0 +1,72 @@
+<script type="text/html" template>
+  <link href="{{ layui.setter.base }}/style/tableCode.css?v={{ layui.admin.v }}-1" rel="stylesheet">
+</script>
+<style>
+    .layui-table-body {
+      overflow: hidden;
+    }
+
+  </style>
+<div class="layui-card layadmin-header">
+  <div class="layui-breadcrumb" lay-filter="breadcrumb">
+    <a lay-href="">工作台</a>
+    <a><cite>网贷系统</cite></a>
+    <a><cite>标的管理</cite></a>
+    <a><cite>标的分发</cite></a>
+  </div>
+</div>
+
+  <div class="layui-fluid" id="LAY-component-grid-all">
+    <div class="layui-row layui-col-space10">
+      <div class="DistributeWrap">
+        <div class="switchWrap">
+          <form>
+          <input class="switchInput" type="text" placeholder="请输入关键字搜索">
+          <div class="switchBtn">搜索</div>
+          <button type="reset" class="resetBtn">重置</button>
+          <div class="layui-clear"></div>
+          </form>
+        </div>
+        <table class="layui-hide" id="test"></table>
+        <div id="demo7"></div>
+      </div>
+
+    </div>
+  </div>
+  <script>
+      var element = layui.element;
+  </script>
+  <script>
+      layui.use(['laypage', 'layer','table'], function(){
+          var table = layui.table;
+          var laypage = layui.laypage
+              ,layer = layui.layer;
+          table.render({
+              elem: '#test'
+              ,url:''
+              ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+              ,cols: [[
+                  {field:'id', title: '借款人', }
+                  ,{field:'username', title: '性别'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                  ,{field:'sex', title: '年龄',}
+                  ,{field:'city', title: '借款用途'}
+                  ,{field:'sign', title: '借款金额（元）'}
+                  ,{field:'classify', title: '借款产品',} //单元格内容水平居中
+                  ,{field:'experience', title: '还款方式',  } //单元格内容水平居中
+                  ,{field:'score', title: '期限（月）', }
+                  ,{field:'wealth', title: '年利率',  }
+                  ,{field:'wealth', title: '申请时间', sort: true, }
+                  ,{field:'wealth', title: '操作', }
+              ]]
+          });
+          laypage.render({
+              elem: 'demo7'
+              ,count: 100
+              ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+              ,theme: '#1E9FFF'
+              ,jump: function(obj){
+                  console.log(obj)
+              }
+          });
+      });
+  </script>

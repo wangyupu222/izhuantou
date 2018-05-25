@@ -1,0 +1,316 @@
+
+<title>广告</title>
+  <script type="text/html" template>
+    <link href="{{ layui.setter.base }}/style/tableCode.css?v={{ layui.admin.v }}-1" rel="stylesheet">
+  </script>
+  <style>
+  .DistributeWrap{
+    padding: 5px 25px;
+  }
+  .tabBtnWrap{
+    padding: 10px 20px 10px 20px;
+    color: #666;
+    border-bottom:1px  dashed #eaeaea;
+  }
+    .tabBtnWrap table{
+      display: inline-block;
+      width: 80px;
+    }
+    .tabBtnWrap span{
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 5px;
+      margin-left: 25px;
+      cursor: pointer;
+
+    }
+    .tabBtnWrap span.active{
+      background-color: #1E9FFF;
+      color: #fff;
+    }
+    .paddingWrap{
+      padding: 10px 20px 10px 20px;
+    }
+    .RoleAddBtn{
+      width: 70px;
+      height: 34px;
+      font-size: 16px;
+      color: #fff;
+      line-height: 34px;
+      text-align: center;
+      border-radius: 3px;
+      background-color: #1E9FFF;
+      border: none;
+      outline: none;
+      float: right;
+      display: inline-block;
+      margin-left: 15px;
+    }
+    .RoleAddBtn a{
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      color: #fff;
+    }
+    .bannerModule{
+      text-align: center;
+    }
+    .bannerBox{
+      width: 23.6%;
+      min-width: 265px;
+      display: inline-block;
+      margin: 10px 10px;
+      border:1px solid #eaeaea;
+    }
+    .bannerBox .bannerImg{
+      width: 100%;
+      height: 160px;
+      background-color: #e0f2be;
+    }
+    .bannerWrap{
+      width: 100%;border-top: 1px solid #eaeaea ;
+      background-color: #fff;
+      height: 120px;
+      position: relative;
+    }
+    .bannerContent{
+      padding:23px;
+      text-align: left;
+      margin-bottom: 13px;
+    }
+    .bannerContent h3{
+      color: #333;
+      font-size: 16px;
+      font-weight: normal;
+      margin-bottom: 6px;
+    }
+    .bannerContent p{
+      font-size: 14px;
+      color: #666;
+
+    }
+    .bannerContent div{
+      font-size: 12px;
+      color: #666;
+      margin-top: 15px;
+    }
+    .bannerOperation{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top:0px;
+      left: 0px;
+      background-color: rgba(0, 0, 0, 0.62);
+    }
+    .BtnWrap{
+      width: 40%;
+      margin: 0 auto;
+      margin-top: 43px;
+    }
+    .BtnWrap .banner-edit,.banner-del{
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 34px;
+      font-size: 22px;
+    }
+    .banner-edit{
+      float: left;
+      background-color: #fff;color: #666;
+    }
+    .banner-del{
+      float: right;
+      background-color: #f00;
+      color: #fff;
+    }
+  </style>
+<div class="layui-card layadmin-header">
+  <div class="layui-breadcrumb" lay-filter="breadcrumb">
+    <a lay-href="">工作台</a>
+    <a><cite>内容管理</cite></a>
+    <a><cite>广告</cite></a>
+  </div>
+</div>
+  <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+      <li class="layui-this">Web 首页轮播图</li>
+      <li>App 首页轮播图</li>
+    </ul>
+    <div class="layui-tab-content">
+      <div class="layui-tab-item layui-show">
+        <div class="layui-fluid" id="LAY-component-grid-all">
+          <div class="layui-row layui-col-space10">
+            <div class="DistributeWrap">
+              <div class="tabBtnWrap">
+                <label>状态:</label><span class="active">全部</span><span>投放中</span><span>已下线</span>
+
+              </div>
+            <div class="switchWrap paddingWrap">
+              <form>
+                <input class="switchInput" type="text" placeholder="请输入关键字搜索">
+                <div class="switchBtn">搜索</div>
+                <button type="reset" class="RoleAddBtn"><a lay-href="content/banner-add">+ 添加</a></button>
+                <div class="layui-clear"></div>
+              </form>
+            </div>
+          </div>
+            <div class="layui-row bannerModule">
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap">
+                  <div class="bannerContent">
+                    <h3>广告 Title</h3>
+                    <p>http://www.baidu.com/</p>
+                    <div>2018.02.01 14:00 - 2018.04.01 16:00</div>
+                  </div>
+                  <div class="bannerOperation ">
+                    <div class="BtnWrap">
+                      <div class="banner-edit layui-icon">&#xe642</div>
+                      <div class="banner-del layui-icon">&#xe640</div>
+                      <div class="layui-clear"></div>
+
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+
+            </div>
+            <div class="layui-row bannerModule layui-hide">
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap">
+                  <div class="bannerContent">
+                    <h3>广告 Title</h3>
+                    <p>http://www.baidu.com/</p>
+                    <div>2018.02.01 14:00 - 2018.04.01 16:00</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap">
+                  <div class="bannerContent"></div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-row bannerModule layui-hide">
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap"></div>
+              </div>
+              <div class="layui-col-md3 bannerBox">
+                <div class="bannerImg"></div>
+                <div class="bannerWrap">
+                  <div class="bannerContent"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-tab-item">
+        <div class="layui-fluid" >
+          <div class="layui-row layui-col-space10">
+            相同复制
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+      var element = layui.element;
+  </script>
+  <script>
+      layui.use(['jquery','admin','layer','table'], function(){
+          var $ = layui.jquery,table = layui.table
+              ,admin = layui.admin
+              ,laypage = layui.laypage
+              ,layer = layui.layer;
+          //监听工具条
+          table.on('tool(demo)', function(obj){
+              var data = obj.data;
+              if(obj.event === 'detail'){
+                  layer.msg('ID：'+ data.id + ' 的查看操作');
+              } else if(obj.event === 'del'){
+                  layer.confirm('真的删除行么', function(index){
+                      obj.del();
+                      layer.close(index);
+                  });
+              } else if(obj.event === 'edit'){
+                  layer.alert('编辑行：<br>'+ JSON.stringify(data))
+              }
+          });
+
+          $(".tabBtnWrap span").on('click',function () {
+              var _index=$(this).index();
+              $(this).addClass("active").siblings("span").removeClass("active");
+              $(".bannerModule").eq(_index-1).removeClass("layui-hide").siblings(".bannerModule").addClass("layui-hide");
+          })
+
+      });
+
+  </script>

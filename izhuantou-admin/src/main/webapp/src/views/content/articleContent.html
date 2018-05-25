@@ -1,0 +1,283 @@
+<title>文章</title>
+<script type="text/html" template>
+  <link href="{{ layui.setter.base }}/style/tableCode.css?v={{ layui.admin.v }}-1" rel="stylesheet">
+  <link href="{{ layui.setter.base }}/style/operationWrap.css?v={{ layui.admin.v }}-1" rel="stylesheet">
+</script>
+  <style>
+    .layui-table-body {
+      overflow: hidden;
+    }
+    .addMainBtn{
+      width: 85px;
+      height: 40px;
+      font-size: 16px;
+      color: #fff;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 3px;
+      border: none;
+      background-color: #1E9FFF;
+      float: right;
+      display: inline-block;
+    }
+    .addMainBtn a{
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      color: #fff;
+    }
+
+</style>
+  <div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+      <a lay-href="">工作台</a>
+      <a><cite>内容管理</cite></a>
+      <a><cite>文章</cite></a>
+    </div>
+  </div>
+
+  <div class="layui-fluid" >
+
+    <div class="layui-row layui-col-space10" >
+      <div class="accountWrap">
+      <div class="TreeWrap">
+        <div class="operationTree">
+          <ul id="Nav" class="layui-nav layui-nav-tree">
+            <li class="layui-nav-item">
+              <a href="javascript:;">
+                <i class="layui-icon">&#xe609;</i>
+                <em>帮助中心</em>
+              </a>
+              <dl class="layui-nav-child">
+                <dd><a href="javascript:;"><em>平台问题</em>（3）</a></dd>
+                <dd><a href="javascript:;"><em>操作问题</em>（2）</a></dd>
+                <dd><a href="javascript:;"><em>出借计划</em>（3）</a></dd>
+              </dl>
+
+            </li>
+            <li class="layui-nav-item">
+              <a href="javascript:;">
+                <i class="layui-icon">&#xe770</i>
+                <em>借款条件管理</em>
+              </a>
+              <dl class="layui-nav-child">
+
+                <dd><a href="views/console.html">I房投（3）</a></dd>
+                <dd><a href="views/console2.html">I薪贷（2）</a></dd>
+                <dd><a href="views/console3.html">I抵押（3）</a></dd>
+              </dl>
+
+            </li>
+            <li class="layui-nav-item">
+              <a href="javascript:;">
+                <i class="layui-icon">&#xe632;</i>
+                <em>关于我们</em>
+              </a>
+              <dl class="layui-nav-child">
+
+                <dd><a href="views/console.html">平台公告</a></dd>
+                <dd><a href="views/console2.html">砖头动态</a></dd>
+                <dd><a href="views/console3.html">媒体报道</a></dd>
+              </dl>
+
+            </li>
+
+
+          </ul>
+        </div>
+
+
+      </div>
+      <div class="DistributeWrap" style="float: left;width:calc(100% - 350px);">
+        <div class="switchWrap">
+          <form class="layui-form" action="">
+            <div class="selectSwitch">
+              <div class="layui-form-item selectMain">
+                <div class="layui-input-block">
+                  <select name="interest" lay-filter="aihao">
+                    <option value=""></option>
+                    <option value="0">标题</option>
+                    <option value="1" selected="">作者</option>
+                  </select>
+                </div>
+              </div>
+              <input class="switchInput" type="text" placeholder="请输入关键字搜索">
+              <div class="layui-clear"></div>
+            </div>
+
+            <div class="switchBtn selectMainBtn">搜索</div>
+            <button type="reset" class="resetBtn selectMainBtn">重置</button>
+            <div class="switchBtn addMainBtn"><a lay-href="content/addArticleContent">+ 添加</a></div>
+            <div class="layui-clear"></div>
+          </form>
+        </div>
+
+        <table lay-filter="parse-table-demo">
+          <thead>
+          <tr>
+            <th lay-data="{type:'checkbox'}"></th>
+            <th lay-data="{field:'id', minWidth:300, sort: true,}">标题</th>
+            <th lay-data="{field:'username', width:200,}">作者</th>
+            <th lay-data="{field:'phone', width: 220}">日期</th>
+            <th lay-data="{field:'operate', width: 220,}">操作</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td></td>
+            <td>Z0024</td>
+            <td>马六</td>
+            <td>15818188899</td>
+            <td><a class="operaBtn editBtn" lay-event="edit">编辑</a> <a class="operaBtn" lay-event="edit">查看</a> <a class="operaBtn" lay-event="edit">删除</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Z0014</td>
+            <td>马六</td>
+            <td>15818188899</td>
+            <td><a class="operaBtn" lay-event="edit">编辑</a> <a class="operaBtn" lay-event="edit">查看</a> <a class="operaBtn" lay-event="edit">删除</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Z0424</td>
+            <td>马六</td>
+            <td>15818188899</td>
+            <td><a class="operaBtn" lay-event="edit">编辑</a> <a class="operaBtn" lay-event="edit">查看</a> <a class="operaBtn" lay-event="edit">删除</a></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div id="demo6"></div>
+      </div>
+        <div class="layui-clear"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+      var element = layui.element;
+  </script>
+  <script>
+      layui.use(['table','jquery'], function(){
+          var table = layui.table,
+              form = layui.form
+              ,element = layui.element
+              ,$= layui.$
+              ,table=layui.table;
+
+          table.init('parse-table-demo', {
+              height: '400' //设置高度
+              ,limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+              //支持所有基础参数
+          });
+
+
+
+          //监听表格复选框选择
+          table.on('checkbox(test)', function(obj){
+              console.log(obj)
+          });
+
+          //监听单元格编辑
+          table.on('edit(test)', function(obj){
+              var value = obj.value //得到修改后的值
+                  ,data = obj.data //得到所在行所有键值
+                  ,field = obj.field; //得到字段
+
+          });
+
+          //监听工具条
+          table.on('tool(test)', function(obj){
+              var data = obj.data;
+              if(obj.event === 'del'){
+                  layer.confirm('真的删除行么', function(index){
+                      obj.del();
+                      layer.close(index);
+                  });
+              } else if(obj.event === 'edit'){
+                  layer.prompt({
+                      formType: 2
+                      ,value: data.username
+                  }, function(value, index){
+                      obj.update({
+                          username: value
+                      });
+                      layer.close(index);
+                  });
+              }
+          });
+
+          //监听排序
+          table.on('sort(test)', function(obj){
+              console.log(this, obj.field, obj.type)
+
+              //return;
+              //服务端排序
+              table.reload('test', {
+                  initSort: obj
+                  //,page: {curr: 1} //重新从第一页开始
+                  ,where: { //重新请求服务端
+                      key: obj.field //排序字段
+                      ,order: obj.type //排序方式
+                  }
+              });
+          });
+
+
+          var $ = layui.jquery, active = {
+              getCheckData: function(){
+                  var checkStatus = table.checkStatus('test')
+                      ,data = checkStatus.data;
+                  layer.alert(JSON.stringify(data));
+              }
+              ,getCheckLength: function(){
+                  var checkStatus = table.checkStatus('test')
+                      ,data = checkStatus.data;
+                  layer.msg('选中了：'+ data.length + ' 个');
+              }
+              ,isAll: function(){
+                  var checkStatus = table.checkStatus('test');
+                  layer.msg(checkStatus.isAll ? '全选': '未全选')
+              }
+              ,parseTable: function(){
+                  table.init('parse-table-demo', {
+                      limit: 3
+                  });
+              }
+          };
+
+          $(function () {
+              $(".operationTree .layui-nav-tree .layui-nav-item a").hover(function () {
+                  $(this).append('<span class="layui-icon edit-icon">&#xe642;</span>');
+                  editBtn();
+              },function () {
+                  $(this).find(".edit-icon").remove();
+              })
+          })
+          function editBtn() {
+              $(".edit-icon").on('click', function () {
+                  event.stopPropagation();
+                  $(this).siblings("em").attr("contenteditable", "true");
+                  $(this).siblings("em").addClass("editText");
+                  $(this).siblings("em").focus();
+              })
+              $(".operationTree .layui-nav-item a .editText").blur(function () {
+                  $(this).attr("contenteditable", "false");
+                  $(this).removeClass("editText");
+              })
+          }
+
+          $(".editBtn").on('click',function () {
+              $(this).parents("td").siblings("td").find(".layui-table-cell").attr("contenteditable", "true").css({"border":"1px solid #eaeaea","background-color": "#fff"});
+              // $(this).parents("td").siblings("td").find(".layui-table-cell")
+
+          })
+
+          $('.layui-btn').on('click', function(){
+              var type = $(this).data('type');
+              active[type] ? active[type].call(this) : '';
+          });
+      });
+
+
+  </script>

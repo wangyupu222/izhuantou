@@ -1,0 +1,257 @@
+<title>添加文章</title>
+    <script class="configJs" type="text/javascript" src="/src/lib/ckeditor/ckeditor.js"></script>
+
+    <style>
+        .layui-input-block {
+            margin-left: 0px;
+        }
+        #myEditor{
+            width: calc(100% - 0px);
+            min-height: 400px;
+        }
+        .addMediaBtn,.visualizationBtn,.htmlBtn{
+            float: left;
+            width: 80px;
+            height: 32px;
+            text-align: center;
+            background-color: #1E9FFF;
+            line-height: 32px;
+            color: #fff;
+        }
+        .addMediaBtn{
+            background-color: #f7f7f7;
+            color: #666;
+            height: 26px;
+            line-height: 28px;
+            border-radius: 4px;
+            border:1px solid #eaeaea;
+        }
+        .visualizationBtn.active,.htmlBtn.active{
+            background-color: #fff;
+            border-bottom: none;
+            pointer-events: none;
+        }
+
+        .visualizationBtn,.htmlBtn{
+            background-color: #ebebeb;
+            display: inline-block;
+            float: right;
+            border:1px solid #d9d9d9;
+            color:#666;
+            margin-left: 5px;
+            margin-bottom: -2px;
+            z-index: 1000;
+            position: relative;
+            cursor: pointer;
+        }
+        .ditorBtn{
+            padding-top: 15px;
+            background-color: #f0f2f5;
+        }
+        .saveBtn,.deuiBtn{
+            width: 88px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid #d9d9d9;
+            border-radius: 3px;
+            float: left;
+            cursor: pointer;
+        }
+        .deuiBtn{
+            width: 58px;
+            float: right;
+        }
+        .layui-card-footer{
+            border-bottom: none;
+            background-color: #ebebeb;
+            padding-top: 10px;
+
+        }
+        .publishBtn{
+            width: 100%;
+            height: 32px;
+            line-height: 32px;
+            background-color: #1E9FFF;
+            color: #fff;
+            text-align: center;
+            margin: 0 auto;
+            border-radius: 5px;
+
+        }
+        #test7{
+            width: 100%;
+            height: 32px;
+            line-height: 32px;
+            color: #666;
+            text-align: center;
+            border:1px solid #d9d9d9;
+            margin: 0 auto;
+            border-radius: 5px;
+            background-color: inherit;
+            display: block;
+            cursor: pointer;
+
+        }
+        .layui-input-inline {
+            display: block;
+            vertical-align: middle;
+            /* width: 100%; */
+        }
+
+    </style>
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">工作台</a>
+        <a><cite>内容管理</cite></a>
+        <a><cite>文章</cite></a>
+    </div>
+</div>
+<div class="layui-content">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md9">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="layui-card">
+                        <div class="backlog">
+                            <div class="ditorBtn"><div class="addMediaBtn" onkeydown="return CKEDITOR.tools.callFunction(134,event);" onfocus="return CKEDITOR.tools.callFunction(135,event);" onclick="CKEDITOR.tools.callFunction(136,this);return false;">+ 添加媒体</div> <span class="htmlBtn" onkeydown="return CKEDITOR.tools.callFunction(2,event);" onfocus="return CKEDITOR.tools.callFunction(3,event);" onclick="CKEDITOR.tools.callFunction(4,this);return false;">HTML</span> <span class="visualizationBtn active"  onkeydown="return CKEDITOR.tools.callFunction(2,event);" onfocus="return CKEDITOR.tools.callFunction(3,event);" onclick="CKEDITOR.tools.callFunction(4,this);return false;" aria-pressed="true">可视化</span> <div class="layui-clear"></div></div>
+                            <textarea name="opinion" id="opinion"></textarea>
+                            <script>
+                                CKEDITOR.replace('opinion',{
+                                    filebrowserImageUploadUrl : 'fileCKEditorUpload',
+                                    language : 'zh-cn',
+                                });
+
+                            </script>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">发布</div>
+                <div class="layui-card-body layui-text">
+                    <div class="operationWrap">
+                        <div class="saveBtn">保存草稿</div>
+                        <div class="operationBtn deuiBtn" onkeydown="return CKEDITOR.tools.callFunction(5,event);" onfocus="return CKEDITOR.tools.callFunction(6,event);" onclick="CKEDITOR.tools.callFunction(7,this);return false;">预览</div>
+                        <div class="layui-clear"></div>
+                    </div>
+                </div>
+                <div class="layui-card-header layui-card-footer">
+                    <div class="publishBtn">立即发布</div>
+                </div>
+            </div>
+
+            <div class="layui-card">
+                <div class="layui-card-header">作者</div>
+                <div class="layui-card-body layui-text">
+                    <div class="selectSwitch layui-form">
+                        <div class="layui-form-item selectMain">
+                            <div class="layui-input-block">
+                                <select name="interest" lay-filter="aihao">
+                                    <option value="0">模块一</option>
+                                    <option value="1" selected="">模块二</option>
+                                    <option value="2">模块三</option>
+                                    <option value="3">模块四</option>
+                                    <option value="4">模块五</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="layui-card">
+                <div class="layui-card-header">封面图片</div>
+                <div class="layui-card-body layui-text">
+                    <button type="button" class=" " id="test7">设置封面图片</button>
+
+                </div>
+            </div>
+
+            <div class="layui-card">
+                <div class="layui-card-header">分类目录</div>
+                <div class="layui-card-body layui-text">
+                    <div class="selectSwitch layui-form">
+                            <div class="layui-input-inline">
+                                <select name="quiz">
+                                    <option value="">请选择分类</option>
+                                    <optgroup label="城市记忆">
+                                        <option value="你工作的第一个城市">你工作的第一个城市</option>
+                                    </optgroup>
+                                    <optgroup label="学生时代">
+                                        <option value="你的工号">你的工号</option>
+                                        <option value="你最喜欢的老师">你最喜欢的老师</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
+<script>
+    var element = layui.element;
+</script>
+<script>
+    layui.use(['upload','jquery','admin', 'form'], function(){
+        var $ = layui.jquery
+            ,upload = layui.upload
+            ,admin = layui.admin
+            ,element = layui.element
+            ,form = layui.form;
+
+        //设定文件大小限制
+        upload.render({
+            elem: '#test7'
+            ,url: '/upload/'
+            ,size: 60 //限制文件大小，单位 KB
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+
+
+
+        //绑定原始文件域
+        upload.render({
+            elem: '#test20'
+            ,url: '/upload/'
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+
+        $(".htmlBtn,.visualizationBtn").on('click',function () {
+            $(this).addClass("active").siblings("span").removeClass("active");
+
+        })
+        $(".publishBtn").on('click',function () {
+            var a=CKEDITOR.instances.opinion.getData();
+            console.log(a);
+        })
+
+
+    });
+</script>

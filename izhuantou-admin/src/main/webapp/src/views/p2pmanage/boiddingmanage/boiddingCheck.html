@@ -1,0 +1,151 @@
+<script type="text/html" template>
+  <link href="{{ layui.setter.base }}/style/tableCode.css?v={{ layui.admin.v }}-1" rel="stylesheet">
+</script>
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">工作台</a>
+        <a><cite>网贷系统</cite></a>
+        <a><cite>标的管理</cite></a>
+        <a><cite>标的审核</cite></a>
+    </div>
+</div>
+<div class="layui-tab-content">
+<div class="layui-fluid" id="LAY-component-grid-all" >
+    <div class="layui-row layui-col-space10">
+        <div class="DistributeWrap">
+            <div class="switchWrap">
+                <form>
+                    <div class="layui-btn layui-btn-normal float-L">审核模式</div>
+                    <div class="layui-btn layui-btn-normal float-R">+ 导出</div>
+                    <div class="layui-clear"></div>
+                </form>
+            </div>
+            <div class="tableAlert___qQVM4">
+                <div data-show="true" class="ant-alert ant-alert-info"><i
+                        class="anticon anticon-info-circle ant-alert-icon"></i><span class="ant-alert-message">已选择 <a class="operaBtn"
+                        style="font-weight: 600;">0</a> 项&nbsp;&nbsp;<span style="margin-left: 8px;">服务调用次数总计&nbsp;<span
+                        style="font-weight: 600;">0 万</span></span><a class="operaBtn" style="margin-left: 24px;">清空</a></span><span
+                        class="ant-alert-description"></span></div>
+            </div>
+            <table lay-filter="parse-table-demo2" style="display: none">
+                <thead>
+                <tr>
+                    <th lay-data="{type:'checkbox'}"></th>
+                    <th lay-data="{field:'id', width:200,sort: true,}">客户姓名</th>
+                    <th lay-data="{field:'username', width:150,}">客户编号</th>
+                    <th lay-data="{field:'phone', minWidth: 180,}">申请金额（元）</th>
+                    <th lay-data="{field:'role', minWidth: 180,}">申请期限（月）</th>
+                    <th lay-data="{field:'remark', minWidth: 180,}">标的类型</th>
+                    <th lay-data="{field:'operatedata', minWidth: 180,}">申请时间</th>
+                    <th lay-data="{field:'operate', minWidth: 180,}">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td>{{ item.xmmc }}</td>
+                    <td>{{ item.nhll }}%</td>
+                    <td>{{ item.cjqx }}个月</td>
+                    <td>角色一、角色二、角色三</td>
+                    <td>World</td>
+                    <td>World</td>
+                    <td><a class="operaBtn editBtn" lay-event="edit">编辑</a></td>
+                </tr>
+
+
+                </tbody>
+            </table>
+            <div id="demo7"></div>
+        </div>
+
+    </div>
+</div>
+</div>
+  <script>
+      var element = layui.element;
+      layui.extend({
+          setter: 'config' //配置文件
+      }).define(['setter', 'admin'], function(exports) {
+          var setter = layui.setter
+      })
+
+  </script>
+  <script>
+      layui.use(['laypage', 'layer','table','laydate'], function(){
+          var table = layui.table;
+          var laypage = layui.laypage
+              ,element = layui.element
+              ,layer = layui.layer,laydate = layui.laydate;
+
+          table.init('parse-table-demo2', {
+              height: '400' //设置高度
+              ,limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+              //支持所有基础参数
+          });
+          laypage.render({
+              elem: 'demo7'
+              ,count: 100
+              ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+              ,theme: '#1E9FFF'
+              ,jump: function(obj){
+                  console.log(obj)
+              }
+          });
+          //日期范围
+          laydate.render({
+              elem: '#test6'
+              ,range: true
+          });
+
+
+          //监听表格复选框选择
+          table.on('checkbox(test)', function(obj){
+              console.log(obj)
+          });
+
+          //监听单元格编辑
+          table.on('edit(test)', function(obj){
+              var value = obj.value //得到修改后的值
+                  ,data = obj.data //得到所在行所有键值
+                  ,field = obj.field; //得到字段
+
+          });
+
+          //监听工具条
+          table.on('tool(test)', function(obj){
+              var data = obj.data;
+              if(obj.event === 'del'){
+                  layer.confirm('真的删除行么', function(index){
+                      obj.del();
+                      layer.close(index);
+                  });
+              } else if(obj.event === 'edit'){
+                  layer.prompt({
+                      formType: 2
+                      ,value: data.username
+                  }, function(value, index){
+                      obj.update({
+                          username: value
+                      });
+                      layer.close(index);
+                  });
+              }
+          });
+
+          //监听排序
+          table.on('sort(test)', function(obj){
+              console.log(this, obj.field, obj.type)
+
+              //return;
+              //服务端排序
+              table.reload('test', {
+                  initSort: obj
+                  //,page: {curr: 1} //重新从第一页开始
+                  ,where: { //重新请求服务端
+                      key: obj.field //排序字段
+                      ,order: obj.type //排序方式
+                  }
+              });
+          });
+      });
+  </script>

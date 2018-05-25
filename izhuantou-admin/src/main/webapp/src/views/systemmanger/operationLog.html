@@ -1,0 +1,231 @@
+
+<title>操作日志</title>
+<script type="text/html" template>
+  <link href="{{ layui.setter.base }}/style/tableCode.css?v={{ layui.admin.v }}-1" rel="stylesheet">
+</script>
+  <style>
+    .layui-table-body {
+      overflow: hidden;
+    }
+    .float-L{
+      margin-right: 25px;
+    }
+    .selectSwitch{
+      width: 195px;
+      margin-right: 20px;
+      float: left;
+    }
+    .selectSwitch .layui-input-block {
+      margin-left: 60px;
+      min-height: 36px;
+    }
+    .selectSwitch02 .layui-input-block {
+      margin-left: 75px;
+      min-height: 36px;
+    }
+    .selectSwitch .layui-form-label {
+      width: auto;
+
+    }
+
+  </style>
+<div class="layui-card layadmin-header">
+  <div class="layui-breadcrumb" lay-filter="breadcrumb">
+    <a lay-href="">工作台</a>
+    <a><cite>系统管理</cite></a>
+    <a><cite>操作日志</cite></a>
+  </div>
+</div>
+
+  <div class="layui-fluid" id="LAY-component-grid-all">
+    <div class="layui-row layui-col-space10">
+      <div class="DistributeWrap">
+        <div class="switchWrap">
+          <form>
+            <div class="layui-inline float-L">
+              <label class="layui-form-label">时间</label>
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="test6" placeholder="选择时间范围">
+              </div>
+            </div>
+            <div class="selectSwitch layui-form">
+              <div class="layui-form-item selectMain">
+                <label class="layui-form-label">模块</label>
+                <div class="layui-input-block">
+                  <select name="interest" lay-filter="aihao">
+                    <option value="0">模块一</option>
+                    <option value="1" selected="">模块二</option>
+                    <option value="2">模块三</option>
+                    <option value="3">模块四</option>
+                    <option value="4">模块五</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="selectSwitch selectSwitch02 layui-form">
+              <div class="layui-form-item selectMain">
+                <label class="layui-form-label">操作者</label>
+                <div class="layui-input-block">
+                  <select name="interest" lay-filter="aihao">
+                    <option value="0">张三</option>
+                    <option value="1" selected="">李四</option>
+                    <option value="2">陈二</option>
+                    <option value="3">王五</option>
+                    <option value="4">刘麻子</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          <input class="switchInput" type="text" placeholder="请输入关键字搜索">
+          <div class="switchBtn">搜索</div>
+          <button type="reset" class="resetBtn">重置</button>
+          <div class="layui-clear"></div>
+          </form>
+        </div>
+        <table lay-filter="parse-table-demo">
+          <thead>
+          <tr>
+            <th lay-data="{type:'checkbox'}"></th>
+            <th lay-data="{field:'id', width:200,sort: true,}">操作时间</th>
+            <th lay-data="{field:'username', width:150,}">模块</th>
+            <th lay-data="{field:'phone', minWidth: 180,}">操作内容</th>
+            <th lay-data="{field:'role', minWidth: 180,}">操作者</th>
+            <th lay-data="{field:'remark', minWidth: 180,}">IP 地址</th>
+            <th lay-data="{field:'operate', minWidth: 180,}">状态</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td></td>
+            <td>Z0024</td>
+            <td>马六</td>
+            <td>15818188899</td>
+            <td>角色一、角色二、角色三</td>
+            <td>World</td>
+            <td><a class="operaBtn editBtn" lay-event="edit">编辑</a> <a class="operaBtn" lay-event="edit">重置密码</a> <a class="operaBtn" lay-event="edit">删除</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Z0014</td>
+            <td>马六</td>
+            <td>15818188899</td>
+            <td>角色一、角色二、角色三</td>
+            <td>World</td>
+            <td><a class="operaBtn" lay-event="edit">编辑</a> <a class="operaBtn" lay-event="edit">重置密码</a> <a class="operaBtn" lay-event="edit">删除</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Z0424</td>
+            <td>马六</td>
+            <td>15818188899</td>
+            <td>角色一、角色二、角色三</td>
+            <td>World</td>
+            <td><a class="operaBtn" lay-event="edit">编辑</a> <a class="operaBtn" lay-event="edit">重置密码</a> <a class="operaBtn" lay-event="edit">删除</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Z0424</td>
+            <td>马六</td>
+            <td>15818188899</td>
+            <td>角色一、角色二、角色三</td>
+            <td>World</td>
+            <td><a class="operaBtn" lay-event="edit">编辑</a> <a class="operaBtn" lay-event="edit">重置密码</a> <a class="operaBtn" lay-event="edit">删除</a></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Z0424</td>
+            <td>马六</td>
+            <td>15818188899</td>
+            <td>角色一、角色二、角色三</td>
+            <td>World</td>
+            <td><a class="operaBtn" lay-event="edit">编辑</a> <a class="operaBtn" lay-event="edit">重置密码</a> <a class="operaBtn" lay-event="edit">删除</a></td>
+          </tr>
+
+          </tbody>
+        </table>
+        <div id="demo7"></div>
+      </div>
+
+    </div>
+  </div>
+  <script>
+      var element = layui.element;
+  </script>
+  <script>
+      layui.use(['laypage', 'layer','table','laydate'], function(){
+          var table = layui.table;
+          var laypage = layui.laypage
+              ,element = layui.element
+              ,layer = layui.layer,laydate = layui.laydate;
+          table.init('parse-table-demo', {
+              height: '400' //设置高度
+              ,limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+              //支持所有基础参数
+          });
+          laypage.render({
+              elem: 'demo7'
+              ,count: 100
+              ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+          	  ,theme: '#1E9FFF'
+              ,jump: function(obj){
+                  console.log(obj)
+              }
+          });
+          //日期范围
+          laydate.render({
+              elem: '#test6'
+              ,range: true
+          });
+
+
+          //监听表格复选框选择
+          table.on('checkbox(test)', function(obj){
+              console.log(obj)
+          });
+
+          //监听单元格编辑
+          table.on('edit(test)', function(obj){
+              var value = obj.value //得到修改后的值
+                  ,data = obj.data //得到所在行所有键值
+                  ,field = obj.field; //得到字段
+
+          });
+
+          //监听工具条
+          table.on('tool(test)', function(obj){
+              var data = obj.data;
+              if(obj.event === 'del'){
+                  layer.confirm('真的删除行么', function(index){
+                      obj.del();
+                      layer.close(index);
+                  });
+              } else if(obj.event === 'edit'){
+                  layer.prompt({
+                      formType: 2
+                      ,value: data.username
+                  }, function(value, index){
+                      obj.update({
+                          username: value
+                      });
+                      layer.close(index);
+                  });
+              }
+          });
+
+          //监听排序
+          table.on('sort(test)', function(obj){
+              console.log(this, obj.field, obj.type)
+
+              //return;
+              //服务端排序
+              table.reload('test', {
+                  initSort: obj
+                  //,page: {curr: 1} //重新从第一页开始
+                  ,where: { //重新请求服务端
+                      key: obj.field //排序字段
+                      ,order: obj.type //排序方式
+                  }
+              });
+          });
+      });
+  </script>

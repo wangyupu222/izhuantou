@@ -1,0 +1,65 @@
+<title>角色详情</title>
+    <style>
+        .workTop{
+            height: auto;
+            padding-top: 20px;
+            padding-bottom: 25px;
+            padding-left: 0px;
+        }
+        .goBackBtn{
+            float: left;
+            width: 80px;
+            height: 32px;
+            background-color: #eaeaea;
+            color: #999;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 34px;
+            border:1px solid #bababa;
+            margin-left: 35px;
+        }
+        .goBackBtn a{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            color: #999;
+        }
+        .editBtn{
+            float: right;
+            width: 80px;
+            height: 32px;
+            background-color: #1E9FFF;
+            color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 34px;
+            margin-right: 25px;
+        }
+        .roleTreeWrap{
+            min-height: 450px;
+            background-color: #fff;
+        }
+
+    </style>
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">工作台</a>
+        <a><cite>系统管理</cite></a>
+        <a><cite>账号管理</cite></a>
+        <a><cite>角色</cite></a>
+    </div>
+</div>
+<div class="workTop">
+    <div class="goBackBtn"><a href="javascript:history.back(-1)">&lt; 返回</a></div>
+    <div class="editBtn">编辑</div>
+    <div class="layui-clear"></div>
+</div>
+<div class="layui-content">
+    <div class="roleTreeWrap">
+        <script type="text/html" template>
+            <img src="../src/style/res/treeDemo.png?v={{ layui.admin.v }}-1">
+        </script>
+
+    </div>
+
+</div>

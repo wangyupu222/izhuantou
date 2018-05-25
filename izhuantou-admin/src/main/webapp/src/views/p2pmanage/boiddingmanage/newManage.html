@@ -1,0 +1,329 @@
+
+<script type="text/html" template>
+  <link href="{{ layui.setter.base }}/style/tableCode.css?v={{ layui.admin.v }}-1" rel="stylesheet">
+</script>
+
+<style>
+    .layui-table-body {
+      overflow: hidden;
+    }
+    .laytable-cell-1-id {
+    width: 145px;
+  }
+
+  .laytable-cell-1-username {
+    width: 145px;
+  }
+
+  .laytable-cell-1-sex {
+    width: 145px;
+  }
+
+  .laytable-cell-1-city {
+    width: 145px;
+  }
+
+  .laytable-cell-1-sign {
+    width: 145px;
+  }
+
+  .laytable-cell-1-classify {
+    width: 145px;
+  }
+
+  .laytable-cell-1-experience {
+    width: 145px;
+  }
+
+  .laytable-cell-1-score {
+    width: 145px;
+  }
+
+  .laytable-cell-1-wealth {
+    width: 145px;
+  }
+
+  .laytable-cell-1-wealth {
+    width: 145px;
+  }
+
+  .laytable-cell-1-wealth {
+    width: 145px;
+  }</style>
+<div class="layui-card layadmin-header">
+  <div class="layui-breadcrumb" lay-filter="breadcrumb">
+    <a lay-href="">工作台</a>
+    <a><cite>网贷系统</cite></a>
+    <a><cite>标的管理</cite></a>
+    <a><cite>新手标管理</cite></a>
+  </div>
+</div>
+  <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+      <li class="layui-this">未结算</li>
+      <li>已结算</li>
+      <li>已满标</li>
+      <li>新手池</li>
+    </ul>
+    <div class="layui-tab-content">
+      <div class="layui-tab-item layui-show">
+        <div class="layui-fluid" id="LAY-component-grid-all">
+          <div class="layui-row layui-col-space10">
+
+            <div class="DistributeWrap">
+              <div class="switchWrap">
+                <form>
+                  <input class="switchInput" type="text" placeholder="请输入关键字搜索">
+                  <div class="switchBtn">搜索</div>
+                  <button type="reset" class="resetBtn">重置</button>
+                  <div class="layui-clear"></div>
+                </form>
+              </div>
+              <table class="layui-hide" id="test"></table>
+              <div id="demo7"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="layui-tab-item">
+        <div class="layui-fluid" >
+          <div class="layui-row layui-col-space10">
+
+            <div class="DistributeWrap">
+              <div class="switchWrap">
+                <form>
+                  <input class="switchInput" type="text" placeholder="请输入关键字搜索">
+                  <div class="switchBtn">搜索</div>
+                  <button type="reset" class="resetBtn">重置</button>
+                  <div class="layui-clear"></div>
+                </form>
+              </div>
+              <div class="layui-form layui-border-box layui-table-view" lay-filter="LAY-table-1" style=" ">
+                <div class="layui-table-box">
+                  <div class="layui-table-header">
+                    <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+                      <thead>
+                      <tr>
+                        <th data-field="id">
+                          <div class="layui-table-cell laytable-cell-1-id"><span>标的名称</span></div>
+                        </th>
+                        <th data-field="username">
+                          <div class="layui-table-cell laytable-cell-1-username"><span>借款编号</span><span
+                                  class="layui-table-sort layui-inline"><i
+                                  class="layui-edge layui-table-sort-asc"></i><i
+                                  class="layui-edge layui-table-sort-desc"></i></span></div>
+                        </th>
+                        <th data-field="sex">
+                          <div class="layui-table-cell laytable-cell-1-sex"><span>年利率</span><span
+                                  class="layui-table-sort layui-inline"><i
+                                  class="layui-edge layui-table-sort-asc"></i><i
+                                  class="layui-edge layui-table-sort-desc"></i></span></div>
+                        </th>
+                        <th data-field="city">
+                          <div class="layui-table-cell laytable-cell-1-city"><span>标的金额</span><span
+                                  class="layui-table-sort layui-inline"><i
+                                  class="layui-edge layui-table-sort-asc"></i><i
+                                  class="layui-edge layui-table-sort-desc"></i></span></div>
+                        </th>
+                        <th data-field="sign">
+                          <div class="layui-table-cell laytable-cell-1-sign"><span>起投金额</span><span
+                                  class="layui-table-sort layui-inline"><i
+                                  class="layui-edge layui-table-sort-asc"></i><i
+                                  class="layui-edge layui-table-sort-desc"></i></span></div>
+                        </th>
+                        <th data-field="classify">
+                          <div class="layui-table-cell laytable-cell-1-classify"><span>已投金额</span><span
+                                  class="layui-table-sort layui-inline"><i
+                                  class="layui-edge layui-table-sort-asc"></i><i
+                                  class="layui-edge layui-table-sort-desc"></i></span></div>
+                        </th>
+                        <th data-field="experience">
+                          <div class="layui-table-cell laytable-cell-1-experience"><span>产品期限（月）</span><span
+                                  class="layui-table-sort layui-inline"><i
+                                  class="layui-edge layui-table-sort-asc"></i><i
+                                  class="layui-edge layui-table-sort-desc"></i></span></div>
+                        </th>
+                        <th data-field="loandate">
+                          <div class="layui-table-cell laytable-cell-1-loandate"><span>借款时间</span><span
+                                  class="layui-table-sort layui-inline"><i
+                                  class="layui-edge layui-table-sort-asc"></i><i
+                                  class="layui-edge layui-table-sort-desc"></i></span></div>
+                        </th>
+                        <th data-field="wealth">
+                          <div class="layui-table-cell laytable-cell-1-wealth"><span>操作</span></div>
+                        </th>
+                      </tr>
+                      </thead>
+                    </table>
+                  </div>
+                  <div class="layui-table-body layui-table-main">
+                    <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+                      <tbody>
+                      <tr data-index="0" class="">
+                        <td data-field="id">
+                          <div class="layui-table-cell laytable-cell-1-id">【新】头笔赚-20171128</div>
+                        </td>
+                        <td data-field="username">
+                          <div class="layui-table-cell laytable-cell-1-username">IXD-20170822626</div>
+                        </td>
+                        <td data-field="sex">
+                          <div class="layui-table-cell laytable-cell-1-sex">15%</div>
+                        </td>
+                        <td data-field="city">
+                          <div class="layui-table-cell laytable-cell-1-city">29045</div>
+                        </td>
+                        <td data-field="sign">
+                          <div class="layui-table-cell laytable-cell-1-sign">1000</div>
+                        </td>
+                        <td data-field="classify">
+                          <div class="layui-table-cell laytable-cell-1-classify">29045</div>
+                        </td>
+                        <td data-field="experience">
+                          <div class="layui-table-cell laytable-cell-1-experience">7</div>
+                        </td>
+                        <td data-field="loandate">
+                          <div class="layui-table-cell laytable-cell-1-loandate">2017-10-01</div>
+                        </td>
+                        <td data-field="wealth">
+                          <div class="layui-table-cell laytable-cell-1-wealth"><a class="operaBtn" lay-event="detail">查看</a> <a class="operaBtn" lay-event="edit">停标</a> <a class="operaBtn" lay-event="edit">定时</a><a class="operaBtn" lay-event="edit">推荐</a></div>
+                        </td>
+                      </tr>
+                      <tr data-index="0" class="">
+                        <td data-field="id">
+                          <div class="layui-table-cell laytable-cell-1-id"><span class="recommendIcon">荐</span>【新】头笔赚-20171128</div>
+                        </td>
+                        <td data-field="username">
+                          <div class="layui-table-cell laytable-cell-1-username">IXD-20170822626</div>
+                        </td>
+                        <td data-field="sex">
+                          <div class="layui-table-cell laytable-cell-1-sex">15%</div>
+                        </td>
+                        <td data-field="city">
+                          <div class="layui-table-cell laytable-cell-1-city">29045</div>
+                        </td>
+                        <td data-field="sign">
+                          <div class="layui-table-cell laytable-cell-1-sign">1000</div>
+                        </td>
+                        <td data-field="classify">
+                          <div class="layui-table-cell laytable-cell-1-classify">29045</div>
+                        </td>
+                        <td data-field="experience">
+                          <div class="layui-table-cell laytable-cell-1-experience">7</div>
+                        </td>
+                        <td data-field="loandate">
+                          <div class="layui-table-cell laytable-cell-1-loandate">2017-10-01</div>
+                        </td>
+                        <td data-field="wealth">
+                          <div class="layui-table-cell laytable-cell-1-wealth"><a class="operaBtn" lay-event="detail">查看</a> <a class="operaBtn" lay-event="edit">停标</a> <a class="operaBtn" lay-event="edit">定时</a><a class="operaBtn" lay-event="edit">推荐</a></div>
+                        </td>
+                      </tr>
+                      <tr data-index="0" class="">
+                        <td data-field="id">
+                          <div class="layui-table-cell laytable-cell-1-id">【新】头笔赚-20171128</div>
+                        </td>
+                        <td data-field="username">
+                          <div class="layui-table-cell laytable-cell-1-username">IXD-20170822626</div>
+                        </td>
+                        <td data-field="sex">
+                          <div class="layui-table-cell laytable-cell-1-sex">15%</div>
+                        </td>
+                        <td data-field="city">
+                          <div class="layui-table-cell laytable-cell-1-city">29045</div>
+                        </td>
+                        <td data-field="sign">
+                          <div class="layui-table-cell laytable-cell-1-sign">1000</div>
+                        </td>
+                        <td data-field="classify">
+                          <div class="layui-table-cell laytable-cell-1-classify">29045</div>
+                        </td>
+                        <td data-field="experience">
+                          <div class="layui-table-cell laytable-cell-1-experience">7</div>
+                        </td>
+                        <td data-field="loandate">
+                          <div class="layui-table-cell laytable-cell-1-loandate">2017-10-01</div>
+                        </td>
+                        <td data-field="wealth">
+                          <div class="layui-table-cell laytable-cell-1-wealth"><a class="operaBtn" lay-event="detail">查看</a> <a class="operaBtn" lay-event="edit">停标</a> <a class="operaBtn" lay-event="edit">定时</a><a class="operaBtn" lay-event="edit">推荐</a></div>
+                        </td>
+                      </tr>
+
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+              </div>
+              <div id="demo6"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="layui-tab-item">内容3</div>
+      <div class="layui-tab-item">内容4</div>
+    </div>
+
+  </div>
+  <script>
+      var element = layui.element;
+  </script>
+  <script>
+      layui.use(['laypage', 'layer','table'], function(){
+          var table = layui.table;
+          var laypage = layui.laypage
+              ,layer = layui.layer;
+          table.render({
+              elem: '#test'
+              ,url:''
+              ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+              ,cols: [[
+                  {field:'id', title: '标的名称', }
+                  ,{field:'username', title: '借款编号',sort: true, } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                  ,{field:'sex', title: '年利率',sort: true, }
+                  ,{field:'city', title: '标的金额',sort: true, }
+                  ,{field:'sign', title: '起投金额',sort: true, }
+                  ,{field:'classify', title: '已投金额',sort: true, } //单元格内容水平居中
+                  ,{field:'experience', title: '产品期限（月）', sort: true, } //单元格内容水平居中
+                  ,{field:'loandate', title: '借款时间', sort: true, }
+                  ,{field:'wealth', title: '操作', }
+              ]]
+          });
+          //监听工具条
+          table.on('tool(demo)', function(obj){
+              var data = obj.data;
+              if(obj.event === 'detail'){
+                  layer.msg('ID：'+ data.id + ' 的查看操作');
+              } else if(obj.event === 'del'){
+                  layer.confirm('真的删除行么', function(index){
+                      obj.del();
+                      layer.close(index);
+                  });
+              } else if(obj.event === 'edit'){
+                  layer.alert('编辑行：<br>'+ JSON.stringify(data))
+              }
+          });
+
+          laypage.render({
+              elem: 'demo7'
+              ,count: 100
+              ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+              ,theme: '#1E9FFF'
+              ,jump: function(obj){
+                  console.log(obj)
+              }
+          });
+          laypage.render({
+              elem: 'demo6'
+              ,count: 100
+              ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+              ,theme: '#1E9FFF'
+              ,jump: function(obj){
+                  console.log(obj)
+              }
+          });
+      });
+
+
+  </script>

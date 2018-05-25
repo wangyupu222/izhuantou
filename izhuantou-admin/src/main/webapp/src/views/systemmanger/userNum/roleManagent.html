@@ -1,0 +1,318 @@
+<title>角色</title>
+<script type="text/html" template>
+    <link href="{{ layui.setter.base }}/style/tableCode.css?v={{ layui.admin.v }}-1" rel="stylesheet">
+</script>
+    <style>
+        .roleOpenWrap{
+            padding: 20px 20px;
+            background: #fff;
+            border-radius: 5px;
+        }
+        .RoleAddBtn{
+            width: 70px;
+            height: 34px;
+            font-size: 16px;
+            color: #fff;
+            line-height: 34px;
+            text-align: center;
+            border-radius: 3px;
+            background-color: #1E9FFF;
+            border: none;
+            outline: none;
+            float: right;
+            display: inline-block;
+            margin-left: 15px;
+        }
+        .roleWrap{
+
+        }
+        .roleWrap .UserIcon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            float: left;
+            background-color: #009E94;
+            margin-top: 6px;
+            color: #454545;
+        }
+        .roleWrap .UserMsg {
+            float: left;
+            margin-left: 20px;
+        }
+        .roleWrap .UserMsg h3 {
+            font-size: 16px;
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+        roleWrap .UserMsg p {
+            font-size: 14px;
+            color: #666;
+        }
+        .roleListName{
+            margin-top: 15px;
+            font-size: 14px;
+            overflow: hidden;
+            color: #666;
+        }
+        .roleListName span {
+            float: left;
+        }
+        .roleListName span em{
+            font-style: normal;
+        }
+        .roleIconItem{
+            float: right;
+        }
+        .roleIconItem i{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius:50%;
+            background-color: #dad8d8;
+            color: #fff;
+            text-align: center;
+            font-size: 12px;
+            line-height: 20px;
+            position: relative;
+        }
+        .roleIconItem i i{
+            position: absolute;
+            left: -10px;
+            top: 0px;
+            background-color: #1E9FFF;
+
+        }
+        .layui-card-footer {
+            height: 42px;
+            line-height: 42px;
+            padding: 0 15px;
+            border-top: 1px solid #f6f6f6;
+            color: #666;
+            border-radius: 2px 2px 0 0;
+            font-size: 14px;
+            background-color: #f7f9fa;
+        }
+        .layui-card-footer .footer-clo-2{
+            width:calc(50% - 6px);
+            display: inline-block;
+            text-align: center;
+            height: 42px;
+            line-height: 42px;
+        }
+        .layui-card-footer .footer-clo-2 a{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            color: #666;
+        }
+        .splic{
+            color: #999;
+            display: inline-block;
+        }
+    </style>
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">工作台</a>
+        <a><cite>系统管理</cite></a>
+        <a><cite>账号管理</cite></a>
+        <a><cite>角色</cite></a>
+    </div>
+</div>
+<div class="layui-content">
+    <div class="roleOpenWrap">
+        <div class="switchWrap">
+            <form>
+                <input class="switchInput" type="text" placeholder="请输入关键字搜索">
+                <div class="switchBtn">搜索</div>
+                <button type="reset" class="RoleAddBtn">+ 添加</button>
+                <div class="layui-clear"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="layui-content">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="roleWrap">
+                        <div class="UserIcon"></div>
+                        <div class="UserMsg">
+                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
+                            <p>产品经理  |  互联网 - 产品部</p>
+                        </div>
+                        <div class="layui-clear"></div>
+                    </div>
+                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
+                </div>
+                <div class="layui-card-footer">
+                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
+                    <div class="splic">|</div>
+                    <div class="footer-clo-2">删除</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="roleWrap">
+                        <div class="UserIcon"></div>
+                        <div class="UserMsg">
+                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
+                            <p>产品经理  |  互联网 - 产品部</p>
+                        </div>
+                        <div class="layui-clear"></div>
+                    </div>
+                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
+                </div>
+                <div class="layui-card-footer">
+                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
+                    <div class="splic">|</div>
+                    <div class="footer-clo-2">删除</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="roleWrap">
+                        <div class="UserIcon"></div>
+                        <div class="UserMsg">
+                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
+                            <p>产品经理  |  互联网 - 产品部</p>
+                        </div>
+                        <div class="layui-clear"></div>
+                    </div>
+                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
+                </div>
+                <div class="layui-card-footer">
+                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
+                    <div class="splic">|</div>
+                    <div class="footer-clo-2">删除</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="roleWrap">
+                        <div class="UserIcon"></div>
+                        <div class="UserMsg">
+                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
+                            <p>产品经理  |  互联网 - 产品部</p>
+                        </div>
+                        <div class="layui-clear"></div>
+                    </div>
+                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
+                </div>
+                <div class="layui-card-footer">
+                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
+                    <div class="splic">|</div>
+                    <div class="footer-clo-2">删除</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="roleWrap">
+                        <div class="UserIcon"></div>
+                        <div class="UserMsg">
+                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
+                            <p>产品经理  |  互联网 - 产品部</p>
+                        </div>
+                        <div class="layui-clear"></div>
+                    </div>
+                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
+                </div>
+                <div class="layui-card-footer">
+                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
+                    <div class="splic">|</div>
+                    <div class="footer-clo-2">删除</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="roleWrap">
+                        <div class="UserIcon"></div>
+                        <div class="UserMsg">
+                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
+                            <p>产品经理  |  互联网 - 产品部</p>
+                        </div>
+                        <div class="layui-clear"></div>
+                    </div>
+                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
+                </div>
+                <div class="layui-card-footer">
+                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
+                    <div class="splic">|</div>
+                    <div class="footer-clo-2">删除</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="roleWrap">
+                        <div class="UserIcon"></div>
+                        <div class="UserMsg">
+                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
+                            <p>产品经理  |  互联网 - 产品部</p>
+                        </div>
+                        <div class="layui-clear"></div>
+                    </div>
+                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
+                </div>
+                <div class="layui-card-footer">
+                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
+                    <div class="splic">|</div>
+                    <div class="footer-clo-2">删除</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="roleWrap">
+                        <div class="UserIcon"></div>
+                        <div class="UserMsg">
+                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
+                            <p>产品经理  |  互联网 - 产品部</p>
+                        </div>
+                        <div class="layui-clear"></div>
+                    </div>
+                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
+                </div>
+                <div class="layui-card-footer">
+                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
+                    <div class="splic">|</div>
+                    <div class="footer-clo-2">删除</div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="roleWrap">
+                        <div class="UserIcon"></div>
+                        <div class="UserMsg">
+                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
+                            <p>产品经理  |  互联网 - 产品部</p>
+                        </div>
+                        <div class="layui-clear"></div>
+                    </div>
+                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
+                </div>
+                <div class="layui-card-footer">
+                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
+                    <div class="splic">|</div>
+                    <div class="footer-clo-2">删除</div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
