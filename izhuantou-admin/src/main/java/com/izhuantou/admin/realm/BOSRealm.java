@@ -36,9 +36,14 @@ public class BOSRealm extends AuthorizingRealm {
 	    user.setUserName(name);
 	    ManagerUser managerUser = managerUserService.queryUser(user);
 	    // 简单认证对象信息
-	    SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(managerUser, managerUser.getPassWord(),
-		    this.getName());
-	    return info;
+	    if (managerUser != null) {
+		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(managerUser, managerUser.getPassWord(),
+			this.getName());
+		return info;
+	    } else {
+		return null;
+	    }
+
 	} else {
 	    return null;
 	}

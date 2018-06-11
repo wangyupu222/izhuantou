@@ -126,6 +126,20 @@ body {
             layer.msg(str, {icon: 5});
         }
     })
+    
+    	$.ajax({
+            	type : "post",
+            	url : "/manager/roles/parentlist",
+            	dataType : "json",
+                data:{},
+                success : function(result) {
+                	console.log(result);
+                },
+                error:function(result){
+                	console.log(JSON.stringify(result));
+                	alert("失败！");
+                }
+            });
    
     $("#FormLogin").validate({
         submitHandler: function(form) {
@@ -141,7 +155,7 @@ body {
             	type : "post",
                 url : "/manager/user/login",
                 dataType : "json",
-                //data:user,
+                data:user,
                 success : function(result) {
                 	console.log(result);
                     if(result.status==2){
