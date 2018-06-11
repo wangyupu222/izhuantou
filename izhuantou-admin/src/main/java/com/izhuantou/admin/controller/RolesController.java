@@ -18,7 +18,7 @@ import com.izhuantou.service.api.managerMenu.RolesService;
 import com.izhuantou.service.api.managerMenu.RolesToMenuService;
 
 @Controller
-@RequestMapping("roles")
+@RequestMapping(value = "roles", produces = "application/json;charset=UTF-8")
 public class RolesController {
     private static final Logger logger = LoggerFactory.getLogger(RolesController.class);
 

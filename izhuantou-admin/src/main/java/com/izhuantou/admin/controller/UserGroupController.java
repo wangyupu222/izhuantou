@@ -26,7 +26,7 @@ import com.izhuantou.service.api.managerMenu.UserGroupService;
  *
  */
 @Controller
-@RequestMapping("group")
+@RequestMapping(value = "group", produces = "application/json;charset=UTF-8")
 public class UserGroupController {
     private static final Logger logger = LoggerFactory.getLogger(UserGroupController.class);
 

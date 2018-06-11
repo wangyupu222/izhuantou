@@ -36,7 +36,7 @@ import com.izhuantou.service.api.p2p.FourNumService;
  *
  */
 @Controller
-@RequestMapping("user")
+@RequestMapping(value = "user", produces = "application/json;charset=UTF-8")
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
