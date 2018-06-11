@@ -1,0 +1,147 @@
+
+<title>个人资料</title>
+<script type="text/html" template>
+  <link href="{{ layui.setter.base }}/style/tableCode.css?v={{ layui.admin.v }}-1" rel="stylesheet">
+</script>
+  <style>
+    .layui-table-body {
+      overflow: hidden;
+    }
+    .personalWrap{
+      margin-bottom: 50px;
+
+    }
+    .personalIcon{
+      width: 120px;
+      height: 120px;
+      float: left;
+      background-color: #eaeaea;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .personalIcon img{
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 5px;
+    }
+    .personalCon{
+      float: left;
+      margin-left: 20px;
+      font-size: 14px;
+      color: #333;
+    }
+    .personalCon label{
+      width: 75px;
+      text-align: right;
+      display: inline-block;
+    }
+    .personalCon p{
+      margin-bottom: 11px;
+    }
+    .personalCon p:first-child{
+      margin-top: 5px;
+    }
+    .personalCon p:last-child{
+      margin-bottom: 0px;
+    }
+    .personalCon p:first-child .iconTit{
+      width: 51px;
+      height: 18px;
+      color: #52C41A;
+      border:1px solid #b7eb8f;
+      border-radius: 3px;
+      text-align: center;
+      line-height: 18px;
+      font-size: 12px;
+      background-color: #f6ffed;
+      margin-left: 18px;
+      display: inline-block;
+      vertical-align: middle;
+      font-style: normal;
+    }
+    .spliceBox{
+      width: 98%;
+      height: 1px;
+      border:none;
+      background-color: #eaeaea;
+      margin: 0 auto;
+    }
+    .passWordMain{
+      width: 95%;
+      margin: 0 auto;
+      margin-top: 30px;
+      color: #333;
+      font-size: 14px;
+    }
+    .passWordMain .heading{
+      float: left;
+      width: 25%;
+      min-width: 60px;
+
+    }
+    .passWordMain .pointsText{
+      float: left;
+      width: 400px;
+    }
+    .passWordMain .setUp{
+      float: right;
+    }
+    .passWordMain .setUp span{
+      color: #009900;
+    }
+    .passWordMain .setUp a{
+      color: #1E9FFF;
+
+    }
+  </style>
+<div class="layui-card layadmin-header">
+  <div class="layui-breadcrumb" lay-filter="breadcrumb">
+    <a lay-href="">工作台</a>
+    <a><cite>系统管理</cite></a>
+    <a><cite>个人资料</cite></a>
+  </div>
+</div>
+<div class="">
+  <div class="layui-content" id="LAY-component-grid-all" >
+    <div class="layui-row layui-col-space10" id="app">
+      <div class="DistributeWrap">
+        <div class="personalWrap">
+          <div class="personalIcon"></div>
+          <div class="personalCon">
+            <p><label> 用户名：</label><span>Chauncey<em class="iconTit">管理员</em></span></p>
+            <p><label> 登录账号：</label><span>Chauncey</span></p>
+            <p><label> 员工工号：</label><span>ZT0808</span></p>
+            <p><label> 注册时间：</label><span>2018-04-18</span></p>
+          </div>
+          <div class="layui-clear"></div>
+        </div>
+        <div class="spliceBox"></div>
+        <div class="passWordMain">
+          <div class="heading">登录密码</div>
+          <div class="pointsText">安全性高的密码可以使帐号更安全。建议您定期更换密码，设置一个包含字母，符号或数字中至少两项且长度超过6位的密码。</div>
+          <div class="setUp"><span class="layui-icon">&#x1005;  已设置</span> | <a href="javascript:;">修改</a></div>
+          <div class="layui-clear"></div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+  <script>
+      var element = layui.element;
+      layui.use(['laypage', 'layer','table','laydate'], function(){
+          var table = layui.table;
+          var laypage = layui.laypage
+              ,element = layui.element
+              ,layer = layui.layer,laydate = layui.laydate;
+
+      });
+
+  </script>
+  <script>
+
+  </script>

@@ -1,0 +1,290 @@
+<title>角色详情</title>
+<script type="text/html" template>
+    <!--<link href="{{ layui.setter.base }}/style/ace.min.css" rel="stylesheet">-->
+    <link href="{{ layui.setter.base }}/lib/tree/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ layui.setter.base }}/style/treeStyle.css" rel="stylesheet">
+</script>
+    <style>
+        .workTop{
+            height: auto;
+            padding-top: 20px;
+            padding-bottom: 25px;
+            padding-left: 0px;
+        }
+        .goBackBtn{
+            float: left;
+            width: 80px;
+            height: 32px;
+            background-color: #eaeaea;
+            color: #999;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 34px;
+            border:1px solid #bababa;
+            margin-left: 35px;
+        }
+        .goBackBtn a{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            color: #999;
+        }
+        .editBtn{
+            float: right;
+            width: 80px;
+            height: 32px;
+            background-color: #1E9FFF;
+            color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 34px;
+            margin-right: 25px;
+        }
+        .roleTreeWrap{
+            min-height: 450px;
+            background-color: #fff;
+        }
+        .layui-btn-group{
+            margin-left: 15px;
+            position: relative;
+            top: -2px;
+        }
+        .power-btn{
+            font-size: 12px;
+            height: 20px;
+            line-height: 20px;
+            background-color: #fff;
+            color: #666;
+            padding: 0 12px;
+        }
+        .power-btn input{
+            display: none;
+        }
+        .layui-btn-group .power-btn:hover{
+            color: #1E9FFF;
+        }
+        .layui-btn-group .power-btn {
+            margin-left: 0!important;
+            margin-right: 0!important;
+            border-left: 1px solid #eaeaea;
+            border-radius: 0;
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .layui-btn-group .power-btn:first-child {
+            border-left: 1px solid #eaeaea;
+            border-radius: 6px 0 0 6px;
+        }
+        .layui-btn-group .layui-btn:last-child {
+            border-radius: 0 6px 6px 0;
+            border-right: 1px solid #eaeaea;
+        }
+        .layui-btn-group .power-btn.active{
+            background-color: #1E9FFF;
+            color: #fff;
+            border-color: #1E9FFF;
+        }
+        .role-tit{
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 35px;
+        }
+        .role_input{
+            width: 30%;
+            margin-bottom: 25px;
+        }
+        .role_input label{
+            font-size: 16px;
+            display: inline-block;
+            height: 35px;
+            line-height: 35px;
+            margin-bottom: 5px;
+
+        }
+        .tree_tit{
+            font-size: 16px;
+            margin-bottom: 25px;
+
+        }
+        .btnWrap{
+            padding-bottom: 30px;
+        }
+        .btnWrap button{
+            margin-right: 20px;
+        }
+
+
+    </style>
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">工作台</a>
+        <a><cite>系统管理</cite></a>
+        <a><cite>账号管理</cite></a>
+        <a><cite>角色</cite></a>
+    </div>
+</div>
+<div class="workTop">
+    <div class="goBackBtn"><a href="javascript:history.back(-1)">&lt; 返回</a></div>
+    <div class="editBtn">编辑</div>
+    <div class="layui-clear"></div>
+</div>
+<div class="layui-content">
+    <div class="roleTreeWrap">
+        <div class="widget-main">
+        <div class="widget-body">
+            <div class="widget-main padding-8">
+                <div class="role_input">
+                <h3 class="role-tit">添加角色</h3>
+                <div class="layui-form-item">
+                    <label class="">角色名：</label>
+                     <input type="text" name="title" id="roleName" lay-verify="title" autocomplete="off" placeholder="请输入角色名" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                   <label class="">描述：</label>
+                   <input type="text" name="title" id="description" lay-verify="title" autocomplete="off" placeholder="请输入角色描述" class="layui-input">
+                </div>
+                </div>
+                <div class="tree_tit">权限配置：</div>
+                <div id="tree1" class="tree tree-selectable">
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+        <div class="btnWrap">
+            <button class="layui-btn layui-btn-normal float-R subiltBtn">确认提交</button>
+            <div class="layui-clear"></div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['admin','form','jquery'], function() {
+        var form = layui.form
+            , element = layui.element
+            , admin = layui.admin
+            , $ = layui.$;
+        var layer = layui.layer;
+
+        $.ajax({
+            type: "get",
+            /* url: "./json/menu.json", */
+            url:'/manager/user/menutree?oid='+sessionStorage.getItem('OID'),
+            dataType: "json",
+            success: function(result){
+                var dataValue=result.dataValue.menuList;
+                var result=result.dataValue;
+
+                for (var i=0;i<result.length;i++){
+                    var listStr='';
+                    if(result[i].menuList.length>0){
+                        for (var j=0;j<result[i].menuList.length;j++){
+                            var listTwoStr='';
+                            if(result[i].menuList[j].menuList.length>0){
+                                for (var k=0;k<result[i].menuList[j].menuList.length;k++){
+                                    listTwoStr+='<div class="tree-item" style="display: block;"><div class="tree-item-name" menu-Id="'+result[i].menuList[j].menuList[k].oid+'">'+result[i].menuList[j].menuList[k].title+'</div><div class="layui-btn-group">\n' +
+                                        '            <button class="layui-btn power-btn active">无权限<input type="checkbox" value="0" name="power"></button>\n' +
+                                        '            <button class="layui-btn power-btn" >仅查看 <input type="checkbox" value="1" name="power"></button>\n' +
+                                        '            <button class="layui-btn power-btn">可操作 <input type="checkbox" value="2" name="power"></button>\n' +
+                                        '        </div></div>';
+                                }
+                                listStr+='<div class="tree-folder" style="display: block;"><div class="tree-folder-header"><i class="icon-minus"></i><div class="tree-folder-name" menu-Id="'+result[i].menuList[j].oid+'">'+result[i].menuList[j].title+'</div></div><div class="tree-folder-content">'+listTwoStr+'</div></div>';
+                            }else{
+                                listStr+='<div class="tree-item" style="display: block;"><div class="tree-item-name" menu-Id="'+result[i].menuList[j].oid+'">'+result[i].menuList[j].title+'</div><div class="layui-btn-group">\n' +
+                                    '            <button class="layui-btn power-btn active">无权限<input type="checkbox" value="0" name="power"></button>\n' +
+                                    '            <button class="layui-btn power-btn" >仅查看 <input type="checkbox" value="1" name="power"></button>\n' +
+                                    '            <button class="layui-btn power-btn">可操作 <input type="checkbox" value="2" name="power"></button>\n' +
+                                    '        </div></div>';
+                            }
+
+
+                        }
+                    }
+                    var str='<div class="tree-folder" style="display: block;"><div class="tree-folder-header">';
+                            if(result[i].menuList.length>0){
+                                str+=  '<i class="icon-minus"></i>';
+                            }
+                    str+= '<div class="tree-folder-name">'+result[i].title+'</div></div><div class="tree-folder-content">'+listStr+'</div>' +
+                        '                        </div>';
+                    $("#tree1").append(str);
+                }
+                $(".layui-btn-group .power-btn").on("click",function () {
+                    //$(this).siblings(".power-btn").find("input").removeAttr('checked');
+
+                    var _this=$(this).parent(".layui-btn-group").find(".power-btn");
+                    for(var i=0;i<$(this).parent(".layui-btn-group").find(".power-btn").length;i++){
+                        if(_this.eq(i).find("input[name='power']").is(':checked'))
+                        {
+                            _this.eq(i).find("input[name='power']").prop("checked",false);
+
+                        }
+
+                    }
+                    $(this).find("input[name='power']").prop("checked",true);
+                    $(this).addClass("active").siblings(".power-btn").removeClass("active");
+                })
+
+            },
+            error:function(result){
+            }
+        });
+
+
+
+        $(".subiltBtn").on('click',function () {
+        	var isright = true;
+            var strError = "";
+            if(!$("#roleName").val()){
+            	strError += "角色名不可为空！";
+                isright = false;
+            }else if(!$("#description").val()){
+            	strError += "描述不可为空！";
+                isright = false;
+            }
+            if (isright == true) {
+            	var num= $(".layui-btn-group .power-btn").find('input[name="power"]:checked').val();
+                var arrwrap=[];
+                $(".layui-btn-group .power-btn").find('input[name="power"]:checked').each(function(){
+                    if($(this).val()==1 || $(this).val()==2){
+                        var str=$(this).parent(".power-btn").parent(".layui-btn-group").siblings(".tree-item-name").attr("menu-id");
+                        //var str=$(this).parent(".power-btn").parent(".layui-btn-group").siblings(".tree-item-name").text();
+                        arrwrap.push(str);
+                        arrwrap.push($(this).val());
+                    }
+                   
+                })
+                $("#roleArr").val(arrwrap)
+                var roleArr= arrwrap.join(",");
+                var roles={
+                		parentId:sessionStorage.getItem('roleOid'),
+                		name:$("#roleName").val(),
+                		description:$("#description").val(),
+                		arr:roleArr
+                }
+                
+                layer.confirm('确认提交？', function(index){
+                	$.ajax({
+            	        url : "/manager/roles/addroles",
+            	        type : "post",
+            	        dataType : "json",
+            	        data:roles,
+            	        success : function(result) {
+            	            if(result.status==1){
+            	            	 layer.msg('添加成功',{'icon':1});
+            	            }else{
+            	            	 layer.msg('添加失败',{'icon':2});
+            	            }
+            	        },
+            	        error:function(result){
+            	        	alert("失败！");
+            	        }
+            	    });
+                    layer.close(index);
+                });
+            } else {
+                layer.msg(strError, {icon: 2});
+            }
+           
+        })
+    })
+</script>
