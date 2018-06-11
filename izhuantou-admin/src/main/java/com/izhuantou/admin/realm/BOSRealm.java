@@ -9,9 +9,11 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.izhuantou.common.utils.StringUtil;
-import com.izhuantou.damain.ManagerUser;
+import com.izhuantou.damain.manager.ManagerUser;
+import com.izhuantou.service.api.managerMenu.ManagerUserService;
 
 /**
  * 自定义Realm
@@ -21,18 +23,20 @@ import com.izhuantou.damain.ManagerUser;
  *
  */
 public class BOSRealm extends AuthorizingRealm {
+    @Autowired
+    private ManagerUserService managerUserService;
 
     // 认证
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 	UsernamePasswordToken passwordToken = (UsernamePasswordToken) token;
-	String username = passwordToken.getUsername();
-	if (StringUtil.isNotEmpty(username)) {
+	String name = passwordToken.getUsername();
+	if (StringUtil.isNotEmpty(name)) {
 	    // 查询数据库
-	    ManagerUser managerUser = new ManagerUser();
-	    managerUser.setUserName("1234qwer");
-	    managerUser.setPassWard("010102");
+	    ManagerUser user = new ManagerUser();
+	    user.setUserName(name);
+	    ManagerUser managerUser = managerUserService.queryUser(user);
 	    // 简单认证对象信息
-	    SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(managerUser, managerUser.getPassWard(),
+	    SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(managerUser, managerUser.getPassWord(),
 		    this.getName());
 	    return info;
 	} else {

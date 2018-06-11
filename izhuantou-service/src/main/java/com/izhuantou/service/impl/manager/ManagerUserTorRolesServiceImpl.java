@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
-import com.izhuantou.damain.ManagerUserToRoles;
+import com.izhuantou.damain.manager.ManagerUserToRoles;
 import com.izhuantou.dao.ManagerUserToRolesMapper;
 import com.izhuantou.service.api.managerMenu.ManagerUserToRolesService;
 import com.izhuantou.service.impl.BaseServiceImpl;

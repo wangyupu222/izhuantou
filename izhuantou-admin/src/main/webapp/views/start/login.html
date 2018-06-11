@@ -5,7 +5,7 @@
 <title>砖头网后台管理</title>
     <link rel="stylesheet" href="/start/layui/css/layui.css">
     <link rel="stylesheet" href="/start/layui/css/login2.css">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/layui/images/favicon.ico">
 <style>
 html,
 body {
@@ -39,19 +39,19 @@ body {
         <div class="layadmin-user-login-box layadmin-user-login-header">
             <h2>砖头网管理控制台</h2>
         </div>
-        <form action="/manager/user/login">
+        <form action="" id="FormLogin" name="FormLogin">
         <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
-                <input type="text" name="username" id="LAY-user-login-username" lay-verify="required" placeholder="用户名" class="layui-input">
+                <input type="text" name="username" id="LAY-user-login-username"  data-rule-username='true' lay-verify="required" placeholder="用户名" class="layui-input">
             </div>
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
-                <input type="password" name="password" id="LAY-user-login-password" lay-verify="required" placeholder="密码" class="layui-input">
+                <input type="password" name="password" id="LAY-user-login-password" data-rule-password='true' lay-verify="required" placeholder="密码" class="layui-input">
             </div>
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-phone"></label>
-                <input type="text" name="password" id="LAY-user-login-phone" lay-verify="required" placeholder="手机号" class="layui-input">
+                <input type="text" name="password" id="LAY-user-login-phone" data-rule-mobile='true' lay-verify="required" placeholder="手机号" class="layui-input">
             </div>
             <div class="layui-form-item"><div id="drag"></div><input type="hidden" name="yzmIsFlag" id="yzmIsFlag" required data-rule-yzm='true'></div>
             <div class="layui-form-item">
@@ -68,7 +68,7 @@ body {
                 </div>
             </div>
             <div class="layui-form-item">
-                <button class="layui-btn submitBtn layui-btn-fluid layui-btn-normal" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
+                <button class="layui-btn submitBtn layui-btn-fluid layui-btn-normal" >登 入</button>
             </div>
         </div>
         </form>
@@ -77,61 +77,199 @@ body {
 <script src="/start/layui/layui.js"></script>
 <script src="/start/layui/layui.all.js"></script>
 <!--<script src="../src/index.js"></script>-->
-<script src="/start/layui/lay/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/start/layui/lay/jquery-1.10.1.min.js"></script>
+<script src="/start/layui/lay/jquery.validate.js"></script>
 <script src="/start/layui/lay/drag.js"></script>
 <!--<script src="layui/lay/admin.js"></script>-->
 
 <script>
     $('#drag').drag();
+    
+    layui.use(['layer','jquery'], function() {
+        var layer = layui.layer
+            ,$ = layui.jquery;
+    var oLogin_user = $("#LAY-user-login-username");
+    var oLogin_paw = $("#LAY-user-login-password");
+    var oLogin_phone = $("#LAY-user-login-phone");
+    var oLogin_yzm = $("#LAY-user-login-vercode");
     $(".submitBtn").click(function () {
-       // window.location.href='index.html';
-    });
-    layui.use(['admin', 'form', 'user'], function(){
-        var $ = layui.$
-            ,setter = layui.setter
-            ,admin = layui.admin
-            ,form = layui.form
-            ,router = layui.router()
-            ,search = router.search,layer = layui.layer;
+        var isright = true;
+        var str = "";
+        if (!oLogin_user.val()) {
+            str += "用户名不可为空！";
+            isright = false;
+        } else if (/^[a-zA-Z][0-9]{5,6}$/.test(oLogin_user.val()) == false) {
+            str += "用户名格式不正确！";
+            isright = false;
+        } else if (!oLogin_paw.val()) {
+            str += "请输入密码！";
+            isright = false;
+        } else if(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&._-])[A-Za-z\d$@$!%*#?&._-]{8,20}$/.test(oLogin_paw.val()) == false){
+            str += "密码需包含数字、字母和特殊字符";
+            isright = false;
+        } else if (!oLogin_phone.val()) {
+            str += "请输入手机号！";
+            isright = false;
+        } else if(  /^1[3|4|5|7|8]\d{9}$/.test(oLogin_phone.val()) == false){
+            str += "请输入11位手机号";
+            isright = false;
+        }else if (!oLogin_yzm.val()) {
+            str += "请输入验证码";
+            isright = false;
+        }
 
-        form.render();
+        if (isright == true) {
+            //oLogin_val[0].innerHTML = "";
 
-        //提交
-        form.on('submit(LAY-user-login-submit)', function(obj){
 
-            //请求登入接口
-            admin.req({
-                url: '' //实际使用请改成服务端真实接口
-                ,data: obj.field
-                ,done: function(res){
-
-                    //请求成功后，写入 access_token
-                    layui.data(setter.tableName, {
-                        key: setter.request.tokenName
-                        ,value: res.data.access_token
-                    });
-
-                    //登入成功的提示与跳转
-                    layer.msg('登入成功', {
-                        offset: '15px'
-                        ,icon: 1
-                        ,time: 1000
-                    }, function(){
-                        location.hash = search.redirect ? decodeURIComponent(search.redirect) : '/';
-                    });
+        } else {
+            layer.msg(str, {icon: 5});
+        }
+    })
+   
+    $("#FormLogin").validate({
+        submitHandler: function(form) {
+            //验证通过后 的js代码写在这里
+            //validataForm_id("login");
+            var user={
+            		userName:$("#LAY-user-login-username").val(),
+            		passWord:$("#LAY-user-login-password").val(),
+            		phone:$("#LAY-user-login-phone").val(),
+            		smsCode:$("#LAY-user-login-vercode").val()	
+            }
+            $.ajax({
+                url : "/manager/user/login",
+                type : "post",
+                dataType : "json",
+                data:user,
+                success : function(result) {
+                	console.log(result);
+                    if(result.status==2){
+                    	layer.msg(result.message, {icon: 5});
+                    }else{
+                    	var oId=result.dataValue;
+                    	sessionStorage.setItem("OID",oId);
+                        window.location.href='/manager/user/index';
+                    }
+                },
+                error:function(result){
+                	alert("失败！");
                 }
             });
-
-        });
-
-
-        //实际使用时记得删除该代码
-
-            layer.msg('为了方便演示，用户名密码可随意输入', {
-            offset: '15px'
-            ,icon: 1
-            });
+            //return validataForm_id("login");
+            $(".loadingBtn").css("display","block");
+            $(".login_validate").text("");
+        }
+    })
     });
+
+    
+
+
+    //配置错误提示的节点，默认为label，这里配置成 span （errorElement:'span'）
+    $.validator.setDefaults({
+        errorElement:'span'
+    });
+
+    //配置通用的默认提示语
+    $.extend($.validator.messages, {
+        required: '',//必填
+        equalTo: "",//请再次输入相同的值
+        maxlength: $.validator.format(""),//Please enter no more than {0} characters.
+        minlength: $.validator.format(""),//Please enter at least {0} characters.
+    });
+
+
+    //账号验证规则
+    jQuery.validator.addMethod("username", function (value, element) {
+        var username = /^[a-zA-Z][0-9]{5,6}$/;
+        return this.optional(element) || (username.test(value));
+    }, "");//手机格式不对
+
+    //手机验证规则
+    jQuery.validator.addMethod("mobile", function (value, element) {
+        var mobile = /^1[3|4|5|7|8]\d{9}$/;
+        return this.optional(element) || (mobile.test(value));
+    }, "");//手机格式不对
+
+    //密码验证规则
+    jQuery.validator.addMethod("password", function (value, element) {
+        var password = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&._-])[A-Za-z\d$@$!%*#?&._-]{8,20}$/;
+        return this.optional(element) || (password.test(value));
+    }, "");//密码只能是数字和字母
+
+    function huoquyzm(){
+        var phoneNum = document.getElementById('LAY-user-login-phone').value;
+        var yzm= document.getElementById('yzmIsFlag').value;
+        var oSign_val=$("#sign_val");
+        if (phoneNum!=""){
+            if(yzm!=""){
+                $.ajax({
+                    type:"POST",
+                    dataType:"json",
+                    url:"/portal/user/checksms",
+                    data:{
+                        msmType:smsValidateCode,
+                        name:phoneNum,
+                        yzm:yzm
+                    },
+                    success: function(result){
+                        if(result.status==2){
+                            console.info(result);
+                        }else{
+                            sends.send();
+                        }
+                    },
+                    error:function(){
+                        oSign_val[0].innerHTML ="系统异常！";
+                    }
+                });
+                //sends.send();
+            }else{
+                alert("请滑动验证码！");
+                //layer.msg('请滑动验证码！', {icon: 5});
+            }
+        }else{
+            alert('请输入手机号！');
+            //layer.msg('请输入手机号！', {icon: 5});
+        }
+
+    }
+    //倒计时
+    var sends = {
+        checked:1,
+        send:function(){
+            var numbers = /^1\d{10}$/;
+            var val = $('#LAY-user-login-phone').val().replace(/\s+/g,""); //获取输入手机号码
+
+            if(numbers.test(val)){
+                //alert(numbers.test(val));
+                var time = 59;
+                //$('.div-phone span').remove();
+                function timeCountDown(){
+                    if(time==0){
+                        clearInterval(timer);
+                        $('#LAY-user-getsmscode').removeClass('layui-btn-disabled').html("获取验证码");
+                        $("#LAY-user-getsmscode").attr("onclick","huoquyzm();");
+                        //$('a.hqyzm').removeAttr('onclick');
+                        sends.checked = 1;
+                        return true;
+                    }
+                    $('#LAY-user-getsmscode').html(time+"s后再发送");
+                    $('#LAY-user-getsmscode').removeAttr('onclick');
+                    time--;
+                    return false;
+                    sends.checked = 0;
+                }
+                $('#LAY-user-getsmscode').addClass('layui-btn-disabled');
+
+                timeCountDown();
+                var timer = setInterval(timeCountDown,1000);
+            }
+        }
+    }
+
+
 </script>
 
 </body>

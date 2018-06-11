@@ -3,14 +3,14 @@
     margin-top: 25px;
 }
 .TreeWrap{
-    width: 300px;min-height: 500px;float: left;margin-top: 30px;
+    width: 189px;min-height: 500px;float: left;margin-top: 30px;margin-right:20px;border-right:1px solid #eaeaea;
 }
 .operationTree{
     width: 100%;
 }
 .operationTree ul{
     background-color: inherit;
-    width: 90%;
+    width: 100%;
     margin-bottom: 30px;
 }
 .operationTree ul.layui-nav-tree li {
@@ -26,15 +26,21 @@
     transition: all .3s;
     -webkit-transition: all .3s;
 }
+.operationTree .layui-nav .layui-nav-item.layui-nav-itemed .layui-nav-child a {
+    padding-left:36px;
+}
 .operationTree .layui-nav .layui-nav-item a em{
     font-style: normal;
 }
 .operationTree .layui-nav-tree .layui-nav-item a:hover {
     background-color: inherit;
+    background-color: #e6f7ff;
+    cursor: pointer;
+    color:#1890FF;
 }
 .operationTree .layui-nav-itemed > .layui-nav-child {
     display: block;
-    padding-left: 18px;
+    /* padding-left: 18px; */
     background-color: inherit !important;
 }
 .operationTree .layui-nav-tree .layui-nav-child dd.layui-this,.operationTree .layui-nav-tree .layui-nav-child dd.layui-this a,.operationTree .layui-nav-tree .layui-this,.operationTree .layui-nav-tree .layui-this > a,.operationTree .layui-nav-tree .layui-this > a:hover {
@@ -42,8 +48,23 @@
     color: #666;
 }
 .operationTree .layui-nav .layui-nav-child dd.layui-this a,.operationTree .layui-nav-child dd.layui-this {
-    background-color: inherit;
-    color: #666;
+    /* background-color: inherit;
+    color: #666; */
+    background-color: #e6f7ff;
+    color: #1890FF;
+}
+.operationTree .layui-nav-child dd:before{
+	content:"";
+	position: absolute;
+    right: -2px;
+    width: 3px;
+    height: 100%;
+    background-color: #1E9FFF;
+    opacity: 0;
+    z-index: 2;
+}
+.operationTree .layui-nav-child dd.layui-this:before{
+	opacity: 1;
 }
 .operationTree .layui-nav-itemed > a,.operationTree .layui-nav-tree .layui-nav-title a,.operationTree .layui-nav-tree .layui-nav-title a:hover {
     color: #666 !important;

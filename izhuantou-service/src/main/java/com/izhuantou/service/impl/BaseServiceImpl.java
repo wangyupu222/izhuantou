@@ -59,10 +59,10 @@ public class BaseServiceImpl<T extends BasePojo> implements BaseService<T> {
     }
 
     @Override
-    public List<T> queryByPage(Integer page, Integer rows) {
+    public List<T> queryByPage(Integer page, Integer rows, T t) {
 	// 设置分页参数
 	PageHelper.startPage(page, rows);
-	return this.mapper.select(null);
+	return this.mapper.select(t);
     }
 
     @Override

@@ -1,7 +1,7 @@
 {
-  "code": 0
+	"status": 1
   ,"msg": ""
-  ,"data": {
+  ,"dataValue": {
     "newmsg": 3
   }
 }

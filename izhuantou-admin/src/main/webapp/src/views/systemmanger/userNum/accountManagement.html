@@ -1,12 +1,178 @@
 <title>账号</title>
   <script type="text/html" template>
-    <link href="{{ layui.setter.base }}/style/tableCode.css?v={{ layui.admin.v }}-1" rel="stylesheet">
-    <link href="{{ layui.setter.base }}/style/operationWrap.css?v={{ layui.admin.v }}-1" rel="stylesheet">
+    <link href="{{ layui.setter.base }}/style/tableCode.css" rel="stylesheet">
+    <link href="{{ layui.setter.base }}/style/operationWrap.css" rel="stylesheet">
+    <link href="{{ layui.setter.base }}/lib/chosen/chosen.css" rel="stylesheet">
   </script>
   <style>
     .layui-table-body {
-      overflow: hidden;
+     overflow: hidden;
+      overflow-y: hidden;
     }
+    .accountWrap {
+    margin-top: 10px;
+	}
+	.DistributeWrap {
+    margin-top: 0px;
+	}
+	.TreeWrap {
+    margin-top: 5px;
+	}
+	.opeartionIcon{
+	margin-right:5px;
+	}
+    .layui-table-view{
+    height:auto !important;
+    }
+    .layui-table-body.layui-table-main{
+     height:auto !important;
+    }
+    .layui-table-cell .layui-input{
+      height: 32px;
+    }
+    .chosen-container.chosen-container-multi{
+      width: 100% !important;
+    }
+    .chosen-container-multi .chosen-choices {
+      -moz-box-sizing: border-box;
+      background-color: #FFFFFF;
+      border: 1px solid #CBD5DD;
+      border-radius: 2px;
+      cursor: text;
+      /* height: 32px !important; */
+      margin: 0;
+      min-height: 5px;
+      overflow: hidden;
+      padding: 0px;
+      position: relative;
+      width: 100%;
+      z-index: 9;
+    }
+    .layui-table-cell {
+      height: 32px;
+      line-height: 32px;
+    }
+    .layui-table-main table #editing td:nth-of-type(7) .layui-table-cell,.layui-table-main table #editing td:nth-of-type(9) .layui-table-cell{
+      overflow: inherit;
+
+    }
+    .allBtn a{
+    display: block;
+    padding: 0 20px;
+    color: #666;
+    position: relative;
+    height: 45px;
+    line-height: 45px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    }
+    .operationTree .layui-nav.active{
+    display:block;
+    }
+    .operationTree .layui-nav{
+    display:none;
+    }
+    .branchAddBtn{
+      background-color: #fff;
+      border:1px dashed #999;
+      width: 90%;
+      margin: 0 auto;
+      color: #666;
+    }
+    .branchAddBtn:hover{
+      color: #1E9FFF;
+      border:1px dashed #1E9FFF;
+    }
+    .layarAddFrom .layui-form-label {
+      width: 60px;
+      padding: 9px 0px;
+    }
+    .layarAddFrom .layui-input-block {
+      margin-left: 80px;
+      min-height: 36px;
+    }
+    .chosen-container .chosen-drop {
+      height: 240px;
+    }
+    .chosen-container .chosen-results {
+      position: relative;
+      overflow-x: visible;
+      overflow-y: visible;
+      margin: 0 4px 4px 0;
+      padding: 0 0 0 4px;
+      max-height: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .layui-table-mend {
+    position: absolute;
+    right: -49px;
+    top: 0;
+    height: 100%;
+    width: 0px
+	}
+    .layui-table-view .layui-table {
+    width: 100%;
+	}
+	.layui-table-view .layui-table-fixed  .layui-table td,.layui-table-view .layui-table-fixed  .layui-table th {
+    border-right: 1px solid #eaeaea;
+	}
+	.layui-border-box .layui-table td:nth-of-type(7) .layui-unselect{
+	display:none;
+	
+	}
+	
+	.resultPwd{
+      margin-bottom: 5px;
+    }
+    #copyBtn{
+      margin-left: 14px;
+      border-radius: 5px;
+    }
+    .pwdWrap{
+      font-size: 12px;
+      color: #999;
+    }
+    .pwdWrap .password_main{
+      font-style: normal;
+    }
+    #password_main{
+      opacity: 0;
+      width: 1px;
+    }
+    .suo{
+      position: absolute;
+      left: -460%;
+      color:#f00;
+    }
+    .layui-table-cell {
+    
+    overflow: visible;
+    
+}
+    @media screen and (max-width: 1900px) {
+    .layui-table-body {
+    	overflow: visible;
+    }
+    .layui-table-box, .layui-table-view {
+    position: relative;
+    overflow: visible;
+	}
+	.layui-form-select dl {
+    max-height: 200px;   
+	} 
+	}
+	@media screen and (max-width: 1820px) {
+    .layui-table-body {
+    overflow-x: auto;
+	}
+	.suo{
+      position: absolute;
+      left: -455%;
+    }
+	}
+	
+    
 
 </style>
   <div class="layui-card layadmin-header">
@@ -24,55 +190,16 @@
       <div class="accountWrap">
       <div class="TreeWrap">
         <div class="operationTree">
-          <ul id="Nav" class="layui-nav layui-nav-tree">
-            <li class="layui-nav-item">
-              <a href="javascript:;">
-                <i class="layui-icon">&#xe609;</i>
-                <em>砖头科技</em>
-              </a>
-              <dl class="layui-nav-child">
-                <dd><a href="javascript:;"><em>品牌</em>（3）</a></dd>
-                <dd><a href="javascript:;"><em>运营</em>（2）</a></dd>
-                <dd><a href="javascript:;"><em>设计</em>（3）</a></dd>
-                <dd><a href="javascript:;"><em>产品</em>（2）</a></dd>
-
-              </dl>
-
-            </li>
-            <li class="layui-nav-item">
-              <a href="javascript:;">
-                <i class="layui-icon">&#xe770</i>
-                <em>红蚂蚁</em>
-              </a>
-              <dl class="layui-nav-child">
-
-                <dd><a href="views/console.html">市场（3）</a></dd>
-                <dd><a href="views/console2.html">运营（2）</a></dd>
-                <dd><a href="views/console3.html">设计（3）</a></dd>
-              </dl>
-
-            </li>
-            <li class="layui-nav-item">
-              <a href="javascript:;">
-                <i class="layui-icon">&#xe632;</i>
-                <em>钱多多</em>
-              </a>
-              <dl class="layui-nav-child">
-
-                <dd><a href="views/console.html">文章</a></dd>
-                <dd><a href="views/console2.html">广告</a></dd>
-                <dd><a href="views/console3.html">友情链接</a></dd>
-              </dl>
-
-            </li>
-
-
+        <div class="allBtn"><a href="javascript:;"><span>全部</span><span class="allNumber"></span></a></div>
+          <ul id="Nav" class="layui-nav layui-nav-tree active">
+           
           </ul>
+          <div class="layui-btn branchAddBtn">+ 添加</div>
         </div>
 
 
       </div>
-      <div class="DistributeWrap" style="float: left;width:calc(100% - 350px);">
+      <div class="DistributeWrap" style="float: left;width:calc(100% - 210px);">
         <div class="switchWrap">
           <form class="layui-form" action="">
             <div class="selectSwitch">
@@ -93,66 +220,317 @@
             </div>
 
             <div class="switchBtn selectMainBtn">搜索</div>
-            <button type="reset" class="resetBtn selectMainBtn">重置</button>
+            <button type="reset" class="layui-btn layui-btn-normal float-R" id="add" onclick="rowAddNew('layui-table-body')">+ 添加</button>
             <div class="layui-clear"></div>
           </form>
         </div>
 
-        <table lay-filter="parse-table-demo">
+        <table lay-filter="parse-table-demo" id="tableData">
           <thead>
           <tr>
             <th lay-data="{type:'checkbox'}"></th>
-            <th lay-data="{field:'id', width:200, sort: true,}">工号</th>
-            <th lay-data="{field:'username', width:150,sort: true,}">姓名</th>
-            <th lay-data="{field:'phone', minWidth: 180,sort: true,}">手机号</th>
-            <th lay-data="{field:'role', minWidth: 180,sort: true,}">角色</th>
-            <th lay-data="{field:'remark', minWidth: 180,sort: true,}">备注</th>
-            <th lay-data="{field:'operate', minWidth: 180,}">操作</th>
+            <th lay-data="{field:'id', width:100}">账号</th>
+            <th lay-data="{field:'id2', width:100,}">工号</th>
+            <th lay-data="{field:'username', width:100,}">姓名</th>
+            <th lay-data="{field:'username2', width:100,}">职务</th>
+            <th lay-data="{field:'phone', width: 130,}">手机号</th>
+            <th lay-data="{field:'role', minWidth: 180,}">角色</th>
+            <th lay-data="{field:'remark', width: 130,}">备注</th>
+            <th lay-data="{field:'remark2', minWidth: 150,}">部门</th>
+            <th lay-data="{field:'operate', minWidth: 200,}">操作</th>
 
           </tr>
           </thead>
-          <tbody>
-          <tr>
-            <td></td>
-            <td>Z0024</td>
-            <td>马六</td>
-            <td>15818188899</td>
-            <td>角色一、角色二、角色三</td>
-            <td>World</td>
-            <td><a class="operaBtn editBtn" lay-event="edit">编辑</a> <a class="operaBtn" lay-event="edit">重置密码</a> <a class="operaBtn" lay-event="edit">删除</a></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Z0014</td>
-            <td>马六</td>
-            <td>15818188899</td>
-            <td>角色一、角色二、角色三</td>
-            <td>World</td>
-            <td><a class="operaBtn" lay-event="edit">编辑</a> <a class="operaBtn" lay-event="edit">重置密码</a> <a class="operaBtn" lay-event="edit">删除</a></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Z0424</td>
-            <td>马六</td>
-            <td>15818188899</td>
-            <td>角色一、角色二、角色三</td>
-            <td>World</td>
-            <td><a class="operaBtn" lay-event="edit">编辑</a> <a class="operaBtn" lay-event="edit">重置密码</a> <a class="operaBtn" lay-event="edit">删除</a></td>
-          </tr>
+          <tbody >
+          
           </tbody>
         </table>
 
-        <div id="demo6"></div>
+        <div id="demo7"></div>
       </div>
         <div class="layui-clear"></div>
       </div>
     </div>
   </div>
+  <script src="/start/layui/lay/jquery-1.10.1.min.js"></script>
+<script src='/src/lib/bootstable.js'></script>
+<script src='/src/lib/jquery.nicescroll.min.js'></script>
   <script>
       var element = layui.element;
   </script>
   <script>
-      layui.use(['table','jquery'], function(){
+  var branchStr="";
+  var userData="";
+  $(function(){
+	  $.ajax({
+          type: "get",//请求方式
+          url: "/manager/user/userlist",//地址，就是json文件的请求路径
+          dataType: "json",//数据类型可以为 text xml json  script  jsonp
+          data:{},
+          success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
+       	  var dataValue= result.dataValue;
+          var result=result.dataValue.data;
+          
+          for(var i=0;i<result.length;i++){
+        	 var lockData="";
+        	 var lockIcon="";
+        	 if(result[i].status==0){
+        		 lockData='<a class="operaBtn lockBtn" data-status="2">锁定</a>';
+        	 }else if(result[i].status==2){
+        		 lockData='<a class="operaBtn lockBtn" data-status="0">解锁</a>';
+        		 lockIcon='<i class="layui-icon suo">&#xe673;</i>';
+        		 
+        	 }
+          	var str='<tr><td></td><td>'+result[i].userName+'</td><td>'+result[i].userNumber+'</td><td>'+result[i].name+'</td><td>'+result[i].department+'</td><td>'+result[i].phone+'</td><td>'+result[i].duty+'</td><td>word</td><td>'+result[i].duty+'</td><td><a class="operaBtn editBtn" lay-event="edit">编辑</a> <a class="operaBtn resetPwdBtn" >重置密码</a>lockIcon<a class="operaBtn" lay-event="edit">删除</a> <a class="operaBtn" onclick="saveBtn(this);" style="display: none">保存</a><a class="operaBtn" onclick="rowCancel(this);" style="display: none">取消</a>'+lockIcon+'</td></tr>';
+          	$("#tableData tbody").append(str);
+          }
+          
+          layui.use(['table','laypage','form','jquery'], function(){
+              var table = layui.table,
+                  form = layui.form
+                  ,laypage = layui.laypage
+                  ,element = layui.element
+                  ,$= layui.$
+                  ,table=layui.table;
+
+              table.init('parse-table-demo', {
+                  height: '400' //设置高度
+                  ,limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+                  //支持所有基础参数
+              });
+              $(".suo").mouseover(function(){
+            	  layer.tips('账号已锁定',this,{
+            		  tips: 1
+            	  });
+              })
+              if(dataValue.totalNumber<=10){
+            	  $("#demo7").hide();
+              }
+              laypage.render({
+                  elem: 'demo7'
+                  ,count: dataValue.totalNumber
+                  ,layout: ['count', 'prev', 'page', 'next', 'refresh', 'skip']
+              	  ,theme: '#1E9FFF'
+                  ,jump: function(obj){
+                      console.log(obj.curr);
+                      $.ajax({
+                          type: "get",//请求方式
+                          url: "/manager/user/userlist?page="+obj.curr,//地址，就是json文件的请求路径
+                          dataType: "json",//数据类型可以为 text xml json  script  jsonp
+                          data:{},
+                          success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
+                       	  var dataValue= result.dataValue;
+                          var result=result.dataValue.data;
+                          $(".allNumber").text("（"+dataValue.totalNumber+"）");
+                          $("#tableData tbody tr").remove();
+                          for(var i=0;i<result.length;i++){
+                        	  var lockData="";
+                        	  var lockIcon="";
+                         	 if(result[i].status==0){
+                         		 lockData='<a class="operaBtn lockBtn" data-status="2">锁定</a>';
+                         	 }else if(result[i].status==2){
+                         		 lockData='<a class="operaBtn lockBtn" data-status="0">解锁</a>';
+                         		 lockIcon='<i class="layui-icon suo">&#xe673;</i>';
+                         		 
+                         	 }
+                          	var str='<tr><td></td><td>'+result[i].userName+'</td><td>'+result[i].userNumber+'</td><td>'+result[i].name+'</td><td>'+result[i].department+'</td><td>'+result[i].phone+'</td><td>'+result[i].duty+'</td><td>word</td><td>'+result[i].duty+'</td><td><em user-data="'+result[i].oid+'"></em><a class="operaBtn editBtn" lay-event="">编辑</a> <a class="operaBtn resetPwdBtn" lay-event="edit" >重置密码</a>'+lockData+'<a class="operaBtn operaDel" lay-event="del" onclick="parameter('+result[i].oid+');">删除</a> <a class="operaBtn" onclick="saveBtn(this);" style="display: none">保存</a><a class="operaBtn" onclick="rowCancel(this);" style="display: none">取消</a>'+lockIcon+'</td></tr>';
+                          	$("#tableData tbody").append(str);
+                          }
+                          
+                          layui.use(['table','form','jquery'], function(){
+                              var table = layui.table,
+                                  form = layui.form
+                                  ,element = layui.element
+                                  ,$= layui.$
+                                  ,table=layui.table;
+
+                              table.init('parse-table-demo', {
+                                  height: '400' //设置高度
+                                  ,limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+                                  //支持所有基础参数
+                              });
+                              $(".suo").mouseover(function(){
+                            	  layer.tips('账号已锁定',this,{
+                            		  tips: 1
+                            	  });
+                              })
+                             
+                          })
+                          
+                          },
+                  		error:function(result){
+                      	}
+                      });
+                  }
+              });
+          })
+          
+          },
+  		error:function(result){
+      	}
+      });
+	  $.ajax({
+            type: "post",//请求方式
+            url: "/manager/group/parentlist",//地址，就是json文件的请求路径
+            dataType: "json",//数据类型可以为 text xml json  script  jsonp
+            data:{},
+            success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
+            var result=result.dataValue;
+            console.log(result.length);
+            var iconArr=["&#xe609;","&#xe60a;","&#xe628;","&#xe620;","&#xe63c;","&#xe6b2;","&#xe66c;","&#xe857;","&#xe60e;","&#xe629;"]
+            for(var i=0;i<result.length;i++){
+            	branchStr+='<option value="'+result[i].oid+'">'+result[i].name+'</option>';
+            	var str='<li class="layui-nav-item"><a href="javascript:;" lay-url="'+result[i].oid+'"><i class="layui-icon opeartionIcon">'+iconArr[i]+'</i><em>'+result[i].name+'</em><span>（'+result[i].status+'）</span></a></li>';
+            	$(".operationTree .layui-nav").append(str);
+            }
+            
+            },
+    		error:function(result){
+        	}
+        });
+	  $(document).on("click",".operationTree .layui-nav-item",function(){
+		  var oID=$(this).find("a").attr("lay-url");
+		  var _this=$(this);
+		  $.ajax({
+	            type: "post",//请求方式
+	            url: "/manager/group/list",//地址，就是json文件的请求路径
+	            dataType: "json",//数据类型可以为 text xml json  script  jsonp
+	            data:{oid:oID},
+	            success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
+	            	_this.find(".layui-nav-child").remove();
+	            	_this.append('<dl class="layui-nav-child"></dl>');
+	            	
+	            var result=result.dataValue;
+	            console.log(result.length);
+	            for(var i=0;i<result.length;i++){
+	            	var str='<dd><a lay-hrefData="'+result[i].oid+'">'+result[i].name+'<span>（'+result[i].status+'）</span></a></dd>';
+	            	_this.find(".layui-nav-child").append(str);
+	            }
+	           	            
+	            },
+	    		error:function(result){
+	        	}
+	        });
+	  })
+	  
+	  $(document).on("click",".operationTree .layui-nav-item .layui-nav-child dd",function(e){
+		  e.stopPropagation();
+		  var oID=$(this).find("a").attr("lay-hrefData");
+		  var _this=$(this);
+		 if(_this.hasClass("layui-this")){
+			 
+		 }else{
+			 $(".operationTree .layui-nav-item .layui-nav-child dd").removeClass("layui-this");
+			 _this.addClass("layui-this");
+		  $.ajax({
+	            type: "post",//请求方式
+	            url: "/manager/group/pageUserlist",//地址，就是json文件的请求路径
+	            dataType: "json",//数据类型可以为 text xml json  script  jsonp
+	            data:{oid:oID,page:null},
+	            success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
+	            	$("#tableData tbody tr").remove();
+	            	var dataValue=result.dataValue;
+	            	var result=result.dataValue.data;
+	                console.log(dataValue);
+	                for(var i=0;i<result.length;i++){
+	                	var lockData="";
+	                	var lockIcon="";
+	               	 if(result[i].status==0){
+	               		 lockData='<a class="operaBtn lockBtn" data-status="2">锁定</a>';
+	               	 }else if(result[i].status==2){
+	               		 lockData='<a class="operaBtn lockBtn" data-status="0">解锁</a>';
+	               		 lockIcon='<i class="layui-icon suo">&#xe673;</i>';
+	               		 
+	               	 }
+	                	var str='<tr><td></td><td>'+result[0].userName+'</td><td>'+result[i].userNumber+'</td><td>'+result[i].name+'</td><td>'+result[i].department+'</td><td>'+result[i].phone+'</td><td>'+result[i].duty+'</td><td>word</td><td>'+result[i].duty+'</td><td><a class="operaBtn editBtn" lay-event="edit">编辑</a> <a class="operaBtn resetPwdBtn" lay-event="edit">重置密码</a>'+lockData+'<a class="operaBtn operaDel" lay-event="edit">删除</a> <a class="operaBtn" onclick="saveBtn(this);" style="display: none">保存</a><a class="operaBtn" onclick="rowCancel(this);" style="display: none">取消</a>'+lockIcon+'</td></tr>';
+	                	$("#tableData tbody").append(str);
+	                }
+	                layui.use(['table','laypage','form','jquery'], function(){
+		                var table = layui.table,
+		                    form = layui.form
+		                    ,laypage = layui.laypage
+		                    ,element = layui.element
+		                    ,$= layui.$
+		                    ,table=layui.table;
+
+		                table.init('parse-table-demo', {
+		                    height: '400' //设置高度
+		                    ,limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+		                    //支持所有基础参数
+		                });
+		                $(".suo").mouseover(function(){
+		                	layer.tips('账号已锁定',this,{
+		              		  tips: 1
+		              	  });
+                        })
+		                
+		                laypage.render({
+		                    elem: 'demo7'
+		                    ,count: dataValue.totalNumber
+		                    ,layout: ['count', 'prev', 'page', 'next','refresh', 'skip']
+		                	  ,theme: '#1E9FFF'
+		                    ,jump: function(obj){
+		                        console.log(obj.curr);
+		                        $.ajax({
+		                            type: "post",//请求方式
+		                            url: "/manager/group/pageUserlist",//地址，就是json文件的请求路径
+		                            dataType: "json",//数据类型可以为 text xml json  script  jsonp
+		                            data:{oid:oID,page:obj.curr},
+		                            success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
+		                         	  var dataValue= result.dataValue;
+		                            var result=result.dataValue.data;
+		                            $("#tableData tbody tr").remove();
+		                            for(var i=0;i<result.length;i++){
+		                            	var lockData="";
+		                            	var lockIcon="";
+		                           	 if(result[i].status==0){
+		                           		 lockData='<a class="operaBtn lockBtn" data-status="2">锁定</a>';
+		                           	 }else if(result[i].status==2){
+		                           		 lockData='<a class="operaBtn lockBtn" data-status="0">解锁</a>';
+		                           		 lockIcon='<i class="layui-icon suo">&#xe673;</i>';
+		                           		 
+		                           	 }
+		                            	var str='<tr><td></td><td>'+result[i].userName+'</td><td>'+result[i].userNumber+'</td><td>'+result[i].name+'</td><td>'+result[i].department+'</td><td>'+result[i].phone+'</td><td>'+result[i].duty+'</td><td>word</td><td>'+result[i].duty+'</td><td><a class="operaBtn editBtn" lay-event="edit">编辑</a> <a class="operaBtn resetPwdBtn" lay-event="edit">重置密码</a>'+lockData+'<a class="operaBtn operaDel" lay-event="edit">删除</a> <a class="operaBtn" onclick="saveBtn(this);" style="display: none">保存</a><a class="operaBtn" onclick="rowCancel(this);" style="display: none">取消</a>'+lockIcon+'</td></tr>';
+		                            	$("#tableData tbody").append(str);
+		                            }
+		                            
+		                            layui.use(['table','form','jquery'], function(){
+		                                var table = layui.table,
+		                                    form = layui.form
+		                                    ,element = layui.element
+		                                    ,$= layui.$
+		                                    ,table=layui.table;
+
+		                                table.init('parse-table-demo', {
+		                                    height: '400' //设置高度
+		                                    ,limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+		                                    //支持所有基础参数
+		                                });
+		                                
+		                                $(".suo").mouseover(function(){
+		                                	layer.tips('账号已锁定',this,{
+		                              		  tips: 1
+		                              	  });
+		                                })
+		                               
+		                            })
+		                            
+		                            },
+		                    		error:function(result){
+		                        	}
+		                        });
+		                    }
+		                });
+		            })
+	            },
+	    		error:function(result){
+	        	}
+	        });
+	  }
+	  })
+	  
+  })
+      layui.use(['table','form','jquery'], function(){
           var table = layui.table,
               form = layui.form
               ,element = layui.element
@@ -164,31 +542,62 @@
               ,limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
               //支持所有基础参数
           });
-
-
-
+          //监听提交
+          form.render();
           //监听表格复选框选择
-          table.on('checkbox(test)', function(obj){
+          table.on('checkbox(parse-table-demo)', function(obj){
               console.log(obj)
           });
 
           //监听单元格编辑
-          table.on('edit(test)', function(obj){
+          table.on('edit(parse-table-)', function(obj){
               var value = obj.value //得到修改后的值
                   ,data = obj.data //得到所在行所有键值
                   ,field = obj.field; //得到字段
-
           });
-
           //监听工具条
-          table.on('tool(test)', function(obj){
+          table.on('tool(parse-table-demo)', function(obj){
               var data = obj.data;
+              var _this=$(this);
               if(obj.event === 'del'){
-                  layer.confirm('真的删除行么', function(index){
-                      obj.del();
-                      layer.close(index);
-                  });
-              } else if(obj.event === 'edit'){
+            	  if(obj.data.id!=undefined){
+            		  layer.confirm('是否确认删除此账户', function(index){
+                    	  $.ajax({
+                    	        url : "/manager/user/deleteuser",
+                    	        type : "post",
+                    	        dataType : "json",
+                    	        data:{
+                    	        	oid:userData  	
+                    	        },
+                    	        success : function(result) {
+                    	        	console.log(result);
+                    	            if(result.status==2){
+                    	            	layer.msg('删除失败', {icon: 2});
+                    	            }else{
+                    	            	console.log(obj);
+                    	            	obj.del();
+                                        layer.close(index);	
+                                        layer.msg('删除成功',{'icon':1});
+                                        
+                    	            }
+                    	        },
+                    	        error:function(result){
+                    	        	alert("失败！");
+                    	        }
+                    	    });
+                          
+                      });
+	            	}else{
+	            		layer.confirm('是否取消保存？', function(index){
+	            			_this.parents("tr").remove(); 
+	            			layer.close(index);	
+	                      },function(){
+	                    	  _this.siblings(".editBtn").click();
+	                      });
+	            		
+	            	}
+                  
+              } else if(obj.event === 'edit2'){
                   layer.prompt({
                       formType: 2
                       ,value: data.username
@@ -216,8 +625,8 @@
                   }
               });
           });
-
-
+          var srcUrl="<script src='"+layui.setter.base+"lib/chosen/chosen.jquery.js'><\/script>";
+          $("body").append(srcUrl);
 
           var $ = layui.jquery, active = {
               getCheckData: function(){
@@ -248,6 +657,23 @@
               },function () {
                   $(this).find(".edit-icon").remove();
               })
+
+              $(document).on("click",".operationTree .layui-nav-tree .layui-nav-item",function () {
+                  if($(this).hasClass("layui-nav-itemed")){
+                      $(this).removeClass("layui-nav-itemed");
+                  }else{
+                      $(this).addClass("layui-nav-itemed").siblings(".layui-nav-item").removeClass("layui-nav-itemed");
+                  }
+              })
+              
+               $(".allBtn a").on('click', function(){
+            	   if($(this).parent(".allBtn").next("#Nav").hasClass("active")){
+            		   $(this).parent(".allBtn").next("#Nav").removeClass("active");
+            	   }else{
+            		   $(this).parent(".allBtn").next("#Nav").addClass("active");
+            	   }
+            	  
+               })
           })
           function editBtn() {
               $(".edit-icon").on('click', function () {
@@ -262,18 +688,196 @@
               })
           }
 
-          $(".editBtn").on('click',function () {
-              $(this).parents("td").siblings("td").find(".layui-table-cell").attr("contenteditable", "true").css({"border":"1px solid #eaeaea","background-color": "#fff"});
+          $(document).on('click','.editBtn',function () {
+              //$(this).parents("td").siblings("td").find(".layui-table-cell").attr("contenteditable", "true").css({"border":"1px solid #eaeaea","background-color": "#fff"});
               // $(this).parents("td").siblings("td").find(".layui-table-cell")
-
+              rowEdit(this);
+          })
+          $(document).on('click','.resetPwdBtn',function () {
+        	  var userOid=$(this).siblings("em").attr("user-data");
+        	  $.ajax({
+                  type: "post",//请求方式
+                  url: "/manager/user/resetpwd",//地址，就是json文件的请求路径
+                  dataType: "json",//数据类型可以为 text xml json  script  jsonp
+                  data:{oid:userOid},
+                  success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
+                	  console.log(result);
+                  if(result.status==1){
+                	  layer.alert('<div class="resultPwd">重置密码成功<br><span class="pwdWrap">重置密码为：<em class="password_main">'+result.dataValue+'</em><input type="text" id="password_main" value="'+result.dataValue+'"></span><button class="layui-btn layui-btn-primary layui-btn-xs" id="copyBtn">复制账号密码</button></div>', {
+                          icon: 1
+                          ,closeBtn: 0
+                          ,btn: ['知道了']
+                          ,yes: function(index){
+                          layer.close(index);
+                        }
+                      });
+                      $('#copyBtn').on('click',function (event) {
+                          var Url2=$("#password_main");
+                          Url2.select();
+                          document.execCommand("Copy");
+                          layer.msg('复制成功', {icon: 1});
+                          event.stopPropagation();
+                      })
+                  }else{
+                	  layer.msg('重置密码失败',{'icon':2});
+                  }
+                  
+                  },
+          		error:function(result){
+              	}
+              });
+          })
+          $(document).on('click','.lockBtn',function () {
+        	  var userOid=$(this).siblings("em").attr("user-data");
+        	  var userStatus=$(this).attr("data-status");
+        	  var StatusText=$(this).text();
+        	  var user={
+        			  oid:userOid,
+        			  status:userStatus
+        	  }
+        	  layer.confirm('确认'+StatusText+'此账户', function(index){
+            	  $.ajax({
+                      type: "post",//请求方式
+                      url: "/manager/user/lockuser",//地址，就是json文件的请求路径
+                      dataType: "json",//数据类型可以为 text xml json  script  jsonp
+                      data:user,
+                      success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
+                      if(result.status==1){
+                    	  //layer.close(index);	
+                          layer.msg(StatusText+'成功',{'icon':1});
+                          setTimeout('location.reload()',1000);
+                          
+                      }else{
+                          layer.msg(StatusText+'失败',{'icon':2});
+                          setTimeout('location.reload()',1000);
+                      }
+                      
+                      
+                      },
+              		error:function(result){
+                  	}
+                  });
+                  
+              });
+        	  
+             
           })
 
           $('.layui-btn').on('click', function(){
               var type = $(this).data('type');
               active[type] ? active[type].call(this) : '';
           });
-      });
+          
+          
+          $(".layui-btn.branchAddBtn").on("click",function () {
+              layer.open({
+                  title:'添加部门'
+                  ,type: 1
+                  //,skin: 'layui-layer-rim'
+                  ,shadeClose: true
+                  ,area: ['450px', '250px']
+                  ,content: '<div style="padding: 20px;"><div class="layui-form layarAddFrom"><div class="layui-form-item">\n' +
+                  '    <label class="layui-form-label">上级部门</label>\n' +
+                  '    <div class="layui-input-block">\n' +
+                  '      <select id="selectBranch" name="interest" lay-filter="aihao">\n' +
+                  '        <option value="">无</option>\n' +branchStr+
+                  '      </select>\n' +
+                  '    </div>\n' +
+                  '  </div>' +
+                  '<div class="layui-form-item">\n' +
+                  '    <label class="layui-form-label">部门名称</label>\n' +
+                  '    <div class="layui-input-block">\n' +
+                  '      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input barnchName">\n' +
+                  '    </div>\n' +
+                  '  </div><div class="layui-form-item"><button class="layui-btn layui-btn-normal subiltAddBtn float-R">确认</button><button class="layui-btn layui-btn-primary layui-layer-close float-R">取消</button></div></div></div>'
+              });
 
+              form.render();
+          })
+          
+          $(document).on('click',".subiltAddBtn",function(){
+        	  var selectBranch=$("#selectBranch").val();
+        	  var barnchName=$(".barnchName").val();
+        	  $.ajax({
+                  type: "post",//请求方式
+                  url: "/manager/group/addgroup",//地址，就是json文件的请求路径
+                  dataType: "json",//数据类型可以为 text xml json  script  jsonp
+                  data:{oid:selectBranch,name:barnchName},
+                  success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
+                  if(result.status==1){
+                	  //layer.close(index);	
+                      layer.msg('添加成功',{'icon':1});
+                      setTimeout('layui.index.render()',1000);
+                      
+                  }else{
+                      layer.msg('添加失败',{'icon':2});
+                      setTimeout('layui.index.render()',1000);
+                  }
+                  
+                  
+                  },
+          		error:function(result){
+              	}
+              });
+        	  
+          })
+          
+
+      });
+      function saveBtn(but) {
+          var _this=but
+          layer.alert('确认修改保存？',{
+              time: 0 //不自动关闭
+              ,btn: ['确认', '取消']
+              ,yes: function(index){
+                  layer.close(index);
+                  rowAcep(_this);
+
+
+              }
+          });
+      }
+      function saveBtn(but) {
+          var _this=but
+          layer.alert('确认保存？',{
+              time: 0 //不自动关闭
+              ,btn: ['确认', '取消']
+              ,yes: function(index){
+            	  $.ajax({
+          	        url : "/manager/user/deleteuser",
+          	        type : "post",
+          	        dataType : "json",
+          	        data:{
+          	        	oid:userData  	
+          	        },
+          	        success : function(result) {
+          	        	console.log(result);
+          	            if(result.status==2){
+          	            	layer.msg(result.message, {icon: 5});
+          	            }else{
+          	            	//obj.del();
+          	            	layer.msg('保存成功', {icon: 1});
+                              layer.close(index);	
+          	            }
+          	        },
+          	        error:function(result){
+          	        	alert("失败！");
+          	        }
+          	    });
+                  layer.close(index);
+                  rowAcep(_this);
+
+
+              }
+          });
+      }
+      $('.layui-table').SetEditable({
+          $addButton: $('#add')
+      });
+      function parameter(but){
+    	  userData=but;
+    	  return but;
+      }
 
   </script>
 </body>

@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.DefinitionMapper">
-	<select id="queryAll" resultType="com.izhuantou.damain.Definition">
+	<select id="queryAll" resultType="com.izhuantou.damain.manager.Definition">
 		select * from tb_definition where 1 = 1
 	
 	</select>

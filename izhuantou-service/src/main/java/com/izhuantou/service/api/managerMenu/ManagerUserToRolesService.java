@@ -1,6 +1,6 @@
 package com.izhuantou.service.api.managerMenu;
 
-import com.izhuantou.damain.ManagerUserToRoles;
+import com.izhuantou.damain.manager.ManagerUserToRoles;
 import com.izhuantou.service.api.BaseService;
 
 public interface ManagerUserToRolesService extends BaseService<ManagerUserToRoles> {

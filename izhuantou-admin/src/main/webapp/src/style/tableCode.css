@@ -105,7 +105,7 @@ table {
 
 }
 .layui-table-view .layui-table td, .layui-table-view .layui-table th {
-    padding: 15px 0px;
+    padding: 10px 0px;
     border:1px solid #eaeaea;
     border-top: none;
     border-left: none;

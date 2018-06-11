@@ -49,7 +49,7 @@ public interface BaseService<T> {
      * @param rows
      * @return
      */
-    public List<T> queryByPage(Integer page, Integer rows);
+    public List<T> queryByPage(Integer page, Integer rows, T t);
 
     /**
      * 根据条件查询一条数据

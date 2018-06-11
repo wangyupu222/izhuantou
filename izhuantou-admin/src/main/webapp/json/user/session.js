@@ -1,7 +1,7 @@
 {
-  "code": 0
+  "status": 1
   ,"msg": ""
-  ,"data": {
+  ,"dataValue": {
     "username": "贤心"
     ,"sex": "男"
     ,"role": 1

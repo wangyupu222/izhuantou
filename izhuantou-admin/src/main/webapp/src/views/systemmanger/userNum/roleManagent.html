@@ -31,9 +31,13 @@
             height: 48px;
             border-radius: 50%;
             float: left;
-            background-color: #009E94;
+            background-color: #1E9FFF;
             margin-top: 6px;
             color: #454545;
+            text-align: center;
+            line-height: 48px;
+            color: #fff;
+            font-size: 26px;
         }
         .roleWrap .UserMsg {
             float: left;
@@ -56,6 +60,7 @@
         }
         .roleListName span {
             float: left;
+            margin-top: 8px;
         }
         .roleListName span em{
             font-style: normal;
@@ -65,22 +70,50 @@
         }
         .roleIconItem i{
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border-radius:50%;
-            background-color: #dad8d8;
-            color: #fff;
-            text-align: center;
-            font-size: 12px;
-            line-height: 20px;
-            position: relative;
+    width: 34px;
+    height: 34px;
+    transform: scale(0.84);
+    border-radius: 50%;
+    background-color: #dad8d8;
+    font-style: normal;
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+    line-height: 35px;
+    position: relative;
+    border: 1px solid #fff;
         }
         .roleIconItem i i{
             position: absolute;
             left: -10px;
             top: 0px;
+            transform: scale(1);
             background-color: #1E9FFF;
 
+        }
+        .roleIconItem i i:nth-of-type(1){
+            background-color: #1E9FFF;
+            left: -10px;
+        }
+        .roleIconItem i i:nth-of-type(2){
+            background-color: #0490a6;
+            left: -20px;
+        }
+        .roleIconItem i i:nth-of-type(3){
+            background-color: #b35e14;
+            left: -30px;
+        }
+        .roleIconItem i i:nth-of-type(4){
+            background-color: #bfffbf;
+            left: -40px;
+        }
+        .roleIconItem i i:nth-of-type(5){
+            background-color: #fcac6f;
+            left: -50px;
+        }
+        .roleIconItem i i:nth-of-type(6){
+            background-color: #1E9FFF;
+            left: -60px;
         }
         .layui-card-footer {
             height: 42px;
@@ -109,6 +142,39 @@
             color: #999;
             display: inline-block;
         }
+        .layui-tab-content {
+            padding: 0px;
+        }
+        .listTit{
+        font-size:12px;
+        margin-left:10px;
+        color:#666;
+        }
+        .userWrap{
+        display:none;
+        }
+        .nameBox{
+        width:50px;
+        float:left;
+        margin:5px 8px 10px 8px;
+        }
+        .nameIcon{
+        background-color:#009dff;
+        width:40px;
+        height:40px;
+        line-height:40px;
+        border-radius: 50%;
+        font-size:14px;
+        color:#fff;
+        margin: 0 auto;
+        text-align:center;
+        }
+        .nameBox .name_text{
+        text-align:center;
+        font-size:14px;
+        margin-top:10px;
+        color:#666;
+        }
     </style>
 <div class="layui-card layadmin-header">
     <div class="layui-breadcrumb" lay-filter="breadcrumb">
@@ -118,201 +184,195 @@
         <a><cite>角色</cite></a>
     </div>
 </div>
-<div class="layui-content">
-    <div class="roleOpenWrap">
-        <div class="switchWrap">
-            <form>
-                <input class="switchInput" type="text" placeholder="请输入关键字搜索">
-                <div class="switchBtn">搜索</div>
-                <button type="reset" class="RoleAddBtn">+ 添加</button>
-                <div class="layui-clear"></div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="layui-content">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="roleWrap">
-                        <div class="UserIcon"></div>
-                        <div class="UserMsg">
-                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
-                            <p>产品经理  |  互联网 - 产品部</p>
-                        </div>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title roleParent">
+        
+    </ul>
+    <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show">
+
+        <div class="layui-content">
+            <div class="roleOpenWrap">
+                <div class="switchWrap">
+                    <form>
+                        <input class="switchInput" type="text" placeholder="请输入关键字搜索">
+                        <div class="switchBtn">搜索</div>
+                        <button type="reset" class="RoleAddBtn" lay-href="systemmanger/userNum/roleDetailes-add">+ 添加</button>
                         <div class="layui-clear"></div>
-                    </div>
-                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
-                </div>
-                <div class="layui-card-footer">
-                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
-                    <div class="splic">|</div>
-                    <div class="footer-clo-2">删除</div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="roleWrap">
-                        <div class="UserIcon"></div>
-                        <div class="UserMsg">
-                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
-                            <p>产品经理  |  互联网 - 产品部</p>
-                        </div>
-                        <div class="layui-clear"></div>
-                    </div>
-                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
-                </div>
-                <div class="layui-card-footer">
-                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
-                    <div class="splic">|</div>
-                    <div class="footer-clo-2">删除</div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="roleWrap">
-                        <div class="UserIcon"></div>
-                        <div class="UserMsg">
-                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
-                            <p>产品经理  |  互联网 - 产品部</p>
-                        </div>
-                        <div class="layui-clear"></div>
-                    </div>
-                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
-                </div>
-                <div class="layui-card-footer">
-                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
-                    <div class="splic">|</div>
-                    <div class="footer-clo-2">删除</div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="roleWrap">
-                        <div class="UserIcon"></div>
-                        <div class="UserMsg">
-                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
-                            <p>产品经理  |  互联网 - 产品部</p>
-                        </div>
-                        <div class="layui-clear"></div>
-                    </div>
-                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
-                </div>
-                <div class="layui-card-footer">
-                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
-                    <div class="splic">|</div>
-                    <div class="footer-clo-2">删除</div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="roleWrap">
-                        <div class="UserIcon"></div>
-                        <div class="UserMsg">
-                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
-                            <p>产品经理  |  互联网 - 产品部</p>
-                        </div>
-                        <div class="layui-clear"></div>
-                    </div>
-                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
-                </div>
-                <div class="layui-card-footer">
-                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
-                    <div class="splic">|</div>
-                    <div class="footer-clo-2">删除</div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="roleWrap">
-                        <div class="UserIcon"></div>
-                        <div class="UserMsg">
-                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
-                            <p>产品经理  |  互联网 - 产品部</p>
-                        </div>
-                        <div class="layui-clear"></div>
-                    </div>
-                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
-                </div>
-                <div class="layui-card-footer">
-                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
-                    <div class="splic">|</div>
-                    <div class="footer-clo-2">删除</div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="roleWrap">
-                        <div class="UserIcon"></div>
-                        <div class="UserMsg">
-                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
-                            <p>产品经理  |  互联网 - 产品部</p>
-                        </div>
-                        <div class="layui-clear"></div>
-                    </div>
-                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
-                </div>
-                <div class="layui-card-footer">
-                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
-                    <div class="splic">|</div>
-                    <div class="footer-clo-2">删除</div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="roleWrap">
-                        <div class="UserIcon"></div>
-                        <div class="UserMsg">
-                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
-                            <p>产品经理  |  互联网 - 产品部</p>
-                        </div>
-                        <div class="layui-clear"></div>
-                    </div>
-                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
-                </div>
-                <div class="layui-card-footer">
-                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
-                    <div class="splic">|</div>
-                    <div class="footer-clo-2">删除</div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="roleWrap">
-                        <div class="UserIcon"></div>
-                        <div class="UserMsg">
-                            <h3><em>早安</em>，<span>张天强</span>，祝你开心每一天！</h3>
-                            <p>产品经理  |  互联网 - 产品部</p>
-                        </div>
-                        <div class="layui-clear"></div>
-                    </div>
-                    <div class="roleListName"><span>员工数：<em>12</em> 人</span><div class="roleIconItem"><i>12<i>12</i><i>12</i><i>12</i></i></div></div>
-                </div>
-                <div class="layui-card-footer">
-                    <div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div>
-                    <div class="splic">|</div>
-                    <div class="footer-clo-2">删除</div>
-                </div>
-            </div>
-        </div>
+        <div class="layui-content" style="padding-top:0px;">
+            <div class="layui-row layui-col-space15 roleMain">
+                
 
 
+            </div>
+        </div>
+    </div>
+<!--     <div class="layui-tab-item">
+        2
+    </div>
+    <div class="layui-tab-item">
+        3
+    </div>
+    <div class="layui-tab-item">
+        4
+    </div> -->
     </div>
 </div>
+<script>
+    layui.use(['admin','form','jquery'], function() {
+        var form = layui.form
+            , element = layui.element
+            , admin = layui.admin
+            , $ = layui.$;
+        var layer = layui.layer;
+        
+        $.ajax({
+	        url : "/manager/roles/parentlist",
+	        type : "post",
+	        dataType : "json",
+	        data:{},
+	        success : function(result) {
+	            if(result.status==1){
+	            	var result=result.dataValue;
+	            	for(var i=0;i<result.length;i++){
+	            		if(i==0){
+	            			var str='<li class="layui-this" data-url="'+result[i].oid+'">'+result[i].name+'</li>';
+	            			sessionStorage.setItem('roleOid',result[i].oid);
+	            		}else{
+	            			var str='<li data-url="'+result[i].oid+'">'+result[i].name+'</li>';
+	            		}
+	            		$(".roleParent").append(str);
+	            		
+	            	}
+	            	var roleOid=sessionStorage.getItem('roleOid');
+	            	$.ajax({
+	        	        url : "/manager/roles/getrolesanduser",
+	        	        type : "post",
+	        	        dataType : "json",
+	        	        data:{oid:roleOid},
+	        	        success : function(result) {
+	        	            if(result.status==1){
+	        	            	var result=result.dataValue;
+	        	            	console.log(result);
+	        	            	for(var i=0;i<result.length;i++){
+	        	            		var userName="";
+	        	            		var userNameWrap="";
+	        	            		if(result[i].userList.length>0){
+	        	            			for(var j=0;j<result[i].userList.length;j++){
+	        	            				if(j<=6){
+	        	            					var nameCn=result[i].userList[j].name;
+		        	            				var nameStr=nameCn.substring(nameCn.length - 2);
+		        	            				userName+='<i>'+nameStr+'</i>';
+		        	            				userNameWrap+='<i user-name="'+result[i].userList[j].userName+'">'+nameCn+'</i>';
+	        	            				}else{
+	        	            					var nameCn=result[i].userList[j].name;
+		        	            				var nameStr=nameCn.substring(nameCn.length - 2);
+		        	            				userNameWrap+='<i user-name="'+result[i].userList[j].userName+'">'+nameCn+'</i>';
+	        	            				}
+	        	            				
+	        	            			}
+	        	            			
+	        	            		}
+	        	            		var str='<div class="layui-col-md4"><div class="layui-card"><div class="layui-card-body"><div class="roleWrap"><div class="UserIcon layui-icon">&#xe63c;</div>';
+	                                     str+='<div class="UserMsg"><h3>'+result[i].name+'</h3><p>'+result[i].count+'</p></div><div class="layui-clear"></div></div>';
+	                                   	 str+='<div class="roleListName"><span>员工数：<em>'+result[i].userList.length+'</em> 人</span><div class="roleIconItem"><i>'+result[i].userList.length+''+userName+'</i><div class="userWrap">'+userNameWrap+'</div></div></div></div>';
+	                                	  str+='<div class="layui-card-footer"><div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div><div class="splic">|</div><div class="footer-clo-2">删除</div></div></div></div>';
+	        	            		$(".roleMain").append(str);
+	        	            		
+	        	            	}
+	        	            	var roleOid=sessionStorage.getItem('roleOid');
+	        	            	
+	        	            }
+	        	        },
+	        	        error:function(result){
+	        	        	alert("失败！");
+	        	        }
+	        	    });
+	            }
+	            
+	            $(".layui-tab-title li").on('click',function () {
+	                var oid=$(this).attr("data-url");
+	                sessionStorage.setItem('roleOid',oid);
+	                $.ajax({
+	        	        url : "/manager/roles/getrolesanduser",
+	        	        type : "post",
+	        	        dataType : "json",
+	        	        data:{oid:oid},
+	        	        success : function(result) {
+	        	            if(result.status==1){
+	        	            	$(".roleMain .layui-col-md4").remove();
+	        	            	var result=result.dataValue;
+	        	            	for(var i=0;i<result.length;i++){
+	        	            		var userName="";
+	        	            		var userNameWrap="";
+	        	            		if(result[i].userList.length>0){
+	        	            			for(var j=0;j<result[i].userList.length;j++){
+	        	            				if(j<=6){
+	        	            					var nameCn=result[i].userList[j].name;
+		        	            				var nameStr=nameCn.substring(nameCn.length - 2);
+		        	            				userName+='<i>'+nameStr+'</i>';
+		        	            				userNameWrap+='<i user-name="'+result[i].userList[j].userName+'">'+nameCn+'</i>';
+	        	            				}else{
+	        	            					var nameCn=result[i].userList[j].name;
+		        	            				var nameStr=nameCn.substring(nameCn.length - 2);
+		        	            				userNameWrap+='<i user-name="'+result[i].userList[j].userName+'">'+nameCn+'</i>';
+	        	            				}
+	        	            			}
+	        	            		}
+	        	            		var str='<div class="layui-col-md4"><div class="layui-card"><div class="layui-card-body"><div class="roleWrap"><div class="UserIcon layui-icon">&#xe63c;</div>';
+	                                     str+='<div class="UserMsg"><h3>'+result[i].name+'</h3><p>'+result[i].count+'</p></div><div class="layui-clear"></div></div>';
+	                                   	 str+='<div class="roleListName"><span>员工数：<em>'+result[i].userList.length+'</em> 人</span><div class="roleIconItem"><i>'+result[i].userList.length+''+userName+'</i><div class="userWrap">'+userNameWrap+'</div></div></div></div>';
+	                                	  str+='<div class="layui-card-footer"><div class="footer-clo-2"><a lay-href="systemmanger/userNum/roleDetailes">详情</a></div><div class="splic">|</div><div class="footer-clo-2">删除</div></div></div></div>';
+	        	            		$(".roleMain").append(str);
+	        	            		
+	        	            	}
+	        	            	var roleOid=sessionStorage.getItem('roleOid');
+	        	            	
+	        	            }
+	        	        },
+	        	        error:function(result){
+	        	        	alert("失败！");
+	        	        }
+	        	    });
+	            })
+	        },
+	        error:function(result){
+	        	alert("失败！");
+	        }
+	    });
+        //sessionStorage.setItem('roleOid',$(".layui-tab-title li").eq(0).attr("data-url"));
+        
+        $(document).on('click',".roleIconItem",function () {
+        	var roleName=$(this).parents(".layui-card-body").find(".UserMsg h3").text();
+        	var userNameList="";
+        	var arrList=$(this).find(".userWrap i").text();
+        	var arrListNum=$(this).find(".userWrap i");
+        	if(arrListNum.length>0){
+        		for(var i=0;i<arrListNum.length;i++){
+        			var strname=arrListNum.eq(i).text();
+        			var userNameNum=arrListNum.eq(i).attr("user-name");
+        			var strNameCn=strname.substring(strname.length - 2)
+        			userNameList+='<div class="nameBox"><div class="nameIcon">'+strNameCn+'</div><p class="name_text" user-num="'+userNameNum+'">'+strname+'</p></div>'
+        		}
+        		layer.open({
+                    title:roleName+'<span class="listTit">成员列表</span>'
+                    ,type: 1
+                    //,skin: 'layui-layer-rim'
+                    ,shadeClose: true
+                    ,area: ['588px', '335px']
+                    ,content: '<div style="padding: 20px;">'+userNameList+'<div class="layui-clear"></div></div>'
+                });
+        		$(".nameBox .name_text").mouseover(function(){
+        			layer.tips($(this).attr("user-num"),this);
+        			
+        		})
+        	}
+        	
+        })
+    })
+
+</script>

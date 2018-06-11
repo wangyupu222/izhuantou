@@ -18,7 +18,7 @@
 		<!-- shiro URL控制过滤器规则 -->
 		<property name="FilterChainDefinitions">
 			<value>
-				<!-- /login.html* = anon
+				<!--  /login.html* = anon
 				/userAction_login.action* = anon
 				/validatecode.jsp* = anon
 				/css/** = anon
@@ -27,7 +27,7 @@
 				/service/** = anon
 				/page/base/courier.html* = perms[courier]
 				/pages/base/area.html* = roles[base]
-				/** = authc -->
+				/** = authc --> 
 			</value>
 		</property>		
 	</bean>

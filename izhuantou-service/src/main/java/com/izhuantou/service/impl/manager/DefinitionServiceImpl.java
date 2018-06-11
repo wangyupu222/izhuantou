@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.izhuantou.common.bean.Pagination;
-import com.izhuantou.damain.Definition;
+import com.izhuantou.damain.manager.Definition;
 import com.izhuantou.dao.DefinitionMapper;
 import com.izhuantou.service.api.managerMenu.DefinitionService;
 import com.izhuantou.service.impl.BaseServiceImpl;
@@ -33,7 +33,7 @@ public class DefinitionServiceImpl extends BaseServiceImpl<Definition> implement
 		pagination.setTotalPage((count / pagination.getPageSize().intValue() + 1));
 	    }
 	    // 获取分页数据
-	    List<Definition> list = this.queryByPage(currentPage, 10);
+	    List<Definition> list = this.queryByPage(currentPage, 10, null);
 	    pagination.setData(list);
 	} catch (Exception e) {
 	    e.getMessage();

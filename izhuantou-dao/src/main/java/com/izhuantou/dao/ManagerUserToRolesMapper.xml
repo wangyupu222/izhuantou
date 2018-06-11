@@ -4,4 +4,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.ManagerUserToRolesMapper">
 	
+	<select id="getUserOidByRolesOid"  resultType ="String">
+		SELECT
+			user_oid
+		FROM 
+			tb_manager_user_roles 
+		WHERE 
+			roles_oid = #{rolesOid}
+	</select>
+
 </mapper>

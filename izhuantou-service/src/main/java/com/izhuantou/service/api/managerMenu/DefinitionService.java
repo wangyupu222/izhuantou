@@ -3,7 +3,7 @@ package com.izhuantou.service.api.managerMenu;
 import java.util.List;
 
 import com.izhuantou.common.bean.Pagination;
-import com.izhuantou.damain.Definition;
+import com.izhuantou.damain.manager.Definition;
 import com.izhuantou.service.api.BaseService;
 
 public interface DefinitionService extends BaseService<Definition> {

@@ -1,7 +1,7 @@
 {
-  "code": 0
+  "status": 1
   ,"msg": ""
-  ,"data": [
+  ,"dataValue": [
     {
         "title": "工作台"
         ,"icon": "layui-icon-home"
@@ -16,6 +16,9 @@
       ,"list": [{
         "name": "boiddingCheck"
         ,"title": "标的审核"
+        ,"jump":null
+        ,"icon": null
+        ,"list": [{}]
       },{
         "name": "boiddingDistribute"
         ,"title": "标的分发"
@@ -138,13 +141,12 @@
             ,"jump": "user/forget"
         }]
     },{
-        "name": "template"
+        "name": "operations"
         ,"title": "运维管理"
         ,"icon": "layui-icon-template"
         ,"list": [{
-            "name": "reg"
+            "name": "codeMaintain#"
             ,"title": "编码维护"
-            ,"jump": "user/reg"
         },{
             "name": "login"
             ,"title": "计划任务"
@@ -156,15 +158,15 @@
     ,"icon": "layui-icon-set"
     ,"list": [
             {
-                "name": "reg"
+                "name": "personal-data#"
                 ,"title": "个人资料"
-                ,"jump": "user/reg"
+
             },{
       "name": "userNum"
       ,"title": "账号管理"
       ,"spread": true
       ,"list": [{
-        "name": "accountManagement"
+        "name": "accountManagement3"
         ,"title": "账号"
       },{
         "name": "roleManagent"
