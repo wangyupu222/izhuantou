@@ -83,46 +83,9 @@ body {
 <!--<script src="layui/lay/admin.js"></script>-->
 
 <script>
-$(function(){
-	$("#FormLogin").validate({
-        submitHandler: function(form) {
-            //验证通过后 的js代码写在这里
-            //validataForm_id("login");
-            var user={
-            		userName:$("#LAY-user-login-username").val(),
-            		passWord:$("#LAY-user-login-password").val(),
-            		phone:$("#LAY-user-login-phone").val(),
-            		smsCode:$("#LAY-user-login-vercode").val()	
-            }
-            $.ajax({
-            	type : "post",
-                url : "/manager/user/login",
-                dataType : "json",
-                data:user,
-                success : function(result) {
-                	console.log(result);
-                    if(result.status==2){
-                    	layer.msg(result.message, {icon: 5});
-                    }else{
-                    	var oId=result.dataValue;
-                    	sessionStorage.setItem("OID",oId);
-                        window.location.href='/manager/user/index';
-                    }
-                },
-                error:function(result){
-                	console.log(JSON.stringify(result));
-                	alert("失败！");
-                }
-            });
-            //return validataForm_id("login");
-            $(".loadingBtn").css("display","block");
-            $(".login_validate").text("");
-        }
-    })
-})
     $('#drag').drag();
     
-    /* layui.use(['layer'], function() {
+    layui.use(['layer'], function() {
         var layer = layui.layer
             ,$ = layui.jquery;
     var oLogin_user = $("#LAY-user-login-username");
@@ -163,7 +126,41 @@ $(function(){
             layer.msg(str, {icon: 5});
         }
     })
-    }); */
+    $("#FormLogin").validate({
+        submitHandler: function(form) {
+            //验证通过后 的js代码写在这里
+            //validataForm_id("login");
+            var user={
+            		userName:$("#LAY-user-login-username").val(),
+            		passWord:$("#LAY-user-login-password").val(),
+            		phone:$("#LAY-user-login-phone").val(),
+            		smsCode:$("#LAY-user-login-vercode").val()	
+            }
+            $.ajax({
+            	type : "get",
+                url : "/manager/user/login",
+                dataType : "json",
+                data:user,
+                success : function(result) {
+                    if(result.status==2){
+                    	layer.msg(result.message, {icon: 5});
+                    }else{
+                    	var oId=result.dataValue;
+                    	sessionStorage.setItem("OID",oId);
+                        window.location.href='/manager/user/index';
+                    }
+                },
+                error:function(result){
+                	//console.log(JSON.stringify(result));
+                	alert("失败！");
+                }
+            });
+            //return validataForm_id("login");
+            $(".loadingBtn").css("display","block");
+            $(".login_validate").text("");
+        }
+    })
+    });
 
     
 
