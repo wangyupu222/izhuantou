@@ -91,8 +91,8 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
     @Autowired
     private CodeContentMapper codeContentMapper;
     @Autowired
-    private WebP2pPackageBiddingMainContentRuningMapper  packageBiddingMainContentRuningMapper;
-    
+    private WebP2pPackageBiddingMainContentRuningMapper packageBiddingMainContentRuningMapper;
+
     /**
      * 查看协议
      */
@@ -243,10 +243,10 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
     public String gainupdateMemberAgreement(String name, String contractType) {
 	try {
 	    if (StringUtil.isNotEmpty(name) && StringUtil.isNotEmpty(contractType)) {
-		   
+
 		Map<String, Object> remap = new HashMap<String, Object>();
 		MemberMember member = userDao.findUserByName(name);
-		String memberAccount=member.getMemberAccount();
+		String memberAccount = member.getMemberAccount();
 		// 协议编号
 		String xybh = sequenceDefinitionService.gainSequence("new");
 		remap.put("xybh", xybh);
@@ -792,7 +792,7 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
     @Override
     public void gainMemberHHTAgreement(String memberOID, String contractType, String biddingOID, String ckOID) {
 	try {
-		System.err.println(Thread.currentThread().getName());
+	    System.err.println(Thread.currentThread().getName());
 	    MemberMember member = userDao.findUserByOID(memberOID);
 
 	    WebP2pPackageBiddingMainRuning biddingMain = packageBiddingMainRuningMapper.findByOID(biddingOID);
@@ -867,28 +867,27 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 
     @Override
     public void gainmemberzqhgHHTAgreementDifferent(String contractType, String biddingOID) {
-   /* WebP2pPackageBiddingMainContentRuning contentRuning=
-    			packageBiddingMainContentRuningMapper.findByOID(biddingOID);
-    	
-    	String loanProductInfoOID =contentRuning.getLoanProductRateInfoID();
-    	WebP2pLoanProductRateInfo loanRateInfo = loanProductRateInfoMapper
-			    .findByOID(loanProductInfoOID);
-    	
-    	String bidLoanNumber = contentRuning.getLoanNumber();
-    	String financetransfertype =contentRuning.getFinancetransfertype();
-    	String jkrMemberOID = "";
-		String jkrMemberOIDTwo = "";
-    	if (financetransfertype.equals("financetransfer")) {
-    		List<WebP2pPackageBiddingMainContentRuning> content=packageBiddingMainContentRuningMapper.findByLoanNum(bidLoanNumber);
-    		jkrMemberOID= content.get(content.size()-1).getMemberOID();
-    	}
-    	int term = loanRateInfo.getTerm();
-    	if(StringUtil.isNotEmpty(jkrMemberOID)){
-    		
-    	}*/
-    	
-    	  
-    	  
+	/*
+	 * WebP2pPackageBiddingMainContentRuning contentRuning=
+	 * packageBiddingMainContentRuningMapper.findByOID(biddingOID);
+	 * 
+	 * String loanProductInfoOID =contentRuning.getLoanProductRateInfoID();
+	 * WebP2pLoanProductRateInfo loanRateInfo = loanProductRateInfoMapper
+	 * .findByOID(loanProductInfoOID);
+	 * 
+	 * String bidLoanNumber = contentRuning.getLoanNumber(); String
+	 * financetransfertype =contentRuning.getFinancetransfertype(); String
+	 * jkrMemberOID = ""; String jkrMemberOIDTwo = ""; if
+	 * (financetransfertype.equals("financetransfer")) {
+	 * List<WebP2pPackageBiddingMainContentRuning>
+	 * content=packageBiddingMainContentRuningMapper.findByLoanNum(
+	 * bidLoanNumber); jkrMemberOID=
+	 * content.get(content.size()-1).getMemberOID(); } int term =
+	 * loanRateInfo.getTerm(); if(StringUtil.isNotEmpty(jkrMemberOID)){
+	 * 
+	 * }
+	 */
+
     }
 
     @Override
@@ -913,6 +912,12 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
     public void gainMemberHHTNRBJKAgreement(String contractType, String biddingOID) {
 	// TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public List<MemberMemberAgreement> queryByPage(Integer page, Integer rows) {
+	// TODO Auto-generated method stub
+	return null;
     }
 
 }

@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.github.abel533.entity.Example;
 import com.github.abel533.entity.Example.Criteria;
 import com.github.abel533.mapper.Mapper;
-import com.github.pagehelper.PageHelper;
 import com.izhuantou.damain.BasePojo;
-import com.izhuantou.service.api.BaseService;
+import com.izhuantou.third.rpc.api.BaseService;
 
 /**
  * Service基类实现类
@@ -59,13 +58,6 @@ public class BaseServiceImpl<T extends BasePojo> implements BaseService<T> {
     }
 
     @Override
-    public List<T> queryByPage(Integer page, Integer rows) {
-	// 设置分页参数
-	PageHelper.startPage(page, rows);
-	return this.mapper.select(null);
-    }
-
-    @Override
     public T queryOne(T t) {
 	return this.mapper.selectOne(t);
     }
@@ -107,6 +99,12 @@ public class BaseServiceImpl<T extends BasePojo> implements BaseService<T> {
 	criteria.andIn("id", ids);
 	this.mapper.deleteByExample(example);
 
+    }
+
+    @Override
+    public List<T> queryByPage(Integer page, Integer rows) {
+	// TODO Auto-generated method stub
+	return null;
     }
 
 }
