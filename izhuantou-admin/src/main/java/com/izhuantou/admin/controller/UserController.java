@@ -50,6 +50,8 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public OpResult login(ManagerUser user, HttpServletRequest request, HttpServletResponse response, Model view) {
+
+	logger.info("*************进入了后台登录系统****************" + user);
 	if (user.getUserName() != null && user.getPassWord() != null) {
 	    // 基于shiro框架实现认证操作
 	    Subject subject = SecurityUtils.getSubject();
