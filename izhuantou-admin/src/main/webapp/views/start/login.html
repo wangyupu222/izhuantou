@@ -137,7 +137,7 @@ body {
             		smsCode:$("#LAY-user-login-vercode").val()	
             }
             $.ajax({
-            	type : "post",
+            	type : "get",
                 url : "/manager/user/login",
                 dataType : "json",
                 data:user,
