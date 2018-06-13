@@ -7,10 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.izhuantou.admin.ims.annotation.SystemControllerLog;
 import com.izhuantou.common.bean.OpResult;
 import com.izhuantou.common.bean.Pagination;
 import com.izhuantou.damain.manager.ManagerUser;
@@ -34,7 +34,8 @@ public class UserGroupController {
     private UserGroupService userGroupService;
 
     // 获取用户分组的一级菜单
-    @RequestMapping(value = "/parentlist", method = RequestMethod.POST)
+    @SystemControllerLog(description = "获取用户分组")
+    @RequestMapping(value = "/parentlist")
     @ResponseBody
     public OpResult getUserGroupParentList(@RequestParam(value = "page", defaultValue = "1") Integer currentPage) {
 	try {
@@ -46,7 +47,8 @@ public class UserGroupController {
     }
 
     // 根据oid获取所有子菜单
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    @SystemControllerLog(description = "获取用户分组")
+    @RequestMapping(value = "/list")
     @ResponseBody
     public OpResult getUserGroupList(String oid) {
 	try {
@@ -58,7 +60,8 @@ public class UserGroupController {
     }
 
     // 根据子菜单的oid分页获取下属的用户
-    @RequestMapping(value = "/pageUserlist", method = RequestMethod.POST)
+    @SystemControllerLog(description = "获取分页所属用户")
+    @RequestMapping(value = "/pageUserlist")
     @ResponseBody
     public OpResult getGroupUserListByOid(@RequestParam(value = "page", defaultValue = "1") Integer currentPage,
 	    String oid) {
@@ -71,7 +74,8 @@ public class UserGroupController {
     }
 
     // 根据oid获取所有子菜单
-    @RequestMapping(value = "/tree", method = RequestMethod.POST)
+    @SystemControllerLog(description = "获取子菜单")
+    @RequestMapping(value = "/tree")
     @ResponseBody
     public OpResult getUserGroupTree() {
 	try {
@@ -83,7 +87,8 @@ public class UserGroupController {
     }
 
     // 添加部门
-    @RequestMapping(value = "/addgroup", method = RequestMethod.POST)
+    @SystemControllerLog(description = "添加部门")
+    @RequestMapping(value = "/addgroup")
     @ResponseBody
     public OpResult addGroup(@RequestParam(value = "oid", defaultValue = "0") String oid, String name) {
 	try {

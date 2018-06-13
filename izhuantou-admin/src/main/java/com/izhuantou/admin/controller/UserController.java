@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.izhuantou.admin.ims.annotation.SystemControllerLog;
 import com.izhuantou.common.bean.OpResult;
 import com.izhuantou.common.bean.Pagination;
 import com.izhuantou.damain.manager.ManagerUser;
@@ -39,6 +41,8 @@ import com.izhuantou.service.api.p2p.FourNumService;
 @RequestMapping(value = "user", produces = "application/json;charset=UTF-8")
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    // 用户session key
+    public static final String KEY_USER = "ims_user";
     @Autowired
     private MenuService menuService;
     @Autowired
@@ -47,6 +51,7 @@ public class UserController {
     private ManagerUserService managerUserService;
 
     // 登录方法
+    @SystemControllerLog(description = "登录系统")
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
     public OpResult login(ManagerUser user, HttpServletRequest request, HttpServletResponse response, Model view) {
@@ -61,6 +66,10 @@ public class UserController {
 	    try {
 		subject.login(token);
 		ManagerUser principalUser = (ManagerUser) subject.getPrincipal();
+		HttpSession session = request.getSession();
+		user.setOid("10010121");
+		session.setAttribute(KEY_USER, user);
+		logger.info("{} 登入系统成功!", user.getName());
 		return OpResult.getSuccessResult(principalUser.getOid());
 	    } catch (Exception e) {
 		return OpResult.getFailedResult("账号或密码错误");
@@ -77,6 +86,7 @@ public class UserController {
     }
 
     // 展示用户具有权限的菜单树
+
     @RequestMapping(value = "/menutree", method = RequestMethod.GET)
     @ResponseBody
     public OpResult getTree(String oid) {
@@ -90,6 +100,7 @@ public class UserController {
      * 
      * @return OpResult
      */
+
     @RequestMapping(value = "/dataStatistics", method = RequestMethod.GET)
     @ResponseBody
     public OpResult findFourNum() {
@@ -104,6 +115,7 @@ public class UserController {
      * @param oid
      * @return
      */
+
     @RequestMapping(value = "/usermessage", method = RequestMethod.GET)
     @ResponseBody
     public OpResult getUserMessage(String oid) {
@@ -123,7 +135,8 @@ public class UserController {
      * @param password
      * @return
      */
-    @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+    @SystemControllerLog(description = "修改密码")
+    @RequestMapping(value = "/updatePassword")
     @ResponseBody
     public OpResult updatePassword(Password password) {
 	try {
@@ -144,6 +157,7 @@ public class UserController {
      * @param currentPage
      * @return
      */
+    @SystemControllerLog(description = "分页获取用户信息")
     @RequestMapping(value = "/userlist", method = RequestMethod.GET)
     @ResponseBody
     public OpResult queryPageListByPage(@RequestParam(value = "page", defaultValue = "1") Integer currentPage) {
@@ -155,7 +169,8 @@ public class UserController {
 	}
     }
 
-    @RequestMapping(value = "/adduser", method = RequestMethod.POST)
+    @SystemControllerLog(description = "添加用户")
+    @RequestMapping(value = "/adduser")
     @ResponseBody
     public OpResult addManagerUser(ManagerUser managerUser, String roles) {
 	try {
@@ -170,7 +185,8 @@ public class UserController {
 	}
     }
 
-    @RequestMapping(value = "/deleteuser", method = RequestMethod.POST)
+    @SystemControllerLog(description = "删除用户")
+    @RequestMapping(value = "/deleteuser")
     @ResponseBody
     public OpResult deleteManagerUser(String oid) {
 	try {
@@ -186,7 +202,8 @@ public class UserController {
     }
 
     // 重置密码
-    @RequestMapping(value = "/resetpwd", method = RequestMethod.POST)
+    @SystemControllerLog(description = "重置密码")
+    @RequestMapping(value = "/resetpwd")
     @ResponseBody
     public OpResult resetPwd(String oid) {
 	try {
@@ -198,7 +215,8 @@ public class UserController {
     }
 
     // 锁定用户
-    @RequestMapping(value = "/lockuser", method = RequestMethod.POST)
+    @SystemControllerLog(description = "锁定用户")
+    @RequestMapping(value = "/lockuser")
     @ResponseBody
     public OpResult updateUserLock(ManagerUser user) {
 	String message = null;

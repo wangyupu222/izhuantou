@@ -1,6 +1,7 @@
 package com.izhuantou.service.api.system;
 
 import com.izhuantou.damain.system.Log;
+import com.izhuantou.service.api.BaseService;
 
 /**
  * 后台操作系统日志接口
@@ -8,7 +9,7 @@ import com.izhuantou.damain.system.Log;
  * @author Administrator
  *
  */
-public interface LogService {
+public interface LogService extends BaseService<Log> {
     /**
      * 保存系统日志
      * 

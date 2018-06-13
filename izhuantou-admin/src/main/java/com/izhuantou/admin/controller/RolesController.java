@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.izhuantou.admin.ims.annotation.SystemControllerLog;
 import com.izhuantou.common.bean.OpResult;
 import com.izhuantou.damain.manager.Roles;
 import com.izhuantou.damain.vo.RolesAndUserDTO;
@@ -28,7 +28,8 @@ public class RolesController {
     private RolesToMenuService rolesToMenuService;
 
     // 获取用户分组的一级菜单
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    @SystemControllerLog(description = "获取用户分组")
+    @RequestMapping(value = "/list")
     @ResponseBody
     public OpResult getRolesList() {
 	try {
@@ -40,7 +41,8 @@ public class RolesController {
     }
 
     // 新增角色or叫色添加权限
-    @RequestMapping(value = "/addroles", method = RequestMethod.POST)
+    @SystemControllerLog(description = "新增角色or叫色添加权限")
+    @RequestMapping(value = "/addroles")
     @ResponseBody
     public OpResult addRoels(Roles roles, String arr) {
 	try {
@@ -52,7 +54,8 @@ public class RolesController {
     }
 
     // 根据一级角色获取所有的二级角色并且获取具有该角色的所有用户
-    @RequestMapping(value = "/getrolesanduser", method = RequestMethod.POST)
+    @SystemControllerLog(description = "获取角色用户")
+    @RequestMapping(value = "/getrolesanduser")
     @ResponseBody
     public OpResult getRolesAndUser(String oid) {
 	try {
@@ -64,8 +67,8 @@ public class RolesController {
     }
 
     // 获取所有角色分组的父节点
-
-    @RequestMapping(value = "/parentlist", method = RequestMethod.POST)
+    @SystemControllerLog(description = "获取角色父节点")
+    @RequestMapping(value = "/parentlist")
     @ResponseBody
     public OpResult getparentList() {
 	try {

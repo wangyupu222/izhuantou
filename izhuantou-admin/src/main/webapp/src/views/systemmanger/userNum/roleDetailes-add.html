@@ -182,15 +182,15 @@
                             var listTwoStr='';
                             if(result[i].menuList[j].menuList.length>0){
                                 for (var k=0;k<result[i].menuList[j].menuList.length;k++){
-                                    listTwoStr+='<div class="tree-item" style="display: block;"><div class="tree-item-name" menu-Id="'+result[i].menuList[j].menuList[k].oid+'">'+result[i].menuList[j].menuList[k].title+'</div><div class="layui-btn-group">\n' +
+                                    listTwoStr+='<div class="tree-item" style=""><div class="tree-item-name" menu-Id="'+result[i].menuList[j].menuList[k].oid+'">'+result[i].menuList[j].menuList[k].title+'</div><div class="layui-btn-group">\n' +
                                         '            <button class="layui-btn power-btn active">无权限<input type="checkbox" value="0" name="power"></button>\n' +
                                         '            <button class="layui-btn power-btn" >仅查看 <input type="checkbox" value="1" name="power"></button>\n' +
                                         '            <button class="layui-btn power-btn">可操作 <input type="checkbox" value="2" name="power"></button>\n' +
                                         '        </div></div>';
                                 }
-                                listStr+='<div class="tree-folder" style="display: block;"><div class="tree-folder-header"><i class="icon-minus"></i><div class="tree-folder-name" menu-Id="'+result[i].menuList[j].oid+'">'+result[i].menuList[j].title+'</div></div><div class="tree-folder-content">'+listTwoStr+'</div></div>';
+                                listStr+='<div class="tree-folder" style=""><div class="tree-folder-header active"><i class="icon-minus"></i><div class="tree-folder-name" menu-Id="'+result[i].menuList[j].oid+'">'+result[i].menuList[j].title+'</div></div><div class="tree-folder-content">'+listTwoStr+'</div></div>';
                             }else{
-                                listStr+='<div class="tree-item" style="display: block;"><div class="tree-item-name" menu-Id="'+result[i].menuList[j].oid+'">'+result[i].menuList[j].title+'</div><div class="layui-btn-group">\n' +
+                                listStr+='<div class="tree-item" style=""><div class="tree-item-name" menu-Id="'+result[i].menuList[j].oid+'">'+result[i].menuList[j].title+'</div><div class="layui-btn-group">\n' +
                                     '            <button class="layui-btn power-btn active">无权限<input type="checkbox" value="0" name="power"></button>\n' +
                                     '            <button class="layui-btn power-btn" >仅查看 <input type="checkbox" value="1" name="power"></button>\n' +
                                     '            <button class="layui-btn power-btn">可操作 <input type="checkbox" value="2" name="power"></button>\n' +
@@ -200,7 +200,7 @@
 
                         }
                     }
-                    var str='<div class="tree-folder" style="display: block;"><div class="tree-folder-header">';
+                    var str='<div class="tree-folder" style=""><div class="tree-folder-header active">';
                             if(result[i].menuList.length>0){
                                 str+=  '<i class="icon-minus"></i>';
                             }
@@ -222,6 +222,19 @@
                     }
                     $(this).find("input[name='power']").prop("checked",true);
                     $(this).addClass("active").siblings(".power-btn").removeClass("active");
+                })
+                
+                $(".tree-folder-header").on("click",function () {
+                    if($(this).hasClass("active")){
+                        $(this).removeClass("active");
+                        $(this).find(".icon-minus").eq(0).addClass("icon-plus");
+                        $(this).find(".icon-minus").eq(0).removeClass("icon-minus");
+                    }else{
+                        $(this).addClass("active");
+                        $(this).find(".icon-plus").eq(0).addClass("icon-minus");
+                        $(this).find(".icon-minus").eq(0).removeClass("icon-plus");
+                    }
+
                 })
 
             },

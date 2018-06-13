@@ -232,7 +232,7 @@
         
         $.ajax({
 	        url : "/manager/roles/parentlist",
-	        type : "post",
+	        type : "get",
 	        dataType : "json",
 	        data:{},
 	        success : function(result) {
@@ -251,7 +251,7 @@
 	            	var roleOid=sessionStorage.getItem('roleOid');
 	            	$.ajax({
 	        	        url : "/manager/roles/getrolesanduser",
-	        	        type : "post",
+	        	        type : "get",
 	        	        dataType : "json",
 	        	        data:{oid:roleOid},
 	        	        success : function(result) {
@@ -299,7 +299,7 @@
 	                sessionStorage.setItem('roleOid',oid);
 	                $.ajax({
 	        	        url : "/manager/roles/getrolesanduser",
-	        	        type : "post",
+	        	        type : "get",
 	        	        dataType : "json",
 	        	        data:{oid:oid},
 	        	        success : function(result) {

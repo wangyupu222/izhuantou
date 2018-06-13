@@ -1,7 +1,8 @@
 package com.izhuantou.damain.system;
 
-import java.util.Date;
 import java.util.Map;
+
+import javax.persistence.Table;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,9 +13,10 @@ import com.izhuantou.damain.BasePojo;
  * 日志类 记录用户的操作行为
  * 
  * @author fucheng
- * @Date 2018-04-03
+ * @Date 2018-06-13
  *
  */
+@Table(name = "tb_operation_log")
 public class Log extends BasePojo {
     private static final long serialVersionUID = 1L;
 
@@ -26,10 +28,9 @@ public class Log extends BasePojo {
     private String method; // 请求方式
     private String params; // 提交参数
     private String exception; // 异常
-    private Date operateDate; // 开始时间
+    private String operateDate; // 开始时间
     private String timeOut; // 结束时间
-    private String userId; // 用户ID
-    private String username; // 用户名称
+    private String username; // 登录账号
 
     public String getLogId() {
 	return logId;
@@ -114,11 +115,11 @@ public class Log extends BasePojo {
 	this.exception = exception;
     }
 
-    public Date getOperateDate() {
+    public String getOperateDate() {
 	return operateDate;
     }
 
-    public void setOperateDate(Date operateDate) {
+    public void setOperateDate(String operateDate) {
 	this.operateDate = operateDate;
     }
 
@@ -128,14 +129,6 @@ public class Log extends BasePojo {
 
     public void setTimeOut(String timeOut) {
 	this.timeOut = timeOut;
-    }
-
-    public String getUserId() {
-	return userId;
-    }
-
-    public void setUserId(String userId) {
-	this.userId = userId;
     }
 
     public String getUsername() {
@@ -150,8 +143,7 @@ public class Log extends BasePojo {
     public String toString() {
 	return "Log [logId=" + logId + ", type=" + type + ", title=" + title + ", remoteAddr=" + remoteAddr
 		+ ", requestUrl=" + requestUrl + ", method=" + method + ", params=" + params + ", exception="
-		+ exception + ", operateDate=" + operateDate + ", timeOut=" + timeOut + ", userId=" + userId
-		+ ", username=" + username + "]";
+		+ exception + ", operateDate=" + operateDate + ", timeOut=" + timeOut + ", username=" + username + "]";
     }
 
 }

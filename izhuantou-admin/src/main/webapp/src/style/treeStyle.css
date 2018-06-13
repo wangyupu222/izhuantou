@@ -156,7 +156,8 @@
 
 .tree .tree-folder .tree-folder-content {
     margin-left: 23px;
-    position: relative
+    position: relative;
+    display: none;
 }
 
 .tree .tree-folder .tree-folder-content:before {
@@ -322,4 +323,7 @@
 .tree img {
     display: inline;
     veritcal-align: middle
+}
+.tree-folder-header.active + .tree-folder-content{
+    display:block;
 }
