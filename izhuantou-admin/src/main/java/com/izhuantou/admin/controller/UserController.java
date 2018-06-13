@@ -67,7 +67,6 @@ public class UserController {
 		subject.login(token);
 		ManagerUser principalUser = (ManagerUser) subject.getPrincipal();
 		HttpSession session = request.getSession();
-		user.setOid("10010121");
 		session.setAttribute(KEY_USER, user);
 		logger.info("{} 登入系统成功!", user.getName());
 		return OpResult.getSuccessResult(principalUser.getOid());
