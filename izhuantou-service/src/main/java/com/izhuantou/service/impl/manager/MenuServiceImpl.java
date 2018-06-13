@@ -159,6 +159,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
 					    treeMenu2.setJump(menuThree.getPageUrl());
 					    treeMenu.getMenuList().add(treeMenu2);
 					    type.clear();
+					    break;
 					} else {
 					    type.add(treeMenu);
 					}
@@ -205,6 +206,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
 							threeMenu.setName("accountManagement");
 							treeMenu2.getMenuList().add(threeMenu);
 							type.clear();
+							break;
 						    } else {
 							typetwo.add(treeMenu2);
 						    }
