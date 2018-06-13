@@ -370,7 +370,7 @@
       	}
       });
 	  $.ajax({
-            type: "post",//请求方式
+            type: "get",//请求方式
             url: "/manager/group/parentlist",//地址，就是json文件的请求路径
             dataType: "json",//数据类型可以为 text xml json  script  jsonp
             data:{},
@@ -392,7 +392,7 @@
 		  var oID=$(this).find("a").attr("lay-url");
 		  var _this=$(this);
 		  $.ajax({
-	            type: "post",//请求方式
+	            type: "get",//请求方式
 	            url: "/manager/group/list",//地址，就是json文件的请求路径
 	            dataType: "json",//数据类型可以为 text xml json  script  jsonp
 	            data:{oid:oID},
@@ -423,7 +423,7 @@
 			 $(".operationTree .layui-nav-item .layui-nav-child dd").removeClass("layui-this");
 			 _this.addClass("layui-this");
 		  $.ajax({
-	            type: "post",//请求方式
+	            type: "get",//请求方式
 	            url: "/manager/group/pageUserlist",//地址，就是json文件的请求路径
 	            dataType: "json",//数据类型可以为 text xml json  script  jsonp
 	            data:{oid:oID,page:null},
@@ -472,7 +472,7 @@
 		                    ,jump: function(obj){
 		                        console.log(obj.curr);
 		                        $.ajax({
-		                            type: "post",//请求方式
+		                            type: "get",//请求方式
 		                            url: "/manager/group/pageUserlist",//地址，就是json文件的请求路径
 		                            dataType: "json",//数据类型可以为 text xml json  script  jsonp
 		                            data:{oid:oID,page:obj.curr},
@@ -564,7 +564,7 @@
             		  layer.confirm('是否确认删除此账户', function(index){
                     	  $.ajax({
                     	        url : "/manager/user/deleteuser",
-                    	        type : "post",
+                    	        type : "get",
                     	        dataType : "json",
                     	        data:{
                     	        	oid:userData  	
@@ -696,7 +696,7 @@
           $(document).on('click','.resetPwdBtn',function () {
         	  var userOid=$(this).siblings("em").attr("user-data");
         	  $.ajax({
-                  type: "post",//请求方式
+                  type: "get",//请求方式
                   url: "/manager/user/resetpwd",//地址，就是json文件的请求路径
                   dataType: "json",//数据类型可以为 text xml json  script  jsonp
                   data:{oid:userOid},
@@ -737,7 +737,7 @@
         	  }
         	  layer.confirm('确认'+StatusText+'此账户', function(index){
             	  $.ajax({
-                      type: "post",//请求方式
+                      type: "get",//请求方式
                       url: "/manager/user/lockuser",//地址，就是json文件的请求路径
                       dataType: "json",//数据类型可以为 text xml json  script  jsonp
                       data:user,
@@ -799,7 +799,7 @@
         	  var selectBranch=$("#selectBranch").val();
         	  var barnchName=$(".barnchName").val();
         	  $.ajax({
-                  type: "post",//请求方式
+                  type: "get",//请求方式
                   url: "/manager/group/addgroup",//地址，就是json文件的请求路径
                   dataType: "json",//数据类型可以为 text xml json  script  jsonp
                   data:{oid:selectBranch,name:barnchName},
@@ -845,7 +845,7 @@
               ,yes: function(index){
             	  $.ajax({
           	        url : "/manager/user/deleteuser",
-          	        type : "post",
+          	        type : "get",
           	        dataType : "json",
           	        data:{
           	        	oid:userData  	

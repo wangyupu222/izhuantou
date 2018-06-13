@@ -142,7 +142,7 @@ function rowAcep(but) {
     }
     $.ajax({
         url : "/manager/user/adduser",
-        type : "post",
+        type : "get",
         dataType : "json",
         data:user,
         success : function(result) {
@@ -212,7 +212,7 @@ function rowCancel(but) {
 
           }else if ($td.parent("td").index()==6){
         	  $.ajax({
-                  type: "post",//请求方式
+                  type: "get",//请求方式
                   url: "/manager/roles/list",//地址，就是json文件的请求路径
                   dataType: "json",//数据类型可以为 text xml json  script  jsonp
                   data:{},
@@ -249,7 +249,7 @@ function rowCancel(but) {
         	  
           }else if ($td.parent("td").index()==8){
         	  $.ajax({
-                  type: "post",//请求方式
+                  type: "get",//请求方式
                   url: "/manager/group/tree",//地址，就是json文件的请求路径
                   dataType: "json",//数据类型可以为 text xml json  script  jsonp
                   data:{},

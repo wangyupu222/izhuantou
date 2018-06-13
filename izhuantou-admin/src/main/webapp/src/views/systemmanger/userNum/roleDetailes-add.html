@@ -278,7 +278,7 @@
                 layer.confirm('确认提交？', function(index){
                 	$.ajax({
             	        url : "/manager/roles/addroles",
-            	        type : "post",
+            	        type : "get",
             	        dataType : "json",
             	        data:roles,
             	        success : function(result) {
