@@ -34,7 +34,6 @@ public class UserGroupController {
     private UserGroupService userGroupService;
 
     // 获取用户分组的一级菜单
-    @SystemControllerLog(description = "获取用户分组")
     @RequestMapping(value = "/parentlist")
     @ResponseBody
     public OpResult getUserGroupParentList(@RequestParam(value = "page", defaultValue = "1") Integer currentPage) {
@@ -47,7 +46,6 @@ public class UserGroupController {
     }
 
     // 根据oid获取所有子菜单
-    @SystemControllerLog(description = "获取用户分组")
     @RequestMapping(value = "/list")
     @ResponseBody
     public OpResult getUserGroupList(String oid) {
@@ -60,7 +58,6 @@ public class UserGroupController {
     }
 
     // 根据子菜单的oid分页获取下属的用户
-    @SystemControllerLog(description = "获取分页所属用户")
     @RequestMapping(value = "/pageUserlist")
     @ResponseBody
     public OpResult getGroupUserListByOid(@RequestParam(value = "page", defaultValue = "1") Integer currentPage,
@@ -74,7 +71,6 @@ public class UserGroupController {
     }
 
     // 根据oid获取所有子菜单
-    @SystemControllerLog(description = "获取子菜单")
     @RequestMapping(value = "/tree")
     @ResponseBody
     public OpResult getUserGroupTree() {

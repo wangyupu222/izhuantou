@@ -68,7 +68,7 @@ public class UserController {
 		ManagerUser principalUser = (ManagerUser) subject.getPrincipal();
 		HttpSession session = request.getSession();
 		session.setAttribute(KEY_USER, user);
-		logger.info("{} 登入系统成功!", user.getName());
+		logger.info("{} 登入系统成功!", user.getUserName());
 		return OpResult.getSuccessResult(principalUser.getOid());
 	    } catch (Exception e) {
 		return OpResult.getFailedResult("账号或密码错误");
@@ -141,7 +141,7 @@ public class UserController {
 	try {
 	    Boolean flag = this.managerUserService.updatePassword(password);
 	    if (flag) {
-		logger.info("{} 修改密码成功!");
+		logger.info("修改密码成功!");
 		return OpResult.getSuccessResult("修改成功");
 	    } else {
 		return OpResult.getSuccessResult("原密码错误");
@@ -157,7 +157,7 @@ public class UserController {
      * @param currentPage
      * @return
      */
-    @SystemControllerLog(description = "分页获取用户信息")
+
     @RequestMapping(value = "/userlist", method = RequestMethod.GET)
     @ResponseBody
     public OpResult queryPageListByPage(@RequestParam(value = "page", defaultValue = "1") Integer currentPage) {

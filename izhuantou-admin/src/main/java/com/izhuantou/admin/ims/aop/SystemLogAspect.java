@@ -46,7 +46,7 @@ public class SystemLogAspect {
 
     private static final ThreadLocal<ManagerUser> currentUser = new NamedThreadLocal<>("ThreadLocal user");
 
-    @Autowired(required = false)
+    @Autowired()
     private HttpServletRequest request;
     @Autowired
     private LogService logService;
@@ -103,15 +103,15 @@ public class SystemLogAspect {
 	if (user == null) {
 	    HttpSession session = request.getSession();
 	    user = (ManagerUser) session.getAttribute("ims_user");
-	    logger.info("{}拦截到的用户信息为==>", user);
+	    logger.info("{}拦截到的用户信息为", user);
+	    System.err.println("{}拦截到的用户信息为" + user);
 	    if (user == null) {
-		logger.info("{}拦截到的用户信息为null，直接返回");
+		logger.info("拦截到的用户信息为null，直接返回");
+		System.err.println("拦截到的用户信息为null，直接返回");
 		return;
 	    }
 	}
 	Object[] args = joinPoint.getArgs();
-	System.out.println(args);
-
 	String title = "";
 	String type = "info"; // 日志类型(info:入库,error:错误)
 	String remoteAddr = request.getRemoteAddr();// 请求的IP

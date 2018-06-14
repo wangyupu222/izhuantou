@@ -28,7 +28,6 @@ public class RolesController {
     private RolesToMenuService rolesToMenuService;
 
     // 获取用户分组的一级菜单
-    @SystemControllerLog(description = "获取用户分组")
     @RequestMapping(value = "/list")
     @ResponseBody
     public OpResult getRolesList() {
@@ -54,7 +53,6 @@ public class RolesController {
     }
 
     // 根据一级角色获取所有的二级角色并且获取具有该角色的所有用户
-    @SystemControllerLog(description = "获取角色用户")
     @RequestMapping(value = "/getrolesanduser")
     @ResponseBody
     public OpResult getRolesAndUser(String oid) {
@@ -67,7 +65,7 @@ public class RolesController {
     }
 
     // 获取所有角色分组的父节点
-    @SystemControllerLog(description = "获取角色父节点")
+
     @RequestMapping(value = "/parentlist")
     @ResponseBody
     public OpResult getparentList() {
