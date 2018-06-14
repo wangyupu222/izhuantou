@@ -145,8 +145,7 @@ public class SystemLogAspect {
 	Date operateDate = beginTimeThreadLocal.get();
 	log.setOperateDate(DateUtils.formatDate(operateDate, null));
 	log.setTimeOut(DateUtils.formatDateTime(endTime - beginTime));
-
-	// 执行保存操作
+	logger.info("{}保存用户操作信息", log);
 	new LogThread(log, this.logService).run();
 
     }
@@ -163,7 +162,7 @@ public class SystemLogAspect {
 	if (log != null) {
 	    log.setType("error");
 	    log.setException(e.toString());
-	    // 执行保存操作
+	    logger.info("{}保存用户操作异常信息信息", log);
 	    new LogThread(log, this.logService).run();
 	}
     }

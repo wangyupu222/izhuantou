@@ -41,7 +41,7 @@ public class RolesController {
     }
 
     // 新增角色or叫色添加权限
-    @SystemControllerLog(description = "新增角色or叫色添加权限")
+    @SystemControllerLog(description = "新增角色or角色添加权限")
     @RequestMapping(value = "/addroles")
     @ResponseBody
     public OpResult addRoels(Roles roles, String arr) {

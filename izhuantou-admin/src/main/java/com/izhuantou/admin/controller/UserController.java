@@ -90,7 +90,7 @@ public class UserController {
     @ResponseBody
     public OpResult getTree(String oid) {
 	List<TreeMenu> returnList = menuService.getTree(oid);
-	System.out.println(returnList);
+	logger.info("{} 获取权限树成功!", returnList);
 	return OpResult.getSuccessResult(returnList);
     }
 
@@ -141,6 +141,7 @@ public class UserController {
 	try {
 	    Boolean flag = this.managerUserService.updatePassword(password);
 	    if (flag) {
+		logger.info("{} 修改密码成功!");
 		return OpResult.getSuccessResult("修改成功");
 	    } else {
 		return OpResult.getSuccessResult("原密码错误");
@@ -207,6 +208,7 @@ public class UserController {
     public OpResult resetPwd(String oid) {
 	try {
 	    String newPwd = this.managerUserService.resetPwd(oid);
+	    logger.info("{} 重置密码成功!");
 	    return OpResult.getSuccessResult(newPwd);
 	} catch (Exception e) {
 	    return OpResult.getSuccessResult("重置失败");

@@ -7,7 +7,7 @@ import com.izhuantou.service.api.system.LogService;
  * 保存日志线程
  * 
  * @author fucheng
- * @date 2018-04-11
+ * @date 2018-06-11
  *
  */
 public class LogThread implements Runnable {
