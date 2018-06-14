@@ -409,6 +409,19 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<!-- 打包源码方便关联查看 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+					<id>attach-sources</id>
+					<goals>
+					<goal>jar</goal>
+					</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<!-- 资源文件拷贝插件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
