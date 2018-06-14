@@ -46,7 +46,7 @@ public class SystemLogAspect {
 
     private static final ThreadLocal<ManagerUser> currentUser = new NamedThreadLocal<>("ThreadLocal user");
 
-    @Autowired()
+    @Autowired
     private HttpServletRequest request;
     @Autowired
     private LogService logService;
