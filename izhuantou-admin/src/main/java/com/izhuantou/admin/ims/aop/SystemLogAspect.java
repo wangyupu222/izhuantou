@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.NamedThreadLocal;
 import org.springframework.stereotype.Component;
 
-import com.izhuantou.admin.ims.LogThread;
 import com.izhuantou.admin.ims.annotation.SystemControllerLog;
 import com.izhuantou.common.utils.DateUtils;
 import com.izhuantou.common.utils.StringUtil;
@@ -146,7 +145,8 @@ public class SystemLogAspect {
 	log.setOperateDate(DateUtils.formatDate(operateDate, null));
 	log.setTimeOut(DateUtils.formatDateTime(endTime - beginTime));
 	logger.info("{}保存用户操作信息", log);
-	new LogThread(log, this.logService).run();
+	// new LogThread(log, this.logService).run();
+	this.logService.createLog(log);
 
     }
 
@@ -163,7 +163,8 @@ public class SystemLogAspect {
 	    log.setType("error");
 	    log.setException(e.toString());
 	    logger.info("{}保存用户操作异常信息信息", log);
-	    new LogThread(log, this.logService).run();
+	    // new LogThread(log, this.logService).run();
+	    this.logService.createLog(log);
 	}
     }
 
