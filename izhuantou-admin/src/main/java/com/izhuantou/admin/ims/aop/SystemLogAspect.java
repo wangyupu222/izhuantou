@@ -46,7 +46,7 @@ public class SystemLogAspect {
 
     private static final ThreadLocal<ManagerUser> currentUser = new NamedThreadLocal<>("ThreadLocal user");
 
-    @Autowired
+    @Autowired(required = false)
     private HttpServletRequest request;
     @Autowired
     private LogService logService;
@@ -83,6 +83,7 @@ public class SystemLogAspect {
 	}
 	// 读取session中的用户
 	HttpSession session = request.getSession();
+	logger.info("{} 前置通知 sessionID为!", session.getId());
 	ManagerUser user = (ManagerUser) session.getAttribute("ims_user");
 	logger.info("前置通知 session 中获取的用户信息为{}", user);
 	currentUser.set(user);
@@ -104,6 +105,7 @@ public class SystemLogAspect {
 	// 登入login操作 前置通知时用户未校验 所以session中不存在用户信息
 	if (user == null) {
 	    HttpSession session = request.getSession();
+	    logger.info("{} 后置通知 sessionID为!", session.getId());
 	    user = (ManagerUser) session.getAttribute("ims_user");
 	    logger.info("{}拦截到的用户信息为", user);
 

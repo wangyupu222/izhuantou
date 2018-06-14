@@ -69,6 +69,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		session.setAttribute(KEY_USER, user);
 		logger.info("{} 登入系统成功!", user.getUserName());
+		logger.info("{} 登录中的sessionID为!", session.getId());
 		return OpResult.getSuccessResult(principalUser.getOid());
 	    } catch (Exception e) {
 		return OpResult.getFailedResult("账号或密码错误");
@@ -221,6 +222,7 @@ public class UserController {
     @ResponseBody
     public OpResult updateUserLock(ManagerUser user, HttpServletRequest request) {
 	logger.info("被锁定的用户信息为   {}", user);
+	logger.info("被锁定的用户信息为   {}", request.getSession().getId());
 	logger.info("获取到的session信息为 {}", request.getSession().getAttribute(KEY_USER));
 	String message = null;
 	try {
