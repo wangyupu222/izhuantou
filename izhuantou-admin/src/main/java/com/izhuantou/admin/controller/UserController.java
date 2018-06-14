@@ -51,7 +51,7 @@ public class UserController {
     private ManagerUserService managerUserService;
 
     // 登录方法
-    @SystemControllerLog(description = "demo")
+    @SystemControllerLog(description = "登入系统")
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     @ResponseBody
     public OpResult login(ManagerUser user, HttpServletRequest request, HttpServletResponse response, Model view) {
