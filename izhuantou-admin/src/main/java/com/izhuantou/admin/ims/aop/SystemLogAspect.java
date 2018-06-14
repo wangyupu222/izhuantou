@@ -103,7 +103,9 @@ public class SystemLogAspect {
 	if (user == null) {
 	    HttpSession session = request.getSession();
 	    user = (ManagerUser) session.getAttribute("ims_user");
+	    logger.info("{}拦截到的用户信息为==>", user);
 	    if (user == null) {
+		logger.info("{}拦截到的用户信息为null，直接返回");
 		return;
 	    }
 	}
