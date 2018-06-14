@@ -219,7 +219,9 @@ public class UserController {
     @SystemControllerLog(description = "锁定用户")
     @RequestMapping(value = "/lockuser")
     @ResponseBody
-    public OpResult updateUserLock(ManagerUser user) {
+    public OpResult updateUserLock(ManagerUser user, HttpServletRequest request) {
+	logger.info("被锁定的用户信息为   {}", user);
+	logger.info("获取到的session信息为 {}", request.getSession().getAttribute(KEY_USER));
 	String message = null;
 	try {
 	    message = this.managerUserService.updateUserLock(user);

@@ -84,6 +84,7 @@ public class SystemLogAspect {
 	// 读取session中的用户
 	HttpSession session = request.getSession();
 	ManagerUser user = (ManagerUser) session.getAttribute("ims_user");
+	logger.info("前置通知 session 中获取的用户信息为{}", user);
 	currentUser.set(user);
 
     }
@@ -99,6 +100,7 @@ public class SystemLogAspect {
     @After("controllerAspect()")
     public void doAfter(JoinPoint joinPoint) {
 	ManagerUser user = currentUser.get();
+	logger.info("后置通知 获取到的用户信息为 {}", user);
 	// 登入login操作 前置通知时用户未校验 所以session中不存在用户信息
 	if (user == null) {
 	    HttpSession session = request.getSession();
