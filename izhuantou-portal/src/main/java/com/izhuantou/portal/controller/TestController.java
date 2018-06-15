@@ -20,7 +20,7 @@ public class TestController {
     @ResponseBody
     public String queryMenuByUserName() {
 
-	System.err.println("我在portal的controller中调用的Service为 " + serviceTest.getNumber());
+	System.err.println("我在portal的 controller中调用的Service为 " + serviceTest.getNumber());
 
 	return "goodBay";
     }
