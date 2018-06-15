@@ -5,8 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -23,9 +23,9 @@ import org.springframework.stereotype.Component;
 
 import com.izhuantou.admin.ims.LogThread;
 import com.izhuantou.admin.ims.annotation.SystemControllerLog;
+import com.izhuantou.common.utils.CookieUtil;
 import com.izhuantou.common.utils.DateUtils;
 import com.izhuantou.common.utils.StringUtil;
-import com.izhuantou.damain.manager.ManagerUser;
 import com.izhuantou.damain.system.Log;
 import com.izhuantou.service.api.system.LogService;
 
@@ -40,11 +40,9 @@ import com.izhuantou.service.api.system.LogService;
 @Component
 public class SystemLogAspect {
     private static final Logger logger = LoggerFactory.getLogger(SystemLogAspect.class);
-
     private static final ThreadLocal<Date> beginTimeThreadLocal = new NamedThreadLocal<Date>("ThreadLocal beginTime");
     private static final ThreadLocal<Log> logThreadLocal = new NamedThreadLocal<Log>("ThreadLocal log");
-
-    private static final ThreadLocal<ManagerUser> currentUser = new NamedThreadLocal<>("ThreadLocal user");
+    private static final ThreadLocal<String> currentUser = new NamedThreadLocal<>("ThreadLocal userName");
 
     @Autowired(required = false)
     private HttpServletRequest request;
@@ -81,12 +79,11 @@ public class SystemLogAspect {
 	    logger.debug("开始计时: {}  URI: {}", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(beginTime),
 		    request.getRequestURI());
 	}
-	// 读取session中的用户
-	HttpSession session = request.getSession();
-	logger.info("{} 前置通知 sessionID为!", session.getId());
-	ManagerUser user = (ManagerUser) session.getAttribute("ims_user");
-	logger.info("前置通知 session 中获取的用户信息为{}", user);
-	currentUser.set(user);
+	Cookie cookie = CookieUtil.getCookieByName(request, "ims_user");
+	if (cookie != null) {
+	    String userName = cookie.getValue();
+	    currentUser.set(userName);
+	}
 
     }
 
@@ -100,19 +97,14 @@ public class SystemLogAspect {
     @SuppressWarnings("unchecked")
     @After("controllerAspect()")
     public void doAfter(JoinPoint joinPoint) {
-	ManagerUser user = currentUser.get();
-	logger.info("后置通知 获取到的用户信息为 {}", user);
+	String userName = currentUser.get();
 	// 登入login操作 前置通知时用户未校验 所以session中不存在用户信息
-	if (user == null) {
-	    HttpSession session = request.getSession();
-	    logger.info("{} 后置通知 sessionID为!", session.getId());
-	    user = (ManagerUser) session.getAttribute("ims_user");
-	    logger.info("{}拦截到的用户信息为", user);
-
-	    if (user == null) {
-		logger.info("拦截到的用户信息为null，直接返回");
-
+	if (StringUtil.isEmpty(userName)) {
+	    Cookie cookie = CookieUtil.getCookieByName(request, "ims_user");
+	    if (cookie == null) {
 		return;
+	    } else {
+		userName = cookie.getValue();
 	    }
 	}
 	Object[] args = joinPoint.getArgs();
@@ -147,7 +139,7 @@ public class SystemLogAspect {
 	log.setRequestUrl(requestUri);
 	log.setMethod(method);
 	log.setMapToParams(params);
-	log.setUsername(user.getUserName());
+	log.setUsername(userName);
 	Date operateDate = beginTimeThreadLocal.get();
 	log.setOperateDate(DateUtils.formatDate(operateDate, null));
 	log.setTimeOut(DateUtils.formatDateTime(endTime - beginTime));
