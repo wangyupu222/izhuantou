@@ -162,8 +162,6 @@ public class PageServiceImpl extends BaseServiceImpl<P2pPageBanner> implements P
 	    /** 获取总数 */
 	    int rows = this.p2pMediaNewsDao.getRowCount();
 	    pageController.setTotalNumber(rows);
-	    // 取得总页数，总页数=总记录数/总页数
-	    Integer totalPage = pageController.getTotalPage();
 	    // 设置每页显示5条
 	    pageController.setPageSize(5);
 	    // 起始位置

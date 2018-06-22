@@ -17,7 +17,7 @@
 </div>
 <div class="main header">
   <div class="con headercon">
-    <div class="headerleft"><a href="/portal/user/index"><img src="<%=pathUrl %>/images/logo.png"></a></div>
+    <div class="headerleft"><a href="/portal/user/index"><img src="<%=pathUrl %>/images/logo.png"><img src=""></a></div>
     <div class="headerright">
         <div id="navigation">
             <ul class="navcsr">

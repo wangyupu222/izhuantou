@@ -68,9 +68,9 @@ $(function(){
             <div class="financial-cal-menu-item menu03">
                 <span class="financial-cal-menu-title " data-type="financial-cal-menu-title">我的借款<em class="ver-ico-url"></em></span>
                 <div class="financial-cal-menu-list " data-type="financial-cal-menu-listof" >
-                    <a href="/portal/personal/LoanApplication?type=1" class="<%if(request.getRequestURL().toString().indexOf("LoanApplication")>0){%>active<%}%>"><span><strong><i></i></strong>借款审核</span></a>
-                    <a href="/portal/personal/BorrowingRecords?hkstate=1" class="<%if(request.getRequestURL().toString().indexOf("BorrowingRecords")>0){%>active<%}%>"><span><strong><i></i></strong>借款记录</span></a>
-                    <a href="/portal/personal/Repayment" class="<%if(request.getRequestURL().toString().indexOf("Repayment")>0){%>active<%}%>"><span><strong><i></i></strong>还款</span></a>
+                    <a href="/portal/loan/LoanApplication?type=1" class="<%if(request.getRequestURL().toString().indexOf("LoanApplication")>0){%>active<%}%>"><span><strong><i></i></strong>借款审核</span></a>
+                    <a href="/portal/loan/BorrowingRecords?hkstate=1" class="<%if(request.getRequestURL().toString().indexOf("BorrowingRecords")>0){%>active<%}%>"><span><strong><i></i></strong>借款记录</span></a>
+                    <a href="/portal/loan/Repayment" class="<%if(request.getRequestURL().toString().indexOf("Repayment")>0){%>active<%}%>"><span><strong><i></i></strong>还款</span></a>
                     
                 </div>  
             </div>

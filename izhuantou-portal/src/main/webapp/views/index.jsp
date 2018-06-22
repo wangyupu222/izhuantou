@@ -230,7 +230,7 @@ canvas{
   
   
   <!--点点投产品-->
-  <div id="DDfinedatacon" >
+  <div id="DDfinedatacon" class="hide">
   <div class="con DDWarp DDLen02" >
    <div class="newshare">
     <div class="share_left"><div class="share_leftin"><div class="finepro_leftin_L"> <span class="t">点点投2</span> <em>优质散标、债权清晰</em> <div class="finepro_leftin_R"><a href="/portal/lend/DiandianProjects"></a>
@@ -420,7 +420,7 @@ canvas{
       <!-- 第一排 top -->
       <div class="hh_top_wrap">
       <div class="hh_top_wrap_L finedataHH01 ">
-      <div class="HHdjs">
+      <div class="HHdjs hide">
       <div id="Djs_wrap">
       <div class="recommendBox">
       <div class="borderimg"></div> 
@@ -468,7 +468,7 @@ canvas{
       </div>
       
       </div>
-      <div class="recommendBox HHyb">
+      <div class="recommendBox HHyb hide">
       <div class="borderimg" ></div> 
       <div class="finetitle"></div>
       <div class="recommend_con">
@@ -488,13 +488,13 @@ canvas{
       <div class="cell row3" >
       </div>
       </div>
-        <div class="recommendBox recommendBox02 hide">
+        <div class="recommendBox recommendBox02">
         <img src="<%=pathUrl %>/images/dual_system/HHbrick_liu.png">
         <div class="ingtext">优质标的正在路上，敬请期待吧！</div>
         </div>
       </div>
       <div class="hh_top_wrap_L hh_top_wrap_R finedataHH02">
-      <div class="HHdjs">
+      <div class="HHdjs hide">
       <div id="Djs_wrap">
       <div class="recommendBox">
       <div class="borderimg"></div> 
@@ -542,7 +542,7 @@ canvas{
       </div>
       
       </div>
-      <div class="recommendBox HHyb" >
+      <div class="recommendBox HHyb hide" >
       <div class="borderimg" ></div> 
       <div class="finetitle"></div>
       <div class="recommend_con">
@@ -573,7 +573,7 @@ canvas{
        <!-- 第二排 bottom -->
       <div class="hh_top_wrap hh_btm_wrap">
       <div class="hh_top_wrap_L finedataHH03">
-      <div class="HHdjs">
+      <div class="HHdjs hide">
       <div id="Djs_wrap">
       <div class="recommendBox">
       <div class="borderimg"></div> 
@@ -620,7 +620,7 @@ canvas{
       </div>
       </div>
       </div>
-      <div class="recommendBox HHyb">
+      <div class="recommendBox HHyb hide">
       <div class="borderimg"></div> 
       <div class="finetitle"></div>
       <div class="recommend_con">
@@ -646,7 +646,7 @@ canvas{
         </div>
       </div>
       <div class="hh_top_wrap_L hh_top_wrap_R finedataHH04">
-      <div class="HHdjs">
+      <div class="HHdjs hide">
       <div id="Djs_wrap">
       <div class="recommendBox">
       <div class="borderimg"></div> 
@@ -692,7 +692,7 @@ canvas{
       </div>
       </div>
       </div>
-      <div class="recommendBox HHyb">
+      <div class="recommendBox HHyb hide">
       <div class="borderimg"></div> 
       <div class="finetitle"></div>
       <div class="recommend_con">
