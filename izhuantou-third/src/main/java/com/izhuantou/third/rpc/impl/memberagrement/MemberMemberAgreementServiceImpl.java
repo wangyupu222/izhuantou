@@ -1,4 +1,4 @@
-package com.izhuantou.third.rpc.impl.memberAgrement;
+package com.izhuantou.third.rpc.impl.memberagrement;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -50,9 +50,9 @@ import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageMainContentMappingMapper;
 import com.izhuantou.dao.webp2p.WebP2pProductRateInfoMapper;
 import com.izhuantou.service.api.user.SequenceDefinitionService;
-import com.izhuantou.service.impl.BaseServiceImpl;
-import com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService;
+import com.izhuantou.third.rpc.api.memberagrement.MemberMemberAgreementService;
 import com.izhuantou.third.rpc.api.tsign.ControlSignService;
+import com.izhuantou.third.rpc.impl.BaseServiceImpl;
 
 @Service("memberMemberAgreementService")
 public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemberAgreement>
@@ -418,8 +418,12 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 	    WebP2pLoanProductRateInfo loanRateInfo = loanProductRateInfoMapper
 		    .findByOID(novice.getLoanProductRateInfoID());
 
-	    WebP2pBiddingExamine Examine = biddingExamineMapper.findByMemberOID(novice.getMemberOID());
-
+	    List<WebP2pBiddingExamine> examines = biddingExamineMapper.findByMemberOID(novice.getMemberOID());
+	    WebP2pBiddingExamine  examine=null;
+	    if(examines.size()>0){
+	    	examine=examines.get(examines.size()-1);
+	    }
+	  
 	    // 协议编号
 	    String xybh = sequenceDefinitionService.gainSequence("JK");
 
@@ -427,17 +431,17 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 
 	    replaceMap.put("xybh", xybh);
 	    replaceMap.put("jkbh", novice.getLoanNumber());
-	    replaceMap.put("jkr", Examine.getRealName());
-	    replaceMap.put("dz", Examine.getDizhi());
-	    replaceMap.put("lxfs", Examine.getMobile());
-	    replaceMap.put("sfzh", Examine.getIdCard());
-	    replaceMap.put("yhm", Examine.getMobile());
+	    replaceMap.put("jkr", examine.getRealName());
+	    replaceMap.put("dz", examine.getDizhi());
+	    replaceMap.put("lxfs", examine.getMobile());
+	    replaceMap.put("sfzh", examine.getIdCard());
+	    replaceMap.put("yhm", examine.getMobile());
 	    replaceMap.put("jkjexx", novice.getLoanAmount());
 	    BigDecimal aBigDecimal = novice.getLoanAmount();
 	    double d = aBigDecimal.doubleValue();
 	    String jkjedx = ToolMath.toBigMoney(d);
 	    replaceMap.put("jkjedx", jkjedx);
-	    replaceMap.put("jkyt", Examine.getLoanuse());
+	    replaceMap.put("jkyt", examine.getLoanuse());
 	    replaceMap.put("jkqx", loanRateInfo.getTerm());
 	    BigDecimal b1 = new BigDecimal(100);
 	    BigDecimal hnll = loanRateInfo.getYearRate().multiply(b1);
@@ -512,7 +516,11 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 	try {
 	    WebP2pNoviceBiddingRuning novice = noviceBiddingRuningMapper.findByOID(biddingOID);
 	    WebP2pProductRateInfo rateInfo = productRateInfoMapper.findByOID(novice.getProductRateInfoID());
-	    WebP2pBiddingExamine Examine = biddingExamineMapper.findByMemberOID(novice.getMemberOID());
+	    List<WebP2pBiddingExamine> examines = biddingExamineMapper.findByMemberOID(novice.getMemberOID());
+	    WebP2pBiddingExamine  examine=null;
+	    if(examines.size()>0){
+	    	examine=examines.get(examines.size()-1);
+	    }
 	    PayCustomer customer = payCustomerMapper.findByMemberOID(novice.getMemberOID());
 	    String conten = "";
 	    List<PayDebitCredit> dbList = payDebitCreditMapper.findByCondition(biddingOID);
@@ -531,21 +539,21 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 	    Map<String, Object> replaceMap = new HashMap<String, Object>();
 	    replaceMap.put("data1", conten);
 	    replaceMap.put("xybh", xybh);
-	    replaceMap.put("jkr", Examine.getRealName());
+	    replaceMap.put("jkr", examine.getRealName());
 
 	    CodeContent code = codeContentMapper.findCodeContent(customer.getBankCityCode(), "cncity");
 
 	    replaceMap.put("dz", code.getNameCN());
 
 	    replaceMap.put("jkbh", novice.getLoanNumber());
-	    replaceMap.put("sfzh", Examine.getIdCard());
+	    replaceMap.put("sfzh", examine.getIdCard());
 
 	    replaceMap.put("jkjexx", "");
 	    BigDecimal aBigDecimal = novice.getLoanAmount();
 	    double d = aBigDecimal.doubleValue();
 	    String jkjedx = ToolMath.toBigMoney(d);
 	    replaceMap.put("jkjedx", jkjedx);
-	    replaceMap.put("jkyt", Examine.getLoanuse());
+	    replaceMap.put("jkyt", examine.getLoanuse());
 	    replaceMap.put("jkqx", rateInfo.getLoanTerm());
 	    BigDecimal b1 = new BigDecimal(100);
 	    BigDecimal hnll = rateInfo.getYearRate().multiply(b1);
@@ -912,12 +920,6 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
     public void gainMemberHHTNRBJKAgreement(String contractType, String biddingOID) {
 	// TODO Auto-generated method stub
 
-    }
-
-    @Override
-    public List<MemberMemberAgreement> queryByPage(Integer page, Integer rows) {
-	// TODO Auto-generated method stub
-	return null;
     }
 
 }

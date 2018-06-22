@@ -76,6 +76,61 @@ public class MyCashController {
 		return "CapitalDetailed";
 	}
 
+	/**
+	 * 银行卡信息页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/MyCard")
+	public String MyCard() {
+
+		return "MyCard";
+	}
+
+	/**
+	 * 充值页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/Recharge_new")
+	public String Recharge_new() {
+
+		return "Recharge_new";
+	}
+
+	/**
+	 * 充值页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/Recharge_new2")
+	public String Rechargenew2() {
+
+		return "Recharge_new2";
+	}
+
+	/**
+	 * 提现页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/Withdrawals")
+	public String Withdrawals() {
+
+		return "Withdrawals";
+	}
+
+	/**
+	 * 注册富友的页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/addbankcard")
+	public String addbankcard() {
+
+		return "addbankcard";
+	}
+
 	@RequestMapping(value = "/checkValidateCode")
 	@ResponseBody
 	public OpResult checkValidateCode(HttpServletRequest request, String yzm) {
@@ -107,17 +162,6 @@ public class MyCashController {
 			return OpResult.getFailedResult("查询失败");
 		}
 
-	}
-
-	/**
-	 * 银行卡信息页面
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value = "/MyCard")
-	public String MyCard() {
-
-		return "MyCard";
 	}
 
 	/**
@@ -159,28 +203,6 @@ public class MyCashController {
 	}
 
 	/**
-	 * 充值页面
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value = "/Recharge_new")
-	public String Recharge_new() {
-
-		return "Recharge_new";
-	}
-
-	/**
-	 * 充值页面
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value = "/Recharge_new2")
-	public String Rechargenew2() {
-
-		return "Recharge_new2";
-	}
-
-	/**
 	 * 充值记录和提现记录信息
 	 * 
 	 * @param request
@@ -218,28 +240,6 @@ public class MyCashController {
 			}
 		}
 		return OpResult.getFailedResult("查询记录失败");
-	}
-
-	/**
-	 * 提现页面
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value = "/Withdrawals")
-	public String Withdrawals() {
-
-		return "Withdrawals";
-	}
-
-	/**
-	 * 注册富友的页面
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value = "/addbankcard")
-	public String addbankcard() {
-
-		return "addbankcard";
 	}
 
 	/**
@@ -318,26 +318,6 @@ public class MyCashController {
 	}
 
 	/**
-	 * 网页版回调
-	 * 
-	 * @param view
-	 */
-	@RequestMapping(value = "/rechargeCallback")
-	public void rechargeCallback(RedirectAttributes view, FuyuReturnDTO fureturn) {
-		Map<String, String> map = new HashMap<String, String>();
-		if (fureturn != null) {
-			map.put("resp_code", fureturn.getResp_code());
-			map.put("login_id", fureturn.getLogin_id());
-			map.put("amt", fureturn.getAmt());
-			map.put("mchnt_txn_ssn", fureturn.getMchnt_txn_ssn());
-			map.put("rem", fureturn.getRem());
-			map.put("ly", "web");
-			controlPayService.rechargeFinish(map);
-		}
-
-	}
-
-	/**
 	 * 提现接口
 	 * 
 	 * @param request
@@ -373,30 +353,6 @@ public class MyCashController {
 			return "redirect:/portal/cash/Withdrawals";
 		} catch (Exception e) {
 			return null;
-		}
-	}
-
-	/**
-	 * 提现回调接口
-	 * 
-	 * @param request
-	 * @param response
-	 * @return
-	 */
-	@RequestMapping(value = "/withdrawalsCallback")
-	@ResponseBody
-	public void withdrawalsFinish(HttpServletRequest request, HttpServletResponse response, FuyuReturnDTO fureturn) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("resp_code", fureturn.getResp_code());
-		map.put("login_id", fureturn.getLogin_id());
-		map.put("amt", fureturn.getAmt());
-		map.put("mchnt_txn_ssn", fureturn.getMchnt_txn_ssn());
-		map.put("rem", fureturn.getRem());
-		map.put("ly", "web");
-		String rows = controlPayService.withdrawalsFinish(map);
-		if ("1".equals(rows)) {
-			controlPayService.withdrawalsSxfFinish(map);
-
 		}
 	}
 
@@ -501,10 +457,52 @@ public class MyCashController {
 				}
 			}
 			view.addFlashAttribute("msg", "接口调用失败");
-			return "redirect:/portal/personal/LoanApplication";
+			return "redirect:/portal/loan/LoanApplication";
 		} catch (Exception e) {
 			logger.error("authorization(HttpServletRequest request,HttpServletResponse response)", e.getMessage());
 			return "接口调用失败";
+		}
+	}
+
+	
+	
+	/**
+	 * web充值回调接口  
+	 * 
+	 * @param view
+	 */
+	//TODO 以下为富友回调
+	@RequestMapping(value = "/rechargeCallback")
+	public void rechargeCallback(FuyuReturnDTO fureturn) {
+		Map<String, String> map = new HashMap<String, String>();
+		if (fureturn != null) {
+			map.put("resp_code", fureturn.getResp_code());
+			map.put("login_id", fureturn.getLogin_id());
+			map.put("amt", fureturn.getAmt());
+			map.put("mchnt_txn_ssn", fureturn.getMchnt_txn_ssn());
+			map.put("rem", fureturn.getRem());
+			map.put("ly", "web");
+			controlPayService.rechargeFinish(map);
+		}
+	}
+
+	/**
+	 * 提现回调接口
+	 */
+	@RequestMapping(value = "/withdrawalsCallback")
+	@ResponseBody
+	public void withdrawalsFinish(FuyuReturnDTO fureturn) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("resp_code", fureturn.getResp_code());
+		map.put("login_id", fureturn.getLogin_id());
+		map.put("amt", fureturn.getAmt());
+		map.put("mchnt_txn_ssn", fureturn.getMchnt_txn_ssn());
+		map.put("rem", fureturn.getRem());
+		map.put("ly", "web");
+		String rows = controlPayService.withdrawalsFinish(map);
+		if ("1".equals(rows)) {
+			controlPayService.withdrawalsSxfFinish(map);
+
 		}
 	}
 
@@ -526,5 +524,19 @@ public class MyCashController {
 			}
 		}
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

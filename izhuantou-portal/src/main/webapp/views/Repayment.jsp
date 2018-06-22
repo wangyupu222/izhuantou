@@ -12,15 +12,11 @@
 <!--<link rel="stylesheet" href="/css/jquery.onoff.css" media="screen" />-->
 <script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
 <!--<script src="/js/jquery.onoff.min.js"></script>-->
-<script src="/guide/css3-mediaqueries.js"></script> <!-- aaaaa -->
 <!--[if lt IE 9]>
     <script src="/guide/css3-mediaqueries.js"></script>
 <![endif]-->
 <script src="/js/com.js"></script>
 <script language="javascript" src="/js/menu.js"></script>
-
-<!--日期时间-->
-<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 <style>
 .hide_liu{  width: 100%;  height: 500px;  text-align: center;  background:#fff url("<%=pathUrl %>/images/Capital_liu.jpg"); background-repeat: no-repeat; background-position:center center; display: none;  }
 .cd-popup-container1, .cd-popup-container2, .cd-popup-container4, .cd-popup-container5, .cd-popup-container6, .cd-popup-containerh{ width:853px;}
@@ -60,7 +56,7 @@
  <div class="comnei comneichujie">
        <a class="close cd-popup-close"></a>
        <p class="commit-1"><span>按期还款</span></p>
-      <form action="pageRepaymentFormljhksave" name="Formljhk" id="Formljhk"  >
+      <form action="/portal/repay/normalRepay" name="Formljhk" id="Formljhk"  >
 <div class="yunull yunullchujie">
           	<div class="boxtitle">
             	<img src="<%=pathUrl %>/images/chujie.png" width="65" height="53">
@@ -77,7 +73,7 @@
                 </div>
              </div>
          
-        <p class="commit-2"><span class="balance_y">账户余额：<em id="balance"><%=request.getAttribute("availablemoney") %></em>元<span class="spjineyue" style="border-right:none;"><a onclick="chongzi()"  href="Recharge_new.jsp"  class="cz">充值</a></span></span><button id="" name="" type="submit" value="确认" class="colseok">确认</button><span class="questBtn" style="display:none;">余额不足</span><span class="spjine">总计：<em id="repaymoney"><web:WidgetTextOut name="Formljhk" property="yhje2" /></em>元</span></p>
+        <p class="commit-2"><span class="balance_y">账户余额：<em id="balance"></em>元<span class="spjineyue" style="border-right:none;"><a onclick="chongzi()"  href="Recharge_new.jsp"  class="cz">充值</a></span></span><button id="" name="" type="submit" value="确认" class="colseok">确认</button><span class="questBtn" style="display:none;">余额不足</span><span class="spjine">总计：<em id="repaymoney"><web:WidgetTextOut name="Formljhk" property="yhje2" /></em>元</span></p>
        </form>
        
        
@@ -94,7 +90,7 @@
    <div class="comnei comneichujie">
        <a class="close cd-popup-close"></a>
        <p class="commit-1"><span>逾期还款</span></p>
-      <form action="" name="Formljhk"  id="Formyqhk" >
+      <form action="/portal/repay/afterRepay" name="Formljhk"  id="Formyqhk" >
 <div class="yunull yunullchujie">
           	<div class="boxtitle">
             	<img src="<%=pathUrl %>/images/chujie.png" width="65" height="53">
@@ -117,7 +113,7 @@
                 </div>
              </div>
          
-        <p class="commit-2"><span class="balance_y">账户余额：<em id="balance"><%=request.getAttribute("availablemoney") %></em>元<span class="spjineyue" style="border-right:none;"><a onclick="chongzi()"  href="Recharge_new.jsp"  class="cz">充值</a></span></span><button id="" name="" type="submit" value="确认">确认</button><span class="questBtn" style="display:none;">余额不足</span><span class="spjine">总计：<em id="repaymoney"><web:WidgetTextOut name="Formljhk" property="oncepunish"  format="####.00"  /></em>元</span></p>
+        <p class="commit-2"><span class="balance_y">账户余额：<em id="balance"></em>元<span class="spjineyue" style="border-right:none;"><a onclick="chongzi()"  href="Recharge_new.jsp"  class="cz">充值</a></span></span><button id="" name="" type="submit" value="确认">确认</button><span class="questBtn" style="display:none;">余额不足</span><span class="spjine">总计：<em id="repaymoney"><web:WidgetTextOut name="Formljhk" property="oncepunish"  format="####.00"  /></em>元</span></p>
        </form>
        
        
@@ -137,7 +133,7 @@
        <a class="close cd-popup-close"></a>
        <p class="commit-1"><span>提前结清</span></p>
       <%--  <iframe scrolling="no" frameborder="0" class="ifmbox" width="99%" height="500px" src="yjhk.jsp"></iframe> --%>
-      <form action="" name="Formyjjq"  id="Formyjjq" >
+      <form action="/portal/repay/beforeRepay" name="Formyjjq"  id="Formyjjq" >
 <div class="yunull yunullchujie">
           	<div class="boxtitle">
             	<img src="<%=pathUrl %>/images/chujie.png" width="65" height="53">
@@ -163,7 +159,7 @@
              
              </div>
          
-        <p class="commit-2"><span class="balance_y">账户余额：<em id="balance"><%=request.getAttribute("availablemoney") %></em>元 <span class="spjineyue" style="border-right:none;"><a onclick="chongzi()"  href="Recharge_new.jsp"  class="cz">充值</a></span></span><button id="" name="" type="submit" value="确认">确认</button><span class="questBtn" style="display:none;">余额不足</span><span class="spjine">总计：<em id="repaymoney"><web:WidgetTextOut name="Formyjjq" property="oncepunish"  format="####.00"  /></em>元</span></p>
+        <p class="commit-2"><span class="balance_y">账户余额：<em id="balance"></em>元 <span class="spjineyue" style="border-right:none;"><a onclick="chongzi()"  href="Recharge_new.jsp"  class="cz">充值</a></span></span><button id="" name="" type="submit" value="确认">确认</button><span class="questBtn" style="display:none;">余额不足</span><span class="spjine">总计：<em id="repaymoney"><web:WidgetTextOut name="Formyjjq" property="oncepunish"  format="####.00"  /></em>元</span></p>
        </form>
        
        
@@ -236,75 +232,12 @@
 </div>
 <script>
 $(function(){
-	ajax();
-	
-})
-	 
-   function ajax(option){
-     var xhr = null;
-     if(window.XMLHttpRequest){
-       xhr = new window.XMLHttpRequest();
-     }else{ // ie
-       xhr = new ActiveObject("Microsoft")
-     }
-     // 通过get的方式请求当前文件
-     xhr.open("get","/");
-     xhr.send(null);
-     // 监听请求状态变化
-     xhr.onreadystatechange = function(){
-       var time = null,
-           curDate = null;
-       if(xhr.readyState===2){
-         // 获取响应头里的时间戳
-         time = xhr.getResponseHeader("Date");
-         console.log(xhr.getAllResponseHeaders())
-         curDate = new Date(time);
-         /* document.getElementById("time2").innerHTML = curDate.getFullYear()+"-"+(curDate.getMonth()+1)+"-"+curDate.getDate();  */
-       }
-        var time_new_y=curDate.getFullYear();
-    	var time_new_m=curDate.getMonth()+1;
-	console.log("aaa"+time_new_m);
-    	var time_new_d=curDate.getDate();
-    	var time_old=$(".time_old").text();
-    	var arr = time_old.split("-");
-     	var time_old_y=arr[0];
-     	var time_old_m=arr[1];
-     	var time_old_d=arr[2];
-     	var cha_time_m=Number(time_old_m)-Number(time_new_m);
-     	if(time_new_y==time_old_y){
-     	if((Number(time_old_m)>Number(time_new_m) && Number(time_old_d)>=Number(time_new_d)) || (cha_time_m>1 && Number(time_old_d)<Number(time_new_d)) ){
-     		//alert("a");
-     		$(".cd-popup6").css("display","none");
-     		$(".cd-popup4").css("display","none");
-     		$(".confirmbtn2").removeClass("cd-popup-trigger6");
-     		$(".confirmbtn3").removeClass("cd-popup-trigger4");
-     		$(".confirmbtn2,.confirmbtn3").css({"background":"#ababab","pointer-events":"none"});
-     		
-     	}
-     	}else if(Number(time_old_y)>Number(time_new_y)){
-     		if((Number(time_old_m)<Number(time_new_m) && Number(time_old_d)>=Number(time_new_d)) || (Math.abs(cha_time_m)<11 && Number(time_old_d)<Number(time_new_d)) ){
-         		//alert("a");
-         		$(".cd-popup6").css("display","none");
-         		$(".cd-popup4").css("display","none");
-         		$(".confirmbtn2").removeClass("cd-popup-trigger6");
-         		$(".confirmbtn3").removeClass("cd-popup-trigger4");
-         		$(".confirmbtn2,.confirmbtn3").css({"background":"#ababab","pointer-events":"none"});
-         		
-         	}
-     	}
-     	
-     }
-    
- 	//alert(time_new_m);
-   }
-</script>
-<script>
-$(function(){
 	$.ajax({
-        type: "post",
+        type: "get",
         url: "/portal/detial/islogin",
         dataType: "json",
         success: function(result){
+        	console.log(result);
         	var result=result.dataValue;
         	$("#Formljhk #balance").text(result);
         	$("#Formyjjq #balance").text(result);
@@ -316,77 +249,89 @@ $(function(){
     });
     $.ajax({
         type: "post",
-        url: "/portal/personal/repaymentBack",
+        url: "/portal/loan/repaymentBack",
         dataType: "json",
         success: function(result){
         	var result=result.dataValue;
+        	console.log(result);
         	if(result.length<1){
         		$(".HKjilu_liu").css("display","block");
         	}
         	for(var i=0;i<result.length;i++){
         		var jkmc=result[i].businessName;
         		jkmc=jkmc.substring(0,3);
-        		var str='<tr class="rowbox03 value"><td>'+result[i].businessName+'</td><td>'+(result[i].money).toFixed(2)+'</td><td>'+(result[i].debitRate).toFixed(2)+'%</td><td>'+(result[i].allmoney).toFixed(2)+'</td><td class="time_old">'+result[i].nextSJ+'</td>';
-        		if(result[i].yuqiflag=='yuqi'){
+        		var str='<tr class="rowbox03 value"><td>'+result[i].businessName+'</td><td>'+(result[i].money).toFixed(2)+'</td><td>'+(result[i].debitRate).toFixed(2)+'%</td><td>'+(result[i].allmoney).toFixed(2)+'</td><td class="time_old">'+result[i].nextRepayTime+'</td>';
+        		console.log(result[i].yuqiFlag=='yuqi');
+        		if(result[i].yuqiFlag=='yuqi'){
         			if(jkmc=='IFT'){
         				str+='<td></td>';
         			}else{
         				str+='<td> <a href="#"  class="yuqi confirmbtn1">逾期还款</a> </td>';
         			}
         		}else{
-        			str+='<td> <a href="#"  class="cd-popup-trigger6  confirmbtn2" >还款</a> </td>';
+        			if(result[i].hkFlag=='zchk'){
+        				str+='<td> <a href="#"  class="cd-popup-trigger6  confirmbtn2" >还款</a> </td>';
+        			}else{
+        				str+='<td> <a href="#"  class="confirmbtn2" style="background:#ababab;pointer-events:none" >还款</a> </td>';
+        			}
+        			
         		}
-        		if(result[i].yuqiflag=='yuqi'){
+        		if(result[i].yuqiFlag=='yuqi'){
         			str+='<td></td>';
         		}else{
         			if(jkmc=='IFT'){
         				str+='<td></td>';
         			}else{
+        				if(result[i].hkFlag=='zchk'){
         				str+='<td> <a href="#" class="cd-popup-trigger4 confirmbtn3" >提前结清</a> </td>';
+        				}else{
+        				str+='<td> <a href="#" class="confirmbtn3" style="background:#ababab;pointer-events:none" >提前结清</a> </td>';
+        				}
         			}
         		}
         		str+='</tr>';
         		$(".mytzcon tbody").append(str);
-        		
+        		if(result[i].yuqiFlag!='yuqi'){
         		$("#Formljhk .titlebt").text(result[i].businessName);
-        		$("#Formljhk #planOID").text(result[i].planOID);
+        		$("#Formljhk #planOID").val(result[i].planOID);
         		$("#Formljhk .yjhqitems").eq(0).find("em").text((result[i].money).toFixed(2));
         		$("#Formljhk .yjhqitems").eq(1).find("em").text((result[i].debitRate).toFixed(2));
         		$("#Formljhk .yjhqitems").eq(2).find("em").text(result[i].term);
-        		$("#Formljhk .yjhqitems").eq(3).find("em").text(result[i].loanSJ);
-        		$("#Formljhk .yjhqitems").eq(4).find("em").text((result[i].yhje).toFixed(2));
-        		$("#Formljhk #repaymoney").text((result[i].yhje).toFixed(2));
+        		$("#Formljhk .yjhqitems").eq(3).find("em").text(result[i].loanTime);
+        		$("#Formljhk .yjhqitems").eq(4).find("em").text((result[i].allmoney).toFixed(2));
+        		$("#Formljhk #repaymoney").text((result[i].allmoney).toFixed(2));
         		// 提前
         		$("#Formyjjq .titlebt").text(result[i].businessName);
-        		$("#Formyjjq #planOID").text(result[i].businessOID);
+        		$("#Formyjjq #planOID").val(result[i].businessOID);
         		$("#Formyjjq .yjhqitems").eq(0).find("em").text(result[i].money);
         		$("#Formyjjq .yjhqitems").eq(1).find("em").text((result[i].debitRate).toFixed(2));
         		$("#Formyjjq .yjhqitems").eq(2).find("em").text(result[i].term);
-        		$("#Formyjjq .yjhqitems").eq(3).find("em").text(result[i].loanSJ);
+        		$("#Formyjjq .yjhqitems").eq(3).find("em").text(result[i].loanTime);
         		$("#Formyjjq .orgcolorem").eq(0).find("em").text((result[i].yhbj).toFixed(2));
         		$("#Formyjjq .orgcolorem").eq(1).find("em").text((result[i].interestMoney).toFixed(2));
-        		$("#Formyjjq .orgcolorem").eq(2).find("em").text((result[i].zxsxf).toFixed(2));
-        		$("#Formyjjq .orgcolorem").eq(3).find("em").text((result[i].ptglf).toFixed(2));
-        		$("#Formyjjq .orgcolorem").eq(4).find("em").text((result[i].wyj).toFixed(2));
-        		$("#Formyjjq .orgcolorem").eq(5).find("em").text((result[i].yqfx).toFixed(2));
-        		$("#Formyjjq #repaymoney").text((result[i].oncePay).toFixed(2));
+        		$("#Formyjjq .orgcolorem").eq(2).find("em").text((result[i].serviceMoney).toFixed(2));
+        		$("#Formyjjq .orgcolorem").eq(3).find("em").text((result[i].manageMoney).toFixed(2));
+        		$("#Formyjjq .orgcolorem").eq(4).find("em").text((result[i].penalty).toFixed(2)); 
+        		$("#Formyjjq .orgcolorem").eq(5).find("em").text((result[i].defaultInterest).toFixed(2));
+        		$("#Formyjjq #repaymoney").text((result[i].countMoney).toFixed(2));
+        		}else{
         		
         		// 逾期
         		$("#Formyqhk .titlebt").text(result[i].businessName);
-        		$("#Formyqhk #planOID").text(result[i].businessOID);
+        		$("#Formyqhk #planOID").val(result[i].businessOID);
         		$("#Formyqhk .yjhqitems").eq(0).find("em").text((result[i].money).toFixed(2));
         		$("#Formyqhk .yjhqitems").eq(1).find("em").text((result[i].debitRate).toFixed(2));
         		$("#Formyqhk .yjhqitems").eq(2).find("em").text(result[i].term);
-        		$("#Formyqhk .yjhqitems").eq(3).find("em").text(result[i].loanSJ);
-        		$("#Formyqhk .orgcolorem").eq(0).find("em").text((result[i].yhje).toFixed(2));
-        		$("#Formyqhk .orgcolorem").eq(1).find("em").text((result[i].yqlx).toFixed(2));
-        		$("#Formyqhk .orgcolorem").eq(2).find("em").text((result[i].zxsxf).toFixed(2));
-        		$("#Formyqhk .orgcolorem").eq(3).find("em").text((result[i].ptglf).toFixed(2));
-        		$("#Formyqhk .orgcolorem").eq(4).find("em").text((result[i].yqwyj).toFixed(2));
+        		$("#Formyqhk .yjhqitems").eq(3).find("em").text(result[i].loanTime);
+        		$("#Formyqhk .orgcolorem").eq(0).find("em").text((result[i].yhbj).toFixed(2));
+        		$("#Formyqhk .orgcolorem").eq(1).find("em").text((result[i].interestMoney).toFixed(2));
+        		$("#Formyqhk .orgcolorem").eq(2).find("em").text((result[i].serviceMoney).toFixed(2));
+        		$("#Formyqhk .orgcolorem").eq(3).find("em").text((result[i].manageMoney).toFixed(2));
+        		$("#Formyqhk .orgcolorem").eq(4).find("em").text((result[i].penalty).toFixed(2));
         		$("#Formyqhk .orgcolorem").eq(5).find("em").text((result[i].yqglf).toFixed(2));
-        		$("#Formyqhk .orgcolorem").eq(6).find("em").text((result[i].yqfx).toFixed(2));
-        		$("#Formyqhk #repaymoney").text((result[i].oncePay).toFixed(2));
-        		
+        		$("#Formyqhk .orgcolorem").eq(6).find("em").text((result[i].defaultInterest).toFixed(2));
+        		$("#Formyqhk #repaymoney").text((result[i].countMoney).toFixed(2));
+        		}
         	}
         	
                 		        	

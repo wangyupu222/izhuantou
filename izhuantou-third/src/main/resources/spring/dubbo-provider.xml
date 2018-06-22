@@ -17,7 +17,7 @@
 	<!-- 富友接口调用 -->
 	<dubbo:service  interface="com.izhuantou.third.rpc.api.ControlPayService" ref="controlPayService" />
 	<!-- 生成协议相关 -->
-	<dubbo:service  interface="com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService" ref="memberMemberAgreementService" />		 
+	<dubbo:service  interface="com.izhuantou.third.rpc.api.memberagrement.MemberMemberAgreementService" ref="memberMemberAgreementService" />		 
 	<!-- 短信接口 -->
 	<dubbo:service  interface="com.izhuantou.third.rpc.api.message.SendMessageService" ref="sendMessageService" />		 
 	

@@ -1,7 +1,6 @@
 package com.izhuantou.fund.rpc.impl;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -15,18 +14,11 @@ import com.izhuantou.damain.message.MessageSmsHistory;
 import com.izhuantou.damain.pay.PayCashPool;
 import com.izhuantou.damain.pay.PayCashPoolOperation;
 import com.izhuantou.damain.user.MemberMember;
-import com.izhuantou.damain.vo.bidding.BiddingDTO;
-import com.izhuantou.damain.webp2p.WebP2pNoviceBiddingRuning;
-import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning;
-import com.izhuantou.damain.webp2p.WebP2pProductRateInfo;
 import com.izhuantou.dao.message.MessageContentBusinessMapper;
 import com.izhuantou.dao.message.MessageSmsHistoryMapper;
-import com.izhuantou.dao.pay.PayCashPoolMapper;
 import com.izhuantou.dao.pay.PayCashPoolOperationMapper;
 import com.izhuantou.dao.user.MemberMemberMapper;
 import com.izhuantou.dao.webp2p.WebP2pNoviceBiddingRuningMapper;
-import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
-import com.izhuantou.dao.webp2p.WebP2pProductRateInfoMapper;
 import com.izhuantou.fund.rpc.api.ControlCashPool;
 import com.izhuantou.fund.rpc.api.ControlCustomerBusiness;
 import com.izhuantou.third.rpc.api.ControlPayService;
@@ -38,15 +30,9 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 	@Autowired
 	private ControlPayService controlPay;
 	@Autowired
-	private PayCashPoolMapper payCashPoolDao;
-	@Autowired
 	private PayCashPoolOperationMapper paycashPoolOperationMapper;
 	@Autowired
 	private WebP2pNoviceBiddingRuningMapper noviceBiddingRuningMapper;
-	@Autowired
-	private WebP2pPackageBiddingMainRuningMapper packageBiddingMainRuningMapper;
-	@Autowired
-	private WebP2pProductRateInfoMapper productRateInfoMapper;
 	@Autowired
 	private ControlCustomerBusiness controlCustomerBusiness;
 	@Autowired
@@ -125,107 +111,6 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 	}
 
 	@Override
-	public PayCashPool investment(BiddingDTO bidto) {
-		PayCashPool dtoCashPool = null;
-		try {
-			if (bidto != null) {
-				WebP2pPackageBiddingMainRuning maindto = packageBiddingMainRuningMapper
-						.findByOID(bidto.getBiddingOID());
-				WebP2pProductRateInfo productInfodto = productRateInfoMapper.findByOID(maindto.getProductRateInfoID());
-
-				dtoCashPool = new PayCashPool();
-				dtoCashPool.setOID(StringUtil.getUUID());
-				dtoCashPool.setBusinessOID(bidto.getBiddingOID());
-				dtoCashPool.setMemberOID(bidto.getOutMemberOID());
-				dtoCashPool.setMoney(bidto.getAmount());
-				dtoCashPool.setInterest(new BigDecimal("0"));
-				dtoCashPool.setPrincipalMoney(bidto.getAmount());
-				dtoCashPool.setInterestMoney(bidto.getInterest());
-				dtoCashPool.setCreditRate(bidto.getCreditRate());
-				dtoCashPool.setCreditType(bidto.getCreditType());
-				dtoCashPool.setReturnCycle(bidto.getReturnCycle());
-				dtoCashPool.setTotalInterestMoney(
-						bidto.getInterest().multiply(new BigDecimal((String.valueOf(bidto.getReturnNumber()))))
-								.setScale(2, BigDecimal.ROUND_HALF_EVEN));
-				dtoCashPool.setPrivilegePrincipal(null);
-				dtoCashPool.setPrivilegeInterest(null);
-				dtoCashPool.setTqOID(bidto.getTqOID());
-				dtoCashPool.setState("investment");
-				dtoCashPool.setReturnNumber(bidto.getReturnNumber());
-				dtoCashPool.setReturnSurplusNumber(bidto.getReturnNumber());
-				dtoCashPool.setStartDateTime(bidto.getBeginDate());
-				dtoCashPool.setEndDateTime(bidto.getEndDate());
-				dtoCashPool.setLaiyuan(bidto.getLaiyuan());// App/Web
-
-				// 额外加息 terry
-				BigDecimal zero = new BigDecimal(0);
-				if (null != maindto.getJXother() && (maindto.getJXother()).compareTo(zero) > 0) {
-					BigDecimal lx = maindto.getJXother();
-					double qishu = productInfodto.getProductTerm();
-					dtoCashPool.setJXother(lx);
-					BigDecimal creditRateTemp = lx.divide(new BigDecimal("12"), 8, BigDecimal.ROUND_HALF_EVEN)
-							.divide(new BigDecimal("100"), 8, BigDecimal.ROUND_HALF_EVEN);
-					BigDecimal JXinterest = bidto.getAmount().multiply(creditRateTemp).multiply(new BigDecimal(qishu))
-							.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-					dtoCashPool.setJXother(lx);
-					dtoCashPool.setJXinterest(JXinterest);
-				} else {
-					dtoCashPool.setJXother(new BigDecimal("0"));
-				}
-				payCashPoolDao.savePayCashPool(dtoCashPool);
-
-				BigDecimal mone = new BigDecimal("0");
-
-				PayCashPoolOperation dto = new PayCashPoolOperation();
-				// TODO 此逻辑没有走过
-				if (bidto.getPrivilegePrincipal() == null) {
-					mone = bidto.getAmount();
-				} else {
-					mone = bidto.getAmount().subtract(bidto.getPrivilegePrincipal());
-				}
-				dto.setBusinessOID(bidto.getBiddingOID());
-				dto.setOutMemberOID(bidto.getOutMemberOID());
-				dto.setMoney(mone);
-				dto.setContent("进行投资，冻结资金，准备投资");
-				dto.setLaiyuan(bidto.getLaiyuan());
-				dto.setOID(StringUtil.getUUID());
-				paycashPoolOperationMapper.saveCashPoolOperation(dto);
-
-				controlCustomerBusiness.saveCustomerBusiness("出借", mone, "用户出借的金额", bidto.getOutMemberOID());
-
-				MessageContentBusiness messageBusiness = new MessageContentBusiness();
-				String mOID = StringUtil.getUUID();
-				messageBusiness.setOID(mOID);
-				messageBusiness.setTitle("出借");
-				String content = "您已经出借环环投，出借金额为" + bidto.getAmount() + "元";
-				messageBusiness.setContent(content);
-				messageBusiness.setSendUser("系统");
-				messageBusiness.setReceiveUserOID(bidto.getOutMemberOID());
-
-				messageContentBusinessMapper.saveMessageBusiness(messageBusiness);
-
-				MemberMember member = memberMapper.findUserByOID(bidto.getOutMemberOID());
-				MessageSmsHistory smsHistory = new MessageSmsHistory();
-				String sOID = StringUtil.getUUID();
-				smsHistory.setOID(sOID);
-				smsHistory.setTitle("出借");
-				String scontent = "【砖头网】您已经出借环环投，出借金额为" + bidto.getAmount() + "元";
-				smsHistory.setContent(scontent);
-				smsHistory.setSendUser("系统");
-				smsHistory.setReceiveUser(member.getName());
-				Map<String, String> result = sendMessageService.sendMessage(member.getName(), scontent);
-				String state = result.get("Description");
-				smsHistory.setState(state);
-				messageSmsHistoryMapper.saveSMSMessageHistory(smsHistory);
-				logger.info(state);
-			}
-		} catch (Exception e) {
-			logger.error("PayCashPool investment(BiddingDTO bidto)" + e.getMessage());
-		}
-		return dtoCashPool;
-	}
-
-	@Override
 	public void realInvestment(String businessOID, String outMemberOID, String inMemberOID, BigDecimal money) {
 		try {
 			controlPay.transferFreezeToFreeze(outMemberOID, inMemberOID, money);
@@ -293,56 +178,153 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 	}
 
 	@Override
-	public void transferReturn(String businessOID, String outMemberOID, String inMemberOID, BigDecimal money) {
+	public void freezeRepay(String businessOID, String memberOID, BigDecimal money) {
 		try {
-			PayCashPoolOperation operation = new PayCashPoolOperation();
-			operation.setBusinessOID(businessOID);
-			operation.setOutMemberOID(outMemberOID);
-			operation.setInMemberOID(inMemberOID);
-			operation.setMoney(money);
-			operation.setContent("债转冻结");
-			operation.setOID(StringUtil.getUUID());
-			paycashPoolOperationMapper.saveCashPoolOperation(operation);
-
-			WebP2pNoviceBiddingRuning novice = noviceBiddingRuningMapper.findByOID(businessOID);
-			if (novice != null) {
-				controlCustomerBusiness.saveCustomerBusiness("出借", money, "用户出借的金额", outMemberOID);
-
-				MessageContentBusiness messageBusiness = new MessageContentBusiness();
-				String mOID = StringUtil.getUUID();
-				messageBusiness.setOID(mOID);
-				messageBusiness.setTitle("出借");
-				String content = "您已经出借头笔赚，出借金额为" + money + "元";
-				messageBusiness.setContent(content);
-				messageBusiness.setSendUser("系统");
-				messageBusiness.setReceiveUserOID(outMemberOID);
-
-				messageContentBusinessMapper.saveMessageBusiness(messageBusiness);
-
-				MemberMember member = memberMapper.findUserByOID(outMemberOID);
-				MessageSmsHistory smsHistory = new MessageSmsHistory();
-				String sOID = StringUtil.getUUID();
-				smsHistory.setOID(sOID);
-				smsHistory.setTitle("出借");
-				String scontent = "您已经出借头笔赚，出借金额为" + money + "元";
-				smsHistory.setContent(scontent);
-				smsHistory.setSendUser("系统");
-				smsHistory.setReceiveUser(member.getName());
-				Map<String, String> result = sendMessageService.sendMessage(member.getName(), scontent);
-				String state = result.get("Description");
-				smsHistory.setState(state);
-				messageSmsHistoryMapper.saveSMSMessageHistory(smsHistory);
-				logger.info(state);
-			}
+			controlPay.freeze(memberOID, money);
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(businessOID);
+			cashPoolOperation.setOutMemberOID(memberOID);
+			cashPoolOperation.setMoney(money);
+			cashPoolOperation.setContent("冻结还款");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+			controlCustomerBusiness.saveCustomerBusiness("还款", money, "借款人还款", memberOID);
 		} catch (Exception e) {
-			logger.error("transferReturn(String businessOID, String outMemberOID, String inMemberOID, BigDecimal money)"
-					+ e.getMessage());
+			logger.error("freezeRepay(String businessOID, String memberOID, BigDecimal money)" + e.getMessage());
+		}
+	}
+
+	@Override
+	public void manageMoney(String businessOID, String memberOID, BigDecimal money) {
+		try {
+			controlPay.transferFreezeToFreeze(memberOID, "manageAccount", money);
+			controlPay.unFreeze("manageAccount", money);
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(businessOID);
+			cashPoolOperation.setOutMemberOID(memberOID);
+			cashPoolOperation.setInMemberOID("manageAccount");
+			cashPoolOperation.setMoney(money);
+			cashPoolOperation.setContent("缴纳平台管理费");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+		} catch (Exception e) {
+			logger.error("manageMoney(String businessOID, String memberOID, BigDecimal money)" + e.getMessage());
+		}
+	}
+
+	@Override
+	public void serviceMoney(String businessOID, String memberOID, BigDecimal money) {
+		try {
+			controlPay.transferFreezeToFreeze(memberOID, "manageAccount", money);
+			controlPay.unFreeze("manageAccount", money);
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(businessOID);
+			cashPoolOperation.setOutMemberOID(memberOID);
+			cashPoolOperation.setInMemberOID("manageAccount");
+			cashPoolOperation.setMoney(money);
+			cashPoolOperation.setContent("缴纳咨询服务费");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+		} catch (Exception e) {
+			logger.error("serviceMoney(String businessOID, String memberOID, BigDecimal money)" + e.getMessage());
+		}
+	}
+
+	@Override
+	public void overdueInterest(String businessOID, String outmemberOID, String inmemberOID, BigDecimal money) {
+		try {
+			controlPay.transferFreezeToFreeze(outmemberOID, inmemberOID, money);
+			controlPay.unFreeze(inmemberOID, money);
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(businessOID);
+			cashPoolOperation.setOutMemberOID(outmemberOID);
+			cashPoolOperation.setInMemberOID(inmemberOID);
+			cashPoolOperation.setMoney(money);
+			cashPoolOperation.setContent("逾期罚息");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+		} catch (Exception e) {
+			logger.error(
+					"overdueInterest(String businessOID, String outmemberOID, String inmemberOID, BigDecimal money)"
+							+ e.getMessage());
+		}
+
+	}
+
+	@Override
+	public void overdueManage(String businessOID, String memberOID, BigDecimal money) {
+		try {
+			controlPay.transferFreezeToFreeze(memberOID, "fineAccount", money);
+			controlPay.unFreeze("fineAccount", money);
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(businessOID);
+			cashPoolOperation.setOutMemberOID(memberOID);
+			cashPoolOperation.setInMemberOID("fineAccount");
+			cashPoolOperation.setMoney(money);
+			cashPoolOperation.setContent("逾期管理费");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+		} catch (Exception e) {
+			logger.error("overdueManage(String businessOID, String memberOID, BigDecimal money)" + e.getMessage());
+		}
+	}
+
+	@Override
+	public void overduePenalty(String businessOID, String memberOID, BigDecimal money) {
+		try {
+			controlPay.transferFreezeToFreeze(memberOID, "fineAccount", money);
+			controlPay.unFreeze("fineAccount", money);
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(businessOID);
+			cashPoolOperation.setOutMemberOID(memberOID);
+			cashPoolOperation.setInMemberOID("fineAccount");
+			cashPoolOperation.setMoney(money);
+			cashPoolOperation.setContent("逾期违约金");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+		} catch (Exception e) {
+			logger.error("overduePenalty(String businessOID, String memberOID, BigDecimal money)" + e.getMessage());
+		}
+	}
+
+	@Override
+	public void earlyRepayPenalty(String businessOID, String memberOID, BigDecimal money) {
+		try {
+			controlPay.transferFreezeToFreeze(memberOID, "fineAccount", money);
+			controlPay.unFreeze("fineAccount", money);
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(businessOID);
+			cashPoolOperation.setOutMemberOID(memberOID);
+			cashPoolOperation.setInMemberOID("fineAccount");
+			cashPoolOperation.setMoney(money);
+			cashPoolOperation.setContent("提前还款违约金");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+		} catch (Exception e) {
+			logger.error("earlyRepayPenalty(String businessOID, String memberOID, BigDecimal money)" + e.getMessage());
+		}
+	}
+
+	@Override
+	public void freezeOverdue(String businessOID, String memberOID, BigDecimal money) {
+		try {
+			controlPay.freeze(memberOID, money);
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(businessOID);
+			cashPoolOperation.setOutMemberOID(memberOID);
+			cashPoolOperation.setMoney(money);
+			cashPoolOperation.setContent("冻结逾期费用");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+		} catch (Exception e) {
+			logger.error("earlyRepayPenalty(String businessOID, String memberOID, BigDecimal money)" + e.getMessage());
 		}
 	}
 
 	@Override
 	public void discount(String businessOID, String memberOID, BigDecimal money) {
 		try {
+			controlPay.transferFreeze("discountAccount", memberOID, money);
 			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
 			cashPoolOperation.setBusinessOID(businessOID);
 			cashPoolOperation.setOutMemberOID("discountAccount");
@@ -354,39 +336,109 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 		} catch (Exception e) {
 			logger.error("discount(String businessOID, String memberOID, BigDecimal money)" + e.getMessage());
 		}
-
 	}
 
 	@Override
-	public void investmentNew(String businessOID, String outMemberOID, String inMemberOID, BigDecimal money) {
+	public void repayNCPNew(String businessOID, String outMemberOID, String inMemberOID, BigDecimal money,
+			BigDecimal suplusFreezeMoney) {
 		try {
 			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
 			cashPoolOperation.setBusinessOID(businessOID);
 			cashPoolOperation.setOutMemberOID(outMemberOID);
 			cashPoolOperation.setInMemberOID(inMemberOID);
+			if (money.compareTo(suplusFreezeMoney) > 0) {
+				controlPay.transferFreezeToFreeze(outMemberOID, inMemberOID, suplusFreezeMoney);
+				cashPoolOperation.setMoney(suplusFreezeMoney);
+				this.discount(businessOID, inMemberOID, money.subtract(suplusFreezeMoney));
+			} else {
+				controlPay.transferFreezeToFreeze(outMemberOID, inMemberOID, money);
+				cashPoolOperation.setMoney(money);
+			}
+			cashPoolOperation.setContent("还款");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+		} catch (Exception e) {
+			logger.error("repayNCPNew(String businessOID, String outMemberOID, String inMemberOID, BigDecimal money,"
+					+ "BigDecimal suplusFreezeMoney)" + e.getMessage());
+		}
+	}
+
+	@Override
+	public void help(String businessOID, String memberOID, BigDecimal money) {
+		try {
+			controlPay.transferFreezeToFreeze(memberOID, "helpAccount", money.abs());
+			controlPay.unFreeze("helpAccount", money.abs());
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(businessOID);
+			cashPoolOperation.setOutMemberOID(memberOID);
+			cashPoolOperation.setInMemberOID("helpAccount");
+			cashPoolOperation.setMoney(money.abs());
+			cashPoolOperation.setContent("增加约定收益部分完成");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+		} catch (Exception e) {
+			logger.error("help(String businessOID, String memberOID, BigDecimal money)" + e.getMessage());
+		}
+	}
+
+	@Override
+	public void finishRepayNCP(String businessOID, String memberOID, BigDecimal money) {
+		try {
+			controlPay.unFreeze(memberOID, money);
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(businessOID);
+			cashPoolOperation.setOutMemberOID(memberOID);
+			cashPoolOperation.setInMemberOID("helpAccount");
 			cashPoolOperation.setMoney(money);
-			cashPoolOperation.setContent("进行投资，划拨冻结");
+			cashPoolOperation.setContent("还款完成");
 			cashPoolOperation.setOID(StringUtil.getUUID());
 			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
 
-			controlCustomerBusiness.saveCustomerBusiness("出借", money, "用户出借的金额", outMemberOID);
+			controlCustomerBusiness.saveCustomerBusiness("回款", money, "回款的本金利息金额", memberOID);
+
+		} catch (Exception e) {
+			logger.error("help(String businessOID, String memberOID, BigDecimal money)" + e.getMessage());
+		}
+	}
+
+	@Override
+	public void repayNew(String businessOID, String outMemberOID, String inMemberOID, BigDecimal money,
+			BigDecimal suplusFreezeMoney) {
+		try {
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(businessOID);
+			cashPoolOperation.setOutMemberOID(outMemberOID);
+			cashPoolOperation.setInMemberOID(inMemberOID);
+			if (money.compareTo(suplusFreezeMoney) > 0) {
+				controlPay.transferFreezeToFreeze(outMemberOID, inMemberOID, suplusFreezeMoney);
+				cashPoolOperation.setMoney(suplusFreezeMoney);
+				this.discount(businessOID, inMemberOID, money.subtract(suplusFreezeMoney));
+			} else {
+				controlPay.transferFreezeToFreeze(outMemberOID, inMemberOID, money);
+				cashPoolOperation.setMoney(money);
+			}
+			cashPoolOperation.setContent("还款");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+
+			controlCustomerBusiness.saveCustomerBusiness("回款", money, "回款的本金利息金额", inMemberOID);
+
 			MessageContentBusiness messageBusiness = new MessageContentBusiness();
 			String mOID = StringUtil.getUUID();
 			messageBusiness.setOID(mOID);
-			messageBusiness.setTitle("出借");
-			String content = "您已经出借头笔赚，出借金额为" + money + "元";
+			messageBusiness.setTitle("回款");
+			String content = "您收到还款金额为" + money + "元";
 			messageBusiness.setContent(content);
 			messageBusiness.setSendUser("系统");
-			messageBusiness.setReceiveUserOID(outMemberOID);
-
+			messageBusiness.setReceiveUserOID(inMemberOID);
 			messageContentBusinessMapper.saveMessageBusiness(messageBusiness);
 
-			MemberMember member = memberMapper.findUserByOID(outMemberOID);
+			MemberMember member = memberMapper.findUserByOID(inMemberOID);
 			MessageSmsHistory smsHistory = new MessageSmsHistory();
 			String sOID = StringUtil.getUUID();
 			smsHistory.setOID(sOID);
-			smsHistory.setTitle("出借");
-			String scontent = "您已经出借头笔赚，出借金额为" + money + "元";
+			smsHistory.setTitle("提现");
+			String scontent = "【砖头网】您收到还款金额为" + money + "元";
 			smsHistory.setContent(scontent);
 			smsHistory.setSendUser("系统");
 			smsHistory.setReceiveUser(member.getName());
@@ -394,32 +446,26 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 			String state = result.get("Description");
 			smsHistory.setState(state);
 			messageSmsHistoryMapper.saveSMSMessageHistory(smsHistory);
-			logger.info(state);
 		} catch (Exception e) {
-			logger.error("investmentNew(String businessOID, String outMemberOID, String inMemberOID, BigDecimal money)"
-					+ e.getMessage());
-		}
-
-	}
-
-	@Override
-	public List<PayCashPool> gainCashPoolByBusinessOID(String strBusinessOID) {
-		try {
-			return payCashPoolDao.findPayCashPoolByBusiness(strBusinessOID);
-		} catch (Exception e) {
-			logger.error("List<PayCashPool> gainCashPoolByBusinessOID(String strBusinessOID)" + e.getMessage());
-			return null;
+			logger.error("help(String businessOID, String memberOID, BigDecimal money)" + e.getMessage());
 		}
 	}
 
 	@Override
-	public List<PayCashPool> gainCashPoolByBusinessOIDAndHaveMoney(String strBusinessOID) {
+	public void finishRepay(String businessOID, String memberOID, BigDecimal money) {
 		try {
-			return this.payCashPoolDao.findByBusinessOIDAndHaveMoney(strBusinessOID);
+			controlPay.unFreeze(memberOID, money);
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(businessOID);
+			cashPoolOperation.setInMemberOID(memberOID);
+			cashPoolOperation.setMoney(money);
+			cashPoolOperation.setContent("还款完成");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+
+			controlCustomerBusiness.saveCustomerBusiness("回款", money, "回款的本金利息金额", memberOID);
 		} catch (Exception e) {
-			logger.error(
-					"List<PayCashPool> gainCashPoolByBusinessOIDAndHaveMoney(String strBusinessOID)" + e.getMessage());
-			return null;
+			logger.error("help(String businessOID, String memberOID, BigDecimal money)" + e.getMessage());
 		}
 	}
 

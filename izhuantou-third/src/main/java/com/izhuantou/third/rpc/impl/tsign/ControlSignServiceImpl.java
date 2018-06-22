@@ -428,20 +428,4 @@ public class ControlSignServiceImpl implements ControlSignService {
 	return sign;
     }
 
-    @Override
-    public void addPersonAccount(String nameCN, String cardNO, int personArea) {
-	// 创建个人客户账户
-	String userPersonAccountId = SignUtil.addPersonAccount(nameCN, cardNO, personArea);
-	// TODO 存表 老项目提供了该接口，没有做实现
-    }
-
-    @Override
-    public void addOrganizeAccount(String name, int organType, OrganRegType regType, String organCode, String address,
-	    int userType, String agentName, String agentIdNo) {
-	// 创建企业客户账号
-	String userOrganizeAccountId = SignUtil.addOrganizeAccount(name, organType, regType, organCode, address,
-		userType, agentName, agentIdNo);
-	// TODO 存表 老项目提供了该接口，没有做实现
-    }
-
 }

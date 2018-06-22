@@ -7,7 +7,7 @@ import com.izhuantou.damain.pay.PayCustomerBusiness;
 public interface ControlCustomerBusiness extends BaseService<PayCustomerBusiness> {
 	
 	/**
-	 * 增加贴息
+	 * 
 	 * 
 	 * @param string
 	 * @param ydzh

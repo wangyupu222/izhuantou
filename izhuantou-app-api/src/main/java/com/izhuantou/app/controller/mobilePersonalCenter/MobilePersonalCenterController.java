@@ -3,7 +3,6 @@ package com.izhuantou.app.controller.mobilePersonalCenter;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,21 +17,17 @@ import com.izhuantou.common.bean.OpResult;
 import com.izhuantou.common.bean.Pagination;
 import com.izhuantou.common.rsa.RsaCodeTool;
 import com.izhuantou.common.utils.StringUtil;
-import com.izhuantou.damain.message.MessageContentBusiness;
 import com.izhuantou.damain.mobile.MobileTYJPoJo;
 import com.izhuantou.damain.mobile.personalCenter.MobileCashDetialDTO;
 import com.izhuantou.damain.mobile.personalCenter.MobileCenterLoanAditModelDTO;
-import com.izhuantou.damain.mobile.personalCenter.MobileMyLendRecord;
-import com.izhuantou.damain.mobile.personalCenter.MobileMyRepayment;
 import com.izhuantou.damain.mobile.personalCenter.MobileOpinionDTO;
 import com.izhuantou.damain.mobile.personalCenter.MobileTyj;
 import com.izhuantou.damain.mobile.personalCenter.MobileYQHYNewDTO;
 import com.izhuantou.damain.pay.PayCustomer;
 import com.izhuantou.damain.pay.PayCustomerBusiness;
 import com.izhuantou.damain.vo.CustomerTyjDTO;
-import com.izhuantou.damain.vo.ListRepaymentCollection;
+import com.izhuantou.damain.vo.LoanApplyRecordDTO;
 import com.izhuantou.damain.vo.MyInvitationDaoDTO;
-import com.izhuantou.damain.vo.MyLendRecord;
 import com.izhuantou.damain.vo.MyPrivilegeDaoDTO;
 import com.izhuantou.damain.vo.PersonalMessageDTO;
 import com.izhuantou.damain.webp2p.WebP2pLoanApply;
@@ -41,11 +36,9 @@ import com.izhuantou.service.api.lend.isLoginService;
 import com.izhuantou.service.api.mobile.MobileTYJService;
 import com.izhuantou.service.api.mobile.mobilePersonalCenter.MobileFormOpinionService;
 import com.izhuantou.service.api.mobile.mobilePersonalCenter.MobileLoanApplicationService;
-import com.izhuantou.service.api.personalCenter.LoanApplicationService;
 import com.izhuantou.service.api.personalCenter.MyCashService;
-import com.izhuantou.service.api.personalCenter.MyLendRecordService;
 import com.izhuantou.service.api.personalCenter.MyPrivilegeService;
-import com.izhuantou.service.api.personalCenter.MyRepaymentService;
+import com.izhuantou.service.api.personalCenter.MyloanService;
 import com.izhuantou.service.api.personalCenter.PersonalCenterService;
 
 /***
@@ -60,11 +53,7 @@ public class MobilePersonalCenterController {
 
     private static final Logger logger = LoggerFactory.getLogger(MobilePersonalCenterController.class);
     @Autowired
-    private LoanApplicationService loanApplicationService;
-    @Autowired
-    private MyLendRecordService myLendRecordService;
-    @Autowired
-    MyRepaymentService repaymentService;
+	private MyloanService myloanService;
     @Autowired
     private MyPrivilegeService myPrivilegeService;
     @Autowired
@@ -273,7 +262,7 @@ public class MobilePersonalCenterController {
 	page = 1;
 	if (StringUtil.isNotEmpty(memberOID)) {
 
-	    Pagination<WebP2pLoanApply> list = loanApplicationService.findData(memberOID, page);
+	    Pagination<LoanApplyRecordDTO> list = myloanService.findLoanApplyByMemberOID(memberOID, page);
 
 	    if (list != null) {
 
@@ -307,7 +296,7 @@ public class MobilePersonalCenterController {
 	}
 	if (StringUtil.isNotEmpty(memberOID)) {
 	    PayCustomer customer = new PayCustomer();
-	    customer = loanApplicationService.findInfo(memberOID);
+	    customer = myloanService.findInfo(memberOID);
 
 	    if (customer != null) {
 
@@ -327,7 +316,7 @@ public class MobilePersonalCenterController {
      * 
      * @return json
      */
-    @RequestMapping(value = "/mobileMyLendRecord")
+   /* @RequestMapping(value = "/mobileMyLendRecord")
     @ResponseBody
     public OpResult myLendRecord(String memberOID, String pkversion) {
 	// 初始化操作类，包括初始化钥匙对集合
@@ -336,11 +325,11 @@ public class MobilePersonalCenterController {
 	    memberOID = rsac.serverDecrypt(memberOID, pkversion);
 	    if (StringUtil.isNotEmpty(memberOID)) {
 		Map<String, Object> map = new HashMap<>();
-		map = myLendRecordService.MylendRecord(memberOID);
-		List<MyLendRecord> lendRecord = (List) map.get("data");
+		map = myloanService.myLoanRecord(memberOID);
+		List<MyLoanRecordDTO> lendRecord = (List) map.get("data");
 		MobileMyLendRecord lendresult = new MobileMyLendRecord();
 		List listResult = new ArrayList<>();
-		for (MyLendRecord lend : lendRecord) {
+		for (MyLoanRecordDTO lend : lendRecord) {
 		    String s = lend.getLoanSJ();
 		    String s1 = lend.getNextSJ();
 		    String s2 = lend.getEndSJ();
@@ -364,7 +353,7 @@ public class MobilePersonalCenterController {
 	    return null;
 	}
 
-    }
+    }*/
 
     /**
      * 还款
@@ -373,7 +362,7 @@ public class MobilePersonalCenterController {
      * 
      * @return json
      */
-    @RequestMapping(value = "/mobileRepaymentBack")
+   /* @RequestMapping(value = "/mobileRepaymentBack")
     @ResponseBody
     public OpResult repaymentBack(String memberOID, String pkversion) {
 	// 初始化操作类，包括初始化钥匙对集合
@@ -386,11 +375,11 @@ public class MobilePersonalCenterController {
 	    e.printStackTrace();
 	}
 	try {
-	    List<ListRepaymentCollection> list = new ArrayList<>();
+	    List<RepayMentDaoDTO> list = new ArrayList<>();
 	    List<MobileMyRepayment> resultlist = new ArrayList<>();
 	    if (StringUtil.isNotEmpty(memberOID)) {
 		list = repaymentService.findMyRepayment(memberOID);
-		for (ListRepaymentCollection listRepaymentCollection : list) {
+		for (RepayMentDaoDTO listRepaymentCollection : list) {
 		    MobileMyRepayment myRepayment = new MobileMyRepayment();
 		    myRepayment.setYuqiflag(listRepaymentCollection.getYuqiflag());
 		    myRepayment.setRepayDate(listRepaymentCollection.getNextSJ());
@@ -407,7 +396,7 @@ public class MobilePersonalCenterController {
 		    myRepayment.setManageMoney(listRepaymentCollection.getManageMoney().toString());
 		    myRepayment.setYhbj(listRepaymentCollection.getYhbj().toString());
 
-		    /*
+		    
 		     * myRepayment.setYqlx(listRepaymentCollection.getYqlx().
 		     * toString());
 		     * myRepayment.setGlzxf(listRepaymentCollection.getZxsxf().
@@ -417,7 +406,7 @@ public class MobilePersonalCenterController {
 		     * 
 		     * myRepayment.setYqglf(listRepaymentCollection.getYqglf().
 		     * toString());
-		     */
+		     
 		    myRepayment.setYqfx(listRepaymentCollection.getYqfx().toString());
 		    myRepayment.setWyj(listRepaymentCollection.getWyj().toString());
 		    myRepayment.setAllje(listRepaymentCollection.getMoney().toString());
@@ -435,7 +424,7 @@ public class MobilePersonalCenterController {
 	    return null;
 	}
 
-    }
+    }*/
 
     /**
      * 还款逾期
@@ -444,7 +433,7 @@ public class MobilePersonalCenterController {
      * 
      * @return json
      */
-    @RequestMapping(value = "/mobileRepaymentBackYQ")
+/*    @RequestMapping(value = "/mobileRepaymentBackYQ")
     @ResponseBody
     public OpResult repaymentBackYQ(String memberOID, String pkversion) {
 
@@ -462,10 +451,10 @@ public class MobilePersonalCenterController {
 	    String str = null;
 	    try {
 
-		List<ListRepaymentCollection> list = new ArrayList<>();
+		List<RepayResultDTO> list = new ArrayList<>();
 		List<MobileMyRepayment> resultlist = new ArrayList<>();
-		list = repaymentService.findMyRepayment(memberOID);
-		for (ListRepaymentCollection listRepaymentCollection : list) {
+		list = myloanService.findMyRepayment(memberOID);
+		for (RepayResultDTO listRepaymentCollection : list) {
 		    MobileMyRepayment myRepayment = new MobileMyRepayment();
 		    myRepayment.setYuqiflag(listRepaymentCollection.getYuqiflag());
 		    myRepayment.setRepayDate(listRepaymentCollection.getNextSJ());
@@ -504,7 +493,7 @@ public class MobilePersonalCenterController {
 	    }
 	}
 	return null;
-    }
+    }*/
 
     /**
      * 可用的加息券

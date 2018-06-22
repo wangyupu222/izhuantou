@@ -91,10 +91,6 @@ margin:165px auto;
 
 </head>
 <body>
-<%-- <% try{ %> --%>
-<hoontag:TagAction handleClassName="isLogin" />
-
-<hoontag:TagAction handleClassName="pagePersonalcenter" />
 
 <!--弹框-->
 <div class="cd-popup5">
@@ -104,7 +100,7 @@ margin:165px auto;
    <div class="comnei ">
        <a class="close cd-popup-close"></a>
        <p class="commit-1"><span>修改头像</span></p>
-      <iframe src="portal/personal/uploadTxImg_iframe.jsp" width="100%" height="400" id="iframepage" name="iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+      <iframe src="/portal/personal/uploadTxImg_iframe" width="100%" height="400" id="iframepage" name="iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
    </div>  
 </form>  
        <!--修改头像结束-->
@@ -119,7 +115,7 @@ margin:165px auto;
 	<div class="comnei ">
         <a class="close cd-popup-close"></a>
         <p class="commit-1"><span>协议列表</span></p>
-        <iframe src="/AgreementList_iframe.jsp?DOID=&biOID=" width="99%" height="160" id="iframepage2" name="iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+        <iframe src="/portal/personal/AgreementList_iframe?DOID=&biOID=" width="99%" height="160" id="iframepage2" name="iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
     </div>
 
        
@@ -165,17 +161,6 @@ margin:165px auto;
     	<div class="xqdeleft">
         	<div class="yhtop">
             	<div class="tx01" ><a  class="cd-popup-trigger5"><img id="imgTx" src="<%=pathUrl %>/images/web_head_icon.png" onclick="passonOID('<%=request.getAttribute("memberOID")%>')"></a></div>
-            	<% 
-            	String picOID = (String)request.getAttribute("picOID");
-            	if((!"".equals(picOID)) && picOID!=null){ %>
-            	  <script type="text/javascript">
-            	  $(function(){
-            		  $('#imgTx').attr("src",'<%=request.getAttribute("imgSrc")%><%=request.getAttribute("picOID")%>');
-            		  $('#imgTx').height(98); 
-            		  $('#imgTx').width(98); 
-            		})
-            	  </script>
-            	<%} %>
             	
             	<div class="yhmid">
                 	<div class="username"><%=session.getAttribute("userMobile")%></div>
@@ -228,48 +213,10 @@ margin:165px auto;
                 </div>
 <div style="color:#777;padding-left:56px;">*如果您的资产明细中没有数据，请等待出借标的满标，即可查看。</div>
                  <!--万年历-->
-                <div class="wannianli " style="display:none;">
+                <!-- <div class="wannianli " style="display:none;">
                 <div class="subtit"><span class="subtitbot">待收回款日历</span></div>
-                <!--<label>日期</label><input type="text" value="2015-10-10"  id="J-xl"/>-->
                 <iframe src="iframe.jsp" width="100%" height="600" id="iframepage" name="iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>  
-				</div>
-                       
-                
-                <!--<div class="mytz"><span class="mytzsub">出借记录</span><span class="yzje">已赚总金额  0.00元</span></div>-->
-                
-                     
-                
-                <div class="mytzcon hide">
-                
-                
-                <div class="subtit"><span class="subtitbot">出借记录</span></div>
-                	<%-- <div class="rowbox02 tit"><span>项目名称</span><span>出借金额</span><span>出借周期</span><span>年化收益率</span><span>到期时间</span></div>
-                    <web:IteratorPartPage name="dtocListchujieCollection" id="List" rowSize="15">
-                    <div class="rowbox02 value"><span><a title="aa" ><web:WidgetTextOut name="List" property="businessName"  /></a></span><span><web:WidgetTextOut name="List" property="money"  /></span><span>&nbsp;<web:WidgetTextOut name="List" property="returnNumber"  /></span><span><web:WidgetTextOut name="List" property="creditRate"  /></span><span><web:WidgetTextOut name="List" property="returnDate"  /></span></div>
-                    </web:IteratorPartPage> --%>
-                    <table width="100%" cellpadding="0" cellspacing="0" align="center">
-                    <tr class="rowbox02 tit">
-                    <td width="20%">项目名称</td>
-                    <td width="20%">出借金额</td>
-                    <td width="20%">出借周期</td>
-                    <td width="20%">年化收益率</td>
-                    <td width="20%">到期时间</td>
-                    </tr>
-                    <web:IteratorPartPage name="dtocListchujieCollection" id="List" rowSize="10">
-                    <tr class="rowbox02 value">
-                    <td><a title="aa" ><web:WidgetTextOut name="List" property="businessName"  /></a></td>
-                    <td><web:WidgetTextOut name="List" property="money"  /></td>
-                    <td><web:WidgetTextOut name="List" property="returnNumber"  /></td>
-                    <td><web:WidgetTextOut name="List" property="creditRate"  />%</td>
-                    <td><web:WidgetTextOut name="List" property="returndate" format="yyyy-MM-dd HH:mm:ss" /></td>
-                    </tr>
-                    </web:IteratorPartPage>
-                    </table>
-                    
-                    
-                    <div class="hide_liu personal_liu"></div>
-                </div>
-                
+				</div> -->
                </div>
             
                <div class="opzhcon hide">
@@ -335,7 +282,7 @@ margin:165px auto;
 
 <!--<script src="js/menubav.js"></script>-->
 <!--<script src="js/tabmenu.js"></script>-->
-<!-- <script src="js/gundong.js"></script> -->
+<!-- <script src="js/gundong.js"></script> --> 
 <script type="text/javascript">
 $(function(){
     if($(".rowbox02.value").length<1){
@@ -348,6 +295,7 @@ $(function(){
         dataType: "json",
         success: function(result){
         	console.log(result);
+        	if(result.status!=2){
         	$(".yu_e label").text(result.dataValue.availablemoney+"元");
         	$(".info_fin").text("资料完整度："+result.dataValue.dataIntegrity);
         	$(".username02 span.blue").css("width",result.dataValue.dataIntegrity);
@@ -414,6 +362,29 @@ $(function(){
 			}
             
             var myDoughnut = new Chart(document.getElementById("canvas").getContext("2d")).Doughnut(doughnutData);
+            if(result.dataValue.picOID!=null && result.dataValue.picOID!='' && result.dataValue.picOID!='null'){
+            	$.ajax({
+                    type: "post",
+                    url: "/portal/personal/findHeadPic",
+                    dataType: "json",
+                    data:{picOID:result.dataValue.picOID},
+                    success: function(result){
+                    	console.log(result);
+                    	if(result.status!=2){
+                    		var imgPath=result.dataValue;
+                    	  $('#imgTx').attr("src",imgPath);
+                  		  $('#imgTx').height(98); 
+                  		  $('#imgTx').width(98);
+                    	}
+                    	
+
+                    },
+            		error:function(result){    	
+                	}
+                });
+            }
+            
+        }
         },
 		error:function(result){    	
     	}
@@ -424,7 +395,7 @@ $(function(){
         url: "/portal/personal/PersonalLean",
         dataType: "json",
         success: function(result){
-        	console.log(result);
+        	//console.log(result);
         	if(result.dataValue.length<1){
         		$(".personal_jie_liu").css("display","block");
         	}else{
@@ -480,7 +451,8 @@ $(function(){
 } 
 
 function xiyieOID(type,biOID,loanNumber){
-	 var iframeurl ="AgreementList_iframe.jsp?type="+type+"&biOID="+biOID+"&loanNumber="+loanNumber;
+	alert(1)
+	 var iframeurl ="/portal/personal/AgreementList_iframe?type="+type+"&biOID="+biOID+"&loanNumber="+loanNumber;
 		$("#iframepage2").attr("src",iframeurl);
 }
 </script>

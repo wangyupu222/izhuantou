@@ -454,7 +454,6 @@ public abstract class DateUtils {
 	String re = "";
 	try {
 
-	    Date d = new Date();
 	    GregorianCalendar gc = new GregorianCalendar();
 	    SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 	    Date dd = sf.parse(day);
@@ -488,7 +487,6 @@ public abstract class DateUtils {
     public static String gainPlusAndDay(String day, int number, int pr) throws Exception {
 	String re = "";
 	try {
-	    Date d = new Date();
 	    GregorianCalendar gc = new GregorianCalendar();
 	    SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 	    Date dd = sf.parse(day);
@@ -519,7 +517,6 @@ public abstract class DateUtils {
     public static String gainPlusAndDateTime(String dateTime, int number, int pr) throws Exception {
 	String re = "";
 	try {
-	    Date d = new Date();
 	    GregorianCalendar gc = new GregorianCalendar();
 	    SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    Date dd = sf.parse(dateTime);
@@ -633,10 +630,30 @@ public abstract class DateUtils {
 	}
 	
 	public static String formartDate(String strDate,String strFormat){
-		Date da =DateUtils.getDate(strDate);
-		return formartDate(da,strFormat);
+		SimpleDateFormat sdf=new SimpleDateFormat(strFormat);
+		Date date =null;
+		try {
+			date = sdf.parse(strDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String strdate=sdf.format(date);
+		return strdate;
 	}
-    
-    
+    /**
+     * 时间戳 精确到日， 当日的时间戳
+     * @return
+     */
+	public static Long dayTimestamp(){
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		String d=sdf.format(new Date());
+		Long time=null;
+		try {
+			time =sdf.parse(d).getTime();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return time;
+	}
     
 }

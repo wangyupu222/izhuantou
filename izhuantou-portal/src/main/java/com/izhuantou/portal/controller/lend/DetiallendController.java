@@ -118,7 +118,7 @@ public class DetiallendController {
 	    HttpSession session = request.getSession();
 	    String memberOID = (String) session.getAttribute("memberOID");
 	    String useMoney = isloginService.islogin(memberOID);
-	    return OpResult.getFailedResult(useMoney);
+	    return OpResult.getSuccessResult(useMoney);
 
 	} catch (Exception e) {
 	    return null;
@@ -134,7 +134,6 @@ public class DetiallendController {
     @RequestMapping(value = "/auditZZTInfo")
     @ResponseBody
     public OpResult findAuditZZTInfo(@RequestParam(value = "OID", defaultValue = "") String OID) {
-	String str = null;
 	List<AuditInfo> list = auditInfoService.findByConditionZZT(OID);
 	return OpResult.getSuccessResult(list);
     }

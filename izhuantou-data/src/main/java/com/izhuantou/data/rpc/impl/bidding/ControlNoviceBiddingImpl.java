@@ -20,7 +20,7 @@ import com.izhuantou.data.rpc.api.bidding.ControlDebitCredit;
 import com.izhuantou.data.rpc.api.bidding.ControlNoviceBidding;
 import com.izhuantou.data.rpc.impl.BaseServiceImpl;
 import com.izhuantou.fund.rpc.api.ProcessPageFinish;
-import com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService;
+import com.izhuantou.third.rpc.api.memberagrement.MemberMemberAgreementService;
 
 /**
  * 新手标的相关实现类

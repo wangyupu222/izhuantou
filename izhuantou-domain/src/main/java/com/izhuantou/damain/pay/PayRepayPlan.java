@@ -42,7 +42,7 @@ public class PayRepayPlan extends BasePojo {
     private Date repayDate;
 
     /**
-     * 总体金额
+     * 每期要还总体金额
      */
     private BigDecimal money;
 
@@ -52,23 +52,23 @@ public class PayRepayPlan extends BasePojo {
     private String state;
 
     /**
-     * 本金
+     * 每期的本金
      */
     @Column(name = "principalMoney")
     private BigDecimal principalMoney;
     /**
-     * 利息
+     * 每期利息
      */
     @Column(name = "interestMoney")
     private BigDecimal interestMoney;
 
     /**
-     * 本金合计
+     * 已还本金合计
      */
     @Column(name = "totalPrincipalMoney")
     private BigDecimal totalPrincipalMoney;
     /**
-     * 利息合计
+     * 已还利息合计
      */
     @Column(name = "totalInterestMoney")
     private BigDecimal totalInterestMoney;

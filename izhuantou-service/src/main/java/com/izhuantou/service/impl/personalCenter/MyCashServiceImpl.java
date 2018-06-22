@@ -56,43 +56,44 @@ public class MyCashServiceImpl extends BaseServiceImpl<PayCustomerBusiness> impl
 	 */
 	@Override
 	public Pagination<PayCustomerBusiness> findMessage(Integer page, String memberOID, String strDate, String endDate) {
-		
+
 		Pagination<PayCustomerBusiness> pageController = new Pagination<>();
 		try {
 			/** 接受前台当前页参数 */
-			if(page !=null){
+			if (page != null) {
 				pageController.setCurrentPage(page);
 			}
-			
-			Date startTime=null;
-			Date endTime=null;
+
+			Date startTime = null;
+			Date endTime = null;
 			if (StringUtil.isNotEmpty(strDate) && StringUtil.isNotEmpty(endDate)) {
-				startTime=DateUtils.getJustDate(strDate);
-				
-				endTime=DateUtils.getJustDate(endDate);
-				
-			}else if(StringUtil.isEmpty(strDate)&&StringUtil.isNotEmpty(endDate)){
-				startTime=DateUtils.getJustDate("1999-01-01");
-				endTime=DateUtils.getJustDate(endDate);
-				
-			}else if(StringUtil.isNotEmpty(strDate)&&StringUtil.isEmpty(endDate)){
-				startTime=DateUtils.getJustDate(strDate);
-				endTime=new Date();
-				
-			}else{
+				startTime = DateUtils.getJustDate(strDate);
+
+				endTime = DateUtils.getJustDate(endDate);
+
+			} else if (StringUtil.isEmpty(strDate) && StringUtil.isNotEmpty(endDate)) {
+				startTime = DateUtils.getJustDate("1999-01-01");
+				endTime = DateUtils.getJustDate(endDate);
+
+			} else if (StringUtil.isNotEmpty(strDate) && StringUtil.isEmpty(endDate)) {
+				startTime = DateUtils.getJustDate(strDate);
+				endTime = new Date();
+
+			} else {
 				// 查询全部
-				startTime=DateUtils.getJustDate("1999-01-01");
-				endTime=new Date();
+				startTime = DateUtils.getJustDate("1999-01-01");
+				endTime = new Date();
 			}
-			Integer totalnum=myCashMapper.findcountByCondition(memberOID, startTime, endTime);
+			Integer totalnum = myCashMapper.findcountByCondition(memberOID, startTime, endTime);
 			pageController.setTotalNumber(totalnum);
 			Integer startIndex = (pageController.getCurrentPage() - 1) * (pageController.getPageSize());
-			Integer pageSize=pageController.getPageSize();
-			
-			List<PayCustomerBusiness> list =myCashMapper.findCashDetialByCondition(memberOID, startIndex,pageSize,startTime, endTime);
-			for(PayCustomerBusiness business:list){
+			Integer pageSize = pageController.getPageSize();
+
+			List<PayCustomerBusiness> list = myCashMapper.findCashDetialByCondition(memberOID, startIndex, pageSize,
+					startTime, endTime);
+			for (PayCustomerBusiness business : list) {
 				business.setSj(DateUtils.formatDate(business.getAddDateTime().getTime()));
-				if(business.getMoney()==null){
+				if (business.getMoney() == null) {
 					business.setMoney(new BigDecimal("0"));
 				}
 			}
@@ -278,6 +279,5 @@ public class MyCashServiceImpl extends BaseServiceImpl<PayCustomerBusiness> impl
 		}
 
 	}
-
 
 }

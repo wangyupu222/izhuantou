@@ -14,7 +14,8 @@ import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
 import com.izhuantou.data.rpc.api.bidding.ControlDebitCredit;
 import com.izhuantou.data.rpc.api.bidding.ControlPackageBiddingMainRuning;
 import com.izhuantou.data.rpc.impl.BaseServiceImpl;
-import com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService;
+import com.izhuantou.fund.rpc.api.ProcessPageFinish;
+import com.izhuantou.third.rpc.api.memberagrement.MemberMemberAgreementService;
 
 @Service("ControlPackageBiddingMainRuning")
 public class ControlPackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pPackageBiddingMainRuning>
@@ -26,7 +27,8 @@ public class ControlPackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pP
 	private WebP2pPackageBiddingMainRuningMapper packageBiddingMainRuningMapper;
 	@Autowired
 	private MemberMemberAgreementService memberAgreementService;
-
+	@Autowired
+	private  ProcessPageFinish processPageFinish;
 	@Override
 	public String bidPackageBiddingDifferent(BiddingDTO biddto) {
 		try {
@@ -46,7 +48,7 @@ public class ControlPackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pP
 				packageBiddingMainRuningMapper.updatePackageBiddingMainRuning(pbm);
 
 				//调用fund系统中的环环投标流程
-				//processPageFinish.hhInvestmentFinish(biddto.getLaiyuan());
+				processPageFinish.packageBiddingMainRuningMatching(biddto.getLaiyuan());
 				
 				BigDecimal zero = new BigDecimal(0);
 				BigDecimal xe = pbm.getSxAmount();
