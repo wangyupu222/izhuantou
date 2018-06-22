@@ -21,6 +21,7 @@
 
 <script src="/js/pic.js"></script>
 <script src="/js/com.js"></script>
+<script src="/js/gundong.js"></script>
 <style type="text/css">
 *{margin:0;padding:0;list-style-type:none;}
 a,img{border:0;}
@@ -98,7 +99,7 @@ function preview(file)
 }
 
 </script> 
-<script src="js/gundong.js"></script>
+
 
 
 </html>

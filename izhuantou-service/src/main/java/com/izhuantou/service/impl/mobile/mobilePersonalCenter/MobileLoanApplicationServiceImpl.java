@@ -1,18 +1,18 @@
 package com.izhuantou.service.impl.mobile.mobilePersonalCenter;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.izhuantou.common.bean.Pagination;
+import com.izhuantou.common.utils.DateUtils;
 import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.pay.PayCustomer;
-import com.izhuantou.damain.vo.UpdLendRecord;
+import com.izhuantou.damain.vo.LoanApplyRecordDTO;
 import com.izhuantou.damain.webp2p.WebP2pLoanApply;
 import com.izhuantou.dao.pay.PayCustomerMapper;
 import com.izhuantou.dao.personalCenter.MyLoanMapper;
@@ -23,19 +23,21 @@ import com.izhuantou.service.api.mobile.mobilePersonalCenter.MobileLoanApplicati
 
 @Service("mobileloanApplicationService")
 public class MobileLoanApplicationServiceImpl implements MobileLoanApplicationService {
+	private static final Logger logger = LoggerFactory.getLogger(MobileLoanApplicationServiceImpl.class);
+	
+	@Autowired
+    private WebP2pLoanApplyMapper loanApplyMapper;
     @Autowired
-    WebP2pLoanApplyMapper loanApplyMapper;
+    private  PayCustomerMapper customerMapper;
     @Autowired
-    PayCustomerMapper customerMapper;
-    @Autowired
-    MyLoanMapper cjShenHeMapper;
+    private MyLoanMapper myLoanMapper;
 
     @Override
     public String updAppInfo(WebP2pLoanApply loanApply) {
 	PayCustomer customer = new PayCustomer();
 
 	loanApply.setOID(StringUtil.getUUID());
-	loanApply.setApplyTime(new Timestamp(System.currentTimeMillis()));
+	loanApply.setApplyTime(DateUtils.getDateFormatter());
 	if (loanApply.getLoanYT().equals("IFD")) {
 	    loanApply.setLoanYT("i房贷");
 	}
@@ -63,36 +65,32 @@ public class MobileLoanApplicationServiceImpl implements MobileLoanApplicationSe
     }
 
     @Override
-    public Pagination<WebP2pLoanApply> findData(String memberOID, Integer page) {
-	try {
-	    Pagination<WebP2pLoanApply> pageController = new Pagination<>();
-	    List<WebP2pLoanApply> list = new ArrayList<>();
-	    memberOID = "370518b20a5dca712804025f2e15867a";
-
-	    /** 接受前台当前页参数 */
-	    pageController.setCurrentPage(page);
-	    // 查询所有条数
-	    Integer totalNumber = loanApplyMapper.findCount(memberOID);
-	    pageController.setTotalNumber(totalNumber);
-	    Integer totalPage = pageController.getTotalPage();
-	    if (pageController.getCurrentPage() != null) {
-		pageController = new Pagination<WebP2pLoanApply>(pageController.getCurrentPage(), totalPage,
-			totalNumber);
-		Integer StartPos = (pageController.getCurrentPage() - 1) * 10;
-		list = loanApplyMapper.findData(memberOID, StartPos, pageController.getPageSize());
-		for (WebP2pLoanApply webp2p_LoanApply : list) {
-		    Date date = webp2p_LoanApply.getApplyTime();
-		    SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-		    webp2p_LoanApply.setSj(sdf.format(date));
+    public Pagination<LoanApplyRecordDTO> findData(String memberOID, Integer page) {
+    	try {
+			Pagination<LoanApplyRecordDTO> pageController = new Pagination<>();
+			if (page!= null) {
+				pageController.setCurrentPage(page);
+			}
+			// 查询所有条数
+			Integer totalNumber = loanApplyMapper.findCount(memberOID);
+			pageController.setTotalNumber(totalNumber);
+			Integer totalPage = pageController.getTotalPage();
+			// 起始位置
+			Integer startIndex = (pageController.getCurrentPage() - 1) * (pageController.getPageSize());
+			// 每页条数
+			Integer pageSize = pageController.getPageSize();
+			
+			List<LoanApplyRecordDTO> list = 
+					myLoanMapper.findLoanApplyByMemberOID(memberOID, startIndex, pageSize);
+			for(LoanApplyRecordDTO apply:list){
+				apply.setAddDateTime(DateUtils.formartDate(apply.getAddDateTime(), "yyyy-MM-dd"));
+			}
+			pageController.setData(list);
+			return pageController;
+		} catch (Exception e) {
+			logger.error("findData(String memberOID, Integer page)", e.getMessage());
 		}
-	    }
-	    pageController.setData(list);
-	    return pageController;
-
-	} catch (Exception e) {
-	    return null;
-	}
-
+		return null;
     }
 
     @Override
@@ -139,11 +137,11 @@ public class MobileLoanApplicationServiceImpl implements MobileLoanApplicationSe
     }
 
     @Override
-    public UpdLendRecord findDataByOID(String memberOID, String OID) {
+    public LoanApplyRecordDTO findDataByOID(String memberOID, String OID) {
 	try {
-	    UpdLendRecord upLendRecord = new UpdLendRecord();
+	    LoanApplyRecordDTO upLendRecord = new LoanApplyRecordDTO();
 
-	    upLendRecord = cjShenHeMapper.findBYcondition(memberOID, OID);
+	    upLendRecord = myLoanMapper.findBYcondition(memberOID, OID);
 	    return upLendRecord;
 	} catch (Exception e) {
 	    // TODO: handle exception

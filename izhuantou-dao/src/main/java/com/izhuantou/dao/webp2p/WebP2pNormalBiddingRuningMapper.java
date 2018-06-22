@@ -10,8 +10,24 @@ import com.izhuantou.damain.webp2p.WebP2pNormalBiddingRuning;
  * @version 1.0
  */
 public interface WebP2pNormalBiddingRuningMapper extends Mapper<WebP2pNormalBiddingRuning> {
-
-    public WebP2pNormalBiddingRuning findByOID(String OID);
-
-    public WebP2pNormalBiddingRuning findByLoan(String LoanNum);
+	/**
+	 * 根据标的OID
+	 * @param OID
+	 * @return
+	 */
+    WebP2pNormalBiddingRuning findByOID(String OID);
+    /**
+     * 编号查询
+     * @param LoanNum
+     * @return
+     */
+    WebP2pNormalBiddingRuning findByLoan(String LoanNum);
+    /**
+     * 更新表
+     * @param normalbidding
+     * @return
+     */
+    int updateNormalBiddingBuning(WebP2pNormalBiddingRuning normalbidding);
+    
+    
 }

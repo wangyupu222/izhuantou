@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.contentManagement.ContentCooperativePartnerMapper">
+	
+	<!-- 查询所有轮播广告 -->
+	<select id="findCooperativePartner" resultType="com.izhuantou.damain.p2p.P2pCooperativePartner">
+		select OID,name,linkUrl,picimgOID from  p2p_cooperativePartner where valid=true order by NO
+	</select>
+	<!-- 根据OID查询轮播广告 -->
+	<select id="findCooperativePartnerByOID" resultType="com.izhuantou.damain.p2p.P2pCooperativePartner">
+		select * from  p2p_cooperativePartner where OID=#{OID} and valid=true
+	</select>
+	<!-- 根据OID删除轮播广告（假删除）,实际上是修改valid（有效性）值为0 -->
+	<update id="deleteCooperativePartner" parameterType="String">
+		update p2p_cooperativePartner set valid=false where OID=#{OID} and valid=true
+	</update>
+	<!-- 添加一条轮播广告 -->
+	<insert id="addCooperativePartner" parameterType="com.izhuantou.damain.p2p.P2pCooperativePartner">
+		INSERT INTO p2p_cooperativePartner (
+			OID,
+			name,
+			linkUrl,
+			picimgOID,
+			picimg,
+			describe0,
+			NO,
+			addUserOID,
+			updUserOID,
+			valid,
+			addDateTime,
+			updDateTime,
+			refresh,
+			version,
+			parentOID,
+			branchEntity,
+			datePath
+		)
+		VALUES (
+			#{OID},
+			#{name},
+			#{linkUrl},
+			#{picimgOID},
+			#{picimg},
+			#{describe0},
+			#{NO},
+			#{addUserOID},
+			#{updUserOID},
+			#{valid},
+			NOW(),
+			NOW(),
+			#{refresh},
+			#{version},
+			#{parentOID},
+			#{branchEntity},
+			#{datePath}
+		);
+		
+	</insert>
+	<!-- 修改一条轮播广告 -->
+	<update id="updateCooperativePartner" parameterType="com.izhuantou.damain.p2p.P2pCooperativePartner">
+		update p2p_cooperativePartner 
+			set
+				name=#{name},
+				linkUrl=#{linkUrl},
+				picimgOID=#{picimgOID},
+				picimg=#{picimg},
+				describe0=#{describe0},
+				NO=#{NO},
+				addUserOID=#{addUserOID},
+				updUserOID=#{updUserOID},
+				valid=#{valid},
+				addDateTime=#{addDateTime},
+				updDateTime=NOW(),
+				refresh=#{refresh},
+				version=version+1,
+				parentOID=#{parentOID},
+				branchEntity=#{branchEntity},
+				datePath=#{datePath}
+			where
+				OID=#{OID} and version=#{version} and valid=true
+	</update>
+</mapper>

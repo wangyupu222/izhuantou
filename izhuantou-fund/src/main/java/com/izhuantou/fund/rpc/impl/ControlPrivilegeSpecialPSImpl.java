@@ -40,9 +40,7 @@ public class ControlPrivilegeSpecialPSImpl extends BaseServiceImpl<PayPrivilegeS
 			WebP2pPackageBiddingMainRuning pbm = packageBiddingMainRuningMapper.findByOID(biddingOID);
 					
 			WebP2pProductRateInfo pdri =productRateInfoMapper.findByOID(pbm.getProductRateInfoID());
-			/*
-			 * 计算回款 发送日期
-			 */
+			 // 计算回款 发送日期
 			Date rdate = ToolDateTime.addMonth(ToolDateTime.gainDate(), (int)pdri.getProductTerm());
 			Date returnDate = ToolDateTime.addDay(rdate, 1);
 			// 回款日减3天为发劵日

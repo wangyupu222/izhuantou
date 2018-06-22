@@ -14,7 +14,7 @@ import com.izhuantou.damain.BasePojo;
  * @author dear
  * @version 1.0
  */
-@Table(name = "p2p_pageproblems")
+@Table(name = "tb_p2p_urgentnotice")
 public class P2pPageproblems extends BasePojo {
     /**
      * 
@@ -32,7 +32,16 @@ public class P2pPageproblems extends BasePojo {
      */
     @Column(name = "problemsContent")
     private String problemsContent;
-
+    
+    /**
+     * 作者
+     */
+    @Column(name = "author")
+    private String author;
+    /**
+     * 生效时间
+     */
+    private Date effectiveTime;
     /**
      * 父级OID
      */
@@ -71,7 +80,8 @@ public class P2pPageproblems extends BasePojo {
     @Column(name = "updUserOID")
     private String updUserOID;
     /**
-     * 是否有效
+     * 是否有效(1:有效 0删除 )
+     * 2018-06-19添加0,1区分 假删操作
      */
     private Boolean valid;
 
@@ -93,8 +103,16 @@ public class P2pPageproblems extends BasePojo {
      * 版本号
      */
     private Integer version;
+    
+    public Date getEffectiveTime() {
+		return effectiveTime;
+	}
 
-    public String getDescribe0() {
+	public void setEffectiveTime(Date effectiveTime) {
+		this.effectiveTime = effectiveTime;
+	}
+
+	public String getDescribe0() {
 	return describe0;
     }
 
@@ -129,10 +147,18 @@ public class P2pPageproblems extends BasePojo {
     public Boolean getValid() {
 	return valid;
     }
-
+    
     public void setValid(Boolean valid) {
-	this.valid = valid;
+    	this.valid = valid;
     }
+    
+    public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 
     public Date getAddDateTime() {
 	return addDateTime;
@@ -215,12 +241,12 @@ public class P2pPageproblems extends BasePojo {
     }
 
     @Override
-    public String toString() {
-	return "P2pPageproblems [OID=" + OID + ", name=" + name + ", problemsContent=" + problemsContent
-		+ ", parentOID=" + parentOID + ", branchEntity=" + branchEntity + ", datePath=" + datePath
-		+ ", describe0=" + describe0 + ", NO=" + NO + ", addUserOID=" + addUserOID + ", updUserOID="
-		+ updUserOID + ", valid=" + valid + ", addDateTime=" + addDateTime + ", updDateTime=" + updDateTime
-		+ ", refresh=" + refresh + ", version=" + version + "]";
-    }
+	public String toString() {
+		return "P2pPageproblems [OID=" + OID + ", name=" + name + ", problemsContent=" + problemsContent + ", author="
+				+ author + ", effectiveTime=" + effectiveTime + ", parentOID=" + parentOID + ", branchEntity="
+				+ branchEntity + ", datePath=" + datePath + ", describe0=" + describe0 + ", NO=" + NO + ", addUserOID="
+				+ addUserOID + ", updUserOID=" + updUserOID + ", valid=" + valid + ", addDateTime=" + addDateTime
+				+ ", updDateTime=" + updDateTime + ", refresh=" + refresh + ", version=" + version + "]";
+	}
 
 }

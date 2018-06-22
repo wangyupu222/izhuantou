@@ -4,19 +4,87 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.webp2p.WebP2pLoanApplyMapper">
 	<select id="insertData">
-		INSERT INTO
-		WEBP2P_LoanApply
-		(OID,memberOID,userName,idCard,mobile,loanAmount,loanTerm,loanYT,city,applyTime,isAgree,rate,addDateTime,version)
+		INSERT INTO webp2p_loanapply (
+			OID,
+			memberOID,
+			userName,
+			idCard,
+			mobile,
+			loanAmount,
+			loanTerm,
+			loanYT,
+			city,
+			productType,
+			applyTime,
+			approvalUserID,
+			approvalUserName,
+			approvalTime,
+			approvalRemark,
+			isAgree,
+			isFinish,
+			isPayment,
+			paymentTime,
+			loanProductRateInfoID,
+			xdmainOID,
+			BiddingApplyOID,
+			loanNumber,
+			sfzOID,
+			addressproveOID,
+			workcertificate,
+			creditreport,
+			spyj,
+			describe0,
+			NO,
+			addUserOID,
+			updUserOID,
+			valid,
+			addDateTime,
+			updDateTime,
+			refresh,
+			version,
+			rate
+		)
 		VALUES
-		(#{OID},#{memberOID},#{userName},#{idCard},#{mobile},#{loanAmount},#{loanTerm},#{loanYT},#{city},#{applyTime},#{isAgree},#{rate},#{addDateTime},0)
-
-	</select>
-
-	<select id="findData" resultType="com.izhuantou.damain.webp2p.WebP2pLoanApply">
-		SELECT * from WEBP2P_LoanApply
-		where memberOID=#{memberOID} limit
-		#{startPos},#{pageSize}
-
+			(
+			#{OID},
+			#{memberOID},
+			#{userName},
+			#{idCard},
+			#{mobile},
+			#{loanAmount},
+			#{loanTerm},
+			#{loanYT},
+			#{city},
+			0,
+			#{applyTime},
+			#{approvalUserID},
+			#{approvalUserName},
+			#{approvalTime},
+			#{approvalRemark},
+			0,
+			#{isFinish},
+			#{isPayment},
+			#{paymentTime},
+			#{loanProductRateInfoID},
+			#{xdmainOID},
+			#{BiddingApplyOID},
+			#{loanNumber},
+			#{sfzOID},
+			#{addressproveOID},
+			#{workcertificate},
+			#{creditreport},
+			#{spyj},
+			#{describe0},
+			#{NO},
+			#{addUserOID},
+			#{updUserOID},
+			1,
+			NOW(),
+			NOW(),
+			1,
+			0,
+			#{rate}
+			)
 	</select>
 
 	<select id="findByOID" resultType="com.izhuantou.damain.webp2p.WebP2pLoanApply">
@@ -26,10 +94,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<update id="update">
-		update WEBP2P_LoanApply set
-		loanAmount=#{loanAmount},loanTerm=#{loanTerm},loanYT=#{loanYT},city=#{city},updDateTime=#{updDateTime},version
-		= version+1
-		where OID=#{OID} and version = #{version}
+		UPDATE webp2p_loanapply
+			SET 
+			 memberOID = #{memberOID},
+			 userName = #{userName},
+			 idCard = #{idCard},
+			 mobile = #{mobile},
+			 loanAmount = #{loanAmount},
+			 loanTerm = #{loanTerm},
+			 loanYT = #{loanYT},
+			 city = #{city},
+			 productType = #{productType},
+			 applyTime = #{applyTime},
+			 approvalUserID = #{approvalUserID},
+			 approvalUserName = #{approvalUserName},
+			 approvalTime = #{approvalTime},
+			 approvalRemark = #{approvalRemark},
+			 isAgree = #{isAgree},
+			 isFinish = #{isFinish},
+			 isPayment = #{isPayment},
+			 paymentTime = #{paymentTime},
+			 loanProductRateInfoID = #{loanProductRateInfoID},
+			 xdmainOID = #{xdmainOID},
+			 BiddingApplyOID = #{BiddingApplyOID},
+			 loanNumber = #{loanNumber},
+			 sfzOID = #{sfzOID},
+			 addressproveOID = #{addressproveOID},
+			 workcertificate = #{workcertificate},
+			 creditreport = #{creditreport},
+			 spyj = #{spyj},
+			 describe0 = #{describe0},
+			 NO = #{NO},
+			 addUserOID = #{addUserOID},
+			 updUserOID = #{updUserOID},
+			 valid = #{valid},
+			 addDateTime = #{addDateTime},
+			 updDateTime = #{updDateTime},
+			 refresh = #{refresh},
+			 version = version+1,
+			 rate = #{rate}
+			WHERE
+				OID=#{OID} and version=#{version}
 	</update>
 
 

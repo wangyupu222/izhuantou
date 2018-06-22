@@ -170,7 +170,7 @@ $('#drag').drag();
             if (!oLogin_ph.val()) {
                 str += "请输入手机号！";
                 isright = false;
-            } else if (/^1(3|4|5|7|8)\d{9}$/.test(oLogin_ph.val()) == false) {
+            } else if (/^1(3|4|5|6|7|8|9)\d{9}$/.test(oLogin_ph.val()) == false) {
                 str += "请输入11位手机号！";
                 isright = false;
             } else if (!oLogin_paw.val()) {
@@ -272,7 +272,7 @@ $('#drag').drag();
 
     //手机验证规则
     jQuery.validator.addMethod("mobile", function (value, element) {
-        var mobile = /^1[3|4|5|7|8]\d{9}$/;
+        var mobile = /^1[3|4|5|6|7|8|9]\d{9}$/;
         return this.optional(element) || (mobile.test(value));
     }, "");//手机格式不对
 

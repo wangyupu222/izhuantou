@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.accoutManagement.AccoutUrgentNoticeMapper">
+	<!-- 获取紧急公告总条数 -->
+	<select id="getRowCount" resultType="int">
+		select count(*) from tb_p2p_urgentnotice where valid=true
+				<if test="type != null and type != ''">
+	                and type=#{type} 
+	            </if>
+	            <if test="author != null and author != ''">
+	                and author like CONCAT('%',#{author},'%')  
+	            </if>
+				<if test="name != null and name != ''">
+	                and name like CONCAT('%',#{name},'%') 
+	            </if>
+	            <if test="startTime != null and startTime != ''">
+	                and unix_timestamp(end_time) &gt; unix_timestamp(#{startTime})
+	            </if>
+	            <if test="endTime != null and endTime != ''">
+	                and unix_timestamp(start_time) &lt;  unix_timestamp(#{endTime})
+	            </if>
+	</select>
+	<!-- 根据条件查询紧急公告 -->
+	<select id="findUrgentNotice" resultType="com.izhuantou.damain.p2p.P2pUrgentNotice">
+		select OID,name,author,type,messages,start_time,end_time from tb_p2p_urgentnotice where valid=true
+				<if test="unDTO.type != null and unDTO.type != ''">
+	                and type=#{unDTO.type} 
+	            </if>
+	            <if test="unDTO.author != null and unDTO.author != ''">
+	                and author like CONCAT('%',#{unDTO.author},'%')  
+	            </if>
+				<if test="unDTO.name != null and unDTO.name != ''">
+	                and name like CONCAT('%',#{unDTO.name},'%') 
+	            </if>
+	            <if test="unDTO.startTime != null and unDTO.startTime != ''">
+	                and unix_timestamp(end_time) &gt; unix_timestamp(#{unDTO.startTime})
+	            </if>
+	            <if test="unDTO.endTime != null and unDTO.endTime != ''">
+	                and unix_timestamp(start_time) &lt;  unix_timestamp(#{unDTO.endTime})
+	            </if>
+            order by NO
+            limit #{startIndex} , #{pageSize}
+	</select>
+	<!-- 根据OID查询紧急公告 -->
+	<select id="findUrgentNoticeByOID" resultType="com.izhuantou.damain.p2p.P2pUrgentNotice">
+		select * from  tb_p2p_urgentnotice where OID=#{OID} and valid=true
+	</select>
+	<!-- 删除紧急公告，实际上是修改valid（有效性）值为0 -->
+	<update id="deleteUrgentNotice" parameterType="String">
+		update tb_p2p_urgentnotice set valid=false where OID=#{OID} and valid=true
+	</update>
+	<!-- 添加一条紧急公告 -->
+	<insert id="addUrgentNotice" parameterType="com.izhuantou.damain.p2p.P2pUrgentNotice">
+		INSERT INTO tb_p2p_urgentnotice (
+			OID,
+			name,
+			author,
+			type,
+			messages,
+			start_time,
+			end_time,
+			describe0,
+			NO,
+			add_user_oid,
+			upd_user_oid,
+			valid,
+			add_date_time,
+			upd_date_time,
+			refresh,
+			version,
+			parent_oid,
+			branch_entity,
+			date_path
+		)
+		VALUES (
+			#{OID},
+			#{name},
+			#{author},
+			#{type},
+			#{messages},
+			#{startTime},
+			#{endTime},
+			#{describe0},
+			#{NO},
+			#{addUserOID},
+			#{updUserOID},
+			#{valid},
+			NOW(),
+			NOW(),
+			#{refresh},
+			#{version},
+			#{parentOID},
+			#{branchEntity},
+			#{datePath}
+		);
+		
+	</insert>
+	<!-- 修改一条紧急公告 -->
+	<update id="updateUrgentNotice" parameterType="com.izhuantou.damain.p2p.P2pUrgentNotice">
+		update tb_p2p_urgentnotice 
+			set
+				name=#{name},
+				author=#{author},
+				type=#{type},
+				messages=#{messages},
+				start_time=#{startTime},
+				end_time=#{endTime},
+				describe0=#{describe0},
+				NO=#{NO},
+				add_user_oid=#{addUserOID},
+				upd_user_oid=#{updUserOID},
+				valid=#{valid},
+				add_date_time=#{addDateTime},
+				upd_date_time=NOW(),
+				refresh=#{refresh},
+				version=version+1,
+				parent_oid=#{parentOID},
+				branch_entity=#{branchEntity},
+				date_path=#{datePath}
+			where
+				OID=#{OID} and version=#{version} and valid=true
+	</update>
+</mapper>

@@ -1,4 +1,4 @@
-package com.izhuantou.third.rpc.api.memberAgrement;
+package com.izhuantou.third.rpc.api.memberagrement;
 
 import java.util.Map;
 
@@ -31,24 +31,6 @@ public interface MemberMemberAgreementService extends BaseService<MemberMemberAg
      * @param memberAccount
      */
     String gainupdateMemberAgreement(String name, String contractType);
-
-    /**
-     * 4.查询协议数量
-     * 
-     * @param biddingType
-     * @param contractType
-     * @return
-     */
-    int countMemberAgreement(String biddingType, String contractType);
-
-    /**
-     * 5.协议保存
-     * 
-     * @param strName
-     * @param dtoData
-     * @param strMemberOID
-     */
-    void addMemberAgreement(Map<String, String> map);
 
     /**
      * 新手投服务协议

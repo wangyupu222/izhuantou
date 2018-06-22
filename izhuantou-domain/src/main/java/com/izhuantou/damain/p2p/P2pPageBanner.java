@@ -48,7 +48,18 @@ public class P2pPageBanner extends BasePojo {
      * banner图片路径
      */
     private String picimg;
-
+    /**
+     * 轮播广告类型(0：已下线，1：投放中)
+     */
+    private Integer state;
+    /**
+     * 投放起始时间
+     */
+    private Date startTime;
+    /**
+     * 投放终止时间
+     */
+    private Date endTime;
     /**
      * 描述
      */
@@ -69,7 +80,8 @@ public class P2pPageBanner extends BasePojo {
     @Column(name = "updUserOID")
     private String updUserOID;
     /**
-     * 是否有效
+     * 是否有效(1:有效 0:删除 )
+     * 2018-06-20添加0,1区分 假删操作
      */
     private Boolean valid;
 
@@ -108,8 +120,32 @@ public class P2pPageBanner extends BasePojo {
      */
     @Column(name = "datePath")
     private String datePath;
+    
+    public Integer getState() {
+		return state;
+	}
 
-    public String getDescribe0() {
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
+	public String getDescribe0() {
 	return describe0;
     }
 
@@ -254,12 +290,13 @@ public class P2pPageBanner extends BasePojo {
     }
 
     @Override
-    public String toString() {
-	return "P2pPageBanner [OID=" + OID + ", name=" + name + ", jumpurl=" + jumpurl + ", piurl=" + piurl
-		+ ", picimgOID=" + picimgOID + ", picimg=" + picimg + ", describe0=" + describe0 + ", NO=" + NO
-		+ ", addUserOID=" + addUserOID + ", updUserOID=" + updUserOID + ", valid=" + valid + ", addDateTime="
-		+ addDateTime + ", updDateTime=" + updDateTime + ", refresh=" + refresh + ", version=" + version
-		+ ", parentOID=" + parentOID + ", branchEntity=" + branchEntity + ", datePath=" + datePath + "]";
-    }
+	public String toString() {
+		return "P2pPageBanner [OID=" + OID + ", name=" + name + ", jumpurl=" + jumpurl + ", piurl=" + piurl
+				+ ", picimgOID=" + picimgOID + ", picimg=" + picimg + ", state=" + state + ", startTime=" + startTime
+				+ ", endTime=" + endTime + ", describe0=" + describe0 + ", NO=" + NO + ", addUserOID=" + addUserOID
+				+ ", updUserOID=" + updUserOID + ", valid=" + valid + ", addDateTime=" + addDateTime + ", updDateTime="
+				+ updDateTime + ", refresh=" + refresh + ", version=" + version + ", parentOID=" + parentOID
+				+ ", branchEntity=" + branchEntity + ", datePath=" + datePath + "]";
+	}
 
 }

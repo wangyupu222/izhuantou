@@ -18,5 +18,9 @@
 	<dubbo:service interface="com.izhuantou.fund.rpc.api.bidding.ProcessPageBidding" ref="processPageBidding" /> 
 	<!-- 满标后调用 -->
 	<dubbo:service interface="com.izhuantou.fund.rpc.api.ProcessPageFinish" ref="processPageFinish" />		  	
+	<!-- 满标后调用 -->
+	<dubbo:service interface="com.izhuantou.fund.rpc.api.repay.RepayProcess" ref="repayProcess" />	
+	
+
 
 </beans>

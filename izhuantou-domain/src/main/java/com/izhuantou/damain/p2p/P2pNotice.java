@@ -71,9 +71,10 @@ public class P2pNotice extends BasePojo {
     @Column(name = "updUserOID")
     private String updUserOID;
     /**
-     * 是否有效
+     * 是否有效(1:有效 0：删除)
+     * 2018-06-20添加0,1区分 假删操作
      */
-    private String valid;
+    private Boolean valid;
 
     /**
      * 添加的时间
@@ -191,11 +192,11 @@ public class P2pNotice extends BasePojo {
 	this.updUserOID = updUserOID;
     }
 
-    public String getValid() {
+    public boolean getValid() {
 	return valid;
     }
 
-    public void setValid(String valid) {
+    public void setValid(boolean valid) {
 	this.valid = valid;
     }
 

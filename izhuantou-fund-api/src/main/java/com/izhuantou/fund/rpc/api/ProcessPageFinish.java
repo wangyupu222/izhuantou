@@ -21,11 +21,12 @@ public interface ProcessPageFinish {
 	 * @return
 	 */
 	String noviceZzBiddingFinish(BiddingDTO biddto);
+	
 	/**
-	 * 环环投投标
+	 * 环环匹配
 	 * @return
 	 */
-	String hhInvestmentFinish(String laiyuan);
+	String packageBiddingMainRuningMatching(String ly);
 	
 	
 }
