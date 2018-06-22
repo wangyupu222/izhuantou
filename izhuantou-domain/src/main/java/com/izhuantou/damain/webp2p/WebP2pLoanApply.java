@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.izhuantou.damain.BasePojo;
 
@@ -77,7 +78,7 @@ public class WebP2pLoanApply extends BasePojo {
      * 申请时间
      */
     @Column(name = "applyTime")
-    private Date applyTime;
+    private String applyTime;
     /**
      * 申请时间
      */
@@ -295,11 +296,11 @@ public class WebP2pLoanApply extends BasePojo {
 	this.productType = productType;
     }
 
-    public Date getApplyTime() {
+    public String getApplyTime() {
 	return applyTime;
     }
 
-    public void setApplyTime(Date applyTime) {
+    public void setApplyTime(String applyTime) {
 	this.applyTime = applyTime;
     }
 
@@ -511,58 +512,45 @@ public class WebP2pLoanApply extends BasePojo {
 	this.version = version;
     }
 
-    /**
-     * 返回给页面的时间
-     */
-    private String sj;
-    /**
-     * 
-     */
-    private String first;
-    /**
-     * 
-     */
-    private String second;
-
-    public String getSj() {
-	return sj;
-    }
-
-    public void setSj(String sj) {
-	this.sj = sj;
-    }
-
-    public String getFirst() {
-	return first;
-    }
-
-    public void setFirst(String first) {
-	this.first = first;
-    }
-
-    public String getSecond() {
-	return second;
-    }
-
-    public void setSecond(String second) {
-	this.second = second;
-    }
+	/**
+	 * 
+	 */
+    @Transient
+	private String first;
+	/**
+	 * 
+	 */
+    @Transient
+	private String second;
+	
+	public String getFirst() {
+		return first;
+	}
+	public void setFirst(String first) {
+		this.first = first;
+	}
+	public String getSecond() {
+		return second;
+	}
+	public void setSecond(String second) {
+		this.second = second;
+	}
 
     @Override
-    public String toString() {
-	return "WEBP2P_LoanApply [OID=" + OID + ", memberOID=" + memberOID + ", userName=" + userName + ", idCard="
-		+ idCard + ", mobile=" + mobile + ", loanAmount=" + loanAmount + ", loanTerm=" + loanTerm + ", loanYT="
-		+ loanYT + ", city=" + city + ", rate=" + rate + ", productType=" + productType + ", applyTime="
-		+ applyTime + ", addDateTime=" + addDateTime + ", updDateTime=" + updDateTime + ", approvalUserID="
-		+ approvalUserID + ", approvalUserName=" + approvalUserName + ", approvalTime=" + approvalTime
-		+ ", approvalRemark=" + approvalRemark + ", isAgree=" + isAgree + ", isFinish=" + isFinish
-		+ ", isPayment=" + isPayment + ", paymentTime=" + paymentTime + ", loanProductRateInfoID="
-		+ loanProductRateInfoID + ", xdmainOID=" + xdmainOID + ", BiddingApplyOID=" + BiddingApplyOID
-		+ ", loanNumber=" + loanNumber + ", sfzOID=" + sfzOID + ", addressproveOID=" + addressproveOID
-		+ ", workcertificate=" + workcertificate + ", creditreport=" + creditreport + ", spyj=" + spyj
-		+ ", describe0=" + describe0 + ", NO=" + NO + ", addUserOID=" + addUserOID + ", updUserOID="
-		+ updUserOID + ", valid=" + valid + ", refresh=" + refresh + ", version=" + version + ", sj=" + sj
-		+ ", first=" + first + ", second=" + second + "]";
-    }
+	public String toString() {
+		return "WebP2pLoanApply [OID=" + OID + ", memberOID=" + memberOID + ", userName=" + userName + ", idCard="
+				+ idCard + ", mobile=" + mobile + ", loanAmount=" + loanAmount + ", loanTerm=" + loanTerm + ", loanYT="
+				+ loanYT + ", city=" + city + ", rate=" + rate + ", productType=" + productType + ", applyTime="
+				+ applyTime + ", addDateTime=" + addDateTime + ", updDateTime=" + updDateTime + ", approvalUserID="
+				+ approvalUserID + ", approvalUserName=" + approvalUserName + ", approvalTime=" + approvalTime
+				+ ", approvalRemark=" + approvalRemark + ", isAgree=" + isAgree + ", isFinish=" + isFinish
+				+ ", isPayment=" + isPayment + ", paymentTime=" + paymentTime + ", loanProductRateInfoID="
+				+ loanProductRateInfoID + ", xdmainOID=" + xdmainOID + ", BiddingApplyOID=" + BiddingApplyOID
+				+ ", loanNumber=" + loanNumber + ", sfzOID=" + sfzOID + ", addressproveOID=" + addressproveOID
+				+ ", workcertificate=" + workcertificate + ", creditreport=" + creditreport + ", spyj=" + spyj
+				+ ", describe0=" + describe0 + ", NO=" + NO + ", addUserOID=" + addUserOID + ", updUserOID="
+				+ updUserOID + ", valid=" + valid + ", refresh=" + refresh + ", version=" + version + ", first=" + first
+				+ ", second=" + second + "]";
+	}
 
 }

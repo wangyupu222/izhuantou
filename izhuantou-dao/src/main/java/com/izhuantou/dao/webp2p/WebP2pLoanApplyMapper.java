@@ -1,9 +1,5 @@
 package com.izhuantou.dao.webp2p;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-
 import com.github.abel533.mapper.Mapper;
 import com.izhuantou.damain.webp2p.WebP2pLoanApply;
 
@@ -21,17 +17,6 @@ public interface WebP2pLoanApplyMapper extends Mapper<WebP2pLoanApply> {
      * @param WEBP2P_LoanApply
      */
     public void insertData(WebP2pLoanApply webP2pLoanApply);
-
-    /**
-     * 查找所有数据 进行分页
-     * 
-     * @param memberOID
-     * @param startPos
-     * @param pageSize
-     * @return
-     */
-    public List<WebP2pLoanApply> findData(@Param("memberOID") String memberOID, @Param("startPos") Integer startPos,
-	    @Param("pageSize") Integer pageSize);
 
     /**
      * 查询WEBP2P_LoanApply表的总记录数
