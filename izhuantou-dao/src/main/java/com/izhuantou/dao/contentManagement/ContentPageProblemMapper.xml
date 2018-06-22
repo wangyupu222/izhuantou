@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.contentManagement.ContentPageProblemMapper">
+	<!-- 查询条数 -->
+	<select id="getRowCount" resultType="int">
+		select count(*) from p2p_pageproblems where parentOID=#{parentOID} and valid=true
+	</select>
+	<!-- 按条件查询问题总条数 -->
+	<select id="getRowCountByTypes" resultType="int">
+		select count(*) from p2p_pageproblems where parentOID=#{parentOID} and valid=true
+			<if test="name != null and name != ''">
+                and name like CONCAT('%',#{name},'%') 
+            </if>
+            <if test="author != null and author != ''">
+                and author like CONCAT('%',#{author},'%')
+            </if>
+	</select>
+	<!-- 查询问题 -->
+	<select id="findProblems" resultType="com.izhuantou.damain.p2p.P2pPageproblems">
+		select OID,name,author,effective_time from p2p_pageproblems where parentOID=#{proDTO.parentOID} and valid=true
+			<if test="proDTO.name != null and proDTO.name != ''">
+                and name like CONCAT('%',#{proDTO.name},'%') 
+            </if>
+            <if test="proDTO.author != null and proDTO.author != ''">
+                and author like CONCAT('%',#{proDTO.author},'%')
+            </if>
+			ORDER BY NO 
+			limit #{startIndex} , #{pageSize}
+	</select>
+	<!-- 删除问题，实际上是修改valid（有效性）值为0 -->
+	<update id="deleteProblem" parameterType="String">
+		update p2p_pageproblems set valid=false where OID=#{OID} and valid=true
+	</update>
+	<!--通过oid查询问题-->
+	<select id="findProblemById" resultType="com.izhuantou.damain.p2p.P2pPageproblems">
+		select OID,name,problemsContent,author,effective_time,parentOID from p2p_pageproblems where OID=#{OID} and valid=true
+	</select>
+	<!-- 添加一条问题 -->
+	<insert id="addProblem" parameterType="com.izhuantou.damain.p2p.P2pPageproblems">
+		INSERT INTO p2p_pageproblems (
+			OID,
+			name,
+			problemsContent,
+			author,
+			effective_time,
+			describe0,
+			NO,
+			addUserOID,
+			updUserOID,
+			valid,
+			addDateTime,
+			updDateTime,
+			refresh,
+			version,
+			parentOID,
+			branchEntity,
+			datePath
+		)
+		VALUES (
+			#{OID},
+			#{name},
+			#{problemsContent},
+			#{author},
+			#{effectiveTime},
+			#{describe0},
+			#{NO},
+			#{addUserOID},
+			#{updUserOID},
+			#{valid},
+			NOW(),
+			NOW(),
+			#{refresh},
+			#{version},
+			#{parentOID},
+			#{branchEntity},
+			#{datePath}
+		);
+	</insert>
+	<!-- 修改一条问题 -->
+	<update id="updateProblem" parameterType="com.izhuantou.damain.p2p.P2pPageproblems">
+		update p2p_pageproblems 
+			set
+				name=#{name},
+				problemsContent=#{problemsContent},
+				author=#{author},
+				effective_time=#{effectiveTime},
+				describe0=#{describe0},
+				NO=#{NO},
+				addUserOID=#{addUserOID},
+				updUserOID=#{updUserOID},
+				valid=#{valid},
+				addDateTime=#{addDateTime},
+				updDateTime=NOW(),
+				refresh=#{refresh},
+				version=version+1,
+				parentOID=#{parentOID},
+				branchEntity=#{branchEntity},
+				datePath=#{datePath}
+			where
+				OID=#{OID} and version=#{version} and valid=true
+	</update>
+</mapper>

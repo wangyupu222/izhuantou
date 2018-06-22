@@ -1,7 +1,6 @@
 package com.izhuantou.data.rpc.api.bidding;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import com.izhuantou.damain.pay.PayCashPool;
 import com.izhuantou.damain.vo.bidding.BiddingDTO;

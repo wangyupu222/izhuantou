@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</select>
 	<!-- 保存一条回款计划 -->
-	<insert id="saveReturnPlan" parameterType="com.izhuantou.damain.pay.PayReturnPlan">
+	<insert id="saveReturnPlan">
 			INSERT INTO pay_returnplan(
 							OID,
 							businessOID,
@@ -88,7 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</insert>
 	
-	<update id="updateReturnPlan" parameterType="com.izhuantou.damain.pay.PayReturnPlan">
+	<update id="updateReturnPlan">
 		UPDATE pay_returnplan
 				SET 
 				 businessOID=#{businessOID},
@@ -124,10 +124,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</update>
 	
-	<select id="findByDebitCreditOIDAndState" parameterType="com.izhuantou.damain.pay.PayReturnPlan">
+	<select id="findByDebitCreditOIDAndState" resultType="com.izhuantou.damain.pay.PayReturnPlan">
 		select * from PAY_ReturnPlan where debitCreditOID =#{debitCreditOID}  AND state =#{state} 
 	
 	</select>
+	
+	<select id="findByRepayOIDAndState" resultType="com.izhuantou.damain.pay.PayReturnPlan">
+		select * from PAY_ReturnPlan where repayOID =#{repayOID}  AND state =#{state} 
+	</select>
+	
+	
+	
 	
 	
 	

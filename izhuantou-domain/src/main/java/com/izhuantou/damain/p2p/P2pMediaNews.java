@@ -87,7 +87,8 @@ public class P2pMediaNews extends BasePojo {
     @Column(name = "updUserOID")
     private String updUserOID;
     /**
-     * 是否有效
+     * 是否有效(1:有效 0:删除 )
+     * 2018-06-20添加0,1区分 假删操作
      */
     private Boolean valid;
 

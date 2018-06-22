@@ -77,4 +77,17 @@ public interface PayReturnPlanMapper extends Mapper<PayReturnPlan> {
     public PayReturnPlan findByDebitCreditOIDAndState(@Param("debitCreditOID") String debitCreditOID,
 	    @Param("state") String state);
 
+    /**
+     * 根据还款计划OID查询回款计划
+     * @param strRepayOID
+     * @param strState
+     * @return
+     */
+	public List<PayReturnPlan> findByRepayOIDAndState(@Param("repayOID") String repayOID, @Param("state") String state);
+    
+    
+    
+    
+    
+    
 }

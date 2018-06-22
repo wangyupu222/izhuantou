@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.contentManagement.ContentAppAdvertisementMapper">
+	
+	<!-- 查询所有轮播广告 -->
+	<select id="findAppAdvertisement" resultType="com.izhuantou.damain.p2p.P2pPageAppBanner">
+		select OID,name,appurl,picimgOID,start_time,end_time from  p2p_pageappbanner where valid=true
+				<if test="state != null and state != ''">
+                	and state=#{state} 
+            	</if>
+				<if test="name != null and name != ''">
+                	and name like CONCAT('%',#{name},'%') 
+            	</if>
+		order by NO
+	</select>
+	<!-- 根据OID查询轮播广告 -->
+	<select id="findAppAdvertisementByOID" resultType="com.izhuantou.damain.p2p.P2pPageAppBanner">
+		select * from  p2p_pageappbanner where OID=#{OID} and valid=true
+	</select>
+	<!-- 根据OID删除轮播广告,实际上是修改valid（有效性）值为0 -->
+	<update id="deleteAppAdvertisement" parameterType="String">
+		update p2p_pageappbanner set valid=false where OID=#{OID} and valid=true
+	</update>
+	<!-- 添加一条轮播广告 -->
+	<insert id="addAppAdvertisement" parameterType="com.izhuantou.damain.p2p.P2pPageAppBanner">
+		INSERT INTO p2p_pageappbanner (
+			OID,
+			name,
+			appurl,
+			picimgOID,
+			picimg,
+			describe0,
+			NO,
+			addUserOID,
+			updUserOID,
+			valid,
+			addDateTime,
+			updDateTime,
+			refresh,
+			version,
+			state,
+			start_time,
+			end_time,
+			parentOID,
+			branchEntity,
+			datePath
+		)
+		VALUES (
+			#{OID},
+			#{name},
+			#{appurl},
+			#{picimgOID},
+			#{picimg},
+			#{describe0},
+			#{NO},
+			#{addUserOID},
+			#{updUserOID},
+			#{valid},
+			NOW(),
+			NOW(),
+			#{refresh},
+			#{version},
+			#{state},
+			#{startTime},
+			#{endTime},
+			#{parentOID},
+			#{branchEntity},
+			#{datePath}
+		);
+		
+	</insert>
+	<!-- 修改一条轮播广告 -->
+	<update id="updateAppAdvertisement" parameterType="com.izhuantou.damain.p2p.P2pPageAppBanner">
+		update p2p_pageappbanner 
+			set
+				name=#{name},
+				appurl=#{appurl},
+				picimgOID=#{picimgOID},
+				picimg=#{picimg},
+				describe0=#{describe0},
+				NO=#{NO},
+				addUserOID=#{addUserOID},
+				updUserOID=#{updUserOID},
+				valid=#{valid},
+				addDateTime=#{addDateTime},
+				updDateTime=NOW(),
+				refresh=#{refresh},
+				version=version+1,
+				state=#{state},
+				start_time=#{startTime},
+				end_time=#{endTime},
+				parentOID=#{parentOID},
+				branchEntity=#{branchEntity},
+				datePath=#{datePath}
+			where
+				OID=#{OID} and version=#{version} and valid=true
+	</update>
+</mapper>

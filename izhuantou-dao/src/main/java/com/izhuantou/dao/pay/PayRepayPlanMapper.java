@@ -17,7 +17,7 @@ public interface PayRepayPlanMapper extends Mapper<PayRepayPlan> {
 
     public List<PayRepayPlan> findByBusinessOID(String OID);
 
-    public PayRepayPlan queryByOID(String OID);
+    public PayRepayPlan queryByOID(@Param("OID")String OID);
 
     public List<PayRepayPlan> queryByBusinessOIDAndState(@Param("OID") String OID, @Param("state") String state);
 
@@ -42,4 +42,21 @@ public interface PayRepayPlanMapper extends Mapper<PayRepayPlan> {
     public List<PayRepayPlan> findByBusinessOIDAndMemberOID(@Param("memberOID") String memberOID,
 	    @Param("businessOID") String businessOID);
 
+    /**
+     * 更新repayPlan
+     * @param repayPlan
+     * @return
+     */
+    public int updateRepayPlan(PayRepayPlan repayPlan);
+    
+   /**
+    * 根据memberOID查看repay
+    * @param memberOID
+    * @param state
+    * @return
+    */
+    public List<PayRepayPlan>  findByMemberOIDAndState(@Param("memberOID") String memberOID,@Param("state") String state);
+    
+    
+    
 }

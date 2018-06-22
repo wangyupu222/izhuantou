@@ -6,6 +6,7 @@ $(window).load(function() {
         success: function(result){//返回的参数就是 action里面所有的有get和set方法的参数
         	var result=result.dataValue;
         if(result.length>=2){
+        	$("#DDfinedatacon").removeClass("hide");
         	var DDyb01=$(".DDLen02 .share_right_box1 .DDyb");
     		var DDdjs01=$(".DDLen02 .share_right_box1 .DDdjs");
     		var DDyb02=$(".DDLen02 .share_right_box2 .DDyb");
@@ -111,6 +112,7 @@ $(window).load(function() {
         	
         	$(".DDLen02").css("display","block").siblings(".DDLen01").remove();
         }else if(result.length==1){
+        	$("#DDfinedatacon").removeClass("hide");
         	var DDybOne01=$(".DDLen01 .DDyb");
     		var DDdjsOne01=$(".DDLen01 .DDdjs");
     		if(result[0].szds==1 && result[0].dsTime>=0){	
@@ -189,6 +191,9 @@ $(window).load(function() {
         var HHyb04=$(".finedataHH04 .HHyb");
         var strImg='<img src="http://img.izhuantou.com/image/Addyxjh.png">';
         if(result.length>=1){
+        	HHdjs01.removeClass("hide");
+        	HHyb01.removeClass("hide");
+        	$(".finedataHH01 .recommendBox02").addClass("hide");
         	if(result[0].szds==1 && result[0].dsTime>0){
         		HHyb01.remove();
         		HHdjs01.css("display","block");
@@ -275,6 +280,9 @@ $(window).load(function() {
         	$(".finedataHH01 .recommendBox02").removeClass("hide");
         }
         if(result.length>=2){
+        	HHdjs02.removeClass("hide");
+        	HHyb02.removeClass("hide");
+        	$(".finedataHH02 .recommendBox02").addClass("hide");
         	if(result[1].szds==1 && result[1].dsTime>0){
         		HHyb02.remove();
         		HHdjs02.css("display","block");
@@ -361,6 +369,9 @@ $(window).load(function() {
         	$(".finedataHH02 .recommendBox02").removeClass("hide");
         }
         if(result.length>=3){
+        	HHdjs03.removeClass("hide");
+        	HHyb03.removeClass("hide");
+        	$(".finedataHH03 .recommendBox02").addClass("hide");
         	if(result[2].szds==1 && result[2].dsTime>0){
         		HHyb04.remove();
         		HHdjs03.css("display","block");
@@ -447,6 +458,9 @@ $(window).load(function() {
             	$(".finedataHH03 .recommendBox02").removeClass("hide");
         }
         if(result.length>=4){
+        	HHdjs04.removeClass("hide");
+        	HHyb04.removeClass("hide");
+        	$(".finedataHH04 .recommendBox02").addClass("hide");
         	if(result[3].szds==1 && result[3].dsTime>0){
         		HHyb04.remove();
         		HHdjs04.css("display","block");

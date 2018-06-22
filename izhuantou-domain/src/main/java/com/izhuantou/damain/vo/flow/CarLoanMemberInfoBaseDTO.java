@@ -52,7 +52,7 @@ public class CarLoanMemberInfoBaseDTO implements Serializable {
      */
     private String hkszd;
     /**
-     * 借款人年收入(为已租代购产品复用添加字段) cannon 10.31
+     * 借款人年收入(为已租代购产品复用添加字段) 
      */
     private BigDecimal grysr;
 

@@ -3,9 +3,8 @@ package com.izhuantou.damain.p2p;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.springframework.data.annotation.Id;
 
 import com.izhuantou.damain.BasePojo;
 
@@ -32,11 +31,13 @@ public class FileInfo extends BasePojo {
     /**
      * 名称
      */
+    @Column(name = "name")
     private String name;
 
     /**
      * 来源
      */
+    @Column(name = "source")
     private String source;
     /**
      * 物理名
@@ -51,6 +52,7 @@ public class FileInfo extends BasePojo {
     /**
      * 长度
      */
+    @Column(name = "length")
     private Long length;
     /**
      * 内容
@@ -66,134 +68,114 @@ public class FileInfo extends BasePojo {
     /**
      * MD5校验码
      */
+    @Column(name = "md5")
     private String md5;
     /**
      * 描述
      */
+    @Column(name = "describe0")
     private String describe0;
     /**
      * 是否有效
      */
+    @Column(name = "valid")
     private Boolean valid;
     /**
      * 版本号
      */
+    @Column(name = "version")
     private Integer version;
     /**
      * 是否更新
      */
+    @Column(name = "refresh")
     private Boolean refresh;
+	public String getOID() {
+		return OID;
+	}
+	public void setOID(String oID) {
+		OID = oID;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
+	public String getPhysicalName() {
+		return physicalName;
+	}
+	public void setPhysicalName(String physicalName) {
+		this.physicalName = physicalName;
+	}
+	public String getRelativePath() {
+		return relativePath;
+	}
+	public void setRelativePath(String relativePath) {
+		this.relativePath = relativePath;
+	}
+	public Long getLength() {
+		return length;
+	}
+	public void setLength(Long length) {
+		this.length = length;
+	}
+	public String getContentOID() {
+		return contentOID;
+	}
+	public void setContentOID(String contentOID) {
+		this.contentOID = contentOID;
+	}
+	public Date getUploadDateTime() {
+		return uploadDateTime;
+	}
+	public void setUploadDateTime(Date uploadDateTime) {
+		this.uploadDateTime = uploadDateTime;
+	}
+	public String getMd5() {
+		return md5;
+	}
+	public void setMd5(String md5) {
+		this.md5 = md5;
+	}
+	public String getDescribe0() {
+		return describe0;
+	}
+	public void setDescribe0(String describe0) {
+		this.describe0 = describe0;
+	}
+	public Boolean getValid() {
+		return valid;
+	}
+	public void setValid(Boolean valid) {
+		this.valid = valid;
+	}
+	public Integer getVersion() {
+		return version;
+	}
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+	public Boolean getRefresh() {
+		return refresh;
+	}
+	public void setRefresh(Boolean refresh) {
+		this.refresh = refresh;
+	}
+	@Override
+	public String toString() {
+		return "FileInfo [OID=" + OID + ", name=" + name + ", source=" + source + ", physicalName=" + physicalName
+				+ ", relativePath=" + relativePath + ", length=" + length + ", contentOID=" + contentOID
+				+ ", uploadDateTime=" + uploadDateTime + ", md5=" + md5 + ", describe0=" + describe0 + ", valid="
+				+ valid + ", version=" + version + ", refresh=" + refresh + "]";
+	}
 
-    public String getOID() {
-	return OID;
-    }
-
-    public void setOID(String oID) {
-	OID = oID;
-    }
-
-    public String getName() {
-	return name;
-    }
-
-    public void setName(String name) {
-	this.name = name;
-    }
-
-    public String getSource() {
-	return source;
-    }
-
-    public void setSource(String source) {
-	this.source = source;
-    }
-
-    public String getPhysicalName() {
-	return physicalName;
-    }
-
-    public void setPhysicalName(String physicalName) {
-	this.physicalName = physicalName;
-    }
-
-    public String getRelativePath() {
-	return relativePath;
-    }
-
-    public void setRelativePath(String relativePath) {
-	this.relativePath = relativePath;
-    }
-
-    public Long getLength() {
-	return length;
-    }
-
-    public void setLength(Long length) {
-	this.length = length;
-    }
-
-    public String getContentOID() {
-	return contentOID;
-    }
-
-    public void setContentOID(String contentOID) {
-	this.contentOID = contentOID;
-    }
-
-    public Date getUploadDateTime() {
-	return uploadDateTime;
-    }
-
-    public void setUploadDateTime(Date uploadDateTime) {
-	this.uploadDateTime = uploadDateTime;
-    }
-
-    public String getMd5() {
-	return md5;
-    }
-
-    public void setMd5(String md5) {
-	this.md5 = md5;
-    }
-
-    public String getDescribe0() {
-	return describe0;
-    }
-
-    public void setDescribe0(String describe0) {
-	this.describe0 = describe0;
-    }
-
-    public Boolean getValid() {
-	return valid;
-    }
-
-    public void setValid(Boolean valid) {
-	this.valid = valid;
-    }
-
-    public Integer getVersion() {
-	return version;
-    }
-
-    public void setVersion(Integer version) {
-	this.version = version;
-    }
-
-    public Boolean getRefresh() {
-	return refresh;
-    }
-
-    public void setRefresh(Boolean refresh) {
-	this.refresh = refresh;
-    }
-
-    @Override
-    public String toString() {
-	return "FileInfo [OID=" + OID + ", name=" + name + ", source=" + source + ", physicalName=" + physicalName
-		+ ", relativePath=" + relativePath + ", length=" + length + ", contentOID=" + contentOID
-		+ ", uploadDateTime=" + uploadDateTime + ", md5=" + md5 + ", describe0=" + describe0 + ", valid="
-		+ valid + ", version=" + version + ", refresh=" + refresh + "]";
-    }
+  
 
 }
