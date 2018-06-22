@@ -88,5 +88,11 @@ public interface PayDebitCreditMapper extends Mapper<PayDebitCredit> {
      * @return
      */
     public int updateDebitCredit(PayDebitCredit debitCredit);
+    
+    /**
+     * 统计出借用户人数
+     * @return
+     */
+	int countOutMember();
 
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.manager.DetailFeedbackMapper">
+
+	<!-- 获取该反馈的最近反馈人 -->
+	<select id="findFeedbackPerson" resultType="com.izhuantou.damain.manager.DetailFeedback">
+		select
+		feedback_person
+		from
+		tb_detail_feedback
+		where
+		feedback_person != #{name}
+		and customer_feedback_oid = #{oid}
+		order by feedback_date desc limit 1;
+	</select>
+
+	<!-- 根据客户反馈oid获取客服回复内容 -->
+	<select id="selectByCustomerFeedbackOid" resultType="com.izhuantou.damain.manager.DetailFeedback">
+		select
+		feedback_content,feedback_date,feedback_person
+		from
+		tb_detail_feedback
+		where
+		feedback_person != #{name} and customer_feedback_oid = #{oid}
+		ORDER BY feedback_date
+		asc
+	</select>
+
+	<!-- 根据客户反馈oid获取会话内容 -->
+	<select id="selectByOid" resultType="com.izhuantou.damain.manager.DetailFeedback">
+		select
+		feedback_content,feedback_date,feedback_person
+		from
+		tb_detail_feedback
+		where
+		customer_feedback_oid = #{oid}
+		ORDER BY feedback_date asc
+	</select>
+
+</mapper>

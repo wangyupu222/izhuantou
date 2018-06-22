@@ -25,13 +25,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateNoviceBiddingRuningByOID">
 		UPDATE webp2p_novicebiddingruning
 		SET
-		biddingName = #{biddingName},
+		biddingName =
+		#{biddingName},
 		startBidAmount = #{startBidAmount},
-		memberOID = #{memberOID},
+		memberOID =
+		#{memberOID},
 		loanAmount = #{loanAmount},
-		biddingAmount = #{biddingAmount},
+		biddingAmount =
+		#{biddingAmount},
 		loanDay = #{loanDay},
-		holdingAmount = #{holdingAmount},
+		holdingAmount =
+		#{holdingAmount},
 		loanProductRateInfoID = #{loanProductRateInfoID},
 		productRateInfoID = #{productRateInfoID},
 		productType = #{productType},
@@ -40,10 +44,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		loanNumber = #{loanNumber},
 		yhqs = #{yhqs},
 		yhje = #{yhje},
-		hkzt = #{hkzt},
+		hkzt =
+		#{hkzt},
 		yqts = #{yqts},
 		isRecommend = #{isRecommend},
-		isCWTB = #{isCWTB},
+		isCWTB =
+		#{isCWTB},
 		endDay = #{endDay},
 		debitCreditOID = #{debitCreditOID},
 		describe0 = #{describe0},
@@ -51,16 +57,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		addUserOID = #{addUserOID},
 		updUserOID = #{updUserOID},
 		valid = #{valid},
-		addDateTime = #{addDateTime},
+		addDateTime =
+		#{addDateTime},
 		updDateTime = NOW(),
 		refresh = #{refresh},
-		version = version+1,
+		version =
+		version+1,
 		debtLoanNumber =#{debtLoanNumber},
 		JXother = #{JXother},
-		szds = #{szds},
+		szds
+		= #{szds},
 		dsTime = #{dsTime}
 		WHERE
 		OID = #{OID} and version=#{version}
 
 	</update>
+
+	<!-- 根据memberOID统计已投数量 -->
+	<select id="countByMemberOID" resultType="java.lang.Integer">
+		select count(memberOID)
+		from webp2p_novicebiddingruning where memberOID = #{memberOID}
+	</select>
+
+	<!-- 根据会员OID获取信息 -->
+	<select id="findByMemberOId"
+		resultType="com.izhuantou.damain.webp2p.WebP2pNoviceBiddingRuning">
+		select
+		OID,biddingName,startBidAmount,holdingAmount,addDateTime
+		from
+		webp2p_novicebiddingruning
+		where memberOID =
+		#{oid} and addDateTime between #{cqcDTO.startDate} and
+		#{cqcDTO.endDate}
+	</select>
+
 </mapper>

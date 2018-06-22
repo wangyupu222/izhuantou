@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.user.MemberBlackListMapper">
+	<!-- 根据用户登录名查询 -->
+	<select id="selectByName" resultType="com.izhuantou.damain.user.MemberBlackList">
+		select 
+		OID,name,addDateTime
+		from 
+		member_blacklist 
+		where name = #{name}
+	</select>
+
+</mapper>

@@ -4,47 +4,65 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.pay.PayCustomerBusinessMapper">
 
-	<select id="findByBusinessOID"
-		resultType="com.izhuantou.damain.pay.PayCustomerBusiness">
-		SELECT COUNT(*) AS recorde FROM PAY_CustomerBusiness WHERE
-		memberOID = #{memberOID} AND type = '出借'
+	<select id="findByBusinessOID" resultType="com.izhuantou.damain.pay.PayCustomerBusiness">
+		SELECT COUNT(*) AS
+		recorde FROM PAY_CustomerBusiness WHERE
+		memberOID = #{memberOID} AND
+		type = '出借'
 	</select>
 
 	<insert id="insertCustomerBussiness" parameterType="com.izhuantou.damain.pay.PayCustomerBusiness">
-			INSERT INTO pay_customerbusiness (
-			OID,
-			customerOID,
-			memberOID,
-			content,
-			money,
-			type,
-			state,
-			describe0,
-			valid,
-			addDateTime,
-			updDateTime,
-			refresh,
-			version
+		INSERT INTO
+		pay_customerbusiness (
+		OID,
+		customerOID,
+		memberOID,
+		content,
+		money,
+		type,
+		state,
+		describe0,
+		valid,
+		addDateTime,
+		updDateTime,
+		refresh,
+		version
 		)
 		VALUES(
-			#{OID},
-			#{customerOID},
-			#{memberOID},
-			#{content},
-			#{money},
-			#{type},
-			#{state},
-			#{describe0},
-			1,
-			NOW(),
-			NOW(), 
-			1,
-			0
+		#{OID},
+		#{customerOID},
+		#{memberOID},
+		#{content},
+		#{money},
+		#{type},
+		#{state},
+		#{describe0},
+		1,
+		NOW(),
+		NOW(),
+		1,
+		0
 		)
-			
-	
+
+
 	</insert>
 
+	<!-- 根据会员OID获取客提现记录 -->
+	<select id="countByMemberOID" resultType="java.lang.Integer">
+		select count(*) from
+		pay_customerbusiness where memberOID = #{memberOID} and type = '提现'
+	</select>
 
+	<!-- 根据会员OID获取投资总额 -->
+	<select id="countTzMoney" resultType="java.math.BigDecimal">
+		SELECT sum(money) FROM
+		pay_customerbusiness where memberOID = #{oid} and type = '出借'
+	</select>
+
+	<!-- 根据会员OID获取投资次数 -->
+	<select id="countTzNumber" resultType="java.lang.Integer">
+		select count(*) from
+		pay_customerbusiness where memberOID = #{oid} and type = '出借'
+	</select>
 
 </mapper>

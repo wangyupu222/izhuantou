@@ -10,4 +10,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findByMemberOID" resultType="com.izhuantou.damain.vo.CustomerTyjDTO">
 		SELECT * from PAY_CustomerTyj where memberOID = #{memberOID}
 	</select>
+	
+	<!--  -->
+	<select id="countByMemberOID" resultType="java.lang.Integer">
+		select count(*) from pay_customertyj where memberOID = #{memberOID}
+	</select>
+	
 </mapper>

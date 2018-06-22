@@ -37,7 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		answerTwo=#{answerTwo},
 		updDateTime=NOW(),
 		version = #{version}+1
-		where OID=#{OID} and version = #{version}
+		where
+		OID=#{OID} and version = #{version}
 
 
 	</update>
@@ -51,7 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		realName=#{realName},
 		idCard=#{idCard},
 		updDateTime=NOW(),
-		version = version+1
+		version =
+		version+1
 		where OID=#{OID} and version = #{version}
 	</update>
 
@@ -60,7 +62,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT (SELECT COUNT(*) FROM
 		PAY_TransferReturn pt JOIN WEBP2P_NoviceBiddingRuning nbr ON
 		nbr.OID=pt.businessOID WHERE pt.outMemberOID=#{memberOID})+
-		(SELECT COUNT(*) FROM PAY_DebitCredit pd JOIN WEBP2P_NoviceBiddingRuning nbr
+		(SELECT
+		COUNT(*) FROM PAY_DebitCredit pd JOIN WEBP2P_NoviceBiddingRuning nbr
 		ON nbr.OID=pd.businessOID WHERE pd.outMemberOID=#{memberOID}) AS num
 
 	</select>
@@ -70,30 +73,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET
 		name = #{name},
 		clientOID = #{clientOID},
-		memberNumber = #{memberNumber},
+		memberNumber =
+		#{memberNumber},
 		memberAccount = #{memberAccount},
-		nickName = #{nickName},
+		nickName =
+		#{nickName},
 		realName = #{realName},
 		password = #{password},
-		nameCN = #{nameCN},
+		nameCN =
+		#{nameCN},
 		gender =#{gender},
 		age = #{age},
 		birthday = #{birthday},
 		idCard = #{idCard},
 		mobile = #{mobile},
 		email =#{email},
-		marriage = #{marriage},
+		marriage =
+		#{marriage},
 		address = #{address},
 		referrals =#{referrals},
-		provider = #{provider},
+		provider =
+		#{provider},
 		city = #{city},
 		registerTime = #{registerTime},
-		userType = #{userType},
+		userType =
+		#{userType},
 		loanInvestmentType = #{loanInvestmentType},
-		viewType = #{viewType},
+		viewType =
+		#{viewType},
 		realOID = #{realOID},
 		state = #{state},
-		yewuOID = #{yewuOID},
+		yewuOID =
+		#{yewuOID},
 		xieli = #{xieli},
 		school = #{school},
 		company = #{company},
@@ -106,7 +117,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		NO = #{NO},
 		addUserOID = #{addUserOID},
 		updUserOID = #{updUserOID},
-		valid = #{valid},
+		valid =
+		#{valid},
 		addDateTime =#{addDateTime},
 		updDateTime = NOW(updDateTime),
 		refresh = #{refresh},
@@ -114,12 +126,156 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		picOID =#{picOID},
 		questionOne = #{questionOne},
 		answerOne = #{answerOne},
-		questionTwo = #{questionTwo},
+		questionTwo =
+		#{questionTwo},
 		answerTwo = #{answerTwo},
 		blacklist = #{blacklist}
-		WHERE OID = #{OID} and version = #{version}
+		WHERE
+		OID = #{OID} and version = #{version}
 	</update>
 
+	<!-- 根据时间段获取总数据数 -->
+	<select id="countByDate" resultType="java.lang.Integer">
+		SELECT count(*) from
+		member_member where addDateTime BETWEEN #{cqcDTO.startDate} AND
+		#{cqcDTO.endDate}
+	</select>
 
+	<!-- 获取分页数据 -->
+	<select id="listCustomer" resultType="com.izhuantou.damain.vo.member.CustomerListDTO">
+		SELECT
+		OID,memberAccount,mobile,nickName,realName,userType,idCard,addDateTime,email,yewuOID
+		from member_member
+		order by addDateTime desc
+		limit
+		#{startIndex},#{pageSize}
+	</select>
+
+	<!-- 根据条件获取数据总数 -->
+	<select id="conditionCount" resultType="java.lang.Integer">
+		select count(*)
+		FROM
+		member_member m
+		LEFT JOIN pay_customer c ON c.memberOID = m.OID
+		where 1=1
+		<if test="cqcDTO.startDate != null and cqcDTO.startDate !=''">
+			and m.addDateTime between #{cqcDTO.startDate} and
+			#{cqcDTO.endDate}
+		</if>
+		<if test="cqcDTO.keyWord !=null and cqcDTO.keyWord != ''">
+			and ${cqcDTO.keyWordType} like "%"#{cqcDTO.keyWord}"%"
+		</if>
+		<if test="cqcDTO.idCardStatus !=null and cqcDTO.idCardStatus != '' ">
+			and m.idCard
+			<if test="cqcDTO.idCardStatus == 1">
+				is not null
+			</if>
+			<if test="cqcDTO.idCardStatus ==2">
+				is null
+			</if>
+		</if>
+		<if test="cqcDTO.bankNumberStatus != null and cqcDTO.bankNumberStatus != ''">
+			and c.bankNumber
+			<if test="cqcDTO.bankNumberStatus == 1">
+				is not null
+			</if>
+			<if test="cqcDTO.bankNumberStatus == 2">
+				is null
+			</if>
+		</if>
+		order by m.addDateTime ${cqcDTO.dateSort}
+	</select>
+
+	<!-- 根据条件获取分页数据 -->
+	<select id="conditionList" resultType="com.izhuantou.damain.vo.member.CustomerListDTO">
+		SELECT
+		m.OID,m.memberAccount,m.mobile,m.nickName,m.realName,m.userType,m.idCard,m.addDateTime,m.email,m.yewuOID,c.bankNumber
+		FROM
+		member_member m
+		LEFT JOIN pay_customer c ON c.memberOID = m.OID
+		where 1=1
+		<if test="cqcDTO.startDate != null and cqcDTO.startDate !=''">
+			and m.addDateTime between #{cqcDTO.startDate} and
+			#{cqcDTO.endDate}
+		</if>
+		<if test="cqcDTO.keyWord !=null and cqcDTO.keyWord != ''">
+			and ${cqcDTO.keyWordType} like "%"#{cqcDTO.keyWord}"%"
+		</if>
+		<if test="cqcDTO.idCardStatus !=null and cqcDTO.idCardStatus != '' ">
+			and m.idCard
+			<if test="cqcDTO.idCardStatus == 1">
+				is not null
+			</if>
+			<if test="cqcDTO.idCardStatus ==2">
+				is null
+			</if>
+		</if>
+		<if test="cqcDTO.bankNumberStatus != null and cqcDTO.bankNumberStatus != ''">
+			and c.bankNumber
+			<if test="cqcDTO.bankNumberStatus == 1">
+				is not null
+			</if>
+			<if test="cqcDTO.bankNumberStatus == 2">
+				is null
+			</if>
+		</if>
+		order by m.addDateTime ${cqcDTO.dateSort}
+		limit #{startIndex},#{pageSize}
+	</select>
+
+	<!-- 根据oid获取数据集 -->
+	<select id="selectByOID" resultType="com.izhuantou.damain.vo.member.CustomerListDTO">
+		select
+		OID,memberAccount,mobile,nickName,realName,userType,idCard,addDateTime,email,yewuOID
+		from
+		member_member
+		where OID in
+		<foreach collection="array" item="ids" index="index" open="("
+			close=")" separator=",">
+			#{ids}
+		</foreach>
+	</select>
+
+	<!-- 根据条件获取数据 -->
+	<select id="listByCondition" resultType="com.izhuantou.damain.vo.member.CustomerListDTO">
+		SELECT
+		m.OID,m.memberAccount,m.mobile,m.nickName,m.realName,m.userType,m.idCard,m.addDateTime,m.email,m.yewuOID,c.bankNumber
+		FROM
+		member_member m
+		LEFT JOIN pay_customer c ON c.memberOID = m.OID
+		where 1=1
+		<if test="cqcDTO.startDate != null and cqcDTO.startDate !=''">
+			and m.addDateTime between #{cqcDTO.startDate} and
+			#{cqcDTO.endDate}
+		</if>
+		<if test="cqcDTO.keyWord !=null and cqcDTO.keyWord != ''">
+			and ${cqcDTO.keyWordType} like "%"#{cqcDTO.keyWord}"%"
+		</if>
+		<if test="cqcDTO.idCardStatus !=null and cqcDTO.idCardStatus != '' ">
+			and m.idCard
+			<if test="cqcDTO.idCardStatus == 1">
+				is not null
+			</if>
+			<if test="cqcDTO.idCardStatus ==2">
+				is null
+			</if>
+		</if>
+		<if test="cqcDTO.bankNumberStatus != null and cqcDTO.bankNumberStatus != ''">
+			and c.bankNumber
+			<if test="cqcDTO.bankNumberStatus == 1">
+				is not null
+			</if>
+			<if test="cqcDTO.bankNumberStatus == 2">
+				is null
+			</if>
+		</if>
+		order by m.addDateTime ${cqcDTO.dateSort}
+	</select>
+
+	<!-- 根据手机号获取客户姓名 -->
+	<select id="selectByMobile" resultType="com.izhuantou.damain.user.MemberMember">
+		select * from
+		member_member where mobile = #{mobile} limit 1
+	</select>
 
 </mapper>

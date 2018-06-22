@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.system.PortalLogMapper">
+
+	<!-- 分页获取日志信息 -->
+	<select id="listByPage" resultType="com.izhuantou.damain.system.PortalLog">
+		select
+		username,operate_date,title
+		from
+		tb_portal_log
+		order by operate_date desc
+		limit #{startIndex},#{pageSize}
+	</select>
+
+	<!-- 按条件统计总数 -->
+	<select id="countByCondition" resultType="java.lang.Integer">
+		select
+		count(*)
+		from
+		tb_portal_log
+		where 1=1
+		<if test="tqcDTO.startDateTime != null and tqcDTO.startDateTime != ''">
+			and operate_date between #{tqcDTO.startDateTime} and
+			#{tqcDTO.endDateTime}
+		</if>
+		<if test="tqcDTO.keyWord != null and tqcDTO.keyWord != ''">
+			and title like "%"#{tqcDTO.keyWord}"%"
+		</if>
+		<if test="tqcDTO.typeArray != null and tqcDTO.typeArray.length > 0">
+			and type in
+			<foreach collection="tqcDTO.typeArray" item="type" index="index" open="("
+				close=")" separator=",">
+				#{type}
+			</foreach>
+		</if>
+	</select>
+
+	<!-- 按条件分页获取数据 -->
+	<select id="listByCondition" resultType="com.izhuantou.damain.system.PortalLog">
+		select
+		username,operate_date,title
+		from
+		tb_portal_log
+		where 1=1
+		<if test="tqcDTO.startDateTime != null and tqcDTO.startDateTime != ''">
+			and operate_date between #{tqcDTO.startDateTime} and
+			#{tqcDTO.endDateTime}
+		</if>
+		<if test="tqcDTO.typeArray != null and tqcDTO.typeArray.length > 0">
+			and type in
+			<foreach collection="tqcDTO.typeArray" item="type" index="index" open="("
+				close=")" separator=",">
+				#{type}
+			</foreach>
+		</if>
+		<if test="tqcDTO.keyWord != null and tqcDTO.keyWord != ''">
+			and title like "%"#{tqcDTO.keyWord}"%"
+		</if>
+		order by operate_date desc
+		limit #{startIndex},#{pageSize}
+	</select>
+
+</mapper>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.manager.CustomerFeedbackMapper">
+
+	<!-- 统计客服登记的总数 -->
+	<select id="countServiceRegisterNumber" resultType="java.lang.Integer">
+		select
+		count(oid)
+		from
+		tb_customer_feedback
+		where type = #{type}
+	</select>
+
+	<!-- 分页获取客服登记的数据 -->
+	<select id="listServiceRegister" resultType="com.izhuantou.damain.manager.CustomerFeedback">
+		select
+		oid,name,phone,feedback_content,feedback_date,status
+		from
+		tb_customer_feedback
+		where type = #{type}
+		limit
+		#{startIndex},#{pageSize}
+	</select>
+
+	<!-- 根据条件统计客服登记总数 -->
+	<select id="countByCondition" resultType="java.lang.Integer">
+		select
+		count(oid)
+		from
+		tb_customer_feedback c
+		left JOIN
+		(select
+		DISTINCT
+		d.customer_feedback_oid,d.feedback_person
+		from
+		tb_customer_feedback
+		c,tb_detail_feedback d
+		where c.oid = d.customer_feedback_oid
+		and c.name
+		!= d.feedback_person) d
+		on
+		c.oid = d.customer_feedback_oid
+		where
+		type =
+		#{cqcDTO.type}
+		<if test="cqcDTO.startDate != null and cqcDTO.startDate != ''">
+			and c.feedback_date BETWEEN #{cqcDTO.startDate} AND
+			#{cqcDTO.endDate}
+		</if>
+		<if test="cqcDTO.keyWord != null and cqcDTO.keyWord != ''">
+			and ${cqcDTO.keyWordType} like "%"#{cqcDTO.keyWord}"%"
+		</if>
+		<if test="cqcDTO.serviceName != null and cqcDTO.serviceName != ''">
+			and d.feedback_person = #{cqcDTO.serviceName}
+		</if>
+		<if test="cqcDTO.status != null and cqcDTO.status != ''">
+			and c.status = #{cqcDTO.status}
+		</if>
+		order by c.feedback_date ${cqcDTO.dateSort}
+	</select>
+
+	<!-- 根据条件分页获取客服登记数据 -->
+	<select id="selectByCondition" resultType="com.izhuantou.damain.manager.CustomerFeedback">
+		select
+		c.oid,c.phone,c.name,c.status,c.feedback_content,d.customer_feedback_oid,c.feedback_date,d.feedback_person
+		from
+		tb_customer_feedback c
+		left JOIN
+		(select
+		DISTINCT
+		d.customer_feedback_oid,d.feedback_person
+		from
+		tb_customer_feedback
+		c,tb_detail_feedback d
+		where c.oid = d.customer_feedback_oid
+		and c.name
+		!= d.feedback_person) d
+		on
+		c.oid = d.customer_feedback_oid
+		where
+		type =
+		#{cqcDTO.type}
+		<if test="cqcDTO.startDate != null and cqcDTO.startDate != ''">
+			and c.feedback_date BETWEEN #{cqcDTO.startDate} AND
+			#{cqcDTO.endDate}
+		</if>
+		<if test="cqcDTO.keyWord != null and cqcDTO.keyWord != ''">
+			and ${cqcDTO.keyWordType} like "%"#{cqcDTO.keyWord}"%"
+		</if>
+		<if test="cqcDTO.serviceName != null and cqcDTO.serviceName != ''">
+			and d.feedback_person = #{cqcDTO.serviceName}
+		</if>
+		<if test="cqcDTO.status != null and cqcDTO.status != ''">
+			and c.status = #{cqcDTO.status}
+		</if>
+		order by c.feedback_date ${cqcDTO.dateSort}
+		limit
+		#{startIndex},#{pageSize}
+	</select>
+
+	<!-- 根据oid修改状态 -->
+	<update id="updateStatusByOid">
+		update
+		tb_customer_feedback
+		set
+		upd_datetime =
+		#{updDatetime},
+		status = #{status}
+		where oid = #{oid}
+	</update>
+
+	<!-- 点击详情修改状态为解决中 -->
+	<update id="updateStatus">
+		update
+		tb_customer_feedback
+		set
+		status = #{status}
+		where
+		oid = #{oid}
+	</update>
+
+	<!-- 根据多个oid获取数据 -->
+	<select id="selectByOids" resultType="com.izhuantou.damain.manager.CustomerFeedback">
+		select
+		oid,name,phone,feedback_content,feedback_date,status
+		from
+		tb_customer_feedback
+		where
+		oid in
+		<foreach collection="array" item="oid" index="index" open="("
+			close=")" separator=",">
+			#{oid}
+		</foreach>
+	</select>
+
+	<!-- 根据条件获取反馈信息 -->
+	<select id="selectAllByCondition" resultType="com.izhuantou.damain.manager.CustomerFeedback">
+		select
+		c.oid,c.phone,c.name,c.status,c.feedback_content,d.customer_feedback_oid,c.feedback_date,d.feedback_person
+		from
+		tb_customer_feedback c
+		left JOIN
+		(select
+		DISTINCT
+		d.customer_feedback_oid,d.feedback_person
+		from
+		tb_customer_feedback
+		c,tb_detail_feedback d
+		where c.oid = d.customer_feedback_oid
+		and c.name
+		!= d.feedback_person) d
+		on
+		c.oid = d.customer_feedback_oid
+		where
+		type = #{cqcDTO.type}
+		<if test="cqcDTO.startDate != null and cqcDTO.startDate != ''">
+			and c.feedback_date BETWEEN #{cqcDTO.startDate} AND
+			#{cqcDTO.endDate}
+		</if>
+		<if test="cqcDTO.keyWord != null and cqcDTO.keyWord != ''">
+			and ${cqcDTO.keyWordType} like "%"#{cqcDTO.keyWord}"%"
+		</if>
+		<if test="cqcDTO.serviceName != null and cqcDTO.serviceName != ''">
+			and d.feedback_person = #{cqcDTO.serviceName}
+		</if>
+		<if test="cqcDTO.status != null and cqcDTO.status != ''">
+			and c.status = #{cqcDTO.status}
+		</if>
+		order by c.feedback_date ${cqcDTO.dateSort}
+	</select>
+
+</mapper>

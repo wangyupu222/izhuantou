@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.user.MemberScoreMapper">
+	
+	<!-- 统计风险测评用户数 -->
+	<select id="countTotal" resultType="java.lang.Integer">
+		select count(DISTINCT memberOID) from member_score;
+	</select>
+	
+	<!-- 根据会员OID获取信息 -->
+	<select id="selectByMemberOID" resultType="com.izhuantou.damain.user.MemberScore">
+		select 
+		oid,memberOID,score,describe0,NO,addDateTime 
+		from member_score 
+		where memberOID = #{memberOID} ORDER BY addDateTime DESC limit 1
+	</select>
+	
+</mapper>

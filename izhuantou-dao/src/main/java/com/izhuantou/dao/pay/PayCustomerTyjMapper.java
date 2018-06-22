@@ -17,6 +17,13 @@ public interface PayCustomerTyjMapper {
     /** 根据memberOID查询体验金 */
     public List<CustomerTyjDTO> findByMemberOID(String memberOID);
     
+    /**
+     * 根据会员OID查询使用体验金用户
+     * @param memberOID
+     * @return
+     */
+	public int countByMemberOID(String memberOID);
+    
     
     
     

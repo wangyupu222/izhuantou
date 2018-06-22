@@ -454,7 +454,6 @@ public abstract class DateUtils {
 	String re = "";
 	try {
 
-	    Date d = new Date();
 	    GregorianCalendar gc = new GregorianCalendar();
 	    SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 	    Date dd = sf.parse(day);
@@ -488,7 +487,6 @@ public abstract class DateUtils {
     public static String gainPlusAndDay(String day, int number, int pr) throws Exception {
 	String re = "";
 	try {
-	    Date d = new Date();
 	    GregorianCalendar gc = new GregorianCalendar();
 	    SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 	    Date dd = sf.parse(day);
@@ -519,7 +517,6 @@ public abstract class DateUtils {
     public static String gainPlusAndDateTime(String dateTime, int number, int pr) throws Exception {
 	String re = "";
 	try {
-	    Date d = new Date();
 	    GregorianCalendar gc = new GregorianCalendar();
 	    SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    Date dd = sf.parse(dateTime);
@@ -633,10 +630,68 @@ public abstract class DateUtils {
 	}
 	
 	public static String formartDate(String strDate,String strFormat){
-		Date da =DateUtils.getDate(strDate);
-		return formartDate(da,strFormat);
+		SimpleDateFormat sdf=new SimpleDateFormat(strFormat);
+		Date date =null;
+		try {
+			date = sdf.parse(strDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String strdate=sdf.format(date);
+		return strdate;
 	}
-    
-    
-    
+    /**
+     * 时间戳 精确到日， 当日的时间戳
+     * @return
+     */
+	public static Long dayTimestamp(){
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		String d=sdf.format(new Date());
+		Long time=null;
+		try {
+			time =sdf.parse(d).getTime();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return time;
+	}
+	/**
+	 * 判断当前日期是星期几
+	 * 
+	 * @param date
+	 * @return
+	 * @throws Exception
+	 */
+	public static String dayForWeek(Date date) {
+		String[] weekDays = { "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" };
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
+		if (w < 0)
+			w = 0;
+		return weekDays[w];
+	}
+
+	/**
+	 * 根据时间判断是凌晨、上午、下午、晚上
+	 */
+	public static String timeForDay(Date date) {
+		SimpleDateFormat df = new SimpleDateFormat("HH");
+		String str = df.format(date);
+		int a = Integer.parseInt(str);
+		String time = null;
+		if (a >= 0 && a <= 6) {
+			time = "凌晨";
+		}
+		if (a > 6 && a <= 12) {
+			time = "上午";
+		}
+		if (a > 12 && a <= 18) {
+			time = "下午";
+		}
+		if (a > 18 && a <= 24) {
+			time = "晚上";
+		}
+		return time;
+	}
 }

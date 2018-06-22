@@ -42,4 +42,5 @@ public interface PayCustomerMapper extends Mapper<PayCustomer> {
      * 更新用户的余额
      */
     public int updataCutomer(PayCustomer customer);
+    
 }
