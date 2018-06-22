@@ -3,63 +3,60 @@ package com.izhuantou.damain.p2p;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.data.annotation.Id;
 
 import com.izhuantou.damain.BasePojo;
 
 /**
- * 帮助中心问题
+ * AppBanner资源信息表
  * 
- * @author dear
+ * @author aries
  * @version 1.0
  */
-@Table(name = "tb_p2p_urgentnotice")
-public class P2pPageproblems extends BasePojo {
+@Table(name = "p2p_pageappbanner")
+public class P2pPageAppBanner extends BasePojo {
+	
     /**
-     * 
-     */
-    private static final long serialVersionUID = 7947877734899559398L;
-    @Id
+	 * 
+	 */
+	private static final long serialVersionUID = 4320343881502355592L;
+
+	@Id
     @Column(name = "OID")
     private String OID;
+
     /**
-     * 问题名称
+     * app首页轮播标题
      */
     private String name;
     /**
-     * 发布内容
+     * 跳转地址
      */
-    @Column(name = "problemsContent")
-    private String problemsContent;
-    
-    /**
-     * 作者
-     */
-    @Column(name = "author")
-    private String author;
-    /**
-     * 生效时间
-     */
-    private Date effectiveTime;
-    /**
-     * 父级OID
-     */
-    @Column(name = "parentOID")
-    private String parentOID;
+    private String appurl;
 
     /**
-     * 分支实体
+     * banner缩略图
      */
-    @Column(name = "branchEntity")
-    private String branchEntity;
-
+    @Column(name = "picimgOID")
+    private String picimgOID;
     /**
-     * 数据地址
+     * banner图片路径
      */
-    @Column(name = "datePath")
-    private String datePath;
-
+    private String picimg;
+    /**
+     * 轮播广告类型(0：已下线，1：投放中)
+     */
+    private Integer state;
+    /**
+     * 投放起始时间
+     */
+    private Date startTime;
+    /**
+     * 投放终止时间
+     */
+    private Date endTime;
     /**
      * 描述
      */
@@ -80,8 +77,8 @@ public class P2pPageproblems extends BasePojo {
     @Column(name = "updUserOID")
     private String updUserOID;
     /**
-     * 是否有效(1:有效 0删除 )
-     * 2018-06-19添加0,1区分 假删操作
+     * 是否有效(1:有效 0:删除 )
+     * 2018-06-20添加0,1区分 假删操作
      */
     private Boolean valid;
 
@@ -103,13 +100,46 @@ public class P2pPageproblems extends BasePojo {
      * 版本号
      */
     private Integer version;
+
+    /**
+     * 父结点OID
+     */
+    @Column(name = "parentOID")
+    private String parentOID;
+
+    /**
+     * 父结点结点Class
+     */
+    @Column(name = "branchEntity")
+    private String branchEntity;
+    /**
+     * 日期路径
+     */
+    @Column(name = "datePath")
+    private String datePath;
     
-    public Date getEffectiveTime() {
-		return effectiveTime;
+    public Integer getState() {
+		return state;
 	}
 
-	public void setEffectiveTime(Date effectiveTime) {
-		this.effectiveTime = effectiveTime;
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
 	}
 
 	public String getDescribe0() {
@@ -147,18 +177,10 @@ public class P2pPageproblems extends BasePojo {
     public Boolean getValid() {
 	return valid;
     }
-    
-    public void setValid(Boolean valid) {
-    	this.valid = valid;
-    }
-    
-    public String getAuthor() {
-		return author;
-	}
 
-	public void setAuthor(String author) {
-		this.author = author;
-	}
+    public void setValid(Boolean valid) {
+	this.valid = valid;
+    }
 
     public Date getAddDateTime() {
 	return addDateTime;
@@ -207,13 +229,37 @@ public class P2pPageproblems extends BasePojo {
     public void setName(String name) {
 	this.name = name;
     }
+    
+    public String getAppurl() {
+		return appurl;
+	}
 
-    public String getProblemsContent() {
-	return problemsContent;
+	public void setAppurl(String appurl) {
+		this.appurl = appurl;
+	}
+
+	public String getPicimg() {
+	return picimg;
     }
 
-    public void setProblemsContent(String problemsContent) {
-	this.problemsContent = problemsContent;
+    public void setPicimg(String picimg) {
+	this.picimg = picimg;
+    }
+
+    public String getPicimgOID() {
+	return picimgOID;
+    }
+
+    public void setPicimgOID(String picimgOID) {
+	this.picimgOID = picimgOID;
+    }
+
+    public String getDatePath() {
+	return datePath;
+    }
+
+    public void setDatePath(String datePath) {
+	this.datePath = datePath;
     }
 
     public String getParentOID() {
@@ -232,21 +278,13 @@ public class P2pPageproblems extends BasePojo {
 	this.branchEntity = branchEntity;
     }
 
-    public String getDatePath() {
-	return datePath;
-    }
-
-    public void setDatePath(String datePath) {
-	this.datePath = datePath;
-    }
-
     @Override
 	public String toString() {
-		return "P2pPageproblems [OID=" + OID + ", name=" + name + ", problemsContent=" + problemsContent + ", author="
-				+ author + ", effectiveTime=" + effectiveTime + ", parentOID=" + parentOID + ", branchEntity="
-				+ branchEntity + ", datePath=" + datePath + ", describe0=" + describe0 + ", NO=" + NO + ", addUserOID="
-				+ addUserOID + ", updUserOID=" + updUserOID + ", valid=" + valid + ", addDateTime=" + addDateTime
-				+ ", updDateTime=" + updDateTime + ", refresh=" + refresh + ", version=" + version + "]";
+		return "P2pPageBanner [OID=" + OID + ", name=" + name + ", appurl=" + appurl + ", picimgOID=" + picimgOID + ", picimg=" + picimg + ", state=" + state + ", startTime=" + startTime
+				+ ", endTime=" + endTime + ", describe0=" + describe0 + ", NO=" + NO + ", addUserOID=" + addUserOID
+				+ ", updUserOID=" + updUserOID + ", valid=" + valid + ", addDateTime=" + addDateTime + ", updDateTime="
+				+ updDateTime + ", refresh=" + refresh + ", version=" + version + ", parentOID=" + parentOID
+				+ ", branchEntity=" + branchEntity + ", datePath=" + datePath + "]";
 	}
 
 }

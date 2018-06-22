@@ -13,6 +13,10 @@ public class PageNewsDTO implements Serializable {
      */
     private String titleName;
     /**
+     * 作者
+     */
+    private String author;
+    /**
      * 图片OID
      */
     private String ImgOID;
@@ -41,8 +45,20 @@ public class PageNewsDTO implements Serializable {
      * 公告内容
      */
     private String messages;
+    /**
+     * 类型id
+     */
+    private String parentOID;
+    
+    public String getParentOID() {
+		return parentOID;
+	}
 
-    public String getAddTime() {
+	public void setParentOID(String parentOID) {
+		this.parentOID = parentOID;
+	}
+
+	public String getAddTime() {
 	return addTime;
     }
 
@@ -58,7 +74,15 @@ public class PageNewsDTO implements Serializable {
 	this.addDateTime = addDateTime;
     }
 
-    public String getOID() {
+    public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getOID() {
 	return OID;
     }
 
@@ -99,11 +123,11 @@ public class PageNewsDTO implements Serializable {
     }
 
     @Override
-    public String toString() {
-	return "PageNewsDTO [titleName=" + titleName + ", ImgOID=" + ImgOID + ", name=" + name + ", addDateTime="
-		+ addDateTime + ", addTime=" + addTime + ", source=" + source + ", OID=" + OID + ", messages="
-		+ messages + "]";
-    }
+	public String toString() {
+		return "PageNewsDTO [titleName=" + titleName + ", author=" + author + ", ImgOID=" + ImgOID + ", name=" + name
+				+ ", addDateTime=" + addDateTime + ", addTime=" + addTime + ", source=" + source + ", OID=" + OID
+				+ ", messages=" + messages + ", parentOID=" + parentOID + "]";
+	}
 
     public String getImgOID() {
 	return ImgOID;

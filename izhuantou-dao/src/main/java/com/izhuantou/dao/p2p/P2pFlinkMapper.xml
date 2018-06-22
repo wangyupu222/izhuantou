@@ -4,6 +4,72 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.p2p.P2pFlinkMapper">	
 	<select id="findFlinkList" resultType="com.izhuantou.damain.p2p.P2pFlink">
-		select OID,name,linkUrl from p2p_flink 
+		select OID,name,linkUrl from p2p_flink where valid=true
 	</select>
+	<select id="findBottomLinkById" resultType="com.izhuantou.damain.p2p.P2pFlink">
+		select * from p2p_flink where OID=#{OID} where valid=true
+	</select>
+	<!-- 删除底部链接，实际上是修改valid（有效性）值为0 -->
+	<update id="deleteBottomLink" parameterType="String">
+		update p2p_flink set valid=false where OID=#{OID} where valid=true
+	</update>
+	<!-- 添加一条底部链接 -->
+	<insert id="addBottomLink" parameterType="com.izhuantou.damain.p2p.P2pFlink">
+		INSERT INTO p2p_flink (
+			OID,
+			name,
+			linkUrl,
+			describe0,
+			NO,
+			addUserOID,
+			updUserOID,
+			valid,
+			addDateTime,
+			updDateTime,
+			refresh,
+			version,
+			parentOID,
+			branchEntity,
+			datePath
+		)
+		VALUES (
+			#{OID},
+			#{name},
+			#{linkUrl},
+			#{describe0},
+			#{NO},
+			#{addUserOID},
+			#{updUserOID},
+			#{valid},
+			NOW(),
+			NOW(),
+			#{refresh},
+			#{version},
+			#{parentOID},
+			#{branchEntity},
+			#{datePath}
+		);
+		
+	</insert>
+	<!-- 修改一条底部链接 -->
+	<update id="updateBottomLink" parameterType="com.izhuantou.damain.p2p.P2pFlink">
+		update p2p_flink 
+			set
+				name=#{name},
+				linkUrl=#{linkUrl},
+				describe0=#{describe0},
+				NO=#{NO},
+				addUserOID=#{addUserOID},
+				updUserOID=#{updUserOID},
+				valid=#{valid},
+				addDateTime=#{addDateTime},
+				updDateTime=#{updDateTime},
+				refresh=#{refresh},
+				version=version+1,
+				parentOID=#{parentOID},
+				branchEntity=#{branchEntity},
+				datePath=#{datePath}
+			where
+				OID=#{OID} and version=#{version} where valid=true
+	</update>
 </mapper>

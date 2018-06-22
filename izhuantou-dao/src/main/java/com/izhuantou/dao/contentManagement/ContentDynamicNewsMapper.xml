@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.contentManagement.ContentDynamicNewsMapper">
+	<!-- 查询砖头动态条数 -->
+	<select id="getRowCount" resultType="int">
+		select count(*) from p2p_toutiaonews where valid=true
+	</select>
+	<!-- 查询砖头动态列表 -->
+	<select id="findDynamicNewsByPage" resultType="com.izhuantou.damain.p2p.P2pToutiaoNews">
+		select OID,name,author,uploadImgOID ,messages,addDateTime from p2p_toutiaonews where valid=true
+			<!-- 
+			where
+			<if test="name != null and name != ''">
+                and name like CONCAT('%',#{name},'%') 
+            </if>
+            <if test="author != null and author != ''">
+                and author like CONCAT('%',#{author},'%')
+            </if> -->
+			ORDER BY addDateTime DESC 
+			limit #{startIndex} , #{pageSize}
+	</select>
+	<!-- 根据OID查询砖头动态 -->
+	<select id="findDynamicNewsByOID" resultType="com.izhuantou.damain.p2p.P2pToutiaoNews">
+		select OID,name,uploadImgOID ,messages,addDateTime,author from  p2p_toutiaonews where OID=#{OID} and valid=true
+	</select>
+	<!-- 删除砖头动态，实际上是修改valid（有效性）值为0 -->
+	<update id="deleteDynamicNews" parameterType="String">
+		update p2p_toutiaonews set valid=false where OID=#{OID} and valid=true
+	</update>
+	<!-- 添加一条砖头动态 -->
+	<insert id="addDynamicNews" parameterType="com.izhuantou.damain.p2p.P2pToutiaoNews">
+		INSERT INTO p2p_toutiaonews (
+			OID,
+			name,
+			author,
+			messages,
+			describe0,
+			NO,
+			addUserOID,
+			updUserOID,
+			valid,
+			addDateTime,
+			updDateTime,
+			refresh,
+			version,
+			parentOID,
+			branchEntity,
+			datePath,
+			uploadImg,
+			uploadImgOID
+		)
+		VALUES (
+			#{OID},
+			#{name},
+			#{author},
+			#{messages},
+			#{describe0},
+			#{NO},
+			#{addUserOID},
+			#{updUserOID},
+			#{valid},
+			NOW(),
+			NOW(),
+			#{refresh},
+			#{version},
+			#{parentOID},
+			#{branchEntity},
+			#{datePath},
+			#{uploadImg},
+			#{uploadImgOID}
+		);
+	</insert>
+	<!-- 修改一条砖头动态 -->
+	<update id="updateDynamicNews" parameterType="com.izhuantou.damain.p2p.P2pToutiaoNews">
+		update p2p_toutiaonews 
+			set
+				name=#{name},
+				author=#{author},
+				messages=#{messages},
+				describe0=#{describe0},
+				NO=#{NO},
+				addUserOID=#{addUserOID},
+				updUserOID=#{updUserOID},
+				valid=#{valid},
+				addDateTime=#{addDateTime},
+				updDateTime=NOW(),
+				refresh=#{refresh},
+				version=version+1,
+				parentOID=#{parentOID},
+				branchEntity=#{branchEntity},
+				datePath=#{datePath},
+				uploadImg=#{uploadImg},
+				uploadImgOID=#{uploadImgOID}
+			where
+				OID=#{OID} and version=#{version} and valid=true
+	</update>
+</mapper>

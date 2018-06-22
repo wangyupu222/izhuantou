@@ -54,7 +54,6 @@ public class FourNumServiceImpl extends BaseServiceImpl<WebP2pFourAmounts> imple
 	    fourNum.setInsertMoney1(formatTosepara(fourNum.getInterestMoney()));
 	    fourNum.setMember1(formatTosepara(new BigDecimal(fourNum.getMember())));
 	    fourNum.setSumDay1(formatTosepara(new BigDecimal(fourNum.getSumDay())));
-
 	    return fourNum;
 
 	} catch (Exception e) {

@@ -1,6 +1,9 @@
 package com.izhuantou.damain.vo;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
 
 public class BannerDTO implements Serializable {
     /**
@@ -23,9 +26,17 @@ public class BannerDTO implements Serializable {
      */
     private String picimg;
     /**
-     * banner跳转地址
+     * banner缩略图
+     */
+    private String picimgOID;
+    /**
+     * web广告跳转地址
      */
     private String jumpurl;
+    /**
+     * app广告跳转地址
+     */
+    private String appurl;
     /**
      * 父结点OID
      */
@@ -38,8 +49,60 @@ public class BannerDTO implements Serializable {
      * 物理名
      */
     private String physicalName;
+    /**
+     * 轮播广告类型(0：已下线，1：投放中)
+     */
+    private Integer state;
+    /**
+     * 投放起始时间
+     */
+    private String startTime;
+    /**
+     * 投放终止时间
+     */
+    private String endTime;
+    
+    public String getAppurl() {
+		return appurl;
+	}
 
-    public String getpName() {
+	public void setAppurl(String appurl) {
+		this.appurl = appurl;
+	}
+
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
+	public String getPicimgOID() {
+		return picimgOID;
+	}
+
+	public void setPicimgOID(String picimgOID) {
+		this.picimgOID = picimgOID;
+	}
+
+	public String getpName() {
 	return pName;
     }
 
@@ -96,9 +159,11 @@ public class BannerDTO implements Serializable {
     }
 
     @Override
-    public String toString() {
-	return "PageDTO [OID=" + OID + ", name=" + name + ", picimg=" + picimg + ", jumpurl=" + jumpurl + ", parentOID="
-		+ parentOID + ", pName=" + pName + ", physicalName=" + physicalName + "]";
-    }
+	public String toString() {
+		return "BannerDTO [OID=" + OID + ", name=" + name + ", picimg=" + picimg + ", picimgOID=" + picimgOID
+				+ ", jumpurl=" + jumpurl + ", appurl=" + appurl + ", parentOID=" + parentOID + ", pName=" + pName
+				+ ", physicalName=" + physicalName + ", state=" + state + ", startTime=" + startTime + ", endTime="
+				+ endTime + "]";
+	}
 
 }
