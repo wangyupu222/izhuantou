@@ -33,24 +33,6 @@ public interface MemberMemberAgreementService extends BaseService<MemberMemberAg
     String gainupdateMemberAgreement(String name, String contractType);
 
     /**
-     * 4.查询协议数量
-     * 
-     * @param biddingType
-     * @param contractType
-     * @return
-     */
-    int countMemberAgreement(String biddingType, String contractType);
-
-    /**
-     * 5.协议保存
-     * 
-     * @param strName
-     * @param dtoData
-     * @param strMemberOID
-     */
-    void addMemberAgreement(Map<String, String> map);
-
-    /**
      * 新手投服务协议
      * 
      * @param memberOID
