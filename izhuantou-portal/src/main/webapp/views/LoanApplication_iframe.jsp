@@ -113,7 +113,7 @@ var sends = {
           	 <div class="debitfill tabopa">
         	<ul>
         	       	 
-        	 <form action="/portal/personal/updloanAudit" method="post" name="FormApply" id="FormApply" target='_parent' >
+        	 <form action="/portal/loan/updloanAudit" method="post" name="FormApply" id="FormApply" target='_parent' >
         	 <input type="hidden" name="loanOID" value="<%=request.getParameter("loanOID") %>" />
         	 <%-- <%=request.getParameter("loanOID") %> --%>
             	<li><label>申请人</label><input type="text" name="name" id="name" value="" class="dfinput" readonly required data-msg-required="请输入申请人"></li>
@@ -176,7 +176,7 @@ $(function(){
 	var loanOID=Request["loanOID"];
 	$.ajax({
         type: "post",
-        url: "/portal/personal/findoidInfo?OID="+loanOID,
+        url: "/portal/loan/findoidInfo?OID="+loanOID,
         dataType: "json",
         success: function(result){
         	console.log(result);
@@ -247,19 +247,19 @@ jQuery.validator.addMethod("noactel", function (value, element) {
 
 //手机验证规则  
 jQuery.validator.addMethod("mobile", function (value, element) {
-    var mobile = /^1[3|4|5|7|8]\d{9}$/;
+    var mobile = /^1[3|4|5|6|7|8|9]\d{9}$/;
 	return this.optional(element) || (mobile.test(value));
 }, "手机格式不对");
 
 //邮箱或手机验证规则  
 jQuery.validator.addMethod("mm", function (value, element) {
-    var mm = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$|^1[3|4|5|7|8]\d{9}$/;
+    var mm = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$|^1[3|4|5|6|7|8|9]\d{9}$/;
 	return this.optional(element) || (mm.test(value));
 }, "格式不对");
 
 //电话或手机验证规则  
 jQuery.validator.addMethod("tm", function (value, element) {
-    var tm=/(^1[3|4|5|7|8]\d{9}$)|(^\d{3,4}-\d{7,8}$)|(^\d{7,8}$)|(^\d{3,4}-\d{7,8}-\d{1,4}$)|(^\d{7,8}-\d{1,4}$)/;
+    var tm=/(^1[3|4|5|6|7|8|9]\d{9}$)|(^\d{3,4}-\d{7,8}$)|(^\d{7,8}$)|(^\d{3,4}-\d{7,8}-\d{1,4}$)|(^\d{7,8}-\d{1,4}$)/;
     return this.optional(element) || (tm.test(value));
 }, "格式不对");
 

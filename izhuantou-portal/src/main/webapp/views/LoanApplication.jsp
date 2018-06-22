@@ -217,7 +217,7 @@ var sends = {
         	<input class="oUserName" type="hidden" value='<%=request.getAttribute("userName")%>' />  
         	<input class="oUsercard" type="hidden" value='<%=request.getAttribute("idCard")%>' />  
         	<input class="oUserphone" type="hidden" value='<%=request.getAttribute("mobile")%>' />    	   	 
-        	 <form action="/portal/personal/loanAudit" method="post"  name="FormApply" id="FormApply"  >
+        	 <form action="/portal/loan/loanAudit" method="post"  name="FormApply" id="FormApply"  >
             	<li><label>申请人</label><input type="text" name="name" id="name" class="dfinput valid" readonly required data-msg-required="请输入申请人"></li>
                 <li><label>身份证号</label><input type="text" name="card" id="card" class="dfinput valid" readonly="" required="" data-rule-card="true" data-msg-required="请输入身份证号" data-msg-card="请输入正确格式"></li>
             	<li><label>手机号码</label><input type="text" name="phone" id="phone" class="dfinput valid" readonly="" required="" data-rule-mobile="true" data-msg-required="请输入手机号" data-msg-mobile="请输入正确格式"></li>
@@ -344,7 +344,7 @@ $(function(){
 	
 	$.ajax({
         type: "post",
-        url: "/portal/personal/findInfo",
+        url: "/portal/loan/findInfo",
         dataType: "json",
         success: function(result){
         	$("#name").val(result.dataValue.nameCN);
@@ -361,7 +361,7 @@ $(function(){
     
 	$.ajax({
         type: "post",
-        url: "/portal/personal/lendprocess/1",
+        url: "/portal/loan/lendprocess/1",
         dataType: "json",
         success: function(result){
         	if(result.dataValue.totalNumber<1){
@@ -372,7 +372,7 @@ $(function(){
         	}
         	var dataItems=result.dataValue.data;
         	for(var i=0;i<dataItems.length;i++){
-        		str='<tr class="rowbox06"><td>'+dataItems[i].userName+'</td><td>'+dataItems[i].sj+'</td><td>'+dataItems[i].loanYT+'</td><td>'+dataItems[i].loanAmount+'</td><td>'+dataItems[i].loanTerm+'</td>';
+        		str='<tr class="rowbox06"><td>'+dataItems[i].userName+'</td><td>'+dataItems[i].addDateTime+'</td><td>'+dataItems[i].loanYT+'</td><td>'+dataItems[i].loanAmount+'</td><td>'+dataItems[i].loanTerm+'</td>';
         		if(dataItems[i].first=='1'){
         			if(dataItems[i].second=='1' || dataItems[i].second=='11' || dataItems[i].second=='12' || dataItems[i].second=='13'){
         				str+='<td >审核通过</td><td ><a class="E_signaturesBtn" style="background:#ababab;" href="javascript:;">获取签名</a></td>';
@@ -381,14 +381,14 @@ $(function(){
         				if(dataItems[i].handBase!='' && dataItems[i].handBase!=null){
         					str+='<td ><a class="E_signaturesBtn" style="background:#ababab;" href="javascript:;">获取签名</a></td>';
         				}else{
-        					str+='<td ><a class="E_signaturesBtn"  href="/portal/personal/E_signatures">获取签名</a></td>';
+        					str+='<td ><a class="E_signaturesBtn"  href="/portal/loan/E_signatures">获取签名</a></td>';
         				}
         			}else{
         				str+='<td >审核中</td>';
         				if(dataItems[i].handBase!='' && dataItems[i].handBase!=null){
         					str+='<td ><a class="E_signaturesBtn" style="background:#ababab;" href="javascript:;">获取签名</a></td>';
         				}else{
-        					str+='<td ><a class="E_signaturesBtn"  href="/portal/personal/E_signatures">获取签名</a></td>';
+        					str+='<td ><a class="E_signaturesBtn"  href="/portal/loan/E_signatures">获取签名</a></td>';
         				}
         			}
         			
@@ -397,7 +397,7 @@ $(function(){
         			if(dataItems[i].handBase!='' && dataItems[i].handBase!=null){
     					str+='<td ><a class="E_signaturesBtn" style="background:#ababab;" href="javascript:;">获取签名</a></td>';
     				}else{
-    					str+='<td ><a class="E_signaturesBtn"  href="/portal/personal/E_signatures">获取签名</a></td>';
+    					str+='<td ><a class="E_signaturesBtn"  href="/portal/loan/E_signatures">获取签名</a></td>';
     				}
         			
         		}else if(dataItems[i].first=='4'){
@@ -407,14 +407,14 @@ $(function(){
         			if(dataItems[i].handBase!='' && dataItems[i].handBase!=null){
     					str+='<td ><a class="E_signaturesBtn" style="background:#ababab;" href="javascript:;">获取签名</a></td>';
     				}else{
-    					str+='<td ><a class="E_signaturesBtn"  href="/portal/personal/E_signatures">获取签名</a></td>';
+    					str+='<td ><a class="E_signaturesBtn"  href="/portal/loan/E_signatures">获取签名</a></td>';
     				}
         		}else{
         			str+=' <td ><a class="loanstates cd-popup-trigger1" onclick="passonOID(\''+dataItems[i].oid+'\')">修改</a></td>';
         			if(dataItems[i].handBase!='' && dataItems[i].handBase!=null){
     					str+='<td ><a class="E_signaturesBtn" style="background:#ababab;" href="javascript:;">获取签名</a></td>';
     				}else{
-    					str+='<td ><a class="E_signaturesBtn"  href="/portal/personal/E_signatures">获取签名</a></td>';
+    					str+='<td ><a class="E_signaturesBtn"  href="/portal/loan/E_signatures">获取签名</a></td>';
     				}
         		}
         		str+='</tr>';
@@ -427,13 +427,13 @@ $(function(){
     			callback: function(num) {
     				$.ajax({
     			        type: "post",
-    			        url: "/portal/personal/lendprocess/"+num,
+    			        url: "/portal/loan/lendprocess/"+num,
     			        dataType: "json",
     			        success: function(result){
     			        	$(".applayrecord tbody tr").remove(str);
     			        	var dataItems=result.dataValue.data;
     			        	for(var i=0;i<dataItems.length;i++){
-    			        		str='<tr class="rowbox06"><td>'+dataItems[i].userName+'</td><td>'+dataItems[i].sj+'</td><td>'+dataItems[i].loanYT+'</td><td>'+dataItems[i].loanAmount+'</td><td>'+dataItems[i].loanTerm+'</td>';
+    			        		str='<tr class="rowbox06"><td>'+dataItems[i].userName+'</td><td>'+dataItems[i].applyTime+'</td><td>'+dataItems[i].loanYT+'</td><td>'+dataItems[i].loanAmount+'</td><td>'+dataItems[i].loanTerm+'</td>';
     			        		if(dataItems[i].first=='1'){
     			        			if(dataItems[i].second=='1' || dataItems[i].second=='11' || dataItems[i].second=='12' || dataItems[i].second=='13'){
     			        				str+='<td >审核通过</td><td ><a class="E_signaturesBtn" style="background:#ababab;" href="javascript:;">获取签名</a></td>';
@@ -540,19 +540,19 @@ jQuery.validator.addMethod("noactel", function (value, element) {
 
 //手机验证规则  
 jQuery.validator.addMethod("mobile", function (value, element) {
-    var mobile = /^1[3|4|5|7|8]\d{9}$/;
+    var mobile = /^1[3|4|5|6|7|8|9]\d{9}$/;
 	return this.optional(element) || (mobile.test(value));
 }, "手机格式不对");
 
 //邮箱或手机验证规则  
 jQuery.validator.addMethod("mm", function (value, element) {
-    var mm = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$|^1[3|4|5|7|8]\d{9}$/;
+    var mm = /^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$|^1[3|4|5|6|7|8|9]\d{9}$/;
 	return this.optional(element) || (mm.test(value));
 }, "格式不对");
 
 //电话或手机验证规则  
 jQuery.validator.addMethod("tm", function (value, element) {
-    var tm=/(^1[3|4|5|7|8]\d{9}$)|(^\d{3,4}-\d{7,8}$)|(^\d{7,8}$)|(^\d{3,4}-\d{7,8}-\d{1,4}$)|(^\d{7,8}-\d{1,4}$)/;
+    var tm=/(^1[3|4|5|6|7|8|9]\d{9}$)|(^\d{3,4}-\d{7,8}$)|(^\d{7,8}$)|(^\d{3,4}-\d{7,8}-\d{1,4}$)|(^\d{7,8}-\d{1,4}$)/;
     return this.optional(element) || (tm.test(value));
 }, "格式不对");
 

@@ -10,9 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.alibaba.dubbo.common.utils.StringUtils;
 import com.izhuantou.common.tool.ToolDateTime;
+import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.pay.PayTransferReturn;
 import com.izhuantou.damain.vo.bidding.BiddingDTO;
 import com.izhuantou.damain.webp2p.WebP2pLoanProductRateInfo;
@@ -21,14 +20,17 @@ import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning;
 import com.izhuantou.damain.webp2p.WebP2pProductRateInfo;
 import com.izhuantou.dao.pay.PayDebitCreditMapper;
 import com.izhuantou.dao.pay.PayTransferReturnMapper;
+import com.izhuantou.fund.rpc.api.ControlDebitCredit;
+import com.izhuantou.fund.rpc.api.ProcessPageFinish;
+import com.izhuantou.third.rpc.api.ControlPayService;
+import com.izhuantou.third.rpc.api.memberagrement.MemberMemberAgreementService;
 import com.izhuantou.dao.webp2p.WebP2pLoanProductRateInfoMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainContentRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pProductRateInfoMapper;
-import com.izhuantou.fund.rpc.api.ControlDebitCredit;
-import com.izhuantou.fund.rpc.api.ProcessPageFinish;
-import com.izhuantou.third.rpc.api.ControlPayService;
-import com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService;
+
+
+
 @Service("processPageFinish")
 public class ProcessPageFinishImpl implements ProcessPageFinish {
 	private static final Logger logger = LoggerFactory.getLogger(ProcessPageFinishImpl.class);
@@ -50,11 +52,9 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 	private WebP2pPackageBiddingMainContentRuningMapper packageBiddingMainContentRuningMapper;
 	@Autowired
 	private WebP2pLoanProductRateInfoMapper loanProductRateInfoMapper;
-	@Autowired
-	private MemberMemberAgreementService memberAgreementService;
-	
 	@Override
 	public String noviceBiddingFinish(String biddingOID) {
+		try{
 		// 调用满标流程
 		Date beginDate = ToolDateTime.gainDate();
 		controlDebitCredit.finishDebitCreditNEW(biddingOID, beginDate);
@@ -62,34 +62,40 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 		memberMemberAgreementService.gainMemberxsJKAgreement("6", biddingOID);
 		// 满标后生成逾期债权预回购协议
 		memberMemberAgreementService.gainmemberzqhgXSAgreement("8",biddingOID);
-
+		}catch(Exception e){
+			logger.error("noviceBiddingFinish(String biddingOID)"+e.getMessage());
+		}
 		return null;
 	}
 
 	@Override
 	public String noviceZzBiddingFinish(BiddingDTO biddto) {
-		biddto.setBeginDate(new Date());
-		biddto.setIsTZorCW("XS");
-		biddto.setTzType("XS");
-		controlDebitCredit.finishTransferReturnNEW(biddto);
-		List<PayTransferReturn> reList = transferReturnMapper.findByBusinenssOID(biddto.getBiddingOID());
-		// 取最后一条 按时间
-		String debitOID = "";
-		debitOID = reList.get(reList.size() - 1).getDebitCreditOID();
-
-		String outMeber = debitCreditMapper.queryByPKOid(debitOID).getOutMemberOID();
-		//此处钱数为标的 的金额 不是个人投资的金额
-		BigDecimal bdje =biddto.getAmount();
-		controPayService.unFreeze(outMeber, bdje);
-		// 财务标的满标后生成债权转让协议
-		memberMemberAgreementService.gainmemberTbzZZTZQZRAgreement("7", biddto.getBiddingOID());
-		// 生成债权预回购协议l
-		memberMemberAgreementService.gainmemberxszqhgZZTAgreement("8", biddto.getBiddingOID());
+		try{
+			biddto.setBeginDate(new Date());
+			biddto.setIsTZorCW("XS");
+			biddto.setTzType("XS");
+			controlDebitCredit.finishTransferReturnNEW(biddto);
+			List<PayTransferReturn> reList = transferReturnMapper.findByBusinenssOID(biddto.getBiddingOID());
+			// 取最后一条 按时间
+			String debitOID = "";
+			debitOID = reList.get(reList.size() - 1).getDebitCreditOID();
+		
+			String outMeber = debitCreditMapper.queryByPKOid(debitOID).getOutMemberOID();
+			//此处钱数为标的 的金额 不是个人投资的金额
+			BigDecimal bdje =biddto.getAmount();
+			controPayService.unFreeze(outMeber, bdje);
+			// 财务标的满标后生成债权转让协议
+			memberMemberAgreementService.gainmemberTbzZZTZQZRAgreement("7", biddto.getBiddingOID());
+			// 生成债权预回购协议l
+			memberMemberAgreementService.gainmemberxszqhgZZTAgreement("8", biddto.getBiddingOID());
+		}catch(Exception e){
+			logger.error("noviceZzBiddingFinish(BiddingDTO biddto)"+e.getMessage());
+		}
 		return null;
 	}
 
 	@Override
-	public String hhInvestmentFinish(String ly) {
+	public String packageBiddingMainRuningMatching(String ly) {
 		try {
 			List<WebP2pPackageBiddingMainRuning> dcallBM = new ArrayList<WebP2pPackageBiddingMainRuning>();
 			dcallBM = packageBiddingMainRuningMapper.findAll();
@@ -103,7 +109,7 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 					WebP2pProductRateInfo dtoProductRateInfoID = productRateInfoMapper.findByOID(productRateInfoID);
 
 					String strfullstrategy = dtoProductRateInfoID.getFullstrategy();
-					if (StringUtils.isNotEmpty(strfullstrategy)) {
+					if (StringUtil.isNotEmpty(strfullstrategy)) {
 						String[] sortRule = strfullstrategy.split("/");
 						for (int i = 0; i < sortRule.length; i++) {
 							LinkedList list = new LinkedList();
@@ -134,8 +140,8 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 					for (int i = 0; i < biddingInvestListBus.size() && bdlcash.compareTo(bdzero) != 0; i++) {
 						List list = biddingInvestListBus.get(i);
 						for (int j = 1; j < list.size() && bdlcash.compareTo(bdzero) != 0; j++) {
-							WebP2pPackageBiddingMainContentRuning dtoInvest = (WebP2pPackageBiddingMainContentRuning) list
-									.get(j);
+							WebP2pPackageBiddingMainContentRuning dtoInvest = 
+									(WebP2pPackageBiddingMainContentRuning) list.get(j);
 							boolean isYZDG = false;
 							String loanTittle = "";
 							String realBiddingOID = dtoInvest.getOID();
@@ -175,13 +181,13 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 
 									if (isYZDG) {
 										// TODO 协议 jasen 2018/3/22 ？？？
-										memberAgreementService.gainMemberHHTNRBJKAgreementDifferent("16",
+										memberMemberAgreementService.gainMemberHHTNRBJKAgreementDifferent("16",
 												realBiddingOID);
-										memberAgreementService.gainmemberzqhgHHTAgreementDifferent("18",
+										memberMemberAgreementService.gainmemberzqhgHHTAgreementDifferent("18",
 												realBiddingOID);
 									} else {
-										this.memberAgreementService.gainMemberHHTNRBJKAgreement("6", realBiddingOID);
-										this.memberAgreementService.gainmemberzqhgHHTAgreement("8", realBiddingOID);
+										this.memberMemberAgreementService.gainMemberHHTNRBJKAgreement("6", realBiddingOID);
+										this.memberMemberAgreementService.gainmemberzqhgHHTAgreement("8", realBiddingOID);
 									}
 
 								} else {
@@ -204,6 +210,7 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 											mainBiddingOID, MayInvestAmount, nowDateTime, ly);
 									this.controlDebitCredit.finishTransferReturnNEW(realBiddingOID, nowDateTime, "HH",
 											"HH", ly);
+
 									bdlcash = bdlcash.subtract(MayInvestAmount);
 									dtoInvest.setHoldingAmount(biddingAmount);
 									dtoInvest.setProductStatus("2");
@@ -213,15 +220,13 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 											.updatePackageBiddingMainContentRuning(dtoInvest);
 
 									if (isYZDG) {
-										// TODO 协议
-										this.memberAgreementService.gainmemberzqhgHHTAgreementDifferent("18",
+										this.memberMemberAgreementService.gainmemberzqhgHHTAgreementDifferent("18",
 												realBiddingOID);
-										this.memberAgreementService.gainmemberHHTZQZRCHUJIEAgreement("17",
+										this.memberMemberAgreementService.gainmemberHHTZQZRCHUJIEAgreement("17",
 												realBiddingOID);
 									} else {
-										// TODO 协议
-										this.memberAgreementService.gainmemberzqhgHHTAgreement("8", realBiddingOID);
-										this.memberAgreementService.gainmemberHHTZQZRCHUJIEAgreement("7",
+										this.memberMemberAgreementService.gainmemberzqhgHHTAgreement("8", realBiddingOID);
+										this.memberMemberAgreementService.gainmemberHHTZQZRCHUJIEAgreement("7",
 												realBiddingOID);
 									}
 
@@ -256,9 +261,8 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 									dtoInvest.setLoanDay(ToolDateTime.gainDate().toString());
 									this.packageBiddingMainContentRuningMapper
 											.updatePackageBiddingMainContentRuning(dtoInvest);
-									// TODO 协议
-									memberAgreementService.gainmemberzqhgHHTAgreement("8", realBiddingOID);
-									memberAgreementService.gainmemberHHTZQZRCHUJIEAgreement("7", realBiddingOID);
+									memberMemberAgreementService.gainmemberzqhgHHTAgreement("8", realBiddingOID);
+									memberMemberAgreementService.gainmemberHHTZQZRCHUJIEAgreement("7", realBiddingOID);
 								} else {
 									Date nowDateTime = ToolDateTime.gainDate();
 									controlDebitCredit.addCashPoolUserTransferReturnNEW(realBiddingOID, debitCreditOID,
@@ -277,7 +281,16 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 		} catch (Exception e) {
 			logger.error("站岗资金投标" + e.getMessage());
 		}
-	return null;
+		return null;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

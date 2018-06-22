@@ -29,7 +29,7 @@ import com.izhuantou.damain.user.MemberMember;
 import com.izhuantou.damain.vo.PersonalDTO;
 import com.izhuantou.damain.vo.UserDTO;
 import com.izhuantou.service.api.user.UserService;
-import com.izhuantou.third.rpc.api.memberAgrement.MemberMemberAgreementService;
+import com.izhuantou.third.rpc.api.memberagrement.MemberMemberAgreementService;
 import com.izhuantou.third.rpc.api.message.SendMessageService;
 
 @Controller
