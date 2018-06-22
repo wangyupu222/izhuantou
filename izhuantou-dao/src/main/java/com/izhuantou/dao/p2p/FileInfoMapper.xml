@@ -3,10 +3,92 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.p2p.FileInfoMapper">
-	<!-- 根据OID查询图片信息-->
+	<!-- 根据OID查询图片信息 -->
 	<select id="findPageByOID" resultType="com.izhuantou.damain.p2p.FileInfo">
-		select OID,name from  file_info where OID=#{OID} 
+		select * from
+		file_info where OID=#{OID}
 	</select>
+
+	<insert id="saveFileInfo">
+		INSERT INTO file_info (
+		OID,
+		name,
+		source,
+		physicalName,
+		relativePath,
+		length,
+		contentOID,
+		uploadDateTime,
+		md5,
+		describe0,
+		valid,
+		version,
+		refresh
+		)
+		VALUES
+		(
+		#{OID},
+		#{name},
+		#{source},
+		#{physicalName},
+		#{relativePath},
+		#{length},
+		#{contentOID},
+		NOW(),
+		#{md5},
+		#{describe0},
+		1,
+		0,
+		1
+		)
+	</insert>
 	
+	<insert id="saveFileInfoList">
+		INSERT INTO file_info (
+		OID,
+		name,
+		source,
+		physicalName,
+		relativePath,
+		length,
+		contentOID,
+		uploadDateTime,
+		md5,
+		describe0,
+		valid,
+		version,
+		refresh
+		)
+        VALUES   
+        <foreach collection="files" item="file" separator=",">  
+           (
+			#{file.OID},
+			#{file.name},
+			#{file.source},
+			#{file.physicalName},
+			#{file.relativePath},
+			#{file.length},
+			#{file.contentOID},
+			NOW(),
+			#{file.md5},
+			#{file.describe0},
+			1,
+			0,
+			1
+			)
+        </foreach>  
 	
+	</insert>
+
+	<select id="findPageByOIDList" resultType="com.izhuantou.damain.p2p.FileInfo">
+		select * from
+		file_info where OID in(
+		<foreach collection="OIDS" item="OID" separator=",">  
+			 #{OID}
+		</foreach>)  
+	</select>
+
+
+
+
 </mapper>

@@ -1,4 +1,4 @@
-package com.izhuantou.third.rpc.api.memberAgrement;
+package com.izhuantou.third.rpc.api.memberagrement;
 
 import java.util.Map;
 

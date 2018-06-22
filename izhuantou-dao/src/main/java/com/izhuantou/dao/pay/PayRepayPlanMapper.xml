@@ -110,6 +110,53 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * from  pay_repayplan where businessOID=#{businessOID} and memberOID=#{memberOID}
 	
 	</select>
+	
+	<update id="updateRepayPlan">
+			UPDATE pay_repayplan
+			SET
+			businessOID =#{businessOID},
+			memberOID =#{memberOID},
+			repayDate =#{repayDate},
+			money =#{money},
+			state =#{state},
+			principalMoney =#{principalMoney},
+			interestMoney =#{interestMoney},
+			totalPrincipalMoney =#{totalPrincipalMoney},
+			totalInterestMoney =#{totalInterestMoney},
+			surplusPrincipal =#{surplusPrincipal},
+			manageMoney =#{manageMoney},
+			serviceMoney =#{serviceMoney},
+			rate =#{rate},
+			describe0 =#{describe0},
+			NO =#{NO},
+			addUserOID =#{addUserOID},
+			updUserOID =#{updUserOID},
+			valid =#{valid},
+			addDateTime =#{addDateTime},
+			updDateTime =NOW(),
+			refresh =#{refresh},
+			version =version+1,
+			yqglf =#{yqglf},
+			yqwyj =#{yqwyj},
+			yqfx =#{yqfx},
+			isYQ =#{isYQ}
+			WHERE 
+			OID =#{OID} AND version =#{version}
+	
+	</update>
+	<select id="findByMemberOIDAndState" resultType="com.izhuantou.damain.pay.PayRepayPlan">
+		SELECT 
+			* 
+		FROM
+			PAY_RepayPlan 
+		WHERE 
+			memberOID = #{memberOID}
+		AND
+			state = #{state}
+		ORDER BY
+			repayDate
+	
+	</select>
 
 
 

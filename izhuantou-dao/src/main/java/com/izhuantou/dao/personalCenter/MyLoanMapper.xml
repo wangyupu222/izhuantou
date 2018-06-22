@@ -4,9 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.personalCenter.MyLoanMapper">
 
-
-
-	<select id="findBYmemberOID" resultType="com.izhuantou.damain.vo.UpdLendRecord">
+	<select id="findLoanApplyByMemberOID" resultType="com.izhuantou.damain.vo.LoanApplyRecordDTO">
 		SELECT WEBP2P_LoanApply.
 		memberOID,WEBP2P_LoanApply. idCard,
 		WEBP2P_LoanApply.
@@ -21,10 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WEBP2P_LoanApply.loanNumber = WEBP2P_BiddingExamine.loanNumber
 		where
 		WEBP2P_LoanApply.memberOID=#{memberOID}
-
+		limit #{startIndex},#{pageSize}
+		
 	</select>
 
-	<select id="findBYcondition" resultType="com.izhuantou.damain.vo.UpdLendRecord">
+	<select id="findBYcondition" resultType="com.izhuantou.damain.vo.LoanApplyRecordDTO">
 		SELECT * from (
 		SELECT
 		WEBP2P_LoanApply. memberOID,WEBP2P_LoanApply. idCard,
@@ -43,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 
-	<select id="findList" resultType="com.izhuantou.damain.vo.MyLendRecord">
+	<select id="findLoanRecordByMemberOID" resultType="com.izhuantou.damain.vo.MyLoanRecordDTO">
 		SELECT alloan.loanNumber,
 		WEBP2P_BiddingExamine.loanProductRateInfoID,
 		WEBP2P_LoanApply.loanAmount,
@@ -90,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-	<select id="findFDList" resultType="com.izhuantou.damain.vo.MyLendRecord">
+	<select id="findDDTLoanRecordByPhone" resultType="com.izhuantou.damain.vo.MyLoanRecordDTO">
 
 		SELECT t.* FROM (SELECT
 		IF
@@ -142,7 +141,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-	<select id="findCDList" resultType="com.izhuantou.damain.vo.MyLendRecord">
+	<select id="findCDLoanRecordByPhone" resultType="com.izhuantou.damain.vo.MyLoanRecordDTO">
 		SELECT IF ( pool.OID IS NULL,
 		running.loanNumber, pool.loanNumber )
 		loanNumber,
@@ -171,12 +170,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		loaninfo.dkcplx
 		WHERE
 		loaninfo.phone = #{phone}
-		AND loaninfo.isAgree =
-		'3'
+		AND loaninfo.isAgree ='3'
 	</select>
 
-	<select id="findByMemberOID"
-		resultType="com.izhuantou.damain.vo.ListRepaymentCollection">
+	<select id="findRepayByMemberOID"
+		resultType="com.izhuantou.damain.vo.RepayMentDTO">
 		SELECT
 		*
 		FROM
@@ -363,7 +361,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="findZCByMemberOID"
-		resultType="com.izhuantou.damain.vo.ListRepaymentCollection">
+		resultType="com.izhuantou.damain.vo.RepayMentDTO">
 		SELECT
 		NormalBiddingRuning.OID businessOID,
 		repayPlan.addDateTime loandatetime,
