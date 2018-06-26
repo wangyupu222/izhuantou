@@ -31,7 +31,7 @@ public class NoticeController {
     public OpResult getUrgentNoticeListByTypes(Integer currentPage,UrgentNoticeDTO urgentNoticeDTO) {
 		Map<String,Object> urgentNoticeList = urgentNoticeService.findUrgentNotice(currentPage,urgentNoticeDTO);
 		if (urgentNoticeList == null) {
-		    return OpResult.getFailedResult("没有数据");
+		    return OpResult.getFailedResult("没有数据了");
 		} else {
 		    return OpResult.getSuccessResult(urgentNoticeList);
 		}
