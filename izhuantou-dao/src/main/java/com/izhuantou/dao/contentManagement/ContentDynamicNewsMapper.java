@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.github.abel533.mapper.Mapper;
 import com.izhuantou.damain.p2p.P2pNotice;
 import com.izhuantou.damain.p2p.P2pToutiaoNews;
+import com.izhuantou.damain.vo.PageNewsDTO;
 /**
  * 关于我们-砖头动态
  * 
@@ -19,7 +20,7 @@ public interface ContentDynamicNewsMapper extends Mapper<P2pToutiaoNews>{
      * 
      * @return
      */
-    int getRowCount();
+    int getRowCount(PageNewsDTO pageNewsDTO);
     
 	/**
      * 分页查询砖头动态
@@ -28,7 +29,7 @@ public interface ContentDynamicNewsMapper extends Mapper<P2pToutiaoNews>{
      * @param pageSize
      * @return
      */
-    public List<P2pToutiaoNews> findDynamicNewsByPage(@Param("startIndex") Integer startIndex,
+    public List<P2pToutiaoNews> findDynamicNewsByPage(@Param("pnDTO") PageNewsDTO pageNewsDTO,@Param("startIndex") Integer startIndex,
 	    @Param("pageSize") Integer pageSize);
     
     /**

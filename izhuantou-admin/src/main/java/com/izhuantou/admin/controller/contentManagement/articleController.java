@@ -130,9 +130,9 @@ public class articleController {
 	@SystemControllerLog(description = "关于我们-平台公告信息列表 ")
 	@RequestMapping(value="getnoticelist")
 	@ResponseBody
-	public OpResult getNoticeList(Integer currentPage) {
+	public OpResult getNoticeList(Integer currentPage,PageNewsDTO pageNewsDTO) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map = articleService.findNotices(currentPage);
+		map = articleService.findNotices(currentPage,pageNewsDTO);
 		if (map == null) {
 		    return OpResult.getFailedResult("暂无数据");
 		}
@@ -221,9 +221,9 @@ public class articleController {
 	@SystemControllerLog(description = "关于我们-砖头动态信息列表")
 	@RequestMapping(value="getdynamicnewslist")
 	@ResponseBody
-	public OpResult getDynamicNewsList(Integer currentPage) {
+	public OpResult getDynamicNewsList(Integer currentPage,PageNewsDTO pageNewsDTO) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map = articleService.findDynamicNews(currentPage);
+		map = articleService.findDynamicNews(currentPage,pageNewsDTO);
 		if (map == null) {
 		    return OpResult.getFailedResult("暂无数据");
 		}
@@ -312,9 +312,9 @@ public class articleController {
 	@SystemControllerLog(description = "关于我们-媒体报道信息列表")
 	@RequestMapping(value="getmedianewslist")
 	@ResponseBody
-	public OpResult getMediaNewsList(Integer currentPage) {
+	public OpResult getMediaNewsList(Integer currentPage,PageNewsDTO pageNewsDTO) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map = articleService.findMediaNews(currentPage);
+		map = articleService.findMediaNews(currentPage,pageNewsDTO);
 		if (map == null) {
 		    return OpResult.getFailedResult("暂无数据");
 		}

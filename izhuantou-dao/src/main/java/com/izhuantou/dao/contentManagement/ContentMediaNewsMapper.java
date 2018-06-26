@@ -8,6 +8,7 @@ import com.github.abel533.mapper.Mapper;
 import com.izhuantou.damain.p2p.P2pMediaNews;
 import com.izhuantou.damain.p2p.P2pNotice;
 import com.izhuantou.damain.p2p.P2pToutiaoNews;
+import com.izhuantou.damain.vo.PageNewsDTO;
 /**
  * 关于我们-媒体报道
  * 
@@ -20,7 +21,7 @@ public interface ContentMediaNewsMapper extends Mapper<P2pMediaNews>{
      * 
      * @return
      */
-    int getRowCount();
+    int getRowCount(PageNewsDTO pageNewsDTO);
     
 	/**
      * 分页查询媒体报道
@@ -29,7 +30,7 @@ public interface ContentMediaNewsMapper extends Mapper<P2pMediaNews>{
      * @param pageSize
      * @return
      */
-    public List<P2pMediaNews> findMediaNewsByPage(@Param("startIndex") Integer startIndex,
+    public List<P2pMediaNews> findMediaNewsByPage(@Param("pnDTO") PageNewsDTO pageNewsDTO,@Param("startIndex") Integer startIndex,
 	    @Param("pageSize") Integer pageSize);
     
     /**

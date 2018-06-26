@@ -221,7 +221,7 @@ public class ArticleServiceImpl implements ArticleService{
      * @return
      */
 	@Override
-	public Map<String, Object> findNotices(Integer currentPage) {
+	public Map<String, Object> findNotices(Integer currentPage,PageNewsDTO pageNewsDTO) {
 		try {
 		    // 存放图片和信息内容
 		    List<PageNewsDTO> noticeList = new ArrayList<PageNewsDTO>();
@@ -234,7 +234,7 @@ public class ArticleServiceImpl implements ArticleService{
 			pageController.setCurrentPage(currentPage);
 		    }
 		    /** 获取总数 */
-		    int rows = contentNoticeDao.getRowCount();
+		    int rows = contentNoticeDao.getRowCount(pageNewsDTO);
 		    pageController.setTotalNumber(rows);
 		    // 取得总页数，总页数=总记录数/总页数
 		    Integer totalPage = pageController.getTotalPage();
@@ -245,7 +245,7 @@ public class ArticleServiceImpl implements ArticleService{
 		    // 每页条数
 		    Integer pageSize = pageController.getPageSize();
 		    // 获取查询记录
-		    List<P2pNotice> select = this.contentNoticeDao.findNoticeByPage(startIndex, pageSize);
+		    List<P2pNotice> select = this.contentNoticeDao.findNoticeByPage(pageNewsDTO,startIndex, pageSize);
 		    if(select != null && select.size()>0){
 		    	for (P2pNotice pmn : select) {
 					// 获取图片的id
@@ -413,10 +413,10 @@ public class ArticleServiceImpl implements ArticleService{
      * @return
      */
 	@Override
-	public Map<String, Object> findDynamicNews(Integer currentPage) {
+	public Map<String, Object> findDynamicNews(Integer currentPage,PageNewsDTO pageNewsDTO) {
 		try {
 		    // 存放图片和信息内容
-		    List<PageNewsDTO> noticeList = new ArrayList<PageNewsDTO>();
+		    List<PageNewsDTO> dynamicNewsList = new ArrayList<PageNewsDTO>();
 		    // 分页信息
 		    Pagination<P2pToutiaoNews> pageController = new Pagination<>();
 		    // 返回分页信息和内容
@@ -426,7 +426,7 @@ public class ArticleServiceImpl implements ArticleService{
 			pageController.setCurrentPage(currentPage);
 		    }
 		    /** 获取总数 */
-		    int rows = contentDynamicNewsDao.getRowCount();
+		    int rows = contentDynamicNewsDao.getRowCount(pageNewsDTO);
 		    pageController.setTotalNumber(rows);
 		    // 取得总页数，总页数=总记录数/总页数
 		    Integer totalPage = pageController.getTotalPage();
@@ -437,7 +437,7 @@ public class ArticleServiceImpl implements ArticleService{
 		    // 每页条数
 		    Integer pageSize = pageController.getPageSize();
 		    // 获取查询记录
-		    List<P2pToutiaoNews> select = this.contentDynamicNewsDao.findDynamicNewsByPage(startIndex, pageSize);
+		    List<P2pToutiaoNews> select = this.contentDynamicNewsDao.findDynamicNewsByPage(pageNewsDTO,startIndex, pageSize);
 		    if(select != null && select.size()>0){
 		    	for (P2pToutiaoNews pmn : select) {
 		  			// 获取图片的id
@@ -465,10 +465,10 @@ public class ArticleServiceImpl implements ArticleService{
 		  				    String addTime = DateUtils.formatJustDate(pmn.getAddDateTime().getTime());
 		  				    dto.setAddTime(addTime);
 	  				    }
-	  				    noticeList.add(dto);
+	  				  dynamicNewsList.add(dto);
 	  				}
 	  		    }
-	  		    map.put("noticeList", noticeList);
+	  		    map.put("dynamicNewsList", dynamicNewsList);
 	  		    map.put("Pagination", pageController);
 	  		    return map;
 		    }
@@ -605,10 +605,10 @@ public class ArticleServiceImpl implements ArticleService{
      * @return
      */
 	@Override
-	public Map<String, Object> findMediaNews(Integer currentPage) {
+	public Map<String, Object> findMediaNews(Integer currentPage,PageNewsDTO pageNewsDTO) {
 		try {
 		    // 存放图片和信息内容
-		    List<PageNewsDTO> noticeList = new ArrayList<PageNewsDTO>();
+		    List<PageNewsDTO> mediaNewsList = new ArrayList<PageNewsDTO>();
 		    // 分页信息
 		    Pagination<P2pMediaNews> pageController = new Pagination<>();
 		    // 返回分页信息和内容
@@ -618,7 +618,7 @@ public class ArticleServiceImpl implements ArticleService{
 			pageController.setCurrentPage(currentPage);
 		    }
 		    /** 获取总数 */
-		    int rows = contentMediaNewsDao.getRowCount();
+		    int rows = contentMediaNewsDao.getRowCount(pageNewsDTO);
 		    pageController.setTotalNumber(rows);
 		    // 取得总页数，总页数=总记录数/总页数
 		    Integer totalPage = pageController.getTotalPage();
@@ -629,7 +629,7 @@ public class ArticleServiceImpl implements ArticleService{
 		    // 每页条数
 		    Integer pageSize = pageController.getPageSize();
 		    // 获取查询记录
-		    List<P2pMediaNews> select = this.contentMediaNewsDao.findMediaNewsByPage(startIndex, pageSize);
+		    List<P2pMediaNews> select = this.contentMediaNewsDao.findMediaNewsByPage(pageNewsDTO,startIndex, pageSize);
 		    if(select != null && select.size()>0){
 		    	for (P2pMediaNews pmn : select) {
 					// 获取图片的id
@@ -657,10 +657,10 @@ public class ArticleServiceImpl implements ArticleService{
 						    String addTime = DateUtils.formatJustDate(pmn.getAddDateTime().getTime());
 						    dto.setAddTime(addTime);
 					    }
-					    noticeList.add(dto);
+					    mediaNewsList.add(dto);
 					}
 			    }
-			    map.put("noticeList", noticeList);
+			    map.put("mediaNewsList", mediaNewsList);
 			    map.put("Pagination", pageController);
 			    return map;
 		    }
