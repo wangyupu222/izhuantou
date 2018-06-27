@@ -1,6 +1,7 @@
 package com.izhuantou.portal.controller.personalCenter;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -152,11 +153,14 @@ public class MyCashController {
 	public OpResult FindResultcash(@PathVariable(value = "page") String page,
 			@RequestParam(value = "strDate", defaultValue = "") String strDate,
 			@RequestParam(value = "endDate", defaultValue = "") String endDate, HttpServletRequest request) {
+		Long startTime = new Date().getTime();
 		HttpSession session = request.getSession();
 		String memberOID = (String) session.getAttribute("memberOID");
 		Pagination<PayCustomerBusiness> list = this.myCashService.findMessage(Integer.parseInt(page), memberOID,
 				strDate, endDate);
 		if (list != null) {
+			Long time = new Date().getTime() - startTime;
+			logger.info("资金流水列表查询花费时间{}",time);
 			return OpResult.getSuccessResult(list);
 		} else {
 			return OpResult.getFailedResult("查询失败");
