@@ -27,6 +27,7 @@ import com.izhuantou.damain.vo.member.CustomerQueryConditionDTO;
 import com.izhuantou.damain.vo.member.FeedBackDetailsDTO;
 import com.izhuantou.damain.vo.member.TrackDTO;
 import com.izhuantou.damain.vo.member.TrackQueryConditionDTO;
+import com.izhuantou.damain.vo.member.UserDetailThreeNumberDTO;
 import com.izhuantou.damain.vo.member.UserTrackDTO;
 import com.izhuantou.service.api.member.CustomerService;
 
@@ -105,6 +106,21 @@ public class CustomerController {
 
 	}
 
+	/**
+	 * 客户详情(行为轨迹)三个数据统计
+	 */
+	@SystemControllerLog(description = "客户详情(行为轨迹)三个数据统计")
+	@RequestMapping(value = "/usertrackthreenumber",method = RequestMethod.POST)
+	@ResponseBody
+	public OpResult userTrackThreeNumber(String oid){
+		UserDetailThreeNumberDTO userDetailThreeNumberDTO =customerService.userTrackThreeNumber(oid);
+		if (userDetailThreeNumberDTO != null){
+			return OpResult.getSuccessResult(userDetailThreeNumberDTO);
+		}else{
+			return OpResult.getFailedResult("统计失败");
+		}
+	}
+	
 	/**
 	 * 客户详情（行为轨迹）
 	 */

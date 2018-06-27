@@ -12,6 +12,7 @@ import com.izhuantou.damain.vo.member.CustomerQueryConditionDTO;
 import com.izhuantou.damain.vo.member.FeedBackDetailsDTO;
 import com.izhuantou.damain.vo.member.TrackDTO;
 import com.izhuantou.damain.vo.member.TrackQueryConditionDTO;
+import com.izhuantou.damain.vo.member.UserDetailThreeNumberDTO;
 import com.izhuantou.damain.vo.member.UserTrackDTO;
 
 public interface CustomerService {
@@ -148,6 +149,13 @@ public interface CustomerService {
 	 * @return
 	 */
 	Pagination<TrackDTO> conditionTrack(TrackQueryConditionDTO trackQueryConditionDTO, Integer currentPage);
+	
+	/**
+	 * 客户详情(行为轨迹)三个数据统计
+	 * @param oid
+	 * @return
+	 */
+	UserDetailThreeNumberDTO userTrackThreeNumber(String oid);
 
 	
 
