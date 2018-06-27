@@ -53,7 +53,7 @@ public interface ArticleService {
      * @param currentPage 页数
      * @return
      */
-    public Map<String, Object> findNotices(Integer currentPage);
+    public Map<String, Object> findNotices(Integer currentPage,PageNewsDTO pageNewsDTO);
     
     /**
      * 添加一条公告
@@ -88,7 +88,7 @@ public interface ArticleService {
      * @param currentPage 页数
      * @return
      */
-    public Map<String, Object> findDynamicNews(Integer currentPage);
+    public Map<String, Object> findDynamicNews(Integer currentPage,PageNewsDTO pageNewsDTO);
     
     /**
      * 添加一条砖头动态
@@ -123,7 +123,7 @@ public interface ArticleService {
      * @param currentPage 页数
      * @return
      */
-    public Map<String, Object> findMediaNews(Integer currentPage);
+    public Map<String, Object> findMediaNews(Integer currentPage,PageNewsDTO pageNewsDTO);
     
     /**
      * 添加一条媒体报道

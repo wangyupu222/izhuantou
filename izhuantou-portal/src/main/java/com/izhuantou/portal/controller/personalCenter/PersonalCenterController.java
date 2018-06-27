@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.izhuantou.common.bean.OpResult;
 import com.izhuantou.common.bean.Pagination;
+import com.izhuantou.common.constant.Constant;
 import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.user.MemberAgreement;
 import com.izhuantou.damain.user.MemberMemberAgreement;
@@ -235,14 +236,14 @@ public class PersonalCenterController {
 					session.invalidate();
 					return "redirect:/portal/personal/PwdUpOk";
 				} else {
-					view.addFlashAttribute("msg", message);
+					view.addFlashAttribute(Constant.MSG, message);
 					return "redirect:/portal/personal/Securitypre";
 				}
 			}
-			view.addFlashAttribute("msg", "修改失败");
+			view.addFlashAttribute(Constant.MSG, "修改失败");
 			return "redirect:/portal/personal/Securitypre";
 		} else {
-			view.addFlashAttribute("msg", "用户未登录");
+			view.addFlashAttribute(Constant.MSG, "用户未登录");
 			return "redirect:/portal/personal/Securitypre";
 		}
 	}

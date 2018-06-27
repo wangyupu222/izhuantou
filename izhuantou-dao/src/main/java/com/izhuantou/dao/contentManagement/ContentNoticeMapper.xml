@@ -5,19 +5,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.izhuantou.dao.contentManagement.ContentNoticeMapper">
 	<!-- 查询条数 -->
 	<select id="getRowCount" resultType="int">
-		select count(*) from p2p_notice where valid=true
+		select count(*) from p2p_notice where valid=true  
+			<if test="pnDTO.name != null and pnDTO.name != ''">
+                and name like CONCAT('%',#{pnDTO.name},'%') 
+            </if>
+            <if test="pnDTO.author != null and pnDTO.author != ''">
+                and author like CONCAT('%',#{pnDTO.author},'%')
+            </if>
 	</select>
 	<!-- 查询公告 -->
 	<select id="findNoticeByPage" resultType="com.izhuantou.damain.p2p.P2pNotice">
 		select OID,name,author,uploadImgOID ,messages,addDateTime from p2p_notice where valid=true
-			<!-- 
-			where
-			<if test="name != null and name != ''">
-                and name like CONCAT('%',#{name},'%') 
+			<if test="pnDTO.name != null and pnDTO.name != ''">
+                and name like CONCAT('%',#{pnDTO.name},'%') 
             </if>
-            <if test="author != null and author != ''">
-                and author like CONCAT('%',#{author},'%')
-            </if> -->
+            <if test="pnDTO.author != null and pnDTO.author != ''">
+                and author like CONCAT('%',#{pnDTO.author},'%')
+            </if>
 			ORDER BY addDateTime DESC 
 			limit #{startIndex} , #{pageSize}
 	</select>

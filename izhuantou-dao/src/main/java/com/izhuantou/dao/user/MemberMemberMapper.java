@@ -134,5 +134,9 @@ public interface MemberMemberMapper extends Mapper<MemberMember> {
 	 * @return
 	 */
 	public MemberMember selectByMobile(String mobile);
-
+	/**
+	 * 修改用户密码错误的次数
+	 * @return
+	 */
+	public int updateOpportunity(MemberMember member);
 }

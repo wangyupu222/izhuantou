@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.izhuantou.common.bean.OpResult;
 import com.izhuantou.common.bean.Pagination;
+import com.izhuantou.common.constant.Constant;
 import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.pay.PayCustomer;
 import com.izhuantou.damain.vo.LoanApplyRecordDTO;
@@ -102,12 +103,12 @@ public class MyloanController {
 		if (StringUtil.isNotEmpty(mesYzm) && !mesYzm.toLowerCase().equals(sys_msg)) {// 测试关闭短信
 			String s = myloanService.saveloanApply(loanApply);
 			if (StringUtil.isNotEmpty(s) && s.equals("-1")) {
-				view.addFlashAttribute("msg", "您尚未进行委托授权");
+				view.addFlashAttribute(Constant.MSG, "您尚未进行委托授权");
 			} else if (StringUtil.isNotEmpty(s) && s.equals("1")) {
 				return "redirect:/portal/loan/successLoanApplication";
 			}
 		} else {
-			view.addFlashAttribute("msg", "短信验证错误");
+			view.addFlashAttribute(Constant.MSG, "短信验证错误");
 		}
 		return "redirect:/portal/loan/LoanApplication?type=1";
 	}
@@ -166,14 +167,14 @@ public class MyloanController {
 				return "redirect:/portal/loan/LoanApplication?type=1";
 			}
 		} else {
-			view.addFlashAttribute("msg", "短信验证错误");
+			view.addFlashAttribute(Constant.MSG, "短信验证错误");
 			return "redirect:/portal/loan/LoanApplication_iframe";
 		}
 
 	}
 
 	/**
-	 * 个人中心借款记录
+	 * 借款记录
 	 * 
 	 * @return
 	 * 

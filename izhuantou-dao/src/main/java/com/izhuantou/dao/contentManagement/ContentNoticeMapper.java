@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.github.abel533.mapper.Mapper;
 import com.izhuantou.damain.p2p.P2pNotice;
+import com.izhuantou.damain.vo.PageNewsDTO;
 /**
  * 关于我们-平台公告
  * 
@@ -18,7 +19,7 @@ public interface ContentNoticeMapper extends Mapper<P2pNotice>{
      * 
      * @return
      */
-    int getRowCount();
+    int getRowCount(@Param("pnDTO") PageNewsDTO pageNewsDTO);
     
 	/**
      * 分页查询出所有的公告
@@ -27,7 +28,7 @@ public interface ContentNoticeMapper extends Mapper<P2pNotice>{
      * @param pageSize
      * @return
      */
-    public List<P2pNotice> findNoticeByPage(@Param("startIndex") Integer startIndex,
+    public List<P2pNotice> findNoticeByPage(@Param("pnDTO") PageNewsDTO pageNewsDTO,@Param("startIndex") Integer startIndex,
 	    @Param("pageSize") Integer pageSize);
     
     /**

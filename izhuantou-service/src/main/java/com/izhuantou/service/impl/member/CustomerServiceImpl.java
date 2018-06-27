@@ -50,7 +50,6 @@ import com.izhuantou.dao.user.MemberScoreMapper;
 import com.izhuantou.dao.webp2p.WebP2pNoviceBiddingRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
 import com.izhuantou.service.api.member.CustomerService;
-import com.mysql.fabric.xmlrpc.base.Array;
 
 @Service("customerService")
 public class CustomerServiceImpl implements CustomerService {

@@ -6,18 +6,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 查询砖头动态条数 -->
 	<select id="getRowCount" resultType="int">
 		select count(*) from p2p_toutiaonews where valid=true
-	</select>
-	<!-- 查询砖头动态列表 -->
-	<select id="findDynamicNewsByPage" resultType="com.izhuantou.damain.p2p.P2pToutiaoNews">
-		select OID,name,author,uploadImgOID ,messages,addDateTime from p2p_toutiaonews where valid=true
-			<!-- 
-			where
 			<if test="name != null and name != ''">
                 and name like CONCAT('%',#{name},'%') 
             </if>
             <if test="author != null and author != ''">
                 and author like CONCAT('%',#{author},'%')
-            </if> -->
+            </if>
+	</select>
+	<!-- 查询砖头动态列表 -->
+	<select id="findDynamicNewsByPage" resultType="com.izhuantou.damain.p2p.P2pToutiaoNews">
+		select OID,name,author,uploadImgOID ,messages,addDateTime from p2p_toutiaonews where valid=true
+			<if test="pnDTO.name != null and pnDTO.name != ''">
+                and name like CONCAT('%',#{pnDTO.name},'%') 
+            </if>
+            <if test="pnDTO.author != null and pnDTO.author != ''">
+                and author like CONCAT('%',#{pnDTO.author},'%')
+            </if>
 			ORDER BY addDateTime DESC 
 			limit #{startIndex} , #{pageSize}
 	</select>
