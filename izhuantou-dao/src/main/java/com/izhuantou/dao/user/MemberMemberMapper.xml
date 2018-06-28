@@ -16,17 +16,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 根据用户输入的账号和密码进行注册 -->
 	<insert id="registUser" parameterType="com.izhuantou.damain.user.MemberMember">
-		insert into member_member
-		(OID,name,memberAccount,password,valid,addDateTime,updDateTime,refresh,version,yewuOID,addUserOID)
-		value(#{OID},#{name},#{memberAccount},#{password},1,NOW(),NOW(),1,0,#{yewuOID},#{addUserOID})
+	insert into member_member
+	(OID,name,memberAccount,password,valid,addDateTime,updDateTime,refresh,version,yewuOID,addUserOID,opportunity)
+	value(#{OID},#{name},#{memberAccount},#{password},1,NOW(),NOW(),1,0,#{yewuOID},#{addUserOID},5)
 	</insert>
 	<!-- 根据用户输入的账号进行密码修改 -->
 	<update id="updatePassword" parameterType="com.izhuantou.damain.user.MemberMember">
 		update member_member
-		set password=#{password},updDateTime=NOW(),version = version+1 where
+		set password=#{password},updDateTime=NOW(),opportunity=5,version = version+1 where
 		name=#{name} and version = #{version}
 	</update>
-
+	
+	
 	<!--根据用户的OID进行密保问题设置 -->
 	<update id="insertTwoQuestion" parameterType="com.izhuantou.damain.user.MemberMember">
 		update
@@ -120,7 +121,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		valid =
 		#{valid},
 		addDateTime =#{addDateTime},
-		updDateTime = NOW(updDateTime),
+		updDateTime = NOW(),
 		refresh = #{refresh},
 		version = version+1,
 		picOID =#{picOID},
@@ -129,7 +130,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		questionTwo =
 		#{questionTwo},
 		answerTwo = #{answerTwo},
-		blacklist = #{blacklist}
+		blacklist = #{blacklist},
+		opportunity = #{opportunity}
 		WHERE
 		OID = #{OID} and version = #{version}
 	</update>
@@ -277,5 +279,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from
 		member_member where mobile = #{mobile} limit 1
 	</select>
+	
+	<!-- 修改密码可输入的次数 -->
+	<update id="updateOpportunity" parameterType="com.izhuantou.damain.user.MemberMember">
+		update member_member
+		set opportunity=#{opportunity}, version =version+1, updDateTime = NOW() where
+		OID = #{OID} and version = #{version}
+	</update>
 
 </mapper>

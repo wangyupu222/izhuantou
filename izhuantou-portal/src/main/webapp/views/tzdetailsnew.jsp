@@ -210,7 +210,7 @@ font-size:16px;color:#666;margin:0 auto;width:70%;text-align: left;
            
         </div>
         <%-- <p class="commit-2"><span class="hide">市场有风险，出借需谨慎</span><web:WidgetButton value="确认" customProperty="class='zcbtn_input' " property="class='colseok'"  /><span class="spjine hide">需支付￥<em id="paymoney"></em>元</span></p> --%>
-   <p class="commit-2"><web:WidgetButton value="确认" customProperty="class='zcbtn_input confirmbtn' " property="class='colseok'"  /></p>
+   <p class="commit-2"><span>市场有风险，出借需谨慎</span><button id="class='colseok'" name="class='colseok'" type="submit" value="确认" class="zcbtn_input confirmbtn">确认</button></p>
    </div>    
        <!--确认出借结束-->
 </form>   

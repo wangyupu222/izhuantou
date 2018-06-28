@@ -35,6 +35,7 @@ import com.izhuantou.damain.vo.member.CustomerQueryConditionDTO;
 import com.izhuantou.damain.vo.member.FeedBackDetailsDTO;
 import com.izhuantou.damain.vo.member.TrackDTO;
 import com.izhuantou.damain.vo.member.TrackQueryConditionDTO;
+import com.izhuantou.damain.vo.member.UserDetailThreeNumberDTO;
 import com.izhuantou.damain.vo.member.UserTrackDTO;
 import com.izhuantou.damain.webp2p.WebP2pNoviceBiddingRuning;
 import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning;
@@ -53,7 +54,6 @@ import com.izhuantou.dao.user.MemberScoreMapper;
 import com.izhuantou.dao.webp2p.WebP2pNoviceBiddingRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
 import com.izhuantou.service.api.member.CustomerService;
-import com.mysql.fabric.xmlrpc.base.Array;
 
 @Service("customerService")
 public class CustomerServiceImpl implements CustomerService {
@@ -127,7 +127,8 @@ public class CustomerServiceImpl implements CustomerService {
 			pagination.setTotalPage((totalNumber / pagination.getPageSize()) + 1);
 		}
 		// 每页显示的数据
-		List<CustomerListDTO> customerList = memberMemberMapper.listCustomer((currentPage - 1),
+		Integer startIndex = (currentPage-1)*pagination.getPageSize();
+		List<CustomerListDTO> customerList = memberMemberMapper.listCustomer(startIndex,
 				pagination.getPageSize());
 		if (customerList != null && customerList.size() > 0) {
 			for (CustomerListDTO clDTO : customerList) {
@@ -217,7 +218,8 @@ public class CustomerServiceImpl implements CustomerService {
 			pagination.setTotalPage((totalNumber / pagination.getPageSize()) + 1);
 		}
 		// 每页显示数据
-		List<CustomerListDTO> customerList = memberMemberMapper.conditionList((currentPage - 1),
+		Integer startIndex = (currentPage-1)*pagination.getPageSize();
+		List<CustomerListDTO> customerList = memberMemberMapper.conditionList(startIndex,
 				pagination.getPageSize(), cqcDTO);
 		if (customerList != null && customerList.size() > 0) {
 			for (CustomerListDTO clDTO : customerList) {
@@ -477,7 +479,6 @@ public class CustomerServiceImpl implements CustomerService {
 			// 投资产品数
 			int noviceNumer = webP2pNoviceBiddingRuningMapper.countByMemberOID(oid);
 			int cashPoolNumber = payCashPoolMapper.countByMemberOID(oid);
-			// 客户投资信息详情
 			if (investmentNumber != 0) {
 				// 新手投记录
 				if (noviceNumer != 0) {
@@ -575,7 +576,8 @@ public class CustomerServiceImpl implements CustomerService {
 			pagination.setTotalPage((totalNumber / pagination.getPageSize()) + 1);
 		}
 		// 每页显示数据集
-		List<CustomerFeedback> list = customerFeedbackMapper.listServiceRegister((currentPage - 1),
+		Integer startIndex = (currentPage-1)*pagination.getPageSize();
+		List<CustomerFeedback> list = customerFeedbackMapper.listServiceRegister(startIndex,
 				pagination.getPageSize(), type);
 		// 遍历集合
 		List<CustomerFeedbackDTO> cfDTOList = new ArrayList<>();
@@ -672,7 +674,8 @@ public class CustomerServiceImpl implements CustomerService {
 			pagination.setTotalPage((totalNumber / pagination.getPageSize()) + 1);
 		}
 		// 每页显示数据集
-		List<CustomerFeedback> list = customerFeedbackMapper.selectByCondition((currentPage - 1),
+		Integer startIndex = (currentPage-1)*pagination.getPageSize();
+		List<CustomerFeedback> list = customerFeedbackMapper.selectByCondition(startIndex,
 				pagination.getPageSize(), cqcDTO);
 		// 遍历集合
 		List<CustomerFeedbackDTO> cfDTOList = new ArrayList<>();
@@ -1264,6 +1267,40 @@ public class CustomerServiceImpl implements CustomerService {
 		sb.append(s + "秒 前");
 		String timeAgo = new String(sb);
 		return timeAgo;
+	}
+
+	/**
+	 * 客户详情(行为轨迹)三个数据统计
+	 */
+	@Override
+	public UserDetailThreeNumberDTO userTrackThreeNumber(String oid) {
+		UserDetailThreeNumberDTO udtnDTO = new UserDetailThreeNumberDTO();
+		// 投资总额
+		BigDecimal investmentMoney = payCustomerBusinessMapper.countTzMoney(oid);
+		if (investmentMoney != null) {
+			udtnDTO.setInvestmentMoney(ToolMath.formatNumber(investmentMoney));
+		} else {
+			udtnDTO.setInvestmentMoney("0");
+		}
+		// 投资次数
+		Integer investmentNumber = payCustomerBusinessMapper.countTzNumber(oid);
+		if (investmentNumber != null) {
+			udtnDTO.setInvestmentNumber(investmentNumber);
+		} else {
+			udtnDTO.setInvestmentNumber(0);
+		}
+		// 投资产品数
+		Integer investmentProductNumber = 0;
+		int noviceNumer = webP2pNoviceBiddingRuningMapper.countByMemberOID(oid);
+		if (noviceNumer != 0) {
+			investmentProductNumber += 1;
+		}
+		int cashPoolNumber = payCashPoolMapper.countByMemberOID(oid);
+		if (cashPoolNumber != 0) {
+			investmentProductNumber += 1;
+		}
+		udtnDTO.setInvestmentProductNumber(investmentProductNumber);
+		return udtnDTO;
 	}
 
 }

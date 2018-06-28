@@ -82,6 +82,11 @@
     background-position: 200px 0;
     }
 }
+.forceLogout{
+ font-size: 16px;
+  color:#F85665;
+}
+
     </style>
 
 </head>
@@ -121,7 +126,11 @@
             <div class="reademe"><label class="checklabel"><input type="checkbox" id="isRememberMe" name="isRememberMe" value="ok" /><label for="isRememberMe">记住我</label>
             </label><a href="forgetpwd01.jsp">忘记密码？</a></div>
             <div align="center" class="loginErro"><hoontag:Message name="loginErro"/></div>
-            <div id="login_val" class="login_validate"> ${msg}</div>
+            <div id="login_val" class="login_validate"> ${msg}
+            <%if(session.getAttribute("forceLogout") != null){ %>
+			<div align="center" class="forceLogout"><span class="zh"><%=session.getAttribute("forceLogout") %></span></div>
+			<% }%>
+            </div>
             <div  class="dlbtn" ><button id="login" name="login" value="登录" type="submit" class="dlbtn">登录</button>
                 <span class="loadingBtn" style="display:none;">正在登录中<img src="<%=pathUrl %>/images/loading_dian.gif"></span>
             </div>

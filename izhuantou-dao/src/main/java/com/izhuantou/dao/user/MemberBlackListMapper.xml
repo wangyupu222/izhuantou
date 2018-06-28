@@ -12,4 +12,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where name = #{name}
 	</select>
 
+	<insert id="insertMemberBlack">
+		INSERT INTO member_blacklist (
+			OID,
+			name,
+			describe0,
+			NO,
+			addUserOID,
+			updUserOID,
+			valid,
+			addDateTime,
+			updDateTime,
+			refresh,
+			version
+		)
+		VALUES
+			(
+			#{OID},
+			#{name},
+			#{describe0},
+			#{NO},
+			#{addUserOID},
+			#{updUserOID},
+			1,
+			NOW(),
+			NOW(),
+			1,
+			0
+			)
+	</insert>
+
 </mapper>

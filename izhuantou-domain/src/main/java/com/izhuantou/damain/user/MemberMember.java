@@ -264,8 +264,20 @@ public class MemberMember extends BasePojo {
      * 版本号
      */
     private Integer version;
+    /**
+     * 面剩余输错的次数
+     */
+    private String opportunity;
+    
+    public String getOpportunity() {
+		return opportunity;
+	}
 
-    public String getOID() {
+	public void setOpportunity(String opportunity) {
+		this.opportunity = opportunity;
+	}
+
+	public String getOID() {
 	return OID;
     }
 
@@ -666,21 +678,21 @@ public class MemberMember extends BasePojo {
     }
 
     @Override
-    public String toString() {
-	return "MemberMember [OID=" + OID + ", name=" + name + ", clientOID=" + clientOID + ", memberNumber="
-		+ memberNumber + ", memberAccount=" + memberAccount + ", nickName=" + nickName + ", realName="
-		+ realName + ", password=" + password + ", nameCN=" + nameCN + ", gender=" + gender + ", age=" + age
-		+ ", birthday=" + birthday + ", idCard=" + idCard + ", mobile=" + mobile + ", email=" + email
-		+ ", marriage=" + marriage + ", address=" + address + ", referrals=" + referrals + ", provider="
-		+ provider + ", city=" + city + ", registerTime=" + registerTime + ", userType=" + userType
-		+ ", loanInvestmentType=" + loanInvestmentType + ", viewType=" + viewType + ", realOID=" + realOID
-		+ ", state=" + state + ", yewuOID=" + yewuOID + ", xieli=" + xieli + ", school=" + school + ", company="
-		+ company + ", comscale=" + comscale + ", position=" + position + ", income=" + income + ", house="
-		+ house + ", car=" + car + ", picOID=" + picOID + ", questionOne=" + questionOne + ", answerOne="
-		+ answerOne + ", questionTwo=" + questionTwo + ", answerTwo=" + answerTwo + ", blacklist=" + blacklist
-		+ ", describe0=" + describe0 + ", NO=" + NO + ", addUserOID=" + addUserOID + ", updUserOID="
-		+ updUserOID + ", valid=" + valid + ", addDateTime=" + addDateTime + ", updDateTime=" + updDateTime
-		+ ", refresh=" + refresh + ", version=" + version + "]";
-    }
+	public String toString() {
+		return "MemberMember [OID=" + OID + ", name=" + name + ", clientOID=" + clientOID + ", memberNumber="
+				+ memberNumber + ", memberAccount=" + memberAccount + ", nickName=" + nickName + ", realName="
+				+ realName + ", password=" + password + ", nameCN=" + nameCN + ", gender=" + gender + ", age=" + age
+				+ ", birthday=" + birthday + ", idCard=" + idCard + ", mobile=" + mobile + ", email=" + email
+				+ ", marriage=" + marriage + ", address=" + address + ", referrals=" + referrals + ", provider="
+				+ provider + ", city=" + city + ", registerTime=" + registerTime + ", userType=" + userType
+				+ ", loanInvestmentType=" + loanInvestmentType + ", viewType=" + viewType + ", realOID=" + realOID
+				+ ", state=" + state + ", yewuOID=" + yewuOID + ", xieli=" + xieli + ", school=" + school + ", company="
+				+ company + ", comscale=" + comscale + ", position=" + position + ", income=" + income + ", house="
+				+ house + ", car=" + car + ", picOID=" + picOID + ", questionOne=" + questionOne + ", answerOne="
+				+ answerOne + ", questionTwo=" + questionTwo + ", answerTwo=" + answerTwo + ", blacklist=" + blacklist
+				+ ", describe0=" + describe0 + ", NO=" + NO + ", addUserOID=" + addUserOID + ", updUserOID="
+				+ updUserOID + ", valid=" + valid + ", addDateTime=" + addDateTime + ", updDateTime=" + updDateTime
+				+ ", refresh=" + refresh + ", version=" + version + ", opportunity=" + opportunity + "]";
+	}
 
 }

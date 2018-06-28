@@ -1206,15 +1206,207 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 
 	@Override
 	public void gainMemberHHTNRBJKAgreementDifferent(String contractType, String biddingOID) {
-		// TODO Auto-generated method stub
+		try {
+
+			WebP2pPackageBiddingMainContentRuning contentRuning = packageBiddingMainContentRuningMapper
+					.findByOID(biddingOID);
+			String loanProductInfoOID = contentRuning.getLoanProductRateInfoID();
+			WebP2pLoanProductRateInfo loanRateInfo = loanProductRateInfoMapper.findByOID(loanProductInfoOID);
+			List<CarLoanMemberInfoBaseDTO> carLoans = carLoanCenterInfoMapper
+					.findCarLoanMemberInfoBase(contentRuning.getMemberOID());
+			CarLoanMemberInfoBaseDTO jkyh = null;
+			if (carLoans.size() > 0) {
+				jkyh = carLoans.get(carLoans.size() - 1);
+			}
+			Map<String, Object> replaceMap = new HashMap<String, Object>();
+			// 协议编号
+			String xybh = sequenceDefinitionService.gainSequence("JK");
+			replaceMap.put("xybh", xybh);
+			replaceMap.put("jkbh", contentRuning.getLoanNumber());
+			replaceMap.put("jkr", jkyh.getRealName());
+			replaceMap.put("lxfs", jkyh.getMobile());
+			replaceMap.put("yhm", jkyh.getMobile());
+			replaceMap.put("sfzh", jkyh.getIdCard());// 身份证号
+			replaceMap.put("jkjexx", contentRuning.getApplyAmount());// 借款金额
+			BigDecimal aBigDecimal = contentRuning.getApplyAmount();
+			double d = aBigDecimal.doubleValue();
+			String jkjedx = ToolMath.toBigMoney(d);
+			replaceMap.put("jkjedx", jkjedx);
+			replaceMap.put("jkyt", jkyh.getLoanuse());// 借款用途
+			replaceMap.put("jkqx", loanRateInfo.getTerm());// 借款期限
+			replaceMap.put("cjh", jkyh.getCjh());// 车架号
+			replaceMap.put("cph", jkyh.getCph());// 车牌号
+			replaceMap.put("fdjh", jkyh.getFdjh());// 发动机号
+			BigDecimal b1 = new BigDecimal(100);
+			BigDecimal hnll = loanRateInfo.getYearRate().multiply(b1);
+			replaceMap.put("jkll", hnll.setScale(2, BigDecimal.ROUND_HALF_UP));// 借款年利率
+			replaceMap.put("ksrq", ToolDateTime.gainDate());// 借款开始日期
+			java.sql.Date jsrq = ToolDateTime.addMonth(ToolDateTime.gainDate(), loanRateInfo.getTerm());// 借款结束日期
+			replaceMap.put("jsrq", jsrq);
+			String loanNumber = contentRuning.getLoanNumber();
+			String conten = "";
+			List<PayDebitCredit> cjr = payDebitCreditMapper.findByCondition(biddingOID);
+			for (PayDebitCredit debit : cjr) {
+				PayCustomer cjrxx = payCustomerMapper.findByMemberOID(debit.getOutMemberOID());
+				String name = cjrxx.getName();
+				String name1 = name.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
+				String name2 = ToolsDisplay.getFullNameStr(cjrxx.getNameCN());
+				conten += "<tr><td>" + name2 + "</td>" + "<td>" + name1 + "</td>" + "<td>" + debit.getPrincipalMoney()
+						+ "</td></tr>";
+			}
+
+			replaceMap.put("data0", conten);
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(new Date(System.currentTimeMillis()));
+			replaceMap.put("nian", Integer.valueOf(calendar.get(Calendar.YEAR)));
+			replaceMap.put("yue", Integer.valueOf(calendar.get(Calendar.MONTH) + 1));
+			replaceMap.put("ri", Integer.valueOf(calendar.get(Calendar.DATE)));
+			String hkjk = "";
+			int hkqs = 0;
+			List<PayRepayPlan> repays = repayPlanMapper.findByBusinessOIDAndMemberOID(contentRuning.getMemberOID(),
+					biddingOID);
+			for (PayRepayPlan repay : repays) {
+				hkqs++;
+				BigDecimal bj = repay.getPrincipalMoney();
+				BigDecimal ll = repay.getInterestMoney();
+				BigDecimal jhhk = bj.add(ll);
+				hkjk += "<tr><td>" + hkqs + "</td>" + "<td>" + jhhk + "</td>" + "<td>" + repay.getRepayDate()
+						+ "</td></tr>";
+			}
+			replaceMap.put("data1", hkjk);
+
+			MemberAgreement agrement = memberAgreMapper.findMemberAgreementByType(contractType);
+			MemberMemberAgreement magrement = new MemberMemberAgreement();
+			String content = agrement.getContent();
+			String tz = ToolString.replaceContent(content, replaceMap);
+			magrement.setContent(tz);
+			magrement.setName(agrement.getName());
+			magrement.setNameCN(agrement.getNameCN());
+			magrement.setBiddingType(agrement.getBiddingType());
+			magrement.setContractType(agrement.getContractType());
+			magrement.setXybh(xybh);
+			magrement.setLoanNumber(loanNumber);
+			magrement.setState("1");
+			magrement.setBiddingOID(biddingOID);
+			magrement.setMemberOID(jkyh.getMemberOID());
+			magrement.setOID(StringUtil.getUUID());
+			Map<String, String> sign = controlSignService.doSignXDJKAgreement(magrement.getMemberOID(),
+					magrement.getContent());
+
+			magrement.setSignIDs(sign.get("signIDs"));
+			magrement.setPdfPath(sign.get("pdfPath"));
+			String oids = this.pdfToPicture(sign.get("pdfPath"));
+			if (StringUtil.isNotEmpty(oids)) {
+				magrement.setPdfPic(oids);
+			}
+			memberAgreementDao.saveMemberAgreement(magrement);
+
+		} catch (Exception e) {
+			logger.error("gainMemberHHTNRBJKAgreementDifferent(String contractType, String biddingOID)",
+					e.getMessage());
+		}
 
 	}
 
 	@Override
 	public void gainMemberHHTNRBJKAgreement(String contractType, String biddingOID) {
-		// TODO Auto-generated method stub
+		try {
 
-	}
+			WebP2pPackageBiddingMainContentRuning contentRuning = packageBiddingMainContentRuningMapper
+					.findByOID(biddingOID);
+			String loanProductInfoOID = contentRuning.getLoanProductRateInfoID();
+			WebP2pLoanProductRateInfo loanRateInfo = loanProductRateInfoMapper.findByOID(loanProductInfoOID);
+
+			List<WebP2pBiddingExamine> examines = biddingExamineMapper.findByMemberOID(contentRuning.getMemberOID());
+			WebP2pBiddingExamine jkyh = null;
+			if (examines.size() > 0) {
+				jkyh = examines.get(examines.size() - 1);
+			}
+			// 协议编号
+			String xybh = sequenceDefinitionService.gainSequence("JK");
+
+			Map<String, Object> replaceMap = new HashMap<String, Object>();
+			replaceMap.put("xybh", xybh);
+			replaceMap.put("jkbh", contentRuning.getLoanNumber());
+			replaceMap.put("jkr", jkyh.getRealName());
+			replaceMap.put("dz", jkyh.getDizhi());
+			replaceMap.put("lxfs", jkyh.getMobile());
+			replaceMap.put("yhm", jkyh.getMobile());
+			replaceMap.put("sfzh", jkyh.getIdCard());
+			replaceMap.put("jkjexx", contentRuning.getApplyAmount());
+			BigDecimal aBigDecimal = contentRuning.getApplyAmount();
+			double d = aBigDecimal.doubleValue();
+			String jkjedx = ToolMath.toBigMoney(d);
+			replaceMap.put("jkjedx", jkjedx);
+			replaceMap.put("jkyt", jkyh.getLoanuse());
+			replaceMap.put("jkqx", loanRateInfo.getTerm());
+			BigDecimal b1 = new BigDecimal(100);
+			BigDecimal hnll = loanRateInfo.getYearRate().multiply(b1);
+			replaceMap.put("jkll", hnll.setScale(2, BigDecimal.ROUND_HALF_UP));
+			replaceMap.put("ksrq", ToolDateTime.gainDate());
+			java.sql.Date jsrq = ToolDateTime.addMonth(ToolDateTime.gainDate(), loanRateInfo.getTerm());
+			replaceMap.put("jsrq", jsrq);
+			String loanNumber = contentRuning.getLoanNumber();
+			String conten = "";
+
+			List<PayDebitCredit> cjr = payDebitCreditMapper.findByCondition(biddingOID);
+			for (PayDebitCredit debit : cjr) {
+				PayCustomer cjrxx = payCustomerMapper.findByMemberOID(debit.getOutMemberOID());
+				String name = cjrxx.getName();
+				String name1 = name.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
+				String name2 = ToolsDisplay.getFullNameStr(cjrxx.getNameCN());
+				conten += "<tr><td>" + name2 + "</td>" + "<td>" + name1 + "</td>" + "<td>" + debit.getPrincipalMoney()
+						+ "</td></tr>";
+			}
+			replaceMap.put("data0", conten);
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(new Date(System.currentTimeMillis()));
+			replaceMap.put("nian", Integer.valueOf(calendar.get(Calendar.YEAR)));
+			replaceMap.put("yue", Integer.valueOf(calendar.get(Calendar.MONTH) + 1));
+			replaceMap.put("ri", Integer.valueOf(calendar.get(Calendar.DATE)));
+			String hkjk = "";
+			int hkqs = 0;
+			List<PayRepayPlan> repays = repayPlanMapper.findByBusinessOIDAndMemberOID(contentRuning.getMemberOID(),
+					biddingOID);
+			for (PayRepayPlan repay : repays) {
+				hkqs++;
+				BigDecimal bj = repay.getPrincipalMoney();
+				BigDecimal ll = repay.getInterestMoney();
+				BigDecimal jhhk = bj.add(ll);
+				hkjk += "<tr><td>" + hkqs + "</td>" + "<td>" + jhhk + "</td>" + "<td>" + repay.getRepayDate()
+						+ "</td></tr>";
+			}
+			replaceMap.put("data1", hkjk);
+
+			MemberAgreement agrement = memberAgreMapper.findMemberAgreementByType(contractType);
+			MemberMemberAgreement magrement = new MemberMemberAgreement();
+			String content = agrement.getContent();
+			String tz = ToolString.replaceContent(content, replaceMap);
+			magrement.setContent(tz);
+			magrement.setName(agrement.getName());
+			magrement.setNameCN(agrement.getNameCN());
+			magrement.setBiddingType(agrement.getBiddingType());
+			magrement.setContractType(agrement.getContractType());
+			magrement.setXybh(xybh);
+			magrement.setLoanNumber(loanNumber);
+			magrement.setState("1");
+			magrement.setBiddingOID(biddingOID);
+			magrement.setMemberOID(contentRuning.getMemberOID());
+			magrement.setOID(StringUtil.getUUID());
+			Map<String, String> sign = controlSignService.doSignXDJKAgreement(magrement.getMemberOID(),
+					magrement.getContent());
+			magrement.setSignIDs(sign.get("signIDs"));
+			magrement.setPdfPath(sign.get("pdfPath"));
+			String oids = this.pdfToPicture(sign.get("pdfPath"));
+			if (StringUtil.isNotEmpty(oids)) {
+				magrement.setPdfPic(oids);
+			}
+			memberAgreementDao.saveMemberAgreement(magrement);
+		} catch (Exception e) {
+			logger.error("gainMemberHHTNRBJKAgreement(String contractType, String biddingOID)", e.getMessage());
+		}
+
+	} 
 
 	private String pdfToPicture(String name) {
 		try {
