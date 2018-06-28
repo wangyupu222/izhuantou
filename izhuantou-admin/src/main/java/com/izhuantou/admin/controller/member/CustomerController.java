@@ -1,5 +1,6 @@
 package com.izhuantou.admin.controller.member;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -19,10 +20,12 @@ import com.izhuantou.common.bean.OpResult;
 import com.izhuantou.common.bean.Pagination;
 import com.izhuantou.common.utils.DateUtils;
 import com.izhuantou.common.utils.ExcelUtil;
+import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.vo.member.CustomerExcelDTO;
 import com.izhuantou.damain.vo.member.CustomerFeedbackDTO;
 import com.izhuantou.damain.vo.member.CustomerFourNumberDTO;
 import com.izhuantou.damain.vo.member.CustomerListDTO;
+import com.izhuantou.damain.vo.member.CustomerManagerDTO;
 import com.izhuantou.damain.vo.member.CustomerQueryConditionDTO;
 import com.izhuantou.damain.vo.member.FeedBackDetailsDTO;
 import com.izhuantou.damain.vo.member.TrackDTO;
@@ -104,7 +107,30 @@ public class CustomerController {
 		}
 
 	}
-
+	/**
+	 * 客户经理变更-->获取客户经理各级分类选项列表
+	 * @Param customerManagerDTO 客户经理DTO
+	 */
+	@SystemControllerLog(description = "客户经理变更")
+	@RequestMapping(value="customerManagerChange")
+	@ResponseBody
+	public OpResult customerManagerChange(CustomerManagerDTO customerManagerDTO){
+		if(StringUtil.isNotEmpty(customerManagerDTO.getType())){
+			if(!customerManagerDTO.getType().equals("5")){
+				List<String> strs = customerService.getCustomerManagerGroup(customerManagerDTO);
+				if(strs!=null){
+					return OpResult.getSuccessResult(strs);
+				}
+			}else{
+				List<Map<String,Object>> managerList =  customerService.getCustomerManagerList(customerManagerDTO);
+				if(managerList!=null){
+					return OpResult.getSuccessResult(managerList);
+				}
+			}
+		}
+		return OpResult.getFailedResult("查询失败");
+	}
+	
 	/**
 	 * 客户详情（行为轨迹）
 	 */

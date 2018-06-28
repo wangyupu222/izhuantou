@@ -8,6 +8,7 @@ import com.izhuantou.damain.vo.member.CustomerExcelDTO;
 import com.izhuantou.damain.vo.member.CustomerFeedbackDTO;
 import com.izhuantou.damain.vo.member.CustomerFourNumberDTO;
 import com.izhuantou.damain.vo.member.CustomerListDTO;
+import com.izhuantou.damain.vo.member.CustomerManagerDTO;
 import com.izhuantou.damain.vo.member.CustomerQueryConditionDTO;
 import com.izhuantou.damain.vo.member.FeedBackDetailsDTO;
 import com.izhuantou.damain.vo.member.TrackDTO;
@@ -47,7 +48,19 @@ public interface CustomerService {
 	 * @return
 	 */
 	List<CustomerListDTO> exportCustomerList(CustomerQueryConditionDTO cqcDTO);
-
+	
+	/**
+	 * 客户经理变更-->获取客户经理各级分类选项列表
+	 * @param customerManagerDTO 客户经理DTO
+	 */
+	List<String> getCustomerManagerGroup(CustomerManagerDTO customerManagerDTO);
+	
+	/**
+	 * 客户经理变更-->获取客户经理列表
+	 * @Param customerManagerDTO 客户经理DTO
+	 */
+	List<Map<String,Object>> getCustomerManagerList(CustomerManagerDTO customerManagerDTO);
+	
 	/**
 	 * 
 	 */
