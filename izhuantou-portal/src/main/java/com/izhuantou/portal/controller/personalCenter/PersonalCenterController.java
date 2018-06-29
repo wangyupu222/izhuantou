@@ -1,11 +1,18 @@
 package com.izhuantou.portal.controller.personalCenter;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -39,6 +46,7 @@ import com.izhuantou.third.rpc.api.memberagrement.MemberMemberAgreementService;
 @Controller
 @RequestMapping(value = "personal", produces = "application/json;charset=UTF-8")
 public class PersonalCenterController {
+	 private static final Logger logger = LoggerFactory.getLogger(PersonalCenterController.class);
 	@Autowired
 	private PersonalCenterService personalMessage;
 	@Autowired
@@ -49,7 +57,8 @@ public class PersonalCenterController {
 	private String userHeadPath;
 	@Value("${pdfPicPath}")
 	private String pdfPicPath;
-	
+	@Value("${pdfFilePath}")
+	private String pdfFilePath;
 
 	/**
 	 * 个人中心
@@ -449,6 +458,26 @@ public class PersonalCenterController {
 			}
 		}
 		return OpResult.getFailedResult("图片查询失败");
+	}
+	
+	@RequestMapping("fdfDownload")
+	@ResponseBody
+	public byte[] doDownload(HttpServletResponse response,String aregOID){
+		if(StringUtil.isNotEmpty(aregOID)){
+			String pdfName=pictureServcie.findPdfNamePath(aregOID);
+			if(StringUtil.isNotEmpty(pdfName)){
+				try {
+					String pdfPath=pdfFilePath+""+pdfName;
+					response.setContentType("appliction/pdf");
+					response.setHeader("Content-disposition", "attachment;filename=" + pdfName);
+					Path path = Paths.get(pdfPath);
+					return Files.readAllBytes(path);
+				} catch (IOException e) {
+					logger.error("byte[] doDownload(HttpServletResponse response,String aregOID)",e.getMessage());
+				}
+			}
+		}
+		return null;
 	}
 	
 	

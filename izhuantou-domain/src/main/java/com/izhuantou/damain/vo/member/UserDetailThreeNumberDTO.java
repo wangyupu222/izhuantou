@@ -1,7 +1,6 @@
 package com.izhuantou.damain.vo.member;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * 客户详情(行为轨迹)三个数据统计

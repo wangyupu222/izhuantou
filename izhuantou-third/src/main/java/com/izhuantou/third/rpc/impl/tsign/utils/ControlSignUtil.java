@@ -14,7 +14,7 @@ public class ControlSignUtil {
     // 签署后pdf文件存储的路径 并加载类时初始化电子签章项目---
     private static String signedFolder;
     static {
-	Map<String, String> map = ReadPropertiesl.gainPropertiesMap("File.properties");
+	Map<String, String> map = ReadPropertiesl.gainPropertiesMap("file.properties");
 	try {
 	    signedFolder = map.get("pdfFilePath");// pdf文件保存路径
 	    FileHelper.createDirectory(signedFolder);// 如果文件夹不存在就创建文件夹

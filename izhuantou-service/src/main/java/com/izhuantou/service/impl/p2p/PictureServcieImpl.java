@@ -17,6 +17,7 @@ import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.p2p.FileInfo;
 import com.izhuantou.damain.user.MemberMember;
 import com.izhuantou.dao.p2p.FileInfoMapper;
+import com.izhuantou.dao.user.MemberMemberAgreementMapper;
 import com.izhuantou.dao.user.MemberMemberMapper;
 import com.izhuantou.service.api.p2p.PictureServcie;
 
@@ -27,7 +28,8 @@ public class PictureServcieImpl implements PictureServcie {
 	private FileInfoMapper fileInfoMapper;
 	@Autowired
 	private MemberMemberMapper memberMapper;
-
+	@Autowired
+	private MemberMemberAgreementMapper memberAgreementMapper;
 	@Override
 	public String updHeadPic(MultipartFile file, String memberOID, String picPath) {
 		try {
@@ -119,6 +121,19 @@ public class PictureServcieImpl implements PictureServcie {
 			}
 		} catch (Exception e) {
 			logger.error("updHeadPic(MultipartFile file, String memberOID,String picPath)" + e.getMessage());
+		}
+		return null;
+	}
+
+	@Override
+	public String findPdfNamePath(String agrOID) {
+		try{
+			if(StringUtil.isNotEmpty(agrOID)){
+				String pdfName=memberAgreementMapper.findPdfNamePathByOID(agrOID);
+				return pdfName;
+			}
+		} catch (Exception e) {
+			logger.error("String findPdfNamePath(String agrOID, String pdfFilePath)" + e.getMessage());
 		}
 		return null;
 	}

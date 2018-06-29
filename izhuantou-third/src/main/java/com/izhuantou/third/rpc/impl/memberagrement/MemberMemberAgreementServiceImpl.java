@@ -1410,7 +1410,7 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 
 	private String pdfToPicture(String name) {
 		try {
-			Map<String, String> resMap = ReadPropertiesl.gainPropertiesMap("File.properties");
+			Map<String, String> resMap = ReadPropertiesl.gainPropertiesMap("file.properties");
 			String path = resMap.get("pdfFilePath");
 			String picPath = resMap.get("pdfPicPath");
 			path = path + name;
@@ -1436,7 +1436,7 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 				Long datetime = new Date().getTime();
 				// 图片名称
 				String filename = datetime.toString();
-				File fil = new File(file + File.separator + filename);
+				File fil = new File(file + File.separator + filename+".png");
 				try {
 					ImageIO.write(rendImage, "png", fil);
 					image.flush();

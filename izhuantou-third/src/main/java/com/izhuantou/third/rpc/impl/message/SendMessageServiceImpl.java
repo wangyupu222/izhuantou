@@ -106,7 +106,7 @@ public class SendMessageServiceImpl implements SendMessageService {
 	@Override
 	public Map<String, String> sendMessage(String mobile, String content) {
 		try {
-			Map<String, String> smsMap = ReadPropertiesl.gainPropertiesMap("SMS.properties");
+			Map<String, String> smsMap = ReadPropertiesl.gainPropertiesMap("sms.properties");
 			String userName = smsMap.get("account");
 			String password = smsMap.get("password");
 			Map<String, String> msm = new HashMap<String, String>();
@@ -124,7 +124,7 @@ public class SendMessageServiceImpl implements SendMessageService {
 
 	private Map<String, String> messageContent(String mobile, String contentKey, Map<String, String> reDate) {
 		try {
-			Map<String, String> smsMap = ReadPropertiesl.gainPropertiesMap("SMS.properties");
+			Map<String, String> smsMap = ReadPropertiesl.gainPropertiesMap("sms.properties");
 			String userName = smsMap.get("account");
 			String password = smsMap.get("password");
 			String content = smsMap.get(contentKey);
