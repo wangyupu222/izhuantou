@@ -28,6 +28,7 @@ import com.izhuantou.common.AuthorizationReqData;
 import com.izhuantou.common.FuiouServiceMy;
 import com.izhuantou.common.bean.OpResult;
 import com.izhuantou.common.bean.Pagination;
+import com.izhuantou.common.constant.Constant;
 import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.pay.PayCustomerBusiness;
 import com.izhuantou.damain.vo.CustomerDTO;
@@ -46,8 +47,6 @@ import com.izhuantou.third.rpc.api.ControlPayService;
 @Controller
 @RequestMapping(value = "cash", produces = "application/json;charset=UTF-8")
 public class MyCashController {
-	public static final String VALIDATE_CODE = "validateCode";
-	public static final String SMS_VALIDATE_CODE = "smsValidateCode";
 	private static final Logger logger = LoggerFactory.getLogger(MyCashController.class);
 	@Autowired
 	private MyCashService myCashService;
@@ -135,7 +134,7 @@ public class MyCashController {
 	@ResponseBody
 	public OpResult checkValidateCode(HttpServletRequest request, String yzm) {
 		HttpSession session = request.getSession();
-		String check = (String) session.getAttribute(VALIDATE_CODE);
+		String check = (String) session.getAttribute(Constant.VALIDATE_CODE);
 		if (StringUtil.isNotEmpty(yzm) && yzm.toUpperCase().equals(check)) {
 			return OpResult.getSuccessResult("1");
 		}
@@ -165,7 +164,7 @@ public class MyCashController {
 	}
 
 	/**
-	 * 银行卡信息
+	 * 查询银行卡更改信息列表
 	 * 
 	 * @param request
 	 * @return
@@ -223,7 +222,7 @@ public class MyCashController {
 	}
 
 	/**
-	 * 卡的信息
+	 * 充值和提现页面数据
 	 * 
 	 * @param request
 	 * @return
@@ -251,21 +250,21 @@ public class MyCashController {
 	public String insertCustomer(HttpServletRequest request, RedirectAttributes view, CustomerDTO customer) {
 		HttpSession session = request.getSession();
 		// 获取session中的手机号验证码
-		String checksms = (String) session.getAttribute(SMS_VALIDATE_CODE);
+		String checksms = (String) session.getAttribute(Constant.SMS_VALIDATE_CODE);
 		String memberOID = (String) session.getAttribute("memberOID");
 		customer.setMemberOID(memberOID);
 		// 表单的短信验证码
 		String sms = customer.getMsm();
 		String rows = null;
 		if (StringUtil.isNotEmpty(sms) && !sms.equals(checksms)) {// 测试>>>>>>>>>>>
-			session.removeAttribute(VALIDATE_CODE);
-			session.removeAttribute(SMS_VALIDATE_CODE);
+			session.removeAttribute(Constant.VALIDATE_CODE);
+			session.removeAttribute(Constant.SMS_VALIDATE_CODE);
 			rows = controlPayService.createCustomerAccount(customer);
 			if ("1".equals(rows)) {
 				return "redirect:/portal/cash/MyCard";
 			}
 		}
-		view.addFlashAttribute("msg", rows);
+		view.addFlashAttribute(Constant.MSG, rows);
 		return "redirect:/portal/cash/addbankcard";
 	}
 
@@ -281,7 +280,7 @@ public class MyCashController {
 		try {
 			HttpSession session = request.getSession();
 			// 获取session中的手机号验证码
-			String check = (String) session.getAttribute(VALIDATE_CODE);
+			String check = (String) session.getAttribute(Constant.VALIDATE_CODE);
 			String yzm = recharge.getYzm();
 			String type = recharge.getType();
 			String memberOID = (String) session.getAttribute("memberOID");
@@ -293,7 +292,7 @@ public class MyCashController {
 						FuiouService.wy500012(data, response);
 						return null;
 					}
-					view.addFlashAttribute("msg", "接口调用失败");
+					view.addFlashAttribute(Constant.MSG, "接口调用失败");
 					return "redirect:/portal/cash/Recharge_new";
 				} else {
 					AppTransReqData data = controlPayService.recharge(recharge);
@@ -301,11 +300,11 @@ public class MyCashController {
 						FuiouServiceMy.p2p500405(data, response);
 						return null;
 					}
-					view.addFlashAttribute("msg", "接口调用失败");
+					view.addFlashAttribute(Constant.MSG, "接口调用失败");
 					return "redirect:/portal/cash/Recharge_new2";
 				}
 			} else {
-				view.addFlashAttribute("msg", "验证码有误");
+				view.addFlashAttribute(Constant.MSG, "验证码有误");
 				if ("1".equals(type)) {
 					return "redirect:/portal/cash/Recharge_new";
 				} else {
@@ -330,7 +329,7 @@ public class MyCashController {
 			String money = request.getParameter("money");
 			HttpSession session = request.getSession();
 			String memberOID = (String) session.getAttribute("memberOID");
-			String check = (String) session.getAttribute(VALIDATE_CODE);
+			String check = (String) session.getAttribute(Constant.VALIDATE_CODE);
 			WithdrawalDTO withdrawal = new WithdrawalDTO();
 			withdrawal.setMemberOID(memberOID);
 			withdrawal.setMoney(new BigDecimal(money));
@@ -343,13 +342,13 @@ public class MyCashController {
 						FuiouService.p2p500003(data, response);
 						return null;
 					}
-					view.addFlashAttribute("msg", message);
+					view.addFlashAttribute(Constant.MSG, message);
 					return "redirect:/portal/cash/Withdrawals";
 				}
-				view.addFlashAttribute("msg", "接口调用失败");
+				view.addFlashAttribute(Constant.MSG, "接口调用失败");
 				return "redirect:/portal/cash/Withdrawals";
 			}
-			view.addFlashAttribute("msg", "验证码有误");
+			view.addFlashAttribute(Constant.MSG, "验证码有误");
 			return "redirect:/portal/cash/Withdrawals";
 		} catch (Exception e) {
 			return null;
@@ -404,7 +403,7 @@ public class MyCashController {
 					}
 				}
 			}
-			view.addFlashAttribute("msg", message);
+			view.addFlashAttribute(Constant.MSG, message);
 			return "redirect:/portal/cash/MyCard";
 		} catch (Exception e) {
 			logger.error("changeBankCard(HttpServletResponse response,HttpServletRequest request)", e.getMessage());
@@ -428,11 +427,11 @@ public class MyCashController {
 		String retr = controlPayService.changeBankCardReturn(map);
 		if (StringUtil.isNotEmpty(retr)) {
 			if ("1".equals(retr)) {
-				view.addFlashAttribute("msg", "申请成功");
+				view.addFlashAttribute(Constant.MSG, "申请成功");
 				return "redirect:/portal/cash/MyCard";
 			}
 		}
-		view.addFlashAttribute("msg", "申请失败");
+		view.addFlashAttribute(Constant.MSG, "申请失败");
 		return "redirect:/portal/cash/MyCard";
 
 	}
@@ -456,7 +455,7 @@ public class MyCashController {
 					return null;
 				}
 			}
-			view.addFlashAttribute("msg", "接口调用失败");
+			view.addFlashAttribute(Constant.MSG, "接口调用失败");
 			return "redirect:/portal/loan/LoanApplication";
 		} catch (Exception e) {
 			logger.error("authorization(HttpServletRequest request,HttpServletResponse response)", e.getMessage());

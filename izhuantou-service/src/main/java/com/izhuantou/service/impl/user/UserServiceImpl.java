@@ -1,6 +1,7 @@
 package com.izhuantou.service.impl.user;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import com.izhuantou.damain.code.CodeContent;
 import com.izhuantou.damain.p2p.P2pCompanyPer;
 import com.izhuantou.damain.pay.PayCashPool;
 import com.izhuantou.damain.pay.PayCustomer;
+import com.izhuantou.damain.user.MemberBlackList;
 import com.izhuantou.damain.user.MemberMember;
 import com.izhuantou.damain.vo.JoinSelectAllDTO;
 import com.izhuantou.damain.vo.PersonalDTO;
@@ -27,6 +29,7 @@ import com.izhuantou.dao.pay.PayCustomerMapper;
 import com.izhuantou.dao.pay.PayDebitCreditMapper;
 import com.izhuantou.dao.pay.PayReturnPlanMapper;
 import com.izhuantou.dao.personalCenter.PersonalCenterMapper;
+import com.izhuantou.dao.user.MemberBlackListMapper;
 import com.izhuantou.dao.user.MemberMemberMapper;
 import com.izhuantou.service.api.user.UserService;
 import com.izhuantou.service.impl.BaseServiceImpl;
@@ -51,31 +54,91 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 	private PayCustomerMapper PayCustomerMapper;
 	@Autowired
 	private P2pCompanyPerMapper p2pCompanyPerDao;
-	
+	@Autowired
+	private MemberBlackListMapper blackListMapper;
+
 	/** 登录验证账户密码 */
 	@Override
-	public MemberMember findUserByName(UserDTO user) {
-		MemberMember member = null;
-		String pwd = null;
+	public Map<String, Object> findUserByName(UserDTO user) {
 		try {
-			if (StringUtil.isNotEmpty(user.getName()) && StringUtil.isNotEmpty(user.getPassword())) {
-				pwd = md5.Md5(user.getPassword());
-				member = userDao.findUserByName(user.getName());
-				if (member != null) {
-					String passw = member.getPassword();
-					if (passw.equals(pwd)) {
-						logger.info("findUserByName()" + "返回结果为");
-						return member;
-					} else {
-						return null;
+			Map<String, Object> resMap = new HashMap<String, Object>();
+
+			if (user != null) {
+				if (StringUtil.isNotEmpty(user.getName()) && StringUtil.isNotEmpty(user.getPassword())) {
+					String pwd = md5.Md5(user.getPassword());
+					MemberMember member = userDao.findUserByName(user.getName());
+					if (member != null) {
+						MemberBlackList black = blackListMapper.selectByName(member.getName());
+						if (black == null) {
+							String passw = member.getPassword();
+							if (passw.equals(pwd)) {
+								String opportunity = member.getOpportunity();
+								if(!"5".equals(opportunity)){
+									member.setOpportunity("5");
+									userDao.updateOpportunity(member);
+								}
+								logger.info("findUserByName()" + "返回结果为");
+								resMap.put("message", "1");
+								resMap.put("data", member);
+								return resMap;
+							} else {
+								String opportunity = member.getOpportunity();
+								if(!"5".equals(opportunity)){
+									Date addTime = member.getUpdDateTime();
+									long lOne = addTime.getTime();
+									long lTwo = new Date().getTime();
+									int space = (int) ((lTwo - lOne) / 1000 / 60 / 60);
+									if (space >= 12) {
+										opportunity="5";
+										member.setOpportunity("5");
+										userDao.updateOpportunity(member);
+									}
+								}
+								int oppor = Integer.valueOf(opportunity) - 1;
+								member.setOpportunity(String.valueOf(oppor));
+								userDao.updateOpportunity(member);
+								resMap.put("message", "密码错误，您今日再输错" + oppor + "次，您的账号将锁定无法登陆");
+								if (0 == oppor) {
+									MemberBlackList newblack = new MemberBlackList();
+									newblack.setOID(StringUtil.getUUID());
+									newblack.setName(member.getName());
+									resMap.put("message", "今日密码输错次数已达上限，账号已锁定，请重置密码");
+									blackListMapper.insertMemberBlack(newblack);
+								}
+							}
+						} else {
+							// 时间判断
+							Date addTime = black.getAddDateTime();
+							long lOne = addTime.getTime();
+							long lTwo = new Date().getTime();
+							int space = (int) ((lTwo - lOne) / 1000 / 60 / 60);
+							if (space >= 12) {
+								member.setOpportunity("5");
+								userDao.updateOpportunity(member);
+								blackListMapper.deleteByPrimaryKey(black.getOID());
+								String passw = member.getPassword();
+								if (passw.equals(pwd)) {
+									logger.info("findUserByName()" + "返回结果为");
+									resMap.put("message", "1");
+									resMap.put("data", member);
+									return resMap;
+								} else {
+									String opportunity = member.getOpportunity();
+									int oppor = Integer.valueOf(opportunity) - 1;
+									member.setOpportunity(String.valueOf(oppor));
+									userDao.updateOpportunity(member);
+									resMap.put("message", "密码错误，您今日再输错" + oppor + "次，您的账号将锁定无法登陆");
+								}
+							}
+						}
+					}else{
+						resMap.put("message", "账户不存在");
 					}
-				} else {
-					return null;
 				}
 			}
+			return resMap;
 		} catch (Exception e) {
 			logger.error("findUserByName()", e.getMessage());
-			return null;
 		}
 		return null;
 	}
@@ -145,10 +208,10 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 			BigDecimal cybj = new BigDecimal(0.0);
 			BigDecimal yjsy = new BigDecimal(0.0);
 			// 用来盛放用户参加环环头和点点头的数据信息 // -----------
-			List<JoinSelectAllDTO> hhdtorps = 
-					payReturnPlanDao.gainReturnPlanByMemberOIDAndState(memberOID,"agentPlan");
-			List<JoinSelectAllDTO> dddtorps =
-					personalCenterMapper.gainDDReturnMoneyBymemberOIDANDState(memberOID,"plan");
+			List<JoinSelectAllDTO> hhdtorps = payReturnPlanDao.gainReturnPlanByMemberOIDAndState(memberOID,
+					"agentPlan");
+			List<JoinSelectAllDTO> dddtorps = personalCenterMapper.gainDDReturnMoneyBymemberOIDANDState(memberOID,
+					"plan");
 
 			if (hhdtorps.size() > 0) {
 				for (JoinSelectAllDTO payReturnPlan : hhdtorps) {
@@ -176,7 +239,7 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 				}
 			}
 			// 代收本金：cybj，代收利息：yjsy，代收特权：tqsyds
-			PersonalDTO personal =new PersonalDTO();
+			PersonalDTO personal = new PersonalDTO();
 			yjsy = yjsy.add(jxsy);
 			personal.setCybj(cybj);
 			personal.setYjsy(yjsy);
@@ -314,5 +377,32 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 			logger.error("findUserByName()", e.getMessage());
 			return null;
 		}
+	}
+
+	@Override
+	public String cheakMemberBlack(String name) {
+		try {
+			if (StringUtil.isNotEmpty(name)) {
+				MemberBlackList black = blackListMapper.selectByName(name);
+				MemberMember member = userDao.findUserByName(name);
+				if (black != null) {
+					Date addTime = black.getAddDateTime();
+					long lOne = addTime.getTime();
+					long lTwo = new Date().getTime();
+					int space = (int) ((lTwo - lOne) / 1000 / 60 / 60);
+					if (space >= 12) {
+						member.setOpportunity("5");
+						userDao.updateOpportunity(member);
+						blackListMapper.deleteByPrimaryKey(black.getOID());
+					}else{
+						return "0";
+					}
+				}
+				return "1";
+			}
+		} catch (Exception e) {
+			logger.error("cheakMemberBlack(String name)", e.getMessage());
+		}
+		return null;
 	}
 }

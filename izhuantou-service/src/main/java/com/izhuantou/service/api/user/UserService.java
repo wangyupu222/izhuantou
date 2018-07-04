@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.izhuantou.damain.pay.PayCustomer;
+import com.izhuantou.damain.user.MemberBlackList;
 import com.izhuantou.damain.user.MemberMember;
 import com.izhuantou.damain.vo.PersonalDTO;
 import com.izhuantou.damain.vo.UserDTO;
@@ -16,7 +17,7 @@ public interface UserService extends BaseService<MemberMember> {
      * @param user
      * @return
      */
-    public MemberMember findUserByName(UserDTO user);
+    public Map<String,Object> findUserByName(UserDTO user);
 
     /**
      * 根据用户名(用户要注册的手机号)验证用户是否存在
@@ -80,4 +81,10 @@ public interface UserService extends BaseService<MemberMember> {
      */
     public Map<String, String> registUseryqmReg(String yqm_reg);
 
+    /**
+     * 验证用户是否在密码错误的黑名单
+     * @param name
+     * @return
+     */
+    public String cheakMemberBlack(String name);
 }

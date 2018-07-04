@@ -11,5 +11,12 @@ public interface MemberBlackListMapper extends Mapper<MemberBlackList>{
 	 * @return
 	 */
 	MemberBlackList selectByName(String name);
-
+	/**
+	 * 添加到黑名单
+	 * @param black
+	 * @return
+	 */
+	int insertMemberBlack(MemberBlackList black);
+	
+	
 }

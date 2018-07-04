@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.izhuantou.common.constant.Constant;
 import com.izhuantou.common.tool.ToolString;
 import com.izhuantou.common.utils.DateUtils;
 import com.izhuantou.common.utils.StringUtil;
@@ -32,7 +33,6 @@ import com.izhuantou.third.rpc.impl.ReadPropertiesl;
 @Service("sendMessageService")
 public class SendMessageServiceImpl implements SendMessageService {
 	private static final Logger logger = LoggerFactory.getLogger(SendMessageServiceImpl.class);
-	public static final String SMS_VALIDATE_CODE = "smsValidateCode";
 	@Autowired
 	private MemberIsSendMapper sendSmsDao;
 	@Autowired
@@ -55,7 +55,7 @@ public class SendMessageServiceImpl implements SendMessageService {
 			}
 			// name是发送那种短信
 			if (StringUtil.isEmpty(contentKey)) {
-				contentKey = SMS_VALIDATE_CODE;
+				contentKey =Constant.SMS_VALIDATE_CODE;
 				MemberMember member = userDao.findUserByName(mobile);
 				if (member != null) {
 					return "该手机号已注册";
