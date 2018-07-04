@@ -1,5 +1,7 @@
 package com.izhuantou.common.utils;
 
+import java.util.Map;
+
 /**
  * RedisUtils 接口
  *
@@ -55,4 +57,24 @@ public interface RedisUtils {
      * @return
      */
     public Long incr(String key);
+    /**
+     *  获取 hash对象值
+     * @param key
+     * @return
+     */
+    public String hget(String key, String field);
+    /**
+     * 获取hash所有对象值
+     * @param key
+     * @return
+     */
+    public Map<String,String> hgetAll(String key);
+    /**
+     * 保存 hash对象值
+     * @param key
+     * @return
+     */
+    public void hmset(String key, Map<String, String> hash);
+  
+    
 }

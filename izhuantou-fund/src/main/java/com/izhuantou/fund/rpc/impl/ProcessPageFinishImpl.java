@@ -1,7 +1,6 @@
 package com.izhuantou.fund.rpc.impl;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.izhuantou.common.tool.ToolDateTime;
 import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.pay.PayTransferReturn;
@@ -20,14 +20,14 @@ import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning;
 import com.izhuantou.damain.webp2p.WebP2pProductRateInfo;
 import com.izhuantou.dao.pay.PayDebitCreditMapper;
 import com.izhuantou.dao.pay.PayTransferReturnMapper;
-import com.izhuantou.fund.rpc.api.ControlDebitCredit;
-import com.izhuantou.fund.rpc.api.ProcessPageFinish;
-import com.izhuantou.third.rpc.api.ControlPayService;
-import com.izhuantou.third.rpc.api.memberagrement.MemberMemberAgreementService;
 import com.izhuantou.dao.webp2p.WebP2pLoanProductRateInfoMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainContentRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pProductRateInfoMapper;
+import com.izhuantou.fund.rpc.api.ControlDebitCredit;
+import com.izhuantou.fund.rpc.api.ProcessPageFinish;
+import com.izhuantou.third.rpc.api.ControlPayService;
+import com.izhuantou.third.rpc.api.memberagrement.MemberMemberAgreementService;
 
 
 
@@ -97,8 +97,8 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 	@Override
 	public String packageBiddingMainRuningMatching(String ly) {
 		try {
-			List<WebP2pPackageBiddingMainRuning> dcallBM = new ArrayList<WebP2pPackageBiddingMainRuning>();
-			dcallBM = packageBiddingMainRuningMapper.findAll();
+			List<WebP2pPackageBiddingMainRuning> dcallBM = packageBiddingMainRuningMapper.findAll();
+			
 			if (dcallBM != null && dcallBM.size() > 0) {
 				for (WebP2pPackageBiddingMainRuning dtoBiddingMain : dcallBM) {
 					List<List> biddingInvestListBus = new LinkedList<List>();
@@ -180,7 +180,6 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 											.updatePackageBiddingMainContentRuning(dtoInvest);
 
 									if (isYZDG) {
-										// TODO 协议 jasen 2018/3/22 ？？？
 										memberMemberAgreementService.gainMemberHHTNRBJKAgreementDifferent("16",
 												realBiddingOID);
 										memberMemberAgreementService.gainmemberzqhgHHTAgreementDifferent("18",
@@ -285,7 +284,20 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 	}
 
 	
-	
+	/*private void biddingMainRuningMatching(String ly){
+		List<WebP2pPackageBiddingMainRuning> dcallBM = packageBiddingMainRuningMapper.findAll();
+		for(WebP2pPackageBiddingMainRuning dtoBiddingMain:dcallBM){
+			List<List> biddingInvestListBus = new LinkedList<List>();
+			String mainBiddingOID =dtoBiddingMain.getOID();
+			String productRateInfoID = dtoBiddingMain.getProductRateInfoID();
+			
+			
+		}
+		
+		
+		
+	}
+	*/
 	
 	
 	
