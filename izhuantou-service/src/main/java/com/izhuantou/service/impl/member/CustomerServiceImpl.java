@@ -9,6 +9,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,7 @@ import com.izhuantou.damain.vo.member.CustomerExcelDTO;
 import com.izhuantou.damain.vo.member.CustomerFeedbackDTO;
 import com.izhuantou.damain.vo.member.CustomerFourNumberDTO;
 import com.izhuantou.damain.vo.member.CustomerListDTO;
+import com.izhuantou.damain.vo.member.CustomerManagerDTO;
 import com.izhuantou.damain.vo.member.CustomerQueryConditionDTO;
 import com.izhuantou.damain.vo.member.FeedBackDetailsDTO;
 import com.izhuantou.damain.vo.member.TrackDTO;
@@ -37,6 +40,7 @@ import com.izhuantou.damain.vo.member.UserTrackDTO;
 import com.izhuantou.damain.webp2p.WebP2pNoviceBiddingRuning;
 import com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning;
 import com.izhuantou.dao.manager.CustomerFeedbackMapper;
+import com.izhuantou.dao.manager.CustomerManagerMapper;
 import com.izhuantou.dao.manager.DetailFeedbackMapper;
 import com.izhuantou.dao.pay.PayCashPoolMapper;
 import com.izhuantou.dao.pay.PayCustomerBusinessMapper;
@@ -53,7 +57,7 @@ import com.izhuantou.service.api.member.CustomerService;
 
 @Service("customerService")
 public class CustomerServiceImpl implements CustomerService {
-
+	private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
 	@Autowired
 	private MemberMemberMapper memberMemberMapper;
 	@Autowired
@@ -80,7 +84,8 @@ public class CustomerServiceImpl implements CustomerService {
 	private DetailFeedbackMapper detailFeedbackMapper;
 	@Autowired
 	private PortalLogMapper portalLogMapper;
-
+	@Autowired
+	private CustomerManagerMapper customerManagerMapper;
 	/**
 	 * 客户列表四个数展示
 	 */
@@ -363,7 +368,73 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		return customerList;
 	}
-
+	
+	/**
+	 * 客户经理变更-->获取客户经理各级分类选项列表
+	 * @param customerManagerDTO 客户经理DTO
+	 */
+	@Override
+	public List<String> getCustomerManagerGroup(CustomerManagerDTO customerManagerDTO){
+		String type = customerManagerDTO.getType();
+		List<String> strs = null;
+		try{
+			if(type.equals("1")){				 												//查询第一列大区类型
+				customerManagerDTO.setType("twoDept");
+				customerManagerDTO.setTwoDept("");
+				customerManagerDTO.setThrDept("");
+				customerManagerDTO.setFourDept("");
+				customerManagerDTO.setFiveDept("");
+				strs = customerManagerMapper.getCustomerManagerGroup(customerManagerDTO);
+			}else if(type.equals("2") && StringUtil.isNotEmpty(customerManagerDTO.getTwoDept())){  //查询第二列分公司
+				customerManagerDTO.setType("thrDept");
+				customerManagerDTO.setThrDept("");
+				customerManagerDTO.setFourDept("");
+				customerManagerDTO.setFiveDept("");
+				strs = customerManagerMapper.getCustomerManagerGroup(customerManagerDTO);
+			}else if(type.equals("3") && StringUtil.isNotEmpty(customerManagerDTO.getTwoDept())  	//查询第三列营业部
+					&& StringUtil.isNotEmpty(customerManagerDTO.getThrDept())){
+				customerManagerDTO.setType("fourDept");
+				customerManagerDTO.setFourDept("");
+				customerManagerDTO.setFiveDept("");
+				strs = customerManagerMapper.getCustomerManagerGroup(customerManagerDTO);     	//查询第四列团队
+			}else if(type.equals("4") && StringUtil.isNotEmpty(customerManagerDTO.getTwoDept()) 
+					&& StringUtil.isNotEmpty(customerManagerDTO.getThrDept()) 
+					&& StringUtil.isNotEmpty(customerManagerDTO.getFourDept())){
+				customerManagerDTO.setType("fiveDept");
+				customerManagerDTO.setFiveDept("");
+				strs = customerManagerMapper.getCustomerManagerGroup(customerManagerDTO);
+			}
+			if(strs!=null){
+				return strs;
+			}
+			return null;
+		}catch(Exception e){
+			logger.error("getCustomerManagerGroup()" + e.getMessage());
+			return null;
+		}
+	}
+	
+	/**
+	 * 客户经理变更-->获取客户经理列表
+	 * @Param customerManagerDTO 客户经理DTO
+	 */
+	@Override
+	public List<Map<String,Object>> getCustomerManagerList(CustomerManagerDTO customerManagerDTO){
+		try{
+			if(StringUtil.isNotEmpty(customerManagerDTO.getTwoDept()) && StringUtil.isNotEmpty(customerManagerDTO.getThrDept()) 
+				&& StringUtil.isNotEmpty(customerManagerDTO.getFourDept()) && StringUtil.isNotEmpty(customerManagerDTO.getFiveDept())){
+				List<Map<String,Object>> managerList = customerManagerMapper.getCustomerManagerList(customerManagerDTO);
+				if(managerList != null){
+					return managerList;
+				}
+			}
+			return null;
+		}catch(Exception e){
+			logger.error("getCustomerManagerList()" + e.getMessage());
+			return null;
+		}
+	}
+	
 	/**
 	 * 客户详情（行为轨迹）
 	 */
@@ -403,11 +474,11 @@ public class CustomerServiceImpl implements CustomerService {
 				list.add(smjl);
 				map.put(smDate, list);
 			}
+			// 投资次数
+			Integer investmentNumber = payCustomerBusinessMapper.countTzNumber(oid);
 			// 投资产品数
 			int noviceNumer = webP2pNoviceBiddingRuningMapper.countByMemberOID(oid);
 			int cashPoolNumber = payCashPoolMapper.countByMemberOID(oid);
-			// 客户投资信息详情
-			Integer investmentNumber = payCustomerBusinessMapper.countTzNumber(oid);
 			if (investmentNumber != 0) {
 				// 新手投记录
 				if (noviceNumer != 0) {

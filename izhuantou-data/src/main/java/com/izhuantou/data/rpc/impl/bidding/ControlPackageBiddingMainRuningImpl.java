@@ -57,9 +57,10 @@ public class ControlPackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pP
 				BigDecimal yt = pbm.getHoldingAmount();
 				if (xe.compareTo(zero) != 0) {
 					// 如果已投大于限额将产品停标
-					if (yt.compareTo(xe) >= 0) {
-						pbm.setProductStatus("10");
-						packageBiddingMainRuningMapper.updatePackageBiddingMainRuning(pbm);
+					if (yt.compareTo(xe)>= 0) {
+						WebP2pPackageBiddingMainRuning pbmc = packageBiddingMainRuningMapper.findByOID(biddto.getBiddingOID());
+						pbmc.setProductStatus("10");
+						packageBiddingMainRuningMapper.updatePackageBiddingMainRuning(pbmc);
 					}
 				}
 				return "1";

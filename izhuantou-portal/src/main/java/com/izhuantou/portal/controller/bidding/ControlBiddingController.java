@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.izhuantou.common.utils.StringUtil;
+import com.izhuantou.damain.pay.PayCustomerTyj;
 import com.izhuantou.damain.vo.bidding.BiddingDTO;
 import com.izhuantou.fund.rpc.api.bidding.ProcessPageBidding;
 
@@ -80,6 +81,23 @@ public class ControlBiddingController {
 			}
 		}
 		return "redirect:/portal/control/errorpage";
+	}
+	
+	/**
+	 * 体验标相关流程
+	 */
+	@RequestMapping(value = "/tyjbidding", method = RequestMethod.POST)
+	public String intoTYJBidding(HttpServletRequest request,RedirectAttributes view){
+		HttpSession session = request.getSession();
+		String memberOID = (String) session.getAttribute("memberOID");
+		Integer row = processPageBidding.processPageTYJsave(memberOID);
+		if (row == 1){
+			// 成功
+			return "redirect:/portal/control/tzdetailsok";
+		}else{
+			// 失败
+			return "redirect:/portal/control/errorpage";
+		}
 	}
 
 }

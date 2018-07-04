@@ -1,11 +1,14 @@
 package com.izhuantou.portal.controller.personalCenter;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +21,13 @@ import com.izhuantou.damain.vo.HHThavingDetailsDTO;
 import com.izhuantou.damain.vo.MylendDaoDTO;
 import com.izhuantou.damain.vo.MylendResultDTO;
 import com.izhuantou.damain.vo.MylendZQZRDTO;
+import com.izhuantou.portal.controller.bidding.ControlBiddingController;
 import com.izhuantou.service.api.personalCenter.MylendService;
 
 @Controller
 @RequestMapping(value = "mylend", produces = "application/json;charset=UTF-8")
 public class MylendController {
-
+	private static final Logger logger = LoggerFactory.getLogger(ControlBiddingController.class);
     @Autowired
     private MylendService mylendService;
 
@@ -97,10 +101,13 @@ public class MylendController {
     @RequestMapping(value = "/hhWCList")
     @ResponseBody
     public OpResult hhWCList(HttpServletRequest request, Integer currentPage) {
-	HttpSession session = request.getSession();
+	Long startTime = System.currentTimeMillis();
+    HttpSession session = request.getSession();
 	String memberOID = (String) session.getAttribute("memberOID");
 	Map<String, Object> map = mylendService.findHHTWCBymemberOID(memberOID, currentPage);
 	if (map != null) {
+		Long time = System.currentTimeMillis()-startTime;
+		logger.info("环环投完成列表耗时{}",time);
 	    return OpResult.getSuccessResult(map);
 	}
 	return OpResult.getFailedResult("失败");
@@ -155,10 +162,13 @@ public class MylendController {
     @RequestMapping(value = "/tbzWCList")
     @ResponseBody
     public OpResult newTBZWCList(HttpServletRequest request) {
-	HttpSession session = request.getSession();
+    Long startTime = new Date().getTime();
+    HttpSession session = request.getSession();
 	String memberOID = (String) session.getAttribute("memberOID");
 	List<MylendResultDTO> map = mylendService.findTBZWCBymemberOID(memberOID);
 	if (map != null) {
+		Long time = startTime - new Date().getTime();
+		logger.info("头笔转完成列表耗时{}",time);
 	    return OpResult.getSuccessResult(map);
 	}
 	return OpResult.getFailedResult("失败");

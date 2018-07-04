@@ -4,16 +4,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.pay.PayCustomerTyjMapper">
 	<select id="findTyjRowCount" resultType="int">
-		SELECT count(*) from pay_customertyj
+		SELECT count(*) from
+		pay_customertyj
 	</select>
-	
+
 	<select id="findByMemberOID" resultType="com.izhuantou.damain.vo.CustomerTyjDTO">
-		SELECT * from PAY_CustomerTyj where memberOID = #{memberOID}
+		SELECT * from
+		PAY_CustomerTyj where memberOID = #{memberOID}
 	</select>
-	
-	<!--  -->
+
+	<!-- 根据会员OID查询使用体验金用户 -->
 	<select id="countByMemberOID" resultType="java.lang.Integer">
-		select count(*) from pay_customertyj where memberOID = #{memberOID}
+		select count(*) from
+		pay_customertyj where memberOID = #{memberOID}
 	</select>
-	
+
+	<!-- 保存体验标信息 -->
+	<insert id="save">
+		INSERT INTO pay_customertyj (
+		OID,
+		memberOID,
+		mobile,
+		nameCN,
+		tyjPrice,
+		isUsed,
+		valid,
+		addDateTime,
+		refresh,
+		version
+		) VALUES(
+		#{OID},
+		#{memberOID},
+		#{mobile},
+		#{nameCN},
+		#{tyjPrice},
+		#{isUsed},
+		1,
+		#{addDateTime},
+		1,
+		'0'
+		)
+	</insert>
+
 </mapper>

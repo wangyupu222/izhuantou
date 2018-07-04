@@ -48,5 +48,19 @@ public interface ControlCashPool extends BaseService<PayCashPool> {
 	 * @param money
 	 */
 	void investmentNew(String businessOID, String outMemberOID, String inMemberOID, BigDecimal money);
+	/**
+	 * 红包投资
+	 * @param bidto
+	 * @param allRedAmount
+	 * @return
+	 */
+	PayCashPool investmentRed(BiddingDTO bidto);
+	/**
+	 * 红包加息券投资
+	 * @param bidto
+	 * @param allRedAmount
+	 * @return
+	 */
+	PayCashPool investmentRedAndPrivilege(BiddingDTO bidto);
 	
 }

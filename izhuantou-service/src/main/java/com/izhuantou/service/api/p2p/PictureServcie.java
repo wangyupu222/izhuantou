@@ -27,6 +27,11 @@ public interface PictureServcie {
 	 * @return
 	 */
 	List<String> findPdfPicPath(String pics,String picPath);
-	
-	
+	/**
+	 * 获取pdf路径
+	 * @param agrOID
+	 * @param pdfFilePath
+	 * @return
+	 */
+	String findPdfNamePath(String agrOID);
 }

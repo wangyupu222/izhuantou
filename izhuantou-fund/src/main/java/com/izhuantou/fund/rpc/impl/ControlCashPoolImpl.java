@@ -469,4 +469,23 @@ public class ControlCashPoolImpl extends BaseServiceImpl<PayCashPool> implements
 		}
 	}
 
+	@Override
+	public void discountRed(String biddingOID, String memberOID, BigDecimal allRedAmount) {
+		controlPay.transferFreeze("redAccount", memberOID, allRedAmount);
+		try {
+			controlPay.transferFreeze("redAccount", memberOID, allRedAmount);
+			PayCashPoolOperation cashPoolOperation = new PayCashPoolOperation();
+			cashPoolOperation.setBusinessOID(biddingOID);
+			cashPoolOperation.setOutMemberOID("redAccount");
+			cashPoolOperation.setInMemberOID(memberOID);
+			cashPoolOperation.setMoney(allRedAmount);
+			cashPoolOperation.setContent("红包贴息完成");
+			cashPoolOperation.setOID(StringUtil.getUUID());
+			paycashPoolOperationMapper.saveCashPoolOperation(cashPoolOperation);
+		} catch (Exception e) {
+			logger.error("discountRed(String biddingOID, String memberOID, BigDecimal allRedAmount)" + e.getMessage());
+		}
+		
+	}
+
 }

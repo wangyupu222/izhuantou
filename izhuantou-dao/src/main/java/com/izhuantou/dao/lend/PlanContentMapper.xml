@@ -3,6 +3,10 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.izhuantou.dao.lend.PlanContentMapper">
-
-
+	
+	<!-- 根据className获取线程信息 -->
+	<select id="selectByClassName" resultType="com.izhuantou.damain.lend.PlanContent">
+		select oid,state from plan_content where className = #{className}
+	</select>
+	
 </mapper>

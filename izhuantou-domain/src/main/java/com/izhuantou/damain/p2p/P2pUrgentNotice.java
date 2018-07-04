@@ -13,7 +13,7 @@ import com.izhuantou.damain.BasePojo;
  * @author aries
  * @version 1.0
  */
-@Table(name="p2p_urgentNotice")
+@Table(name="tb_p2p_urgentNotice")
 public class P2pUrgentNotice extends BasePojo{
 	
 	/**

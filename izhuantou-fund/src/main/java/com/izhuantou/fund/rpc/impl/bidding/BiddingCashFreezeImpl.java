@@ -43,6 +43,7 @@ import com.izhuantou.dao.webp2p.WebP2pNoviceBiddingRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainContentRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pProductRateInfoMapper;
+import com.izhuantou.fund.rpc.api.ControlCashPool;
 import com.izhuantou.fund.rpc.api.bidding.BiddingCashFreeze;
 import com.izhuantou.fund.rpc.impl.BaseServiceImpl;
 import com.izhuantou.third.rpc.api.ControlPayService;
@@ -81,6 +82,8 @@ public class BiddingCashFreezeImpl extends BaseServiceImpl<PayDebitCredit> imple
 	private WebP2pProductRateInfoMapper productRateInfoMapper;
 	@Autowired
 	private WebP2pPackageBiddingMainRuningMapper packageBiddingMainRuningMapper;
+	@Autowired
+	private ControlCashPool controlCashPool;
 
 	/**
 	 * 更改完的新手
@@ -552,6 +555,46 @@ public class BiddingCashFreezeImpl extends BaseServiceImpl<PayDebitCredit> imple
 		} catch (Exception e) {
 			logger.error("PayTransferReturn addTransferReturn(BiddingDTO biddto)"+e.getMessage());
 			return null;
+		}
+		return result;
+	}
+
+
+	@Override
+	public String investmentRed(BiddingDTO biddto) {
+		String result = "";
+		try {
+			if (biddto.getAllRedAmount() == null){
+				result=controlPay.freeze(biddto.getMemberOID(),biddto.getAmount());
+			}else{
+				result=controlPay.freeze(biddto.getMemberOID(),biddto.getAmount());
+				if ("1".equals(result)){
+				// 红包贴息
+				controlCashPool.discountRed(biddto.getBiddingOID(), biddto.getMemberOID(), biddto.getAllRedAmount());
+				}
+			}
+		} catch (Exception e) {
+			logger.error("investmentRed(BiddingDTO biddto, BigDecimal allRedAmount)"+e.getMessage());
+		}
+		return result;
+	}
+
+
+	@Override
+	public String investmentRedAndPrivilege(BiddingDTO biddto) {
+		String result = "";
+		try {
+			if (biddto.getAllRedAmount() == null){
+				result=controlPay.freeze(biddto.getMemberOID(),biddto.getAmount());
+			}else{
+				result=controlPay.freeze(biddto.getMemberOID(),biddto.getAmount());
+				if ("1".equals(result)){
+				// 红包贴息
+				controlCashPool.discountRed(biddto.getBiddingOID(), biddto.getMemberOID(), biddto.getAllRedAmount());
+				}
+			}
+		} catch (Exception e) {
+			logger.error("investmentRed(BiddingDTO biddto, BigDecimal allRedAmount)"+e.getMessage());
 		}
 		return result;
 	}

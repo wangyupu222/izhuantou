@@ -825,4 +825,269 @@ public class ControlDebitCreditImpl extends BaseServiceImpl<PayDebitCredit> impl
 			return null;
 		}
 	}
+
+	@Override
+	public PayCashPool investmentRed(BiddingDTO biddto) {
+		PayCashPool dtoCashPool = null;
+		try {
+			if (biddto != null){
+				// 获取产品信息
+				ProductInfoDTO dtoProductInfo = this.gainProductInfo(biddto.getBiddingOID());
+				// 返还期数
+				Integer returnNumber = dtoProductInfo.getReturnNumber();
+				// 结束时间
+				Date endDate = null;
+				// 利率
+				BigDecimal creditRate = dtoProductInfo.getCreditRate();
+
+				BigDecimal creditRateTemp = null;
+				if ("month".equals(dtoProductInfo.getReturnCycle())) {
+					creditRateTemp = creditRate.divide(new BigDecimal("12"), 8, BigDecimal.ROUND_HALF_EVEN);
+					endDate = ToolDateTime.addMonth(biddto.getBeginDate(), returnNumber);
+				} else if ("day".equals(dtoProductInfo.getReturnCycle())) {
+					creditRateTemp = creditRate.divide(new BigDecimal("365"), 8, BigDecimal.ROUND_HALF_EVEN);
+					endDate = ToolDateTime.addDay(biddto.getBeginDate(), returnNumber);
+				}
+				// 类型按月返息，到期返本
+				BigDecimal allRedAmount = biddto.getAllRedAmount();
+				String creditType = dtoProductInfo.getDebitType();
+				if ("BIAP".equals(creditType)) {
+					BiddingDTO bidto = new BiddingDTO();
+					bidto.setBiddingOID(biddto.getBiddingOID());
+					bidto.setOutMemberOID(biddto.getMemberOID());
+					bidto.setAmount(biddto.getAmount());
+					bidto.setInterest(
+							biddto.getAmount().add(allRedAmount).multiply(creditRateTemp).setScale(2, BigDecimal.ROUND_HALF_EVEN));
+					bidto.setCreditRate(creditRate);
+					bidto.setReturnCycle(dtoProductInfo.getReturnCycle());
+					bidto.setReturnNumber(returnNumber);
+					bidto.setBeginDate(biddto.getBeginDate());
+					bidto.setEndDate(endDate);
+					bidto.setPrivilegePrincipal(biddto.getPrivilegePrincipal());
+					bidto.setPrivilegeInterest(biddto.getPrivilegeInterest());
+					bidto.setTqOID(biddto.getTqOID());
+					bidto.setLaiyuan(biddto.getLaiyuan());
+					bidto.setAllRedAmount(allRedAmount);
+					dtoCashPool = this.controlCashPool.investmentRed(bidto);
+					// 统计
+					BigDecimal totalInterest = new BigDecimal("0");
+					for (int i = 0; i < returnNumber; i++) {
+						PayReturnPlan dtoReturnPlan = new PayReturnPlan();
+						dtoReturnPlan.setBusinessOID(bidto.getBiddingOID());
+						dtoReturnPlan.setCashPoolOID(dtoCashPool.getOID());
+						dtoReturnPlan.setMemberOID(bidto.getMemberOID());
+						if ("month".equals(dtoProductInfo.getReturnCycle())) {
+							dtoReturnPlan.setReturnDate(ToolDateTime.addMonth(bidto.getBeginDate(), i + 1));
+						} else if ("day".equals(dtoProductInfo.getReturnCycle())) {
+							dtoReturnPlan.setReturnDate(ToolDateTime.addMonth(bidto.getBeginDate(), i + 1));
+						}
+						// 利息
+						BigDecimal interest = bidto.getAmount().add(allRedAmount).multiply(creditRateTemp).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+						dtoReturnPlan.setInterestMoney(interest);
+						if (returnNumber == i + 1) {
+							dtoReturnPlan.setMoney(bidto.getAmount().add(interest).setScale(2, BigDecimal.ROUND_HALF_EVEN));
+							dtoReturnPlan.setPrincipalMoney(bidto.getAmount().add(allRedAmount));
+							dtoReturnPlan.setTotalPrincipalMoney(bidto.getAmount().add(allRedAmount));
+						} else {
+							dtoReturnPlan.setMoney(interest);
+							dtoReturnPlan.setPrincipalMoney(new BigDecimal("0"));
+							dtoReturnPlan.setTotalPrincipalMoney(new BigDecimal("0"));
+						}
+						totalInterest = totalInterest.add(interest);
+						dtoReturnPlan.setTotalInterestMoney(totalInterest);
+						dtoReturnPlan.setRate(creditRateTemp);
+						dtoReturnPlan.setNum(i + 1);
+						dtoReturnPlan.setSum(returnNumber);
+						dtoReturnPlan.setState("agentPlan");
+						dtoReturnPlan.setType(creditType);
+						dtoReturnPlan.setYqfx(new BigDecimal("0"));
+						dtoReturnPlan.setOID(StringUtil.getUUID());
+						payReturnPlanMapper.saveReturnPlan(dtoReturnPlan);
+					}
+				} else if ("OPI".equals(creditType)){
+					BiddingDTO bidto = new BiddingDTO();
+					BigDecimal money = biddto.getAmount();
+					bidto.setBiddingOID(biddto.getBiddingOID());
+					bidto.setOutMemberOID(biddto.getMemberOID());
+					bidto.setAmount(biddto.getAmount());
+					bidto.setInterest(money.add(allRedAmount).multiply(creditRateTemp).multiply(new BigDecimal(returnNumber)).setScale(2,
+							BigDecimal.ROUND_HALF_EVEN));
+					bidto.setCreditRate(creditRate);
+					bidto.setReturnCycle(dtoProductInfo.getReturnCycle());
+					bidto.setReturnNumber(1);
+					bidto.setBeginDate(biddto.getBeginDate());
+					bidto.setEndDate(endDate);
+					bidto.setPrivilegePrincipal(biddto.getPrivilegePrincipal());
+					bidto.setPrivilegeInterest(biddto.getPrivilegeInterest());
+					bidto.setTqOID(biddto.getTqOID());
+					bidto.setLaiyuan(biddto.getLaiyuan());
+					bidto.setAllRedAmount(allRedAmount);
+					
+					dtoCashPool = this.controlCashPool.investmentRed(bidto);
+					// 全部利息
+					BigDecimal interestCount = money.add(allRedAmount).multiply(creditRateTemp).multiply(new BigDecimal(returnNumber))
+							.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+					
+					PayReturnPlan dtoReturnPlan = new PayReturnPlan();
+					dtoReturnPlan.setBusinessOID(biddto.getBiddingOID());
+					dtoReturnPlan.setCashPoolOID(dtoCashPool.getOID());
+					dtoReturnPlan.setMemberOID(biddto.getMemberOID());
+					if ("month".equals(dtoProductInfo.getReturnCycle())) {
+						dtoReturnPlan.setReturnDate(ToolDateTime.addMonth(biddto.getBeginDate(), returnNumber));
+					} else if ("day".equals(dtoProductInfo.getReturnCycle())) {
+						dtoReturnPlan.setReturnDate(ToolDateTime.addDay(biddto.getBeginDate(), returnNumber));
+					}
+					dtoReturnPlan.setInterestMoney(interestCount);
+					dtoReturnPlan.setMoney(money.add(allRedAmount).add(interestCount).setScale(2, BigDecimal.ROUND_HALF_EVEN));
+					dtoReturnPlan.setPrincipalMoney(money.add(allRedAmount));
+					dtoReturnPlan.setTotalPrincipalMoney(money.add(allRedAmount));
+					dtoReturnPlan.setTotalInterestMoney(interestCount);
+					dtoReturnPlan.setRate(creditRate);
+					dtoReturnPlan.setNum(1);
+					dtoReturnPlan.setSum(1);
+					dtoReturnPlan.setState("agentPlan");
+					dtoReturnPlan.setType(creditType);
+					dtoReturnPlan.setYqfx(new BigDecimal("0"));
+					dtoReturnPlan.setOID(StringUtil.getUUID());
+					payReturnPlanMapper.saveReturnPlan(dtoReturnPlan);
+				}
+			}
+		} catch (Exception e) {
+			logger.error("investmentRed(BiddingDTO biddto, BigDecimal allRedAmount)"+e.getMessage());
+		}
+		return dtoCashPool;
+	}
+
+	@Override
+	public PayCashPool investmentRedAndPrivilege(BiddingDTO biddto) {
+		PayCashPool dtoCashPool = null;
+		try {
+			if (biddto != null){
+				// 获取产品信息
+				ProductInfoDTO dtoProductInfo = this.gainProductInfo(biddto.getBiddingOID());
+				// 返还期数
+				Integer returnNumber = dtoProductInfo.getReturnNumber();
+				// 结束时间
+				Date endDate = null;
+				// 利率
+				BigDecimal creditRate = dtoProductInfo.getCreditRate();
+				
+				BigDecimal creditRateTemp = null;
+				if ("month".equals(dtoProductInfo.getReturnCycle())) {
+					creditRateTemp = creditRate.divide(new BigDecimal("12"), 8, BigDecimal.ROUND_HALF_EVEN);
+					endDate = ToolDateTime.addMonth(biddto.getBeginDate(), returnNumber);
+				} else if ("day".equals(dtoProductInfo.getReturnCycle())) {
+					creditRateTemp = creditRate.divide(new BigDecimal("365"), 8, BigDecimal.ROUND_HALF_EVEN);
+					endDate = ToolDateTime.addDay(biddto.getBeginDate(), returnNumber);
+				}
+				// 类型
+				BigDecimal allRedAmount = biddto.getAllRedAmount();
+				String creditType = dtoProductInfo.getDebitType();
+				if ("BIAP".equals(creditType)) {
+					BiddingDTO bidto = new BiddingDTO();
+					bidto.setBiddingOID(biddto.getBiddingOID());
+					bidto.setOutMemberOID(biddto.getMemberOID());
+					bidto.setAmount(biddto.getAmount());
+					bidto.setInterest(
+							biddto.getAmount().add(allRedAmount).multiply(creditRateTemp).setScale(2, BigDecimal.ROUND_HALF_EVEN));
+					bidto.setCreditRate(creditRate);
+					bidto.setReturnCycle(dtoProductInfo.getReturnCycle());
+					bidto.setReturnNumber(returnNumber);
+					bidto.setBeginDate(biddto.getBeginDate());
+					bidto.setEndDate(endDate);
+					bidto.setPrivilegePrincipal(biddto.getPrivilegePrincipal());
+					bidto.setPrivilegeInterest(biddto.getPrivilegeInterest());
+					bidto.setTqOID(biddto.getTqOID());
+					bidto.setLaiyuan(biddto.getLaiyuan());
+					bidto.setAllRedAmount(allRedAmount);
+					dtoCashPool = this.controlCashPool.investmentRedAndPrivilege(bidto);
+					// 统计
+					BigDecimal totalInterest = new BigDecimal("0");
+					for (int i = 0; i < returnNumber; i++) {
+						PayReturnPlan dtoReturnPlan = new PayReturnPlan();
+						dtoReturnPlan.setBusinessOID(bidto.getBiddingOID());
+						dtoReturnPlan.setCashPoolOID(dtoCashPool.getOID());
+						dtoReturnPlan.setMemberOID(bidto.getMemberOID());
+						if ("month".equals(dtoProductInfo.getReturnCycle())) {
+							dtoReturnPlan.setReturnDate(ToolDateTime.addMonth(bidto.getBeginDate(), i + 1));
+						} else if ("day".equals(dtoProductInfo.getReturnCycle())) {
+							dtoReturnPlan.setReturnDate(ToolDateTime.addMonth(bidto.getBeginDate(), i + 1));
+						}
+						// 利息
+						BigDecimal interest = bidto.getAmount().add(allRedAmount).multiply(creditRateTemp).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+						dtoReturnPlan.setInterestMoney(interest);
+						if (returnNumber == i + 1) {
+							dtoReturnPlan
+									.setMoney(bidto.getAmount().add(interest).setScale(2, BigDecimal.ROUND_HALF_EVEN));
+							dtoReturnPlan.setPrincipalMoney(bidto.getAmount().add(allRedAmount));
+							dtoReturnPlan.setTotalPrincipalMoney(bidto.getAmount().add(allRedAmount));
+						} else {
+							dtoReturnPlan.setMoney(interest);
+							dtoReturnPlan.setPrincipalMoney(new BigDecimal("0"));
+							dtoReturnPlan.setTotalPrincipalMoney(new BigDecimal("0"));
+						}
+						totalInterest = totalInterest.add(interest);
+						dtoReturnPlan.setTotalInterestMoney(totalInterest);
+						dtoReturnPlan.setRate(creditRateTemp);
+						dtoReturnPlan.setNum(i + 1);
+						dtoReturnPlan.setSum(returnNumber);
+						dtoReturnPlan.setState("agentPlan");
+						dtoReturnPlan.setType(creditType);
+						dtoReturnPlan.setYqfx(new BigDecimal("0"));
+						dtoReturnPlan.setOID(StringUtil.getUUID());
+						payReturnPlanMapper.saveReturnPlan(dtoReturnPlan);
+					}
+				} else if ("OPI".equals(creditType)){
+					BiddingDTO bidto = new BiddingDTO();
+					BigDecimal money = biddto.getAmount();
+					bidto.setBiddingOID(biddto.getBiddingOID());
+					bidto.setOutMemberOID(biddto.getMemberOID());
+					bidto.setAmount(biddto.getAmount());
+					bidto.setInterest(money.add(allRedAmount).multiply(creditRateTemp).multiply(new BigDecimal(returnNumber)).setScale(2,
+							BigDecimal.ROUND_HALF_EVEN));
+					bidto.setCreditRate(creditRate);
+					bidto.setReturnCycle(dtoProductInfo.getReturnCycle());
+					bidto.setReturnNumber(1);
+					bidto.setBeginDate(biddto.getBeginDate());
+					bidto.setEndDate(endDate);
+					bidto.setPrivilegePrincipal(biddto.getPrivilegePrincipal());
+					bidto.setPrivilegeInterest(biddto.getPrivilegeInterest());
+					bidto.setTqOID(biddto.getTqOID());
+					bidto.setLaiyuan(biddto.getLaiyuan());
+					bidto.setAllRedAmount(allRedAmount);
+
+					dtoCashPool = this.controlCashPool.investmentRedAndPrivilege(bidto);
+					// 全部利息
+					BigDecimal interestCount = money.add(allRedAmount).multiply(creditRateTemp).multiply(new BigDecimal(returnNumber))
+							.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+					
+					PayReturnPlan dtoReturnPlan = new PayReturnPlan();
+					dtoReturnPlan.setBusinessOID(biddto.getBiddingOID());
+					dtoReturnPlan.setCashPoolOID(dtoCashPool.getOID());
+					dtoReturnPlan.setMemberOID(biddto.getMemberOID());
+					if ("month".equals(dtoProductInfo.getReturnCycle())) {
+						dtoReturnPlan.setReturnDate(ToolDateTime.addMonth(biddto.getBeginDate(), returnNumber));
+					} else if ("day".equals(dtoProductInfo.getReturnCycle())) {
+						dtoReturnPlan.setReturnDate(ToolDateTime.addDay(biddto.getBeginDate(), returnNumber));
+					}
+					dtoReturnPlan.setInterestMoney(interestCount);
+					dtoReturnPlan.setMoney(money.add(allRedAmount).add(interestCount).setScale(2, BigDecimal.ROUND_HALF_EVEN));
+					dtoReturnPlan.setPrincipalMoney(money.add(allRedAmount));
+					dtoReturnPlan.setTotalPrincipalMoney(money.add(allRedAmount));
+					dtoReturnPlan.setTotalInterestMoney(interestCount);
+					dtoReturnPlan.setRate(creditRate);
+					dtoReturnPlan.setNum(1);
+					dtoReturnPlan.setSum(1);
+					dtoReturnPlan.setState("agentPlan");
+					dtoReturnPlan.setType(creditType);
+					dtoReturnPlan.setYqfx(new BigDecimal("0"));
+					dtoReturnPlan.setOID(StringUtil.getUUID());
+					payReturnPlanMapper.saveReturnPlan(dtoReturnPlan);
+				}
+			}
+		} catch (Exception e) {
+			logger.error("investmentRed(BiddingDTO biddto, BigDecimal allRedAmount)"+e.getMessage());
+		}
+		return dtoCashPool;
+	}
 }

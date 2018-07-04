@@ -25,10 +25,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WEBP2P_PackageBiddingMainContentRuning.loanProductRateInfoID,
 		WEBP2P_PackageBiddingMainContentRuning.financetransfertype AS
 		financetransfertype,
+		WEBP2P_PackageBiddingMainContentRuning.memberOID,
 		WEBP2P_PackageBiddingMainContentRuning.productStatus AS productStatus,
-		PAY_DebitCredit.outMemberOID,
 		WEBP2P_PackageBiddingMainContentRuning.debitCreditOID AS
 		debitCreditOID,
+
 		IFNULL(WEBP2P_PackageBiddingMainContentRuning.debtLoanNumber,
 		WEBP2P_PackageBiddingMainContentRuning.loanNumber) jkmc,
 		ROUND(WEBP2P_LoanProductRateInfo.yearRate * 100,
@@ -39,13 +40,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WEBP2P_PackageBiddingMainContentRuning.loanNumber
 		FROM
 		WEBP2P_LoanProductRateInfo,
-		PAY_DebitCredit,
 		WEBP2P_PackageBiddingMainContentRuning,
 		WEBP2P_PackageMainContentMapping,
 		WEBP2P_PackageBiddingMainRuning
 		WHERE
-		WEBP2P_PackageBiddingMainRuning.OID =
-		WEBP2P_PackageMainContentMapping.mainOID
+		WEBP2P_PackageBiddingMainRuning.OID
+		=WEBP2P_PackageMainContentMapping.mainOID
 		AND
 		WEBP2P_PackageBiddingMainRuning.OID = #{OID}
 		AND
@@ -54,16 +54,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND
 		WEBP2P_LoanProductRateInfo.OID =
 		WEBP2P_PackageBiddingMainContentRuning.loanProductRateInfoID
-		GROUP BY
-		WEBP2P_PackageBiddingMainContentRuning.OID) sonbid
+		) sonbid
 		LEFT JOIN
 		PAY_DebitCredit
-		ON sonbid.OID = PAY_DebitCredit.businessOID
-		JOIN
-		WEBP2P_PackageBiddingMainContentRuning mcr
-		on
-		mcr.loanNumber=sonbid.loanNumber
-		and mcr.financetransfertype='normal'
+		ON sonbid.OID =
+		PAY_DebitCredit.businessOID
+		JOIN WEBP2P_PackageBiddingMainContentRuning mcr ON mcr.loanNumber =
+		sonbid.loanNumber
+		AND mcr.financetransfertype = 'normal'
 		LEFT JOIN
 		(
 		SELECT
@@ -80,13 +78,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		businessOID
 		) AS
 		t2
-		ON t2.memberOID=mcr.memberOID
+		ON
+		t2.memberOID=mcr.memberOID
 		GROUP BY
 		sonbid.OID
 		ORDER BY
 		SUBSTRING_INDEX(jkmc,
 		'-',
-		-1) DESC limit #{startPos},#{pageSize}
+		-1) DESC
+		limit #{startPos},#{pageSize}
 	</select>
 
 	<select id="findCount" resultType="Integer">
@@ -99,8 +99,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WEBP2P_PackageBiddingMainContentRuning.loanProductRateInfoID,
 		WEBP2P_PackageBiddingMainContentRuning.financetransfertype AS
 		financetransfertype,
+		WEBP2P_PackageBiddingMainContentRuning.memberOID,
 		WEBP2P_PackageBiddingMainContentRuning.productStatus AS productStatus,
-		PAY_DebitCredit.outMemberOID,
 		WEBP2P_PackageBiddingMainContentRuning.debitCreditOID AS
 		debitCreditOID,
 		IFNULL(
@@ -117,7 +117,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WEBP2P_PackageBiddingMainContentRuning.loanNumber
 		FROM
 		WEBP2P_LoanProductRateInfo,
-		PAY_DebitCredit,
 		WEBP2P_PackageBiddingMainContentRuning,
 		WEBP2P_PackageMainContentMapping,
 		WEBP2P_PackageBiddingMainRuning
@@ -132,13 +131,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND
 		WEBP2P_LoanProductRateInfo.OID =
 		WEBP2P_PackageBiddingMainContentRuning.loanProductRateInfoID
-		GROUP BY
-		WEBP2P_PackageBiddingMainContentRuning.OID
 		) sonbid
 
 	</select>
 
-	
+
 
 
 </mapper>

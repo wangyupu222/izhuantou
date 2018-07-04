@@ -40,4 +40,11 @@ public interface ProcessPageBidding {
 	 * @return
 	 */
 	public String ProcessPageZZChujiesave(BiddingDTO biddto);
+	
+	/**
+	 * 体验金
+	 * @param memberOID
+	 * @return
+	 */
+	public Integer processPageTYJsave(String memberOID);
 }

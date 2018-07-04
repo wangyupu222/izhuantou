@@ -13,6 +13,20 @@ public interface PackageBiddingMainRuning extends BaseService<WebP2pPackageBiddi
 	 */
 	String bidPackageBiddingDifferent(BiddingDTO biddto);
 	
+	/**
+	 * 使用红包投资
+	 * @param biddto
+	 * @return
+	 */
+	String bidPackageBiddingRed(BiddingDTO biddto);
+	
+	/**
+	 * 使用红包和加息券投资
+	 * @param biddto
+	 * @return
+	 */
+	String bidPackageBiddingRedAndPrivilege(BiddingDTO biddto);
+	
 	
 
 }

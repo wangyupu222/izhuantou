@@ -19,6 +19,7 @@ import com.izhuantou.damain.pay.PayCashPool;
 import com.izhuantou.damain.pay.PayCustomer;
 import com.izhuantou.damain.user.MemberBlackList;
 import com.izhuantou.damain.user.MemberMember;
+import com.izhuantou.damain.vo.CustomerTyjDTO;
 import com.izhuantou.damain.vo.JoinSelectAllDTO;
 import com.izhuantou.damain.vo.PersonalDTO;
 import com.izhuantou.damain.vo.UserDTO;
@@ -26,6 +27,7 @@ import com.izhuantou.dao.code.CodeContentMapper;
 import com.izhuantou.dao.p2p.P2pCompanyPerMapper;
 import com.izhuantou.dao.pay.PayCashPoolMapper;
 import com.izhuantou.dao.pay.PayCustomerMapper;
+import com.izhuantou.dao.pay.PayCustomerTyjMapper;
 import com.izhuantou.dao.pay.PayDebitCreditMapper;
 import com.izhuantou.dao.pay.PayReturnPlanMapper;
 import com.izhuantou.dao.personalCenter.PersonalCenterMapper;
@@ -56,6 +58,8 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 	private P2pCompanyPerMapper p2pCompanyPerDao;
 	@Autowired
 	private MemberBlackListMapper blackListMapper;
+	@Autowired
+	private PayCustomerTyjMapper payCustomertyjMapper;
 
 	/** 登录验证账户密码 */
 	@Override
@@ -238,6 +242,16 @@ public class UserServiceImpl extends BaseServiceImpl<MemberMember> implements Us
 					}
 				}
 			}
+			// 体验金收益 也是属于特权收益中的
+		    List<CustomerTyjDTO> dtoTYJ = payCustomertyjMapper.findByMemberOID(memberOID);
+		    if (dtoTYJ.size() > 0) {
+			for (CustomerTyjDTO tyj : dtoTYJ) {
+			    String isUsed = tyj.getIsUsed();
+			    if ("0".equals(isUsed)) {
+			    	tqsyds = tqsyds.add(tyj.getTyjPrice());
+			    }
+			}
+		    }
 			// 代收本金：cybj，代收利息：yjsy，代收特权：tqsyds
 			PersonalDTO personal = new PersonalDTO();
 			yjsy = yjsy.add(jxsy);

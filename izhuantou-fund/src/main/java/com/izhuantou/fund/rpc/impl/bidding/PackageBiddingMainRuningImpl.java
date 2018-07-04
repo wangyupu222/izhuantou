@@ -3,16 +3,16 @@ package com.izhuantou.fund.rpc.impl.bidding;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.alibaba.dubbo.common.utils.StringUtils;
 import com.izhuantou.common.redismq.MessageType;
 import com.izhuantou.common.tool.ToolDateTime;
 import com.izhuantou.common.utils.JsonUtil;
+import com.izhuantou.common.utils.RedisUtils;
 import com.izhuantou.common.utils.StringUtil;
 import com.izhuantou.damain.pay.PayPrivilege;
 import com.izhuantou.damain.pay.PayPrivilegeMemberMapping;
@@ -53,6 +53,7 @@ public class PackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pPackageB
 	private RedisMQMessageSender messageSender;
 	@Autowired
 	private RedPacketMemberMappingMapper redPacketMemberMappingMapper;
+	private RedisUtils redisUtils;
 
 	@Override
 	public String bidPackageBiddingDifferent(BiddingDTO biddto) {
@@ -60,86 +61,126 @@ public class PackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pPackageB
 			String result = "";
 			if (biddto != null) {
 				// 从reids中扣减可投金额
-				WebP2pPackageBiddingMainRuning pbm = packageBiddingMainRuningMapper.findByOID(biddto.getBiddingOID());
-				WebP2pProductRateInfo pdri = productRateInfoMapper.findByOID(pbm.getProductRateInfoID());
-				// 团标产品投标
-				BigDecimal privilegePrincipal = new BigDecimal(0);
-				BigDecimal privilegeInterest = new BigDecimal(0);
-				if (StringUtils.isEmpty(biddto.getTqOID())) {
+				if (StringUtil.isEmpty(biddto.getTqOID())) {
 					biddto.setBeginDate(ToolDateTime.gainDate());
 					// 将bitdto存入redis
 					result = controlDebitCredit.investment(biddto);
+					String biddingOID = biddto.getBiddingOID();
+					BigDecimal bidMoney = biddto.getAmount();
+					if (StringUtil.isNotEmpty(biddingOID)) {
+						Map<String, String> remap = redisUtils.hgetAll(biddingOID);
+						String strHoldingAmount = remap.get("holdingAmount");
+						String strSxAmount = remap.get("sxAmount");
+						BigDecimal holdingAmount = new BigDecimal(strHoldingAmount);
+						BigDecimal sxAmount = new BigDecimal(strSxAmount);
 
-					if (StringUtils.isNotEmpty(result) && "1".equals(result)) {
-						// 富有冻结成功 将环环标的数据放到redis队列中
-						String biddtoStr = JsonUtil.toStr(biddto);
-						System.err.println("发送的信息为" + biddtoStr);
-						Long mqResult = messageSender.put(new Message(MessageType.HH_BIDDING_MESSAGE, biddtoStr));
-						if (mqResult != null) {
-							System.out.println("消息发送成功");
+						if (sxAmount.compareTo(new BigDecimal("0")) == 0) {
+							BigDecimal nowMoney = bidMoney.add(holdingAmount);
+							remap.put("holdingAmount", nowMoney.toString());
+							redisUtils.hmset(biddingOID, remap);
 						} else {
-							System.out.println("消息发送失败");
+							BigDecimal nowMoney = bidMoney.add(holdingAmount);
+							if (nowMoney.compareTo(sxAmount) <= 0) {
+								remap.put("holdingAmount", nowMoney.toString());
+								redisUtils.hmset(biddingOID, remap);
+							} else {
+								return "投资金额达投标上限";
+							}
 						}
-					} else {
-						// 富有冻结失败,则加上可投金额。
-					}
-				} else {
-					PayPrivilege tq = privilegeMapper.findByOID(biddto.getTqOID());
-					if (tq != null) {
-						if (StringUtils.isNotEmpty(tq.getPrivilegeType()) && "1".equals(tq.getPrivilegeType())) {
-							// 加息
-							privilegeInterest = tq.getPrivilegeRange();
-						} else if (tq.getPrivilegeType() != null && "0".equals(tq.getPrivilegeType())) {
-							// 红包
-							privilegePrincipal = tq.getPrivilegeRange();
-						} else {
-							logger.info("特权投标失败");
-							return null;
-						}
-					}
-					biddto.setPrivilegeInterest(privilegeInterest);
-					biddto.setPrivilegePrincipal(privilegePrincipal);
-					biddto.setBeginDate(ToolDateTime.gainDate());
-					result = controlDebitCredit.investment(biddto);
-					if (StringUtils.isNotEmpty(result) && "1".equals(result)) {
-						// 将环环标的数据放到redis队列中
-						String biddtoStr = JsonUtil.toStr(biddto);
-						System.err.println("发送的信息为" + biddtoStr);
-						Long mqResult = messageSender.put(new Message(MessageType.HH_BIDDING_MESSAGE, biddtoStr));
-						if (mqResult != null) {
-							System.out.println("消息发送成功");
-						} else {
-							System.out.println("消息发送失败");
-						}
-					}
-				}
-				if (StringUtils.isNotEmpty(result) && "1".equals(result)) {
-					if (StringUtils.isNotEmpty(biddto.getTqOID())) {
-						// 如果特权不为空，则需要更改特权使用状态
-						if (StringUtils.isNotEmpty(biddto.getMappingOID())) {
-							/**
-							 * 更新 传入mappingOID回来，因app旧版本问题，如果mappOID为null，
-							 * 需要按tqOID该更改特权状态
-							 */
-							PayPrivilegeMemberMapping mapping = privilegeMemberMappingMapper
-									.findByOID(biddto.getMappingOID());
-							mapping.setIsUsed("1");
-							privilegeMemberMappingMapper.updatePrivilegeMemberMapping(mapping);
-							if (StringUtils.isNotEmpty(mapping.getPsOID())) {
-								// 如果psOID存在，说明是万能权，需要更改万能权特殊说明表
-								PayPrivilegeSpecialps ps = privilegeSpecialPSMapper.findByOID(mapping.getPsOID());
-								ps.setProductInfoOID(pdri.getOID());
-								ps.setJXDay((int) (pdri.getProductTerm() * 30));
-								ps.setIsUsed("1");
-								privilegeSpecialPSMapper.updatePrivilegeSpecialPS(ps);
+						WebP2pPackageBiddingMainRuning pbm = packageBiddingMainRuningMapper
+								.findByOID(biddto.getBiddingOID());
+						WebP2pProductRateInfo pdri = productRateInfoMapper.findByOID(pbm.getProductRateInfoID());
+						// 团标产品投标
+						BigDecimal privilegePrincipal = new BigDecimal(0);
+						BigDecimal privilegeInterest = new BigDecimal(0);
+						if (StringUtil.isEmpty(biddto.getTqOID())) {
+							biddto.setBeginDate(ToolDateTime.gainDate());
+
+							result = controlDebitCredit.investment(biddto);
+
+							if (StringUtil.isNotEmpty(result) && "1".equals(result)) {
+								// 富有冻结成功 将环环标的数据放到redis队列中
+								String biddtoStr = JsonUtil.toStr(biddto);
+								logger.info("发送的信息为" + biddtoStr);
+								Long mqResult = messageSender
+										.put(new Message(MessageType.HH_BIDDING_MESSAGE, biddtoStr));
+								if (mqResult != null) {
+									logger.info("消息发送成功");
+								} else {
+									logger.info("消息发送失败");
+								}
+							} else {
+								// 富有冻结失败,则加上可投金额。
+								Map<String, String> retumap = redisUtils.hgetAll(biddingOID);
+								BigDecimal strhoAmount = new BigDecimal(retumap.get("holdingAmount"));
+								BigDecimal nowMoney = strhoAmount.subtract(bidMoney);
+								remap.put("holdingAmount", nowMoney.toString());
+								redisUtils.hmset(biddingOID, remap);
 							}
 						} else {
-							// 如果用户同一特权有多张劵，把该特权劵都改为已使用
-							List<PayPrivilegeMemberMapping> d = privilegeMemberMappingMapper
-									.findByCondition(biddto.getTqOID(), biddto.getMemberOID());
-							for (PayPrivilegeMemberMapping dto : d) {
-								dto.setIsUsed("1");
-								privilegeMemberMappingMapper.updatePrivilegeMemberMapping(dto);
+							PayPrivilege tq = privilegeMapper.findByOID(biddto.getTqOID());
+							if (tq != null) {
+								if (StringUtil.isNotEmpty(tq.getPrivilegeType()) && "1".equals(tq.getPrivilegeType())) {
+									// 加息
+									privilegeInterest = tq.getPrivilegeRange();
+								} else if (tq.getPrivilegeType() != null && "0".equals(tq.getPrivilegeType())) {
+									// 红包
+									privilegePrincipal = tq.getPrivilegeRange();
+								} else {
+									logger.info("特权投标失败");
+									return null;
+								}
+							}
+							biddto.setPrivilegeInterest(privilegeInterest);
+							biddto.setPrivilegePrincipal(privilegePrincipal);
+							biddto.setBeginDate(ToolDateTime.gainDate());
+							result = controlDebitCredit.investment(biddto);
+							if (StringUtil.isNotEmpty(result) && "1".equals(result)) {
+								// 将环环标的数据放到redis队列中
+								String biddtoStr = JsonUtil.toStr(biddto);
+								System.err.println("发送的信息为" + biddtoStr);
+								Long mqResult = messageSender
+										.put(new Message(MessageType.HH_BIDDING_MESSAGE, biddtoStr));
+								if (mqResult != null) {
+									System.out.println("消息发送成功");
+								} else {
+									System.out.println("消息发送失败");
+								}
+							} else {
+								// 富有冻结失败,则加上可投金额。
+								Map<String, String> retumap = redisUtils.hgetAll(biddingOID);
+								BigDecimal strhoAmount = new BigDecimal(retumap.get("holdingAmount"));
+								BigDecimal nowMoney = strhoAmount.subtract(bidMoney);
+								remap.put("holdingAmount", nowMoney.toString());
+								redisUtils.hmset(biddingOID, remap);
+							}
+						}
+						if (StringUtil.isNotEmpty(result) && "1".equals(result)) {
+							if (StringUtil.isNotEmpty(biddto.getTqOID())) {
+								// 如果特权不为空，则需要更改特权使用状态
+								if (StringUtil.isNotEmpty(biddto.getMappingOID())) {
+									PayPrivilegeMemberMapping mapping = privilegeMemberMappingMapper
+											.findByOID(biddto.getMappingOID());
+									mapping.setIsUsed("1");
+									privilegeMemberMappingMapper.updatePrivilegeMemberMapping(mapping);
+									if (StringUtil.isNotEmpty(mapping.getPsOID())) {
+										// 如果psOID存在，说明是万能权，需要更改万能权特殊说明表
+										PayPrivilegeSpecialps ps = privilegeSpecialPSMapper
+												.findByOID(mapping.getPsOID());
+										ps.setProductInfoOID(pdri.getOID());
+										ps.setJXDay((int) (pdri.getProductTerm() * 30));
+										ps.setIsUsed("1");
+										privilegeSpecialPSMapper.updatePrivilegeSpecialPS(ps);
+									}
+								} else {
+									// 如果用户同一特权有多张劵，把该特权劵都改为已使用
+									List<PayPrivilegeMemberMapping> d = privilegeMemberMappingMapper
+											.findByCondition(biddto.getTqOID(), biddto.getMemberOID());
+									for (PayPrivilegeMemberMapping dto : d) {
+										dto.setIsUsed("1");
+										privilegeMemberMappingMapper.updatePrivilegeMemberMapping(dto);
+									}
+								}
 							}
 						}
 					}
@@ -222,7 +263,8 @@ public class PackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pPackageB
 					BigDecimal allRedAmount = new BigDecimal(0);
 					for (String redOid : redArray) {
 						redOidList.add(redOid);
-						RedPacketMemberMapping redPacketMemberMapping = redPacketMemberMappingMapper.selectByOid(redOid);
+						RedPacketMemberMapping redPacketMemberMapping = redPacketMemberMappingMapper
+								.selectByOid(redOid);
 						BigDecimal redAmount = redPacketMemberMapping.getRedAmount();
 						allRedAmount = allRedAmount.add(redAmount);// 累加所有红包金额
 					}
@@ -232,7 +274,7 @@ public class PackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pPackageB
 					// 查询加息券利率
 					PayPrivilege tq = privilegeMapper.findByOID(biddto.getTqOID());
 					if (tq != null) {
-						if (StringUtils.isNotEmpty(tq.getPrivilegeType()) && "1".equals(tq.getPrivilegeType())) {
+						if (StringUtil.isNotEmpty(tq.getPrivilegeType()) && "1".equals(tq.getPrivilegeType())) {
 							// 加息
 							privilegeInterest = tq.getPrivilegeRange();
 						} else if (tq.getPrivilegeType() != null && "0".equals(tq.getPrivilegeType())) {
@@ -247,7 +289,7 @@ public class PackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pPackageB
 					biddto.setPrivilegePrincipal(privilegePrincipal);
 					biddto.setBeginDate(ToolDateTime.gainDate());
 					result = controlDebitCredit.investmentRedAndPrivilege(biddto);
-					if (StringUtils.isNotEmpty(result) && "1".equals(result)) {
+					if (StringUtil.isNotEmpty(result) && "1".equals(result)) {
 						// 将环环标的数据放到redis队列中
 						String biddtoStr = JsonUtil.toStr(biddto);
 						System.err.println("发送的信息为" + biddtoStr);
@@ -268,10 +310,10 @@ public class PackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pPackageB
 					}
 				}
 				// 修改特权使用状态
-				if (StringUtils.isNotEmpty(result) && "1".equals(result)) {
-					if (StringUtils.isNotEmpty(biddto.getTqOID())) {
+				if (StringUtil.isNotEmpty(result) && "1".equals(result)) {
+					if (StringUtil.isNotEmpty(biddto.getTqOID())) {
 						// 如果特权不为空，则需要更改特权使用状态
-						if (StringUtils.isNotEmpty(biddto.getMappingOID())) {
+						if (StringUtil.isNotEmpty(biddto.getMappingOID())) {
 							/**
 							 * 更新 传入mappingOID回来，因app旧版本问题，如果mappOID为null，
 							 * 需要按tqOID该更改特权状态
@@ -280,7 +322,7 @@ public class PackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pPackageB
 									.findByOID(biddto.getMappingOID());
 							mapping.setIsUsed("1");
 							privilegeMemberMappingMapper.updatePrivilegeMemberMapping(mapping);
-							if (StringUtils.isNotEmpty(mapping.getPsOID())) {
+							if (StringUtil.isNotEmpty(mapping.getPsOID())) {
 								// 如果psOID存在，说明是万能权，需要更改万能权特殊说明表
 								PayPrivilegeSpecialps ps = privilegeSpecialPSMapper.findByOID(mapping.getPsOID());
 								ps.setProductInfoOID(pdri.getOID());

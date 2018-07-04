@@ -169,5 +169,13 @@ public interface ControlCashPool extends BaseService<PayCashPool> {
 	 */
 	void finishRepay(String businessOID, String memberOID, BigDecimal money);
 	
+	/**
+	 * 红包贴息
+	 * @param biddingOID
+	 * @param memberOID
+	 * @param allRedAmount
+	 */
+	void discountRed(String biddingOID, String memberOID, BigDecimal allRedAmount);
+	
 	
 }
