@@ -42,7 +42,7 @@ public class WebP2pPackageBiddingMainRuning extends BasePojo {
     @Column(name = "productRateInfoID")
     private String productRateInfoID;
     /**
-     * 标的状态（0：未发布；1：在投；2： 已完成；3：已到期；4：逾期；5：满标）
+     * 
      */
     @Column(name = "productStatus")
     private String productStatus;
@@ -65,7 +65,7 @@ public class WebP2pPackageBiddingMainRuning extends BasePojo {
      * 是否推荐（0,不推荐，1,推荐）
      */
     @Column(name = "isRecommend")
-    private String isRecommend = "0";
+    private String isRecommend ;
     /**
      * 上限金额
      */
@@ -81,7 +81,7 @@ public class WebP2pPackageBiddingMainRuning extends BasePojo {
     private String financetransfertype;
 
     @Column(name = "appisRecommend")
-    private String appisRecommend = "0";
+    private String appisRecommend ;
 
     /**
      * 设置定时 0:不设置 1：设置

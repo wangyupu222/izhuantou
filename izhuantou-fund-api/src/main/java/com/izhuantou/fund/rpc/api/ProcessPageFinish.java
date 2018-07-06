@@ -26,7 +26,6 @@ public interface ProcessPageFinish {
 	 * 环环匹配
 	 * @return
 	 */
-	String packageBiddingMainRuningMatching(String ly);
-	
+	void packageBiddingMainRuningMatching(String ly);
 	
 }

@@ -20,8 +20,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT mcr.* FROM
 		WEBP2P_PackageMainContentMapping mcMapping,WEBP2P_PackageBiddingMainContentRuning mcr
 		where mcr.OID = mcMapping.contentOID and mcMapping.mainOID=#{mainOID}
-		and productStatus=1
+		and mcr.productStatus=1
 
 	</select>
+
+	<update id="updatePackageBiddingMainContentRuning">
+		UPDATE webp2p_packagebiddingmaincontentruning
+			SET 
+			 biddingName=#{biddingName},
+			 endDay=#{endDay},
+			 memberOID=#{memberOID},
+			 applyAmount=#{applyAmount},
+			 loanDay=#{loanDay},
+			 biddingAmount=#{biddingAmount},
+			 loanProductRateInfoID=#{loanProductRateInfoID},
+			 holdingAmount=#{holdingAmount},
+			 productType=#{productType},
+			 productStatus=#{productStatus},
+			 repaymentType=#{repaymentType},
+			 biddingType=#{biddingType},
+			 loanNumber=#{loanNumber},
+			 yhqs=#{yhqs},
+			 isRecommend=#{isRecommend},
+			 isCWTB=#{isCWTB},
+			 debitCreditOID=#{debitCreditOID},
+			 yhje=#{yhje},
+			 hkzt=#{hkzt},
+			 yqts=#{yqts},
+			 describe0=#{describe0},
+			 NO=#{NO},
+			 addUserOID=#{addUserOID},
+			 updUserOID=#{updUserOID},
+			 valid=#{valid},
+			 addDateTime=#{addDateTime},
+			 updDateTime=NOW(),
+			 refresh=#{refresh},
+			 version=version+1,
+			 financetransfertype=#{financetransfertype},
+			 debtLoanNumber=#{debtLoanNumber},
+			 debtTransferOID=#{debtTransferOID}
+			WHERE
+				OID =#{OID} and version=#{version}
+	
+	</update>
+
 
 </mapper>

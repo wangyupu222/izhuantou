@@ -14,7 +14,7 @@
 	<!-- 富友接口 -->
 	 <dubbo:reference check="false" interface="com.izhuantou.third.rpc.api.ControlPayService" id="controlPayService" timeout="${dubbo.timeout}" />  
 	<!-- 满标后调用fund满标流程 -->
-	<dubbo:reference check="false" interface="com.izhuantou.fund.rpc.api.ProcessPageFinish" id="processPageFinish" timeout="100000" />  
+	<dubbo:reference check="false" interface="com.izhuantou.fund.rpc.api.ProcessPageFinish" id="processPageFinish" timeout="200000" />  
 	<!-- 协议接口 -->
 	<dubbo:reference  check="false"  interface="com.izhuantou.third.rpc.api.memberagrement.MemberMemberAgreementService" id="memberMemberAgreementService" timeout="100000" />
 	<!-- 短信接口 -->
