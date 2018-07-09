@@ -25,7 +25,7 @@ public interface WebP2pPackageBiddingMainRuningMapper extends Mapper<WebP2pPacka
     public int updatePackageBiddingMainRuning(WebP2pPackageBiddingMainRuning mainRuning);
 
     /**
-     * 在投中团标产品表
+     * 查看所有团标产品
      * 
      * @return
      */
@@ -37,4 +37,12 @@ public interface WebP2pPackageBiddingMainRuningMapper extends Mapper<WebP2pPacka
      */
     public List<ActivityNewPrivilegesDTO> findOIDAndTerm();
 
+    /**
+     * 查看所有可投团标产品
+     * 
+     * @return
+     */
+    public List<WebP2pPackageBiddingMainRuning> findCanInvestment();
+
+    
 }

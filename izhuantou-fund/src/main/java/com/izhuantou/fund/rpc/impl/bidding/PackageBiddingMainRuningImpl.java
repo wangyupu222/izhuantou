@@ -53,6 +53,7 @@ public class PackageBiddingMainRuningImpl extends BaseServiceImpl<WebP2pPackageB
 	private RedisMQMessageSender messageSender;
 	@Autowired
 	private RedPacketMemberMappingMapper redPacketMemberMappingMapper;
+	@Autowired
 	private RedisUtils redisUtils;
 
 	@Override

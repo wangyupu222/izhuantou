@@ -96,7 +96,7 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 	@Override
 	public void packageBiddingMainRuningMatching(String ly) {
 		try {
-			List<WebP2pPackageBiddingMainRuning> dcallBM = packageBiddingMainRuningMapper.findAll();
+			List<WebP2pPackageBiddingMainRuning> dcallBM = packageBiddingMainRuningMapper.findCanInvestment();
 			long startTime = System.currentTimeMillis();
 			System.err.println("biddingMainRuningMatching(String ly))"+startTime);
 			for (WebP2pPackageBiddingMainRuning dtoBiddingMain : dcallBM) {
@@ -257,7 +257,7 @@ public class ProcessPageFinishImpl implements ProcessPageFinish {
 				}
 			}
 			long endTime =System.currentTimeMillis();
-			System.out.println("站岗资金投标总耗时"+(endTime-startTime));
+			System.err.println("站岗资金投标总耗时"+(endTime-startTime));
 		} catch (Exception e) {
 			logger.error("biddingMainRuningMatching(String ly)站岗资金投标" + e.getMessage());
 		}

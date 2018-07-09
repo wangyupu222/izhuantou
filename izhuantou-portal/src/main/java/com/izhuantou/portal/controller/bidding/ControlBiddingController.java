@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.izhuantou.common.utils.StringUtil;
-import com.izhuantou.damain.pay.PayCustomerTyj;
 import com.izhuantou.damain.vo.bidding.BiddingDTO;
 import com.izhuantou.fund.rpc.api.bidding.ProcessPageBidding;
 
