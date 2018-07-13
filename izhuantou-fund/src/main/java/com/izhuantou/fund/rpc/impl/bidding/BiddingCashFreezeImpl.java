@@ -39,6 +39,7 @@ import com.izhuantou.dao.pay.PayTransferReturnMapper;
 import com.izhuantou.dao.user.MemberMemberMapper;
 import com.izhuantou.dao.webp2p.WebP2pDebtTransferApplyMapper;
 import com.izhuantou.dao.webp2p.WebP2pLoanProductRateInfoMapper;
+import com.izhuantou.dao.webp2p.WebP2pNormalBiddingRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pNoviceBiddingRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainContentRuningMapper;
 import com.izhuantou.dao.webp2p.WebP2pPackageBiddingMainRuningMapper;
@@ -84,6 +85,8 @@ public class BiddingCashFreezeImpl extends BaseServiceImpl<PayDebitCredit> imple
 	private WebP2pPackageBiddingMainRuningMapper packageBiddingMainRuningMapper;
 	@Autowired
 	private ControlCashPool controlCashPool;
+	@Autowired
+	private WebP2pNormalBiddingRuningMapper normalBiddingRuningMapper;
 
 	/**
 	 * 更改完的新手
@@ -129,7 +132,7 @@ public class BiddingCashFreezeImpl extends BaseServiceImpl<PayDebitCredit> imple
 	private DataPackageDTO gainDebitInfo(String businessOID) {
 		try {
 			WebP2pNoviceBiddingRuning noviceBid = this.noviceBiddingRuningMapper.findByOID(businessOID);
-			WebP2pNormalBiddingRuning normalBidding = null;// TODO 到这就空指针 this.normalBiddingRuningMapper.findByOID(businessOID);
+			WebP2pNormalBiddingRuning normalBidding =this.normalBiddingRuningMapper.findByOID(businessOID);
 			WebP2pPackageBiddingMainContentRuning packageBidding = this.packageBiddingMainContentRuningMapper
 					.findByOID(businessOID);
 
@@ -248,7 +251,7 @@ public class BiddingCashFreezeImpl extends BaseServiceImpl<PayDebitCredit> imple
 					productRateInfo = this.productRateInfoMapper.findByOID(noviceBidding.getProductRateInfoID());
 					
 				} else {
-					WebP2pNormalBiddingRuning normalBidding= null;// TODO 到这就空指针  normalBiddingRuningMapper.findNormalByOID(strBusinessOID);
+					WebP2pNormalBiddingRuning normalBidding=normalBiddingRuningMapper.findByOID(strBusinessOID);
 					if (normalBidding!= null) {
 						infodto=new ProductInfoDTO();
 						infodto.setName(normalBidding.getBiddingName());
