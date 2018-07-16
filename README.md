@@ -26,5 +26,5 @@
 本地开发环境启动
 	* maven-tomcat7  使用maven内置的tomcat 命令 tomcat7:run
 	
-	
+项目详细使用请参考	项目获取文档
 		
