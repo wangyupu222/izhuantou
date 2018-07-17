@@ -15,14 +15,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 查看协议 -->
 	<select id="gainAgreementXYCK2"
 		resultType="com.izhuantou.damain.user.MemberMemberAgreement">
-		select * from from MEMBER_MemberAgreement where ckOID =
+		select * from MEMBER_MemberAgreement where ckOID =
 		#{ckOID} and contractType =#{contractType}
 		ORDER BY OID DESC LIMIT 1
 	</select>
 	<!-- 查看协议 -->
 	<select id="gainAgreementJKZX"
 		resultType="com.izhuantou.damain.user.MemberMemberAgreement">
-		select * from from MEMBER_MemberAgreement where and
+		select * from MEMBER_MemberAgreement where and
 		loanNumber = #{loanNumber} and contractType =#{contractType}
 		ORDER BY
 		OID DESC LIMIT 1
@@ -143,7 +143,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			biddingOID =#{biddingOID} and contractType =#{contractType}
 	
 	</select>
-
+	<!-- 根据投资人OID查询头笔赚协议 -->
+	<select id="findTBZAgreementByOID" resultType="com.izhuantou.damain.user.MemberMemberAgreement">
+		select * from MEMBER_MemberAgreement where contractType =#{contractType}
+		 and memberOID = #{memberOID}
+		ORDER BY OID DESC LIMIT 1
+	</select>
 
 
 </mapper>

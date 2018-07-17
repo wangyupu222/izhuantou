@@ -1,8 +1,8 @@
 package com.izhuantou.damain.vo.member;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 会员行为轨迹(某个用户的详情)
@@ -18,53 +18,62 @@ public class UserTrackDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = -2582002395065127351L;
 
+	
 	/**
-	 * 投资总额
+	 * 投资时间 
 	 */
-	private String investmentMoney;
+	private Date addDateTime;
 	/**
-	 * 投资次数
+	 * 投资产品名称
 	 */
-	private Integer investmentNumber;
+	private String productName;
 	/**
-	 * 投资产品数
+	 * 投资产品ID
 	 */
-	private Integer investmentProductNumber;
+	private String productOID;
 	/**
-	 * 操作记录
+	 * 投资金额
 	 */
-	private Map<String, List<String>> operatingRecord;
+	private BigDecimal money;
 
-	public String getInvestmentMoney() {
-		return investmentMoney;
+	public Date getAddDateTime() {
+		return addDateTime;
 	}
 
-	public void setInvestmentMoney(String investmentMoney) {
-		this.investmentMoney = investmentMoney;
+	public void setAddDateTime(Date addDateTime) {
+		this.addDateTime = addDateTime;
 	}
 
-	public Integer getInvestmentNumber() {
-		return investmentNumber;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setInvestmentNumber(Integer investmentNumber) {
-		this.investmentNumber = investmentNumber;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
-	public Integer getInvestmentProductNumber() {
-		return investmentProductNumber;
+	public String getProductOID() {
+		return productOID;
 	}
 
-	public void setInvestmentProductNumber(Integer investmentProductNumber) {
-		this.investmentProductNumber = investmentProductNumber;
+	public void setProductOID(String productOID) {
+		this.productOID = productOID;
 	}
 
-	public Map<String, List<String>> getOperatingRecord() {
-		return operatingRecord;
+	public BigDecimal getMoney() {
+		return money;
 	}
 
-	public void setOperatingRecord(Map<String, List<String>> operatingRecord) {
-		this.operatingRecord = operatingRecord;
+	public void setMoney(BigDecimal money) {
+		this.money = money;
 	}
+	
+	@Override
+	public String toString() {
+		return "UserTrackDTO [addDateTime=" + addDateTime + ", productName=" + productName + ", productOID="
+				+ productOID + ", money=" + money + "]";
+	}
+	
+	
 
 }

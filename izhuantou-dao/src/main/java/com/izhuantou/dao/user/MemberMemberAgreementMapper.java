@@ -22,7 +22,7 @@ public interface MemberMemberAgreementMapper extends Mapper<MemberMemberAgreemen
      * @param contractType
      * @return
      */
-    public MemberMemberAgreement gainAgreementJKXYCK(@Param("biddingOID") String biddingOID,
+     MemberMemberAgreement gainAgreementJKXYCK(@Param("biddingOID") String biddingOID,
 	    @Param("contractType") String contractType);
 
     /**
@@ -32,7 +32,7 @@ public interface MemberMemberAgreementMapper extends Mapper<MemberMemberAgreemen
      * @param contractType
      * @return
      */
-    public MemberMemberAgreement gainAgreementXYCK2(@Param("ckOID") String ckOID,
+     MemberMemberAgreement gainAgreementXYCK2(@Param("ckOID") String ckOID,
 	    @Param("contractType") String contractType);
 
     /**
@@ -42,7 +42,7 @@ public interface MemberMemberAgreementMapper extends Mapper<MemberMemberAgreemen
      * @param contractType
      * @return
      */
-    public MemberMemberAgreement gainAgreementJKZX(@Param("loanNumber") String loanNumber,
+     MemberMemberAgreement gainAgreementJKZX(@Param("loanNumber") String loanNumber,
 	    @Param("contractType") String contractType);
 
     /**
@@ -51,7 +51,7 @@ public interface MemberMemberAgreementMapper extends Mapper<MemberMemberAgreemen
      * @param agreement
      * @return
      */
-    public int saveMemberAgreement(MemberMemberAgreement agreement);
+     int saveMemberAgreement(MemberMemberAgreement agreement);
 
     /**
      * 协议总数
@@ -59,7 +59,7 @@ public interface MemberMemberAgreementMapper extends Mapper<MemberMemberAgreemen
      * @param agreement
      * @return
      */
-    public int countMemberAgreement(@Param("biddingType") String biddingType,
+     int countMemberAgreement(@Param("biddingType") String biddingType,
 	    @Param("contractType") String contractType);
 
     /**
@@ -69,7 +69,7 @@ public interface MemberMemberAgreementMapper extends Mapper<MemberMemberAgreemen
      * @param biddingOID
      * @return
      */
-    public MemberMemberAgreement findBymemberOIDBiddingOIDForZQZR(@Param("memberOID") String memberOID,
+     MemberMemberAgreement findBymemberOIDBiddingOIDForZQZR(@Param("memberOID") String memberOID,
 	    @Param("biddingOID") String biddingOID);
 
     /**
@@ -78,7 +78,7 @@ public interface MemberMemberAgreementMapper extends Mapper<MemberMemberAgreemen
      * @param loanNumber
      * @return
      */
-    public LeanYuBiaoDTO findByYBInfoByJKXY(String loanNumber);
+     LeanYuBiaoDTO findByYBInfoByJKXY(String loanNumber);
 
     /**
      * 查看协议的编号
@@ -87,7 +87,12 @@ public interface MemberMemberAgreementMapper extends Mapper<MemberMemberAgreemen
      * @param contractType
      * @return
      */
-    public String findByAgreementJKXYBHCK(@Param("biddingOID") String biddingOID,
+     String findByAgreementJKXYBHCK(@Param("biddingOID") String biddingOID,
 	    @Param("contractType") String contractType);
-
+    
+    /**
+     * 根据投资人OID查询头笔赚协议
+     */
+    public MemberMemberAgreement findTBZAgreementByOID(@Param("memberOID") String memberOID,
+    		@Param("contractType") String contractType);
 }
