@@ -170,12 +170,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据会员OID以及时间范围获取信息 -->
 	<select id="findByMemberOID" resultType="com.izhuantou.damain.pay.PayCashPool">
 		select 
-		OID,businessOID,principalMoney,addDateTime
+			OID,businessOID,principalMoney,addDateTime
 		from
-		pay_cashpool 
+			pay_cashpool 
 		where 
-		memberOID=#{oid} and addDateTime between
-		#{cqcDTO.startDate} and #{cqcDTO.endDate} order by addDateTime desc
+			memberOID=#{cqcDTO.OID} 
+		<if test="cqcDTO.startDate != null and cqcDTO.startDate != ''">
+                and addDateTime &gt;= #{cqcDTO.startDate}
+        </if>
+		<if test="cqcDTO.endDate != null and cqcDTO.endDate != ''">
+                and addDateTime &lt;= #{cqcDTO.endDate}
+        </if>
 	</select>
 
 </mapper>

@@ -78,15 +78,15 @@
  	</filter-mapping>  
  	<filter-mapping>
     	<filter-name>BandingCareFilter</filter-name>
-    	<url-pattern>/portal/personal/BorrowingRecords</url-pattern>    	
+    	<url-pattern>/portal/loan/BorrowingRecords</url-pattern>    	
  	</filter-mapping>  
  	<filter-mapping>
     	<filter-name>BandingCareFilter</filter-name>
-    	<url-pattern>/portal/personal/LoanApplication</url-pattern>    	
+    	<url-pattern>/portal/loan/LoanApplication</url-pattern>    	
  	</filter-mapping>  
  	<filter-mapping>
     	<filter-name>BandingCareFilter</filter-name>
-    	<url-pattern>/portal/personal/Repayment</url-pattern>    	
+    	<url-pattern>/portal/loan/Repayment</url-pattern>    	
  	</filter-mapping>  
 	
 	<servlet>

@@ -81,14 +81,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 根据会员OID获取信息 -->
 	<select id="findByMemberOId"
-		resultType="com.izhuantou.damain.webp2p.WebP2pNoviceBiddingRuning">
-		select
-		OID,biddingName,startBidAmount,holdingAmount,addDateTime
-		from
-		webp2p_novicebiddingruning
-		where memberOID =
-		#{oid} and addDateTime between #{cqcDTO.startDate} and
-		#{cqcDTO.endDate}
+		resultType="com.izhuantou.damain.vo.member.UserTrackDTO">
+		SELECT
+			NoviceBiddingRuning.OID AS productOID,
+			NoviceBiddingRuning.biddingName AS productName,
+			payDebitCredit.addDateTime AS addDateTime,
+			payDebitCredit.money AS money
+		FROM
+			pay_debitcredit payDebitCredit,
+			webp2p_novicebiddingruning NoviceBiddingRuning
+		WHERE
+			payDebitCredit.outMemberOID = #{cqcDTO.OID}
+			AND payDebitCredit.businessOID = NoviceBiddingRuning.OID
+			AND NoviceBiddingRuning.productStatus != 3
+			AND NoviceBiddingRuning.productStatus != 10
+			<if test="cqcDTO.startDate != null and cqcDTO.startDate != ''">
+                and payDebitCredit.addDateTime &gt;= #{cqcDTO.startDate}
+       		</if>
+       		<if test="cqcDTO.endDate != null and cqcDTO.endDate != ''">
+                and payDebitCredit.addDateTime &lt;= #{cqcDTO.endDate}
+        	</if>
 	</select>
 
 </mapper>

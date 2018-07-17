@@ -64,16 +64,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		isRecommend=1 ORDER BY productTerm
 	</select>
 
-
-
-
-
-
-
-
-
-
-
+	<select id="findCanInvestment" resultType="com.izhuantou.damain.webp2p.WebP2pPackageBiddingMainRuning">
+		SELECT * FROM webp2p_packagebiddingmainruning WHERE productStatus ='1'
+	</select>
 
 
 

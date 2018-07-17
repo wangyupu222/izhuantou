@@ -1270,7 +1270,8 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 				BigDecimal bj = repay.getPrincipalMoney();
 				BigDecimal ll = repay.getInterestMoney();
 				BigDecimal jhhk = bj.add(ll);
-				hkjk += "<tr><td>" + hkqs + "</td>" + "<td>" + jhhk + "</td>" + "<td>" + repay.getRepayDate()
+				String repayDate=DateUtils.formartDate(repay.getRepayDate(),"yyyy-MM-dd");
+				hkjk += "<tr><td>" + hkqs + "</td>" + "<td>" + jhhk + "</td>" + "<td>" + repayDate
 						+ "</td></tr>";
 			}
 			replaceMap.put("data1", hkjk);
@@ -1373,7 +1374,8 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 				BigDecimal bj = repay.getPrincipalMoney();
 				BigDecimal ll = repay.getInterestMoney();
 				BigDecimal jhhk = bj.add(ll);
-				hkjk += "<tr><td>" + hkqs + "</td>" + "<td>" + jhhk + "</td>" + "<td>" + repay.getRepayDate()
+				String repayDate = DateUtils.formatJustDate(repay.getRepayDate().getTime());
+				hkjk += "<tr><td>" + hkqs + "</td>" + "<td>" + jhhk + "</td>" + "<td>" + repayDate
 						+ "</td></tr>";
 			}
 			replaceMap.put("data1", hkjk);
@@ -1410,7 +1412,7 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 
 	private String pdfToPicture(String name) {
 		try {
-			Map<String, String> resMap = ReadPropertiesl.gainPropertiesMap("File.properties");
+			Map<String, String> resMap = ReadPropertiesl.gainPropertiesMap("file.properties");
 			String path = resMap.get("pdfFilePath");
 			String picPath = resMap.get("pdfPicPath");
 			path = path + name;
@@ -1436,7 +1438,7 @@ public class MemberMemberAgreementServiceImpl extends BaseServiceImpl<MemberMemb
 				Long datetime = new Date().getTime();
 				// 图片名称
 				String filename = datetime.toString();
-				File fil = new File(file + File.separator + filename);
+				File fil = new File(file + File.separator + filename+".png");
 				try {
 					ImageIO.write(rendImage, "png", fil);
 					image.flush();

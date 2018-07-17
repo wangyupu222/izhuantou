@@ -8,7 +8,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.fuiou.data.AppTransReqData;
@@ -448,14 +447,8 @@ public class ControlPayServiceImpl implements ControlPayService {
 				messageBusiness.setContent(content);
 				messageBusiness.setSendUser("系统");
 				messageBusiness.setReceiveUserOID(customer.getMemberOID());
-
-				// TODO 发消息的工具应在数据层封装
+				
 				messageContentBusinessMapper.saveMessageBusiness(messageBusiness);
-
-				Map<String, String> smsMap = ReadPropertiesl.gainPropertiesMap("SMS.properties");
-				String userName = smsMap.get("account");
-				String password = smsMap.get("password");
-
 				MessageSmsHistory smsHistory = new MessageSmsHistory();
 				String sOID = StringUtil.getUUID();
 				smsHistory.setOID(sOID);

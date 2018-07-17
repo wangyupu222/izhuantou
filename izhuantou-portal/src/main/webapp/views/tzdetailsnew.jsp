@@ -145,7 +145,7 @@ font-size:16px;color:#666;margin:0 auto;width:70%;text-align: left;
 
 <div class="cd-popup2 cd-popup_new">
 <div class="cd-popup-container2">
-<form handleClassName="pageTyProDetailsFormChujiesave" name="FormChujie"  >
+<form action="/portal/control/tyjbidding" method = "post" name="FormChujie" id="FormChujie" >
 <input type="hidden" name="biddingOID" value='<%=request.getParameter("OID") %>' >
    <div class="comnei comneichujie">
        <a class="close cd-popup-close"></a>

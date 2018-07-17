@@ -1,12 +1,15 @@
 package com.izhuantou.portal.controller.lend;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +39,7 @@ import com.izhuantou.damain.lend.TyPro;
 import com.izhuantou.damain.p2p.P2pPageLoan;
 import com.izhuantou.damain.vo.FromLendInfo;
 import com.izhuantou.damain.webp2p.WebP2pBiddingExamine;
+import com.izhuantou.portal.controller.bidding.ControlBiddingController;
 import com.izhuantou.service.api.lend.AuditInfoService;
 import com.izhuantou.service.api.lend.DetialDDTService;
 import com.izhuantou.service.api.lend.DetialHHTService;
@@ -61,7 +65,8 @@ import com.izhuantou.service.api.lend.isLoginService;
 @Controller
 @RequestMapping(value = "detial", produces = "application/json;charset=UTF-8")
 public class DetiallendController {
-    @Autowired
+	private static final Logger logger = LoggerFactory.getLogger(ControlBiddingController.class);
+	@Autowired
     private DetialTBZService detialTBZService;
     @Autowired
     private TransferMarkService transferMarkService;
@@ -373,7 +378,10 @@ public class DetiallendController {
     @ResponseBody
     public OpResult FindResultHHTTagComponent(@PathVariable(value = "page") String page,
 	    @RequestParam(value = "OID", defaultValue = "") String OID) {
+    Long startTime = new Date().getTime();
 	Map<String, Object> map = hhtTagComponentService.findByCondition(Integer.valueOf(page), OID);
+	Long time = new Date().getTime() - startTime;
+	logger.info("环环投标的组成耗时{}",time);
 	return OpResult.getSuccessResult(map);
     }
 

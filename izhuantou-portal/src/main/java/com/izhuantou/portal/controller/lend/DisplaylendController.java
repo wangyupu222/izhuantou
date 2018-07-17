@@ -1,5 +1,9 @@
 package com.izhuantou.portal.controller.lend;
 
+import java.util.Date;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +19,7 @@ import com.izhuantou.damain.lend.DisplayDDT;
 import com.izhuantou.damain.lend.DisplayHHT;
 import com.izhuantou.damain.lend.DisplayTBZ;
 import com.izhuantou.damain.lend.DisplayZZT;
+import com.izhuantou.portal.controller.bidding.ControlBiddingController;
 import com.izhuantou.service.api.lend.DisplayDDTService;
 import com.izhuantou.service.api.lend.DisplayHHTService;
 import com.izhuantou.service.api.lend.DisplayTBZService;
@@ -29,7 +34,8 @@ import com.izhuantou.service.api.lend.DisplayZZTService;
 @Controller
 @RequestMapping(value = "lend", produces = "application/json;charset=UTF-8")
 public class DisplaylendController {
-    @Autowired
+	private static final Logger logger = LoggerFactory.getLogger(ControlBiddingController.class);
+	@Autowired
     private DisplayTBZService displayTBZService;
     @Autowired
     private DisplayHHTService displayHHTService;
@@ -47,7 +53,7 @@ public class DisplaylendController {
     @ResponseBody
     public OpResult FindResulttbz(@PathVariable(value = "page") String page,
 	    @RequestParam(value = "sortp", defaultValue = "") String sortp) {
-
+    Long startTime = new Date().getTime();
 	if (StringUtils.isBlank(page)) {
 	    page = "1";
 	}
@@ -56,7 +62,8 @@ public class DisplaylendController {
 	}
 
 	Pagination<DisplayTBZ> list = this.displayTBZService.showProductsByPage(Integer.parseInt(page), sortp);
-
+	Long time = new Date().getTime() - startTime;
+	logger.info("头笔赚数据展示耗时{}",time);
 	return OpResult.getSuccessResult(list);
     }
 
@@ -70,9 +77,10 @@ public class DisplaylendController {
     public OpResult FindResulthh(@PathVariable(value = "page") String page,
 	    @RequestParam(value = "sortp", defaultValue = "") String sortp,
 	    @RequestParam(value = "status", defaultValue = "") String status) {
-
+    Long startTime = new Date().getTime();
 	Pagination<DisplayHHT> list = this.displayHHTService.showProductsByPage(Integer.parseInt(page),status,sortp);
-
+	Long time = new Date().getTime() - startTime;
+	logger.info("环环投数据展示耗时{}",time);
 	return OpResult.getSuccessResult(list);
     }
 

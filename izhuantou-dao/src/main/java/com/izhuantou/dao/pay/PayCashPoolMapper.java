@@ -95,7 +95,6 @@ public interface PayCashPoolMapper extends Mapper<PayCashPool> {
 	 * @param cqcDTO
 	 * @return
 	 */
-	public List<PayCashPool> findByMemberOID(@Param("oid") String oid,
-			@Param("cqcDTO") CustomerQueryConditionDTO cqcDTO);
+	public List<PayCashPool> findByMemberOID(@Param("cqcDTO") CustomerQueryConditionDTO cqcDTO);
 
 }

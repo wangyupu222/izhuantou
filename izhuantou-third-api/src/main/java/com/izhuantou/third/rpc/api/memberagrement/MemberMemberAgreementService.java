@@ -1,7 +1,5 @@
 package com.izhuantou.third.rpc.api.memberagrement;
 
-import java.util.Map;
-
 import com.izhuantou.damain.user.MemberAgreement;
 import com.izhuantou.damain.user.MemberMemberAgreement;
 import com.izhuantou.damain.vo.MemberAgrennmentDTO;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.izhuantou.dao.red.RedPacketMemberMappingMapper">
+	<!-- 修改红包状态为已使用 -->
+	<update id="updateIsUsed">
+		update
+		redpacketmembermapping
+		set isUsed = '1'
+		where OID in
+		<foreach collection="list" item="redOId" index="index" open="("
+			close=")" separator=",">
+			#{redOId}
+		</foreach>
+	</update>
+	
+	<!-- 通过OID获取信息 -->
+	<select id="selectByOid" resultType="com.izhuantou.damain.red.RedPacketMemberMapping">
+		select OID,redAmount from redpacketmembermapping where OID = #{oid}
+	</select>
+	
+</mapper>

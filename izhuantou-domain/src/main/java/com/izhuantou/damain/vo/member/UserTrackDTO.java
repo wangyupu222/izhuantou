@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 会员行为轨迹(某个用户的详情)
+ * 用户详情（行为轨迹）
  * 
  * @author sweet
  * @date 2018年6月13日
@@ -17,8 +17,6 @@ public class UserTrackDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -2582002395065127351L;
-
-	
 	/**
 	 * 投资时间 
 	 */
@@ -59,7 +57,6 @@ public class UserTrackDTO implements Serializable {
 	public void setProductOID(String productOID) {
 		this.productOID = productOID;
 	}
-
 	public BigDecimal getMoney() {
 		return money;
 	}

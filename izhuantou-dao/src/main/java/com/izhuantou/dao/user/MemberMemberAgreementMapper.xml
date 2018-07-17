@@ -143,11 +143,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			biddingOID =#{biddingOID} and contractType =#{contractType}
 	
 	</select>
+
 	<!-- 根据投资人OID查询头笔赚协议 -->
 	<select id="findTBZAgreementByOID" resultType="com.izhuantou.damain.user.MemberMemberAgreement">
 		select * from MEMBER_MemberAgreement where contractType =#{contractType}
 		 and memberOID = #{memberOID}
 		ORDER BY OID DESC LIMIT 1
+	</select>
+	<select id="findPdfNamePathByOID" resultType="string">
+		select pdfPath from member_memberagreement where OID=#{OID}
 	</select>
 
 

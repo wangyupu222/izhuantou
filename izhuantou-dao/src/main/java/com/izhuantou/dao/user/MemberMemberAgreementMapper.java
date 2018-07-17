@@ -89,10 +89,17 @@ public interface MemberMemberAgreementMapper extends Mapper<MemberMemberAgreemen
      */
      String findByAgreementJKXYBHCK(@Param("biddingOID") String biddingOID,
 	    @Param("contractType") String contractType);
-    
+     
     /**
      * 根据投资人OID查询头笔赚协议
      */
     public MemberMemberAgreement findTBZAgreementByOID(@Param("memberOID") String memberOID,
     		@Param("contractType") String contractType);
+
+    /**
+     * 获取协议的pdf路径
+     * @param OID
+     * @return
+     */
+    String findPdfNamePathByOID(String OID);
 }

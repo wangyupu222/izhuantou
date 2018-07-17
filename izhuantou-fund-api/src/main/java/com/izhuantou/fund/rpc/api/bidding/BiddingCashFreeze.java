@@ -1,5 +1,7 @@
 package com.izhuantou.fund.rpc.api.bidding;
 
+import java.math.BigDecimal;
+
 import com.izhuantou.damain.pay.PayDebitCredit;
 import com.izhuantou.damain.vo.bidding.BiddingDTO;
 import com.izhuantou.fund.rpc.api.BaseService;
@@ -40,4 +42,19 @@ public interface BiddingCashFreeze extends BaseService<PayDebitCredit> {
 	 * @return
 	 */
 	public String addTransferReturn(BiddingDTO biddto);
+	
+	/**
+	 * 使用红包投资
+	 * @param biddto
+	 * @param allRedAmount
+	 * @return
+	 */
+	public String investmentRed(BiddingDTO biddto);
+	
+	/**
+	 * 使用红包和加息券投资
+	 * @param biddto
+	 * @return
+	 */
+	public String investmentRedAndPrivilege(BiddingDTO biddto);
 }

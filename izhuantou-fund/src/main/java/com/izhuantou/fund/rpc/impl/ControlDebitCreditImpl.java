@@ -912,7 +912,6 @@ public class ControlDebitCreditImpl extends BaseServiceImpl<PayDebitCredit> impl
 							.setScale(2, BigDecimal.ROUND_HALF_EVEN));
 
 				}
-				// dtoDebitCredit = dbControlDebitCredit.save(dtoDebitCredit);
 				this.debitCreditMapper.saveDebitCredit(dtoDebitCredit);
 
 				dtoCashPool.setMoney(dtoCashPool.getMoney().subtract(principal));

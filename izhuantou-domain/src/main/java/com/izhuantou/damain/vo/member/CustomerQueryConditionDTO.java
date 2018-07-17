@@ -15,7 +15,10 @@ public class CustomerQueryConditionDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -4967410086998609291L;
-
+	/**
+	 * 客户OID
+	 */
+	private String OID;
 	/**
 	 * 开始时间
 	 */
@@ -77,6 +80,15 @@ public class CustomerQueryConditionDTO implements Serializable {
 	 * 回复内容
 	 */
 	private String feedbackContent;
+	
+	
+	public String getOID() {
+		return OID;
+	}
+
+	public void setOID(String oID) {
+		OID = oID;
+	}
 
 	public String getType() {
 		return type;
@@ -181,5 +193,5 @@ public class CustomerQueryConditionDTO implements Serializable {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-
+	
 }

@@ -65,7 +65,7 @@ public interface CustomerService {
 	/**
 	 * 
 	 */
-	UserTrackDTO userTrack(String oid, CustomerQueryConditionDTO cqcDTO);
+	List<Map<String,Object>> userTrack(CustomerQueryConditionDTO cqcDTO);
 
 	/**
 	 * 客服登记分页显示

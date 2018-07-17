@@ -36,4 +36,18 @@ public interface ControlDebitCredit extends BaseService<PayDebitCredit> {
 	 * @return
 	 */
 	public PayTransferReturn addTransferReturn(BiddingDTO biddto);
+	/**
+	 * 红包投资
+	 * @param biddto
+	 * @param allRedAmount
+	 * @return
+	 */
+	public PayCashPool investmentRed(BiddingDTO biddto);
+	/**
+	 * 红包和加息券投资
+	 * @param biddto
+	 * @param allRedAmount
+	 * @return
+	 */
+	public PayCashPool investmentRedAndPrivilege(BiddingDTO biddto);
 }

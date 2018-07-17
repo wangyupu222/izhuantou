@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.github.abel533.mapper.Mapper;
 import com.izhuantou.damain.vo.member.CustomerQueryConditionDTO;
+import com.izhuantou.damain.vo.member.UserTrackDTO;
 import com.izhuantou.damain.webp2p.WebP2pNoviceBiddingRuning;
 
 /**
@@ -48,7 +49,6 @@ public interface WebP2pNoviceBiddingRuningMapper extends Mapper<WebP2pNoviceBidd
 	 * @param oid
 	 * @return
 	 */
-	public List<WebP2pNoviceBiddingRuning> findByMemberOId(@Param("oid") String oid,
-			@Param("cqcDTO") CustomerQueryConditionDTO cqcDTO);
+	public List<UserTrackDTO> findByMemberOId(@Param("cqcDTO") CustomerQueryConditionDTO cqcDTO);
 
 }

@@ -5,13 +5,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.httpclient.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Service;
 
 import com.izhuantou.common.bean.Pagination;
@@ -25,6 +28,7 @@ import com.izhuantou.damain.pay.PayCustomer;
 import com.izhuantou.damain.system.PortalLog;
 import com.izhuantou.damain.user.MemberBlackList;
 import com.izhuantou.damain.user.MemberMember;
+import com.izhuantou.damain.user.MemberMemberAgreement;
 import com.izhuantou.damain.user.MemberScore;
 import com.izhuantou.damain.vo.member.CustomerExcelDTO;
 import com.izhuantou.damain.vo.member.CustomerFeedbackDTO;
@@ -49,6 +53,7 @@ import com.izhuantou.dao.pay.PayCustomerTyjMapper;
 import com.izhuantou.dao.pay.PayDebitCreditMapper;
 import com.izhuantou.dao.system.PortalLogMapper;
 import com.izhuantou.dao.user.MemberBlackListMapper;
+import com.izhuantou.dao.user.MemberMemberAgreementMapper;
 import com.izhuantou.dao.user.MemberMemberMapper;
 import com.izhuantou.dao.user.MemberScoreMapper;
 import com.izhuantou.dao.webp2p.WebP2pNoviceBiddingRuningMapper;
@@ -86,6 +91,8 @@ public class CustomerServiceImpl implements CustomerService {
 	private PortalLogMapper portalLogMapper;
 	@Autowired
 	private CustomerManagerMapper customerManagerMapper;
+	@Autowired
+	private MemberMemberAgreementMapper memberAgreementDao;
 	/**
 	 * 客户列表四个数展示
 	 */
@@ -378,14 +385,14 @@ public class CustomerServiceImpl implements CustomerService {
 		String type = customerManagerDTO.getType();
 		List<String> strs = null;
 		try{
-			if(type.equals("1")){				 												//查询第一列大区类型
+			if(type.equals("1")){				 													//查询第一列大区类型
 				customerManagerDTO.setType("twoDept");
 				customerManagerDTO.setTwoDept("");
 				customerManagerDTO.setThrDept("");
 				customerManagerDTO.setFourDept("");
 				customerManagerDTO.setFiveDept("");
 				strs = customerManagerMapper.getCustomerManagerGroup(customerManagerDTO);
-			}else if(type.equals("2") && StringUtil.isNotEmpty(customerManagerDTO.getTwoDept())){  //查询第二列分公司
+			}else if(type.equals("2") && StringUtil.isNotEmpty(customerManagerDTO.getTwoDept())){  	//查询第二列分公司
 				customerManagerDTO.setType("thrDept");
 				customerManagerDTO.setThrDept("");
 				customerManagerDTO.setFourDept("");
@@ -396,7 +403,7 @@ public class CustomerServiceImpl implements CustomerService {
 				customerManagerDTO.setType("fourDept");
 				customerManagerDTO.setFourDept("");
 				customerManagerDTO.setFiveDept("");
-				strs = customerManagerMapper.getCustomerManagerGroup(customerManagerDTO);     	//查询第四列团队
+				strs = customerManagerMapper.getCustomerManagerGroup(customerManagerDTO);     		//查询第四列团队
 			}else if(type.equals("4") && StringUtil.isNotEmpty(customerManagerDTO.getTwoDept()) 
 					&& StringUtil.isNotEmpty(customerManagerDTO.getThrDept()) 
 					&& StringUtil.isNotEmpty(customerManagerDTO.getFourDept())){
@@ -439,121 +446,239 @@ public class CustomerServiceImpl implements CustomerService {
 	 * 客户详情（行为轨迹）
 	 */
 	@Override
-	public UserTrackDTO userTrack(String oid, CustomerQueryConditionDTO cqcDTO) {
-		UserTrackDTO utDTO = new UserTrackDTO();
-		Map<String, List<String>> map = new LinkedHashMap<String, List<String>>();
-		// 判断是否账号锁定
-		MemberMember memberMember = memberMemberMapper.selectByPrimaryKey(oid);
-		MemberBlackList memberBlackList = memberBlackListMapper.selectByName(memberMember.getName());
-		if (memberBlackList != null) {
-			// 账号锁定
-			List<String> list = new ArrayList<>();
-			Date sdsj = memberBlackList.getAddDateTime();
-			String sdDate = DateUtils.formatJustDate(sdsj.getTime()) + " " + DateUtils.dayForWeek(sdsj);
-			String sdTime = sdsj.toString().substring(11, 16);
-			String sdjl = sdTime + " 登录失败次数超限，账号锁定";
-			list.add(sdjl);
-			map.put(sdDate, list);
-		}
-		// 是否实名
-		PayCustomer payCustomer = payCustomerMapper.findByMemberOID(oid);
+	public List<Map<String,Object>> userTrack(CustomerQueryConditionDTO cqcDTO) {
+		//储蓄内容list
+		List<Map<String,Object>> userTrackList = new ArrayList<Map<String,Object>>();
+		//用于将结果进行时间排序的list（外层）
+		List<Date> dateList = new ArrayList<Date>();
+		// 是否实名信息
+		PayCustomer payCustomer = payCustomerMapper.findByMemberOID(cqcDTO.getOID());
 		if (payCustomer != null) {
+			List<UserTrackDTO> usertrackList = webP2pNoviceBiddingRuningMapper.findByMemberOId(cqcDTO);
+			// 新手投记录信息
+			if (usertrackList != null && usertrackList.size()>0) {
+				for(UserTrackDTO usertrack : usertrackList){
+					//获取协议内容
+					MemberMemberAgreement magrement = memberAgreementDao.findTBZAgreementByOID(cqcDTO.getOID(),"2");
+					Date xstsj = usertrack.getAddDateTime();
+					//定义一个开关 
+					Boolean switchs = false;
+					for(Map<String,Object> maps : userTrackList){
+						Date times = (Date)maps.get("titleTime");
+						if(DateUtils.isSameDay(times, xstsj)){
+							List<Map<String,Object>> list = (List)maps.get("data");
+							Map<String,Object> xstContentMap = new HashMap<String,Object>();
+							xstContentMap.put("contentTime",xstsj);  //用于同一天内容的排序
+							xstContentMap.put("productName", usertrack.getProductName());
+							xstContentMap.put("amountMoney", usertrack.getMoney().toString());
+							xstContentMap.put("productOID", usertrack.getProductOID());
+							if(magrement!=null){
+								xstContentMap.put("agrementOID", magrement.getOID());
+							}
+							list.add(xstContentMap);
+							maps.remove("data");
+							maps.put("data", list);
+							switchs = true;
+						}
+					}
+					//没有相同日期时 新增加一组数据
+					if(!switchs){
+						Map<String,Object> xstMap = new HashMap<String,Object>();
+						List<Map<String,Object>> xstList = new ArrayList<Map<String,Object>>();
+						Map<String,Object> xstContentMap = new HashMap<String,Object>();
+						xstContentMap.put("contentTime",xstsj);  //用于同一天内容的排序（内层）
+						xstContentMap.put("productName", usertrack.getProductName());
+						xstContentMap.put("amountMoney", usertrack.getMoney().toString());
+						xstContentMap.put("productOID", usertrack.getProductOID());
+						if(magrement!=null){
+							xstContentMap.put("agrementOID", magrement.getOID());
+						}
+						xstList.add(xstContentMap);
+						xstMap.put("titleTime", xstsj);     //用于不同天内容的排序（外层）
+						xstMap.put("type", "1");            //1:资金信息
+						xstMap.put("data", xstList);
+						userTrackList.add(xstMap);
+						dateList.add(xstsj);
+					}
+				}
+			}
+			// 环环投记录信息
+			List<PayCashPool> cashPoolList = payCashPoolMapper.findByMemberOID(cqcDTO);
+			if (cashPoolList != null && cashPoolList.size()>0) {
+				for (PayCashPool payCashPool : cashPoolList) {
+					String tzje = payCashPool.getPrincipalMoney().toString();
+					// 获取产品名称
+					WebP2pPackageBiddingMainRuning wppbmr = webP2pPackageBiddingMainRuningMapper
+							.findByOID(payCashPool.getBusinessOID());
+					String productName = wppbmr.getPackageName();
+					//获取协议内容
+					MemberMemberAgreement magrement = memberAgreementDao.gainAgreementXYCK2(payCashPool.getOID(),"4");
+					// 获取时间
+					Date hhtsj = payCashPool.getAddDateTime();
+					//定义一个开关  
+					Boolean switchs = false;
+					for(Map<String,Object> maps : userTrackList){
+						Date times = (Date)maps.get("titleTime");
+						// 判断日期是否相同（年月日）
+						if(DateUtils.isSameDay(times, hhtsj)){
+							List<Map<String,Object>> list = (List)maps.get("data");
+							Map<String,Object> hhtContentMap = new HashMap<String,Object>();
+							hhtContentMap.put("contentTime",hhtsj);  //用于同一天内容的排序
+							hhtContentMap.put("productName", productName);
+							hhtContentMap.put("amountMoney", tzje);
+							hhtContentMap.put("productOID", wppbmr.getOID());
+							if(magrement!=null){
+								hhtContentMap.put("agrementOID", magrement.getOID());
+							}
+							list.add(hhtContentMap);
+							maps.remove("data");
+							maps.put("data", list);
+							switchs = true;
+						}
+					}
+					//没有相同日期时 新增加一组数据
+					if(!switchs){
+						Map<String,Object> hhtMap = new HashMap<String,Object>();
+						List<Map<String,Object>> hhtList = new ArrayList<Map<String,Object>>();
+						Map<String,Object> hhtContentMap = new HashMap<String,Object>();
+						hhtContentMap.put("contentTime",hhtsj);  //用于同一天内容的排序（内层）
+						hhtContentMap.put("productName", productName);
+						hhtContentMap.put("amountMoney", tzje);
+						hhtContentMap.put("productOID", wppbmr.getOID());
+						if(magrement!=null){
+							hhtContentMap.put("agrementOID", magrement.getOID());
+						}
+						hhtList.add(hhtContentMap);
+						hhtMap.put("titleTime", hhtsj);     //用于不同天内容的排序（外层）
+						hhtMap.put("type", "1");            //资金信息
+						hhtMap.put("data", hhtList);
+						userTrackList.add(hhtMap);
+						dateList.add(hhtsj);
+					}
+				}
+			}
 			// 已实名
+			Map<String,Object> smMap = new HashMap<String,Object>();
+			List<String> smList = new ArrayList<String>();
 			// 实名日期
 			Date smsj = payCustomer.getAddDateTime();
-			String smDate = DateUtils.formatJustDate(smsj.getTime()) + " " + DateUtils.dayForWeek(smsj);
 			String smTime = smsj.toString().substring(11, 16);
+//						String smTime = DateUtils.formatDate(smsj, "");
 			String smjl = smTime + " 实名认证成功";
-			// 判断是否存在相同的日期（key值）
-			if (map.containsKey(smDate)) {
-				List<String> list = map.get(smDate);
-				list.add(smjl);
-				map.put(smDate, list);
-			} else {
-				List<String> list = new ArrayList<>();
-				list.add(smjl);
-				map.put(smDate, list);
-			}
-			// 投资次数
-			Integer investmentNumber = payCustomerBusinessMapper.countTzNumber(oid);
-			// 投资产品数
-			int noviceNumer = webP2pNoviceBiddingRuningMapper.countByMemberOID(oid);
-			int cashPoolNumber = payCashPoolMapper.countByMemberOID(oid);
-			if (investmentNumber != 0) {
-				// 新手投记录
-				if (noviceNumer != 0) {
-					List<WebP2pNoviceBiddingRuning> noviceList = webP2pNoviceBiddingRuningMapper.findByMemberOId(oid,
-							cqcDTO);
-					if (noviceList != null) {// 有可能时间范围对应没有数据，所以再次判断
-						for (WebP2pNoviceBiddingRuning wpnbr : noviceList) {
-							Date xstsj = wpnbr.getAddDateTime();
-							String xstDate = DateUtils.formatJustDate(xstsj.getTime()) + " "
-									+ DateUtils.dayForWeek(xstsj);
-							String xstTime = xstsj.toString().substring(11, 16);
-							String xstjl = xstTime + " 投资" + wpnbr.getBiddingName() + ",投资金额为:"
-									+ wpnbr.getHoldingAmount().toString() + "元";
-							// 判断是否存在相同的日期（key值）
-							if (map.containsKey(xstDate)) {
-								List<String> list = map.get(xstDate);
-								list.add(xstjl);
-								map.put(xstDate, list);
-							} else {
-								List<String> list = new ArrayList<>();
-								list.add(xstjl);
-								map.put(xstDate, list);
-							}
-						}
-					}
-				}
-				// 环环投记录
-				if (cashPoolNumber != 0) {
-					List<PayCashPool> cashPoolList = payCashPoolMapper.findByMemberOID(oid, cqcDTO);
-					if (cashPoolList != null) {
-						for (PayCashPool payCashPool : cashPoolList) {
-							String tzje = payCashPool.getPrincipalMoney().toString();
-							// 获取产品名称
-							WebP2pPackageBiddingMainRuning wppbmr = webP2pPackageBiddingMainRuningMapper
-									.findByOID(payCashPool.getBusinessOID());
-							String productName = wppbmr.getPackageName();
-							// 获取时间
-							Date hhtsj = payCashPool.getAddDateTime();
-							String hhtDate = DateUtils.formatJustDate(hhtsj.getTime()) + " "
-									+ DateUtils.dayForWeek(hhtsj);
-							String hhtTime = hhtsj.toString().substring(11, 16);
-							String hhtjl = hhtTime + " 投资" + productName + ",投资金额：" + tzje + "元";
-							// 判断日期是否相同（年月日）
-							if (map.containsKey(hhtDate)) {
-								// 日期相同时
-								List<String> list = map.get(hhtDate);
-								list.add(hhtjl);
-								map.put(hhtDate, list);
-							} else {
-								// 日期不同时
-								List<String> list = new ArrayList<>();
-								list.add(hhtjl);
-								map.put(hhtDate, list);
-							}
-						}
-					}
-				}
-			}
+			smList.add(smjl);
+			smMap.put("titleTime", smsj);
+			smMap.put("type", "0");            //非资金信息
+			smMap.put("data", smList);
+			userTrackList.add(smMap);
+			dateList.add(smsj);
 		}
-		// 未实名，只有注册时间
+		// 判断是否账号锁定
+		MemberMember memberMember = memberMemberMapper.selectByPrimaryKey(cqcDTO.getOID());
+		MemberBlackList memberBlackList = memberBlackListMapper.selectByName(memberMember.getName());
+		if (memberBlackList != null) {
+			// 账号锁定信息
+			Map<String,Object> sdMap = new HashMap<String,Object>();
+			List<String> sdList = new ArrayList<String>();
+			Date sdsj = memberBlackList.getAddDateTime();
+			String sdTime = sdsj.toString().substring(11, 16);
+//			String sdTime = DateUtils.formatDate(sdsj, "");
+			String sdjl = sdTime + " 登录失败次数超限，账号锁定";
+			sdList.add(sdjl);
+			sdMap.put("titleTime", sdsj);
+			sdMap.put("type", "0");            //非资金信息
+			sdMap.put("data", sdList);
+			userTrackList.add(sdMap);
+			dateList.add(sdsj);
+		}
+		// 未实名，只有注册时间信息
+		Map<String,Object> zcMap = new HashMap<String,Object>();
+		List<String> zcList = new ArrayList<String>();
 		Date zcsj = memberMember.getAddDateTime();
-		String zcDate = DateUtils.formatJustDate(zcsj.getTime()) + " " + DateUtils.dayForWeek(zcsj);
 		String zcTime = zcsj.toString().substring(11, 16);
+//		String zcTime = DateUtils.formatDate(zcsj, "");
 		String zcjl = zcTime + " 注册成功(Web)";
-		if (map.containsKey(zcDate)) {
-			List<String> list = map.get(zcDate);
-			list.add(zcjl);
-			map.put(zcDate, list);
-		} else {
-			List<String> list = new ArrayList<>();
-			list.add(zcjl);
-			map.put(zcDate, list);
+		zcList.add(zcjl);
+		zcMap.put("titleTime", zcsj);
+		zcMap.put("type", "0");            //非资金信息
+		zcMap.put("data", zcList);
+		userTrackList.add(zcMap);
+		dateList.add(zcsj);
+		//将dateList排序(冒泡排序)
+		Date tempDate = null;
+		for(int i=0;i<dateList.size()-1;i++){
+			for(int j=0;j<dateList.size()-1-i;j++){
+				//倒序：从大到小
+				if(dateList.get(j).before(dateList.get(j+1))){
+					tempDate = dateList.get(j);
+					dateList.set(j, dateList.get(j+1));
+					dateList.set(j+1,tempDate);
+				}
+				//正序：从小到大
+				//if(dateList.get(j).after(dateList.get(j+1)))
+			}
 		}
-		utDTO.setOperatingRecord(map);
-		return utDTO;
+		//定义新list 用于保存排序后的数据
+		List<Map<String,Object>> NewUserTrackList = new ArrayList<Map<String,Object>>();
+		for(Date date : dateList){
+			Map<String,Object> map = new HashMap<String,Object>();
+			for(Map<String,Object> maps : userTrackList){
+				Date times = (Date)maps.get("titleTime");
+				if(date.compareTo(times)==0){
+					//将显示日期格式转换
+					String time = DateUtils.formatJustDate(date.getTime()) + " " + DateUtils.dayForWeek(date);
+					map.put("titleTime", time);
+					map.put("data", maps.get("data"));
+					map.put("type", maps.get("type"));
+					NewUserTrackList.add(map);
+				}
+			}
+		}
+		//同一天内数据按时间进行排序
+		for(Map<String,Object> maps : NewUserTrackList){
+			String type = (String)maps.get("type");      
+			if(type.equals("1")){			//资金信息进行排序
+				List<Map<String,Object>> data = (List)maps.get("data");    //排序前数据
+				List<Map<String,Object>> newData = new ArrayList<Map<String,Object>>();  //排序后数据
+				List<Date> timeList = new ArrayList<Date>();     //排序时间集合
+				for(Map<String,Object> map : data){
+					timeList.add((Date)map.get("contentTime"));
+				}
+				//将timeList排序
+				Date tempTime = null;
+				for(int i=0;i<timeList.size()-1;i++){
+					for(int j=0;j<timeList.size()-1-i;j++){
+						//倒序：从大到小
+						if(timeList.get(j).before(timeList.get(j+1))){
+							tempTime = timeList.get(j);
+							timeList.set(j, timeList.get(j+1));
+							timeList.set(j+1,tempTime);
+						}
+					}
+				}
+				//循环按时间排序生成新数据
+				for(Date date : timeList){
+					Map<String,Object> newMap = new HashMap<String,Object>();
+					Iterator<Map<String,Object>> map = data.iterator();
+					while(map.hasNext()){
+						Map<String,Object> nextMap = map.next();
+						Date times = (Date)nextMap.get("contentTime");
+						if(date.compareTo(times)==0){
+							String subTime = times.toString().substring(11, 16);
+							newMap.put("contentTime",subTime);
+							newMap.put("productName", nextMap.get("productName"));
+							newMap.put("amountMoney", nextMap.get("amountMoney"));
+							newMap.put("agrementOID", nextMap.get("agrementOID"));
+							newMap.put("productOID", nextMap.get("productOID"));
+					    	map.remove();
+					    	newData.add(newMap);
+					    }
+					}
+				}
+				maps.remove("data");
+				maps.put("data", newData);
+			}
+		}
+		return NewUserTrackList;
 	}
 
 	/**

@@ -113,7 +113,7 @@ public class CustomerController {
 	 * @Param customerManagerDTO 客户经理DTO
 	 */
 	@SystemControllerLog(description = "客户经理变更")
-	@RequestMapping(value="customerManagerChange")
+	@RequestMapping(value="/customerManagerChange", method = RequestMethod.POST)
 	@ResponseBody
 	public OpResult customerManagerChange(CustomerManagerDTO customerManagerDTO){
 		if(StringUtil.isNotEmpty(customerManagerDTO.getType())){
@@ -153,9 +153,9 @@ public class CustomerController {
 	@SystemControllerLog(description = "客户详情")
 	@RequestMapping(value = "/usertrack", method = RequestMethod.POST)
 	@ResponseBody
-	public OpResult userTrack(@RequestParam(value = "oid") String oid, CustomerQueryConditionDTO cqcDTO) {
-		UserTrackDTO utDTO = customerService.userTrack(oid, cqcDTO);
-		return OpResult.getSuccessResult(utDTO);
+	public OpResult userTrack( CustomerQueryConditionDTO cqcDTO) {
+		List<Map<String,Object>>  userTrackList= customerService.userTrack(cqcDTO);
+		return OpResult.getSuccessResult(userTrackList);
 	}
 
 	/**

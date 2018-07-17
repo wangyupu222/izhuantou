@@ -32,6 +32,14 @@ public class BiddingDTO implements Serializable {
 	 */
 	private String tqOID;
 	/**
+	 * 红包OID
+	 */
+	private String redOID;
+	/**
+	 * 红包总额
+	 */
+	private BigDecimal allRedAmount;
+	/**
 	 * 来源
 	 */
 	private String laiyuan;
@@ -165,6 +173,22 @@ public class BiddingDTO implements Serializable {
 		this.tqOID = tqOID;
 	}
 
+	public String getRedOID() {
+		return redOID;
+	}
+
+	public void setRedOID(String redOID) {
+		this.redOID = redOID;
+	}
+
+	public BigDecimal getAllRedAmount() {
+		return allRedAmount;
+	}
+
+	public void setAllRedAmount(BigDecimal allRedAmount) {
+		this.allRedAmount = allRedAmount;
+	}
+
 	public String getLaiyuan() {
 		return laiyuan;
 	}
@@ -272,12 +296,12 @@ public class BiddingDTO implements Serializable {
 	@Override
 	public String toString() {
 		return "BiddingDTO [memberOID=" + memberOID + ", biddingOID=" + biddingOID + ", amount=" + amount + ", tqOID="
-				+ tqOID + ", laiyuan=" + laiyuan + ", mappingOID=" + mappingOID + ", creditRate=" + creditRate
-				+ ", creditType=" + creditType + ", privilegePrincipal=" + privilegePrincipal + ", privilegeInterest="
-				+ privilegeInterest + ", debitCreditOID=" + debitCreditOID + ", outMemberOID=" + outMemberOID
-				+ ", transferReturnDate=" + transferReturnDate + ", beginDate=" + beginDate + ", endDate=" + endDate
-				+ ", isTZorCW=" + isTZorCW + ", tzType=" + tzType + ", interest=" + interest + ", returnCycle="
-				+ returnCycle + ", returnNumber=" + returnNumber + ", term=" + term + "]";
+				+ tqOID + ", redOID=" + redOID + ", laiyuan=" + laiyuan + ", mappingOID=" + mappingOID + ", creditRate="
+				+ creditRate + ", creditType=" + creditType + ", privilegePrincipal=" + privilegePrincipal
+				+ ", privilegeInterest=" + privilegeInterest + ", debitCreditOID=" + debitCreditOID + ", outMemberOID="
+				+ outMemberOID + ", transferReturnDate=" + transferReturnDate + ", beginDate=" + beginDate
+				+ ", endDate=" + endDate + ", isTZorCW=" + isTZorCW + ", tzType=" + tzType + ", interest=" + interest
+				+ ", returnCycle=" + returnCycle + ", returnNumber=" + returnNumber + ", term=" + term + "]";
 	}
 
 }

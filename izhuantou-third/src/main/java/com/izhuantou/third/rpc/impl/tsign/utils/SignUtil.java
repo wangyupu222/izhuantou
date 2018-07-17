@@ -143,16 +143,16 @@ public class SignUtil {
 	// 算法类型，默认HMAC-SHA256
 	sCfg.setAlgorithm(AlgorithmType.HMACSHA256); // 可选RSA，但推荐使用HMACSHA256
 	// e签宝公钥，可以从开放平台获取。若算法类型为RSA，此项必填
-	sCfg.setEsignPublicKey("");
+	sCfg.setEsignPublicKey(""); 
 	// 平台私钥，可以从开放平台下载密钥生成工具生成。若算法类型为RSA，此项必填
 	sCfg.setPrivateKey("");
-	System.out.println("--项目初始化...");
+	 LOG.info("--项目初始化...");
 	EsignsdkService sdk = EsignsdkServiceFactory.instance();
 	Result result = sdk.init(proCfg, httpConCfg, sCfg);
 	if (0 != result.getErrCode()) {
 	    LOG.info("--项目初始化失败：errCode=" + result.getErrCode() + " msg=" + result.getMsg());
 	} else {
-	    System.out.println("--项目初始化成功！errCode=" + result.getErrCode() + " msg=" + result.getMsg());
+		LOG.info("--项目初始化成功！errCode=" + result.getErrCode() + " msg=" + result.getMsg());
 	}
     }
 
@@ -178,13 +178,13 @@ public class SignUtil {
 	// 常用地址,可空
 	// personBean.setAddress("XXX街道");
 
-	System.out.println("----开始创建个人账户...");
+	LOG.info("----开始创建个人账户...");
 	AccountService accountService = AccountServiceFactory.instance();
 	AddAccountResult addAccountResult = accountService.addAccount(personBean);
 	if (0 != addAccountResult.getErrCode()) {
 	    LOG.info("创建个人账户失败，errCode=" + addAccountResult.getErrCode() + " msg=" + addAccountResult.getMsg());
 	} else {
-	    System.out.println("创建个人账户成功！accountId = " + addAccountResult.getAccountId());
+		LOG.info("创建个人账户成功！accountId = " + addAccountResult.getAccountId());
 	}
 	return addAccountResult.getAccountId();
     }
@@ -232,14 +232,14 @@ public class SignUtil {
 	    organizeBean.setLegalIdNo(agentIdNo);
 	}
 
-	System.out.println("----开始创建企业账户...");
+	LOG.info("----开始创建企业账户...");
 	AccountService accountService = AccountServiceFactory.instance();
 	AddAccountResult addAccountResult = accountService.addAccount(organizeBean);
 
 	if (0 != addAccountResult.getErrCode()) {
 	    LOG.info("创建企业账户失败，errCode=" + addAccountResult.getErrCode() + " msg=" + addAccountResult.getMsg());
 	} else {
-	    System.out.println("创建企业账户成功！accountId = " + addAccountResult.getAccountId());
+		LOG.info("创建企业账户成功！accountId = " + addAccountResult.getAccountId());
 	}
 	return addAccountResult.getAccountId();
 
@@ -260,7 +260,7 @@ public class SignUtil {
 	if (0 != result.getErrCode()) {
 	    LOG.info("更新个人账户失败，errCode=" + result.getErrCode() + " msg=" + result.getMsg());
 	} else {
-	    System.out.println("更新个人账户成功！accountId = " + accountId + " 已被更新");
+		LOG.info("更新个人账户成功！accountId = " + accountId + " 已被更新");
 	}
     }
 
@@ -279,7 +279,7 @@ public class SignUtil {
 	if (0 != result.getErrCode()) {
 	    LOG.info("更新企业账户失败，errCode=" + result.getErrCode() + " msg=" + result.getMsg());
 	} else {
-	    System.out.println("更新企业账户成功！accountId = " + accountId + " 已被更新");
+		LOG.info("更新企业账户成功！accountId = " + accountId + " 已被更新");
 	}
     }
 
@@ -309,7 +309,7 @@ public class SignUtil {
 	}
 	int sealId = Integer.valueOf(prop.getProperty("sealId"));
 
-	System.out.println("----开始平台自身PDF摘要签署...");
+	LOG.info("----开始平台自身PDF摘要签署...");
 	SelfSignService selfSignService = SelfSignServiceFactory.instance();
 	FileDigestSignResult fileDigestSignResult = selfSignService.localSignPdf(signPDFStreamBean, posBean, sealId,
 		signType);
@@ -317,7 +317,7 @@ public class SignUtil {
 	    LOG.info("平台自身PDF摘要签署（文件流）失败，errCode=" + fileDigestSignResult.getErrCode() + " msg="
 		    + fileDigestSignResult.getMsg());
 	} else {
-	    System.out.println("----平台自身PDF摘要签署成功！签署记录SignServiceId = " + fileDigestSignResult.getSignServiceId()
+		LOG.info("----平台自身PDF摘要签署成功！签署记录SignServiceId = " + fileDigestSignResult.getSignServiceId()
 		    + ", 请保存该签署记录Id！");
 	}
 	return fileDigestSignResult;
@@ -341,7 +341,7 @@ public class SignUtil {
 	 * signType = SignType.Key;
 	 */
 
-	System.out.println("----开始平台个人客户的PDF摘要签署...");
+	LOG.info("----开始平台个人客户的PDF摘要签署...");
 	UserSignService userSignService = UserSignServiceFactory.instance();
 	FileDigestSignResult fileDigestSignResult = userSignService.localSignPDF(accountId, sealData, signPDFStreamBean,
 		posBean, signType);
@@ -349,7 +349,7 @@ public class SignUtil {
 	    LOG.info("平台个人客户的PDF摘要签署失败，errCode=" + fileDigestSignResult.getErrCode() + " msg="
 		    + fileDigestSignResult.getMsg());
 	} else {
-	    System.out.println("平台个人客户的PDF摘要签署成功！签署记录SignServiceId = " + fileDigestSignResult.getSignServiceId()
+		LOG.info("平台个人客户的PDF摘要签署成功！签署记录SignServiceId = " + fileDigestSignResult.getSignServiceId()
 		    + ", 请保存该签署记录Id！");
 	}
 	return fileDigestSignResult;
@@ -365,13 +365,13 @@ public class SignUtil {
 	// 印章颜色：红色
 	SealColor sealColor = SealColor.RED;
 
-	System.out.println("----开始创建个人账户的印章...");
+	LOG.info("----开始创建个人账户的印章...");
 	SealService sealService = SealServiceFactory.instance();
 	AddSealResult addSealResult = sealService.addTemplateSeal(accountId, personTemplateType, sealColor);
 	if (0 != addSealResult.getErrCode()) {
 	    LOG.info("创建个人模板印章失败，errCode=" + addSealResult.getErrCode() + " msg=" + addSealResult.getMsg());
 	} else {
-	    System.out.println("创建个人模板印章成功！SealData = " + addSealResult.getSealData());
+		LOG.info("创建个人模板印章成功！SealData = " + addSealResult.getSealData());
 	}
 	return addSealResult;
 
@@ -396,14 +396,14 @@ public class SignUtil {
 	 * // 横向文字 String hText = "合同专用章"; // 下弦文字 String qText =
 	 * "91010086135601";
 	 */
-	System.out.println("----开始创建企业账户的印章...");
+	LOG.info("----开始创建企业账户的印章...");
 	SealService sealService = SealServiceFactory.instance();
 	AddSealResult addSealResult = sealService.addTemplateSeal(accountId, organizeTemplateType, sealColor, hText,
 		qText);
 	if (0 != addSealResult.getErrCode()) {
 	    LOG.info("创建企业模板印章失败，errCode=" + addSealResult.getErrCode() + " msg=" + addSealResult.getMsg());
 	} else {
-	    System.out.println("创建企业模板印章成功！SealData = " + addSealResult.getSealData());
+		LOG.info("创建企业模板印章成功！SealData = " + addSealResult.getSealData());
 	}
 	return addSealResult;
 
@@ -426,7 +426,7 @@ public class SignUtil {
 	 * SignType signType = SignType.Single;
 	 */
 
-	System.out.println("----开始平台企业客户的PDF摘要签署...");
+	LOG.info("----开始平台企业客户的PDF摘要签署...");
 	UserSignService userSignService = UserSignServiceFactory.instance();
 	FileDigestSignResult fileDigestSignResult = userSignService.localSignPDF(accountId, sealData, signPDFStreamBean,
 		posBean, signType);
@@ -434,7 +434,7 @@ public class SignUtil {
 	    LOG.info("平台企业客户的PDF摘要签署失败，errCode=" + fileDigestSignResult.getErrCode() + " msg="
 		    + fileDigestSignResult.getMsg());
 	} else {
-	    System.out.println("平台企业客户的PDF摘要签署成功！签署记录SignServiceId = " + fileDigestSignResult.getSignServiceId()
+		LOG.info("平台企业客户的PDF摘要签署成功！签署记录SignServiceId = " + fileDigestSignResult.getSignServiceId()
 		    + ", 请保存该签署记录Id！");
 	}
 	return fileDigestSignResult;
@@ -444,14 +444,14 @@ public class SignUtil {
      * 保存签署后的文件流
      */
     public static boolean saveSignedByStream(byte[] signedStream, String signedFolder, String signedFileName) {
-	System.out.println("----开始保存签署后文件...");
+	LOG.info("----开始保存签署后文件...");
 	boolean isSuccess = false;
 	Map<String, String> fileResult = FileHelper.saveFileByStream(signedStream, signedFolder, signedFileName);
 	if (0 != Integer.parseInt(fileResult.get("errCode"))) {
 	    LOG.info("保存签署后文件失败，errCode=" + fileResult.get("errCode") + " msg=" + fileResult.get("msg"));
 	} else {
 	    isSuccess = true;
-	    System.out.println("保存签署后文件成功！errCode=" + fileResult.get("errCode") + " msg=" + fileResult.get("msg"));
+	    LOG.info("保存签署后文件成功！errCode=" + fileResult.get("errCode") + " msg=" + fileResult.get("msg"));
 	}
 	return isSuccess;
     }

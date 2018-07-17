@@ -81,5 +81,22 @@ public class ControlBiddingController {
 		}
 		return "redirect:/portal/control/errorpage";
 	}
+	
+	/**
+	 * 体验标相关流程
+	 */
+	@RequestMapping(value = "/tyjbidding", method = RequestMethod.POST)
+	public String intoTYJBidding(HttpServletRequest request,RedirectAttributes view){
+		HttpSession session = request.getSession();
+		String memberOID = (String) session.getAttribute("memberOID");
+		Integer row = processPageBidding.processPageTYJsave(memberOID);
+		if (row == 1){
+			// 成功
+			return "redirect:/portal/control/tzdetailsok";
+		}else{
+			// 失败
+			return "redirect:/portal/control/errorpage";
+		}
+	}
 
 }
