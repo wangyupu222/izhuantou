@@ -27,6 +27,7 @@ public class HhBiddingHandler extends AbstarctMessageHandler {
     public HhBiddingHandler() {
 	// 说明该handler监控的消息类型
 	super(MessageType.HH_BIDDING_MESSAGE, 10);
+	System.err.println("进入构造函数");
     }
 
     /**
