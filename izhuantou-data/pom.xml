@@ -11,7 +11,7 @@
 	<packaging>war</packaging>
 	
 	<properties>
-		<jetty-server.version>9.2.22.v20170606</jetty-server.version>
+		<jetty-server.version>9.4.48.v20220622</jetty-server.version>
 	</properties>
 	
 	<!-- 内部依赖 -->
